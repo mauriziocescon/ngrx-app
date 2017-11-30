@@ -1,14 +1,17 @@
+import { browser } from "protractor";
 import { AppPage } from "./app.po";
 
-describe("ngrx-app App", () => {
+describe("angular App", () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it("should display welcome message", () => {
+  it("should display title saying Demo", () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual("Welcome to app!");
+    browser.getTitle().then((title: string) => {
+      expect(title).toEqual("Demo");
+    });
   });
 });

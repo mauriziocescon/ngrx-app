@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
+  // json-server mock server
+  apiUrl: "http://localhost:5000/api/",
   production: false
 };
