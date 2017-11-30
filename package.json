@@ -1,16 +1,50 @@
 {
   "name": "ngrx-app",
-  "version": "0.0.0",
-  "license": "MIT",
+  "version": "1.0.0",
+  "description": "A demo application built on angular 5.x and ngrx (beta)",
+  "author": "Maurizio Cescon <maurizio.cescon@gmail.com> (http://www.mauriziocescon.com)",
+  "homepage": "http://www.mauriziocescon.com",
+  "private": false,
+  "engines": {
+    "node": "=8.9.1",
+    "npm": "=5.5.1"
+  },
   "scripts": {
+    "postinstall": "node ./mock-server/db-creator.js | npm run build",
+    "start": "npm run json-server",
+    "json-server": "node ./mock-server/server.js",
+    "json-server-watch": "nodemon ./mock-server/server.js",
     "ng": "ng",
-    "start": "ng serve",
+    "serve": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mauriziocescon/ngrx-app"
+  },
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "cescon",
+    "es2017",
+    "json-server",
+    "maurizio",
+    "mock-server",
+    "ngrx",
+    "sass",
+    "travis",
+    "typescript",
+    "webpack"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/brentertz/scapegoat/blob/master/LICENSE-MIT"
+    }
+  ],
   "dependencies": {
     "@angular/animations": "5.0.3",
     "@angular/common": "5.0.3",
