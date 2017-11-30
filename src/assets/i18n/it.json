@@ -1,0 +1,15 @@
+{
+  "NAVIGATION_BAR": {
+    "CHARTS": "Grafici",
+    "NAME": "Nome",
+    "SELECT_LANGUAGE": "Cambia lingua",
+    "USERS": "Utenti"
+  },
+  "USERS": {
+    "INPUT_TEXT_PLACEHOLDER": "Inserisci testo",
+    "LOAD_COMPLETED": "Caricamento completato",
+    "LOADING": "Caricamento...",
+    "NO_RESULT": "Vuoto",
+    "RETRY": "Riprova"
+  }
+}

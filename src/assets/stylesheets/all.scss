@@ -1,0 +1,15 @@
+// Variables and mixins
+@import "colors";
+@import "functions";
+@import "mixins";
+
+// Core css
+@import "base";
+
+// Vendors
+$fa-font-path: "~font-awesome/fonts";
+$roboto-font-path: "~roboto-fontface/fonts";
+
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/scss/font-awesome";
+@import "~roboto-fontface/css/roboto/sass/roboto-fontface";
