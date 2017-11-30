@@ -1,6 +1,15 @@
 # NgrxApp
+=========
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
+
+## Backend implementation 
+
+1. Based on [json-server](https://github.com/typicode/json-server) with mocks from [faker](https://github.com/Marak/faker.js) (APIs available at `http://localhost:5000/api/`)
+
+2. Run `npm run build` and `npm start` in order to launch the server (`http://localhost:5000`) with the distribution version of the app 
+
+3. The server randomly simulates delays and errors for testing purposes 
 
 ## Development server
 
