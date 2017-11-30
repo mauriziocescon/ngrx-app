@@ -1,11 +1,10 @@
 {
   "NAVIGATION_BAR": {
-    "CHARTS": "Charts",
+    "DYNAMIC_FORM": "Dynamic form",
     "NAME": "Name",
-    "SELECT_LANGUAGE": "Select the language",
-    "USERS": "Users"
+    "SELECT_LANGUAGE": "Select the language"
   },
-  "USERS": {
+  "DYNAMIC_FORM": {
     "INPUT_TEXT_PLACEHOLDER": "Type some text",
     "LOAD_COMPLETED": "Loading completed",
     "LOADING": "Loading...",
