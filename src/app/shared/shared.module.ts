@@ -9,6 +9,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
 import { Enum } from "./utilities/enum";
 import { KeyValue } from "./utilities/keyvalue";
+import { CustomRouterStateSerializer } from "./utilities/route-util";
 
 @NgModule({
   imports: [
@@ -37,5 +38,6 @@ export class SharedModule {
 export {
   NavigationBarComponent,
   Enum,
-  KeyValue
+  KeyValue,
+  CustomRouterStateSerializer,
 };
