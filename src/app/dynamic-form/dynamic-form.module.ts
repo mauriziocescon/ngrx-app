@@ -24,7 +24,7 @@ import { ContainersModule, ListContainerComponent } from "./containers/container
      * eagerly or lazily and will be dynamically added to
      * the existing state.
      */
-    StoreModule.forFeature("blocks", reducers),
+    StoreModule.forFeature("dynamicForm", reducers),
 
     /**
      * Effects.forFeature is used to register effects
