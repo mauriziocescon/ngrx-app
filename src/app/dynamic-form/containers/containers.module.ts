@@ -2,10 +2,10 @@ import { NgModule } from "@angular/core";
 
 import { SharedModule } from "../../shared/shared.module";
 
-import { CheckBoxContainerComponent } from "./check-box/check-box.container";
-import { DropdownContainerComponent } from "./dropdown/dropdown.container";
+import { CheckBoxContainerComponent } from "./blocks/check-box/check-box.container";
+import { DropdownContainerComponent } from "./blocks/dropdown/dropdown.container";
 import { ListContainerComponent } from "./list/list.container";
-import { TextInputContainerComponent } from "./text-input/text-input.container";
+import { TextInputContainerComponent } from "./blocks/text-input/text-input.container";
 
 @NgModule({
   imports: [
