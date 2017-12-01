@@ -2,8 +2,10 @@ import { NgModule } from "@angular/core";
 
 import { SharedModule } from "../shared/shared.module";
 
+import { BlocksListService } from "./services/list.service";
+
 import { ComponentsModule } from "./components/components.module";
-import { ContainersModule } from "./containers/containers.module";
+import { ContainersModule, ListContainerComponent } from "./containers/containers.module";
 
 @NgModule({
   imports: [
@@ -13,6 +15,13 @@ import { ContainersModule } from "./containers/containers.module";
   ],
   declarations: [
   ],
+  providers: [
+    BlocksListService,
+  ],
 })
 export class DynamicFormModule {
 }
+
+export {
+  ListContainerComponent,
+};
