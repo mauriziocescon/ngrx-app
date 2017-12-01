@@ -12,12 +12,13 @@ import { StoreRouterConnectingModule, RouterStateSerializer } from "@ngrx/router
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 import { appRoutes } from "./app.routes";
+import { reducers, metaReducers } from "./reducers";
 
-import { AppComponent } from "./app.component";
 import { CoreModule } from "./core/core.module";
 import { SharedModule, CustomRouterStateSerializer } from "./shared/shared.module";
-
 import { DynamicFormModule } from "./dynamic-form/dynamic-form.module";
+
+import { AppComponent } from "./app.component";
 
 import { environment } from "../environments/environment";
 
