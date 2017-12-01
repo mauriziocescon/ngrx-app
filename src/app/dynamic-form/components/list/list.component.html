@@ -1,3 +1,24 @@
-<p>
-  list component works!
-</p>
+<div class="container-fluid">
+
+  <div class="row" [hidden]="!showData">
+    <div class="col-12 col-sm-6" *ngFor="let block of dataSource; trackBy: trackByBlock">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{ block.id }}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">{{ block.type }}</h6>
+          <p class="card-text">{{ block.type }}</p>
+          <a href="#" class="card-link">{{ block.type }}</a>
+          <a href="#" class="card-link">{{ block.type }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="full-width-message">{{ "LIST.LOAD_COMPLETED" | translate }}</div>
+    </div>
+  </div>
+
+  <div class="full-width-message" [hidden]="!isLoadingData">{{ "LIST.LOADING" | translate }}</div>
+  <div class="full-width-message" [hidden]="!hasNoData">{{ "LIST.NO_RESULT" | translate }}</div>
+  <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">{{ "LIST.RETRY" | translate }}</div>
+
+</div>

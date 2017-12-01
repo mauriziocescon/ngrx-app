@@ -29,7 +29,7 @@ export function reducer(state = initialState, action: list.Actions): State {
         error: "",
       };
     }
-    case book.SEARCH_ERROR: {
+    case list.SEARCH_ERROR: {
       return {
         ...state,
         loading: false,

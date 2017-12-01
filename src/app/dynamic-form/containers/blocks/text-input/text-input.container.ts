@@ -4,7 +4,7 @@ import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
   selector: "ct-text-input",
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./text-input.component.html",
-  styleUrls: ["./text-input.component.scss"]
+  styleUrls: ["./text-input.component.scss"],
 })
 export class TextInputContainerComponent implements OnInit {
 

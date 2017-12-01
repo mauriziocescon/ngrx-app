@@ -2,7 +2,7 @@ import { environment } from "../../../environments/environment";
 import { Enum } from "../../shared/utilities/enum";
 
 export class Api {
-  public users = environment.apiUrl + "users";
+  public blocks = environment.apiUrl + "blocks";
 }
 
 export class Application {
