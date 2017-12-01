@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { AppLanguageService } from "../../core/core.module";
 
 @Component({
-  selector: "app-navigation-bar",
+  selector: "navigation-bar",
   templateUrl: "./navigation-bar.component.html",
   styleUrls: ["./navigation-bar.component.scss"],
 })
