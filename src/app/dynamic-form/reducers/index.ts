@@ -19,7 +19,7 @@ export const reducers = {
 /**
  * A selector function is a map function factory. We pass it parameters and it
  * returns a function that maps from the larger state tree into a smaller
- * piece of state. This selector simply selects the `books` state.
+ * piece of state. This selector simply selects the `dynamicForm` state.
  *
  * Selectors are used with the `select` operator.
  *

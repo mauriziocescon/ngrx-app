@@ -22,7 +22,11 @@ export class ListEffects {
     .ofType(block.FETCH_BLOCKS)
     .debounceTime(400)
     // .map(action => action.payload)
-    .switchMap(() => this.blocksListService.getBlocks())
-    .map((blocks: Block[]) => new block.FetchBlocksComplete(blocks))
-    .catch(err => of(new block.FetchBlocksError(err)));
+    .switchMap(() => {
+      return this.blocksListService.getBlocks()
+        .map((blocks: Block[]) => {
+          return new block.FetchBlocksComplete(blocks);
+        })
+        .catch(err => of(new block.FetchBlocksError(err)));
+    });
 }

@@ -18,20 +18,22 @@ export function reducer(state = initialState, action: list.Actions): State {
     case list.FETCH_BLOCKS: {
       return {
         ...state,
+        blocks: undefined,
         loading: true,
-        error: "",
+        error: undefined,
       };
     }
     case list.FETCH_BLOCKS_COMPLETE: {
       return {
         blocks: action.payload.map(blocks => blocks),
         loading: false,
-        error: "",
+        error: undefined,
       };
     }
     case list.FETCH_BLOCKS_ERROR: {
       return {
         ...state,
+        blocks: undefined,
         loading: false,
         error: action.payload,
       };

@@ -20,9 +20,7 @@ export class ListComponent {
   reloadList: EventEmitter<void>;
 
   constructor() {
-    this.blocks = [];
     this.loading = false;
-    this.error = "";
     this.reloadList = new EventEmitter();
   }
 

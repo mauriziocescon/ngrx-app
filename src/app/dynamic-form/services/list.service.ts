@@ -17,7 +17,10 @@ export class BlocksListService {
 
   getBlocks(): Observable<Block[]> {
     return this.http
-      .get<Block[]>(this.API_PATH)
-      .map(blocks => blocks);
+      .get<Block[]>(this.API_PATH, {observe: "response"})
+      .map(resp => {
+        return resp.body;
+      })
+      .catch(err => Observable.throw(err.json().error || "Server error"));
   }
 }
