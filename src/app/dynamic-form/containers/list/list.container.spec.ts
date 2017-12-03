@@ -5,10 +5,15 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
+import { StoreModule, Store, combineReducers } from "@ngrx/store";
+import * as fromRoot from "../../../reducers";
+import * as fromDynamicForm from "../../reducers";
+
 import { CoreModule } from "../../../core/core.module";
 import { SharedModule } from "../../../shared/shared.module";
 
 import { ListContainerComponent } from "./list.container";
+import { ComponentsModule } from "../../components/components.module";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
@@ -29,8 +34,13 @@ describe("ListComponent", () => {
             deps: [HttpClient],
           },
         }),
+        StoreModule.forRoot({
+          ...fromRoot.reducers,
+          "dynamicForm": combineReducers(fromDynamicForm.reducers),
+        }),
         CoreModule.forRoot(),
         SharedModule,
+        ComponentsModule,
       ],
       declarations: [
         ListContainerComponent,
