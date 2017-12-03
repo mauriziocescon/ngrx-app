@@ -17,9 +17,10 @@ const numberOfBlocks = 10;
 
 // albums
 for (let i = 0; i < numberOfBlocks; i++) {
+  const index = parseInt(Math.random() * 100 % 3);
   data.blocks.push({
     id: i + 1,
-    type: ["check-box", "dropdown", "text-input"][(Math.random() * 100) % 3],
+    type: ["check-box", "dropdown", "text-input"][index],
   });
 }
 

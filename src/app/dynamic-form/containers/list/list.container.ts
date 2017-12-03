@@ -23,9 +23,13 @@ export class ListContainerComponent implements OnInit {
   error$: Observable<string>;
 
   constructor(private store: Store<fromList.State>) {
+    this.blocks$ = store.select("blocks");
+    this.loading$ = store.select("loading");
+    this.error$ = store.select("error");
   }
 
   ngOnInit(): void {
+    this.reloadList();
   }
 
   public reloadList() {
