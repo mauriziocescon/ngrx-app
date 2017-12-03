@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 
@@ -81,6 +82,11 @@ export function createTranslateLoader(http: HttpClient) {
     AppComponent
   ],
   providers: [
+    CurrencyPipe,
+    DatePipe,
+    DecimalPipe,
+    PercentPipe,
+
     /**
      * The `RouterStateSnapshot` provided by the `Router` is a large complex structure.
      * A custom RouterStateSerializer is used to parse the `RouterStateSnapshot` provided
