@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 
-import * as fromList from "../../reducers/list.reducer";
+import * as fromDynamicForm from "../../reducers";
 import * as list from "../../actions/list.action";
 import { Block } from "../../models/block.model";
 
@@ -22,10 +22,10 @@ export class ListContainerComponent implements OnInit {
   loading$: Observable<boolean>;
   error$: Observable<string>;
 
-  constructor(private store: Store<fromList.State>) {
-    this.blocks$ = store.select("blocks");
-    this.loading$ = store.select("loading");
-    this.error$ = store.select("error");
+  constructor(private store: Store<fromDynamicForm.State>) {
+    this.blocks$ = store.select(fromDynamicForm.getBlocksState);
+    this.loading$ = store.select(fromDynamicForm.getLoadingState);
+    this.error$ = store.select(fromDynamicForm.getErrorState);
   }
 
   ngOnInit(): void {
