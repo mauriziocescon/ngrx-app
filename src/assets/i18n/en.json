@@ -4,7 +4,7 @@
     "NAME": "Name",
     "SELECT_LANGUAGE": "Select the language"
   },
-  "DYNAMIC_FORM": {
+  "LIST": {
     "INPUT_TEXT_PLACEHOLDER": "Type some text",
     "LOAD_COMPLETED": "Loading completed",
     "LOADING": "Loading...",

@@ -4,7 +4,7 @@
     "NAME": "Nome",
     "SELECT_LANGUAGE": "Cambia lingua"
   },
-  "DYNAMIC_FORM": {
+  "LIST": {
     "INPUT_TEXT_PLACEHOLDER": "Inserisci testo",
     "LOAD_COMPLETED": "Caricamento completato",
     "LOADING": "Caricamento...",
