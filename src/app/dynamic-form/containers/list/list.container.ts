@@ -25,6 +25,9 @@ export class ListContainerComponent implements OnInit {
   constructor(private store: Store<fromList.State>) {
   }
 
+  ngOnInit(): void {
+  }
+
   public reloadList() {
     this.store.dispatch(new list.FetchBlocks());
   }

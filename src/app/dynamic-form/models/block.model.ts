@@ -5,6 +5,6 @@ export enum BlockType {
 }
 
 export interface Block {
-  id: string;
+  id: number;
   type: BlockType;
 }

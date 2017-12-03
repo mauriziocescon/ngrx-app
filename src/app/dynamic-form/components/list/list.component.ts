@@ -1,4 +1,4 @@
-import { Component, Output, Input, EventEmitter, OnInit } from "@angular/core";
+import { Component, Output, Input, EventEmitter } from "@angular/core";
 import { Block } from "../../models/block.model";
 
 @Component({
@@ -6,7 +6,7 @@ import { Block } from "../../models/block.model";
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.scss"],
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
   @Input()
   blocks: Block[];
 
@@ -23,7 +23,7 @@ export class ListComponent implements OnInit {
     this.blocks = [];
     this.loading = false;
     this.error = "";
-    this.componentClick = new EventEmitter();
+    this.reloadList = new EventEmitter();
   }
 
   public get isLoadingData(): boolean {

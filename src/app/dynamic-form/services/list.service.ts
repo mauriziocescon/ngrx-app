@@ -17,7 +17,7 @@ export class BlocksListService {
 
   getBlocks(): Observable<Block[]> {
     return this.http
-      .get<{blocks: Block[]}>(this.API_PATH)
+      .get<Block[]>(this.API_PATH)
       .map(blocks => blocks);
   }
 }
