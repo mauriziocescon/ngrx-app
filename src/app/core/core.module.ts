@@ -4,6 +4,7 @@ import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from "
 import { AppConstantsService } from "./services/app-constants.service";
 import { AppLanguageService } from "./services/app-language.service";
 import { LocalStorageService } from "./services/local-storage.service";
+import { UIUtilitiesService } from "./services/ui-utilities.service";
 import { UtilitiesService } from "./services/utilities.service";
 
 export function createLanguageIdLoader(appLanguageService: AppLanguageService) {
@@ -36,6 +37,7 @@ export class CoreModule {
         AppConstantsService,
         AppLanguageService,
         LocalStorageService,
+        UIUtilitiesService,
         UtilitiesService,
         {
           provide: LOCALE_ID,
@@ -51,5 +53,6 @@ export {
   AppConstantsService,
   AppLanguageService,
   LocalStorageService,
-  UtilitiesService
+  UIUtilitiesService,
+  UtilitiesService,
 };
