@@ -20,9 +20,9 @@ export class UIUtilitiesService {
     modalRef.componentInstance.buttonLabel = buttonLabel;
 
     modalRef.result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
+      console.log(`Closed with: ${result}`);
     }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      console.log(`Dismissed ${this.getDismissReason(reason)}`);
     });
   }
 
