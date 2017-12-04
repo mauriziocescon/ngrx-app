@@ -17,8 +17,7 @@ export class ListEffects {
               private blocksListService: BlocksListService) {
   }
 
-  @Effect()
-  fetchBlocks$: Observable<Action> = this.update$
+  @Effect() fetchBlocks$: Observable<Action> = this.update$
     .ofType(block.FETCH_BLOCKS)
     .debounceTime(400)
     // .map(action => action.payload)

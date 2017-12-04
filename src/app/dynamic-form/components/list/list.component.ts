@@ -7,17 +7,11 @@ import { Block } from "../../models/block.model";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent {
-  @Input()
-  blocks: Block[];
 
-  @Input()
-  loading: boolean;
-
-  @Input()
-  error: string;
-
-  @Output()
-  reloadList: EventEmitter<void>;
+  @Input() blocks: Block[];
+  @Input() loading: boolean;
+  @Input() error: string;
+  @Output() reloadList: EventEmitter<void>;
 
   constructor() {
     this.loading = false;

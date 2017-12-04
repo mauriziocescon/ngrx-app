@@ -10,17 +10,10 @@ import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 export class ModalConfirmerComponent {
   protected activeModal: NgbActiveModal;
 
-  @Input()
-  title: string;
-
-  @Input()
-  message: string;
-
-  @Input()
-  yesButtonLabel: string;
-
-  @Input()
-  noButtonLabel: string;
+  @Input() title: string;
+  @Input() message: string;
+  @Input() yesButtonLabel: string;
+  @Input() noButtonLabel: string;
 
   constructor(activeModal: NgbActiveModal) {
     this.activeModal = activeModal;
