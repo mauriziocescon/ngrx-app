@@ -11,13 +11,9 @@ import { AppConstantsService } from "./app-constants.service";
  */
 @Injectable()
 export class LocalStorageService {
-  protected appConstants: AppConstantsService;
-
   protected prefix: string;
 
-  constructor(appConstantsService: AppConstantsService) {
-    this.appConstants = appConstantsService;
-
+  constructor(protected appConstants: AppConstantsService) {
     this.prefix = this.appConstants.Application.APP_NAME;
   }
 

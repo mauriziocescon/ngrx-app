@@ -9,17 +9,11 @@ import { AppLanguageService } from "../../core/core.module";
   styleUrls: ["./navigation-bar.component.scss"],
 })
 export class NavigationBarComponent implements OnInit {
-
   public languages: string[];
   public selectedLanguageId: string;
 
-  protected router: Router;
-  protected appLanguage: AppLanguageService;
-
-  constructor(router: Router,
-              appLanguageService: AppLanguageService) {
-    this.router = router;
-    this.appLanguage = appLanguageService;
+  constructor(protected router: Router,
+              protected appLanguage: AppLanguageService) {
   }
 
   public ngOnInit(): void {

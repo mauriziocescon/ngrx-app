@@ -2,9 +2,11 @@ import { NgModule } from "@angular/core";
 
 import { SharedModule } from "../../shared/shared.module";
 
+import { ListComponent } from "./list/list.component";
+import { GenericBlockComponent } from "./generic-block/generic-block.component";
+
 import { CheckBoxComponent } from "./blocks/check-box/check-box.component";
 import { DropdownComponent } from "./blocks/dropdown/dropdown.component";
-import { ListComponent } from "./list/list.component";
 import { TextInputComponent } from "./blocks/text-input/text-input.component";
 
 @NgModule({
@@ -12,15 +14,17 @@ import { TextInputComponent } from "./blocks/text-input/text-input.component";
     SharedModule,
   ],
   declarations: [
+    GenericBlockComponent,
+    ListComponent,
     CheckBoxComponent,
     DropdownComponent,
-    ListComponent,
     TextInputComponent,
   ],
   exports: [
+    GenericBlockComponent,
+    ListComponent,
     CheckBoxComponent,
     DropdownComponent,
-    ListComponent,
     TextInputComponent,
   ],
 })
@@ -28,8 +32,9 @@ export class ComponentsModule {
 }
 
 export {
+  GenericBlockComponent,
+  ListComponent,
   CheckBoxComponent,
   DropdownComponent,
-  ListComponent,
   TextInputComponent,
 };

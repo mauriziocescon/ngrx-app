@@ -4,9 +4,7 @@ import { AppConstantsService } from "./app-constants.service";
 
 @Injectable()
 export class UtilitiesService {
-  protected appConstants: AppConstantsService;
 
-  constructor(appConstants: AppConstantsService) {
-    this.appConstants = appConstants;
+  constructor(protected appConstants: AppConstantsService) {
   }
 }

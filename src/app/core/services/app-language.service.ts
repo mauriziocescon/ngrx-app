@@ -13,18 +13,11 @@ import localeIt from "@angular/common/locales/it";
 
 @Injectable()
 export class AppLanguageService {
-  protected translate: TranslateService;
-  protected appConstants: AppConstantsService;
-  protected localStorage: LocalStorageService;
   protected selectedLanguageId: string;
 
-  constructor(translate: TranslateService,
-              appConstantsService: AppConstantsService,
-              localStorageService: LocalStorageService) {
-    this.translate = translate;
-    this.appConstants = appConstantsService;
-    this.localStorage = localStorageService;
-
+  constructor(protected translate: TranslateService,
+              protected appConstants: AppConstantsService,
+              protected localStorage: LocalStorageService) {
     this.start();
 
     this.translate.setDefaultLang(this.appConstants.Languages.DEFAULT_LANGUAGE);
