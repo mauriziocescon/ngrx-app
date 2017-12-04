@@ -1,16 +1,16 @@
-import { Inject } from "@angular/core";
+import { Injectable } from "@angular/core";
 
-@Inject()
+@Injectable()
 export class UIUtilitiesService {
 
   constructor() {
   }
 
-  public modalAlert(title: string, message: string, buttonLabel: string): void {
+  modalAlert(title: string, message: string, buttonLabel: string): void {
 
   }
 
-  public modalConfirmer(title: string, message: string, yesButtonLabel: string, noButtonLabel: string, callback: (result: boolean) => void): void {
+  modalConfirmer(title: string, message: string, yesButtonLabel: string, noButtonLabel: string, callback: (result: boolean) => void): void {
 
   }
 }

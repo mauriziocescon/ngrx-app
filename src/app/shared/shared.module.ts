@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 
 import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
@@ -18,6 +19,7 @@ import { CustomRouterStateSerializer } from "./utilities/route-util";
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgbModule,
     TranslateModule,
   ],
   declarations: [
@@ -28,6 +30,7 @@ import { CustomRouterStateSerializer } from "./utilities/route-util";
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgbModule,
     TranslateModule,
     NavigationBarComponent,
   ],

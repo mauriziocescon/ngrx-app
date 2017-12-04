@@ -7,6 +7,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreRouterConnectingModule, RouterStateSerializer } from "@ngrx/router-store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
@@ -67,6 +68,7 @@ export function createTranslateLoader(http: HttpClient) {
      */
     EffectsModule.forRoot([]),
 
+    NgbModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
