@@ -3,7 +3,7 @@ import { Component, Input } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-  selector: "app-modal-confirmer",
+  selector: "modal-confirmer",
   templateUrl: "./modal-confirmer.component.html",
   styleUrls: ["./modal-confirmer.component.scss"],
 })

@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
-import { ModalAlertComponent } from "../../shared/shared.module";
-import { ModalConfirmerComponent } from "../../shared/shared.module";
+import { ModalAlertComponent } from "./modal-alert/modal-alert.component";
+import { ModalConfirmerComponent } from "./modal-confirmer/modal-confirmer.component";
 
 @Injectable()
 export class UIUtilitiesService {
