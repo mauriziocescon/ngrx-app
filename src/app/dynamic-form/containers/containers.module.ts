@@ -4,9 +4,11 @@ import { SharedModule } from "../../shared/shared.module";
 
 import { ComponentsModule } from "../components/components.module";
 
+import { GenericBlockContainerComponent } from "./generic-block/generic-block.component";
+import { ListContainerComponent } from "./list/list.container";
+
 import { CheckBoxContainerComponent } from "./blocks/check-box/check-box.container";
 import { DropdownContainerComponent } from "./blocks/dropdown/dropdown.container";
-import { ListContainerComponent } from "./list/list.container";
 import { TextInputContainerComponent } from "./blocks/text-input/text-input.container";
 
 @NgModule({
@@ -15,12 +17,17 @@ import { TextInputContainerComponent } from "./blocks/text-input/text-input.cont
     ComponentsModule,
   ],
   declarations: [
+    GenericBlockContainerComponent,
     CheckBoxContainerComponent,
     DropdownContainerComponent,
     ListContainerComponent,
     TextInputContainerComponent,
   ],
+  entryComponents: [
+    GenericBlockContainerComponent,
+  ],
   exports: [
+    GenericBlockContainerComponent,
     CheckBoxContainerComponent,
     DropdownContainerComponent,
     ListContainerComponent,
@@ -31,6 +38,7 @@ export class ContainersModule {
 }
 
 export {
+  GenericBlockContainerComponent,
   CheckBoxContainerComponent,
   DropdownContainerComponent,
   ListContainerComponent,

@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 
-import { AddContainerDirective } from "./directives/add-container.directive";
+import { AddComponentDirective } from "./directives/add-container.directive";
 
 import { UIUtilitiesService } from "./modals/ui-utilities.service";
 import { ModalAlertComponent } from "./modals/modal-alert/modal-alert.component";
@@ -30,7 +30,7 @@ import { CustomRouterStateSerializer } from "./utilities/route-util";
     TranslateModule,
   ],
   declarations: [
-    AddContainerDirective,
+    AddComponentDirective,
     ModalAlertComponent,
     ModalConfirmerComponent,
     NavigationBarComponent,
@@ -49,7 +49,7 @@ import { CustomRouterStateSerializer } from "./utilities/route-util";
     BrowserAnimationsModule,
     NgbModule,
     TranslateModule,
-    AddContainerDirective,
+    AddComponentDirective,
     NavigationBarComponent,
   ],
 })
@@ -58,7 +58,7 @@ export class SharedModule {
 
 export {
   UIUtilitiesService,
-  AddContainerDirective,
+  AddComponentDirective,
   NavigationBarComponent,
   Enum,
   KeyValue,

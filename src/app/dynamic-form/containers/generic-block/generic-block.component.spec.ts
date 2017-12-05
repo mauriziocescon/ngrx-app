@@ -14,15 +14,15 @@ import { SharedModule } from "../../../shared/shared.module";
 
 import { ComponentsModule } from "../../components/components.module";
 
-import { ListContainerComponent } from "./list.container";
+import { GenericBlockContainerComponent } from "./generic-block.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("ListComponent", () => {
-  let component: ListContainerComponent;
-  let fixture: ComponentFixture<ListContainerComponent>;
+describe("GenericBlockContainerComponent", () => {
+  let component: GenericBlockContainerComponent;
+  let fixture: ComponentFixture<GenericBlockContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -44,7 +44,7 @@ describe("ListComponent", () => {
         ComponentsModule,
       ],
       declarations: [
-        ListContainerComponent,
+        GenericBlockContainerComponent,
       ],
       providers: [
         TranslateService,
@@ -54,7 +54,7 @@ describe("ListComponent", () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListContainerComponent);
+    fixture = TestBed.createComponent(GenericBlockContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
