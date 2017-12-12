@@ -1,5 +1,8 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders, LOCALE_ID } from "@angular/core";
 import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from "@angular/common";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+
+import { JsonServerInterceptor } from "./interceptors/json-server.interceptor";
 
 import { AppConstantsService } from "./services/app-constants.service";
 import { AppLanguageService } from "./services/app-language.service";
@@ -41,7 +44,12 @@ export class CoreModule {
           provide: LOCALE_ID,
           useFactory: (createLanguageIdLoader),
           deps: [AppLanguageService]
-        }
+        },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: JsonServerInterceptor,
+          multi: true,
+        },
       ]
     };
   }
