@@ -12,7 +12,7 @@ import { BlockComponent } from "../../models/generic-block.model";
   template: `<ng-template add-component></ng-template>`,
 })
 export class GenericBlockContainerComponent implements AfterViewInit {
-  @Input() block2: Block;
+  @Input() block: Block;
   @ViewChild(AddComponentDirective) adComponent: AddComponentDirective;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
@@ -24,12 +24,12 @@ export class GenericBlockContainerComponent implements AfterViewInit {
   }
 
   loadComponent(): void {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.getComponent(this.block2));
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.getComponent(this.block));
     const viewContainerRef = this.adComponent.viewContainerRef;
     viewContainerRef.clear();
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
-    (<BlockComponent>componentRef.instance).block = this.block2;
+    (<BlockComponent>componentRef.instance).block = this.block;
   }
 
   getComponent(block: Block): any {

@@ -18,6 +18,12 @@ import { ListComponent } from "./list/list.component";
     TextInputComponent,
     ListComponent,
   ],
+  entryComponents: [
+    CheckBoxComponent,
+    DropdownComponent,
+    TextInputComponent,
+    ListComponent,
+  ],
   exports: [
     CheckBoxComponent,
     DropdownComponent,
