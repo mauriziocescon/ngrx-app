@@ -10,7 +10,13 @@ import { reducers } from "./reducers";
 import { BlocksListService } from "./services/list.service";
 
 import { COMPONENTS } from "./components/index";
-import { CONTAINERS, ListContainerComponent } from "./containers/index";
+import {
+  CONTAINERS,
+  ListContainerComponent,
+  CheckBoxContainerComponent,
+  DropdownContainerComponent,
+  TextInputContainerComponent
+} from "./containers/index";
 
 @NgModule({
   imports: [
@@ -39,8 +45,9 @@ import { CONTAINERS, ListContainerComponent } from "./containers/index";
     ...CONTAINERS,
   ],
   entryComponents: [
-    ...COMPONENTS,
-    ...CONTAINERS,
+    CheckBoxContainerComponent,
+    DropdownContainerComponent,
+    TextInputContainerComponent,
   ],
   providers: [
     BlocksListService,
