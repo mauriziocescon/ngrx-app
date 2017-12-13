@@ -40,6 +40,7 @@ import { CONTAINERS, ListContainerComponent } from "./containers/index";
   ],
   entryComponents: [
     ...COMPONENTS,
+    ...CONTAINERS,
   ],
   providers: [
     BlocksListService,

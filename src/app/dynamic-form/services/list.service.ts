@@ -7,9 +7,9 @@ import { Observable } from "rxjs/Observable";
 
 import { Block } from "../models/block.model";
 
-import { CheckBoxComponent } from "../components/components.module";
-import { DropdownComponent } from "../components/components.module";
-import { TextInputComponent } from "../components/components.module";
+import { CheckBoxContainerComponent } from "../containers/blocks/check-box/check-box.container";
+import { DropdownContainerComponent } from "../containers/blocks/dropdown/dropdown.container";
+import { TextInputContainerComponent } from "../containers/blocks/text-input/text-input.container";
 
 import { environment } from "../../../environments/environment";
 
@@ -32,13 +32,13 @@ export class BlocksListService {
   getComponent(blockId: string): any {
     switch (blockId) {
       case "check-box": {
-        return CheckBoxComponent;
+        return CheckBoxContainerComponent;
       }
       case "dropdown": {
-        return DropdownComponent;
+        return DropdownContainerComponent;
       }
       case "text-input": {
-        return TextInputComponent;
+        return TextInputContainerComponent;
       }
       default: {
         return undefined;

@@ -1,17 +1,13 @@
-import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 
 @Component({
   selector: "ct-dropdown",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: "./dropdown.container.html",
-  styleUrls: ["./dropdown.container.scss"],
+  template: `<cp-dropdown [block]="block"></cp-dropdown>`,
 })
-export class DropdownContainerComponent implements OnInit {
+export class DropdownContainerComponent {
+  @Input() block: any;
 
   constructor() {
   }
-
-  ngOnInit() {
-  }
-
 }

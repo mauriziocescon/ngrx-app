@@ -1,17 +1,13 @@
-import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 
 @Component({
   selector: "ct-text-input",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: "./text-input.container.html",
-  styleUrls: ["./text-input.container.scss"],
+  template: `<cp-text-input [block]="block"></cp-text-input>`,
 })
-export class TextInputContainerComponent implements OnInit {
+export class TextInputContainerComponent {
+  @Input() block: any;
 
   constructor() {
   }
-
-  ngOnInit() {
-  }
-
 }

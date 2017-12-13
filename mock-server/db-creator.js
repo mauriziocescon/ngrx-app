@@ -15,13 +15,51 @@ const data = {
 // do items
 const numberOfBlocks = 10;
 
-// albums
+function getCheckBox(index) {
+  return {
+    id: index,
+    type: "check-box",
+    label: "CHECK_BOX_LABEL",
+    value: true,
+  };
+}
+
+function getDropdown(index) {
+  return {
+    id: index,
+    type: "dropdown",
+    label: "DROPDOWN_LABEL",
+    value: "first",
+    choices: ["first", "second", "third"],
+  };
+}
+
+function getTextInput(index) {
+  return {
+    id: index,
+    type: "text-input",
+    label: "TEXT_INPUT_LABEL",
+    value: "",
+  };
+}
+
+function getRandomBlock(index) {
+  const choice = Math.random();
+
+  if (choice < 0.33) {
+    return getCheckBox(index);
+  }
+  else if (choice < 0.66) {
+    return getDropdown(index);
+  }
+  else {
+    return getTextInput(index);
+  }
+}
+
+// blocks
 for (let i = 0; i < numberOfBlocks; i++) {
-  const index = parseInt(Math.random() * 100 % 3);
-  data.blocks.push({
-    id: i + 1,
-    type: ["check-box", "dropdown", "text-input"][index],
-  });
+  data.blocks.push(getRandomBlock(index));
 }
 
 // save file

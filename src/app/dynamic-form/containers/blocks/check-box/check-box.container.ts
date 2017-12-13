@@ -1,17 +1,13 @@
-import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 
 @Component({
   selector: "ct-check-box",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: "./check-box.container.html",
-  styleUrls: ["./check-box.container.scss"],
+  template: `<cp-check-box [block]="block"></cp-check-box>`,
 })
-export class CheckBoxContainerComponent implements OnInit {
+export class CheckBoxContainerComponent {
+  @Input() block: any;
 
   constructor() {
   }
-
-  ngOnInit() {
-  }
-
 }
