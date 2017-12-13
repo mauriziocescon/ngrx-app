@@ -59,7 +59,7 @@ function getRandomBlock(index) {
 
 // blocks
 for (let i = 0; i < numberOfBlocks; i++) {
-  data.blocks.push(getRandomBlock(index));
+  data.blocks.push(getRandomBlock(i));
 }
 
 // save file
