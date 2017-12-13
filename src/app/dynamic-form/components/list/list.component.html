@@ -12,7 +12,9 @@
     <div class="col-10">
       <div class="row">
         <div class="col-12" *ngFor="let block of dataSource; trackBy: trackByBlock">
-          <ct-generic-block [block]="block"></ct-generic-block>
+          <div class="generic-block">
+            <ct-generic-block [block]="block | async"></ct-generic-block>
+          </div>
         </div>
         <div class="col-12">
           <div class="full-width-message">{{ "LIST.LOAD_COMPLETED" | translate }}</div>

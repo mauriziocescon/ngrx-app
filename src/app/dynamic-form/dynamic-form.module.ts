@@ -9,14 +9,12 @@ import { reducers } from "./reducers";
 
 import { BlocksListService } from "./services/list.service";
 
-import { ComponentsModule } from "./components/components.module";
-import { ContainersModule, ListContainerComponent } from "./containers/containers.module";
+import { COMPONENTS } from "./components/index";
+import { CONTAINERS, ListContainerComponent } from "./containers/index";
 
 @NgModule({
   imports: [
     SharedModule,
-    ComponentsModule,
-    ContainersModule,
 
     /**
      * StoreModule.forFeature is used for composing state
@@ -36,7 +34,13 @@ import { ContainersModule, ListContainerComponent } from "./containers/container
      */
     EffectsModule.forFeature([ListEffects]),
   ],
-  declarations: [],
+  declarations: [
+    ...COMPONENTS,
+    ...CONTAINERS,
+  ],
+  entryComponents: [
+    ...COMPONENTS,
+  ],
   providers: [
     BlocksListService,
   ],
