@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 
-import { Block } from "../../../models/block.model";
+import { DropdownBlock } from "../../../models";
 
 @Component({
   selector: "cp-dropdown",
@@ -8,7 +8,7 @@ import { Block } from "../../../models/block.model";
   styleUrls: ["./dropdown.component.scss"]
 })
 export class DropdownComponent {
-  @Input() block: Block;
+  @Input() block: DropdownBlock;
 
   constructor() {
   }

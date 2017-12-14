@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 
-import { Block } from "../../../models/block.model";
+import { CheckBoxBlock } from "../../../models";
 
 @Component({
   selector: "cp-check-box",
@@ -8,7 +8,7 @@ import { Block } from "../../../models/block.model";
   styleUrls: ["./check-box.component.scss"]
 })
 export class CheckBoxComponent {
-  @Input() block: Block;
+  @Input() block: CheckBoxBlock;
 
   constructor() {
   }

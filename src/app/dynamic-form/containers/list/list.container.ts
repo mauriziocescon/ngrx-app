@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Observable";
 
 import * as fromDynamicForm from "../../reducers";
 import * as list from "../../actions/list.action";
-import { Block } from "../../models/block.model";
+import { Block } from "../../models";
 
 @Component({
   selector: "ct-list",

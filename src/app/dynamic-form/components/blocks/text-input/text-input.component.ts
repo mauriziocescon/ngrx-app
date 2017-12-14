@@ -1,15 +1,33 @@
-import { Component, Input } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
+import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
 
-import { Block } from "../../../models/block.model";
+import { TextInputBlock } from "../../../models";
 
 @Component({
   selector: "cp-text-input",
   templateUrl: "./text-input.component.html",
   styleUrls: ["./text-input.component.scss"]
 })
-export class TextInputComponent {
-  @Input() block: Block;
+export class TextInputComponent implements OnInit {
+  @Input() block: TextInputBlock;
 
-  constructor() {
+  public textInputForm: FormGroup;
+  protected  textInputControl: FormControl;
+
+  constructor(protected formBuilder: FormBuilder) {
+  }
+
+  public get isTextInputNotEmpty(): boolean {
+    return this.textInputControl.value;
+  }
+
+  ngOnInit(): void {
+    this.textInputForm = this.formBuilder.group({
+      textInput: this.textInputControl = new FormControl(""),
+    });
+  }
+
+  public resetTextInput(): void {
+    this.textInputControl.setValue("");
   }
 }

@@ -1,6 +1,6 @@
 import { Component, Output, Input, EventEmitter } from "@angular/core";
 
-import { Block } from "../../models/block.model";
+import { Block } from "../../models";
 
 @Component({
   selector: "cp-list",

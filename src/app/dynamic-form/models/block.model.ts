@@ -1,8 +1,4 @@
-export enum BlockType {
-  CheckBox = "check-box",
-  Dropdown = "dropdown",
-  TextInput = "text-input",
-}
+import { BlockType } from "./block-types";
 
 export interface Block {
   id: number;

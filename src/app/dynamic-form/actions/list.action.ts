@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { Block } from "../models/block.model";
+import { Block } from "../models";
 
 export const FETCH_BLOCKS = "[List] Fetch blocks";
 export const FETCH_BLOCKS_COMPLETE = "[List] Fetch blocks complete";

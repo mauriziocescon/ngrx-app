@@ -4,8 +4,7 @@ import { BlocksListService } from "../../services/list.service";
 
 import { AddComponentDirective } from "../../../shared/shared.module";
 
-import { Block } from "../../models/block.model";
-import { BlockComponent } from "../../models/generic-block.model";
+import { Block, BlockComponent } from "../../models";
 
 @Component({
   selector: "ct-generic-block",

@@ -5,7 +5,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import { Observable } from "rxjs/Observable";
 
-import { Block } from "../models/block.model";
+import { Block, BlockType } from "../models";
 
 import { CheckBoxContainerComponent } from "../containers/blocks/check-box/check-box.container";
 import { DropdownContainerComponent } from "../containers/blocks/dropdown/dropdown.container";
@@ -31,13 +31,13 @@ export class BlocksListService {
 
   getComponent(blockId: string): any {
     switch (blockId) {
-      case "check-box": {
+      case BlockType.CheckBox: {
         return CheckBoxContainerComponent;
       }
-      case "dropdown": {
+      case BlockType.Dropdown: {
         return DropdownContainerComponent;
       }
-      case "text-input": {
+      case BlockType.TextInput: {
         return TextInputContainerComponent;
       }
       default: {

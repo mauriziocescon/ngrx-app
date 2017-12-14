@@ -8,7 +8,7 @@ import { of } from "rxjs/observable/of";
 
 import { BlocksListService } from "../services/list.service";
 import * as block from "../actions/list.action";
-import { Block } from "../models/block.model";
+import { Block } from "../models";
 
 @Injectable()
 export class ListEffects {

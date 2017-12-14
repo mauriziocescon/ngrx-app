@@ -1,5 +1,5 @@
 import * as list from "../actions/list.action";
-import { Block } from "../models/block.model";
+import { Block } from "../models";
 
 export interface State {
   blocks: Block[];
