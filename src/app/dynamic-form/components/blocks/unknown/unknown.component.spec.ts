@@ -5,23 +5,19 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
-import { StoreModule, Store, combineReducers } from "@ngrx/store";
-import * as fromRoot from "../../../reducers";
-import * as fromDynamicForm from "../../../reducers";
-
 import { CoreModule } from "../../../../core/core.module";
 import { SharedModule } from "../../../../shared/shared.module";
 
-import { COMPONENTS } from "../../../components";
-import { DropdownContainerComponent } from "./dropdown.container";
+import { GenericBlockContainerComponent } from "../../../containers";
+import { UnknownComponent } from "./unknown.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("DropdownComponent", () => {
-  let component: DropdownContainerComponent;
-  let fixture: ComponentFixture<DropdownContainerComponent>;
+describe("UnknownComponent", () => {
+  let component: UnknownComponent;
+  let fixture: ComponentFixture<UnknownComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -34,16 +30,12 @@ describe("DropdownComponent", () => {
             deps: [HttpClient],
           },
         }),
-        StoreModule.forRoot({
-          ...fromRoot.reducers,
-          "dynamicForm": combineReducers(fromDynamicForm.reducers),
-        }),
         CoreModule.forRoot(),
         SharedModule,
       ],
       declarations: [
-        ...COMPONENTS,
-        DropdownContainerComponent,
+        UnknownComponent,
+        GenericBlockContainerComponent,
       ],
       providers: [
         TranslateService,
@@ -53,7 +45,7 @@ describe("DropdownComponent", () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DropdownContainerComponent);
+    fixture = TestBed.createComponent(UnknownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

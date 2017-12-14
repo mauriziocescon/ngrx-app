@@ -12,6 +12,7 @@ import * as fromDynamicForm from "../../../reducers";
 import { CoreModule } from "../../../../core/core.module";
 import { SharedModule } from "../../../../shared/shared.module";
 
+import { COMPONENTS } from "../../../components";
 import { CheckBoxContainerComponent } from "./check-box.container";
 
 export function createTranslateLoader(http: HttpClient) {
@@ -41,6 +42,7 @@ describe("CheckBoxComponent", () => {
         SharedModule,
       ],
       declarations: [
+        ...COMPONENTS,
         CheckBoxContainerComponent,
       ],
       providers: [

@@ -10,6 +10,7 @@ import { Block, BlockType } from "../models";
 import { CheckBoxContainerComponent } from "../containers/blocks/check-box/check-box.container";
 import { DropdownContainerComponent } from "../containers/blocks/dropdown/dropdown.container";
 import { TextInputContainerComponent } from "../containers/blocks/text-input/text-input.container";
+import { UnknownComponent } from "../components";
 
 import { environment } from "../../../environments/environment";
 
@@ -41,7 +42,7 @@ export class BlocksListService {
         return TextInputContainerComponent;
       }
       default: {
-        return undefined;
+        return UnknownComponent;
       }
     }
   }

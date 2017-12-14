@@ -4,7 +4,7 @@
 
       <form [formGroup]="textInputForm">
         <div class="input-group">
-          <input class="form-control" formControlName="textInput" placeholder="{{ 'TEXT_INPUT.INPUT_TEXT_PLACEHOLDER' | translate }}">
+          <input class="form-control" formControlName="textInput" placeholder="{{ 'TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | translate }}">
           <span class="input-group-addon addon" (click)="resetTextInput()">
             <span class="fa fa-search" [hidden]="isTextInputNotEmpty"></span>
             <span class="fa fa-remove" [hidden]="!isTextInputNotEmpty"></span>

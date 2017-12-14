@@ -12,6 +12,7 @@ import * as fromDynamicForm from "../../../reducers";
 import { CoreModule } from "../../../../core/core.module";
 import { SharedModule } from "../../../../shared/shared.module";
 
+import { COMPONENTS } from "../../../components";
 import { TextInputContainerComponent } from "./text-input.container";
 
 export function createTranslateLoader(http: HttpClient) {
@@ -41,6 +42,7 @@ describe("TextInputComponent", () => {
         SharedModule,
       ],
       declarations: [
+        ...COMPONENTS,
         TextInputContainerComponent,
       ],
       providers: [

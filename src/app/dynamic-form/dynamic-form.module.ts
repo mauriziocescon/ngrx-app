@@ -9,14 +9,14 @@ import { reducers } from "./reducers";
 
 import { BlocksListService } from "./services/list.service";
 
-import { COMPONENTS } from "./components/index";
+import { COMPONENTS } from "./components";
 import {
   CONTAINERS,
   ListContainerComponent,
   CheckBoxContainerComponent,
   DropdownContainerComponent,
   TextInputContainerComponent
-} from "./containers/index";
+} from "./containers";
 
 @NgModule({
   imports: [

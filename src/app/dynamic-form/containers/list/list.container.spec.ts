@@ -12,8 +12,7 @@ import * as fromDynamicForm from "../../reducers";
 import { CoreModule } from "../../../core/core.module";
 import { SharedModule } from "../../../shared/shared.module";
 
-import { ComponentsModule } from "../../components/components.module";
-
+import { COMPONENTS } from "../../components";
 import { ListContainerComponent } from "./list.container";
 
 export function createTranslateLoader(http: HttpClient) {
@@ -41,9 +40,9 @@ describe("ListComponent", () => {
         }),
         CoreModule.forRoot(),
         SharedModule,
-        ComponentsModule,
       ],
       declarations: [
+        ...COMPONENTS,
         ListContainerComponent,
       ],
       providers: [

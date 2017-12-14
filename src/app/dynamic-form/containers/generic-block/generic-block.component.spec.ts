@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { ComponentFactoryResolver } from "@angular/core";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
@@ -12,8 +13,9 @@ import * as fromDynamicForm from "../../reducers";
 import { CoreModule } from "../../../core/core.module";
 import { SharedModule } from "../../../shared/shared.module";
 
-import { ComponentsModule } from "../../components/components.module";
+import { BlocksListService } from "../../services/list.service";
 
+import { COMPONENTS } from "../../components";
 import { GenericBlockContainerComponent } from "./generic-block.component";
 
 export function createTranslateLoader(http: HttpClient) {
@@ -41,13 +43,15 @@ describe("GenericBlockContainerComponent", () => {
         }),
         CoreModule.forRoot(),
         SharedModule,
-        ComponentsModule,
       ],
       declarations: [
+        ...COMPONENTS,
         GenericBlockContainerComponent,
       ],
       providers: [
         TranslateService,
+        ComponentFactoryResolver,
+        BlocksListService,
       ],
     })
       .compileComponents();
