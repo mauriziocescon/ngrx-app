@@ -12,6 +12,7 @@ import * as fromDynamicForm from "../../../reducers";
 import { CoreModule } from "../../../../core/core.module";
 import { SharedModule } from "../../../../shared/shared.module";
 
+import { BlockType } from "../../../models";
 import { COMPONENTS } from "../../../components";
 import { CheckBoxContainerComponent } from "./check-box.container";
 
@@ -55,6 +56,7 @@ describe("CheckBoxComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckBoxContainerComponent);
     component = fixture.componentInstance;
+    component.block = {id: 1, type: BlockType.CheckBox, label: "", value: true};
     fixture.detectChanges();
   });
 

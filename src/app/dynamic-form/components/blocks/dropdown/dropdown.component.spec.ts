@@ -8,6 +8,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { CoreModule } from "../../../../core/core.module";
 import { SharedModule } from "../../../../shared/shared.module";
 
+import { BlockType } from "../../../models";
 import { DropdownComponent } from "./dropdown.component";
 
 export function createTranslateLoader(http: HttpClient) {
@@ -45,6 +46,7 @@ describe("DropdownComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DropdownComponent);
     component = fixture.componentInstance;
+    component.block = {id: 1, type: BlockType.Dropdown, label: "", value: "", choices: []};
     fixture.detectChanges();
   });
 

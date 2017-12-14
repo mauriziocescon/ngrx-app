@@ -12,6 +12,7 @@ import * as fromDynamicForm from "../../../reducers";
 import { CoreModule } from "../../../../core/core.module";
 import { SharedModule } from "../../../../shared/shared.module";
 
+import { BlockType } from "../../../models";
 import { COMPONENTS } from "../../../components";
 import { DropdownContainerComponent } from "./dropdown.container";
 
@@ -55,6 +56,7 @@ describe("DropdownComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DropdownContainerComponent);
     component = fixture.componentInstance;
+    component.block = {id: 1, type: BlockType.Dropdown, label: "", value: "", choices: []};
     fixture.detectChanges();
   });
 

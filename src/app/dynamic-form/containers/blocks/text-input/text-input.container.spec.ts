@@ -12,6 +12,7 @@ import * as fromDynamicForm from "../../../reducers";
 import { CoreModule } from "../../../../core/core.module";
 import { SharedModule } from "../../../../shared/shared.module";
 
+import { BlockType } from "../../../models";
 import { COMPONENTS } from "../../../components";
 import { TextInputContainerComponent } from "./text-input.container";
 
@@ -55,6 +56,7 @@ describe("TextInputComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextInputContainerComponent);
     component = fixture.componentInstance;
+    component.block = {id: 1, type: BlockType.CheckBox, label: "", value: ""};
     fixture.detectChanges();
   });
 

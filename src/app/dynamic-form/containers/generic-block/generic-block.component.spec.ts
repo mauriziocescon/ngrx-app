@@ -15,6 +15,7 @@ import { SharedModule } from "../../../shared/shared.module";
 
 import { BlocksListService } from "../../services/list.service";
 
+import { BlockType } from "../../models";
 import { COMPONENTS } from "../../components";
 import { GenericBlockContainerComponent } from "./generic-block.component";
 
@@ -60,6 +61,7 @@ describe("GenericBlockContainerComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GenericBlockContainerComponent);
     component = fixture.componentInstance;
+    component.block = {id: 1, type: BlockType.CheckBox};
     fixture.detectChanges();
   });
 

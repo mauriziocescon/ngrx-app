@@ -8,6 +8,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { CoreModule } from "../../../core/core.module";
 import { SharedModule } from "../../../shared/shared.module";
 
+import { GenericBlockContainerComponent } from "../../containers";
 import { ListComponent } from "./list.component";
 
 export function createTranslateLoader(http: HttpClient) {
@@ -33,6 +34,7 @@ describe("ListComponent", () => {
         SharedModule,
       ],
       declarations: [
+        GenericBlockContainerComponent,
         ListComponent,
       ],
       providers: [

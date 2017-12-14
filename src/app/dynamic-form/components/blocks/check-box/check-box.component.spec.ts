@@ -8,6 +8,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { CoreModule } from "../../../../core/core.module";
 import { SharedModule } from "../../../../shared/shared.module";
 
+import { BlockType } from "../../../models";
 import { CheckBoxComponent } from "./check-box.component";
 
 export function createTranslateLoader(http: HttpClient) {
@@ -45,6 +46,7 @@ describe("CheckBoxComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckBoxComponent);
     component = fixture.componentInstance;
+    component.block = {id: 1, type: BlockType.CheckBox, label: "", value: true};
     fixture.detectChanges();
   });
 
