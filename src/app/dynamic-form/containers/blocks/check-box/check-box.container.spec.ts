@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 
@@ -14,7 +15,7 @@ import { SharedModule } from "../../../../shared/shared.module";
 
 import { BlockType } from "../../../models";
 import { COMPONENTS } from "../../../components";
-import { CheckBoxContainerComponent } from "./check-box.container";
+import { CONTAINERS, CheckBoxContainerComponent } from "../../../containers";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
@@ -44,12 +45,20 @@ describe("CheckBoxComponent", () => {
       ],
       declarations: [
         ...COMPONENTS,
-        CheckBoxContainerComponent,
+        ...CONTAINERS,
       ],
       providers: [
         TranslateService,
       ],
     })
+      .overrideModule(BrowserDynamicTestingModule, {
+        // the usage of overrideModule comes from {@Link https://github.com/angular/angular/issues/10760}
+        set: {
+          entryComponents: [
+            ...CONTAINERS,
+          ]
+        }
+      })
       .compileComponents();
   }));
 

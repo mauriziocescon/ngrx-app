@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 
@@ -13,8 +14,7 @@ import { CoreModule } from "../../../core/core.module";
 import { SharedModule } from "../../../shared/shared.module";
 
 import { COMPONENTS } from "../../components";
-import { GenericBlockContainerComponent} from "../generic-block/generic-block.component";
-import { ListContainerComponent } from "./list.container";
+import { CONTAINERS, ListContainerComponent } from "../../containers";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
@@ -44,13 +44,20 @@ describe("ListComponent", () => {
       ],
       declarations: [
         ...COMPONENTS,
-        GenericBlockContainerComponent,
-        ListContainerComponent,
+        ...CONTAINERS,
       ],
       providers: [
         TranslateService,
       ],
     })
+      .overrideModule(BrowserDynamicTestingModule, {
+        // the usage of overrideModule comes from {@Link https://github.com/angular/angular/issues/10760}
+        set: {
+          entryComponents: [
+            ...CONTAINERS,
+          ]
+        }
+      })
       .compileComponents();
   }));
 
