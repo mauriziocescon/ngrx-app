@@ -1,17 +1,20 @@
 <div class="container-fluid text-input-component">
   <div class="row">
     <div class="col-12">
-
       <form [formGroup]="textInputForm">
-        <div class="input-group">
-          <input class="form-control" formControlName="textInput" placeholder="{{ 'TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | translate }}">
-          <span class="input-group-addon addon" (click)="resetTextInput()">
-            <span class="fa fa-search" [hidden]="isTextInputNotEmpty"></span>
-            <span class="fa fa-remove" [hidden]="!isTextInputNotEmpty"></span>
-          </span>
+        <div class="form-group row">
+          <label for="textInput" class="col-sm-2 col-form-label">{{ block.label | translate }}</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="text" class="form-control" id="textInput" formControlName="textInput" placeholder="{{ 'TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | translate }}">
+              <span class="input-group-addon addon" (click)="resetTextInput()">
+                <span class="fa fa-search" [hidden]="isTextInputNotEmpty"></span>
+                <span class="fa fa-remove" [hidden]="!isTextInputNotEmpty"></span>
+              </span>
+            </div>
+          </div>
         </div>
       </form>
-
       text-input: {{ block | json }}
     </div>
   </div>

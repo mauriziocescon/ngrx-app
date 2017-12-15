@@ -23,7 +23,7 @@ export class TextInputComponent implements OnInit {
 
   ngOnInit(): void {
     this.textInputForm = this.formBuilder.group({
-      textInput: this.textInputControl = new FormControl(""),
+      textInput: this.textInputControl = new FormControl(this.block.value),
     });
   }
 
