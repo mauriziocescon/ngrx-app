@@ -1,4 +1,5 @@
-import { Component, Input } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
+import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
 
 import { DropdownBlock } from "../../../models";
 
@@ -7,9 +8,18 @@ import { DropdownBlock } from "../../../models";
   templateUrl: "./dropdown.component.html",
   styleUrls: ["./dropdown.component.scss"]
 })
-export class DropdownComponent {
+export class DropdownComponent implements OnInit {
   @Input() block: DropdownBlock;
 
-  constructor() {
+  public dropdownForm: FormGroup;
+  protected dropdownControl: FormControl;
+
+  constructor(protected formBuilder: FormBuilder) {
+  }
+
+  ngOnInit(): void {
+    this.dropdownForm = this.formBuilder.group({
+      selectedValue: this.dropdownControl = new FormControl(this.block.value),
+    });
   }
 }

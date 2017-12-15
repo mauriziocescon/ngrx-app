@@ -20,7 +20,8 @@ function getCheckBox(index) {
     id: index,
     type: "check-box",
     label: "CHECK_BOX_LABEL",
-    value: true,
+    value: faker.random.boolean(),
+    description: "CHECK_BOX_DESC",
   };
 }
 
@@ -39,7 +40,7 @@ function getTextInput(index) {
     id: index,
     type: "text-input",
     label: "TEXT_INPUT_LABEL",
-    value: "",
+    value: faker.lorem.words(faker.random.number(5)),
   };
 }
 

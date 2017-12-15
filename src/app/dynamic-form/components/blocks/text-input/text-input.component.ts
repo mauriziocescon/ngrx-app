@@ -12,7 +12,7 @@ export class TextInputComponent implements OnInit {
   @Input() block: TextInputBlock;
 
   public textInputForm: FormGroup;
-  protected  textInputControl: FormControl;
+  protected textInputControl: FormControl;
 
   constructor(protected formBuilder: FormBuilder) {
   }
