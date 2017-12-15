@@ -34,6 +34,6 @@ export class GenericBlockContainerComponent implements AfterViewInit {
   }
 
   getComponent(block: Block): any {
-    return this.blockList.getComponent(block.type);
+    return this.blockList.getComponent(block);
   }
 }

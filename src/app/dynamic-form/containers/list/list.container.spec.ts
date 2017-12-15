@@ -13,6 +13,7 @@ import { CoreModule } from "../../../core/core.module";
 import { SharedModule } from "../../../shared/shared.module";
 
 import { COMPONENTS } from "../../components";
+import { GenericBlockContainerComponent} from "../generic-block/generic-block.component";
 import { ListContainerComponent } from "./list.container";
 
 export function createTranslateLoader(http: HttpClient) {
@@ -43,6 +44,7 @@ describe("ListComponent", () => {
       ],
       declarations: [
         ...COMPONENTS,
+        GenericBlockContainerComponent,
         ListContainerComponent,
       ],
       providers: [

@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ComponentFactoryResolver } from "@angular/core";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
@@ -51,7 +50,6 @@ describe("GenericBlockContainerComponent", () => {
       ],
       providers: [
         TranslateService,
-        ComponentFactoryResolver,
         BlocksListService,
       ],
     })

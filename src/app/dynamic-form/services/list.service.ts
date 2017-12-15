@@ -30,8 +30,8 @@ export class BlocksListService {
       .catch(err => Observable.throw(err.json().error || "Server error"));
   }
 
-  getComponent(blockId: string): any {
-    switch (blockId) {
+  getComponent(block: Block): any {
+    switch (block.type) {
       case BlockType.CheckBox: {
         return CheckBoxContainerComponent;
       }
