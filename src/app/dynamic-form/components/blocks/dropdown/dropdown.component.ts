@@ -2,7 +2,6 @@ import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from "@angu
 import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
 
 import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/takeLast";
 
 import { DropdownBlock } from "../../../models";
 
@@ -47,7 +46,6 @@ export class DropdownComponent implements OnInit, OnDestroy {
     this.dropdownControlSubscription = this.dropdownControl
       .valueChanges
       .debounceTime(500)
-      // .takeLast(1)
       .subscribe((value: any) => {
           this.valueDidChange.emit(value);
         },

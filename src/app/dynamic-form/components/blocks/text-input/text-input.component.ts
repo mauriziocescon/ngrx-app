@@ -2,7 +2,6 @@ import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from "@angu
 import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
 
 import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/takeLast";
 
 import { TextInputBlock } from "../../../models";
 
@@ -50,7 +49,6 @@ export class TextInputComponent implements OnInit, OnDestroy {
     this.textInputControlSubscription = this.textInputControl
       .valueChanges
       .debounceTime(500)
-      // .takeLast(1)
       .subscribe((value: any) => {
           this.valueDidChange.emit(value);
         },
