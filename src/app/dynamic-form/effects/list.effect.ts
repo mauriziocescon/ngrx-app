@@ -10,7 +10,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 
 import { BlocksListService } from "../services/list.service";
-import * as block from "../actions/list.action";
+import { ListActionTypes, FetchBlocksComplete, FetchBlocksError } from "../actions/list.actions";
 import { Block } from "../models";
 
 @Injectable()
@@ -21,14 +21,14 @@ export class ListEffects {
   }
 
   @Effect() fetchBlocks$: Observable<Action> = this.update$
-    .ofType(block.FETCH_BLOCKS)
+    .ofType(ListActionTypes.FETCH_BLOCKS)
     .debounceTime(400)
     // .map(action => action.payload)
     .switchMap(() => {
       return this.blocksListService.getBlocks()
         .map((blocks: Block[]) => {
-          return new block.FetchBlocksComplete(blocks);
+          return new FetchBlocksComplete(blocks);
         })
-        .catch(err => of(new block.FetchBlocksError(err)));
+        .catch(err => of(new FetchBlocksError(err)));
     });
 }

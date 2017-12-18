@@ -1,4 +1,4 @@
-import * as list from "../actions/list.action";
+import { ListActionTypes, ListActions } from "../actions/list.actions";
 import { Block } from "../models";
 
 export interface State {
@@ -13,9 +13,9 @@ const initialState: State = {
   error: "",
 };
 
-export function reducer(state = initialState, action: list.Actions): State {
+export function reducer(state = initialState, action: ListActions): State {
   switch (action.type) {
-    case list.FETCH_BLOCKS: {
+    case ListActionTypes.FETCH_BLOCKS: {
       return {
         ...state,
         blocks: undefined,
@@ -23,14 +23,14 @@ export function reducer(state = initialState, action: list.Actions): State {
         error: undefined,
       };
     }
-    case list.FETCH_BLOCKS_COMPLETE: {
+    case ListActionTypes.FETCH_BLOCKS_COMPLETE: {
       return {
         blocks: action.payload.map(blocks => blocks),
         loading: false,
         error: undefined,
       };
     }
-    case list.FETCH_BLOCKS_ERROR: {
+    case ListActionTypes.FETCH_BLOCKS_ERROR: {
       return {
         ...state,
         blocks: undefined,

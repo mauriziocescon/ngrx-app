@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 
 import * as fromDynamicForm from "../../reducers";
-import * as list from "../../actions/list.action";
+import * as list from "../../actions/list.actions";
 import { Block } from "../../models";
 
 @Component({
