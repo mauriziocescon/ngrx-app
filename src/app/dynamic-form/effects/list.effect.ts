@@ -4,10 +4,10 @@ import { Effect, Actions } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
-import "rxjs/operator/map";
-import "rxjs/operator/debounceTime";
-import "rxjs/operator/switchMap";
 import "rxjs/add/operator/catch";
+import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/switchMap";
 
 import { BlocksListService } from "../services/list.service";
 import * as block from "../actions/list.action";
