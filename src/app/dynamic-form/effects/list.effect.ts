@@ -2,9 +2,12 @@ import { Injectable } from "@angular/core";
 import { Action } from "@ngrx/store";
 import { Effect, Actions } from "@ngrx/effects";
 
-import "rxjs/Rx";
 import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
+import "rxjs/operator/map";
+import "rxjs/operator/debounceTime";
+import "rxjs/operator/switchMap";
+import "rxjs/add/operator/catch";
 
 import { BlocksListService } from "../services/list.service";
 import * as block from "../actions/list.action";
