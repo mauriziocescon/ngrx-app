@@ -33,7 +33,7 @@ export class ListContainerComponent implements OnInit {
     this.reloadList();
   }
 
-  public reloadList() {
+  reloadList(): void {
     this.store.dispatch(new list.FetchBlocks());
   }
 }
