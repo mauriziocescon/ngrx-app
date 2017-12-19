@@ -10,7 +10,7 @@ export interface State {
 const initialState: State = {
   blocks: [],
   loading: false,
-  error: "",
+  error: undefined,
 };
 
 export function reducer(state = initialState, action: ListActions): State {

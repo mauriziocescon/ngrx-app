@@ -1,5 +1,8 @@
 import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
+import { Store } from "@ngrx/store";
 
+import * as fromDynamicForm from "../../../reducers";
+import * as checkBox from "../../../actions/blocks/dropdown.actions";
 import { DropdownBlock } from "../../../models";
 
 @Component({
@@ -14,10 +17,21 @@ import { DropdownBlock } from "../../../models";
 export class DropdownContainerComponent {
   @Input() block: DropdownBlock;
 
-  constructor() {
+  constructor(private store: Store<fromDynamicForm.State>) {
   }
 
   valueDidChange(value: string): void {
     console.log(`DropdownContainerComponent: ${JSON.stringify(value)}`);
+
+    const block = {
+      block: {
+        id: this.block.id,
+        changes: {
+          ...this.block,
+          value: value,
+        },
+      }
+    };
+    this.store.dispatch(new checkBox.ValueDidChange(block));
   }
 }

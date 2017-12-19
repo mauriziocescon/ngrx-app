@@ -1,15 +1,15 @@
 import { Action } from "@ngrx/store";
 
-import { Block } from "../models";
+import { DropdownBlock } from "../../models";
 
 export enum DropdownActionTypes {
-  DROPDOWN_VALUE_DID_CHANGE = "[Dropdown] Value did change",
+  DROPDOWN_UPDATE_BLOCK = "[Dropdown] Value did change",
 }
 
 export class ValueDidChange implements Action {
-  readonly type = DropdownActionTypes.DROPDOWN_VALUE_DID_CHANGE;
+  readonly type = DropdownActionTypes.DROPDOWN_UPDATE_BLOCK;
 
-  constructor(public payload: Block) {
+  constructor(public payload: {block: {id: number, changes: DropdownBlock}}) {
   }
 }
 

@@ -31,7 +31,7 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule,
     DynamicFormModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes,{useHash: true}),
 
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
@@ -57,7 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
      *
      * See: https://github.com/zalmoxisus/redux-devtools-extension
      */
-    !environment.production ? StoreDevtoolsModule.instrument({/*name: "NgRx-App Store DevTools"*/}) : [],
+    !environment.production ? StoreDevtoolsModule.instrument({name: "NgRx-App Store DevTools"}) : [],
 
     /**
      * EffectsModule.forRoot() is imported once in the root module and

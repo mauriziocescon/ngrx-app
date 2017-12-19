@@ -1,10 +1,12 @@
 import { createSelector, createFeatureSelector } from "@ngrx/store";
 
 import * as fromRoot from "../../reducers";
+import * as fromEditBlocks from "./edit-blocks.reducer";
 import * as fromList from "./list.reducer";
 
 export interface DynamicFormState {
   list: fromList.State;
+  editBlocks: fromEditBlocks.State;
 }
 
 export interface State extends fromRoot.State {
@@ -13,6 +15,7 @@ export interface State extends fromRoot.State {
 
 export const reducers = {
   list: fromList.reducer,
+  editBlocks: fromEditBlocks.reducer,
 };
 
 
@@ -31,22 +34,27 @@ export const reducers = {
  */
 export const getDynamicFormState = createFeatureSelector<DynamicFormState>("dynamicForm");
 
-export const getListsState = createSelector(
+export const getListState = createSelector(
   getDynamicFormState,
   state => state.list
 );
 
-export const getBlocksState = createSelector(
-  getListsState,
+export const getBlocksListState = createSelector(
+  getListState,
   state => state.blocks
 );
 
-export const getLoadingState = createSelector(
-  getListsState,
+export const getLoadingListState = createSelector(
+  getListState,
   state => state.loading
 );
 
-export const getErrorState = createSelector(
-  getListsState,
+export const getErrorListState = createSelector(
+  getListState,
   state => state.error
+);
+
+export const getEditBlocksState = createSelector(
+  getDynamicFormState,
+  state => state.editBlocks
 );

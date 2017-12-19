@@ -1,15 +1,15 @@
 import { Action } from "@ngrx/store";
 
-import { Block } from "../models";
+import { CheckBoxBlock } from "../../models";
 
 export enum CheckBoxActionTypes {
-  CHECK_BOX_VALUE_DID_CHANGE = "[CheckBox] Value did change",
+  CHECK_BOX_UPDATE_BLOCK = "[CheckBox] Value did change",
 }
 
 export class ValueDidChange implements Action {
-  readonly type = CheckBoxActionTypes.CHECK_BOX_VALUE_DID_CHANGE;
+  readonly type = CheckBoxActionTypes.CHECK_BOX_UPDATE_BLOCK;
 
-  constructor(public payload: Block) {
+  constructor(public payload: {block: {id: number, changes: CheckBoxBlock}}) {
   }
 }
 

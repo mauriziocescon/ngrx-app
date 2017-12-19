@@ -1,15 +1,15 @@
 import { Action } from "@ngrx/store";
 
-import { Block } from "../models";
+import { TextInputBlock } from "../../models";
 
 export enum TextInputActionTypes {
-  TEXT_INPUT_VALUE_DID_CHANGE = "[TextInput] Value did change",
+  TEXT_INPUT_UPDATE_BLOCK = "[TextInput] Value did change",
 }
 
 export class ValueDidChange implements Action {
-  readonly type = TextInputActionTypes.TEXT_INPUT_VALUE_DID_CHANGE;
+  readonly type = TextInputActionTypes.TEXT_INPUT_UPDATE_BLOCK;
 
-  constructor(public payload: Block) {
+  constructor(public payload: {block: {id: number, changes: TextInputBlock}}) {
   }
 }
 

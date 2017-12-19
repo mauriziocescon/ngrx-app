@@ -7,9 +7,11 @@ import { of } from "rxjs/observable/of";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/mergeMap";
 import "rxjs/add/operator/switchMap";
 
 import { BlocksListService } from "../services/list.service";
+import { AddBlocks } from "../actions/edit-blocks.actions";
 import { ListActionTypes, FetchBlocksComplete, FetchBlocksError } from "../actions/list.actions";
 import { Block } from "../models";
 
@@ -26,8 +28,11 @@ export class ListEffects {
     // .map(action => action.payload)
     .switchMap(() => {
       return this.blocksListService.getBlocks()
-        .map((blocks: Block[]) => {
-          return new FetchBlocksComplete(blocks);
+        .mergeMap((blocks: Block[]) => {
+          return [
+            new FetchBlocksComplete(blocks),
+            new AddBlocks({blocks: blocks}),
+          ];
         })
         .catch(err => of(new FetchBlocksError(err)));
     });
