@@ -21,8 +21,6 @@ export class TextInputContainerComponent {
   }
 
   valueDidChange(value: string): void {
-    console.log(`TextInputContainerComponent: ${JSON.stringify(value)}`);
-
     const block = {
       block: {
         id: this.block.id,

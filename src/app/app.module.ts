@@ -31,7 +31,7 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule,
     DynamicFormModule,
-    RouterModule.forRoot(appRoutes,{useHash: true}),
+    RouterModule.forRoot(appRoutes, {useHash: true}),
 
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer

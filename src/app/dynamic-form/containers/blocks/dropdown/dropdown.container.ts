@@ -21,8 +21,6 @@ export class DropdownContainerComponent {
   }
 
   valueDidChange(value: string): void {
-    console.log(`DropdownContainerComponent: ${JSON.stringify(value)}`);
-
     const block = {
       block: {
         id: this.block.id,

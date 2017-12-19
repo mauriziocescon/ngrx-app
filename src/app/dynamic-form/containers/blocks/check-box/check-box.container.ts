@@ -21,8 +21,6 @@ export class CheckBoxContainerComponent {
   }
 
   valueDidChange(value: boolean): void {
-    console.log(`CheckBoxContainerComponent: ${JSON.stringify(value)}`);
-
     const block = {
       block: {
         id: this.block.id,
