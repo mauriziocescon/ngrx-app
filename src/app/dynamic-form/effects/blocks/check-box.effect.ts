@@ -7,7 +7,7 @@ import { empty } from "rxjs/observable/empty";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 
-import { CheckBoxService } from "../../services/blocks/check-box.service";
+import { CheckBoxService } from "../../services";
 import { CheckBoxActionTypes, ValueDidChange } from "../../actions/blocks/check-box.actions";
 import { CheckBoxBlock } from "../../models";
 
@@ -22,7 +22,7 @@ export class CheckBoxEffect {
     .ofType(CheckBoxActionTypes.CHECK_BOX_UPDATE_BLOCK)
     .map((action: ValueDidChange) => action.payload.block)
     .switchMap((block: { id: number, changes: CheckBoxBlock }) => {
-      this.checkBoxService.valueDidChange(block);
+      this.checkBoxService.blockDidChange(block);
       return empty();
     });
 }

@@ -7,7 +7,7 @@ import { empty } from "rxjs/observable/empty";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 
-import { TextInputService } from "../../services/blocks/text-input.service";
+import { TextInputService } from "../../services";
 import { TextInputActionTypes, ValueDidChange } from "../../actions/blocks/text-input.actions";
 import { TextInputBlock } from "../../models";
 
@@ -22,7 +22,7 @@ export class TextInputEffect {
     .ofType(TextInputActionTypes.TEXT_INPUT_UPDATE_BLOCK)
     .map((action: ValueDidChange) => action.payload.block)
     .switchMap((block: { id: number, changes: TextInputBlock }) => {
-      this.textInputService.valueDidChange(block);
+      this.textInputService.blockDidChange(block);
       return empty();
     });
 }

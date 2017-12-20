@@ -4,16 +4,9 @@ import { EffectsModule } from "@ngrx/effects";
 
 import { SharedModule } from "../shared/shared.module";
 
-import { CheckBoxEffect } from "./effects/blocks/check-box.effect";
-import { DropdownEffect } from "./effects/blocks/dropdown.effect";
-import { TextInputEffect } from "./effects/blocks/text-input.effect";
-import { ListEffects } from "./effects/list.effect";
+import { EFFECTS } from "./effects";
 import { reducers } from "./reducers";
-
-import { CheckBoxService } from "./services/blocks/check-box.service";
-import { DropdownService } from "./services/blocks/dropdown.service";
-import { TextInputService } from "./services/blocks/text-input.service";
-import { BlocksListService } from "./services/list.service";
+import { SERVICES } from "./services";
 
 import { COMPONENTS } from "./components";
 import {
@@ -45,10 +38,7 @@ import {
      * whether they are registered once or multiple times.
      */
     EffectsModule.forFeature([
-      CheckBoxEffect,
-      DropdownEffect,
-      TextInputEffect,
-      ListEffects,
+      ...EFFECTS,
     ]),
   ],
   declarations: [
@@ -61,10 +51,7 @@ import {
     TextInputContainerComponent,
   ],
   providers: [
-    CheckBoxService,
-    DropdownService,
-    TextInputService,
-    BlocksListService,
+    ...SERVICES,
   ],
 })
 export class DynamicFormModule {

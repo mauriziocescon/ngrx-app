@@ -13,7 +13,7 @@ import * as fromDynamicForm from "../../reducers";
 import { CoreModule } from "../../../core/core.module";
 import { SharedModule } from "../../../shared/shared.module";
 
-import { BlocksListService } from "../../services/list.service";
+import { BlocksListService } from "../../services";
 
 import { BlockType } from "../../models";
 import { COMPONENTS } from "../../components";

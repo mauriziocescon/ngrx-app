@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, ComponentFactoryResolver, AfterViewInit, ViewChild, Input } from "@angular/core";
 
-import { BlocksListService } from "../../services/list.service";
+import { BlocksListService } from "../../services";
 
 import { AddComponentDirective } from "../../../shared/shared.module";
 
