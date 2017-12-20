@@ -14,7 +14,7 @@ export class CheckBoxService {
   readonly blockObservable: Observable<CheckBoxBlock>;
 
   constructor(private store: Store<fromDynamicForm.State>) {
-    this.blockSubject = new BehaviorSubject(undefined);
+    this.blockSubject = new BehaviorSubject(null);
     this.blockObservable = this.blockSubject.asObservable();
   }
 
