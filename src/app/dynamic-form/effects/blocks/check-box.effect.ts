@@ -4,10 +4,12 @@ import { Effect, Actions } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
 import { empty } from "rxjs/observable/empty";
+import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 
 import { CheckBoxService } from "../../services/blocks/check-box.service";
-import { CheckBoxActionTypes } from "../../actions/blocks/check-box.actions";
+import { CheckBoxActionTypes, ValueDidChange } from "../../actions/blocks/check-box.actions";
+import { CheckBoxBlock } from "../../models";
 
 @Injectable()
 export class CheckBoxEffect {
@@ -18,10 +20,9 @@ export class CheckBoxEffect {
 
   @Effect() valueDidChange$: Observable<Action> = this.update$
     .ofType(CheckBoxActionTypes.CHECK_BOX_UPDATE_BLOCK)
-    .switchMap(() => {
+    .map((action: ValueDidChange) => action.payload.block)
+    .switchMap((block: { id: number, changes: CheckBoxBlock }) => {
+      this.checkBoxService.valueDidChange(block);
       return empty();
-
-      // do something with the service
-      // return this.checkBoxService.getBlocks()
     });
 }

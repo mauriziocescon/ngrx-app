@@ -4,10 +4,12 @@ import { Effect, Actions } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
 import { empty } from "rxjs/observable/empty";
+import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 
 import { TextInputService } from "../../services/blocks/text-input.service";
-import { TextInputActionTypes } from "../../actions/blocks/text-input.actions";
+import { TextInputActionTypes, ValueDidChange } from "../../actions/blocks/text-input.actions";
+import { TextInputBlock } from "../../models";
 
 @Injectable()
 export class TextInputEffect {
@@ -18,10 +20,9 @@ export class TextInputEffect {
 
   @Effect() valueDidChange$: Observable<Action> = this.update$
     .ofType(TextInputActionTypes.TEXT_INPUT_UPDATE_BLOCK)
-    .switchMap(() => {
+    .map((action: ValueDidChange) => action.payload.block)
+    .switchMap((block: { id: number, changes: TextInputBlock }) => {
+      this.textInputService.valueDidChange(block);
       return empty();
-
-      // do something with the service
-      // return this.textInputService.getBlocks()
     });
 }

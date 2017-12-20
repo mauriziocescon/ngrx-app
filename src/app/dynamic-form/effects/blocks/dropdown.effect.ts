@@ -4,10 +4,12 @@ import { Effect, Actions } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
 import { empty } from "rxjs/observable/empty";
+import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 
 import { DropdownService } from "../../services/blocks/dropdown.service";
-import { DropdownActionTypes } from "../../actions/blocks/dropdown.actions";
+import { DropdownActionTypes, ValueDidChange } from "../../actions/blocks/dropdown.actions";
+import { DropdownBlock } from "../../models";
 
 @Injectable()
 export class DropdownEffect {
@@ -18,10 +20,9 @@ export class DropdownEffect {
 
   @Effect() valueDidChange$: Observable<Action> = this.update$
     .ofType(DropdownActionTypes.DROPDOWN_UPDATE_BLOCK)
-    .switchMap(() => {
+    .map((action: ValueDidChange) => action.payload.block)
+    .switchMap((block: { id: number, changes: DropdownBlock }) => {
+      this.dropdownService.valueDidChange(block);
       return empty();
-
-      // do something with the service
-      // return this.dropdownService.getBlocks()
     });
 }
