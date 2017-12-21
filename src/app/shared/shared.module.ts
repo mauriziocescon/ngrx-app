@@ -9,10 +9,6 @@ import { TranslateModule } from "@ngx-translate/core";
 
 import { AddComponentDirective } from "./directives/add-container.directive";
 
-import { UIUtilitiesService } from "./modals/ui-utilities.service";
-import { ModalAlertComponent } from "./modals/modal-alert/modal-alert.component";
-import { ModalConfirmerComponent } from "./modals/modal-confirmer/modal-confirmer.component";
-
 import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
 
 import { Enum } from "./utilities/enum";
@@ -31,16 +27,7 @@ import { CustomRouterStateSerializer } from "./utilities/route-util";
   ],
   declarations: [
     AddComponentDirective,
-    ModalAlertComponent,
-    ModalConfirmerComponent,
     NavigationBarComponent,
-  ],
-  providers: [
-    UIUtilitiesService,
-  ],
-  entryComponents: [
-    ModalAlertComponent,
-    ModalConfirmerComponent,
   ],
   exports: [
     CommonModule,
@@ -57,7 +44,6 @@ export class SharedModule {
 }
 
 export {
-  UIUtilitiesService,
   AddComponentDirective,
   NavigationBarComponent,
   Enum,

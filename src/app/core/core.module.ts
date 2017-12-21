@@ -3,12 +3,16 @@ import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from "
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { StoreModule } from "@ngrx/store";
 
-import { JsonServerInterceptor } from "./interceptors/json-server.interceptor";
+import { ModalAlertComponent } from "./components/modal-alert/modal-alert.component";
+import { ModalConfirmerComponent } from "./components/modal-confirmer/modal-confirmer.component";
 
 import { AppConstantsService } from "./services/app-constants.service";
 import { AppLanguageService } from "./services/app-language.service";
 import { LocalStorageService } from "./services/local-storage.service";
+import { UIUtilitiesService } from "./services/ui-utilities.service";
 import { UtilitiesService } from "./services/utilities.service";
+
+import { JsonServerInterceptor } from "./interceptors/json-server.interceptor";
 
 import { reducers } from "./reducers";
 
@@ -27,6 +31,14 @@ export function createLanguageIdLoader(appLanguageService: AppLanguageService) {
      * the existing state.
      */
     StoreModule.forFeature("core", reducers),
+  ],
+  declarations: [
+    ModalAlertComponent,
+    ModalConfirmerComponent,
+  ],
+  entryComponents: [
+    ModalAlertComponent,
+    ModalConfirmerComponent,
   ],
 })
 export class CoreModule {
@@ -50,6 +62,7 @@ export class CoreModule {
         AppConstantsService,
         AppLanguageService,
         LocalStorageService,
+        UIUtilitiesService,
         UtilitiesService,
         {
           provide: LOCALE_ID,
@@ -70,5 +83,6 @@ export {
   AppConstantsService,
   AppLanguageService,
   LocalStorageService,
+  UIUtilitiesService,
   UtilitiesService,
 };

@@ -14,11 +14,11 @@ import { TextInputBlock } from "../../models";
 @Injectable()
 export class TextInputEffect {
 
-  constructor(private update$: Actions,
+  constructor(private actions$: Actions,
               private textInputService: TextInputService) {
   }
 
-  @Effect() valueDidChange$: Observable<Action> = this.update$
+  @Effect() valueDidChange$: Observable<Action> = this.actions$
     .ofType(TextInputActionTypes.TEXT_INPUT_UPDATE_BLOCK)
     .map((action: ValueDidChange) => action.payload.block)
     .switchMap((block: { id: number, changes: TextInputBlock }) => {

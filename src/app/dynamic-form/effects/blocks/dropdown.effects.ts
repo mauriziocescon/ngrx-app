@@ -14,11 +14,11 @@ import { DropdownBlock } from "../../models";
 @Injectable()
 export class DropdownEffect {
 
-  constructor(private update$: Actions,
+  constructor(private actions$: Actions,
               private dropdownService: DropdownService) {
   }
 
-  @Effect() valueDidChange$: Observable<Action> = this.update$
+  @Effect() valueDidChange$: Observable<Action> = this.actions$
     .ofType(DropdownActionTypes.DROPDOWN_UPDATE_BLOCK)
     .map((action: ValueDidChange) => action.payload.block)
     .switchMap((block: { id: number, changes: DropdownBlock }) => {

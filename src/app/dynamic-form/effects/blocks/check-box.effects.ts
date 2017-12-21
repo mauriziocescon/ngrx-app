@@ -14,11 +14,11 @@ import { CheckBoxBlock } from "../../models";
 @Injectable()
 export class CheckBoxEffect {
 
-  constructor(private update$: Actions,
+  constructor(private actions$: Actions,
               private checkBoxService: CheckBoxService) {
   }
 
-  @Effect() valueDidChange$: Observable<Action> = this.update$
+  @Effect() valueDidChange$: Observable<Action> = this.actions$
     .ofType(CheckBoxActionTypes.CHECK_BOX_UPDATE_BLOCK)
     .map((action: ValueDidChange) => action.payload.block)
     .switchMap((block: { id: number, changes: CheckBoxBlock }) => {

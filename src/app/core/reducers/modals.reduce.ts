@@ -50,16 +50,9 @@ export function reducer(state = initialState, action: ModalsActions): State {
         ...adapter.addOne(action.payload.modal, state),
       };
     }
-    case ModalsActionTypes.ADD_MODALS: {
+    case ModalsActionTypes.UPDATE_MODAL: {
       return {
-        /**
-         * The addMany function provided by the created adapter
-         * adds many records to the entity dictionary
-         * and returns a new state including those records. If
-         * the collection is to be sorted, the adapter will
-         * sort each record upon entry into the sorted array.
-         */
-        ...adapter.addMany(action.payload.modals, state),
+        ...adapter.updateOne(action.payload.modal, state),
       };
     }
     case ModalsActionTypes.DELETE_MODAL: {

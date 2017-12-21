@@ -4,7 +4,7 @@ import { Modal } from "../models";
 
 export enum ModalsActionTypes {
   ADD_MODAL = "[Modals] Add modal",
-  ADD_MODALS = "[Modals] Add modals",
+  UPDATE_MODAL = "[Modals] Update modal",
   DELETE_MODAL = "[Modals] Delete modal",
   DELETE_MODALS = "[Modals] Delete modals",
 }
@@ -16,10 +16,10 @@ export class AddModal implements Action {
   }
 }
 
-export class AddModals implements Action {
-  readonly type = ModalsActionTypes.ADD_MODALS;
+export class UpdateModal implements Action {
+  readonly type = ModalsActionTypes.UPDATE_MODAL;
 
-  constructor(public payload: { modals: Modal[] }) {
+  constructor(public payload: { modal: { id: string, changes: Modal } }) {
   }
 }
 
@@ -43,6 +43,6 @@ export class DeleteModals implements Action {
  */
 export type ModalsActions =
   AddModal |
-  AddModals |
+  UpdateModal |
   DeleteModal |
   DeleteModals;
