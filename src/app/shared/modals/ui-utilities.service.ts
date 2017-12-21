@@ -7,10 +7,8 @@ import { ModalConfirmerComponent } from "./modal-confirmer/modal-confirmer.compo
 
 @Injectable()
 export class UIUtilitiesService {
-  protected modalService: NgbModal;
 
-  constructor(modalService: NgbModal) {
-    this.modalService = modalService;
+  constructor(private modalService: NgbModal) {
   }
 
   modalAlert(title: string, message: string, buttonLabel: string): void {
