@@ -14,7 +14,6 @@ export class ModalConfirmerComponent {
   @Input() noButtonLabel: string;
 
   constructor(protected activeModal: NgbActiveModal) {
-    this.activeModal = activeModal;
   }
 
   yes(): void {
