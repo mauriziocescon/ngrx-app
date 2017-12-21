@@ -36,25 +36,25 @@ export const getDynamicFormState = createFeatureSelector<DynamicFormState>("dyna
 
 export const getListState = createSelector(
   getDynamicFormState,
-  state => state.list
+  state => state.list,
 );
 
 export const getBlocksListState = createSelector(
   getListState,
-  state => state.blocks
+  state => state.blocks,
 );
 
 export const getLoadingListState = createSelector(
   getListState,
-  state => state.loading
+  state => state.loading,
 );
 
 export const getErrorListState = createSelector(
   getListState,
-  state => state.error
+  state => state.error,
 );
 
 export const getEditBlocksState = createSelector(
   getDynamicFormState,
-  state => state.editBlocks
+  state => state.editBlocks,
 );
