@@ -45,6 +45,6 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [logger, storeFreeze] : [];
 
 export {
-  getModalsAlert,
-  getModalsConfirmer,
+  getAllModalAlerts,
+  getAllModalConfirmers,
 } from "../core/reducers";

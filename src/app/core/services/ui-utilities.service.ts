@@ -6,7 +6,12 @@ import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { ModalAlertComponent } from "../components/modal-alert/modal-alert.component";
 import { ModalConfirmerComponent } from "../components/modal-confirmer/modal-confirmer.component";
 
-import { UpdateModal, DeleteModal } from "../actions/modals.actions";
+import { DismissModalAlert } from "../actions/modal-alert.actions";
+import {
+  DismissModalConfirmerWithPositiveResult,
+  DismissModalConfirmerWithNegativeResult,
+  DismissModalConfirmer
+} from "../actions/modal-confirmer.actions";
 import { ModalAlert, ModalConfirmer } from "../models";
 
 @Injectable()
@@ -23,10 +28,10 @@ export class UIUtilitiesService {
 
     return modalRef.result.then((result) => {
       console.log(`Closed with: ${result}`);
-      return new DeleteModal({id: modalAlert.id});
+      return new DismissModalAlert({id: modalAlert.id});
     }, (reason) => {
       console.log(`Dismissed ${this.getDismissReason(reason)}`);
-      return new DeleteModal({id: modalAlert.id});
+      return new DismissModalAlert({id: modalAlert.id});
     });
   }
 
@@ -39,28 +44,14 @@ export class UIUtilitiesService {
 
     return modalRef.result.then((result) => {
       console.log(`Closed with: ${result}`);
-      const newModal = {
-        modal: {
-          id: modalConfirmer.id,
-          changes: {
-            ...modalConfirmer,
-            result: result,
-          },
-        },
-      };
-      return new UpdateModal(newModal);
+      if (result) {
+        return new DismissModalConfirmerWithPositiveResult({id: modalConfirmer.id});
+      } else {
+        return new DismissModalConfirmerWithNegativeResult({id: modalConfirmer.id});
+      }
     }, (reason) => {
       console.log(`Dismissed ${this.getDismissReason(reason)}`);
-      const newModal = {
-        modal: {
-          id: modalConfirmer.id,
-          changes: {
-            ...modalConfirmer,
-            result: undefined,
-          },
-        },
-      };
-      return new UpdateModal(newModal);
+      return new DismissModalConfirmer({id: modalConfirmer.id});
     });
   }
 

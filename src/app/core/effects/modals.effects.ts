@@ -9,8 +9,9 @@ import "rxjs/add/operator/switchMap";
 
 import { UIUtilitiesService } from "../services/ui-utilities.service";
 
-import { ModalsActionTypes, AddModal, UpdateModal, DeleteModal, DeleteModals } from "../actions/modals.actions";
-import { Modal, ModalType, ModalAlert, ModalConfirmer } from "../models";
+import { ModalAlertActionTypes, ShowModalAlert } from "../actions/modal-alert.actions";
+import { ModalConfirmerActionTypes, ShowModalConfirmer } from "../actions/modal-confirmer.actions";
+import { ModalAlert, ModalConfirmer } from "../models";
 
 @Injectable()
 export class ModalsEffects {
@@ -19,46 +20,17 @@ export class ModalsEffects {
               private uiUtilitiesService: UIUtilitiesService) {
   }
 
-  @Effect() addModal$: Observable<Action> = this.actions$
-    .ofType(ModalsActionTypes.ADD_MODAL)
-    .map((action: AddModal) => action.payload.modal)
-    .switchMap((modal: Modal) => {
-      if (modal.type === ModalType.Alert) {
-        const modalAlert = modal as ModalAlert;
-        return fromPromise(this.uiUtilitiesService.modalAlert(modalAlert));
-      } else {
-        const modalConfirmer = modal as ModalConfirmer;
-        return fromPromise(this.uiUtilitiesService.modalConfirmer(modalConfirmer));
-      }
+  @Effect() showModalAlert$: Observable<Action> = this.actions$
+    .ofType(ModalAlertActionTypes.SHOW_MODAL_ALERT)
+    .map((action: ShowModalAlert) => action.payload.modal)
+    .switchMap((modalAlert: ModalAlert) => {
+      return fromPromise(this.uiUtilitiesService.modalAlert(modalAlert));
     });
 
-  // @Effect() updateModal$: Observable<Action> = this.actions$
-  //   .ofType(ModalsActionTypes.UPDATE_MODAL)
-  //   .map((action: UpdateModal) => action.payload.modal)
-  //   .map((modal: { id: string, changes: Modal }) => {
-  //     const newModal = {
-  //       modal: {
-  //         id: modal.id,
-  //         changes: {
-  //           ...modal.changes,
-  //         },
-  //       },
-  //     };
-  //     return new UpdateModal(newModal);
-  //   });
-  //
-  // @Effect() deleteModal$: Observable<Action> = this.actions$
-  //   .ofType(ModalsActionTypes.DELETE_MODAL)
-  //   .map((action: DeleteModal) => action.payload.id)
-  //   .map((id: string) => {
-  //     return new DeleteModal({id: id});
-  //   });
-  //
-  // @Effect() deleteModals$: Observable<Action> = this.actions$
-  //   .ofType(ModalsActionTypes.DELETE_MODALS)
-  //   .map((action: DeleteModals) => action.payload.ids)
-  //   .map((ids: string[]) => {
-  //     const newIds = [...ids];
-  //     return new DeleteModals({ids: newIds});
-  //   });
+  @Effect() showModalConfirmer$: Observable<Action> = this.actions$
+    .ofType(ModalConfirmerActionTypes.SHOW_MODAL_CONFIRMER)
+    .map((action: ShowModalConfirmer) => action.payload.modal)
+    .switchMap((modalConfirmer: ModalConfirmer) => {
+      return fromPromise(this.uiUtilitiesService.modalConfirmer(modalConfirmer));
+    });
 }
