@@ -1,8 +1,6 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders, LOCALE_ID } from "@angular/core";
 import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from "@angular/common";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { StoreModule } from "@ngrx/store";
-import { EffectsModule } from "@ngrx/effects";
 
 import { ModalAlertComponent } from "./components/modal-alert/modal-alert.component";
 import { ModalConfirmerComponent } from "./components/modal-confirmer/modal-confirmer.component";
@@ -15,9 +13,6 @@ import { UtilitiesService } from "./services/utilities.service";
 
 import { JsonServerInterceptor } from "./interceptors/json-server.interceptor";
 
-import { reducers } from "./reducers";
-import { EFFECTS } from "./effects/index";
-
 export function createLanguageIdLoader(appLanguageService: AppLanguageService) {
   return appLanguageService.getLanguageId();
 }
@@ -25,26 +20,6 @@ export function createLanguageIdLoader(appLanguageService: AppLanguageService) {
 @NgModule({
   imports: [
     CommonModule,
-
-    /**
-     * StoreModule.forFeature is used for composing state
-     * from feature modules. These modules can be loaded
-     * eagerly or lazily and will be dynamically added to
-     * the existing state.
-     */
-    StoreModule.forFeature("core", reducers),
-
-    /**
-     * Effects.forFeature is used to register effects
-     * from feature modules. Effects can be loaded
-     * eagerly or lazily and will be started immediately.
-     *
-     * All Effects will only be instantiated once regardless of
-     * whether they are registered once or multiple times.
-     */
-    EffectsModule.forFeature([
-      ...EFFECTS,
-    ]),
   ],
   declarations: [
     ModalAlertComponent,

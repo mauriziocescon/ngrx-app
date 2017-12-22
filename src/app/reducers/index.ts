@@ -1,6 +1,8 @@
-import { ActionReducer, ActionReducerMap, MetaReducer } from "@ngrx/store";
+import { ActionReducer, ActionReducerMap, combineReducers, MetaReducer } from "@ngrx/store";
 import { storeFreeze } from "ngrx-store-freeze";
 import * as fromRouter from "@ngrx/router-store";
+
+import * as fromCore from "../core/reducers";
 
 import { RouterStateUrl } from "../shared/utilities/route-util";
 
@@ -12,6 +14,7 @@ import { environment } from "../../environments/environment";
  */
 export interface State {
   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
+  core: fromCore.CoreState;
 }
 
 /**
@@ -21,7 +24,10 @@ export interface State {
  */
 export const reducers: ActionReducerMap<State> = {
   routerReducer: fromRouter.routerReducer,
+  core: combineReducers(fromCore.reducers),
 };
+
+export * from "../core/reducers";
 
 // console.log all actions
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {

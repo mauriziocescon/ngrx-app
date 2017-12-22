@@ -1,14 +1,9 @@
 import { createSelector, createFeatureSelector } from "@ngrx/store";
 
-import * as fromRoot from "../../reducers";
 import * as fromModals from "./modals.reduce";
 
 export interface CoreState {
   modals: fromModals.State;
-}
-
-export interface State extends fromRoot.State {
-  core: CoreState;
 }
 
 export const reducers = {

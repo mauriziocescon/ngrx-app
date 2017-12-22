@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
 
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
@@ -13,6 +14,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
 import { appRoutes } from "./app.routes";
 import { reducers, metaReducers } from "./reducers";
+import { EFFECTS } from "./effects";
 
 import { CoreModule } from "./core/core.module";
 import { SharedModule, CustomRouterStateSerializer } from "./shared/shared.module";
@@ -21,7 +23,7 @@ import { DynamicFormModule } from "./dynamic-form/dynamic-form.module";
 import { AppComponent } from "./app.component";
 
 import { environment } from "../environments/environment";
-import { HttpClient } from "@angular/common/http";
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
@@ -66,7 +68,7 @@ export function createTranslateLoader(http: HttpClient) {
      *
      * See: https://github.com/ngrx/platform/blob/master/docs/effects/api.md#forroot
      */
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot(EFFECTS),
 
     NgbModule.forRoot(),
     TranslateModule.forRoot({
