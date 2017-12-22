@@ -18,7 +18,6 @@ export const reducers = {
   editBlocks: fromEditBlocks.reducer,
 };
 
-
 /**
  * A selector function is a map function factory. We pass it parameters and it
  * returns a function that maps from the larger state tree into a smaller
