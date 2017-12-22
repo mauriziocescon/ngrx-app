@@ -47,4 +47,5 @@ export const metaReducers: MetaReducer<State>[] = !environment.production ? [log
 export {
   getAllModalAlerts,
   getAllModalConfirmers,
+  getModalConfirmerResults,
 } from "../core/reducers";

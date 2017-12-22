@@ -68,3 +68,8 @@ export const {
   selectAll: getAllModalConfirmers,
   selectTotal: getTotalModalConfirmers,
 } = fromModalConfirmers.adapter.getSelectors(getModalConfirmersState);
+
+export const getModalConfirmerResults = createSelector(
+  getModalConfirmersState,
+  state => state.modalConfirmerResults,
+);
