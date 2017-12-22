@@ -3,7 +3,7 @@ import { Action } from "@ngrx/store";
 import { Effect, Actions } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
-import { fromPromise } from "rxjs/Observable/fromPromise";
+import { fromPromise } from "rxjs/observable/fromPromise";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 
