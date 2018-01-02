@@ -10,10 +10,10 @@ import { DropdownBlock } from "../../models";
 
 @Injectable()
 export class DropdownService {
-  private blockSubject: BehaviorSubject<DropdownBlock>;
+  protected blockSubject: BehaviorSubject<DropdownBlock>;
   readonly blockObservable: Observable<DropdownBlock>;
 
-  constructor(private store: Store<fromDynamicForm.State>) {
+  constructor(protected store: Store<fromDynamicForm.State>) {
     this.blockSubject = new BehaviorSubject(undefined);
     this.blockObservable = this.blockSubject.asObservable();
   }

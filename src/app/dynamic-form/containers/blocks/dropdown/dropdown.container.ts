@@ -17,7 +17,7 @@ import { DropdownBlock } from "../../../models";
 export class DropdownContainerComponent {
   @Input() block: DropdownBlock;
 
-  constructor(private store: Store<fromDynamicForm.State>) {
+  constructor(protected store: Store<fromDynamicForm.State>) {
   }
 
   valueDidChange(value: string): void {

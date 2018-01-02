@@ -9,9 +9,9 @@ import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../models";
 @Injectable()
 export class BlocksHooksService {
 
-  constructor(private checkBoxService: CheckBoxService,
-              private dropdownService: DropdownService,
-              private textInputService: TextInputService) {
+  constructor(protected checkBoxService: CheckBoxService,
+              protected dropdownService: DropdownService,
+              protected textInputService: TextInputService) {
     this.startListener();
   }
 

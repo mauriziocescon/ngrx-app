@@ -17,7 +17,7 @@ import { TextInputBlock } from "../../../models";
 export class TextInputContainerComponent {
   @Input() block: TextInputBlock;
 
-  constructor(private store: Store<fromDynamicForm.State>) {
+  constructor(protected store: Store<fromDynamicForm.State>) {
   }
 
   valueDidChange(value: string): void {

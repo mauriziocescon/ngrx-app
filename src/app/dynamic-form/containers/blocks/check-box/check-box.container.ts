@@ -28,7 +28,7 @@ export class CheckBoxContainerComponent implements OnInit, OnDestroy {
   modalConfirmerResultSubscription: any;
   modalConfirmerId = "1";
 
-  constructor(private store: Store<fromRoot.State>) {
+  constructor(protected store: Store<fromRoot.State>) {
     this.modalConfirmerResult = store.select(fromRoot.getModalConfirmerResults);
   }
 

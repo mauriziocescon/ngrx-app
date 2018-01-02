@@ -18,8 +18,8 @@ import { Block } from "../models";
 @Injectable()
 export class ListEffects {
 
-  constructor(private update$: Actions,
-              private blocksListService: BlocksListService) {
+  constructor(protected update$: Actions,
+              protected blocksListService: BlocksListService) {
   }
 
   @Effect() fetchBlocks$: Observable<Action> = this.update$

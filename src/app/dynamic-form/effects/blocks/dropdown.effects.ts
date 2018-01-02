@@ -14,8 +14,8 @@ import { DropdownBlock } from "../../models";
 @Injectable()
 export class DropdownEffect {
 
-  constructor(private actions$: Actions,
-              private dropdownService: DropdownService) {
+  constructor(protected actions$: Actions,
+              protected dropdownService: DropdownService) {
   }
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$

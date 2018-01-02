@@ -16,9 +16,9 @@ import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class BlocksListService {
-  private API_PATH = environment.apiUrl + "blocks";
+  protected API_PATH = environment.apiUrl + "blocks";
 
-  constructor(private http: HttpClient) {
+  constructor(protected http: HttpClient) {
   }
 
   getBlocks(): Observable<Block[]> {

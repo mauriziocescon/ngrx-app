@@ -14,8 +14,8 @@ import { TextInputBlock } from "../../models";
 @Injectable()
 export class TextInputEffect {
 
-  constructor(private actions$: Actions,
-              private textInputService: TextInputService) {
+  constructor(protected actions$: Actions,
+              protected textInputService: TextInputService) {
   }
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$

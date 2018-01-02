@@ -23,7 +23,7 @@ export class ListContainerComponent implements OnInit {
   loading$: Observable<boolean>;
   error$: Observable<string>;
 
-  constructor(private store: Store<fromDynamicForm.State>) {
+  constructor(protected store: Store<fromDynamicForm.State>) {
     this.blocks$ = store.select(fromDynamicForm.getBlocksListState);
     this.loading$ = store.select(fromDynamicForm.getLoadingListState);
     this.error$ = store.select(fromDynamicForm.getErrorListState);

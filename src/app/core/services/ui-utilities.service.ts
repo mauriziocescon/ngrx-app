@@ -17,7 +17,7 @@ import { ModalAlert, ModalConfirmer } from "../models";
 @Injectable()
 export class UIUtilitiesService {
 
-  constructor(private modalService: NgbModal) {
+  constructor(protected modalService: NgbModal) {
   }
 
   modalAlert(modalAlert: ModalAlert): Promise<Action> {
@@ -55,7 +55,7 @@ export class UIUtilitiesService {
     });
   }
 
-  private getDismissReason(reason: any): string {
+  protected getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return "by pressing ESC";
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {

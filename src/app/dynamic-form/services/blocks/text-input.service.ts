@@ -10,10 +10,10 @@ import { TextInputBlock } from "../../models";
 
 @Injectable()
 export class TextInputService {
-  private blockSubject: BehaviorSubject<TextInputBlock>;
+  protected blockSubject: BehaviorSubject<TextInputBlock>;
   readonly blockObservable: Observable<TextInputBlock>;
 
-  constructor(private store: Store<fromDynamicForm.State>) {
+  constructor(protected store: Store<fromDynamicForm.State>) {
     this.blockSubject = new BehaviorSubject(undefined);
     this.blockObservable = this.blockSubject.asObservable();
   }

@@ -14,8 +14,8 @@ import { CheckBoxBlock } from "../../models";
 @Injectable()
 export class CheckBoxEffect {
 
-  constructor(private actions$: Actions,
-              private checkBoxService: CheckBoxService) {
+  constructor(protected actions$: Actions,
+              protected checkBoxService: CheckBoxService) {
   }
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$

@@ -15,7 +15,7 @@ export class GenericBlockContainerComponent implements AfterViewInit {
   @Input() block: Block;
   @ViewChild(AddComponentDirective) adComponent: AddComponentDirective;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver,
+  constructor(protected componentFactoryResolver: ComponentFactoryResolver,
               protected blockList: BlocksListService) {
   }
 

@@ -10,10 +10,10 @@ import { CheckBoxBlock } from "../../models";
 
 @Injectable()
 export class CheckBoxService {
-  private blockSubject: BehaviorSubject<CheckBoxBlock>;
+  protected blockSubject: BehaviorSubject<CheckBoxBlock>;
   readonly blockObservable: Observable<CheckBoxBlock>;
 
-  constructor(private store: Store<fromDynamicForm.State>) {
+  constructor(protected store: Store<fromDynamicForm.State>) {
     this.blockSubject = new BehaviorSubject(null);
     this.blockObservable = this.blockSubject.asObservable();
   }

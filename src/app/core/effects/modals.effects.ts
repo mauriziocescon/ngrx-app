@@ -16,8 +16,8 @@ import { ModalAlert, ModalConfirmer } from "../models";
 @Injectable()
 export class ModalsEffects {
 
-  constructor(private actions$: Actions,
-              private uiUtilitiesService: UIUtilitiesService) {
+  constructor(protected actions$: Actions,
+              protected uiUtilitiesService: UIUtilitiesService) {
   }
 
   @Effect() showModalAlert$: Observable<Action> = this.actions$
