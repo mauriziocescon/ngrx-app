@@ -17,7 +17,7 @@ export class LocalStorageService {
     this.prefix = this.appConstants.Application.APP_NAME;
   }
 
-  public getData<T>(key: Enum): T | undefined {
+  getData<T>(key: Enum): T | undefined {
     try {
       const result = localStorage.getItem(this.prefix + "_" + key.toString());
       return result !== null ? JSON.parse(result) : undefined;
@@ -27,7 +27,7 @@ export class LocalStorageService {
     }
   }
 
-  public setData(key: Enum, data: any): void {
+  setData(key: Enum, data: any): void {
     try {
       if (data === undefined) {
         localStorage.removeItem(this.prefix + "_" + key.toString());
@@ -40,7 +40,7 @@ export class LocalStorageService {
     }
   }
 
-  public removeData(key: Enum): void {
+  removeData(key: Enum): void {
     try {
       localStorage.removeItem(this.prefix + "_" + key.toString());
     } catch (e) {
@@ -48,7 +48,7 @@ export class LocalStorageService {
     }
   }
 
-  public removeAllData(): void {
+  removeAllData(): void {
     try {
       for (const key in localStorage) {
         if (key.startsWith(this.prefix + "_")) {

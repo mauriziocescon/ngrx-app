@@ -2,7 +2,7 @@ export class Enum {
 
   protected value: string;
 
-  public static toEnum(val: string): Enum {
+  static toEnum(val: string): Enum {
     return new Enum(val);
   }
 
@@ -10,7 +10,7 @@ export class Enum {
     this.value = value;
   }
 
-  public toString(): string {
+  toString(): string {
     return this.value;
   }
 }

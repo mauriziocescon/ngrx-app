@@ -21,19 +21,19 @@ export class AppConstantsService {
     this.localStorageKey = new Constants.LocalStorageKey();
   }
 
-  public get Api(): Constants.Api {
+  get Api(): Constants.Api {
     return this.api;
   }
 
-  public get Application(): Constants.Application {
+  get Application(): Constants.Application {
     return this.application;
   }
 
-  public get Languages(): Constants.Languages {
+  get Languages(): Constants.Languages {
     return this.languages;
   }
 
-  public get LocalStorageKey(): Constants.LocalStorageKey {
+  get LocalStorageKey(): Constants.LocalStorageKey {
     return this.localStorageKey;
   }
 }

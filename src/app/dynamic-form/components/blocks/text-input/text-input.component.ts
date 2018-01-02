@@ -14,7 +14,7 @@ export class TextInputComponent implements OnInit, OnDestroy {
   @Input() block: TextInputBlock;
   @Output() valueDidChange: EventEmitter<string>;
 
-  public textInputForm: FormGroup;
+  textInputForm: FormGroup;
   protected textInputControl: FormControl;
 
   protected textInputControlSubscription: any;
@@ -57,7 +57,7 @@ export class TextInputComponent implements OnInit, OnDestroy {
         });
   }
 
-  public resetTextInput(): void {
+  resetTextInput(): void {
     this.textInputControl.setValue("");
   }
 }

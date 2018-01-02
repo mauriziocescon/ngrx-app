@@ -24,7 +24,7 @@ export class AppLanguageService {
     this.translate.use(this.getLanguageId());
   }
 
-  public start(): void {
+  start(): void {
     const localStorageLang = this.localStorage.getData<string>(this.appConstants.LocalStorageKey.LANGUAGE_ID);
     const browserLang = this.getBrowserLang();
     const defaultLang = this.getDefaultLanguageId();
@@ -38,11 +38,11 @@ export class AppLanguageService {
     }
   }
 
-  public getLanguageId(): string {
+  getLanguageId(): string {
     return this.selectedLanguageId;
   }
 
-  public setLanguageId(languageId: string): void {
+  setLanguageId(languageId: string): void {
     if (languageId !== undefined &&
       languageId !== this.selectedLanguageId &&
       this.appConstants.Languages.SUPPORTED_LANG.indexOf(languageId) !== -1) {
@@ -54,11 +54,11 @@ export class AppLanguageService {
     }
   }
 
-  public getSupportedLanguagesList(): string[] {
+  getSupportedLanguagesList(): string[] {
     return this.appConstants.Languages.SUPPORTED_LANG;
   }
 
-  public getDefaultLanguageId(): string {
+  getDefaultLanguageId(): string {
     return this.appConstants.Languages.DEFAULT_LANGUAGE;
   }
 

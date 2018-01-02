@@ -39,7 +39,7 @@ export class CoreModule {
     }
   }
 
-  public static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
       providers: [

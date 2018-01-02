@@ -14,7 +14,7 @@ export class CheckBoxComponent implements OnInit, OnDestroy {
   @Input() block: CheckBoxBlock;
   @Output() valueDidChange: EventEmitter<boolean>;
 
-  public checkBoxForm: FormGroup;
+  checkBoxForm: FormGroup;
   protected checkBoxControl: FormControl;
 
   protected checkBoxControlSubscription: any;

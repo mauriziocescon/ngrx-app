@@ -15,7 +15,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
   @Output() valueDidChange: EventEmitter<string>;
 
-  public dropdownForm: FormGroup;
+  dropdownForm: FormGroup;
   protected dropdownControl: FormControl;
 
   protected dropdownControlSubscription: any;

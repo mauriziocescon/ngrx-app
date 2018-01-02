@@ -7,11 +7,11 @@ export class KeyValue {
     this.v = value;
   }
 
-  public get key(): any {
+  get key(): any {
     return this.k;
   }
 
-  public get value(): any {
+  get value(): any {
     return this.v;
   }
 }
