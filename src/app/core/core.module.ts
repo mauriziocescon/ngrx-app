@@ -2,8 +2,12 @@ import { NgModule, Optional, SkipSelf, ModuleWithProviders, LOCALE_ID } from "@a
 import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from "@angular/common";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
-import { ModalAlertComponent } from "./components/modal-alert/modal-alert.component";
-import { ModalConfirmerComponent } from "./components/modal-confirmer/modal-confirmer.component";
+import {
+  ModalAlertComponent,
+  ModalConfirmerComponent,
+  COMPONENTS,
+} from "./components";
+import { CONTAINERS } from "./containers";
 
 import { AppConstantsService } from "./services/app-constants.service";
 import { AppLanguageService } from "./services/app-language.service";
@@ -22,8 +26,8 @@ export function createLanguageIdLoader(appLanguageService: AppLanguageService) {
     CommonModule,
   ],
   declarations: [
-    ModalAlertComponent,
-    ModalConfirmerComponent,
+    ...COMPONENTS,
+    ...CONTAINERS,
   ],
   entryComponents: [
     ModalAlertComponent,
