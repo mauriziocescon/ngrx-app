@@ -1,14 +1,17 @@
 import { createSelector, createFeatureSelector } from "@ngrx/store";
 
+import * as fromLanguage from "./language.reducer";
 import * as fromModalAlerts from "./modal-alert.reducer";
 import * as fromModalConfirmers from "./modal-confirmer.reducer";
 
 export interface CoreState {
+  language: fromLanguage.State;
   modalAlerts: fromModalAlerts.State;
   modalConfirmers: fromModalConfirmers.State;
 }
 
 export const reducers = {
+  language: fromLanguage.reducer,
   modalAlerts: fromModalAlerts.reducer,
   modalConfirmers: fromModalConfirmers.reducer,
 };
@@ -37,6 +40,11 @@ export const getCoreState = createFeatureSelector<CoreState>("core");
  * only recompute when arguments change. The created selectors can also be composed
  * together to select different pieces of state.
  */
+export const getLanguageState = createSelector(
+  getCoreState,
+  state => state.language.selectedLanguage,
+);
+
 export const getModalAlertsState = createSelector(
   getCoreState,
   state => state.modalAlerts,

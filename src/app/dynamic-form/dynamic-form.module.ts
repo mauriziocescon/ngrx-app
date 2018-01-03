@@ -14,7 +14,7 @@ import {
   ListContainerComponent,
   CheckBoxContainerComponent,
   DropdownContainerComponent,
-  TextInputContainerComponent
+  TextInputContainerComponent,
 } from "./containers";
 
 @NgModule({
