@@ -1,13 +1,18 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders, LOCALE_ID } from "@angular/core";
-import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from "@angular/common";
+import { CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from "@angular/common";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
+
+import { SharedModule } from "../shared/shared.module";
 
 import {
   ModalAlertComponent,
   ModalConfirmerComponent,
   COMPONENTS,
 } from "./components";
-import { CONTAINERS } from "./containers";
+import {
+  NavigationBarContainerComponent,
+  CONTAINERS
+} from "./containers";
 
 import { AppConstantsService } from "./services/app-constants.service";
 import { AppLanguageService } from "./services/app-language.service";
@@ -23,7 +28,7 @@ export function createLanguageIdLoader(appLanguageService: AppLanguageService) {
 
 @NgModule({
   imports: [
-    CommonModule,
+    SharedModule,
   ],
   declarations: [
     ...COMPONENTS,
@@ -32,6 +37,9 @@ export function createLanguageIdLoader(appLanguageService: AppLanguageService) {
   entryComponents: [
     ModalAlertComponent,
     ModalConfirmerComponent,
+  ],
+  exports: [
+    NavigationBarContainerComponent
   ],
 })
 export class CoreModule {

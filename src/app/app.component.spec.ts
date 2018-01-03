@@ -7,8 +7,12 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 
+import { StoreModule, Store, combineReducers } from "@ngrx/store";
+import * as fromRoot from "./reducers";
+
 import { CoreModule } from "./core/core.module";
 import { SharedModule } from "./shared/shared.module";
+
 import { AppComponent } from "./app.component";
 
 export function createTranslateLoader(http: HttpClient) {
@@ -27,6 +31,9 @@ describe("AppComponent", () => {
             useFactory: createTranslateLoader,
             deps: [HttpClient],
           },
+        }),
+        StoreModule.forRoot({
+          ...fromRoot.reducers,
         }),
         CoreModule.forRoot(),
         SharedModule,

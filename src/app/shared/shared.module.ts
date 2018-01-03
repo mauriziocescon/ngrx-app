@@ -9,8 +9,6 @@ import { TranslateModule } from "@ngx-translate/core";
 
 import { AddComponentDirective } from "./directives/add-container.directive";
 
-import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
-
 import { Enum } from "./utilities/enum";
 import { KeyValue } from "./utilities/keyvalue";
 import { CustomRouterStateSerializer } from "./utilities/route-util";
@@ -27,7 +25,6 @@ import { CustomRouterStateSerializer } from "./utilities/route-util";
   ],
   declarations: [
     AddComponentDirective,
-    NavigationBarComponent,
   ],
   exports: [
     CommonModule,
@@ -37,7 +34,6 @@ import { CustomRouterStateSerializer } from "./utilities/route-util";
     NgbModule,
     TranslateModule,
     AddComponentDirective,
-    NavigationBarComponent,
   ],
 })
 export class SharedModule {
@@ -45,7 +41,6 @@ export class SharedModule {
 
 export {
   AddComponentDirective,
-  NavigationBarComponent,
   Enum,
   KeyValue,
   CustomRouterStateSerializer,
