@@ -4,8 +4,6 @@ import { Store } from "@ngrx/store";
 
 import { TranslateService } from "@ngx-translate/core";
 
-import { Observable } from "rxjs/Observable";
-
 import * as fromCore from "../reducers";
 import * as language from "../actions/language.actions";
 
