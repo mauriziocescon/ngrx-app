@@ -65,7 +65,7 @@ describe("DropdownComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DropdownContainerComponent);
     component = fixture.componentInstance;
-    component.block = {id: 1, type: BlockType.Dropdown, label: "", value: "", choices: []};
+    component.block = {id: 1, type: BlockType.Dropdown, label: "", value: "", choices: [], required: true};
     fixture.detectChanges();
   });
 
