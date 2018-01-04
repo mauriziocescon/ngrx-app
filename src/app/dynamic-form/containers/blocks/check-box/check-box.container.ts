@@ -33,7 +33,7 @@ export class CheckBoxContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (this.block.id === 0) {
+    if (this.block.id === 1) {
 
       setTimeout(() => {
         this.subscribeToModalConfirmerResult();
