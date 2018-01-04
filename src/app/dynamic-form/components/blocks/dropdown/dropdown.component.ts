@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from "@angular/core";
-import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
+import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 
 import "rxjs/add/operator/debounceTime";
 
@@ -26,7 +26,9 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.dropdownForm = this.formBuilder.group({
-      selectedValue: this.dropdownControl = new FormControl(this.block.value),
+      selectedValue: this.dropdownControl = new FormControl(this.block.value, [
+        ...this.insertIf(this.block.required, Validators.required),
+      ]),
     });
 
     this.dropdownControlValueSubscription();
@@ -52,5 +54,9 @@ export class DropdownComponent implements OnInit, OnDestroy {
         (err: any) => {
           console.log(JSON.stringify(err));
         });
+  }
+
+  insertIf(condition: boolean, element: any): any[] {
+    return condition ? [element] : [];
   }
 }

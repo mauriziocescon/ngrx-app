@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from "@angular/core";
-import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
+import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 
 import "rxjs/add/operator/debounceTime";
 
@@ -25,7 +25,9 @@ export class CheckBoxComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.checkBoxForm = this.formBuilder.group({
-      checkBox: this.checkBoxControl = new FormControl(this.block.value),
+      checkBox: this.checkBoxControl = new FormControl(this.block.value, [
+        ...this.insertIf(this.block.required, Validators.required),
+      ]),
     });
 
     this.checkBoxControlValueSubscription();
@@ -51,5 +53,9 @@ export class CheckBoxComponent implements OnInit, OnDestroy {
         (err: any) => {
           console.log(JSON.stringify(err));
         });
+  }
+
+  insertIf(condition: boolean, element: any): any[] {
+    return condition ? [element] : [];
   }
 }

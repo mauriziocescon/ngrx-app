@@ -20,7 +20,7 @@ function getCheckBox(index) {
     id: index,
     type: "check-box",
     label: "CHECK_BOX_LABEL",
-    value: faker.random.boolean(),
+    value: faker.random.boolean() ? true : undefined,
     description: "CHECK_BOX_DESC",
     required: faker.random.boolean(),
   };
@@ -31,7 +31,7 @@ function getDropdown(index) {
     id: index,
     type: "dropdown",
     label: "DROPDOWN_LABEL",
-    value: "first",
+    value: faker.random.boolean() ? "first" : undefined,
     choices: ["first", "second", "third"],
     required: faker.random.boolean(),
   };
@@ -42,7 +42,7 @@ function getTextInput(index) {
     id: index,
     type: "text-input",
     label: "TEXT_INPUT_LABEL",
-    value: faker.lorem.words(faker.random.number(5)),
+    value: faker.random.boolean() ? faker.lorem.words(faker.random.number(5)) : undefined,
     required: faker.random.boolean(),
     minLength: faker.random.boolean() ? faker.random.number(5) : undefined,
     maxLength: faker.random.boolean() ? faker.random.number({min: 5, max: 10}) : undefined,

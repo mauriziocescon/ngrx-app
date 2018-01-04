@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from "@angular/core";
-import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
+import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 
 import "rxjs/add/operator/debounceTime";
 
@@ -29,7 +29,11 @@ export class TextInputComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.textInputForm = this.formBuilder.group({
-      textInput: this.textInputControl = new FormControl(this.block.value),
+      textInput: this.textInputControl = new FormControl(this.block.value, [
+        ...this.insertIf(this.block.required, Validators.required),
+        ...this.insertIf(this.block.minLength !== undefined, Validators.minLength(this.block.minLength)),
+        ...this.insertIf(this.block.maxLength !== undefined, Validators.maxLength(this.block.maxLength)),
+      ]),
     });
 
     this.textInputControlValueSubscription();
@@ -59,5 +63,9 @@ export class TextInputComponent implements OnInit, OnDestroy {
 
   resetTextInput(): void {
     this.textInputControl.setValue("");
+  }
+
+  insertIf(condition: boolean, element: any): any[] {
+    return condition ? [element] : [];
   }
 }
