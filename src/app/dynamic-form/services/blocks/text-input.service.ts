@@ -23,15 +23,85 @@ export class TextInputService {
     this.blockSubject.next(newBlock);
   }
 
-  protected setBlock(block: TextInputBlock): void {
+  protected setBlock(block: {block: {id: number, changes: TextInputBlock}}): void {
+    this.store.dispatch(new textInput.ValueDidChange(block));
+  }
+
+  setLabel(label: string, block: TextInputBlock): void {
     const newBlock = {
       block: {
         id: block.id,
         changes: {
           ...block,
+          label: label,
         },
       }
     };
-    this.store.dispatch(new textInput.ValueDidChange(newBlock));
+    this.setBlock(newBlock);
+  }
+
+  setValue(value: string, block: TextInputBlock): void {
+    const newBlock = {
+      block: {
+        id: block.id,
+        changes: {
+          ...block,
+          value: value,
+        },
+      }
+    };
+    this.setBlock(newBlock);
+  }
+
+  setRequired(required: boolean, block: TextInputBlock): void {
+    const newBlock = {
+      block: {
+        id: block.id,
+        changes: {
+          ...block,
+          required: required,
+        },
+      }
+    };
+    this.setBlock(newBlock);
+  }
+
+  setMinLength(minLength: number, block: TextInputBlock): void {
+    const newBlock = {
+      block: {
+        id: block.id,
+        changes: {
+          ...block,
+          minLength: minLength,
+        },
+      }
+    };
+    this.setBlock(newBlock);
+  }
+
+  setMaxLength(maxLength: number, block: TextInputBlock): void {
+    const newBlock = {
+      block: {
+        id: block.id,
+        changes: {
+          ...block,
+          maxLength: maxLength,
+        },
+      }
+    };
+    this.setBlock(newBlock);
+  }
+
+  setDisabled(disabled: boolean, block: TextInputBlock): void {
+    const newBlock = {
+      block: {
+        id: block.id,
+        changes: {
+          ...block,
+          disabled: disabled,
+        },
+      }
+    };
+    this.setBlock(newBlock);
   }
 }

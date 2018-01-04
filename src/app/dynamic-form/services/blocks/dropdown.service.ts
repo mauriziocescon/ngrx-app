@@ -23,15 +23,72 @@ export class DropdownService {
     this.blockSubject.next(newBlock);
   }
 
-  protected setBlock(block: DropdownBlock): void {
+  protected setBlock(block: {block: {id: number, changes: DropdownBlock}}): void {
+    this.store.dispatch(new dropdown.ValueDidChange(block));
+  }
+
+  setLabel(label: string, block: DropdownBlock): void {
     const newBlock = {
       block: {
         id: block.id,
         changes: {
           ...block,
+          label: label,
         },
       }
     };
-    this.store.dispatch(new dropdown.ValueDidChange(newBlock));
+    this.setBlock(newBlock);
+  }
+
+  setValue(value: string, block: DropdownBlock): void {
+    const newBlock = {
+      block: {
+        id: block.id,
+        changes: {
+          ...block,
+          value: value,
+        },
+      }
+    };
+    this.setBlock(newBlock);
+  }
+
+  setChoices(choices: string[], block: DropdownBlock): void {
+    const newBlock = {
+      block: {
+        id: block.id,
+        changes: {
+          ...block,
+          choices: choices,
+        },
+      }
+    };
+    this.setBlock(newBlock);
+  }
+
+  setRequired(required: boolean, block: DropdownBlock): void {
+    const newBlock = {
+      block: {
+        id: block.id,
+        changes: {
+          ...block,
+          required: required,
+        },
+      }
+    };
+    this.setBlock(newBlock);
+  }
+
+  setDisabled(disabled: boolean, block: DropdownBlock): void {
+    const newBlock = {
+      block: {
+        id: block.id,
+        changes: {
+          ...block,
+          disabled: disabled,
+        },
+      }
+    };
+    this.setBlock(newBlock);
   }
 }
