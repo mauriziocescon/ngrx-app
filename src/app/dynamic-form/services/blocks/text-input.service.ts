@@ -23,7 +23,7 @@ export class TextInputService {
     this.blockSubject.next(newBlock);
   }
 
-  setBlock(block: TextInputBlock): void {
+  protected setBlock(block: TextInputBlock): void {
     const newBlock = {
       block: {
         id: block.id,

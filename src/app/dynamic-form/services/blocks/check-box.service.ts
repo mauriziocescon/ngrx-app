@@ -23,15 +23,72 @@ export class CheckBoxService {
     this.blockSubject.next(newBlock);
   }
 
-  setBlock(block: CheckBoxBlock): void {
+  protected setBlock(block: {block: {id: number, changes: CheckBoxBlock}}): void {
+    this.store.dispatch(new checkBox.ValueDidChange(block));
+  }
+
+  setLabel(label: string, block: CheckBoxBlock): void {
     const newBlock = {
       block: {
         id: block.id,
         changes: {
           ...block,
+          label: label,
         },
       }
     };
-    this.store.dispatch(new checkBox.ValueDidChange(newBlock));
+    this.setBlock(newBlock);
+  }
+
+  setValue(value: boolean, block: CheckBoxBlock): void {
+    const newBlock = {
+      block: {
+        id: block.id,
+        changes: {
+          ...block,
+          value: value,
+        },
+      }
+    };
+    this.setBlock(newBlock);
+  }
+
+  setDescription(description: string, block: CheckBoxBlock): void {
+    const newBlock = {
+      block: {
+        id: block.id,
+        changes: {
+          ...block,
+          description: description,
+        },
+      }
+    };
+    this.setBlock(newBlock);
+  }
+
+  setRequired(required: boolean, block: CheckBoxBlock): void {
+    const newBlock = {
+      block: {
+        id: block.id,
+        changes: {
+          ...block,
+          required: required,
+        },
+      }
+    };
+    this.setBlock(newBlock);
+  }
+
+  setDisabled(disabled: boolean, block: CheckBoxBlock): void {
+    const newBlock = {
+      block: {
+        id: block.id,
+        changes: {
+          ...block,
+          disabled: disabled,
+        },
+      }
+    };
+    this.setBlock(newBlock);
   }
 }

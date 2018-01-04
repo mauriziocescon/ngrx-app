@@ -23,7 +23,7 @@ export class DropdownService {
     this.blockSubject.next(newBlock);
   }
 
-  setBlock(block: DropdownBlock): void {
+  protected setBlock(block: DropdownBlock): void {
     const newBlock = {
       block: {
         id: block.id,
