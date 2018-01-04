@@ -24,10 +24,16 @@ export class CheckBoxComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    const controlValue = {
+      value: this.block.value,
+      disabled: this.block.disabled
+    };
+    const options = [
+      ...this.insertIf(this.block.required, Validators.required),
+    ];
+
     this.checkBoxForm = this.formBuilder.group({
-      checkBox: this.checkBoxControl = new FormControl(this.block.value, [
-        ...this.insertIf(this.block.required, Validators.required),
-      ]),
+      checkBox: this.checkBoxControl = new FormControl(controlValue, options),
     });
 
     this.checkBoxControlValueSubscription();

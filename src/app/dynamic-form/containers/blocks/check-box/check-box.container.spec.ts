@@ -65,7 +65,7 @@ describe("CheckBoxComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckBoxContainerComponent);
     component = fixture.componentInstance;
-    component.block = {id: 1, type: BlockType.CheckBox, label: "", value: true, description: "", required: true};
+    component.block = {id: 1, type: BlockType.CheckBox, label: "", value: true, description: "", required: true, disabled: false};
     fixture.detectChanges();
   });
 

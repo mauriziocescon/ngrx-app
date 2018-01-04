@@ -6,4 +6,5 @@ export interface TextInputBlock extends Block {
   required: boolean;
   minLength?: number;
   maxLength?: number;
+  disabled: boolean;
 }

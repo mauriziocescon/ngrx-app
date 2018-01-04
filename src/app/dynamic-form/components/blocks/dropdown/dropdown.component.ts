@@ -25,10 +25,16 @@ export class DropdownComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    const controlValue = {
+      value: this.block.value,
+      disabled: this.block.disabled
+    };
+    const options = [
+      ...this.insertIf(this.block.required, Validators.required),
+    ];
+
     this.dropdownForm = this.formBuilder.group({
-      selectedValue: this.dropdownControl = new FormControl(this.block.value, [
-        ...this.insertIf(this.block.required, Validators.required),
-      ]),
+      selectedValue: this.dropdownControl = new FormControl(controlValue, options),
     });
 
     this.dropdownControlValueSubscription();
