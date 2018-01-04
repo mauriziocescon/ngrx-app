@@ -20,7 +20,7 @@ import { CoreModule } from "./core/core.module";
 import { SharedModule, CustomRouterStateSerializer } from "./shared/shared.module";
 import { DynamicFormModule } from "./dynamic-form/dynamic-form.module";
 
-import { AppComponent } from "./app.component";
+import { AppContainerComponent } from "./app.container";
 
 import { environment } from "../environments/environment";
 
@@ -82,7 +82,7 @@ export function createTranslateLoader(http: HttpClient) {
     SharedModule,
   ],
   declarations: [
-    AppComponent
+    AppContainerComponent
   ],
   providers: [
     /**
@@ -93,7 +93,7 @@ export function createTranslateLoader(http: HttpClient) {
     {provide: RouterStateSerializer, useClass: CustomRouterStateSerializer},
   ],
   bootstrap: [
-    AppComponent,
+    AppContainerComponent,
   ],
 })
 export class AppModule {
