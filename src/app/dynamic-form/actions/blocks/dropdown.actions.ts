@@ -9,7 +9,7 @@ export enum DropdownActionTypes {
 export class ValueDidChange implements Action {
   readonly type = DropdownActionTypes.DROPDOWN_UPDATE_BLOCK;
 
-  constructor(public payload: {block: {id: number, changes: DropdownBlock}}) {
+  constructor(public payload: { block: { id: number, changes: DropdownBlock } }) {
   }
 }
 

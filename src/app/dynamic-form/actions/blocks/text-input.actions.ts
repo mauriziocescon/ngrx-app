@@ -9,7 +9,7 @@ export enum TextInputActionTypes {
 export class ValueDidChange implements Action {
   readonly type = TextInputActionTypes.TEXT_INPUT_UPDATE_BLOCK;
 
-  constructor(public payload: {block: {id: number, changes: TextInputBlock}}) {
+  constructor(public payload: { block: { id: number, changes: TextInputBlock } }) {
   }
 }
 

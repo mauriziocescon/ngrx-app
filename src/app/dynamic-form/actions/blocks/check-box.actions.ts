@@ -9,7 +9,7 @@ export enum CheckBoxActionTypes {
 export class ValueDidChange implements Action {
   readonly type = CheckBoxActionTypes.CHECK_BOX_UPDATE_BLOCK;
 
-  constructor(public payload: {block: {id: number, changes: CheckBoxBlock}}) {
+  constructor(public payload: { block: { id: number, changes: CheckBoxBlock } }) {
   }
 }
 
