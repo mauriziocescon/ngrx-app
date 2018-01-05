@@ -15,10 +15,15 @@
       "VALIDATE": "*** Validate ***"
     },
     "DROPDOWN": {
+      "DROPDOWN_LABEL": "*** Select the position you want ***"
     },
     "CHECK_BOX": {
+      "CHECK_BOX_DESC": "*** I have checked all documents ***",
+      "CHECK_BOX_LABEL": "*** Contract ***"
     },
     "TEXT_INPUT": {
+      "TEXT_INPUT_LABEL": "*** Type some reasons ***",
+      "TEXT_INPUT_PLACEHOLDER": "*** Type some text ***"
     },
     "UNKNOWN": {
       "ALERT_MSG": "*** Unknown component ***"

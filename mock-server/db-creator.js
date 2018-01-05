@@ -13,15 +13,15 @@ const data = {
 };
 
 // do items
-const numberOfBlocks = 10;
+const numberOfBlocks = 5;
 
 function getCheckBox(index) {
   return {
     id: index,
     type: "check-box",
-    label: "CHECK_BOX_LABEL",
+    label: "COMPONENT.CHECK_BOX.CHECK_BOX_LABEL",
     value: faker.random.boolean() ? true : undefined,
-    description: "CHECK_BOX_DESC",
+    description: "COMPONENT.CHECK_BOX.CHECK_BOX_DESC",
     disabled: false,
     required: faker.random.boolean(),
   };
@@ -31,7 +31,7 @@ function getDropdown(index) {
   return {
     id: index,
     type: "dropdown",
-    label: "DROPDOWN_LABEL",
+    label: "COMPONENT.DROPDOWN.DROPDOWN_LABEL",
     value: faker.random.boolean() ? "first" : undefined,
     choices: ["first", "second", "third"],
     disabled: false,
@@ -43,7 +43,7 @@ function getTextInput(index) {
   return {
     id: index,
     type: "text-input",
-    label: "TEXT_INPUT_LABEL",
+    label: "COMPONENT.TEXT_INPUT.TEXT_INPUT_LABEL",
     value: faker.random.boolean() ? faker.lorem.words(faker.random.number(5)) : undefined,
     disabled: false,
     required: faker.random.boolean(),
@@ -52,10 +52,20 @@ function getTextInput(index) {
   };
 }
 
+function getUnknownComponent(index) {
+  return {
+    id: index,
+    type: "unknown",
+  };
+}
+
 function getRandomBlock(index) {
   const choice = Math.random();
 
-  if (choice < 0.33) {
+  if (choice < 0.1) {
+    return getUnknownComponent(index);
+  }
+  else if (choice < 0.33) {
     return getCheckBox(index);
   }
   else if (choice < 0.66) {
