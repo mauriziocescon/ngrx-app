@@ -1,9 +1,12 @@
 import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 import { Store } from "@ngrx/store";
 
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/find";
+
 import * as fromDynamicForm from "../../../reducers";
 import * as checkBox from "../../../actions/blocks/dropdown.actions";
-import { DropdownBlock } from "../../../models";
+import { BlockType, DropdownBlock } from "../../../models";
 
 @Component({
   selector: "ct-dropdown",
@@ -15,17 +18,25 @@ import { DropdownBlock } from "../../../models";
     </cp-dropdown>`,
 })
 export class DropdownContainerComponent {
-  @Input() block: DropdownBlock;
+  @Input() blockId: number;
+
+  block: Observable<DropdownBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
+    this.block = store.select(fromDynamicForm.getAllEditBlocks)
+      .flatMap(blocks => blocks)
+      .find((block: DropdownBlock) => {
+        return block.id === this.blockId;
+      });
   }
 
   valueDidChange(value: string): void {
     const block = {
       block: {
-        id: this.block.id,
+        id: this.blockId,
         changes: {
-          ...this.block,
+          id: this.blockId,
+          type: BlockType.Dropdown,
           value: value,
         },
       }

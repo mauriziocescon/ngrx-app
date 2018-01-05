@@ -19,14 +19,14 @@ import { Block } from "../../models";
     </cp-list>`,
 })
 export class ListContainerComponent implements OnInit {
-  blocks$: Observable<Block[]>;
-  loading$: Observable<boolean>;
-  error$: Observable<string>;
+  blocks: Observable<Block[]>;
+  loading: Observable<boolean>;
+  error: Observable<string>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blocks$ = store.select(fromDynamicForm.getBlocksListState);
-    this.loading$ = store.select(fromDynamicForm.getLoadingListState);
-    this.error$ = store.select(fromDynamicForm.getErrorListState);
+    this.blocks = store.select(fromDynamicForm.getBlocksListState);
+    this.loading = store.select(fromDynamicForm.getLoadingListState);
+    this.error = store.select(fromDynamicForm.getErrorListState);
   }
 
   ngOnInit(): void {

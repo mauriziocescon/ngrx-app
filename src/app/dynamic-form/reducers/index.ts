@@ -57,3 +57,18 @@ export const getEditBlocksState = createSelector(
   getDynamicFormState,
   state => state.editBlocks,
 );
+
+/**
+ * Adapters created with @ngrx/entity generate
+ * commonly used selector functions including
+ * getting all ids in the record set, a dictionary
+ * of the records by id, an array of records and
+ * the total number of records. This reducers boilerplate
+ * in selecting records from the entity state.
+ */
+export const {
+  selectIds: getEditBlocksIds,
+  selectEntities: getEditBlocksEntities,
+  selectAll: getAllEditBlocks,
+  selectTotal: getTotalEditBlocks,
+} = fromEditBlocks.adapter.getSelectors(getEditBlocksState);

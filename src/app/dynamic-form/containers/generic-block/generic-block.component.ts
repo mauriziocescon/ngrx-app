@@ -29,7 +29,7 @@ export class GenericBlockContainerComponent implements AfterViewInit {
     viewContainerRef.clear();
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
-    (<BlockComponent>componentRef.instance).block = this.block;
+    (<BlockComponent>componentRef.instance).blockId = this.block.id;
     componentRef.changeDetectorRef.detectChanges();
     this.blockList.componentBlockInputsIsSet(this.block);
   }
