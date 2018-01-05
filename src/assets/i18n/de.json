@@ -1,14 +1,29 @@
 {
-  "NAVIGATION_BAR": {
-    "DYNAMIC_FORM": "*** Dynamic form ***",
-    "NAME": "Name",
-    "SELECT_LANGUAGE": "Sprache ӓndern"
+  "COMPONENT": {
+    "NAVIGATION_BAR": {
+      "DYNAMIC_FORM": "*** Dynamic form ***",
+      "NAME": "Name",
+      "SELECT_LANGUAGE": "Sprache ӓndern"
+    },
+    "LIST": {
+      "CANCEL": "*** Cancel ***",
+      "INPUT_TEXT_PLACEHOLDER": "Text eingeben",
+      "LOAD_COMPLETED": "Ladevorgang abgeschlossen",
+      "LOADING": "Daten werden geladen",
+      "NO_RESULT": "Leer",
+      "RETRY": "Erneut versuchen",
+      "VALIDATE": "*** Validate ***"
+    },
+    "DROPDOWN": {
+    },
+    "CHECK_BOX": {
+    },
+    "TEXT_INPUT": {
+    },
+    "UNKNOWN": {
+      "ALERT_MSG": "*** Unknown component ***"
+    }
   },
-  "LIST": {
-    "INPUT_TEXT_PLACEHOLDER": "Text eingeben",
-    "LOAD_COMPLETED": "Ladevorgang abgeschlossen",
-    "LOADING": "Daten werden geladen",
-    "NO_RESULT": "Leer",
-    "RETRY": "Erneut versuchen"
+  "CONTAINER": {
   }
 }

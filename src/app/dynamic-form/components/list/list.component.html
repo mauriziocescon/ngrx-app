@@ -2,14 +2,17 @@
 
   <div class="row list-main-content" [hidden]="!showData">
 
-    <div class="col-2">
+    <div class="col-12 col-sm-2 col-lg-1">
       <div class="row">
-        <div class="col-12">
-          <button class="btn btn-primary">{{ "LIST.VALIDATE" | translate }}</button>
+        <div class="col-6 col-sm-12 button-row">
+          <button class="btn btn-primary action-button">{{ "COMPONENT.LIST.VALIDATE" | translate }}</button>
+        </div>
+        <div class="col-6 col-sm-12 button-row">
+          <button class="btn btn-default action-button">{{ "COMPONENT.LIST.CANCEL" | translate }}</button>
         </div>
       </div>
     </div>
-    <div class="col-10">
+    <div class="col-12 col-sm-10 col-lg-11">
       <div class="row">
         <div class="col-12" *ngFor="let block of dataSource; trackBy: trackByBlock">
           <div class="generic-block">
@@ -17,14 +20,14 @@
           </div>
         </div>
         <div class="col-12">
-          <div class="full-width-message">{{ "LIST.LOAD_COMPLETED" | translate }}</div>
+          <div class="full-width-message">{{ "COMPONENT.LIST.LOAD_COMPLETED" | translate }}</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="full-width-message" [hidden]="!isLoadingData">{{ "LIST.LOADING" | translate }}</div>
-  <div class="full-width-message" [hidden]="!hasNoData">{{ "LIST.NO_RESULT" | translate }}</div>
-  <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">{{ "LIST.RETRY" | translate }}</div>
+  <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.LIST.LOADING" | translate }}</div>
+  <div class="full-width-message" [hidden]="!hasNoData">{{ "COMPONENT.LIST.NO_RESULT" | translate }}</div>
+  <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">{{ "COMPONENT.LIST.RETRY" | translate }}</div>
 
 </div>

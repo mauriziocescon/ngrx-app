@@ -1,14 +1,29 @@
 {
-  "NAVIGATION_BAR": {
-    "DYNAMIC_FORM": "Dynamic form",
-    "NAME": "Name",
-    "SELECT_LANGUAGE": "Select the language"
+  "COMPONENT": {
+    "NAVIGATION_BAR": {
+      "DYNAMIC_FORM": "Dynamic form",
+      "NAME": "Name",
+      "SELECT_LANGUAGE": "Select the language"
+    },
+    "LIST": {
+      "CANCEL": "Cancel",
+      "INPUT_TEXT_PLACEHOLDER": "Type some text",
+      "LOAD_COMPLETED": "Loading completed",
+      "LOADING": "Loading...",
+      "NO_RESULT": "Empty",
+      "RETRY": "Retry",
+      "VALIDATE": "Validate"
+    },
+    "DROPDOWN": {
+    },
+    "CHECK_BOX": {
+    },
+    "TEXT_INPUT": {
+    },
+    "UNKNOWN": {
+      "ALERT_MSG": "Unknown component"
+    }
   },
-  "LIST": {
-    "INPUT_TEXT_PLACEHOLDER": "Type some text",
-    "LOAD_COMPLETED": "Loading completed",
-    "LOADING": "Loading...",
-    "NO_RESULT": "Empty",
-    "RETRY": "Retry"
+  "CONTAINER": {
   }
 }

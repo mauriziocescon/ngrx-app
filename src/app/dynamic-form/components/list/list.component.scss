@@ -1,6 +1,14 @@
 .list-component {
   .list-main-content {
     padding-top: 10px;
+
+    .button-row {
+      padding-top: 10px;
+
+      .action-button {
+        min-width: 90px;
+      }
+    }
   }
 
   .generic-block {

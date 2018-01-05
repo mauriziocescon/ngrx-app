@@ -1,14 +1,30 @@
 {
-  "NAVIGATION_BAR": {
-    "DYNAMIC_FORM": "Form dinamico",
-    "NAME": "Nome",
-    "SELECT_LANGUAGE": "Cambia lingua"
+  "COMPONENT": {
+    "NAVIGATION_BAR": {
+      "DYNAMIC_FORM": "Form dinamico",
+      "NAME": "Nome",
+      "SELECT_LANGUAGE": "Cambia lingua"
+    },
+    "LIST": {
+      "CANCEL": "Annulla",
+      "INPUT_TEXT_PLACEHOLDER": "Inserisci testo",
+      "LOAD_COMPLETED": "Caricamento completato",
+      "LOADING": "Caricamento...",
+      "NO_RESULT": "Vuoto",
+      "RETRY": "Riprova",
+      "VALIDATE": "Valida"
+    },
+    "DROPDOWN": {
+    },
+    "CHECK_BOX": {
+    },
+    "TEXT_INPUT": {
+    },
+    "UNKNOWN": {
+      "ALERT_MSG": "Componente sconosciuto"
+    }
   },
-  "LIST": {
-    "INPUT_TEXT_PLACEHOLDER": "Inserisci testo",
-    "LOAD_COMPLETED": "Caricamento completato",
-    "LOADING": "Caricamento...",
-    "NO_RESULT": "Vuoto",
-    "RETRY": "Riprova"
+  "CONTAINER": {
   }
+
 }

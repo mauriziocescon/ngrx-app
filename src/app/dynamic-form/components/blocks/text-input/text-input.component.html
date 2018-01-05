@@ -6,7 +6,7 @@
           <label for="textInputBlock" class="col-sm-2 col-form-label">{{ block.label | translate }}</label>
           <div class="col-sm-10">
             <div class="input-group">
-              <input type="text" class="form-control" id="textInputBlock" formControlName="textInput" placeholder="{{ 'TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | translate }}">
+              <input type="text" class="form-control" id="textInputBlock" formControlName="textInput" placeholder="{{ 'COMPONENT.TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | translate }}">
               <div class="input-group-append" (click)="resetTextInput()">
                 <span class="input-group-text addon">
                   <span class="fa fa-search" [hidden]="isTextInputNotEmpty"></span>
