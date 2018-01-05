@@ -27,6 +27,51 @@ export class TextInputComponent implements OnInit, OnDestroy {
     return this.textInputControl.value;
   }
 
+  get inputGroupMessage(): string {
+    if (this.block) {
+      if (this.block.minLength && this.block.maxLength) {
+        return "COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MIN_MAX_LENGTH";
+      }
+      else if (this.block.minLength) {
+        return "COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MIN_LENGTH";
+      }
+      else if (this.block.maxLength) {
+        return "COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MAX_LENGTH";
+      }
+      else {
+        return ``;
+      }
+    }
+
+    return "";
+  }
+
+  get inputGroupParams(): any {
+    if (this.block) {
+      if (this.block.minLength && this.block.maxLength) {
+        return {
+          minLength: this.block.minLength,
+          maxLength: this.block.maxLength,
+        };
+      }
+      else if (this.block.minLength) {
+        return {
+          minLength: this.block.minLength,
+        };
+      }
+      else if (this.block.maxLength) {
+        return {
+          maxLength: this.block.maxLength,
+        };
+      }
+      else {
+        return undefined;
+      }
+    }
+
+    return undefined;
+  }
+
   ngOnInit(): void {
     const controlValue = {
       value: this.block.value,
