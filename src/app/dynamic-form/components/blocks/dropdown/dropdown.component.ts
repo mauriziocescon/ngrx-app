@@ -46,7 +46,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
     }
   }
 
-  dropdownControlValueSubscription(): void {
+  protected dropdownControlValueSubscription(): void {
     if (this.dropdownControlSubscription) {
       this.dropdownControlSubscription.unsubscribe();
     }
@@ -62,7 +62,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
         });
   }
 
-  insertIf(condition: boolean, element: any): any[] {
+  protected insertIf(condition: boolean, element: any): any[] {
     return condition ? [element] : [];
   }
 }

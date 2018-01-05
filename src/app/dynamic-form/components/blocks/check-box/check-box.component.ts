@@ -45,7 +45,7 @@ export class CheckBoxComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkBoxControlValueSubscription(): void {
+  protected checkBoxControlValueSubscription(): void {
     if (this.checkBoxControlSubscription) {
       this.checkBoxControlSubscription.unsubscribe();
     }
@@ -61,7 +61,7 @@ export class CheckBoxComponent implements OnInit, OnDestroy {
         });
   }
 
-  insertIf(condition: boolean, element: any): any[] {
+  protected insertIf(condition: boolean, element: any): any[] {
     return condition ? [element] : [];
   }
 }

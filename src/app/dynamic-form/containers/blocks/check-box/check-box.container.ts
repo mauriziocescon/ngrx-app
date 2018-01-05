@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input, OnDestroy } from "@angular/core";
 import { Store } from "@ngrx/store";
 
 import * as fromDynamicForm from "../../../reducers";
@@ -21,35 +21,37 @@ import { ModalAlert, ModalConfirmer } from "../../../../core/models";
       (valueDidChange)="valueDidChange($event)">
     </cp-check-box>`,
 })
-export class CheckBoxContainerComponent implements OnInit, OnDestroy {
+export class CheckBoxContainerComponent implements OnDestroy {
   @Input() block: CheckBoxBlock;
 
-  modalConfirmerResult: Observable<{ [id: string]: boolean }>;
-  modalConfirmerResultSubscription: any;
-  modalConfirmerId = "1";
+  protected valueToSave: boolean;
+
+  protected modalConfirmerResult: Observable<{ [id: string]: boolean }>;
+  protected modalConfirmerResultSubscription: any;
+  protected modalConfirmerId = "1";
 
   constructor(protected store: Store<fromRoot.State>) {
     this.modalConfirmerResult = store.select(fromRoot.getModalConfirmerResults);
   }
 
-  ngOnInit(): void {
-    if (this.block.id === 1) {
-
-      setTimeout(() => {
-        this.subscribeToModalConfirmerResult();
-        const modalConfirmer: ModalConfirmer = {
-          id: this.modalConfirmerId,
-          title: "Confirmer",
-          message: "Are you sure about that?",
-          yesButtonLabel: "Yes",
-          noButtonLabel: "No",
-        };
-        this.store.dispatch(new modalConfirmersActions.ShowModalConfirmer({modal: modalConfirmer}));
-      }, 0);
-    }
+  protected askForConfirmation(): void {
+    this.subscribeToModalConfirmerResult();
+    const modalConfirmer: ModalConfirmer = {
+      id: this.modalConfirmerId,
+      title: "Confirmer",
+      message: "Are you sure about that?",
+      yesButtonLabel: "Yes",
+      noButtonLabel: "No",
+    };
+    this.store.dispatch(new modalConfirmersActions.ShowModalConfirmer({modal: modalConfirmer}));
   }
 
-  subscribeToModalConfirmerResult(): void {
+  valueDidChange(value: boolean): void {
+    this.valueToSave = value;
+    this.askForConfirmation();
+  }
+
+  protected subscribeToModalConfirmerResult(): void {
     if (this.modalConfirmerResultSubscription) {
       this.modalConfirmerResultSubscription.unsubscribe();
     }
@@ -58,31 +60,27 @@ export class CheckBoxContainerComponent implements OnInit, OnDestroy {
       .subscribe((modalConfirmerResult: { [id: string]: boolean }) => {
         if (modalConfirmerResult[this.modalConfirmerId] === true) {
 
-          console.log(`modalConfirmerResultSubscription: ${JSON.stringify(modalConfirmerResult)}`);
+          const block = {
+            block: {
+              id: this.block.id,
+              changes: {
+                ...this.block,
+                value: this.valueToSave,
+              },
+            }
+          };
+          this.store.dispatch(new checkBox.ValueDidChange(block));
 
           const modalAlert: ModalAlert = {
             id: "1",
             title: "Alert",
-            message: "Message",
+            message: "Done",
             buttonLabel: "Ok"
           };
           this.store.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
           this.modalConfirmerResultSubscription.unsubscribe();
         }
       });
-  }
-
-  valueDidChange(value: boolean): void {
-    const block = {
-      block: {
-        id: this.block.id,
-        changes: {
-          ...this.block,
-          value: value,
-        },
-      }
-    };
-    this.store.dispatch(new checkBox.ValueDidChange(block));
   }
 
   ngOnDestroy(): void {

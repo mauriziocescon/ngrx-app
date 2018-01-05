@@ -96,7 +96,7 @@ export class TextInputComponent implements OnInit, OnDestroy {
     }
   }
 
-  textInputControlValueSubscription(): void {
+  protected textInputControlValueSubscription(): void {
     if (this.textInputControlSubscription) {
       this.textInputControlSubscription.unsubscribe();
     }
@@ -116,7 +116,7 @@ export class TextInputComponent implements OnInit, OnDestroy {
     this.textInputControl.setValue("");
   }
 
-  insertIf(condition: boolean, element: any): any[] {
+  protected insertIf(condition: boolean, element: any): any[] {
     return condition ? [element] : [];
   }
 }

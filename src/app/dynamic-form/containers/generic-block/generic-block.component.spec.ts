@@ -13,7 +13,13 @@ import * as fromDynamicForm from "../../reducers";
 import { CoreModule } from "../../../core/core.module";
 import { SharedModule } from "../../../shared/shared.module";
 
-import { BlocksListService } from "../../services";
+import {
+  CheckBoxService,
+  DropdownService,
+  TextInputService,
+  BlocksHooksService,
+  BlocksListService,
+} from "../../services";
 
 import { BlockType } from "../../models";
 import { COMPONENTS } from "../../components";
@@ -51,6 +57,10 @@ describe("GenericBlockContainerComponent", () => {
       ],
       providers: [
         TranslateService,
+        CheckBoxService,
+        DropdownService,
+        TextInputService,
+        BlocksHooksService,
         BlocksListService,
       ],
     })

@@ -5,7 +5,9 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 
-import { Block, BlockType } from "../models";
+import { Block, BlockType, CheckBoxBlock, DropdownBlock, TextInputBlock } from "../models";
+
+import { BlocksHooksService } from "./businesses/blocks-hooks.service";
 
 import { CheckBoxContainerComponent } from "../containers/blocks/check-box/check-box.container";
 import { DropdownContainerComponent } from "../containers/blocks/dropdown/dropdown.container";
@@ -18,7 +20,8 @@ import { environment } from "../../../environments/environment";
 export class BlocksListService {
   protected API_PATH = environment.apiUrl + "blocks";
 
-  constructor(protected http: HttpClient) {
+  constructor(protected http: HttpClient,
+              protected blocksHooks: BlocksHooksService) {
   }
 
   getBlocks(): Observable<Block[]> {
@@ -43,6 +46,29 @@ export class BlocksListService {
       }
       default: {
         return UnknownComponent;
+      }
+    }
+  }
+
+  componentBlockInputsIsSet(block: Block): void {
+    switch (block.type) {
+      case BlockType.CheckBox: {
+        const checkBoxBlock = block as CheckBoxBlock;
+        this.blocksHooks.loadCheckBoxBlock(checkBoxBlock);
+        break;
+      }
+      case BlockType.Dropdown: {
+        const dropdownBlock = block as DropdownBlock;
+        this.blocksHooks.loadDropdownBlock(dropdownBlock);
+        break;
+      }
+      case BlockType.TextInput: {
+        const textInputBlock = block as TextInputBlock;
+        this.blocksHooks.loadTextInputBlock(textInputBlock);
+        break;
+      }
+      default: {
+        break;
       }
     }
   }

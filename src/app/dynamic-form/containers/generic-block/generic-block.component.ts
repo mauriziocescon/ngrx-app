@@ -23,7 +23,7 @@ export class GenericBlockContainerComponent implements AfterViewInit {
     this.loadComponent();
   }
 
-  loadComponent(): void {
+  protected loadComponent(): void {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.getComponent(this.block));
     const viewContainerRef = this.adComponent.viewContainerRef;
     viewContainerRef.clear();
@@ -31,9 +31,10 @@ export class GenericBlockContainerComponent implements AfterViewInit {
     const componentRef = viewContainerRef.createComponent(componentFactory);
     (<BlockComponent>componentRef.instance).block = this.block;
     componentRef.changeDetectorRef.detectChanges();
+    this.blockList.componentBlockInputsIsSet(this.block);
   }
 
-  getComponent(block: Block): any {
+  protected getComponent(block: Block): any {
     return this.blockList.getComponent(block);
   }
 }

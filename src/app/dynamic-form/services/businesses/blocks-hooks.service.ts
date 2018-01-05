@@ -15,6 +15,18 @@ export class BlocksHooksService {
     this.startListener();
   }
 
+  loadCheckBoxBlock(block: CheckBoxBlock): void {
+    console.log(`loadCheckBoxBlock: ${JSON.stringify(block)}`);
+  }
+
+  loadDropdownBlock(block: DropdownBlock): void {
+    console.log(`loadDropdownBlock: ${JSON.stringify(block)}`);
+  }
+
+  loadTextInputBlock(block: TextInputBlock): void {
+    console.log(`loadTextInputBlock: ${JSON.stringify(block)}`);
+  }
+
   startListener(): void {
     this.listenToCheckBoxBlockChanges();
     this.listenToDropdownBlockChanges();
@@ -24,7 +36,7 @@ export class BlocksHooksService {
   listenToCheckBoxBlockChanges(): void {
     this.checkBoxService.blockObservable
       .subscribe((block: CheckBoxBlock) => {
-        console.log(JSON.stringify(block));
+        console.log(`listenToCheckBoxBlockChanges: ${JSON.stringify(block)}`);
       }, (err: any) => {
       });
   }
@@ -32,7 +44,7 @@ export class BlocksHooksService {
   listenToDropdownBlockChanges(): void {
     this.dropdownService.blockObservable
       .subscribe((block: DropdownBlock) => {
-        console.log(JSON.stringify(block));
+        console.log(`listenToDropdownBlockChanges: ${JSON.stringify(block)}`);
       }, (err: any) => {
       });
   }
@@ -40,7 +52,7 @@ export class BlocksHooksService {
   listenToTextInputBlockChanges(): void {
     this.textInputService.blockObservable
       .subscribe((block: TextInputBlock) => {
-        console.log(JSON.stringify(block));
+        console.log(`listenToTextInputBlockChanges: ${JSON.stringify(block)}`);
       }, (err: any) => {
       });
   }
