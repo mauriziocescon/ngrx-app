@@ -32,8 +32,8 @@ function getDropdown(index) {
     id: index,
     type: "dropdown",
     label: "COMPONENT.DROPDOWN.DROPDOWN_LABEL",
-    value: faker.random.boolean() ? "first" : undefined,
-    choices: ["first", "second", "third"],
+    value: faker.random.boolean() ? "1" : undefined,
+    choices: ["1", "2", "3"],
     disabled: false,
     required: faker.random.boolean(),
   };
