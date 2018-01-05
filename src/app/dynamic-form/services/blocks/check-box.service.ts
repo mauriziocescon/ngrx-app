@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Subject } from "rxjs/Subject";
 
 import * as fromDynamicForm from "../../../reducers";
 import * as checkBox from "../../actions/blocks/check-box.actions";
@@ -10,11 +10,11 @@ import { CheckBoxBlock } from "../../models";
 
 @Injectable()
 export class CheckBoxService {
-  protected blockSubject: BehaviorSubject<CheckBoxBlock>;
+  protected blockSubject: Subject<CheckBoxBlock>;
   readonly blockObservable: Observable<CheckBoxBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blockSubject = new BehaviorSubject(null);
+    this.blockSubject = new Subject();
     this.blockObservable = this.blockSubject.asObservable();
   }
 

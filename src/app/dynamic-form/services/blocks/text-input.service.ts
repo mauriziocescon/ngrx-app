@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Subject } from "rxjs/Subject";
 
 import * as fromDynamicForm from "../../../reducers";
 import * as textInput from "../../actions/blocks/text-input.actions";
@@ -10,11 +10,11 @@ import { TextInputBlock } from "../../models";
 
 @Injectable()
 export class TextInputService {
-  protected blockSubject: BehaviorSubject<TextInputBlock>;
+  protected blockSubject: Subject<TextInputBlock>;
   readonly blockObservable: Observable<TextInputBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blockSubject = new BehaviorSubject(undefined);
+    this.blockSubject = new Subject();
     this.blockObservable = this.blockSubject.asObservable();
   }
 

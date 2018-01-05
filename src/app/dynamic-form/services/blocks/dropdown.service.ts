@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Subject } from "rxjs/Subject";
 
 import * as fromDynamicForm from "../../../reducers";
 import * as dropdown from "../../actions/blocks/dropdown.actions";
@@ -10,11 +10,11 @@ import { DropdownBlock } from "../../models";
 
 @Injectable()
 export class DropdownService {
-  protected blockSubject: BehaviorSubject<DropdownBlock>;
+  protected blockSubject: Subject<DropdownBlock>;
   readonly blockObservable: Observable<DropdownBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blockSubject = new BehaviorSubject(undefined);
+    this.blockSubject = new Subject();
     this.blockObservable = this.blockSubject.asObservable();
   }
 
