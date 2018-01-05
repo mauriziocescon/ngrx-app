@@ -1,10 +1,10 @@
 import { Block } from "../block.model";
 
 export interface TextInputBlock extends Block {
-  label: string;
+  label?: string;
   value?: string;
-  required: boolean;
+  required?: boolean;
   minLength?: number;
   maxLength?: number;
-  disabled: boolean;
+  disabled?: boolean;
 }

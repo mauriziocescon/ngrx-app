@@ -6,7 +6,7 @@ import { Subject } from "rxjs/Subject";
 
 import * as fromDynamicForm from "../../../reducers";
 import * as dropdown from "../../actions/blocks/dropdown.actions";
-import { DropdownBlock } from "../../models";
+import { BlockType, DropdownBlock } from "../../models";
 
 @Injectable()
 export class DropdownService {
@@ -23,16 +23,17 @@ export class DropdownService {
     this.blockSubject.next(newBlock);
   }
 
-  protected setBlock(block: {block: {id: number, changes: DropdownBlock}}): void {
+  protected setBlock(block: { block: { id: number, changes: DropdownBlock } }): void {
     this.store.dispatch(new dropdown.ValueDidChange(block));
   }
 
-  setLabel(label: string, block: DropdownBlock): void {
+  setLabelForBlockId(label: string, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.Dropdown,
           label: label,
         },
       }
@@ -40,12 +41,13 @@ export class DropdownService {
     this.setBlock(newBlock);
   }
 
-  setValue(value: string, block: DropdownBlock): void {
+  setValueForBlockId(value: string, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.Dropdown,
           value: value,
         },
       }
@@ -53,12 +55,13 @@ export class DropdownService {
     this.setBlock(newBlock);
   }
 
-  setChoices(choices: string[], block: DropdownBlock): void {
+  setChoicesForBlockId(choices: string[], blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.Dropdown,
           choices: choices,
         },
       }
@@ -66,12 +69,13 @@ export class DropdownService {
     this.setBlock(newBlock);
   }
 
-  setRequired(required: boolean, block: DropdownBlock): void {
+  setRequiredForBlockId(required: boolean, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.Dropdown,
           required: required,
         },
       }
@@ -79,12 +83,13 @@ export class DropdownService {
     this.setBlock(newBlock);
   }
 
-  setDisabled(disabled: boolean, block: DropdownBlock): void {
+  setDisabledForBlockId(disabled: boolean, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.Dropdown,
           disabled: disabled,
         },
       }

@@ -6,7 +6,7 @@ import { Subject } from "rxjs/Subject";
 
 import * as fromDynamicForm from "../../../reducers";
 import * as textInput from "../../actions/blocks/text-input.actions";
-import { TextInputBlock } from "../../models";
+import { BlockType, TextInputBlock } from "../../models";
 
 @Injectable()
 export class TextInputService {
@@ -23,16 +23,17 @@ export class TextInputService {
     this.blockSubject.next(newBlock);
   }
 
-  protected setBlock(block: {block: {id: number, changes: TextInputBlock}}): void {
+  protected setBlock(block: { block: { id: number, changes: TextInputBlock } }): void {
     this.store.dispatch(new textInput.ValueDidChange(block));
   }
 
-  setLabel(label: string, block: TextInputBlock): void {
+  setLabelForBlockId(label: string, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.TextInput,
           label: label,
         },
       }
@@ -40,12 +41,13 @@ export class TextInputService {
     this.setBlock(newBlock);
   }
 
-  setValue(value: string, block: TextInputBlock): void {
+  setValueForBlockId(value: string, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.TextInput,
           value: value,
         },
       }
@@ -53,12 +55,13 @@ export class TextInputService {
     this.setBlock(newBlock);
   }
 
-  setRequired(required: boolean, block: TextInputBlock): void {
+  setRequiredForBlockId(required: boolean, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.TextInput,
           required: required,
         },
       }
@@ -66,12 +69,13 @@ export class TextInputService {
     this.setBlock(newBlock);
   }
 
-  setMinLength(minLength: number, block: TextInputBlock): void {
+  setMinLengthForBlockId(minLength: number, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.TextInput,
           minLength: minLength,
         },
       }
@@ -79,12 +83,13 @@ export class TextInputService {
     this.setBlock(newBlock);
   }
 
-  setMaxLength(maxLength: number, block: TextInputBlock): void {
+  setMaxLengthForBlockId(maxLength: number, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.TextInput,
           maxLength: maxLength,
         },
       }
@@ -92,12 +97,13 @@ export class TextInputService {
     this.setBlock(newBlock);
   }
 
-  setDisabled(disabled: boolean, block: TextInputBlock): void {
+  setDisabledForBlockId(disabled: boolean, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.TextInput,
           disabled: disabled,
         },
       }

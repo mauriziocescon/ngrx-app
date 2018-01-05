@@ -6,7 +6,7 @@ import { Subject } from "rxjs/Subject";
 
 import * as fromDynamicForm from "../../../reducers";
 import * as checkBox from "../../actions/blocks/check-box.actions";
-import { CheckBoxBlock } from "../../models";
+import { BlockType, CheckBoxBlock } from "../../models";
 
 @Injectable()
 export class CheckBoxService {
@@ -23,16 +23,17 @@ export class CheckBoxService {
     this.blockSubject.next(newBlock);
   }
 
-  protected setBlock(block: {block: {id: number, changes: CheckBoxBlock}}): void {
+  protected setBlock(block: { block: { id: number, changes: CheckBoxBlock } }): void {
     this.store.dispatch(new checkBox.ValueDidChange(block));
   }
 
-  setLabel(label: string, block: CheckBoxBlock): void {
+  setLabelForBlockId(label: string, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.CheckBox,
           label: label,
         },
       }
@@ -40,12 +41,13 @@ export class CheckBoxService {
     this.setBlock(newBlock);
   }
 
-  setValue(value: boolean, block: CheckBoxBlock): void {
+  setValueForBlockId(value: boolean, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.CheckBox,
           value: value,
         },
       }
@@ -53,12 +55,13 @@ export class CheckBoxService {
     this.setBlock(newBlock);
   }
 
-  setDescription(description: string, block: CheckBoxBlock): void {
+  setDescriptionForBlockId(description: string, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.CheckBox,
           description: description,
         },
       }
@@ -66,12 +69,13 @@ export class CheckBoxService {
     this.setBlock(newBlock);
   }
 
-  setRequired(required: boolean, block: CheckBoxBlock): void {
+  setRequiredForBlockId(required: boolean, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.CheckBox,
           required: required,
         },
       }
@@ -79,12 +83,13 @@ export class CheckBoxService {
     this.setBlock(newBlock);
   }
 
-  setDisabled(disabled: boolean, block: CheckBoxBlock): void {
+  setDisabledForBlockId(disabled: boolean, blockId: number): void {
     const newBlock = {
       block: {
-        id: block.id,
+        id: blockId,
         changes: {
-          ...block,
+          id: blockId,
+          type: BlockType.CheckBox,
           disabled: disabled,
         },
       }

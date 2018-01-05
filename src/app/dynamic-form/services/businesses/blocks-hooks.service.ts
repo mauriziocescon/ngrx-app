@@ -4,7 +4,7 @@ import { CheckBoxService } from "../blocks/check-box.service";
 import { DropdownService } from "../blocks/dropdown.service";
 import { TextInputService } from "../blocks/text-input.service";
 
-import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../models";
+import { BlockType, CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../models";
 
 @Injectable()
 export class BlocksHooksService {
@@ -37,6 +37,8 @@ export class BlocksHooksService {
     this.checkBoxService.blockObservable
       .subscribe((block: CheckBoxBlock) => {
         console.log(`listenToCheckBoxBlockChanges: ${JSON.stringify(block)}`);
+
+        this.textInputService.setValueForBlockId("reset", 1);
       }, (err: any) => {
       });
   }
