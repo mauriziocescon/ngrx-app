@@ -3,6 +3,7 @@ import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/find";
+import "rxjs/add/operator/mergeMap";
 
 import * as fromDynamicForm from "../../../reducers";
 import * as checkBox from "../../../actions/blocks/dropdown.actions";
