@@ -8,7 +8,7 @@ import { EFFECTS } from "./effects";
 import { reducers } from "./reducers";
 import { SERVICES } from "./services";
 
-import { COMPONENTS } from "./components";
+import { COMPONENTS, UnknownComponent } from "./components";
 import {
   CONTAINERS,
   ListContainerComponent,
@@ -49,6 +49,7 @@ import {
     CheckBoxContainerComponent,
     DropdownContainerComponent,
     TextInputContainerComponent,
+    UnknownComponent,
   ],
   providers: [
     ...SERVICES,
