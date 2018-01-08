@@ -38,7 +38,7 @@ export class BlocksHooksService {
       .subscribe((block: CheckBoxBlock) => {
         console.log(`listenToCheckBoxBlockChanges: ${JSON.stringify(block)}`);
 
-        this.textInputService.setValueForBlockId("reset", 1);
+        this.textInputService.setValueForBlockId(new Date().toTimeString(), 3);
       }, (err: any) => {
       });
   }
@@ -47,6 +47,8 @@ export class BlocksHooksService {
     this.dropdownService.blockObservable
       .subscribe((block: DropdownBlock) => {
         console.log(`listenToDropdownBlockChanges: ${JSON.stringify(block)}`);
+
+        this.textInputService.setValueForBlockId(new Date().toTimeString(), 3);
       }, (err: any) => {
       });
   }

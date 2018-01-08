@@ -14,7 +14,7 @@ import { BlockType, DropdownBlock } from "../../../models";
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-dropdown
-      [block]="block  | async"
+      [block]="block | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-dropdown>`,
 })
@@ -24,7 +24,7 @@ export class DropdownContainerComponent {
   block: Observable<DropdownBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.block = store.select(fromDynamicForm.getAllEditBlocks)
+    this.block = this.store.select(fromDynamicForm.getAllEditBlocks)
       .flatMap(blocks => blocks)
       .find((block: DropdownBlock) => {
         return block.id === this.blockId;

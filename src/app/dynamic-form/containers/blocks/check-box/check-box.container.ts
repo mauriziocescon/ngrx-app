@@ -21,7 +21,7 @@ import { ModalAlert, ModalConfirmer } from "../../../../core/models";
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-check-box
-      [block]="block  | async"
+      [block]="block | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-check-box>`,
 })
@@ -37,13 +37,13 @@ export class CheckBoxContainerComponent implements OnDestroy {
   protected modalConfirmerId = "1";
 
   constructor(protected store: Store<fromRoot.State>) {
-    this.block = store.select(fromDynamicForm.getAllEditBlocks)
+    this.block = this.store.select(fromDynamicForm.getAllEditBlocks)
       .flatMap(blocks => blocks)
       .find((block: CheckBoxBlock) => {
         return block.id === this.blockId;
       });
 
-    this.modalConfirmerResults = store.select(fromRoot.getModalConfirmerResults);
+    this.modalConfirmerResults = this.store.select(fromRoot.getModalConfirmerResults);
   }
 
   protected askForConfirmation(): void {

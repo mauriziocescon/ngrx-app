@@ -27,7 +27,7 @@ export class NavigationBarContainerComponent {
               protected router: Router,
               protected appLanguage: AppLanguageService) {
     this.languages = this.appLanguage.getSupportedLanguagesList();
-    this.language = store.select(fromCore.getLanguageState);
+    this.language = this.store.select(fromCore.getLanguageState);
   }
 
   selectLanguage(language: string): void {

@@ -24,9 +24,9 @@ export class ListContainerComponent implements OnInit {
   error: Observable<string>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blocks = store.select(fromDynamicForm.getBlocksListState);
-    this.loading = store.select(fromDynamicForm.getLoadingListState);
-    this.error = store.select(fromDynamicForm.getErrorListState);
+    this.blocks = this.store.select(fromDynamicForm.getBlocksListState);
+    this.loading = this.store.select(fromDynamicForm.getLoadingListState);
+    this.error = this.store.select(fromDynamicForm.getErrorListState);
   }
 
   ngOnInit(): void {

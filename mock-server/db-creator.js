@@ -62,7 +62,7 @@ function getUnknownComponent(index) {
 function getRandomBlock(index) {
   const choice = Math.random();
 
-  if (choice < 0.1) {
+  if (choice < 0.05) {
     return getUnknownComponent(index);
   }
   else if (choice < 0.33) {

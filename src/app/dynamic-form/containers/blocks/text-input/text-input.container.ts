@@ -14,7 +14,7 @@ import { BlockType, TextInputBlock } from "../../../models";
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-text-input
-      [block]="block  | async"
+      [block]="block | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-text-input>`,
 })
@@ -24,10 +24,11 @@ export class TextInputContainerComponent {
   block: Observable<TextInputBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.block = store.select(fromDynamicForm.getAllEditBlocks)
-      .flatMap(blocks => blocks)
-      .find((block: TextInputBlock) => {
-        return block.id === this.blockId;
+    this.block = this.store.select(fromDynamicForm.getAllEditBlocks)
+      .map((blocks: TextInputBlock[]) => {
+        return blocks.find((block: TextInputBlock) => {
+          return block.id === this.blockId;
+        });
       });
   }
 
