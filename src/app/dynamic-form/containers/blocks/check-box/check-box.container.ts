@@ -6,6 +6,8 @@ import "rxjs/add/operator/filter";
 import "rxjs/add/operator/find";
 import "rxjs/add/operator/mergeMap";
 
+import { TranslateService } from "@ngx-translate/core";
+
 import * as fromDynamicForm from "../../../reducers";
 import * as checkBox from "../../../actions/blocks/check-box.actions";
 import { BlockType, CheckBoxBlock } from "../../../models";
@@ -36,7 +38,8 @@ export class CheckBoxContainerComponent implements OnDestroy {
   protected modalConfirmerResultSubscription: any;
   protected modalConfirmerId = "1";
 
-  constructor(protected store: Store<fromRoot.State>) {
+  constructor(protected store: Store<fromRoot.State>,
+              protected translate: TranslateService) {
     this.block = this.store.select(fromDynamicForm.getAllEditBlocks)
       .map((blocks: CheckBoxBlock[]) => {
         return blocks.find((block: CheckBoxBlock) => {
@@ -47,57 +50,82 @@ export class CheckBoxContainerComponent implements OnDestroy {
     this.modalConfirmerResults = this.store.select(fromRoot.getModalConfirmerResults);
   }
 
-  protected askForConfirmation(): void {
-    this.subscribeToModalConfirmerResult();
-    const modalConfirmer: ModalConfirmer = {
-      id: this.modalConfirmerId,
-      title: "Confirmer",
-      message: "Are you sure about that?",
-      yesButtonLabel: "Yes",
-      noButtonLabel: "No",
-    };
-    this.store.dispatch(new modalConfirmersActions.ShowModalConfirmer({modal: modalConfirmer}));
-  }
-
   valueDidChange(value: boolean): void {
     this.valueToSave = value;
-    this.askForConfirmation();
+    if (value) {
+      this.askForConfirmation();
+    } else {
+      this.dispatchValueDidChangeAction();
+    }
+  }
+
+  protected dispatchValueDidChangeAction(): void {
+    const block = {
+      block: {
+        id: this.blockId,
+        changes: {
+          id: this.blockId,
+          type: BlockType.CheckBox,
+          value: this.valueToSave,
+        },
+      }
+    };
+    this.store.dispatch(new checkBox.ValueDidChange(block));
+  }
+
+  protected askForConfirmation(): void {
+    this.subscribeToModalConfirmerResult();
+
+    this.translate.get([
+      "CONTAINER.CHECK_BOX.CONFIRMATION_MESSAGE",
+      "CONTAINER.CHECK_BOX.CONFIRMATION_NO_BUTTON",
+      "CONTAINER.CHECK_BOX.CONFIRMATION_TITLE",
+      "CONTAINER.CHECK_BOX.CONFIRMATION_YES_BUTTON",
+    ])
+      .subscribe((translations: any) => {
+        const modalConfirmer: ModalConfirmer = {
+          id: this.modalConfirmerId,
+          title: translations["CONTAINER.CHECK_BOX.CONFIRMATION_TITLE"],
+          message: translations["CONTAINER.CHECK_BOX.CONFIRMATION_MESSAGE"],
+          yesButtonLabel: translations["CONTAINER.CHECK_BOX.CONFIRMATION_YES_BUTTON"],
+          noButtonLabel: translations["CONTAINER.CHECK_BOX.CONFIRMATION_NO_BUTTON"],
+        };
+        this.store.dispatch(new modalConfirmersActions.ShowModalConfirmer({modal: modalConfirmer}));
+      });
   }
 
   protected subscribeToModalConfirmerResult(): void {
-    if (this.modalConfirmerResultSubscription) {
-      this.modalConfirmerResultSubscription.unsubscribe();
-    }
+    this.unsubscribeToModalConfirmerResult();
 
     this.modalConfirmerResultSubscription = this.modalConfirmerResults
       .subscribe((modalConfirmerResult: { [id: string]: boolean }) => {
         if (modalConfirmerResult[this.modalConfirmerId] === true) {
+          this.dispatchValueDidChangeAction();
+          this.unsubscribeToModalConfirmerResult();
 
-          const block = {
-            block: {
-              id: this.blockId,
-              changes: {
-                id: this.blockId,
-                type: BlockType.CheckBox,
-                value: this.valueToSave,
-              },
-            }
-          };
-          this.store.dispatch(new checkBox.ValueDidChange(block));
-
-          const modalAlert: ModalAlert = {
-            id: "1",
-            title: "Alert",
-            message: "Done",
-            buttonLabel: "Ok"
-          };
-          this.store.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
-          this.modalConfirmerResultSubscription.unsubscribe();
+          this.translate.get([
+            "CONTAINER.CHECK_BOX.ALERT_BUTTON",
+            "CONTAINER.CHECK_BOX.ALERT_MESSAGE",
+            "CONTAINER.CHECK_BOX.ALERT_TITLE",
+          ])
+            .subscribe((translations: any) => {
+              const modalAlert: ModalAlert = {
+                id: this.modalConfirmerId,
+                title: translations["CONTAINER.CHECK_BOX.ALERT_TITLE"],
+                message: translations["CONTAINER.CHECK_BOX.ALERT_MESSAGE"],
+                buttonLabel: translations["CONTAINER.CHECK_BOX.ALERT_BUTTON"],
+              };
+              this.store.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
+            });
         }
       });
   }
 
   ngOnDestroy(): void {
+    this.unsubscribeToModalConfirmerResult();
+  }
+
+  protected unsubscribeToModalConfirmerResult(): void {
     if (this.modalConfirmerResultSubscription) {
       this.modalConfirmerResultSubscription.unsubscribe();
     }

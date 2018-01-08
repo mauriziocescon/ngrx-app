@@ -33,5 +33,14 @@
     }
   },
   "CONTAINER": {
+    "CHECK_BOX": {
+      "ALERT_BUTTON": "Ok",
+      "ALERT_MESSAGE": "Fatto",
+      "ALERT_TITLE": "Alert",
+      "CONFIRMATION_MESSAGE": "Sei sicuro?",
+      "CONFIRMATION_NO_BUTTON": "No",
+      "CONFIRMATION_TITLE": "Conferma",
+      "CONFIRMATION_YES_BUTTON": "Si"
+    }
   }
 }

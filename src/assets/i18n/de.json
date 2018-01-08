@@ -33,5 +33,14 @@
     }
   },
   "CONTAINER": {
+    "CHECK_BOX": {
+      "ALERT_BUTTON": "*** Ok ***",
+      "ALERT_MESSAGE": "*** Done ***",
+      "ALERT_TITLE": "*** Alert ***",
+      "CONFIRMATION_MESSAGE": "*** Are you sure about that? ***",
+      "CONFIRMATION_NO_BUTTON": "*** No ***",
+      "CONFIRMATION_TITLE": "*** Confirmer ***",
+      "CONFIRMATION_YES_BUTTON": "*** Yes ***"
+    }
   }
 }

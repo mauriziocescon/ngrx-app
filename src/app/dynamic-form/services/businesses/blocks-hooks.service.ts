@@ -44,7 +44,7 @@ export class BlocksHooksService {
   listenToDropdownBlockChanges(): void {
     this.dropdownService.blockObservable
       .subscribe((block: DropdownBlock) => {
-        this.textInputService.setValueForBlockId(`When dropdown changes, reset to ${new Date().toTimeString()}`, 3);
+        this.textInputService.setValueForBlockId(`When dropdown changes, reset to ${new Date().getTime()}`, 3);
       }, (err: any) => {
       });
   }

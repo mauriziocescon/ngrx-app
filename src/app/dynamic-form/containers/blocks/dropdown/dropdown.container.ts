@@ -33,6 +33,10 @@ export class DropdownContainerComponent {
   }
 
   valueDidChange(value: string): void {
+    this.dispatchValueDidChangeAction(value);
+  }
+
+  protected dispatchValueDidChangeAction(value: string): void {
     const block = {
       block: {
         id: this.blockId,
