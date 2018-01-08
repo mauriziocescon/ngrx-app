@@ -30,8 +30,8 @@ export class GenericBlockContainerComponent implements AfterViewInit {
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
     (<BlockComponent>componentRef.instance).blockId = this.block.id;
-    componentRef.changeDetectorRef.detectChanges();
     this.blockList.componentBlockInputsIsSet(this.block);
+    componentRef.changeDetectorRef.detectChanges();
   }
 
   protected getComponent(block: Block): any {
