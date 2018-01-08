@@ -15,30 +15,28 @@ export class BlocksHooksService {
     this.startListener();
   }
 
-  loadCheckBoxBlock(block: CheckBoxBlock): void {
-    console.log(`loadCheckBoxBlock: ${JSON.stringify(block)}`);
-  }
-
-  loadDropdownBlock(block: DropdownBlock): void {
-    console.log(`loadDropdownBlock: ${JSON.stringify(block)}`);
-  }
-
-  loadTextInputBlock(block: TextInputBlock): void {
-    console.log(`loadTextInputBlock: ${JSON.stringify(block)}`);
-  }
-
   startListener(): void {
     this.listenToCheckBoxBlockChanges();
     this.listenToDropdownBlockChanges();
     this.listenToTextInputBlockChanges();
   }
 
+  loadCheckBoxBlock(block: CheckBoxBlock): void {
+    // console.log(`loadCheckBoxBlock: ${JSON.stringify(block)}`);
+  }
+
+  loadDropdownBlock(block: DropdownBlock): void {
+    // console.log(`loadDropdownBlock: ${JSON.stringify(block)}`);
+  }
+
+  loadTextInputBlock(block: TextInputBlock): void {
+    this.textInputService.setValueForBlockId("Reset initial value during load event", block.id);
+  }
+
   listenToCheckBoxBlockChanges(): void {
     this.checkBoxService.blockObservable
       .subscribe((block: CheckBoxBlock) => {
-        console.log(`listenToCheckBoxBlockChanges: ${JSON.stringify(block)}`);
-
-        this.textInputService.setValueForBlockId(new Date().toTimeString(), 3);
+        this.textInputService.setValueForBlockId(`When checkbox changes, reset to ${new Date().getTime()}`, 3);
       }, (err: any) => {
       });
   }
@@ -46,9 +44,7 @@ export class BlocksHooksService {
   listenToDropdownBlockChanges(): void {
     this.dropdownService.blockObservable
       .subscribe((block: DropdownBlock) => {
-        console.log(`listenToDropdownBlockChanges: ${JSON.stringify(block)}`);
-
-        this.textInputService.setValueForBlockId(new Date().toTimeString(), 3);
+        this.textInputService.setValueForBlockId(`When dropdown changes, reset to ${new Date().toTimeString()}`, 3);
       }, (err: any) => {
       });
   }
@@ -56,7 +52,7 @@ export class BlocksHooksService {
   listenToTextInputBlockChanges(): void {
     this.textInputService.blockObservable
       .subscribe((block: TextInputBlock) => {
-        console.log(`listenToTextInputBlockChanges: ${JSON.stringify(block)}`);
+        // do nothing
       }, (err: any) => {
       });
   }
