@@ -38,9 +38,10 @@ export class CheckBoxContainerComponent implements OnDestroy {
 
   constructor(protected store: Store<fromRoot.State>) {
     this.block = this.store.select(fromDynamicForm.getAllEditBlocks)
-      .flatMap(blocks => blocks)
-      .find((block: CheckBoxBlock) => {
-        return block.id === this.blockId;
+      .map((blocks: CheckBoxBlock[]) => {
+        return blocks.find((block: CheckBoxBlock) => {
+          return block.id === this.blockId;
+        });
       });
 
     this.modalConfirmerResults = this.store.select(fromRoot.getModalConfirmerResults);

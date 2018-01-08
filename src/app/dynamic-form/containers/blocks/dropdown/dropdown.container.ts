@@ -25,9 +25,10 @@ export class DropdownContainerComponent {
 
   constructor(protected store: Store<fromDynamicForm.State>) {
     this.block = this.store.select(fromDynamicForm.getAllEditBlocks)
-      .flatMap(blocks => blocks)
-      .find((block: DropdownBlock) => {
-        return block.id === this.blockId;
+      .map((blocks: DropdownBlock[]) => {
+        return blocks.find((block: DropdownBlock) => {
+          return block.id === this.blockId;
+        });
       });
   }
 
