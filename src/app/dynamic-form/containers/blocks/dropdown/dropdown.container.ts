@@ -14,7 +14,7 @@ import { BlockType, DropdownBlock } from "../../../models";
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-dropdown
-      [block]="block"
+      [block]="block  | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-dropdown>`,
 })

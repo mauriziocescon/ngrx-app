@@ -21,7 +21,7 @@ import { ModalAlert, ModalConfirmer } from "../../../../core/models";
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-check-box
-      [block]="block"
+      [block]="block  | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-check-box>`,
 })

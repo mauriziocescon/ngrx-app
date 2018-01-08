@@ -14,7 +14,7 @@ import { BlockType, TextInputBlock } from "../../../models";
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-text-input
-      [block]="block"
+      [block]="block  | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-text-input>`,
 })
