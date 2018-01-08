@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 
 import "rxjs/add/operator/debounceTime";
@@ -10,7 +10,7 @@ import { DropdownBlock } from "../../../models";
   templateUrl: "./dropdown.component.html",
   styleUrls: ["./dropdown.component.scss"]
 })
-export class DropdownComponent implements OnInit, OnDestroy {
+export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: DropdownBlock;
 
   @Output() valueDidChange: EventEmitter<string>;
@@ -37,19 +37,23 @@ export class DropdownComponent implements OnInit, OnDestroy {
       selectedValue: this.dropdownControl = new FormControl(controlValue, options),
     });
 
-    this.dropdownControlValueSubscription();
+    this.subscribeToDropdownControlValueChanges();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes.block.isFirstChange()) {
+      this.unsubscribeToDropdownControlValueChanges();
+      this.dropdownControl.setValue(changes.block.currentValue.value);
+      this.subscribeToDropdownControlValueChanges();
+    }
   }
 
   ngOnDestroy(): void {
-    if (this.dropdownControlSubscription) {
-      this.dropdownControlSubscription.unsubscribe();
-    }
+    this.unsubscribeToDropdownControlValueChanges();
   }
 
-  protected dropdownControlValueSubscription(): void {
-    if (this.dropdownControlSubscription) {
-      this.dropdownControlSubscription.unsubscribe();
-    }
+  protected subscribeToDropdownControlValueChanges(): void {
+    this.unsubscribeToDropdownControlValueChanges();
 
     this.dropdownControlSubscription = this.dropdownControl
       .valueChanges
@@ -64,5 +68,11 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
   protected insertIf(condition: boolean, element: any): any[] {
     return condition ? [element] : [];
+  }
+
+  protected unsubscribeToDropdownControlValueChanges(): void {
+    if (this.dropdownControlSubscription) {
+      this.dropdownControlSubscription.unsubscribe();
+    }
   }
 }

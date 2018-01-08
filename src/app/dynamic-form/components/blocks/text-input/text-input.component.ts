@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 
 import "rxjs/add/operator/debounceTime";
@@ -10,7 +10,7 @@ import { TextInputBlock } from "../../../models";
   templateUrl: "./text-input.component.html",
   styleUrls: ["./text-input.component.scss"]
 })
-export class TextInputComponent implements OnInit, OnDestroy {
+export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: TextInputBlock;
   @Output() valueDidChange: EventEmitter<string>;
 
@@ -31,14 +31,11 @@ export class TextInputComponent implements OnInit, OnDestroy {
     if (this.block) {
       if (this.block.minLength && this.block.maxLength) {
         return "COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MIN_MAX_LENGTH";
-      }
-      else if (this.block.minLength) {
+      } else if (this.block.minLength) {
         return "COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MIN_LENGTH";
-      }
-      else if (this.block.maxLength) {
+      } else if (this.block.maxLength) {
         return "COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MAX_LENGTH";
-      }
-      else {
+      } else {
         return ``;
       }
     }
@@ -53,18 +50,15 @@ export class TextInputComponent implements OnInit, OnDestroy {
           minLength: this.block.minLength,
           maxLength: this.block.maxLength,
         };
-      }
-      else if (this.block.minLength) {
+      } else if (this.block.minLength) {
         return {
           minLength: this.block.minLength,
         };
-      }
-      else if (this.block.maxLength) {
+      } else if (this.block.maxLength) {
         return {
           maxLength: this.block.maxLength,
         };
-      }
-      else {
+      } else {
         return undefined;
       }
     }
@@ -87,19 +81,23 @@ export class TextInputComponent implements OnInit, OnDestroy {
       textInput: this.textInputControl = new FormControl(controlValue, options),
     });
 
-    this.textInputControlValueSubscription();
+    this.subscribeToTextInputControlValueChanges();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes.block.isFirstChange()) {
+      this.unsubscribeToTextInputControlValueChanges();
+      this.textInputControl.setValue(changes.block.currentValue.value);
+      this.subscribeToTextInputControlValueChanges();
+    }
   }
 
   ngOnDestroy(): void {
-    if (this.textInputControlSubscription) {
-      this.textInputControlSubscription.unsubscribe();
-    }
+    this.unsubscribeToTextInputControlValueChanges();
   }
 
-  protected textInputControlValueSubscription(): void {
-    if (this.textInputControlSubscription) {
-      this.textInputControlSubscription.unsubscribe();
-    }
+  protected subscribeToTextInputControlValueChanges(): void {
+    this.unsubscribeToTextInputControlValueChanges();
 
     this.textInputControlSubscription = this.textInputControl
       .valueChanges
@@ -118,5 +116,11 @@ export class TextInputComponent implements OnInit, OnDestroy {
 
   protected insertIf(condition: boolean, element: any): any[] {
     return condition ? [element] : [];
+  }
+
+  protected unsubscribeToTextInputControlValueChanges(): void {
+    if (this.textInputControlSubscription) {
+      this.textInputControlSubscription.unsubscribe();
+    }
   }
 }

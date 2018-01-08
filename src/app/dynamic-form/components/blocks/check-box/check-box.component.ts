@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 
 import "rxjs/add/operator/debounceTime";
@@ -10,7 +10,7 @@ import { CheckBoxBlock } from "../../../models";
   templateUrl: "./check-box.component.html",
   styleUrls: ["./check-box.component.scss"]
 })
-export class CheckBoxComponent implements OnInit, OnDestroy {
+export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: CheckBoxBlock;
   @Output() valueDidChange: EventEmitter<boolean>;
 
@@ -36,19 +36,23 @@ export class CheckBoxComponent implements OnInit, OnDestroy {
       checkBox: this.checkBoxControl = new FormControl(controlValue, options),
     });
 
-    this.checkBoxControlValueSubscription();
+    this.subscribeToCheckBoxControlValueChanges();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes.block.isFirstChange()) {
+      this.unsubscribeToCheckBoxValueChanges();
+      this.checkBoxControl.setValue(changes.block.currentValue.value);
+      this.subscribeToCheckBoxControlValueChanges();
+    }
   }
 
   ngOnDestroy(): void {
-    if (this.checkBoxControlSubscription) {
-      this.checkBoxControlSubscription.unsubscribe();
-    }
+    this.unsubscribeToCheckBoxValueChanges();
   }
 
-  protected checkBoxControlValueSubscription(): void {
-    if (this.checkBoxControlSubscription) {
-      this.checkBoxControlSubscription.unsubscribe();
-    }
+  protected subscribeToCheckBoxControlValueChanges(): void {
+    this.unsubscribeToCheckBoxValueChanges();
 
     this.checkBoxControlSubscription = this.checkBoxControl
       .valueChanges
@@ -63,5 +67,11 @@ export class CheckBoxComponent implements OnInit, OnDestroy {
 
   protected insertIf(condition: boolean, element: any): any[] {
     return condition ? [element] : [];
+  }
+
+  protected unsubscribeToCheckBoxValueChanges(): void {
+    if (this.checkBoxControlSubscription) {
+      this.checkBoxControlSubscription.unsubscribe();
+    }
   }
 }
