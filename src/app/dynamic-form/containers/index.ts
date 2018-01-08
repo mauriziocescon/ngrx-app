@@ -1,4 +1,4 @@
-import { GenericBlockContainerComponent } from "./generic-block/generic-block.component";
+import { GenericBlockContainerComponent } from "./generic-block/generic-block.container";
 import { ListContainerComponent } from "./list/list.container";
 
 import { CheckBoxContainerComponent } from "./blocks/check-box/check-box.container";
