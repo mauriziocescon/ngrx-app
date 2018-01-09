@@ -1,6 +1,9 @@
 <div class="container-fluid text-input-component">
   <div class="row">
     <div class="col-12">
+      <div class="row">
+        <span blockValidation [valid]="block.valid"></span>
+      </div>
       <form [formGroup]="textInputForm">
         <div class="form-group row">
           <label for="textInputBlock" class="col-sm-2 col-form-label">{{ block.label | translate }}</label>

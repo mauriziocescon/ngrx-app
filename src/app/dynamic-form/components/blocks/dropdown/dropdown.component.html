@@ -1,6 +1,9 @@
 <div class="container-fluid dropdown-component">
   <div class="row">
     <div class="col-12">
+      <div class="row">
+        <span blockValidation [valid]="block.valid"></span>
+      </div>
       <form [formGroup]="dropdownForm">
         <div class="form-group row">
           <label for="dropdownBlock" class="col-sm-2 col-form-label">{{ block.label | translate }}</label>

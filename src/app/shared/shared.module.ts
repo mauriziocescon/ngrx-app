@@ -8,6 +8,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 
 import { AddComponentDirective } from "./directives/add-container.directive";
+import { BlockValidationDirective } from "./directives/validation.directive";
 
 import { Enum } from "./utilities/enum";
 import { KeyValue } from "./utilities/keyvalue";
@@ -25,6 +26,7 @@ import { CustomRouterStateSerializer } from "./utilities/route-util";
   ],
   declarations: [
     AddComponentDirective,
+    BlockValidationDirective,
   ],
   exports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { CustomRouterStateSerializer } from "./utilities/route-util";
     NgbModule,
     TranslateModule,
     AddComponentDirective,
+    BlockValidationDirective,
   ],
 })
 export class SharedModule {
@@ -41,6 +44,7 @@ export class SharedModule {
 
 export {
   AddComponentDirective,
+  BlockValidationDirective,
   Enum,
   KeyValue,
   CustomRouterStateSerializer,
