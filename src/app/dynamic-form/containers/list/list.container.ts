@@ -23,10 +23,14 @@ export class ListContainerComponent implements OnInit {
   loading$: Observable<boolean>;
   error$: Observable<string>;
 
+  isFormValid$: Observable<boolean>;
+
   constructor(protected store: Store<fromDynamicForm.State>) {
     this.blocks$ = this.store.select(fromDynamicForm.getBlocksListState);
     this.loading$ = this.store.select(fromDynamicForm.getLoadingListState);
     this.error$ = this.store.select(fromDynamicForm.getErrorListState);
+
+    this.isFormValid$ = this.store.select(fromDynamicForm.getEditBlocksValidityState);
   }
 
   ngOnInit(): void {
