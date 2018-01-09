@@ -36,7 +36,9 @@ export class BlocksHooksService {
   listenToCheckBoxBlockChanges(): void {
     this.checkBoxService.blockObservable
       .subscribe((block: CheckBoxBlock) => {
-        this.textInputService.setValueForBlockId(`When checkbox changes, reset to ${new Date().getTime()}`, 3);
+        if (block.value === true) {
+          this.textInputService.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, 3);
+        }
       }, (err: any) => {
       });
   }
