@@ -31,6 +31,11 @@ export class ListContainerComponent implements OnInit {
     this.error$ = this.store.select(fromDynamicForm.getErrorListState);
 
     this.isFormValid$ = this.store.select(fromDynamicForm.getEditBlocksValidityState);
+
+    this.isFormValid$
+      .subscribe((vaue) => {
+        console.log(`isFormValid$: ${vaue}`);
+      });
   }
 
   ngOnInit(): void {
