@@ -12,7 +12,6 @@ import { DropdownBlock } from "../../../models";
 })
 export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: DropdownBlock;
-
   @Output() valueDidChange: EventEmitter<string>;
 
   dropdownForm: FormGroup;
