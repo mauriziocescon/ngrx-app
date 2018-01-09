@@ -30,7 +30,7 @@ export class BlocksHooksService {
   }
 
   loadTextInputBlock(block: TextInputBlock): void {
-    this.textInputService.setValueForBlockId("Reset initial value during load event", block.id);
+    this.textInputService.setValueForBlockId("Reset initial value during TextInput load event", block.id);
   }
 
   listenToCheckBoxBlockChanges(): void {
