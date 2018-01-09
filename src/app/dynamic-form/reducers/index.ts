@@ -72,3 +72,13 @@ export const {
   selectAll: getAllEditBlocks,
   selectTotal: getTotalEditBlocks,
 } = fromEditBlocks.adapter.getSelectors(getEditBlocksState);
+
+export const getEditBlocksInvalidState = createSelector(
+  getEditBlocksIds,
+  getEditBlocksEntities,
+  (ids: number[], blocksEntities: { [id: string]: any }) => {
+    return ids.findIndex((id: number) => {
+      return blocksEntities[id].valid === false;
+    });
+  }
+);

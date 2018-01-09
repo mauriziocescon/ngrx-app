@@ -13,7 +13,7 @@ const data = {
 };
 
 // do items
-const numberOfBlocks = 5;
+const numberOfBlocks = 7;
 
 function getCheckBox(index) {
   const value = faker.random.boolean() ? true : undefined;
