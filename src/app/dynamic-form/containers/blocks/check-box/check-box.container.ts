@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, Input, OnDestroy } from "@angular/c
 import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
+import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/operator/filter";
 import "rxjs/add/operator/find";
 import "rxjs/add/operator/mergeMap";
@@ -30,21 +31,25 @@ import { ModalAlert, ModalConfirmer, ModalConfirmerResultType } from "../../../.
 export class CheckBoxContainerComponent implements OnDestroy {
   @Input() blockId: number;
 
-  block: Observable<CheckBoxBlock>;
+  block$: Observable<CheckBoxBlock>;
+  block: CheckBoxBlock;
 
-  protected modalConfirmerResults: Observable<{ [id: string]: ModalConfirmerResultType }>;
-  protected modalConfirmerResultSubscription: any;
+  protected modalConfirmerResults$: Observable<{ [id: string]: ModalConfirmerResultType }>;
+  protected modalConfirmerResultSubscription: Subscription;
 
   constructor(protected store: Store<fromRoot.State>,
               protected translate: TranslateService) {
-    this.block = this.store.select(fromDynamicForm.getAllEditBlocks)
+    this.block$ = this.store.select(fromDynamicForm.getAllEditBlocks)
       .map((blocks: CheckBoxBlock[]) => {
         return blocks.find((block: CheckBoxBlock) => {
           return block.id === this.blockId;
         });
+      })
+      .map((block) => {
+        return this.block = block;
       });
 
-    this.modalConfirmerResults = this.store.select(fromRoot.getModalConfirmerResults);
+    this.modalConfirmerResults$ = this.store.select(fromRoot.getModalConfirmerResults);
   }
 
   valueDidChange(value: boolean): void {
@@ -63,6 +68,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
           id: this.blockId,
           type: BlockType.CheckBox,
           value: value,
+          valid: this.block.required ? value : true,
         },
       }
     };
@@ -93,7 +99,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
   protected subscribeToModalConfirmerResult(): void {
     this.unsubscribeToModalConfirmerResult();
 
-    this.modalConfirmerResultSubscription = this.modalConfirmerResults
+    this.modalConfirmerResultSubscription = this.modalConfirmerResults$
       .subscribe((modalConfirmerResult: { [id: string]: ModalConfirmerResultType }) => {
         const result = modalConfirmerResult[this.blockId.toString()];
 

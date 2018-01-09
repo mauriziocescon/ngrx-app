@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 
+import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/operator/debounceTime";
 
 import { DropdownBlock } from "../../../models";
@@ -17,7 +18,7 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
   dropdownForm: FormGroup;
   protected dropdownControl: FormControl;
 
-  protected dropdownControlSubscription: any;
+  protected dropdownControlSubscription: Subscription;
 
   constructor(protected formBuilder: FormBuilder) {
     this.valueDidChange = new EventEmitter<string>();

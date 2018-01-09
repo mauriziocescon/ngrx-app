@@ -14,17 +14,17 @@ import { BlockType, DropdownBlock } from "../../../models";
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-dropdown
-      [block]="block | async"
+      [block]="block$ | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-dropdown>`,
 })
 export class DropdownContainerComponent {
   @Input() blockId: number;
 
-  block: Observable<DropdownBlock>;
+  block$: Observable<DropdownBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.block = this.store.select(fromDynamicForm.getAllEditBlocks)
+    this.block$ = this.store.select(fromDynamicForm.getAllEditBlocks)
       .map((blocks: DropdownBlock[]) => {
         return blocks.find((block: DropdownBlock) => {
           return block.id === this.blockId;

@@ -10,17 +10,17 @@ import { BlockType, DropdownBlock } from "../../models";
 
 @Injectable()
 export class DropdownService {
-  protected blockSubject: Subject<DropdownBlock>;
-  readonly blockObservable: Observable<DropdownBlock>;
+  protected blockSubject$: Subject<DropdownBlock>;
+  readonly blockObservable$: Observable<DropdownBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blockSubject = new Subject();
-    this.blockObservable = this.blockSubject.asObservable();
+    this.blockSubject$ = new Subject();
+    this.blockObservable$ = this.blockSubject$.asObservable();
   }
 
   blockDidChange(block: { id: number, changes: DropdownBlock }): void {
     const newBlock: DropdownBlock = {...block.changes};
-    this.blockSubject.next(newBlock);
+    this.blockSubject$.next(newBlock);
   }
 
   protected setBlock(block: { block: { id: number, changes: DropdownBlock } }): void {

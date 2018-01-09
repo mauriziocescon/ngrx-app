@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 
+import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/operator/debounceTime";
 
 import { TextInputBlock } from "../../../models";
@@ -17,7 +18,7 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
   textInputForm: FormGroup;
   protected textInputControl: FormControl;
 
-  protected textInputControlSubscription: any;
+  protected textInputControlSubscription: Subscription;
 
   constructor(protected formBuilder: FormBuilder) {
     this.valueDidChange = new EventEmitter<string>();

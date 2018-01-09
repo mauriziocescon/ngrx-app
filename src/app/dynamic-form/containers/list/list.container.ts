@@ -13,20 +13,20 @@ import { Block } from "../../models";
   template: `
     <cp-list
       [blocks]="blocks | async"
-      [loading]="loading | async"
-      [error]="error | async"
+      [loading]="loading$ | async"
+      [error]="error$ | async"
       (reloadList)="reloadList()">
     </cp-list>`,
 })
 export class ListContainerComponent implements OnInit {
-  blocks: Observable<Block[]>;
-  loading: Observable<boolean>;
-  error: Observable<string>;
+  blocks$: Observable<Block[]>;
+  loading$: Observable<boolean>;
+  error$: Observable<string>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blocks = this.store.select(fromDynamicForm.getBlocksListState);
-    this.loading = this.store.select(fromDynamicForm.getLoadingListState);
-    this.error = this.store.select(fromDynamicForm.getErrorListState);
+    this.blocks$ = this.store.select(fromDynamicForm.getBlocksListState);
+    this.loading$ = this.store.select(fromDynamicForm.getLoadingListState);
+    this.error$ = this.store.select(fromDynamicForm.getErrorListState);
   }
 
   ngOnInit(): void {

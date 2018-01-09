@@ -14,14 +14,14 @@ import { BlockType, TextInputBlock } from "../../../models";
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-text-input
-      [block]="block | async"
+      [block]="block$ | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-text-input>`,
 })
 export class TextInputContainerComponent {
   @Input() blockId: number;
 
-  block: Observable<TextInputBlock>;
+  block$: Observable<TextInputBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
     this.block = this.store.select(fromDynamicForm.getAllEditBlocks)

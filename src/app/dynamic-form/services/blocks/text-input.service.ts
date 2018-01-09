@@ -10,17 +10,17 @@ import { BlockType, TextInputBlock } from "../../models";
 
 @Injectable()
 export class TextInputService {
-  protected blockSubject: Subject<TextInputBlock>;
-  readonly blockObservable: Observable<TextInputBlock>;
+  protected blockSubject$: Subject<TextInputBlock>;
+  readonly blockObservable$: Observable<TextInputBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blockSubject = new Subject();
-    this.blockObservable = this.blockSubject.asObservable();
+    this.blockSubject$ = new Subject();
+    this.blockObservable$ = this.blockSubject$.asObservable();
   }
 
   blockDidChange(block: { id: number, changes: TextInputBlock }): void {
     const newBlock: TextInputBlock = {...block.changes};
-    this.blockSubject.next(newBlock);
+    this.blockSubject$.next(newBlock);
   }
 
   protected setBlock(block: { block: { id: number, changes: TextInputBlock } }): void {

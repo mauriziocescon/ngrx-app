@@ -21,13 +21,13 @@ import { AppLanguageService } from "../../services/app-language.service";
 })
 export class NavigationBarContainerComponent {
   languages: string[];
-  language: Observable<string>;
+  language$: Observable<string>;
 
   constructor(protected store: Store<fromCore.CoreState>,
               protected router: Router,
               protected appLanguage: AppLanguageService) {
     this.languages = this.appLanguage.getSupportedLanguagesList();
-    this.language = this.store.select(fromCore.getLanguageState);
+    this.language$ = this.store.select(fromCore.getLanguageState);
   }
 
   selectLanguage(language: string): void {

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 
+import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/operator/debounceTime";
 
 import { CheckBoxBlock } from "../../../models";
@@ -17,7 +18,7 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
   checkBoxForm: FormGroup;
   protected checkBoxControl: FormControl;
 
-  protected checkBoxControlSubscription: any;
+  protected checkBoxControlSubscription: Subscription;
 
   constructor(protected formBuilder: FormBuilder) {
     this.valueDidChange = new EventEmitter<boolean>();

@@ -10,17 +10,17 @@ import { BlockType, CheckBoxBlock } from "../../models";
 
 @Injectable()
 export class CheckBoxService {
-  protected blockSubject: Subject<CheckBoxBlock>;
-  readonly blockObservable: Observable<CheckBoxBlock>;
+  protected blockSubject$: Subject<CheckBoxBlock>;
+  readonly blockObservable$: Observable<CheckBoxBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blockSubject = new Subject();
-    this.blockObservable = this.blockSubject.asObservable();
+    this.blockSubject$ = new Subject();
+    this.blockObservable$ = this.blockSubject$.asObservable();
   }
 
   blockDidChange(block: { id: number, changes: CheckBoxBlock }): void {
     const newBlock: CheckBoxBlock = {...block.changes};
-    this.blockSubject.next(newBlock);
+    this.blockSubject$.next(newBlock);
   }
 
   protected setBlock(block: { block: { id: number, changes: CheckBoxBlock } }): void {
