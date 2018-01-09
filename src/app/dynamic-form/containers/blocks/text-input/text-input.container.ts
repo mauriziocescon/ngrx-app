@@ -22,7 +22,7 @@ export class TextInputContainerComponent {
   @Input() blockId: number;
 
   block$: Observable<TextInputBlock>;
-  block: TextInputBlock;
+  textInputBlock: TextInputBlock;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
     this.block$ = this.store.select(fromDynamicForm.getAllEditBlocks)
@@ -32,7 +32,7 @@ export class TextInputContainerComponent {
         });
       })
       .map((block) => {
-        return this.block = block;
+        return this.textInputBlock = block;
       });
   }
 
@@ -41,6 +41,7 @@ export class TextInputContainerComponent {
   }
 
   protected dispatchValueDidChangeAction(value: string): void {
+    const valid = this.textInputBlock.required ? value && this.textInputBlock.minLength <= value.length && value.length <= this.textInputBlock.maxLength : true;
     const block = {
       block: {
         id: this.blockId,
@@ -48,6 +49,7 @@ export class TextInputContainerComponent {
           id: this.blockId,
           type: BlockType.TextInput,
           value: value,
+          valid: valid,
         },
       }
     };

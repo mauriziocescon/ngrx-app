@@ -24,7 +24,7 @@ import { ModalAlert, ModalConfirmer, ModalConfirmerResultType } from "../../../.
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-check-box
-      [block]="block | async"
+      [block]="block$ | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-check-box>`,
 })
@@ -32,7 +32,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
   @Input() blockId: number;
 
   block$: Observable<CheckBoxBlock>;
-  block: CheckBoxBlock;
+  checkBoxBlock: CheckBoxBlock;
 
   protected modalConfirmerResults$: Observable<{ [id: string]: ModalConfirmerResultType }>;
   protected modalConfirmerResultSubscription: Subscription;
@@ -46,7 +46,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
         });
       })
       .map((block) => {
-        return this.block = block;
+        return this.checkBoxBlock = block;
       });
 
     this.modalConfirmerResults$ = this.store.select(fromRoot.getModalConfirmerResults);
@@ -61,6 +61,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
   }
 
   protected dispatchValueDidChangeAction(value: boolean): void {
+    const valid = this.checkBoxBlock.required ? value : true;
     const block = {
       block: {
         id: this.blockId,
@@ -68,7 +69,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
           id: this.blockId,
           type: BlockType.CheckBox,
           value: value,
-          valid: this.block.required ? value : true,
+          valid: valid,
         },
       }
     };

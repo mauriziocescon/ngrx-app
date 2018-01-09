@@ -12,7 +12,7 @@ import { Block } from "../../models";
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-list
-      [blocks]="blocks | async"
+      [blocks]="blocks$ | async"
       [loading]="loading$ | async"
       [error]="error$ | async"
       (reloadList)="reloadList()">
