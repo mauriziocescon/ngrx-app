@@ -39,7 +39,7 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
     this.subscribeToCheckBoxControlValueChanges();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (!changes.block.isFirstChange()) {
       this.unsubscribeToCheckBoxValueChanges();
       this.checkBoxControl.setValue(changes.block.currentValue.value);

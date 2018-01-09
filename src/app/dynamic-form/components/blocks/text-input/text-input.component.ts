@@ -84,7 +84,7 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
     this.subscribeToTextInputControlValueChanges();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (!changes.block.isFirstChange()) {
       this.unsubscribeToTextInputControlValueChanges();
       this.textInputControl.setValue(changes.block.currentValue.value);

@@ -6,4 +6,5 @@ export interface CheckBoxBlock extends Block {
   description?: string;
   required?: boolean;
   disabled?: boolean;
+  valid?: boolean;
 }

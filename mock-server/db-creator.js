@@ -16,39 +16,53 @@ const data = {
 const numberOfBlocks = 5;
 
 function getCheckBox(index) {
+  const value = faker.random.boolean() ? true : undefined;
+  const required = faker.random.boolean();
+
   return {
     id: index,
     type: "check-box",
     label: "COMPONENT.CHECK_BOX.CHECK_BOX_LABEL",
-    value: faker.random.boolean() ? true : undefined,
+    value: value,
     description: "COMPONENT.CHECK_BOX.CHECK_BOX_DESC",
     disabled: false,
-    required: faker.random.boolean(),
+    required: required,
+    valid: required ? !!value : true,
   };
 }
 
 function getDropdown(index) {
+  const value = faker.random.boolean() ? "1" : undefined;
+  const required = faker.random.boolean();
+
   return {
     id: index,
     type: "dropdown",
     label: "COMPONENT.DROPDOWN.DROPDOWN_LABEL",
-    value: faker.random.boolean() ? "1" : undefined,
+    value: value,
     choices: ["1", "2", "3"],
     disabled: false,
-    required: faker.random.boolean(),
+    required: required,
+    valid: required ? !!value : true,
   };
 }
 
 function getTextInput(index) {
+  const value = faker.random.boolean() ? faker.lorem.words(faker.random.number(5)) : undefined;
+  const required = faker.random.boolean();
+  const minLength = faker.random.boolean() ? faker.random.number(5) : undefined;
+  const maxLength = faker.random.boolean() ? faker.random.number({min: 5, max: 10}) : undefined;
+
   return {
     id: index,
     type: "text-input",
     label: "COMPONENT.TEXT_INPUT.TEXT_INPUT_LABEL",
-    value: faker.random.boolean() ? faker.lorem.words(faker.random.number(5)) : undefined,
+    value: value,
     disabled: false,
-    required: faker.random.boolean(),
-    minLength: faker.random.boolean() ? faker.random.number(5) : undefined,
-    maxLength: faker.random.boolean() ? faker.random.number({min: 5, max: 10}) : undefined,
+    required: required,
+    minLength: minLength,
+    maxLength: maxLength,
+    valid: required ? value && minLength <= value.length && value.length <= maxLength : true,
   };
 }
 
