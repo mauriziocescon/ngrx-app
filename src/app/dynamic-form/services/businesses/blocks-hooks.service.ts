@@ -37,7 +37,7 @@ export class BlocksHooksService {
     this.checkBoxService.blockObservable
       .subscribe((block: CheckBoxBlock) => {
         if (block.value === true) {
-          this.textInputService.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, 3);
+          // this.textInputService.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, 1);
         }
       }, (err: any) => {
       });
@@ -46,7 +46,7 @@ export class BlocksHooksService {
   listenToDropdownBlockChanges(): void {
     this.dropdownService.blockObservable
       .subscribe((block: DropdownBlock) => {
-        this.textInputService.setValueForBlockId(`When dropdown changes, reset to ${new Date().getTime()}`, 3);
+        // this.textInputService.setValueForBlockId(`When dropdown changes, reset to ${new Date().getTime()}`, 1);
       }, (err: any) => {
       });
   }
