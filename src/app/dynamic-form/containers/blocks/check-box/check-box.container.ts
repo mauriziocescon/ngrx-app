@@ -36,7 +36,6 @@ export class CheckBoxContainerComponent implements OnDestroy {
 
   protected modalConfirmerResults: Observable<{ [id: string]: boolean }>;
   protected modalConfirmerResultSubscription: any;
-  protected modalConfirmerId = "1";
 
   constructor(protected store: Store<fromRoot.State>,
               protected translate: TranslateService) {
@@ -52,9 +51,9 @@ export class CheckBoxContainerComponent implements OnDestroy {
 
   valueDidChange(value: boolean): void {
     this.valueToSave = value;
-    if (value) {
+    if (value === true) {
       this.askForConfirmation();
-    } else {
+    } else if (value === false) {
       this.dispatchValueDidChangeAction();
     }
   }
@@ -84,7 +83,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
     ])
       .subscribe((translations: any) => {
         const modalConfirmer: ModalConfirmer = {
-          id: this.modalConfirmerId,
+          id: this.blockId.toString(),
           title: translations["CONTAINER.CHECK_BOX.CONFIRMATION_TITLE"],
           message: translations["CONTAINER.CHECK_BOX.CONFIRMATION_MESSAGE"],
           yesButtonLabel: translations["CONTAINER.CHECK_BOX.CONFIRMATION_YES_BUTTON"],
@@ -99,7 +98,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
 
     this.modalConfirmerResultSubscription = this.modalConfirmerResults
       .subscribe((modalConfirmerResult: { [id: string]: boolean }) => {
-        if (modalConfirmerResult[this.modalConfirmerId] === true) {
+        if (modalConfirmerResult[this.blockId.toString()] === true) {
           this.dispatchValueDidChangeAction();
           this.unsubscribeToModalConfirmerResult();
 
@@ -110,7 +109,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
           ])
             .subscribe((translations: any) => {
               const modalAlert: ModalAlert = {
-                id: this.modalConfirmerId,
+                id: this.blockId.toString(),
                 title: translations["CONTAINER.CHECK_BOX.ALERT_TITLE"],
                 message: translations["CONTAINER.CHECK_BOX.ALERT_MESSAGE"],
                 buttonLabel: translations["CONTAINER.CHECK_BOX.ALERT_BUTTON"],

@@ -6,7 +6,7 @@ import "rxjs/add/operator/find";
 import "rxjs/add/operator/mergeMap";
 
 import * as fromDynamicForm from "../../../reducers";
-import * as checkBox from "../../../actions/blocks/text-input.actions";
+import * as textInput from "../../../actions/blocks/text-input.actions";
 import { BlockType, TextInputBlock } from "../../../models";
 
 @Component({
@@ -47,6 +47,6 @@ export class TextInputContainerComponent {
         },
       }
     };
-    this.store.dispatch(new checkBox.ValueDidChange(block));
+    this.store.dispatch(new textInput.ValueDidChange(block));
   }
 }

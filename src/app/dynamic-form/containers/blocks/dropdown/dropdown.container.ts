@@ -6,7 +6,7 @@ import "rxjs/add/operator/find";
 import "rxjs/add/operator/mergeMap";
 
 import * as fromDynamicForm from "../../../reducers";
-import * as checkBox from "../../../actions/blocks/dropdown.actions";
+import * as dropdown from "../../../actions/blocks/dropdown.actions";
 import { BlockType, DropdownBlock } from "../../../models";
 
 @Component({
@@ -47,6 +47,6 @@ export class DropdownContainerComponent {
         },
       }
     };
-    this.store.dispatch(new checkBox.ValueDidChange(block));
+    this.store.dispatch(new dropdown.ValueDidChange(block));
   }
 }
