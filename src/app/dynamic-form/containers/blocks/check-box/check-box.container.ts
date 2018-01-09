@@ -16,7 +16,7 @@ import * as fromRoot from "../../../../reducers";
 import * as modalAlertsActions from "../../../../core/actions/modal-alert.actions";
 import * as modalConfirmersActions from "../../../../core/actions/modal-confirmer.actions";
 
-import { ModalAlert, ModalConfirmer } from "../../../../core/models";
+import { ModalAlert, ModalConfirmer, ModalConfirmerResultType } from "../../../../core/models";
 
 @Component({
   selector: "ct-check-box",
@@ -32,9 +32,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
 
   block: Observable<CheckBoxBlock>;
 
-  protected valueToSave: boolean;
-
-  protected modalConfirmerResults: Observable<{ [id: string]: boolean }>;
+  protected modalConfirmerResults: Observable<{ [id: string]: ModalConfirmerResultType }>;
   protected modalConfirmerResultSubscription: any;
 
   constructor(protected store: Store<fromRoot.State>,
@@ -50,22 +48,21 @@ export class CheckBoxContainerComponent implements OnDestroy {
   }
 
   valueDidChange(value: boolean): void {
-    this.valueToSave = value;
     if (value === true) {
       this.askForConfirmation();
     } else {
-      this.dispatchValueDidChangeAction();
+      this.dispatchValueDidChangeAction(value);
     }
   }
 
-  protected dispatchValueDidChangeAction(): void {
+  protected dispatchValueDidChangeAction(value: boolean): void {
     const block = {
       block: {
         id: this.blockId,
         changes: {
           id: this.blockId,
           type: BlockType.CheckBox,
-          value: this.valueToSave,
+          value: value,
         },
       }
     };
@@ -97,29 +94,34 @@ export class CheckBoxContainerComponent implements OnDestroy {
     this.unsubscribeToModalConfirmerResult();
 
     this.modalConfirmerResultSubscription = this.modalConfirmerResults
-      .subscribe((modalConfirmerResult: { [id: string]: boolean }) => {
+      .subscribe((modalConfirmerResult: { [id: string]: ModalConfirmerResultType }) => {
         const result = modalConfirmerResult[this.blockId.toString()];
 
-        if (result === true) {
-          this.dispatchValueDidChangeAction();
-          this.translate.get([
-            "CONTAINER.CHECK_BOX.ALERT_BUTTON",
-            "CONTAINER.CHECK_BOX.ALERT_MESSAGE",
-            "CONTAINER.CHECK_BOX.ALERT_TITLE",
-          ])
-            .subscribe((translations: any) => {
-              const modalAlert: ModalAlert = {
-                id: this.blockId.toString(),
-                title: translations["CONTAINER.CHECK_BOX.ALERT_TITLE"],
-                message: translations["CONTAINER.CHECK_BOX.ALERT_MESSAGE"],
-                buttonLabel: translations["CONTAINER.CHECK_BOX.ALERT_BUTTON"],
-              };
-              this.store.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
-            });
-        } else if (result === false) {
-          this.dispatchValueDidChangeAction();
+        if (result) {
+          this.store.dispatch(new modalConfirmersActions.CleanModalConfirmer({id: this.blockId.toString()}));
+          this.unsubscribeToModalConfirmerResult();
+
+          if (result === ModalConfirmerResultType.Positive) {
+            this.dispatchValueDidChangeAction(true);
+
+            this.translate.get([
+              "CONTAINER.CHECK_BOX.ALERT_BUTTON",
+              "CONTAINER.CHECK_BOX.ALERT_MESSAGE",
+              "CONTAINER.CHECK_BOX.ALERT_TITLE",
+            ])
+              .subscribe((translations: any) => {
+                const modalAlert: ModalAlert = {
+                  id: this.blockId.toString(),
+                  title: translations["CONTAINER.CHECK_BOX.ALERT_TITLE"],
+                  message: translations["CONTAINER.CHECK_BOX.ALERT_MESSAGE"],
+                  buttonLabel: translations["CONTAINER.CHECK_BOX.ALERT_BUTTON"],
+                };
+                this.store.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
+              });
+          } else {
+            this.dispatchValueDidChangeAction(false);
+          }
         }
-        this.unsubscribeToModalConfirmerResult();
       });
   }
 

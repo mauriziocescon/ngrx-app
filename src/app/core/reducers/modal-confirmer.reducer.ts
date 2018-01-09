@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 
 import { ModalConfirmerActionTypes, ModalConfirmerActions } from "../actions/modal-confirmer.actions";
-import { ModalConfirmer } from "../models";
+import { ModalConfirmer, ModalConfirmerResultType } from "../models";
 
 /**
  * @ngrx/entity provides a predefined interface for handling
@@ -11,7 +11,7 @@ import { ModalConfirmer } from "../models";
  * any additional interface properties.
  */
 export interface State extends EntityState<ModalConfirmer> {
-  modalConfirmerResults: { [id: string]: boolean };
+  modalConfirmerResults: { [id: string]: ModalConfirmerResultType };
 }
 
 /**
@@ -46,7 +46,7 @@ export function reducer(state = initialState, action: ModalConfirmerActions): St
     }
     case ModalConfirmerActionTypes.DISMISS_MODAL_CONFIRMER_WITH_POSITIVE_RESULT: {
       const newModalConfirmerResults = {...state.modalConfirmerResults};
-      newModalConfirmerResults[action.payload.id] = true;
+      newModalConfirmerResults[action.payload.id] = ModalConfirmerResultType.Positive;
       return {
         ...adapter.removeOne(action.payload.id, state),
         modalConfirmerResults: newModalConfirmerResults,
@@ -54,7 +54,7 @@ export function reducer(state = initialState, action: ModalConfirmerActions): St
     }
     case ModalConfirmerActionTypes.DISMISS_MODAL_CONFIRMER_WITH_NEGATIVE_RESULT: {
       const newModalConfirmerResults = {...state.modalConfirmerResults};
-      newModalConfirmerResults[action.payload.id] = false;
+      newModalConfirmerResults[action.payload.id] = ModalConfirmerResultType.Negative;
       return {
         ...adapter.removeOne(action.payload.id, state),
         modalConfirmerResults: newModalConfirmerResults,
@@ -62,9 +62,17 @@ export function reducer(state = initialState, action: ModalConfirmerActions): St
     }
     case ModalConfirmerActionTypes.DISMISS_MODAL_CONFIRMER: {
       const newModalConfirmerResults = {...state.modalConfirmerResults};
-      newModalConfirmerResults[action.payload.id] = undefined;
+      newModalConfirmerResults[action.payload.id] = ModalConfirmerResultType.Dismiss;
       return {
         ...adapter.removeOne(action.payload.id, state),
+        modalConfirmerResults: newModalConfirmerResults,
+      };
+    }
+    case ModalConfirmerActionTypes.CLEAN_MODAL_CONFIRMER_RESULT: {
+      const newModalConfirmerResults = {...state.modalConfirmerResults};
+      newModalConfirmerResults[action.payload.id] = undefined;
+      return {
+        ...state,
         modalConfirmerResults: newModalConfirmerResults,
       };
     }
