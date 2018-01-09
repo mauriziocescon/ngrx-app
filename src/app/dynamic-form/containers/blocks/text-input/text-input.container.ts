@@ -24,7 +24,7 @@ export class TextInputContainerComponent {
   block$: Observable<TextInputBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.block = this.store.select(fromDynamicForm.getAllEditBlocks)
+    this.blocks = this.store.select(fromDynamicForm.getAllEditBlocks)
       .map((blocks: TextInputBlock[]) => {
         return blocks.find((block: TextInputBlock) => {
           return block.id === this.blockId;
