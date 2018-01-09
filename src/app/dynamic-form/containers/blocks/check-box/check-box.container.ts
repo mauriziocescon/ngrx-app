@@ -53,7 +53,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
     this.valueToSave = value;
     if (value === true) {
       this.askForConfirmation();
-    } else if (value === false) {
+    } else {
       this.dispatchValueDidChangeAction();
     }
   }
@@ -98,10 +98,10 @@ export class CheckBoxContainerComponent implements OnDestroy {
 
     this.modalConfirmerResultSubscription = this.modalConfirmerResults
       .subscribe((modalConfirmerResult: { [id: string]: boolean }) => {
-        if (modalConfirmerResult[this.blockId.toString()] === true) {
-          this.dispatchValueDidChangeAction();
-          this.unsubscribeToModalConfirmerResult();
+        const result = modalConfirmerResult[this.blockId.toString()];
 
+        if (result === true) {
+          this.dispatchValueDidChangeAction();
           this.translate.get([
             "CONTAINER.CHECK_BOX.ALERT_BUTTON",
             "CONTAINER.CHECK_BOX.ALERT_MESSAGE",
@@ -116,7 +116,10 @@ export class CheckBoxContainerComponent implements OnDestroy {
               };
               this.store.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
             });
+        } else if (result === false) {
+          this.dispatchValueDidChangeAction();
         }
+        this.unsubscribeToModalConfirmerResult();
       });
   }
 
