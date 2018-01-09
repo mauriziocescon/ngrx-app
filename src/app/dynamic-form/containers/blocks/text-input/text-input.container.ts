@@ -22,13 +22,17 @@ export class TextInputContainerComponent {
   @Input() blockId: number;
 
   block$: Observable<TextInputBlock>;
+  block: TextInputBlock;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blocks = this.store.select(fromDynamicForm.getAllEditBlocks)
+    this.block$ = this.store.select(fromDynamicForm.getAllEditBlocks)
       .map((blocks: TextInputBlock[]) => {
         return blocks.find((block: TextInputBlock) => {
           return block.id === this.blockId;
         });
+      })
+      .map((block) => {
+        return this.block = block;
       });
   }
 
