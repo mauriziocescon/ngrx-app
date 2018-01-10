@@ -41,7 +41,18 @@ export class TextInputContainerComponent {
   }
 
   protected dispatchValueDidChangeAction(value: string): void {
-    const valid = this.textInputBlock.required ? value && this.textInputBlock.minLength <= value.length && value.length <= this.textInputBlock.maxLength : true;
+    let valid = true;
+    if (this.textInputBlock.required && (!value || !value.length)) {
+      valid = false;
+    }
+
+    if (this.textInputBlock.minLength && (!value || value.length < this.textInputBlock.minLength)) {
+      valid = false;
+    }
+
+    if (this.textInputBlock.maxLength && (!value || value.length > this.textInputBlock.maxLength)) {
+      valid = false;
+    }
     const block = {
       block: {
         id: this.blockId,

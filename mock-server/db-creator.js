@@ -19,7 +19,7 @@ function getCheckBox(index) {
   const value = faker.random.boolean() ? true : undefined;
   const required = faker.random.boolean();
 
-  return {
+  let checkBox = {
     id: index,
     type: "check-box",
     label: "COMPONENT.CHECK_BOX.CHECK_BOX_LABEL",
@@ -29,13 +29,15 @@ function getCheckBox(index) {
     required: required,
     valid: required ? !!value : true,
   };
+
+  return checkBox;
 }
 
 function getDropdown(index) {
   const value = faker.random.boolean() ? "1" : undefined;
   const required = faker.random.boolean();
 
-  return {
+  let dropdown = {
     id: index,
     type: "dropdown",
     label: "COMPONENT.DROPDOWN.DROPDOWN_LABEL",
@@ -45,6 +47,8 @@ function getDropdown(index) {
     required: required,
     valid: required ? !!value : true,
   };
+
+  return dropdown;
 }
 
 function getTextInput(index) {
@@ -53,7 +57,7 @@ function getTextInput(index) {
   const minLength = faker.random.boolean() ? faker.random.number(5) : undefined;
   const maxLength = faker.random.boolean() ? faker.random.number({min: 5, max: 10}) : undefined;
 
-  return {
+  let textInput = {
     id: index,
     type: "text-input",
     label: "COMPONENT.TEXT_INPUT.TEXT_INPUT_LABEL",
@@ -62,8 +66,25 @@ function getTextInput(index) {
     required: required,
     minLength: minLength,
     maxLength: maxLength,
-    valid: required ? value && minLength <= value.length && value.length <= maxLength : true,
+    valid: true,
   };
+
+  if (required && (!value || !value.length)) {
+    textInput.valid = false;
+    return textInput;
+  }
+
+  if (minLength && (!value || value.length < minLength)) {
+    textInput.valid = false;
+    return textInput;
+  }
+
+  if (maxLength && (!value || value.length > maxLength)) {
+    textInput.valid = false;
+    return textInput;
+  }
+
+  return textInput;
 }
 
 function getUnknownComponent(index) {
