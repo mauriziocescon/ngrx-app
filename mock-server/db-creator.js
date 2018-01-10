@@ -74,12 +74,12 @@ function getTextInput(index) {
     return textInput;
   }
 
-  if (minLength >= 0 && value.length < minLength) {
+  if (minLength >= 0 && value !== undefined && value.length < minLength) {
     textInput.valid = false;
     return textInput;
   }
 
-  if (maxLength >= 0 && value.length > maxLength) {
+  if (maxLength >= 0 && value !== undefined && value.length > maxLength) {
     textInput.valid = false;
     return textInput;
   }
