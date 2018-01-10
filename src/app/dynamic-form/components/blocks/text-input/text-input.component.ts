@@ -30,11 +30,11 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
 
   get inputGroupMessage(): string {
     if (this.block) {
-      if (this.block.minLength && this.block.maxLength) {
+      if (this.block.minLength >= 0 && this.block.maxLength >= 0) {
         return "COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MIN_MAX_LENGTH";
-      } else if (this.block.minLength) {
+      } else if (this.block.minLength >= 0) {
         return "COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MIN_LENGTH";
-      } else if (this.block.maxLength) {
+      } else if (this.block.maxLength >= 0) {
         return "COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MAX_LENGTH";
       } else {
         return ``;
@@ -46,16 +46,16 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
 
   get inputGroupParams(): any {
     if (this.block) {
-      if (this.block.minLength && this.block.maxLength) {
+      if (this.block.minLength >= 0 && this.block.maxLength >= 0) {
         return {
           minLength: this.block.minLength,
           maxLength: this.block.maxLength,
         };
-      } else if (this.block.minLength) {
+      } else if (this.block.minLength >= 0) {
         return {
           minLength: this.block.minLength,
         };
-      } else if (this.block.maxLength) {
+      } else if (this.block.maxLength >= 0) {
         return {
           maxLength: this.block.maxLength,
         };
@@ -74,8 +74,8 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
     };
     const options = [
       ...this.insertIf(this.block.required, Validators.required),
-      ...this.insertIf(this.block.minLength !== undefined, Validators.minLength(this.block.minLength)),
-      ...this.insertIf(this.block.maxLength !== undefined, Validators.maxLength(this.block.maxLength)),
+      ...this.insertIf(this.block.minLength >= 0, Validators.minLength(this.block.minLength)),
+      ...this.insertIf(this.block.maxLength >= 0, Validators.maxLength(this.block.maxLength)),
     ];
 
     this.textInputForm = this.formBuilder.group({

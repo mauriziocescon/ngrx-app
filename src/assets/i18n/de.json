@@ -23,8 +23,8 @@
     },
     "TEXT_INPUT": {
       "TEXT_INPUT_LABEL": "*** Type some reasons ***",
-      "TEXT_INPUT_MSG_MAX_LENGTH": "*** Length must be larger than {{ maxLength }} ***",
-      "TEXT_INPUT_MSG_MIN_LENGTH": "*** Length must be lower than {{ minLength }} ***",
+      "TEXT_INPUT_MSG_MAX_LENGTH": "*** Length must be lower than {{ maxLength }} ***",
+      "TEXT_INPUT_MSG_MIN_LENGTH": "*** Length must be larger than {{ minLength }} ***",
       "TEXT_INPUT_MSG_MIN_MAX_LENGTH": "*** Length must be beetwen {{ minLength }} and {{ maxLength }} ***",
       "TEXT_INPUT_PLACEHOLDER": "*** Type some text ***"
     },
