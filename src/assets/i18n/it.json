@@ -23,8 +23,8 @@
     },
     "TEXT_INPUT": {
       "TEXT_INPUT_LABEL": "Inserisci delle motivazioni",
-      "TEXT_INPUT_MSG_MAX_LENGTH": "La lunghezza deve essere minore di {{ maxLength }}",
-      "TEXT_INPUT_MSG_MIN_LENGTH": "La lunghezza deve essere maggiore di {{ minLength }}",
+      "TEXT_INPUT_MSG_MAX_LENGTH": "La lunghezza deve essere <= {{ maxLength }}",
+      "TEXT_INPUT_MSG_MIN_LENGTH": "La lunghezza deve essere >= {{ minLength }}",
       "TEXT_INPUT_MSG_MIN_MAX_LENGTH": "La lunghezza deve essere compresa tra {{ minLength }} e {{ maxLength }}",
       "TEXT_INPUT_PLACEHOLDER": "Digita del testo"
     },

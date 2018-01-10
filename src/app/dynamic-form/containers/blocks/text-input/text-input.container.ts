@@ -46,11 +46,11 @@ export class TextInputContainerComponent {
       valid = false;
     }
 
-    if (this.textInputBlock.minLength && (!value || value.length < this.textInputBlock.minLength)) {
+    if (this.textInputBlock.minLength >= 0 && (!value || value.length <= this.textInputBlock.minLength)) {
       valid = false;
     }
 
-    if (this.textInputBlock.maxLength && (!value || value.length > this.textInputBlock.maxLength)) {
+    if (this.textInputBlock.maxLength >= 0 && (!value || value.length >= this.textInputBlock.maxLength)) {
       valid = false;
     }
     const block = {
