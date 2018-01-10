@@ -13,11 +13,17 @@ export class ListComponent {
   @Input() error: string;
   @Output() reloadList: EventEmitter<void>;
 
+  @Input() formValidity: boolean;
+  @Output() validate: EventEmitter<void>;
+  @Output() reset: EventEmitter<void>;
+
   list: any[];
 
   constructor() {
     this.loading = false;
     this.reloadList = new EventEmitter();
+    this.validate = new EventEmitter();
+    this.reset = new EventEmitter();
   }
 
   get isLoadingData(): boolean {
@@ -46,5 +52,13 @@ export class ListComponent {
 
   loadList(): void {
     this.reloadList.emit();
+  }
+
+  validateForm(): void {
+    this.validate.emit();
+  }
+
+  resetForm(): void {
+    this.reset.emit();
   }
 }

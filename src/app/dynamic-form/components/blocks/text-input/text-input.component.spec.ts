@@ -46,7 +46,17 @@ describe("TextInputComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextInputComponent);
     component = fixture.componentInstance;
-    component.block = {id: 1, type: BlockType.CheckBox, label: "", value: "", required: true, minLength: 0, maxLength: 5, disabled: false, valid: true};
+    component.block = {
+      id: 1,
+      type: BlockType.TextInput,
+      label: "",
+      value: "45",
+      required: true,
+      minLength: 0,
+      maxLength: 5,
+      disabled: false,
+      valid: true,
+    };
     fixture.detectChanges();
   });
 

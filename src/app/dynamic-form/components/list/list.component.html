@@ -5,10 +5,10 @@
     <div class="col-12 col-sm-2 col-lg-1">
       <div class="row">
         <div class="col-6 col-sm-12 button-row">
-          <button class="btn btn-primary action-button">{{ "COMPONENT.LIST.VALIDATE" | translate }}</button>
+          <button class="btn btn-primary action-button" (click)="validateForm()" [disabled]="!formValidity">{{ "COMPONENT.LIST.VALIDATE" | translate }}</button>
         </div>
         <div class="col-6 col-sm-12 button-row">
-          <button class="btn btn-default action-button">{{ "COMPONENT.LIST.CANCEL" | translate }}</button>
+          <button class="btn btn-default action-button" (click)="resetForm()">{{ "COMPONENT.LIST.CANCEL" | translate }}</button>
         </div>
       </div>
     </div>

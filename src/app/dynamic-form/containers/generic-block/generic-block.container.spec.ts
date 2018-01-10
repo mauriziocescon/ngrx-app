@@ -78,7 +78,10 @@ describe("GenericBlockContainerComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GenericBlockContainerComponent);
     component = fixture.componentInstance;
-    component.block = {id: 1, type: BlockType.CheckBox};
+    component.block = {
+      id: 1,
+      type: BlockType.CheckBox,
+    };
     fixture.detectChanges();
   });
 
