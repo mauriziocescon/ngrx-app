@@ -23,6 +23,14 @@ export class DropdownService {
     this.blockSubject$.next(newBlock);
   }
 
+  changeLoading(loading: boolean, blockId: number): void {
+    const newLoading = {
+      id: blockId,
+      loading: loading,
+    };
+    this.store.dispatch(new dropdown.Loading(newLoading));
+  }
+
   protected setBlock(block: { block: { id: number, changes: DropdownBlock } }): void {
     this.store.dispatch(new dropdown.ValueDidChange(block));
   }

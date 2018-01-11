@@ -23,6 +23,14 @@ export class TextInputService {
     this.blockSubject$.next(newBlock);
   }
 
+  changeLoading(loading: boolean, blockId: number): void {
+    const newLoading = {
+      id: blockId,
+      loading: loading,
+    };
+    this.store.dispatch(new textInput.Loading(newLoading));
+  }
+
   protected setBlock(block: { block: { id: number, changes: TextInputBlock } }): void {
     this.store.dispatch(new textInput.ValueDidChange(block));
   }
