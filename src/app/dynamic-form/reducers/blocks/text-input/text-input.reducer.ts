@@ -34,6 +34,23 @@ export function reducer(state = initialState, action: TextInputActions): State {
       };
     }
     case TextInputActionTypes.UPDATE_BLOCK: {
+      const textInputBlock = state.entities[action.payload.block.id];
+      const value = action.payload.block.changes.value;
+      let valid = true;
+
+      if (textInputBlock.required && (!value || !value.length)) {
+        valid = false;
+      }
+
+      if (textInputBlock.minLength >= 0 && value !== undefined && value.length < textInputBlock.minLength) {
+        valid = false;
+      }
+
+      if (textInputBlock.maxLength >= 0 && value !== undefined && value.length > textInputBlock.maxLength) {
+        valid = false;
+      }
+      action.payload.block.changes.valid = valid;
+
       return {
         ...adapter.updateOne(action.payload.block, state),
       };

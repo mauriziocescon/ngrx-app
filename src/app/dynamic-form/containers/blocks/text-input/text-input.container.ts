@@ -48,18 +48,6 @@ export class TextInputContainerComponent {
   }
 
   protected dispatchValueDidChangeAction(value: string): void {
-    let valid = true;
-    if (this.textInputBlock.required && (!value || !value.length)) {
-      valid = false;
-    }
-
-    if (this.textInputBlock.minLength >= 0 && value !== undefined && value.length < this.textInputBlock.minLength) {
-      valid = false;
-    }
-
-    if (this.textInputBlock.maxLength >= 0 && value !== undefined && value.length > this.textInputBlock.maxLength) {
-      valid = false;
-    }
     const block = {
       block: {
         id: this.blockId,
@@ -67,7 +55,6 @@ export class TextInputContainerComponent {
           id: this.blockId,
           type: BlockType.TextInput,
           value: value,
-          valid: valid,
         },
       }
     };

@@ -4,7 +4,7 @@ import { CheckBoxActionTypes, CheckBoxActions } from "../../../actions/blocks/ch
 import { CheckBoxBlock } from "../../../models";
 
 export interface State extends EntityState<CheckBoxBlock> {
-  checkBoxBlocksLoading: { [id: string]: boolean };
+  checkBoxBlocksLoading: {[id: string]: boolean};
 }
 
 export const adapter: EntityAdapter<CheckBoxBlock> = createEntityAdapter<CheckBoxBlock>({
@@ -34,6 +34,11 @@ export function reducer(state = initialState, action: CheckBoxActions): State {
       };
     }
     case CheckBoxActionTypes.UPDATE_BLOCK: {
+      const checkBoxBlock = state.entities[action.payload.block.id];
+      const value = action.payload.block.changes.value;
+      const valid = checkBoxBlock.required ? value : true;
+      action.payload.block.changes.valid = valid;
+
       return {
         ...adapter.updateOne(action.payload.block, state),
       };

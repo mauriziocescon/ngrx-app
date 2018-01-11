@@ -67,7 +67,6 @@ export class CheckBoxContainerComponent implements OnDestroy {
   }
 
   protected dispatchValueDidChangeAction(value: boolean): void {
-    const valid = this.checkBoxBlock.required ? value : true;
     const block = {
       block: {
         id: this.blockId,
@@ -75,7 +74,6 @@ export class CheckBoxContainerComponent implements OnDestroy {
           id: this.blockId,
           type: BlockType.CheckBox,
           value: value,
-          valid: valid,
         },
       }
     };

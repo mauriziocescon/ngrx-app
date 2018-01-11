@@ -48,7 +48,6 @@ export class DropdownContainerComponent {
   }
 
   protected dispatchValueDidChangeAction(value: string): void {
-    const valid = this.dropdownBlock.required ? !!value : true;
     const block = {
       block: {
         id: this.blockId,
@@ -56,7 +55,6 @@ export class DropdownContainerComponent {
           id: this.blockId,
           type: BlockType.Dropdown,
           value: value,
-          valid: valid,
         },
       }
     };
