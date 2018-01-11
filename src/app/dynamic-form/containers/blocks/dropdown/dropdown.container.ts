@@ -27,7 +27,7 @@ export class DropdownContainerComponent {
   loading$: Observable<boolean>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.block$ = this.store.select(fromDynamicForm.getAllEditBlocks)
+    this.block$ = this.store.select(fromDynamicForm.getAllDropdown)
       .map((blocks: DropdownBlock[]) => {
         return blocks.find((block: DropdownBlock) => {
           return block.id === this.blockId;
@@ -37,7 +37,7 @@ export class DropdownContainerComponent {
         return this.dropdownBlock = block;
       });
 
-    this.loading$ = this.store.select(fromDynamicForm.getEditBlocksLoadingState)
+    this.loading$ = this.store.select(fromDynamicForm.getDropdownBlocksLoadingState)
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
@@ -60,6 +60,6 @@ export class DropdownContainerComponent {
         },
       }
     };
-    this.store.dispatch(new dropdown.ValueDidChange(block));
+    this.store.dispatch(new dropdown.UpdateBlock(block));
   }
 }

@@ -8,7 +8,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 
 import { TextInputService } from "../../services";
-import { TextInputActionTypes, ValueDidChange } from "../../actions/blocks/text-input.actions";
+import { TextInputActionTypes, UpdateBlock } from "../../actions/blocks/text-input.actions";
 import { TextInputBlock } from "../../models";
 
 @Injectable()
@@ -19,8 +19,8 @@ export class TextInputEffect {
   }
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$
-    .ofType(TextInputActionTypes.TEXT_INPUT_UPDATE_BLOCK)
-    .map((action: ValueDidChange) => action.payload.block)
+    .ofType(TextInputActionTypes.UPDATE_BLOCK)
+    .map((action: UpdateBlock) => action.payload.block)
     .switchMap((block: { id: number, changes: TextInputBlock }) => {
       this.textInputService.blockDidChange(block);
       return empty();

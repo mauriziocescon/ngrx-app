@@ -27,7 +27,7 @@ export class TextInputContainerComponent {
   loading$: Observable<boolean>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.block$ = this.store.select(fromDynamicForm.getAllEditBlocks)
+    this.block$ = this.store.select(fromDynamicForm.getAllTextInput)
       .map((blocks: TextInputBlock[]) => {
         return blocks.find((block: TextInputBlock) => {
           return block.id === this.blockId;
@@ -37,7 +37,7 @@ export class TextInputContainerComponent {
         return this.textInputBlock = block;
       });
 
-    this.loading$ = this.store.select(fromDynamicForm.getEditBlocksLoadingState)
+    this.loading$ = this.store.select(fromDynamicForm.getTextInputBlocksLoadingState)
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
@@ -71,6 +71,6 @@ export class TextInputContainerComponent {
         },
       }
     };
-    this.store.dispatch(new textInput.ValueDidChange(block));
+    this.store.dispatch(new textInput.UpdateBlock(block));
   }
 }

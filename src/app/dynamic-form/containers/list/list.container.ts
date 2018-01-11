@@ -33,7 +33,7 @@ export class ListContainerComponent implements OnInit {
     this.loading$ = this.store.select(fromDynamicForm.getLoadingListState);
     this.error$ = this.store.select(fromDynamicForm.getErrorListState);
 
-    this.formValidity$ = this.store.select(fromDynamicForm.getEditBlocksValidityState);
+    this.formValidity$ = this.store.select(fromDynamicForm.getAllEditBlocksValidityState);
   }
 
   ngOnInit(): void {

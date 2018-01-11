@@ -40,7 +40,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
 
   constructor(protected store: Store<fromRoot.State>,
               protected translate: TranslateService) {
-    this.block$ = this.store.select(fromDynamicForm.getAllEditBlocks)
+    this.block$ = this.store.select(fromDynamicForm.getAllCheckBox)
       .map((blocks: CheckBoxBlock[]) => {
         return blocks.find((block: CheckBoxBlock) => {
           return block.id === this.blockId;
@@ -50,7 +50,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
         return this.checkBoxBlock = block;
       });
 
-    this.loading$ = this.store.select(fromDynamicForm.getEditBlocksLoadingState)
+    this.loading$ = this.store.select(fromDynamicForm.getCheckBoxBlocksLoadingState)
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
@@ -79,7 +79,7 @@ export class CheckBoxContainerComponent implements OnDestroy {
         },
       }
     };
-    this.store.dispatch(new checkBox.ValueDidChange(block));
+    this.store.dispatch(new checkBox.UpdateBlock(block));
   }
 
   protected askForConfirmation(): void {

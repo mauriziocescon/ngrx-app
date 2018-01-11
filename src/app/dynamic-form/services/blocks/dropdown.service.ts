@@ -32,7 +32,7 @@ export class DropdownService {
   }
 
   protected setBlock(block: { block: { id: number, changes: DropdownBlock } }): void {
-    this.store.dispatch(new dropdown.ValueDidChange(block));
+    this.store.dispatch(new dropdown.UpdateBlock(block));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {

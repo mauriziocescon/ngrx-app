@@ -3,19 +3,27 @@ import { Action } from "@ngrx/store";
 import { DropdownBlock } from "../../models";
 
 export enum DropdownActionTypes {
-  DROPDOWN_LOADING = "[Dropdown] Loading",
-  DROPDOWN_UPDATE_BLOCK = "[Dropdown] Value did change",
+  LOADING = "[Dropdown] Loading",
+  ADD_BLOCKS = "[Dropdown] Add blocks",
+  UPDATE_BLOCK = "[Dropdown] Update block",
 }
 
 export class Loading implements Action {
-  readonly type = DropdownActionTypes.DROPDOWN_LOADING;
+  readonly type = DropdownActionTypes.LOADING;
 
   constructor(public payload: { id: number, loading: boolean }) {
   }
 }
 
-export class ValueDidChange implements Action {
-  readonly type = DropdownActionTypes.DROPDOWN_UPDATE_BLOCK;
+export class AddBlocks implements Action {
+  readonly type = DropdownActionTypes.ADD_BLOCKS;
+
+  constructor(public payload: { blocks: DropdownBlock[] }) {
+  }
+}
+
+export class UpdateBlock implements Action {
+  readonly type = DropdownActionTypes.UPDATE_BLOCK;
 
   constructor(public payload: { block: { id: number, changes: DropdownBlock } }) {
   }
@@ -27,4 +35,5 @@ export class ValueDidChange implements Action {
  */
 export type DropdownActions =
   Loading |
-  ValueDidChange;
+  AddBlocks |
+  UpdateBlock;

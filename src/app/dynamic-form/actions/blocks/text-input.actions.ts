@@ -3,19 +3,27 @@ import { Action } from "@ngrx/store";
 import { TextInputBlock } from "../../models";
 
 export enum TextInputActionTypes {
-  TEXT_INPUT_LOADING = "[TextInput] Loading",
-  TEXT_INPUT_UPDATE_BLOCK = "[TextInput] Value did change",
+  LOADING = "[TextInput] Loading",
+  ADD_BLOCKS = "[TextInput] Add blocks",
+  UPDATE_BLOCK = "[TextInput] Update block",
 }
 
 export class Loading implements Action {
-  readonly type = TextInputActionTypes.TEXT_INPUT_LOADING;
+  readonly type = TextInputActionTypes.LOADING;
 
   constructor(public payload: { id: number, loading: boolean }) {
   }
 }
 
-export class ValueDidChange implements Action {
-  readonly type = TextInputActionTypes.TEXT_INPUT_UPDATE_BLOCK;
+export class AddBlocks implements Action {
+  readonly type = TextInputActionTypes.ADD_BLOCKS;
+
+  constructor(public payload: { blocks: TextInputBlock[] }) {
+  }
+}
+
+export class UpdateBlock implements Action {
+  readonly type = TextInputActionTypes.UPDATE_BLOCK;
 
   constructor(public payload: { block: { id: number, changes: TextInputBlock } }) {
   }
@@ -27,4 +35,5 @@ export class ValueDidChange implements Action {
  */
 export type TextInputActions =
   Loading |
-  ValueDidChange;
+  AddBlocks |
+  UpdateBlock;

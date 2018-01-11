@@ -3,19 +3,27 @@ import { Action } from "@ngrx/store";
 import { CheckBoxBlock } from "../../models";
 
 export enum CheckBoxActionTypes {
-  CHECK_BOX_LOADING = "[CheckBox] Loading",
-  CHECK_BOX_UPDATE_BLOCK = "[CheckBox] Value did change",
+  LOADING = "[CheckBox] Loading",
+  ADD_BLOCKS = "[CheckBox] Add blocks",
+  UPDATE_BLOCK = "[CheckBox] Update block",
 }
 
 export class Loading implements Action {
-  readonly type = CheckBoxActionTypes.CHECK_BOX_LOADING;
+  readonly type = CheckBoxActionTypes.LOADING;
 
   constructor(public payload: { id: number, loading: boolean }) {
   }
 }
 
-export class ValueDidChange implements Action {
-  readonly type = CheckBoxActionTypes.CHECK_BOX_UPDATE_BLOCK;
+export class AddBlocks implements Action {
+  readonly type = CheckBoxActionTypes.ADD_BLOCKS;
+
+  constructor(public payload: { blocks: CheckBoxBlock[] }) {
+  }
+}
+
+export class UpdateBlock implements Action {
+  readonly type = CheckBoxActionTypes.UPDATE_BLOCK;
 
   constructor(public payload: { block: { id: number, changes: CheckBoxBlock } }) {
   }
@@ -27,4 +35,5 @@ export class ValueDidChange implements Action {
  */
 export type CheckBoxActions =
   Loading |
-  ValueDidChange;
+  AddBlocks |
+  UpdateBlock;

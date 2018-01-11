@@ -8,10 +8,6 @@ import { RouterStateUrl } from "../shared/utilities/route-util";
 
 import { environment } from "../../environments/environment";
 
-/**
- * As mentioned, we treat each reducer like a table in a database. This means
- * our top level state interface is just a map of keys to inner state types.
- */
 export interface State {
   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
   core: fromCore.CoreState;

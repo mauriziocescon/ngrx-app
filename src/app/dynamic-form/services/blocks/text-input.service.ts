@@ -32,7 +32,7 @@ export class TextInputService {
   }
 
   protected setBlock(block: { block: { id: number, changes: TextInputBlock } }): void {
-    this.store.dispatch(new textInput.ValueDidChange(block));
+    this.store.dispatch(new textInput.UpdateBlock(block));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {
