@@ -56,6 +56,7 @@ describe("CheckBoxComponent", () => {
       disabled: false,
       valid: true,
     };
+    component.loading = false;
     fixture.detectChanges();
   });
 

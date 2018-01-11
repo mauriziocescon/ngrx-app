@@ -15,13 +15,16 @@
       "VALIDATE": "Validate"
     },
     "DROPDOWN": {
-      "DROPDOWN_LABEL": "Select the position you want"
+      "DROPDOWN_LABEL": "Select the position you want",
+      "LOADING": "Loading..."
     },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "I have checked all documents",
-      "CHECK_BOX_LABEL": "Contract"
+      "CHECK_BOX_LABEL": "Contract",
+      "LOADING": "Loading..."
     },
     "TEXT_INPUT": {
+      "LOADING": "Loading...",
       "TEXT_INPUT_LABEL": "Type some reasons",
       "TEXT_INPUT_MSG_MAX_LENGTH": "Length must be <= {{ maxLength }}",
       "TEXT_INPUT_MSG_MIN_LENGTH": "Length must be >= {{ minLength }}",

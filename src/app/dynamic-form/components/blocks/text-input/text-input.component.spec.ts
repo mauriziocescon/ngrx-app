@@ -57,6 +57,7 @@ describe("TextInputComponent", () => {
       disabled: false,
       valid: true,
     };
+    component.loading = false;
     fixture.detectChanges();
   });
 

@@ -13,6 +13,7 @@ import { TextInputBlock } from "../../../models";
 })
 export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: TextInputBlock;
+  @Input() loading: boolean;
   @Output() valueDidChange: EventEmitter<string>;
 
   textInputForm: FormGroup;
@@ -22,6 +23,10 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(protected formBuilder: FormBuilder) {
     this.valueDidChange = new EventEmitter<string>();
+  }
+
+  get isLoadingData(): boolean {
+    return this.loading === true;
   }
 
   get isTextInputNotEmpty(): boolean {

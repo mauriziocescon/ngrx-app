@@ -3,7 +3,15 @@ import { Action } from "@ngrx/store";
 import { DropdownBlock } from "../../models";
 
 export enum DropdownActionTypes {
+  DROPDOWN_LOADING = "[Dropdown] Loading",
   DROPDOWN_UPDATE_BLOCK = "[Dropdown] Value did change",
+}
+
+export class Loading implements Action {
+  readonly type = DropdownActionTypes.DROPDOWN_LOADING;
+
+  constructor(public payload: { id: number, loading: boolean }) {
+  }
 }
 
 export class ValueDidChange implements Action {
@@ -18,4 +26,5 @@ export class ValueDidChange implements Action {
  * so that reducers can easily compose action types
  */
 export type DropdownActions =
+  Loading |
   ValueDidChange;

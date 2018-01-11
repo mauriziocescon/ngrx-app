@@ -3,9 +3,7 @@ import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
-import "rxjs/add/operator/filter";
-import "rxjs/add/operator/find";
-import "rxjs/add/operator/mergeMap";
+import "rxjs/add/operator/map";
 
 import { TranslateService } from "@ngx-translate/core";
 
@@ -25,6 +23,7 @@ import { ModalAlert, ModalConfirmer, ModalConfirmerResultType } from "../../../.
   template: `
     <cp-check-box
       [block]="block$ | async"
+      [loading]="loading$ | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-check-box>`,
 })
@@ -33,6 +32,8 @@ export class CheckBoxContainerComponent implements OnDestroy {
 
   block$: Observable<CheckBoxBlock>;
   checkBoxBlock: CheckBoxBlock;
+
+  loading$: Observable<boolean>;
 
   protected modalConfirmerResults$: Observable<{ [id: string]: ModalConfirmerResultType }>;
   protected modalConfirmerResultSubscription: Subscription;
@@ -47,6 +48,11 @@ export class CheckBoxContainerComponent implements OnDestroy {
       })
       .map((block) => {
         return this.checkBoxBlock = block;
+      });
+
+    this.loading$ = this.store.select(fromDynamicForm.getEditBlocksLoadingState)
+      .map((blocksLoading: { [id: string]: boolean }) => {
+        return blocksLoading[this.blockId];
       });
 
     this.modalConfirmerResults$ = this.store.select(fromRoot.getModalConfirmerResults);

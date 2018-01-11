@@ -2,8 +2,7 @@ import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/find";
-import "rxjs/add/operator/mergeMap";
+import "rxjs/add/operator/map";
 
 import * as fromDynamicForm from "../../../reducers";
 import * as textInput from "../../../actions/blocks/text-input.actions";
@@ -15,6 +14,7 @@ import { BlockType, TextInputBlock } from "../../../models";
   template: `
     <cp-text-input
       [block]="block$ | async"
+      [loading]="loading$ | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-text-input>`,
 })
@@ -23,6 +23,8 @@ export class TextInputContainerComponent {
 
   block$: Observable<TextInputBlock>;
   textInputBlock: TextInputBlock;
+
+  loading$: Observable<boolean>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
     this.block$ = this.store.select(fromDynamicForm.getAllEditBlocks)
@@ -33,6 +35,11 @@ export class TextInputContainerComponent {
       })
       .map((block) => {
         return this.textInputBlock = block;
+      });
+
+    this.loading$ = this.store.select(fromDynamicForm.getEditBlocksLoadingState)
+      .map((blocksLoading: { [id: string]: boolean }) => {
+        return blocksLoading[this.blockId];
       });
   }
 

@@ -13,6 +13,7 @@ import { DropdownBlock } from "../../../models";
 })
 export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: DropdownBlock;
+  @Input() loading: boolean;
   @Output() valueDidChange: EventEmitter<string>;
 
   dropdownForm: FormGroup;
@@ -22,6 +23,10 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(protected formBuilder: FormBuilder) {
     this.valueDidChange = new EventEmitter<string>();
+  }
+
+  get isLoadingData(): boolean {
+    return this.loading === true;
   }
 
   ngOnInit(): void {

@@ -3,7 +3,15 @@ import { Action } from "@ngrx/store";
 import { TextInputBlock } from "../../models";
 
 export enum TextInputActionTypes {
+  TEXT_INPUT_LOADING = "[TextInput] Loading",
   TEXT_INPUT_UPDATE_BLOCK = "[TextInput] Value did change",
+}
+
+export class Loading implements Action {
+  readonly type = TextInputActionTypes.TEXT_INPUT_LOADING;
+
+  constructor(public payload: { id: number, loading: boolean }) {
+  }
 }
 
 export class ValueDidChange implements Action {
@@ -18,4 +26,5 @@ export class ValueDidChange implements Action {
  * so that reducers can easily compose action types
  */
 export type TextInputActions =
+  Loading |
   ValueDidChange;

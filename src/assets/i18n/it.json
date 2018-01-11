@@ -15,13 +15,16 @@
       "VALIDATE": "Valida"
     },
     "DROPDOWN": {
-      "DROPDOWN_LABEL": "Seleziona la posizione che preferisci"
+      "DROPDOWN_LABEL": "Seleziona la posizione che preferisci",
+      "LOADING": "Caricamento..."
     },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "Ho visionato tutti i documenti",
-      "CHECK_BOX_LABEL": "Contratto"
+      "CHECK_BOX_LABEL": "Contratto",
+      "LOADING": "Caricamento..."
     },
     "TEXT_INPUT": {
+      "LOADING": "Caricamento...",
       "TEXT_INPUT_LABEL": "Inserisci delle motivazioni",
       "TEXT_INPUT_MSG_MAX_LENGTH": "La lunghezza deve essere <= {{ maxLength }}",
       "TEXT_INPUT_MSG_MIN_LENGTH": "La lunghezza deve essere >= {{ minLength }}",

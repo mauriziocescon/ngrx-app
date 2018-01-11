@@ -14,7 +14,7 @@ import { Block } from "../models";
  * any additional interface properties.
  */
 export interface State extends EntityState<Block> {
-  // extraVar: string | null;
+  blocksLoading: { [id: string]: boolean };
 }
 
 /**
@@ -38,11 +38,23 @@ export const adapter: EntityAdapter<Block> = createEntityAdapter<Block>({
  * additional properties can also be defined.
  */
 export const initialState: State = adapter.getInitialState({
-  // extraVar: null,
+  blocksLoading: {},
 });
 
 export function reducer(state = initialState, action: CheckBoxActions | DropdownActions | TextInputActions | EditBlocksActions): State {
   switch (action.type) {
+    case EditBlocksActionTypes.ADD_BLOCKS: {
+      return {
+        /**
+         * The updateOne function provided by the created adapter
+         * updates one record to the entity dictionary
+         * and returns a new state including those records. If
+         * the collection is to be sorted, the adapter will
+         * sort each record upon entry into the sorted array.
+         */
+        ...adapter.addMany(action.payload.blocks, state),
+      };
+    }
     case CheckBoxActionTypes.CHECK_BOX_UPDATE_BLOCK: {
       return {
         /**
@@ -79,16 +91,14 @@ export function reducer(state = initialState, action: CheckBoxActions | Dropdown
         ...adapter.updateOne(action.payload.block, state),
       };
     }
-    case EditBlocksActionTypes.ADD_BLOCKS: {
+    case CheckBoxActionTypes.CHECK_BOX_LOADING:
+    case DropdownActionTypes.DROPDOWN_LOADING:
+    case TextInputActionTypes.TEXT_INPUT_LOADING: {
+      const newBlocksLoading = {...state.blocksLoading};
+      newBlocksLoading[action.payload.id] = action.payload.loading;
       return {
-        /**
-         * The updateOne function provided by the created adapter
-         * updates one record to the entity dictionary
-         * and returns a new state including those records. If
-         * the collection is to be sorted, the adapter will
-         * sort each record upon entry into the sorted array.
-         */
-        ...adapter.addMany(action.payload.blocks, state),
+        ...state,
+        blocksLoading: newBlocksLoading,
       };
     }
     default: {

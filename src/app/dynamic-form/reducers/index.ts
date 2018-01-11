@@ -58,6 +58,11 @@ export const getEditBlocksState = createSelector(
   state => state.editBlocks,
 );
 
+export const getEditBlocksLoadingState = createSelector(
+  getDynamicFormState,
+  state => state.editBlocks.blocksLoading,
+);
+
 /**
  * Adapters created with @ngrx/entity generate
  * commonly used selector functions including
