@@ -25,7 +25,7 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
     this.valueDidChange = new EventEmitter<boolean>();
   }
 
-  get isLoadingData(): boolean {
+  get isLoading(): boolean {
     return this.loading === true;
   }
 
