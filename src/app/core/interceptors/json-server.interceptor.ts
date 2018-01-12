@@ -10,7 +10,7 @@ export class JsonServerInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Clone the request to add the new header.
-    const authReq = req.clone({headers: req.headers.set("Content-Type", "application/json")});
+    const authReq = req.clone({headers: req.headers.set("Content-Type", "application/json; charset=utf-8")});
     // Pass on the cloned request instead of the original request.
     return next.handle(authReq);
   }

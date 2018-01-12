@@ -14,7 +14,8 @@ const port = process.env.PORT || 5000;
 // Add middlewares
 app.use(middlewares);
 
-app.use(express.static(path.join(__dirname, "../rules")));
+// Add rules to static resources
+app.use("/rules", express.static(path.join(__dirname, "/rules")));
 
 // Simulate server side delay
 app.use((req, res, next) => {

@@ -6,6 +6,8 @@ import { TextInputService } from "../blocks/text-input.service";
 
 import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../models";
 
+import * as $ from "jquery";
+
 @Injectable()
 export class BlocksHooksService {
 
@@ -13,6 +15,12 @@ export class BlocksHooksService {
               protected dropdownService: DropdownService,
               protected textInputService: TextInputService) {
     this.startListener();
+
+    // $.getScript("http://localhost:5000/rules/rules.js")
+    //   .done(() => {
+    //   })
+    //   .fail((jqxhr, settings, exception) => {
+    //   });
   }
 
   startListener(): void {
@@ -47,6 +55,14 @@ export class BlocksHooksService {
     this.dropdownService.blockObservable$
       .subscribe((block: DropdownBlock) => {
         // this.textInputService.setValueForBlockId(`When dropdown changes, reset to ${new Date().getTime()}`, 1);
+
+        // @ts-ignore
+        // businessMethods.example();
+
+        // this.textInputService.changeLoading(true, 0);
+        // setTimeout(() => {
+        //   this.textInputService.changeLoading(false, 0);
+        // }, 3000);
       }, (err: any) => {
       });
   }
