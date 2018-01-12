@@ -88,6 +88,12 @@ app.use((req, res, next) => {
   }
 });
 
+// Return rules for blocks
+app.use("/rules", (req, res, next) => {
+  // load the single view file (frontend will handle the page changes on the front-end)
+  res.sendFile(path.join(__dirname, "./rules.js"));
+});
+
 // Mount the router based on db.json
 app.use("/api", router);
 

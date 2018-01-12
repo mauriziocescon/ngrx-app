@@ -1,4 +1,11 @@
-import { Component, ChangeDetectionStrategy, ComponentFactoryResolver, AfterViewInit, ViewChild, Input } from "@angular/core";
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ComponentFactoryResolver,
+  AfterViewInit,
+  ViewChild,
+  Input
+} from "@angular/core";
 
 import { BlocksListService } from "../../services";
 
@@ -9,7 +16,9 @@ import { Block, BlockComponent } from "../../models";
 @Component({
   selector: "ct-generic-block",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `<ng-template add-component></ng-template>`,
+  template: `
+    <ng-template add-component></ng-template>
+  `,
 })
 export class GenericBlockContainerComponent implements AfterViewInit {
   @Input() block: Block;
