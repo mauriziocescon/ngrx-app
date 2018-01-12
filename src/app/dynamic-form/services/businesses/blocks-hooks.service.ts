@@ -82,7 +82,7 @@ export class BlocksHooksService {
         setLabelForBlockId: (label: string, blockId: number) => this.checkBoxService.setLabelForBlockId(label, blockId),
         setValueForBlockId: (value: boolean, blockId: number) => this.checkBoxService.setValueForBlockId(value, blockId),
         setDescriptionForBlockId: (description: string, blockId: number) => this.checkBoxService.setDescriptionForBlockId(description, blockId),
-        setRequiredForBlockId: (required: boolean, blockId: number) =>
+        setRequiredForBlockId: (required: boolean, blockId: number) => this.checkBoxService.setRequiredForBlockId(required, blockId),
       }
 
 
