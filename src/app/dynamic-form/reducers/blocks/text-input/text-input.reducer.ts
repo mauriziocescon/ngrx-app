@@ -49,10 +49,17 @@ export function reducer(state = initialState, action: TextInputActions): State {
       if (textInputBlock.maxLength >= 0 && value !== undefined && value.length > textInputBlock.maxLength) {
         valid = false;
       }
-      action.payload.block.changes.valid = valid;
+
+      const newBlock = {
+        ...action.payload.block,
+        changes: {
+          ...action.payload.block.changes,
+          valid: valid,
+        },
+      };
 
       return {
-        ...adapter.updateOne(action.payload.block, state),
+        ...adapter.updateOne(newBlock, state),
       };
     }
     default: {
