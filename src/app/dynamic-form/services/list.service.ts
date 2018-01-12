@@ -18,7 +18,7 @@ import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class BlocksListService {
-  protected API_PATH = environment.apiUrl + "blocks";
+  protected BLOCKS_API_PATH = environment.apiUrl + "blocks";
 
   constructor(protected http: HttpClient,
               protected blocksHooks: BlocksHooksService) {
@@ -26,7 +26,7 @@ export class BlocksListService {
 
   getBlocks(): Observable<Block[]> {
     return this.http
-      .get<Block[]>(this.API_PATH, {observe: "response"})
+      .get<Block[]>(this.BLOCKS_API_PATH, {observe: "response"})
       .map(resp => {
         return resp.body;
       })
