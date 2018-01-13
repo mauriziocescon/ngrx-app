@@ -78,14 +78,14 @@ export class BlocksHooksService {
   protected getSharedObject(): any {
     return {
       checkBox: {
-        changeLoading: (loading: boolean, blockId: number) => this.checkBoxService.changeLoading(loading, blockId),
-        setLabelForBlockId: (label: string, blockId: number) => this.checkBoxService.setLabelForBlockId(label, blockId),
-        setValueForBlockId: (value: boolean, blockId: number) => this.checkBoxService.setValueForBlockId(value, blockId),
-        setDescriptionForBlockId: (description: string, blockId: number) => this.checkBoxService.setDescriptionForBlockId(description, blockId),
-        setRequiredForBlockId: (required: boolean, blockId: number) => this.checkBoxService.setRequiredForBlockId(required, blockId),
-      }
-
-
+        ...this.checkBoxService.getSharedObject(),
+      },
+      dropdown: {
+        ...this.dropdownService.getSharedObject(),
+      },
+      textInput: {
+        ...this.textInputService.getSharedObject(),
+      },
     };
   }
 }

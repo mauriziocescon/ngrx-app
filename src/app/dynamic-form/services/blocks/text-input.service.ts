@@ -18,6 +18,18 @@ export class TextInputService {
     this.blockObservable$ = this.blockSubject$.asObservable();
   }
 
+  getSharedObject(): any {
+    return {
+      changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
+      setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),
+      setValueForBlockId: (value: string, blockId: number) => this.setValueForBlockId(value, blockId),
+      setRequiredForBlockId: (required: boolean, blockId: number) => this.setRequiredForBlockId(required, blockId),
+      setMinLengthForBlockId: (minLength: number, blockId: number) => this.setMinLengthForBlockId(minLength, blockId),
+      setMaxLengthForBlockId: (maxLength: number, blockId: number) => this.setMaxLengthForBlockId(maxLength, blockId),
+      setDisabledForBlockId: (disabled: boolean, blockId: number) => this.setDisabledForBlockId(disabled, blockId),
+    };
+  }
+
   blockDidChange(block: { id: number, changes: TextInputBlock }): void {
     const newBlock: TextInputBlock = {...block.changes};
     this.blockSubject$.next(newBlock);
