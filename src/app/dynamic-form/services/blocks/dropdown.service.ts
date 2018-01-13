@@ -18,7 +18,7 @@ export class DropdownService {
     this.blockObservable$ = this.blockSubject$.asObservable();
   }
 
-  getSharedObject(): any {
+  getDropdownMethods(): any {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),

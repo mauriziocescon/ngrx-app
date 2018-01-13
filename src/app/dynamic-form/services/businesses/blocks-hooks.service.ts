@@ -75,16 +75,16 @@ export class BlocksHooksService {
       });
   }
 
-  protected getSharedObject(): any {
+  protected blocksMethods(): any {
     return {
       checkBox: {
-        ...this.checkBoxService.getSharedObject(),
+        ...this.checkBoxService.getCheckBoxMethods(),
       },
       dropdown: {
-        ...this.dropdownService.getSharedObject(),
+        ...this.dropdownService.getDropdownMethods(),
       },
       textInput: {
-        ...this.textInputService.getSharedObject(),
+        ...this.textInputService.getTextInputMethods(),
       },
     };
   }
