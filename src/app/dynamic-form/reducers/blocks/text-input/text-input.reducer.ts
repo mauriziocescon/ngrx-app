@@ -38,6 +38,10 @@ export function reducer(state = initialState, action: TextInputActions): State {
       const value = action.payload.block.changes.value;
       let valid = true;
 
+      if (!textInputBlock) {
+        return state;
+      }
+
       if (textInputBlock.required && (!value || !value.length)) {
         valid = false;
       }
