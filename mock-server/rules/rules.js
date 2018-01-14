@@ -18,31 +18,42 @@ var businessMethods = {};
 
   businessMethods.textInputBlockDidLoad = function(textInputBlock, blocksMethods) {
     blocks[textInputBlock.id] = textInputBlock;
-    blocksMethods.textInput.setValueForBlockId("Reset initial value during TextInput load event", textInputBlock.id);
+    console.log(`textInputBlockDidLoad: ${JSON.stringify(textInputBlock)}`);
+
+    // blocksMethods.textInput.setValueForBlockId("Reset initial value during TextInput load event", textInputBlock.id);
   };
 
   // status changed
 
   businessMethods.checkBoxBlockDidChange = function(checkBoxBlock, blocksMethods) {
-    if (checkBoxBlock.value === true) {
-      blocksMethods.textInput.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, 0);
+    console.log(`checkBoxBlockDidChange: ${JSON.stringify(checkBoxBlock)}`);
+
+    // if (checkBoxBlock.value === true) {
+    //   blocksMethods.textInput.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, 0);
+    // }
+  };
+
+  var addChoicesOpIsOnGoing = false;
+
+  businessMethods.dropdownBlockDidChange = function(dropdownBlock, blocksMethods) {
+    console.log(`dropdownBlockDidChange: ${JSON.stringify(dropdownBlock)}`);
+
+    // blocksMethods.textInput.setValueForBlockId(`When dropdown changes, reset to ${new Date().getTime()}`, 0);
+
+    if (!addChoicesOpIsOnGoing) {
+      addChoicesOpIsOnGoing = true;
+      blocksMethods.dropdown.changeLoading(true, 0);
+      setTimeout(() => {
+        var newChoices = blocks[dropdownBlock.id].choices.concat(["4", "5"]);
+        blocksMethods.dropdown.setChoicesForBlockId(newChoices, dropdownBlock.id);
+        blocksMethods.dropdown.changeLoading(false, 0);
+        addChoicesOpIsOnGoing = false;
+      }, 3000);
     }
   };
 
-  businessMethods.dropdownBlockDidChange = function(dropdownBlock, blocksMethods) {
-    blocksMethods.textInput.setValueForBlockId(`When dropdown changes, reset to ${new Date().getTime()}`, 0);
-
-    blocksMethods.textInput.changeLoading(true, 0);
-    setTimeout(() => {
-      blocksMethods.textInput.changeLoading(false, 0);
-
-      var newChoices = blocks[3].choices.concat(["4", "5"]);
-      // blocksMethods.dropdown.setChoicesForBlockId(newChoices, 3);
-    }, 3000);
-  };
-
   businessMethods.textInputBlockDidChange = function(textInputBlock, blocksMethods) {
-    // do nothing
+    console.log(`textInputBlockDidChange: ${JSON.stringify(textInputBlock)}`);
   };
 
 })();
