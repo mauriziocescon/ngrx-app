@@ -16,11 +16,13 @@ export class BlocksHooksService {
               protected textInputService: TextInputService) {
     this.startListener();
 
-    // $.getScript("http://localhost:5000/rules/rules.js")
-    //   .done(() => {
-    //   })
-    //   .fail((jqxhr, settings, exception) => {
-    //   });
+    $.getScript("http://localhost:5000/rules/rules.js")
+      .done(() => {
+        // do nothing
+      })
+      .fail((jqxhr, settings, exception) => {
+        // do nothing
+      });
   }
 
   startListener(): void {
@@ -30,48 +32,65 @@ export class BlocksHooksService {
   }
 
   loadCheckBoxBlock(block: CheckBoxBlock): void {
-    // console.log(`loadCheckBoxBlock: ${JSON.stringify(block)}`);
+    try {
+      // @ts-ignore
+      businessMethods.checkBoxBlockDidLoad(block, this.blocksMethods());
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   loadDropdownBlock(block: DropdownBlock): void {
-    // console.log(`loadDropdownBlock: ${JSON.stringify(block)}`);
+    try {
+      // @ts-ignore
+      businessMethods.dropdownBlockDidLoad(block, this.blocksMethods());
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   loadTextInputBlock(block: TextInputBlock): void {
-    this.textInputService.setValueForBlockId("Reset initial value during TextInput load event", block.id);
+    try {
+      // @ts-ignore
+      businessMethods.textInputBlockDidLoad(block, this.blocksMethods());
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   listenToCheckBoxBlockChanges(): void {
     this.checkBoxService.blockObservable$
       .subscribe((block: CheckBoxBlock) => {
-        if (block.value === true) {
-          // this.textInputService.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, 1);
+        try {
+          // @ts-ignore
+          businessMethods.checkBoxBlockDidChange(block, this.blocksMethods());
+        } catch (e) {
+          console.log(e);
         }
-      }, (err: any) => {
       });
   }
 
   listenToDropdownBlockChanges(): void {
     this.dropdownService.blockObservable$
       .subscribe((block: DropdownBlock) => {
-        // this.textInputService.setValueForBlockId(`When dropdown changes, reset to ${new Date().getTime()}`, 1);
-
-        // @ts-ignore
-        // businessMethods.example();
-
-        // this.textInputService.changeLoading(true, 0);
-        // setTimeout(() => {
-        //   this.textInputService.changeLoading(false, 0);
-        // }, 3000);
-      }, (err: any) => {
+        try {
+          // @ts-ignore
+          businessMethods.dropdownBlockDidChange(block, this.blocksMethods());
+        } catch (e) {
+          console.log(e);
+        }
       });
   }
 
   listenToTextInputBlockChanges(): void {
     this.textInputService.blockObservable$
       .subscribe((block: TextInputBlock) => {
-        // do nothing
-      }, (err: any) => {
+        try {
+          // @ts-ignore
+          businessMethods.textInputBlockDidChange(block, this.blocksMethods());
+        } catch (e) {
+          console.log(e);
+        }
       });
   }
 

@@ -1,34 +1,40 @@
-var businessMethods = businessMethods || {};
+var businessMethods = {};
 
-(function() {
+(function () {
 
   // loading
 
-  function checkBoxBlockDidLoad(checkBoxBlock, blocksMethods) {
-    alert("Example");
-  }
+  businessMethods.checkBoxBlockDidLoad = function(checkBoxBlock, blocksMethods) {
+    console.log(`loadCheckBoxBlock: ${JSON.stringify(checkBoxBlock)}`);
+  };
 
-  function dropdownBlockDidLoad(dropdownBlock, blocksMethods) {
-    alert("Example");
-  }
+  businessMethods.dropdownBlockDidLoad = function(dropdownBlock, blocksMethods) {
+    console.log(`loadDropdownBlock: ${JSON.stringify(dropdownBlock)}`);
+  };
 
-  function textInputBlockDidLoad(textInputBlock, blocksMethods) {
-    alert("Example");
-  }
+  businessMethods.textInputBlockDidLoad = function(textInputBlock, blocksMethods) {
+    blocksMethods.textInput.setValueForBlockId("Reset initial value during TextInput load event", textInputBlock.id);
+  };
 
   // status changed
 
-  function checkBoxBlockDidChange(checkBoxBlock, blocksMethods) {
-    alert("Example");
-  }
+  businessMethods.checkBoxBlockDidChange = function(checkBoxBlock, blocksMethods) {
+    if (checkBoxBlock.value === true) {
+      blocksMethods.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, 1);
+    }
+  };
 
-  function dropdownBBlockDidChange(dropdownBlock, blocksMethods) {
-    alert("Example");
-  }
+  businessMethods.dropdownBlockDidChange = function(dropdownBlock, blocksMethods) {
+    blocksMethods.textInput.setValueForBlockId(`When dropdown changes, reset to ${new Date().getTime()}`, 1);
 
-  function textInputBlockDidChange(textInputBlock, blocksMethods) {
-    alert("Example");
-  }
+    blocksMethods.textInput.changeLoading(true, 0);
+    setTimeout(() => {
+      blocksMethods.textInput.changeLoading(false, 0);
+    }, 3000);
+  };
 
-  businessMethods.example = example;
+  businessMethods.textInputBlockDidChange = function(textInputBlock, blocksMethods) {
+    // do nothing
+  };
+
 })();
