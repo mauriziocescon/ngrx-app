@@ -6,7 +6,7 @@ import { Subject } from "rxjs/Subject";
 
 import * as fromDynamicForm from "../../../reducers";
 import * as dropdown from "../../actions/blocks/dropdown.actions";
-import { BlockType, DropdownBlock } from "../../models";
+import { BlockType, DropdownBlock, DropdownMethods } from "../../models";
 
 @Injectable()
 export class DropdownService {
@@ -18,7 +18,7 @@ export class DropdownService {
     this.blockObservable$ = this.blockSubject$.asObservable();
   }
 
-  getDropdownMethods(): any {
+  getDropdownMethods(): DropdownMethods {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),

@@ -4,19 +4,21 @@ import {
   TextInputBlock,
 } from "../dynamic-form/models";
 
+import { BlocksMethods } from "../block-hooks/models";
+
 const blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock } = {};
 
-export const checkBoxBlockDidLoad = (checkBoxBlock: CheckBoxBlock, blocksMethods: any) => {
+export const checkBoxBlockDidLoad = (checkBoxBlock: CheckBoxBlock, blocksMethods: BlocksMethods) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
   console.log(`loadCheckBoxBlock: ${JSON.stringify(checkBoxBlock)}`);
 };
 
-export const dropdownBlockDidLoad = (dropdownBlock: DropdownBlock, blocksMethods: any) => {
+export const dropdownBlockDidLoad = (dropdownBlock: DropdownBlock, blocksMethods: BlocksMethods) => {
   blocks[dropdownBlock.id] = dropdownBlock;
   console.log(`loadDropdownBlock: ${JSON.stringify(dropdownBlock)}`);
 };
 
-export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blocksMethods: any) => {
+export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blocksMethods: BlocksMethods) => {
   blocks[textInputBlock.id] = textInputBlock;
   console.log(`textInputBlockDidLoad: ${JSON.stringify(textInputBlock)}`);
 
@@ -24,8 +26,7 @@ export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blocksMeth
 };
 
 // status changed
-
-export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blocksMethods: any) => {
+export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blocksMethods: BlocksMethods) => {
   console.log(`checkBoxBlockDidChange: ${JSON.stringify(checkBoxBlock)}`);
 
   if (checkBoxBlock.value === true) {
@@ -33,7 +34,7 @@ export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blocksMetho
   }
 };
 
-export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blocksMethods: any) => {
+export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blocksMethods: BlocksMethods) => {
   console.log(`dropdownBlockDidChange: ${JSON.stringify(dropdownBlock)}`);
 
   blocksMethods.textInput.setValueForBlockId(`When dropdown changes, reset to ${new Date().getTime()}`, 0);
@@ -46,6 +47,6 @@ export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blocksMetho
   }, 3000);
 };
 
-export const textInputBlockDidChange = (textInputBlock: Text, blocksMethods: any) => {
+export const textInputBlockDidChange = (textInputBlock: TextInputBlock, blocksMethods: BlocksMethods) => {
   console.log(`textInputBlockDidChange: ${JSON.stringify(textInputBlock)}`);
 };

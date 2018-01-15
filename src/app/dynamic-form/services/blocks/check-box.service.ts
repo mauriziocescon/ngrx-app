@@ -6,7 +6,7 @@ import { Subject } from "rxjs/Subject";
 
 import * as fromDynamicForm from "../../../reducers";
 import * as checkBox from "../../actions/blocks/check-box.actions";
-import { BlockType, CheckBoxBlock } from "../../models";
+import { BlockType, CheckBoxBlock, CheckBoxMethods } from "../../models";
 
 @Injectable()
 export class CheckBoxService {
@@ -18,7 +18,7 @@ export class CheckBoxService {
     this.blockObservable$ = this.blockSubject$.asObservable();
   }
 
-  getCheckBoxMethods(): any {
+  getCheckBoxMethods(): CheckBoxMethods {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),

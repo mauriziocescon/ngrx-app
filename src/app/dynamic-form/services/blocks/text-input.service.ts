@@ -6,7 +6,7 @@ import { Subject } from "rxjs/Subject";
 
 import * as fromDynamicForm from "../../../reducers";
 import * as textInput from "../../actions/blocks/text-input.actions";
-import { BlockType, TextInputBlock } from "../../models";
+import { BlockType, TextInputBlock, TextInputMethods } from "../../models";
 
 @Injectable()
 export class TextInputService {
@@ -18,7 +18,7 @@ export class TextInputService {
     this.blockObservable$ = this.blockSubject$.asObservable();
   }
 
-  getTextInputMethods(): any {
+  getTextInputMethods(): TextInputMethods {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),
