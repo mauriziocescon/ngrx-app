@@ -12,12 +12,12 @@ import * as fromDynamicForm from "../../reducers";
 
 import { CoreModule } from "../../../core/core.module";
 import { SharedModule } from "../../../shared/shared.module";
+import { BlockHooksModule, BlockHooksService } from "../../../block-hooks/block-hooks.module";
 
 import {
   CheckBoxService,
   DropdownService,
   TextInputService,
-  BlocksHooksService,
   BlocksListService,
 } from "../../services";
 
@@ -50,6 +50,7 @@ describe("GenericBlockContainerComponent", () => {
         }),
         CoreModule.forRoot(),
         SharedModule,
+        BlockHooksModule,
       ],
       declarations: [
         ...COMPONENTS,
@@ -60,8 +61,8 @@ describe("GenericBlockContainerComponent", () => {
         CheckBoxService,
         DropdownService,
         TextInputService,
-        BlocksHooksService,
         BlocksListService,
+        BlockHooksService,
       ],
     })
       .overrideModule(BrowserDynamicTestingModule, {

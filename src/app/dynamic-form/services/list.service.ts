@@ -7,12 +7,12 @@ import "rxjs/add/operator/catch";
 
 import { Block, BlockType, CheckBoxBlock, DropdownBlock, TextInputBlock } from "../models";
 
-import { BlocksHooksService } from "./businesses/blocks-hooks.service";
-
 import { CheckBoxContainerComponent } from "../containers/blocks/check-box/check-box.container";
 import { DropdownContainerComponent } from "../containers/blocks/dropdown/dropdown.container";
 import { TextInputContainerComponent } from "../containers/blocks/text-input/text-input.container";
 import { UnknownComponent } from "../components";
+
+import { BlockHooksService } from "../../block-hooks/services/block-hooks.service";
 
 import { environment } from "../../../environments/environment";
 
@@ -21,7 +21,7 @@ export class BlocksListService {
   protected BLOCKS_API_PATH = environment.apiUrl + "blocks";
 
   constructor(protected http: HttpClient,
-              protected blocksHooks: BlocksHooksService) {
+              protected blocksHooks: BlockHooksService) {
   }
 
   getBlocks(): Observable<Block[]> {

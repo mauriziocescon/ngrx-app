@@ -1,10 +1,8 @@
 import { Injectable } from "@angular/core";
 
-import {
-  CheckBoxService,
-  DropdownService,
-  TextInputService,
-} from "../../dynamic-form/dynamic-form.module";
+import { CheckBoxService } from "../../dynamic-form/services/blocks/check-box.service";
+import { DropdownService } from "../../dynamic-form/services/blocks/dropdown.service";
+import { TextInputService } from "../../dynamic-form/services/blocks/text-input.service";
 
 import {
   CheckBoxBlock,
