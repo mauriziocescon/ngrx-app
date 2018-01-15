@@ -54,11 +54,15 @@ export class DropdownContainerComponent {
         changes: {
           id: this.blockId,
           type: BlockType.Dropdown,
+          label: this.dropdownBlock.label,
           value: value,
+          choices: [...this.dropdownBlock.choices],
+          required: this.dropdownBlock.required,
+          disabled: this.dropdownBlock.disabled,
         },
-      }
+      },
+      notify: true,
     };
-    const newBlock = {block: block.block, notify: true};
-    this.store.dispatch(new dropdown.UpdateBlock(newBlock));
+    this.store.dispatch(new dropdown.UpdateBlock(block));
   }
 }

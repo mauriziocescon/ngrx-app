@@ -54,11 +54,16 @@ export class TextInputContainerComponent {
         changes: {
           id: this.blockId,
           type: BlockType.TextInput,
+          label: this.textInputBlock.label,
           value: value,
+          required: this.textInputBlock.required,
+          minLength: this.textInputBlock.minLength,
+          maxLength: this.textInputBlock.maxLength,
+          disabled: this.textInputBlock.disabled,
         },
-      }
+      },
+      notify: true,
     };
-    const newBlock = {block: block.block, notify: true};
-    this.store.dispatch(new textInput.UpdateBlock(newBlock));
+    this.store.dispatch(new textInput.UpdateBlock(block));
   }
 }
