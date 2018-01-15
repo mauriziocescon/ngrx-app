@@ -25,7 +25,7 @@ export class AddBlocks implements Action {
 export class UpdateBlock implements Action {
   readonly type = DropdownActionTypes.UPDATE_BLOCK;
 
-  constructor(public payload: { block: { id: number, changes: DropdownBlock } }) {
+  constructor(public payload: { block: { id: number, changes: DropdownBlock }, notify: boolean }) {
   }
 }
 

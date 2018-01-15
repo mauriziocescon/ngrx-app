@@ -44,7 +44,8 @@ export class TextInputService {
   }
 
   protected setBlock(block: { block: { id: number, changes: TextInputBlock } }): void {
-    this.store.dispatch(new textInput.UpdateBlock(block));
+    const newBlock = {block: block.block, notify: false};
+    this.store.dispatch(new textInput.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {

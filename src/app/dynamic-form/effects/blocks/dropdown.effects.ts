@@ -20,9 +20,11 @@ export class DropdownEffect {
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .ofType(DropdownActionTypes.UPDATE_BLOCK)
-    .map((action: UpdateBlock) => action.payload.block)
-    .switchMap((block: { id: number, changes: DropdownBlock }) => {
-      this.dropdownService.blockDidChange(block);
+    .map((action: UpdateBlock) => action.payload)
+    .switchMap((payload: { block: { id: number, changes: DropdownBlock }, notify: boolean }) => {
+      if (payload.notify) {
+        this.dropdownService.blockDidChange(payload.block);
+      }
       return empty();
     });
 }

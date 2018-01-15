@@ -43,7 +43,8 @@ export class DropdownService {
   }
 
   protected setBlock(block: { block: { id: number, changes: DropdownBlock } }): void {
-    this.store.dispatch(new dropdown.UpdateBlock(block));
+    const newBlock = {block: block.block, notify: false};
+    this.store.dispatch(new dropdown.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {

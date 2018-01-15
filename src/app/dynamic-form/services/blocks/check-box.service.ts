@@ -43,7 +43,8 @@ export class CheckBoxService {
   }
 
   protected setBlock(block: { block: { id: number, changes: CheckBoxBlock } }): void {
-    this.store.dispatch(new checkBox.UpdateBlock(block));
+    const newBlock = {block: block.block, notify: false};
+    this.store.dispatch(new checkBox.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {

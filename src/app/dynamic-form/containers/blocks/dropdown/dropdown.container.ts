@@ -58,6 +58,7 @@ export class DropdownContainerComponent {
         },
       }
     };
-    this.store.dispatch(new dropdown.UpdateBlock(block));
+    const newBlock = {block: block.block, notify: true};
+    this.store.dispatch(new dropdown.UpdateBlock(newBlock));
   }
 }

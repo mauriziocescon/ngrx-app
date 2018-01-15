@@ -58,6 +58,7 @@ export class TextInputContainerComponent {
         },
       }
     };
-    this.store.dispatch(new textInput.UpdateBlock(block));
+    const newBlock = {block: block.block, notify: true};
+    this.store.dispatch(new textInput.UpdateBlock(newBlock));
   }
 }

@@ -20,9 +20,11 @@ export class TextInputEffect {
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .ofType(TextInputActionTypes.UPDATE_BLOCK)
-    .map((action: UpdateBlock) => action.payload.block)
-    .switchMap((block: { id: number, changes: TextInputBlock }) => {
-      this.textInputService.blockDidChange(block);
+    .map((action: UpdateBlock) => action.payload)
+    .switchMap((payload: { block: { id: number, changes: TextInputBlock }, notify: boolean }) => {
+      if (payload.notify) {
+        this.textInputService.blockDidChange(payload.block);
+      }
       return empty();
     });
 }

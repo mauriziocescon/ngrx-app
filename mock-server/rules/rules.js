@@ -33,23 +33,17 @@ var businessMethods = {};
     // }
   };
 
-  var addChoicesOpIsOnGoing = false;
-
   businessMethods.dropdownBlockDidChange = function(dropdownBlock, blocksMethods) {
     console.log(`dropdownBlockDidChange: ${JSON.stringify(dropdownBlock)}`);
 
-    // blocksMethods.textInput.setValueForBlockId(`When dropdown changes, reset to ${new Date().getTime()}`, 0);
+    blocksMethods.textInput.setValueForBlockId(`When dropdown changes, reset to ${new Date().getTime()}`, 0);
 
-    if (!addChoicesOpIsOnGoing) {
-      addChoicesOpIsOnGoing = true;
-      blocksMethods.dropdown.changeLoading(true, 0);
-      setTimeout(() => {
-        var newChoices = blocks[dropdownBlock.id].choices.concat(["4", "5"]);
-        blocksMethods.dropdown.setChoicesForBlockId(newChoices, dropdownBlock.id);
-        blocksMethods.dropdown.changeLoading(false, 0);
-        addChoicesOpIsOnGoing = false;
-      }, 3000);
-    }
+    blocksMethods.dropdown.changeLoading(true, dropdownBlock.id);
+    setTimeout(() => {
+      var newChoices = blocks[dropdownBlock.id].choices.concat(["4", "5"]);
+      blocksMethods.dropdown.setChoicesForBlockId(newChoices, dropdownBlock.id);
+      blocksMethods.dropdown.changeLoading(false, dropdownBlock.id);
+    }, 3000);
   };
 
   businessMethods.textInputBlockDidChange = function(textInputBlock, blocksMethods) {

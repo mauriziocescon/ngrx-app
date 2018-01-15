@@ -77,7 +77,8 @@ export class CheckBoxContainerComponent implements OnDestroy {
         },
       }
     };
-    this.store.dispatch(new checkBox.UpdateBlock(block));
+    const newBlock = {block: block.block, notify: true};
+    this.store.dispatch(new checkBox.UpdateBlock(newBlock));
   }
 
   protected askForConfirmation(): void {

@@ -20,9 +20,11 @@ export class CheckBoxEffect {
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .ofType(CheckBoxActionTypes.UPDATE_BLOCK)
-    .map((action: UpdateBlock) => action.payload.block)
-    .switchMap((block: { id: number, changes: CheckBoxBlock }) => {
-      this.checkBoxService.blockDidChange(block);
+    .map((action: UpdateBlock) => action.payload)
+    .switchMap((payload: { block: { id: number, changes: CheckBoxBlock }, notify: boolean }) => {
+      if (payload.notify) {
+        this.checkBoxService.blockDidChange(payload.block);
+      }
       return empty();
     });
 }
