@@ -6,7 +6,7 @@ import { SharedModule } from "../shared/shared.module";
 
 import { EFFECTS } from "./effects";
 import { reducers } from "./reducers";
-import { SERVICES } from "./services";
+import { SERVICES, CheckBoxService, DropdownService, TextInputService } from "./services";
 
 import { COMPONENTS, UnknownComponent } from "./components";
 import {
@@ -60,4 +60,7 @@ export class DynamicFormModule {
 
 export {
   ListContainerComponent,
+  CheckBoxService,
+  DropdownService,
+  TextInputService,
 };

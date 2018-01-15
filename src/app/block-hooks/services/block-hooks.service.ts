@@ -33,7 +33,7 @@ export class BlockHooksService {
       });
 
     // @ts-ignore
-    import("../../../rules").then((funct: any) => {
+    import("../../rules").then((funct: any) => {
       this.blockHooksMethods = funct;
     });
   }

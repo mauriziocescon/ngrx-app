@@ -19,6 +19,7 @@ import { EFFECTS } from "./effects";
 import { CoreModule } from "./core/core.module";
 import { SharedModule, CustomRouterStateSerializer } from "./shared/shared.module";
 import { DynamicFormModule } from "./dynamic-form/dynamic-form.module";
+import { BlockHooksModule } from "./block-hooks/block-hooks.module";
 
 import { AppContainerComponent } from "./app.container";
 
@@ -32,7 +33,6 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   imports: [
     BrowserModule,
-    DynamicFormModule,
     RouterModule.forRoot(appRoutes, {useHash: true}),
 
     /**
@@ -80,6 +80,8 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     CoreModule.forRoot(),
     SharedModule,
+    DynamicFormModule,
+    BlockHooksModule,
   ],
   declarations: [
     AppContainerComponent

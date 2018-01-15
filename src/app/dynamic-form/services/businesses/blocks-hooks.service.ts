@@ -10,6 +10,8 @@ import * as $ from "jquery";
 
 @Injectable()
 export class BlocksHooksService {
+  blockHooksMethods: any;
+  flag: boolean;
 
   constructor(protected checkBoxService: CheckBoxService,
               protected dropdownService: DropdownService,
@@ -23,6 +25,11 @@ export class BlocksHooksService {
       .fail((jqxhr, settings, exception) => {
         // do nothing
       });
+
+    // @ts-ignore
+    import("../../../rules").then((funct: any) => {
+      this.blockHooksMethods = funct;
+    });
   }
 
   startListener(): void {
@@ -33,8 +40,12 @@ export class BlocksHooksService {
 
   loadCheckBoxBlock(block: CheckBoxBlock): void {
     try {
-      // @ts-ignore
-      businessMethods.checkBoxBlockDidLoad(block, this.blocksMethods());
+      if (this.flag) {
+        // @ts-ignore
+        businessMethods.checkBoxBlockDidLoad(block, this.blocksMethods());
+      } else {
+        this.blockHooksMethods.checkBoxBlockDidLoad(block, this.blocksMethods());
+      }
     } catch (e) {
       console.log(e);
     }
@@ -42,8 +53,12 @@ export class BlocksHooksService {
 
   loadDropdownBlock(block: DropdownBlock): void {
     try {
-      // @ts-ignore
-      businessMethods.dropdownBlockDidLoad(block, this.blocksMethods());
+      if (this.flag) {
+        // @ts-ignore
+        businessMethods.dropdownBlockDidLoad(block, this.blocksMethods());
+      } else {
+        this.blockHooksMethods.dropdownBlockDidLoad(block, this.blocksMethods());
+      }
     } catch (e) {
       console.log(e);
     }
@@ -51,8 +66,12 @@ export class BlocksHooksService {
 
   loadTextInputBlock(block: TextInputBlock): void {
     try {
-      // @ts-ignore
-      businessMethods.textInputBlockDidLoad(block, this.blocksMethods());
+      if (this.flag) {
+        // @ts-ignore
+        businessMethods.textInputBlockDidLoad(block, this.blocksMethods());
+      } else {
+        this.blockHooksMethods.textInputBlockDidLoad(block, this.blocksMethods());
+      }
     } catch (e) {
       console.log(e);
     }
@@ -62,8 +81,12 @@ export class BlocksHooksService {
     this.checkBoxService.blockObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
-          // @ts-ignore
-          businessMethods.checkBoxBlockDidChange(block, this.blocksMethods());
+          if (this.flag) {
+            // @ts-ignore
+            businessMethods.checkBoxBlockDidChange(block, this.blocksMethods());
+          } else {
+            this.blockHooksMethods.checkBoxBlockDidChange(block, this.blocksMethods());
+          }
         } catch (e) {
           console.log(e);
         }
@@ -74,8 +97,12 @@ export class BlocksHooksService {
     this.dropdownService.blockObservable$
       .subscribe((block: DropdownBlock) => {
         try {
-          // @ts-ignore
-          businessMethods.dropdownBlockDidChange(block, this.blocksMethods());
+          if (this.flag) {
+            // @ts-ignore
+            businessMethods.dropdownBlockDidChange(block, this.blocksMethods());
+          } else {
+            this.blockHooksMethods.dropdownBlockDidChange(block, this.blocksMethods());
+          }
         } catch (e) {
           console.log(e);
         }
@@ -86,8 +113,12 @@ export class BlocksHooksService {
     this.textInputService.blockObservable$
       .subscribe((block: TextInputBlock) => {
         try {
-          // @ts-ignore
-          businessMethods.textInputBlockDidChange(block, this.blocksMethods());
+          if (this.flag) {
+            // @ts-ignore
+            businessMethods.textInputBlockDidChange(block, this.blocksMethods());
+          } else {
+            this.blockHooksMethods.textInputBlockDidChange(block, this.blocksMethods());
+          }
         } catch (e) {
           console.log(e);
         }
