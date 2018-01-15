@@ -35,22 +35,25 @@ export function reducer(state = initialState, action: TextInputActions): State {
     }
     case TextInputActionTypes.UPDATE_BLOCK: {
       const textInputBlock = state.entities[action.payload.block.id];
-      const value = action.payload.block.changes.value;
-      let valid = true;
-
       if (!textInputBlock) {
         return state;
       }
 
-      if (textInputBlock.required && (!value || !value.length)) {
+      const required = action.payload.block.changes.required || textInputBlock.required;
+      const value = action.payload.block.changes.value || textInputBlock.value;
+      const minLength = action.payload.block.changes.minLength || textInputBlock.minLength;
+      const maxLength = action.payload.block.changes.maxLength || textInputBlock.maxLength;
+      let valid = true;
+
+      if (required && (!value || !value.length)) {
         valid = false;
       }
 
-      if (textInputBlock.minLength >= 0 && value !== undefined && value.length < textInputBlock.minLength) {
+      if (minLength >= 0 && value !== undefined && value.length < minLength) {
         valid = false;
       }
 
-      if (textInputBlock.maxLength >= 0 && value !== undefined && value.length > textInputBlock.maxLength) {
+      if (maxLength >= 0 && value !== undefined && value.length > maxLength) {
         valid = false;
       }
 

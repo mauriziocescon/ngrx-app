@@ -1,6 +1,6 @@
 var businessMethods = {};
 
-(function () {
+(function() {
 
   var blocks = {};
 
@@ -20,7 +20,7 @@ var businessMethods = {};
     blocks[textInputBlock.id] = textInputBlock;
     console.log(`textInputBlockDidLoad: ${JSON.stringify(textInputBlock)}`);
 
-    // blocksMethods.textInput.setValueForBlockId("Reset initial value during TextInput load event", textInputBlock.id);
+    blocksMethods.textInput.setValueForBlockId("Reset initial value during TextInput load event", textInputBlock.id);
   };
 
   // status changed
@@ -28,9 +28,9 @@ var businessMethods = {};
   businessMethods.checkBoxBlockDidChange = function(checkBoxBlock, blocksMethods) {
     console.log(`checkBoxBlockDidChange: ${JSON.stringify(checkBoxBlock)}`);
 
-    // if (checkBoxBlock.value === true) {
-    //   blocksMethods.textInput.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, 0);
-    // }
+    if (checkBoxBlock.value === true) {
+      blocksMethods.textInput.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, 0);
+    }
   };
 
   businessMethods.dropdownBlockDidChange = function(dropdownBlock, blocksMethods) {

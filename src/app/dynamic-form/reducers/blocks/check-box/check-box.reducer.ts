@@ -35,12 +35,14 @@ export function reducer(state = initialState, action: CheckBoxActions): State {
     }
     case CheckBoxActionTypes.UPDATE_BLOCK: {
       const checkBoxBlock = state.entities[action.payload.block.id];
-      const value = action.payload.block.changes.value;
-      const valid = checkBoxBlock.required ? value : true;
-
       if (!checkBoxBlock) {
         return state;
       }
+
+      const required = action.payload.block.changes.required || checkBoxBlock.required;
+      const value = action.payload.block.changes.value || checkBoxBlock.value;
+      const valid = required ? value : true;
+
 
       const newBlock = {
         ...action.payload.block,

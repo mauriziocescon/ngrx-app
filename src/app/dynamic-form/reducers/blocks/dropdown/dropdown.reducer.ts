@@ -35,12 +35,13 @@ export function reducer(state = initialState, action: DropdownActions): State {
     }
     case DropdownActionTypes.UPDATE_BLOCK: {
       const dropdownBlock = state.entities[action.payload.block.id];
-      const value = action.payload.block.changes.value;
-      const valid = dropdownBlock.required ? !!value : true;
-
       if (!dropdownBlock) {
         return state;
       }
+
+      const required = action.payload.block.changes.required || dropdownBlock.required;
+      const value = action.payload.block.changes.value || dropdownBlock.value;
+      const valid = required ? !!value : true;
 
       const newBlock = {
         ...action.payload.block,
