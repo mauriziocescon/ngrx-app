@@ -6,7 +6,7 @@ import { Subject } from "rxjs/Subject";
 
 import * as fromDynamicForm from "../../../reducers";
 import * as textInputConfirmer from "../../actions/blocks/text-input-confirmer.actions";
-import { BlockType, TextInputConfirmerBlock /*, TextInputConfirmerMethods*/ } from "../../models";
+import { BlockType, TextInputConfirmerBlock, TextInputConfirmerMethods } from "../../models";
 
 @Injectable()
 export class TextInputConfirmerService {
