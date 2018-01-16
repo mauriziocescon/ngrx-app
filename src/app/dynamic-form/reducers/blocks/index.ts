@@ -110,7 +110,7 @@ export const getTextInputBlocksValidityState = createSelector(
 
 export const getTextInputBlocksLoadingState = createSelector(
   getTextInputState,
-  state => state.textInputBlocksLoading,
+  state => state.textInputConfirmerBlocksLoading,
 );
 
 // -----------------
