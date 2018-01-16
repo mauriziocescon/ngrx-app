@@ -34,6 +34,7 @@ export class BlockHooksService {
           // do nothing
         });
     } else {
+      // @ts-ignore
       import("../../rules/rules").then((hooks: BlocksHooks) => {
         this.blocksHooks = hooks;
       });
