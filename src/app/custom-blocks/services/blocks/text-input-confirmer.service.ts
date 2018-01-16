@@ -18,7 +18,7 @@ export class TextInputConfirmerService {
     this.blockObservable$ = this.blockSubject$.asObservable();
   }
 
-  getTextInputMethods(): any /*TextInputMethods*/ {
+  getTextInputConfirmerMethods(): TextInputConfirmerMethods {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),

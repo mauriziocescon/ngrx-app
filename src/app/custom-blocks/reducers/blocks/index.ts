@@ -43,7 +43,26 @@ export const getTextInputConfirmerBlocksValidityState = createSelector(
   }
 );
 
-export const getCheckBoxTextInputConfirmerBlocksLoadingState = createSelector(
+export const getTextInputConfirmerBlocksLoadingState = createSelector(
   getTextInputConfirmerState,
   state => state.textInputConfirmerBlocksLoading,
 );
+
+// -----------------
+// --------- generic
+export const getAllEditBlocksState = createSelector(
+  getAllTextInputConfirmer,
+  (textInputConfirmerBlocks: TextInputConfirmerBlock[]) => {
+    return [
+      ...textInputConfirmerBlocks,
+    ];
+  },
+);
+
+export const getAllEditBlocksValidityState = createSelector(
+  getTextInputConfirmerBlocksValidityState,
+  (textInputConfirmerValidity: boolean) => {
+    return textInputConfirmerValidity;
+  }
+);
+

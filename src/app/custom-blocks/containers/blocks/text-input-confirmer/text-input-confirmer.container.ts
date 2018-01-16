@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
-import * as fromDynamicForm from "../../../../reducers";
+import * as fromCustomBlocks from "../../../reducers";
 import * as textInputConfirmer from "../../../actions/blocks/text-input-confirmer.actions";
 import { BlockType, TextInputConfirmerBlock } from "../../../models";
 
@@ -26,8 +26,8 @@ export class TextInputConfirmerContainerComponent {
 
   loading$: Observable<boolean>;
 
-  constructor(protected store: Store<fromDynamicForm.State>) {
-    this.block$ = this.store.select(fromDynamicForm.getAllTextInputConfirmers)
+  constructor(protected store: Store<fromCustomBlocks.State>) {
+    this.block$ = this.store.select(fromCustomBlocks.getAllTextInputConfirmer)
       .map((blocks: TextInputConfirmerBlock[]) => {
         return blocks.find((block: TextInputConfirmerBlock) => {
           return block.id === this.blockId;
@@ -37,7 +37,7 @@ export class TextInputConfirmerContainerComponent {
         return this.textInputConfirmerBlock = block;
       });
 
-    this.loading$ = this.store.select(fromDynamicForm.getTextInputConfirmerBlocksLoadingState)
+    this.loading$ = this.store.select(fromCustomBlocks.getTextInputConfirmerBlocksLoadingState)
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
