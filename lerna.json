@@ -1,0 +1,15 @@
+{
+  "lerna": "2.4.0",
+  "packages": [
+    "modules/*"
+  ],
+  "command": {
+    "init": {
+      "exact": true
+    },
+    "publish": {
+      "allowBranch": "master"
+    }
+  },
+  "version": "0.0.0"
+}
