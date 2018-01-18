@@ -43,7 +43,7 @@ describe("NavigationBarContainerComponent", () => {
         }),
         StoreModule.forRoot({
           ...fromRoot.reducers,
-          "core": combineReducers(fromCore.reducers),
+          core: combineReducers(fromCore.reducers),
         }),
         SharedModule,
       ],

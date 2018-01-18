@@ -37,7 +37,7 @@ describe("ListComponent", () => {
         }),
         StoreModule.forRoot({
           ...fromRoot.reducers,
-          "dynamicForm": combineReducers(fromDynamicForm.reducers),
+          dynamicForm: combineReducers(fromDynamicForm.reducers),
         }),
         CoreModule.forRoot(),
         SharedModule,
