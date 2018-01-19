@@ -18,9 +18,9 @@ import { EFFECTS } from "./effects";
 
 import { CoreModule } from "./core/core.module";
 import { SharedModule, CustomRouterStateSerializer } from "./shared/shared.module";
-import { DynamicFormModule } from "./dynamic-form/dynamic-form.module";
-import { CustomBlocksModule } from "./custom-blocks/custom-blocks.module";
-import { BlockHooksModule } from "./hooks/hooks.module";
+import { DynamicFormModule } from "./base/dynamic-form/dynamic-form.module";
+import { CustomBlocksModule } from "./custom/custom-blocks/custom-blocks.module";
+import { BlockHooksModule } from "./custom/hooks/hooks.module";
 
 import { AppContainerComponent } from "./app.container";
 

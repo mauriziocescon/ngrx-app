@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 
-import { ListContainerComponent } from "./dynamic-form/dynamic-form.module";
+import { ListContainerComponent } from "./base/dynamic-form/dynamic-form.module";
 
 export const appRoutes: Routes = [
   {path: "ct-list", component: ListContainerComponent},
