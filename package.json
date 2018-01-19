@@ -96,7 +96,6 @@
     "karma-jasmine": "1.1.1",
     "karma-jasmine-html-reporter": "0.2.2",
     "karma-phantomjs-launcher": "1.0.4",
-    "lerna": "2.5.1"
     "nodemon": "1.14.11",
     "protractor": "5.2.2",
     "ts-node": "4.1.0",

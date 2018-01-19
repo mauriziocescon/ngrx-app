@@ -4,7 +4,7 @@ import {
   TextInputBlock,
 } from "../dynamic-form/models";
 
-import { BlocksMethods } from "../block-hooks/models";
+import { BlocksMethods } from "../hooks/models";
 
 const blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock } = {};
 

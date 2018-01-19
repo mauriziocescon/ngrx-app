@@ -12,7 +12,7 @@ import * as fromDynamicForm from "../../reducers";
 
 import { CoreModule } from "../../../core/core.module";
 import { SharedModule } from "../../../shared/shared.module";
-import { BlockHooksModule, BlockHooksService } from "../../../block-hooks/block-hooks.module";
+import { BlockHooksModule, BlockHooksService } from "../../../hooks/hooks.module";
 
 import {
   CheckBoxService,

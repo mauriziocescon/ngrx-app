@@ -12,7 +12,7 @@ import { DropdownContainerComponent } from "../containers/blocks/dropdown/dropdo
 import { TextInputContainerComponent } from "../containers/blocks/text-input/text-input.container";
 import { UnknownComponent } from "../components";
 
-import { BlockHooksService } from "../../block-hooks/services/block-hooks.service";
+import { BlockHooksService } from "../../hooks/services/block-hooks.service";
 
 import { environment } from "../../../environments/environment";
 
