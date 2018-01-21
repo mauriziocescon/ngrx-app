@@ -3,6 +3,8 @@ import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 
+import { NGXLogger } from "ngx-logger";
+
 import * as fromDynamicForm from "../../reducers";
 import * as list from "../../actions/list.actions";
 import { Block } from "../../models";
@@ -28,7 +30,7 @@ export class ListContainerComponent implements OnInit {
 
   formValidity$: Observable<boolean>;
 
-  constructor(protected store: Store<fromDynamicForm.State>) {
+  constructor(protected store: Store<fromDynamicForm.State>, private logger: NGXLogger) {
     this.blocks$ = this.store.select(fromDynamicForm.getBlocksListState);
     this.loading$ = this.store.select(fromDynamicForm.getLoadingListState);
     this.error$ = this.store.select(fromDynamicForm.getErrorListState);
@@ -48,13 +50,13 @@ export class ListContainerComponent implements OnInit {
     // dispatch action to synch with the server
     // this.store.dispatch(new list.FetchBlocks());
 
-    console.log(`ListContainerComponent: save`);
+    this.logger.log(`ListContainerComponent: save`);
   }
 
   reset(): void {
     // dispatch action to reset the store
     // this.store.dispatch(new list.FetchBlocks());
 
-    console.log(`ListContainerComponent: reset`);
+    this.logger.log(`ListContainerComponent: reset`);
   }
 }

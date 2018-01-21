@@ -82,9 +82,9 @@ export function createTranslateLoader(http: HttpClient) {
       },
     }),
     LoggerModule.forRoot({
-      serverLoggingUrl: "/api/logs",
+      serverLoggingUrl: environment.apiUrl + "logs",
       level: !environment.production ? NgxLoggerLevel.ERROR : NgxLoggerLevel.DEBUG,
-      serverLogLevel: NgxLoggerLevel.ERROR,
+      serverLogLevel: NgxLoggerLevel.LOG,
     }),
     CoreModule.forRoot(),
     SharedModule,
