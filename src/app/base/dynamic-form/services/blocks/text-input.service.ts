@@ -10,12 +10,18 @@ import { BlockType, TextInputBlock, TextInputMethods } from "../../models";
 
 @Injectable()
 export class TextInputService {
-  protected blockSubject$: Subject<TextInputBlock>;
-  readonly blockObservable$: Observable<TextInputBlock>;
+  protected blockLoadSubject$: Subject<TextInputBlock>;
+  readonly blockLoadObservable$: Observable<TextInputBlock>;
+
+  protected blockChangesSubject$: Subject<TextInputBlock>;
+  readonly blockChangesObservable$: Observable<TextInputBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blockSubject$ = new Subject();
-    this.blockObservable$ = this.blockSubject$.asObservable();
+    this.blockLoadSubject$ = new Subject();
+    this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
+
+    this.blockChangesSubject$ = new Subject();
+    this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
   getTextInputMethods(): TextInputMethods {
@@ -30,9 +36,13 @@ export class TextInputService {
     };
   }
 
+  blockDidload(block: TextInputBlock): void {
+    this.blockLoadSubject$.next(block);
+  }
+
   blockDidChange(block: { id: number, changes: TextInputBlock }): void {
     const newBlock: TextInputBlock = {...block.changes};
-    this.blockSubject$.next(newBlock);
+    this.blockChangesSubject$.next(newBlock);
   }
 
   changeLoading(loading: boolean, blockId: number): void {

@@ -10,6 +10,7 @@ if (fs.existsSync("./mock-server/db.json")) {
 // db creation
 const data = {
   blocks: [],
+  logs: [],
 };
 
 // do items

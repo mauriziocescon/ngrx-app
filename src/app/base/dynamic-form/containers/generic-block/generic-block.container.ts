@@ -7,7 +7,7 @@ import {
   Input
 } from "@angular/core";
 
-import { BlocksListService } from "../../services";
+import { BlockUtilsService } from "../../services";
 
 import { AddComponentDirective } from "../../../../shared/shared.module";
 
@@ -25,7 +25,7 @@ export class GenericBlockContainerComponent implements AfterViewInit {
   @ViewChild(AddComponentDirective) adComponent: AddComponentDirective;
 
   constructor(protected componentFactoryResolver: ComponentFactoryResolver,
-              protected blockList: BlocksListService) {
+              protected blockUtils: BlockUtilsService) {
   }
 
   ngAfterViewInit(): void {
@@ -33,17 +33,17 @@ export class GenericBlockContainerComponent implements AfterViewInit {
   }
 
   protected loadComponent(): void {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.getComponent(this.block));
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory<BlockComponent>(this.getComponent(this.block));
     const viewContainerRef = this.adComponent.viewContainerRef;
     viewContainerRef.clear();
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
-    (<BlockComponent>componentRef.instance).blockId = this.block.id;
-    this.blockList.componentBlockInputsIsSet(this.block);
+    componentRef.instance.blockId = this.block.id;
+    this.blockUtils.triggerComponentDidLoad(this.block);
     componentRef.changeDetectorRef.detectChanges();
   }
 
   protected getComponent(block: Block): any {
-    return this.blockList.getComponent(block);
+    return this.blockUtils.getComponentForBlock(block);
   }
 }

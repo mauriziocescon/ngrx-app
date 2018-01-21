@@ -5,14 +5,7 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 
-import { Block, BlockType, CheckBoxBlock, DropdownBlock, TextInputBlock } from "../models";
-
-import { CheckBoxContainerComponent } from "../containers/blocks/check-box/check-box.container";
-import { DropdownContainerComponent } from "../containers/blocks/dropdown/dropdown.container";
-import { TextInputContainerComponent } from "../containers/blocks/text-input/text-input.container";
-import { UnknownComponent } from "../components";
-
-import { BlockHooksService } from "../../../custom/hooks/services/block-hooks.service";
+import { Block } from "../models";
 
 import { environment } from "../../../../environments/environment";
 
@@ -20,8 +13,7 @@ import { environment } from "../../../../environments/environment";
 export class BlocksListService {
   protected BLOCKS_API_PATH = environment.apiUrl + "blocks";
 
-  constructor(protected http: HttpClient,
-              protected blocksHooks: BlockHooksService) {
+  constructor(protected http: HttpClient) {
   }
 
   getBlocks(): Observable<Block[]> {
@@ -31,45 +23,5 @@ export class BlocksListService {
         return resp.body;
       })
       .catch(err => Observable.throw(err.json().error || "Server error"));
-  }
-
-  getComponent(block: Block): any {
-    switch (block.type) {
-      case BlockType.CheckBox: {
-        return CheckBoxContainerComponent;
-      }
-      case BlockType.Dropdown: {
-        return DropdownContainerComponent;
-      }
-      case BlockType.TextInput: {
-        return TextInputContainerComponent;
-      }
-      default: {
-        return UnknownComponent;
-      }
-    }
-  }
-
-  componentBlockInputsIsSet(block: Block): void {
-    switch (block.type) {
-      case BlockType.CheckBox: {
-        const checkBoxBlock = block as CheckBoxBlock;
-        this.blocksHooks.loadCheckBoxBlock(checkBoxBlock);
-        break;
-      }
-      case BlockType.Dropdown: {
-        const dropdownBlock = block as DropdownBlock;
-        this.blocksHooks.loadDropdownBlock(dropdownBlock);
-        break;
-      }
-      case BlockType.TextInput: {
-        const textInputBlock = block as TextInputBlock;
-        this.blocksHooks.loadTextInputBlock(textInputBlock);
-        break;
-      }
-      default: {
-        break;
-      }
-    }
   }
 }

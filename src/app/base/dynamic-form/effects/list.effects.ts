@@ -22,14 +22,14 @@ import { AddBlocks as AddTextInputBlocks } from "../actions/blocks/text-input.ac
 export class ListEffects {
 
   constructor(protected update$: Actions,
-              protected blocksListService: BlocksListService) {
+              protected blocksList: BlocksListService) {
   }
 
   @Effect() fetchBlocks$: Observable<Action> = this.update$
     .ofType(ListActionTypes.FETCH_BLOCKS)
     .debounceTime(400)
     .switchMap(() => {
-      return this.blocksListService.getBlocks()
+      return this.blocksList.getBlocks()
         .mergeMap((blocks: Block[]) => {
           const checkBoxBlocks = blocks.filter((block: Block) => {
             return block.type === BlockType.CheckBox;

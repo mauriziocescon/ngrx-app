@@ -10,12 +10,18 @@ import { BlockType, DropdownBlock, DropdownMethods } from "../../models";
 
 @Injectable()
 export class DropdownService {
-  protected blockSubject$: Subject<DropdownBlock>;
-  readonly blockObservable$: Observable<DropdownBlock>;
+  protected blockLoadSubject$: Subject<DropdownBlock>;
+  readonly blockLoadObservable$: Observable<DropdownBlock>;
+
+  protected blockChangesSubject$: Subject<DropdownBlock>;
+  readonly blockChangesObservable$: Observable<DropdownBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blockSubject$ = new Subject();
-    this.blockObservable$ = this.blockSubject$.asObservable();
+    this.blockLoadSubject$ = new Subject();
+    this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
+
+    this.blockChangesSubject$ = new Subject();
+    this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
   getDropdownMethods(): DropdownMethods {
@@ -29,9 +35,13 @@ export class DropdownService {
     };
   }
 
+  blockDidload(block: DropdownBlock): void {
+    this.blockLoadSubject$.next(block);
+  }
+
   blockDidChange(block: { id: number, changes: DropdownBlock }): void {
     const newBlock: DropdownBlock = {...block.changes};
-    this.blockSubject$.next(newBlock);
+    this.blockChangesSubject$.next(newBlock);
   }
 
   changeLoading(loading: boolean, blockId: number): void {

@@ -10,12 +10,18 @@ import { BlockType, CheckBoxBlock, CheckBoxMethods } from "../../models";
 
 @Injectable()
 export class CheckBoxService {
-  protected blockSubject$: Subject<CheckBoxBlock>;
-  readonly blockObservable$: Observable<CheckBoxBlock>;
+  protected blockLoadSubject$: Subject<CheckBoxBlock>;
+  readonly blockLoadObservable$: Observable<CheckBoxBlock>;
+
+  protected blockChangesSubject$: Subject<CheckBoxBlock>;
+  readonly blockChangesObservable$: Observable<CheckBoxBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blockSubject$ = new Subject();
-    this.blockObservable$ = this.blockSubject$.asObservable();
+    this.blockLoadSubject$ = new Subject();
+    this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
+
+    this.blockChangesSubject$ = new Subject();
+    this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
   getCheckBoxMethods(): CheckBoxMethods {
@@ -29,9 +35,13 @@ export class CheckBoxService {
     };
   }
 
+  blockDidload(block: CheckBoxBlock): void {
+    this.blockLoadSubject$.next(block);
+  }
+
   blockDidChange(block: { id: number, changes: CheckBoxBlock }): void {
     const newBlock: CheckBoxBlock = {...block.changes};
-    this.blockSubject$.next(newBlock);
+    this.blockChangesSubject$.next(newBlock);
   }
 
   changeLoading(loading: boolean, blockId: number): void {

@@ -11,6 +11,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
 
 import { appRoutes } from "./app.routes";
 import { reducers, metaReducers } from "./reducers";
@@ -22,10 +23,11 @@ import { DynamicFormModule } from "./base/dynamic-form/dynamic-form.module";
 import { CustomBlocksModule } from "./custom/custom-blocks/custom-blocks.module";
 import { BlockHooksModule } from "./custom/hooks/hooks.module";
 
+import { RulesResolve } from "./rules.resolve";
+
 import { AppContainerComponent } from "./app.container";
 
 import { environment } from "../environments/environment";
-
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
@@ -79,6 +81,11 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    LoggerModule.forRoot({
+      serverLoggingUrl: "/api/logs",
+      level: !environment.production ? NgxLoggerLevel.ERROR : NgxLoggerLevel.DEBUG,
+      serverLogLevel: NgxLoggerLevel.ERROR,
+    }),
     CoreModule.forRoot(),
     SharedModule,
     DynamicFormModule,
@@ -95,6 +102,7 @@ export function createTranslateLoader(http: HttpClient) {
      * by `@ngrx/router-store` to include only the desired pieces of the snapshot.
      */
     {provide: RouterStateSerializer, useClass: CustomRouterStateSerializer},
+    RulesResolve,
   ],
   bootstrap: [
     AppContainerComponent,
