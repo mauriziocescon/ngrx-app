@@ -3,7 +3,6 @@ import { Enum } from "../../shared/utilities/enum";
 
 export class Api {
   blocks = environment.apiUrl + "blocks";
-  logs = environment.apiUrl + "logs";
 }
 
 export class Application {
