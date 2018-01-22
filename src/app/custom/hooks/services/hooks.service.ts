@@ -35,7 +35,6 @@ export class BlockHooksService {
               protected textInputService: TextInputService,
               protected checkBoxConfirmerService: CheckBoxConfirmerService) {
     this.startListener();
-    this.fetchRules();
   }
 
   fetchRules(): Observable<any> | BlocksHooks {
