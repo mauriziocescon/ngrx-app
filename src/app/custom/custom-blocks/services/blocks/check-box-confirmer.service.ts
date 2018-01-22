@@ -5,16 +5,17 @@ import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
 import * as fromDynamicForm from "../../../../reducers";
-import * as textInputConfirmer from "../../actions/blocks/text-input-confirmer.actions";
-import { CustomBlockType, TextInputConfirmerBlock, TextInputConfirmerMethods } from "../../models";
+import * as checkBoxConfirmer from "../../actions/blocks/check-box-confirmer.actions";
+import { CustomBlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerMethods } from "../../models";
+import { BlockType } from "../../../../base/dynamic-form/models";
 
 @Injectable()
-export class TextInputConfirmerService {
-  protected blockLoadSubject$: Subject<TextInputConfirmerBlock>;
-  readonly blockLoadObservable$: Observable<TextInputConfirmerBlock>;
+export class CheckBoxConfirmerService {
+  protected blockLoadSubject$: Subject<CheckBoxConfirmerBlock>;
+  readonly blockLoadObservable$: Observable<CheckBoxConfirmerBlock>;
 
-  protected blockChangesSubject$: Subject<TextInputConfirmerBlock>;
-  readonly blockChangesObservable$: Observable<TextInputConfirmerBlock>;
+  protected blockChangesSubject$: Subject<CheckBoxConfirmerBlock>;
+  readonly blockChangesObservable$: Observable<CheckBoxConfirmerBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
     this.blockLoadSubject$ = new Subject();
@@ -24,24 +25,23 @@ export class TextInputConfirmerService {
     this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
-  getTextInputConfirmerMethods(): TextInputConfirmerMethods {
+  getCheckBoxConfirmerMethods(): CheckBoxConfirmerMethods {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),
-      setValueForBlockId: (value: string, blockId: number) => this.setValueForBlockId(value, blockId),
+      setValueForBlockId: (value: boolean, blockId: number) => this.setValueForBlockId(value, blockId),
+      setDescriptionForBlockId: (description: string, blockId: number) => this.setDescriptionForBlockId(description, blockId),
       setRequiredForBlockId: (required: boolean, blockId: number) => this.setRequiredForBlockId(required, blockId),
-      setMinLengthForBlockId: (minLength: number, blockId: number) => this.setMinLengthForBlockId(minLength, blockId),
-      setMaxLengthForBlockId: (maxLength: number, blockId: number) => this.setMaxLengthForBlockId(maxLength, blockId),
       setDisabledForBlockId: (disabled: boolean, blockId: number) => this.setDisabledForBlockId(disabled, blockId),
     };
   }
 
-  blockDidload(block: TextInputConfirmerBlock): void {
+  blockDidload(block: CheckBoxConfirmerBlock): void {
     this.blockLoadSubject$.next(block);
   }
 
-  blockDidChange(block: { id: number, changes: TextInputConfirmerBlock }): void {
-    const newBlock: TextInputConfirmerBlock = {...block.changes};
+  blockDidChange(block: { id: number, changes: CheckBoxConfirmerBlock }): void {
+    const newBlock: CheckBoxConfirmerBlock = {...block.changes};
     this.blockChangesSubject$.next(newBlock);
   }
 
@@ -50,12 +50,12 @@ export class TextInputConfirmerService {
       id: blockId,
       loading: loading,
     };
-    this.store.dispatch(new textInputConfirmer.Loading(newLoading));
+    this.store.dispatch(new checkBoxConfirmer.Loading(newLoading));
   }
 
-  protected setBlock(block: { block: { id: number, changes: TextInputConfirmerBlock } }): void {
+  protected setBlock(block: { block: { id: number, changes: CheckBoxConfirmerBlock } }): void {
     const newBlock = {block: block.block, notify: false};
-    this.store.dispatch(new textInputConfirmer.UpdateBlock(newBlock));
+    this.store.dispatch(new checkBoxConfirmer.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {
@@ -64,7 +64,7 @@ export class TextInputConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: CustomBlockType.TextInputConfirmer,
+          type: CustomBlockType.CheckBoxConfirmer,
           label: label,
         },
       }
@@ -72,14 +72,28 @@ export class TextInputConfirmerService {
     this.setBlock(newBlock);
   }
 
-  setValueForBlockId(value: string, blockId: number): void {
+  setValueForBlockId(value: boolean, blockId: number): void {
     const newBlock = {
       block: {
         id: blockId,
         changes: {
           id: blockId,
-          type: CustomBlockType.TextInputConfirmer,
+          type: CustomBlockType.CheckBoxConfirmer,
           value: value,
+        },
+      }
+    };
+    this.setBlock(newBlock);
+  }
+
+  setDescriptionForBlockId(description: string, blockId: number): void {
+    const newBlock = {
+      block: {
+        id: blockId,
+        changes: {
+          id: blockId,
+          type: BlockType.CheckBox,
+          description: description,
         },
       }
     };
@@ -92,36 +106,8 @@ export class TextInputConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: CustomBlockType.TextInputConfirmer,
+          type: CustomBlockType.CheckBoxConfirmer,
           required: required,
-        },
-      }
-    };
-    this.setBlock(newBlock);
-  }
-
-  setMinLengthForBlockId(minLength: number, blockId: number): void {
-    const newBlock = {
-      block: {
-        id: blockId,
-        changes: {
-          id: blockId,
-          type: CustomBlockType.TextInputConfirmer,
-          minLength: minLength,
-        },
-      }
-    };
-    this.setBlock(newBlock);
-  }
-
-  setMaxLengthForBlockId(maxLength: number, blockId: number): void {
-    const newBlock = {
-      block: {
-        id: blockId,
-        changes: {
-          id: blockId,
-          type: CustomBlockType.TextInputConfirmer,
-          maxLength: maxLength,
         },
       }
     };
@@ -134,7 +120,7 @@ export class TextInputConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: CustomBlockType.TextInputConfirmer,
+          type: CustomBlockType.CheckBoxConfirmer,
           disabled: disabled,
         },
       }

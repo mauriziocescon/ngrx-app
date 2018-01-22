@@ -1,9 +1,9 @@
-import * as fromTextInputConfirmer from "./text-input-confirmer/text-input-confirmer.reducer";
+import * as fromCheckBoxConfirmer from "./check-box-confirmer/check-box-confirmer.reducer";
 
 export interface State {
-  textInputConfirmer: fromTextInputConfirmer.State;
+  checkBoxConfirmer: fromCheckBoxConfirmer.State;
 }
 
 export const reducers = {
-  textInputConfirmer: fromTextInputConfirmer.reducer,
+  checkBoxConfirmer: fromCheckBoxConfirmer.reducer,
 };

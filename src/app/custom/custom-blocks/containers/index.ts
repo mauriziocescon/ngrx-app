@@ -1,9 +1,9 @@
-import { TextInputConfirmerContainerComponent } from "./blocks/text-input-confirmer/text-input-confirmer.container";
+import { CheckBoxConfirmerContainerComponent } from "./blocks/check-box-confirmer/check-box-confirmer.container";
 
 export const CONTAINERS = [
-  TextInputConfirmerContainerComponent,
+  CheckBoxConfirmerContainerComponent,
 ];
 
 export {
-  TextInputConfirmerContainerComponent,
+  CheckBoxConfirmerContainerComponent,
 };

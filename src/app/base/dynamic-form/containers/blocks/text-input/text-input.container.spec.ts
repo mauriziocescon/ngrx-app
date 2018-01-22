@@ -15,7 +15,7 @@ import { SharedModule } from "../../../../../shared/shared.module";
 
 import { BlockType } from "../../../models";
 import { COMPONENTS } from "../../../components";
-import { CONTAINERS, TextInputContainerComponent } from "../../";
+import { CONTAINERS, TextInputContainerComponent } from "../../../containers";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");

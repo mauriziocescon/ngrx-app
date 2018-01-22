@@ -7,12 +7,12 @@ import {
   TextInputService,
 } from "../../../base/dynamic-form/services";
 
-import { TextInputConfirmerService } from "./blocks/text-input-confirmer.service";
+import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
 
 import { Block } from "../../../base/dynamic-form/dynamic-form.module";
-import { CustomBlockType, TextInputConfirmerBlock } from "../models";
+import { CustomBlockType, CheckBoxConfirmerBlock } from "../models";
 
-import { TextInputConfirmerContainerComponent } from "../containers/blocks/text-input-confirmer/text-input-confirmer.container";
+import { CheckBoxConfirmerContainerComponent } from "../containers/blocks/check-box-confirmer/check-box-confirmer.container";
 
 @Injectable()
 export class CustomBlockUtilsService extends BlockUtilsService {
@@ -20,7 +20,7 @@ export class CustomBlockUtilsService extends BlockUtilsService {
   constructor(protected checkBoxService: CheckBoxService,
               protected dropdownService: DropdownService,
               protected textInputService: TextInputService,
-              protected textInputConfirmerService: TextInputConfirmerService) {
+              protected checkBoxConfirmerService: CheckBoxConfirmerService) {
     super(
       checkBoxService,
       dropdownService,
@@ -30,8 +30,8 @@ export class CustomBlockUtilsService extends BlockUtilsService {
 
   getComponentForBlock(block: Block): any {
     switch (block.type) {
-      case CustomBlockType.TextInputConfirmer: {
-        return TextInputConfirmerContainerComponent;
+      case CustomBlockType.CheckBoxConfirmer: {
+        return CheckBoxConfirmerContainerComponent;
       }
       default: {
         return super.getComponentForBlock(block);
@@ -41,9 +41,9 @@ export class CustomBlockUtilsService extends BlockUtilsService {
 
   triggerComponentDidLoad(block: Block): boolean {
     switch (block.type) {
-      case CustomBlockType.TextInputConfirmer: {
-        const textInputConfirmerBlock = block as TextInputConfirmerBlock;
-        this.textInputConfirmerService.blockDidload(textInputConfirmerBlock);
+      case CustomBlockType.CheckBoxConfirmer: {
+        const checkBoxConfirmerBlock = block as CheckBoxConfirmerBlock;
+        this.checkBoxConfirmerService.blockDidload(checkBoxConfirmerBlock);
         return true;
       }
       default: {

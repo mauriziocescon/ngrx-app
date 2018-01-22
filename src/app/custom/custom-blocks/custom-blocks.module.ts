@@ -10,14 +10,14 @@ import { EFFECTS } from "./effects";
 import { reducers } from "./reducers";
 import {
   CustomBlockUtilsService,
-  TextInputConfirmerService,
+  CheckBoxConfirmerService,
   SERVICES,
 } from "./services";
 
 import { COMPONENTS } from "./components";
 import {
   CONTAINERS,
-  TextInputConfirmerContainerComponent,
+  CheckBoxConfirmerContainerComponent,
 } from "./containers";
 
 @NgModule({
@@ -49,7 +49,7 @@ import {
     ...CONTAINERS,
   ],
   entryComponents: [
-    TextInputConfirmerContainerComponent,
+    CheckBoxConfirmerContainerComponent,
   ],
   providers: [
     ...SERVICES,
@@ -61,5 +61,5 @@ export class CustomBlocksModule {
 
 export {
   CustomBlockUtilsService,
-  TextInputConfirmerService,
+  CheckBoxConfirmerService,
 };

@@ -10,33 +10,33 @@ import "rxjs/add/operator/switchMap";
 import { FetchBlocksComplete, ListActionTypes } from "../../../../base/dynamic-form/actions/list.actions";
 
 import { Block } from "../../../../base/dynamic-form/dynamic-form.module";
-import { TextInputConfirmerBlock, CustomBlockType } from "../../models";
-import { TextInputConfirmerService } from "../../services";
-import { TextInputConfirmerActionTypes, AddBlocks, UpdateBlock } from "../../actions/blocks/text-input-confirmer.actions";
+import { CheckBoxConfirmerBlock, CustomBlockType } from "../../models";
+import { CheckBoxConfirmerService } from "../../services";
+import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock } from "../../actions/blocks/check-box-confirmer.actions";
 
 @Injectable()
-export class TextInputConfirmerEffect {
+export class CheckBoxConfirmerEffects {
 
   constructor(protected actions$: Actions,
-              protected textInputConfirmerService: TextInputConfirmerService) {
+              protected checkBoxConfirmerService: CheckBoxConfirmerService) {
   }
 
   @Effect() blocksAvailable: Observable<Action> = this.actions$
     .ofType(ListActionTypes.FETCH_BLOCKS_COMPLETE)
     .map((action: FetchBlocksComplete) => action.payload)
     .map((blocks: Block[]) => {
-      const textInputBoxBlocks = blocks.filter((block: Block) => {
-        return block.type === CustomBlockType.TextInputConfirmer;
+      const checkBoxConfirmerBoxBlocks = blocks.filter((block: Block) => {
+        return block.type === CustomBlockType.CheckBoxConfirmer;
       });
-      return new AddBlocks({blocks: textInputBoxBlocks});
+      return new AddBlocks({blocks: checkBoxConfirmerBoxBlocks});
     });
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$
-    .ofType(TextInputConfirmerActionTypes.UPDATE_BLOCK)
+    .ofType(CheckBoxConfirmerActionTypes.UPDATE_BLOCK)
     .map((action: UpdateBlock) => action.payload)
-    .switchMap((payload: { block: { id: number, changes: TextInputConfirmerBlock }, notify: boolean }) => {
+    .switchMap((payload: { block: { id: number, changes: CheckBoxConfirmerBlock }, notify: boolean }) => {
       if (payload.notify) {
-        this.textInputConfirmerService.blockDidChange(payload.block);
+        this.checkBoxConfirmerService.blockDidChange(payload.block);
       }
       return empty();
     });

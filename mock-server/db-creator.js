@@ -88,40 +88,22 @@ function getTextInput(index) {
   return textInput;
 }
 
-function getTextInputConfirmer(index) {
-  const value = faker.random.boolean() ? faker.lorem.words(faker.random.number(5)) : undefined;
+function getCheckBoxConfirmer(index) {
+  const value = faker.random.boolean() ? true : undefined;
   const required = faker.random.boolean();
-  const minLength = faker.random.boolean() ? faker.random.number(5) : undefined;
-  const maxLength = faker.random.boolean() ? faker.random.number({min: 5, max: 10}) : undefined;
 
-  let textInputConfirmer = {
+  let checkBoxConfirmer = {
     id: index,
-    type: "text-input-confirmer",
-    label: "COMPONENT.TEXT_INPUT_CONFIRMER.TEXT_INPUT_CONFIRMER_LABEL",
+    type: "check-box-confirmer",
+    label: "COMPONENT.CHECK_BOX_CONFIRMER.CHECK_BOX_CONFIRMER_LABEL",
     value: value,
+    description: "COMPONENT.CHECK_BOX_CONFIRMER.CHECK_BOX_CONFIRMER_DESC",
     disabled: false,
     required: required,
-    minLength: minLength,
-    maxLength: maxLength,
-    valid: true,
+    valid: required ? !!value : true,
   };
 
-  if (required && (!value || !value.length)) {
-    textInputConfirmer.valid = false;
-    return textInputConfirmer;
-  }
-
-  if (minLength >= 0 && value !== undefined && value.length < minLength) {
-    textInputConfirmer.valid = false;
-    return textInputConfirmer;
-  }
-
-  if (maxLength >= 0 && value !== undefined && value.length > maxLength) {
-    textInputConfirmer.valid = false;
-    return textInputConfirmer;
-  }
-
-  return textInputConfirmer;
+  return checkBoxConfirmer;
 }
 
 function getUnknownComponent(index) {
@@ -147,7 +129,7 @@ function getRandomBlock(index) {
     return getTextInput(index);
   }
   else {
-    return getTextInputConfirmer(index);
+    return getCheckBoxConfirmer(index);
   }
 }
 

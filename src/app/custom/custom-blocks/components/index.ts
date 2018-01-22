@@ -1,9 +1,9 @@
-import { TextInputConfirmerComponent } from "./bloocks/text-input-confirmer/text-input-confirmer.component";
+import { CheckBoxConfirmerComponent } from "./bloocks/check-box-confirmer/check-box-confirmer.component";
 
 export const COMPONENTS = [
-  TextInputConfirmerComponent,
+  CheckBoxConfirmerComponent,
 ];
 
 export {
-  TextInputConfirmerComponent,
+  CheckBoxConfirmerComponent,
 };

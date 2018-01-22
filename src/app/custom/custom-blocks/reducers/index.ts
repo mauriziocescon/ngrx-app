@@ -1,10 +1,10 @@
 import { createSelector, createFeatureSelector, combineReducers } from "@ngrx/store";
 
-import { TextInputConfirmerBlock } from "../models";
+import { CheckBoxConfirmerBlock } from "../models";
 
 import * as fromRoot from "../../../reducers";
 import * as fromEditBlocks from "./blocks";
-import * as fromTextInputConfirmer from "./blocks/text-input-confirmer/text-input-confirmer.reducer";
+import * as fromCheckBoxConfirmer from "./blocks/check-box-confirmer/check-box-confirmer.reducer";
 
 export interface CustomBlocksState {
   editBlocks: fromEditBlocks.State;
@@ -25,30 +25,30 @@ export const getCustomBlocksState = createFeatureSelector<CustomBlocksState>("cu
 export const getEditBlocksState = createSelector(getCustomBlocksState, state => state.editBlocks);
 
 // -----------------
-// ------ text-input-confirmer
-export const getTextInputConfirmerState = createSelector(getEditBlocksState, state => state.textInputConfirmer);
+// ------ check-box-confirmer
+export const getCheckBoxConfirmerState = createSelector(getEditBlocksState, state => state.checkBoxConfirmer);
 
-export const getTextInputConfirmerIds = createSelector(getTextInputConfirmerState, fromTextInputConfirmer.getTextInputConfirmerIds);
-export const getTextInputConfirmerEntities = createSelector(getTextInputConfirmerState, fromTextInputConfirmer.getTextInputConfirmerEntities);
-export const getAllTextInputConfirmer = createSelector(getTextInputConfirmerState, fromTextInputConfirmer.getAllTextInputConfirmer);
-export const getTotalTextInputConfirmer = createSelector(getTextInputConfirmerState, fromTextInputConfirmer.getTotalTextInputConfirmer);
-export const getTextInputConfirmerBlocksValidityState = createSelector(getTextInputConfirmerState, fromTextInputConfirmer.getTextInputConfirmerBlocksValidityState);
-export const getTextInputConfirmerBlocksLoadingState = createSelector(getTextInputConfirmerState, fromTextInputConfirmer.getTextInputConfirmerBlocksLoadingState);
+export const getCheckBoxConfirmerIds = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerIds);
+export const getCheckBoxConfirmerEntities = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerEntities);
+export const getAllCheckBoxConfirmer = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getAllCheckBoxConfirmer);
+export const getTotalCheckBoxConfirmer = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getTotalCheckBoxConfirmer);
+export const getCheckBoxConfirmerBlocksValidityState = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerBlocksValidityState);
+export const getCheckBoxConfirmerBlocksLoadingState = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerBlocksLoadingState);
 
 // -----------------
 // --------- generic
 export const getAllEditBlocksState = createSelector(
-  getAllTextInputConfirmer,
-  (textInputConfirmerBlocks: TextInputConfirmerBlock[]) => {
+  getAllCheckBoxConfirmer,
+  (checkBoxConfirmerBlocks: CheckBoxConfirmerBlock[]) => {
     return [
-      ...textInputConfirmerBlocks,
+      ...checkBoxConfirmerBlocks,
     ];
   },
 );
 
 export const getAllEditBlocksValidityState = createSelector(
-  getTextInputConfirmerBlocksValidityState,
-  (textInputConfirmerValidity: boolean) => {
-    return textInputConfirmerValidity;
+  getCheckBoxConfirmerBlocksValidityState,
+  (checkBoxConfirmerValidity: boolean) => {
+    return checkBoxConfirmerValidity;
   }
 );

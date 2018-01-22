@@ -1,13 +1,13 @@
 import { CustomBlockType } from "./block-types";
 
-import { TextInputConfirmerBlock } from "./blocks-types/text-input-confirmer.model";
+import { CheckBoxConfirmerBlock } from "./blocks-types/check-box-confirmer.model";
 
-import { TextInputConfirmerMethods } from "./block-methods/text-input-confirmer-methods";
+import { CheckBoxConfirmerMethods } from "./block-methods/check-box-confirmer-methods";
 
 export {
   CustomBlockType,
 
-  TextInputConfirmerBlock,
+  CheckBoxConfirmerBlock,
 
-  TextInputConfirmerMethods,
+  CheckBoxConfirmerMethods,
 };

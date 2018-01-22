@@ -1,11 +1,10 @@
 import { Block } from "../../../../base/dynamic-form/dynamic-form.module";
 
-export interface TextInputConfirmerBlock extends Block {
+export interface CheckBoxConfirmerBlock extends Block {
   label?: string;
-  value?: string;
+  value?: boolean;
+  description?: string;
   required?: boolean;
-  minLength?: number;
-  maxLength?: number;
   disabled?: boolean;
   valid?: boolean;
 }

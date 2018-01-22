@@ -1,12 +1,12 @@
 import { CustomBlockUtilsService } from "./custom-utils.service";
-import { TextInputConfirmerService } from "./blocks/text-input-confirmer.service";
+import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
 
 export const SERVICES = [
   CustomBlockUtilsService,
-  TextInputConfirmerService,
+  CheckBoxConfirmerService,
 ];
 
 export {
   CustomBlockUtilsService,
-  TextInputConfirmerService,
+  CheckBoxConfirmerService,
 };

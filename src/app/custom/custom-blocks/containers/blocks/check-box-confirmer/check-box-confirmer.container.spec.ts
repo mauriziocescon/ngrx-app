@@ -1,23 +1,29 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
+import { StoreModule, Store, combineReducers } from "@ngrx/store";
+import * as fromRoot from "../../../../../reducers";
+import * as fromDynamicForm from "../../../../../reducers";
+
 import { CoreModule } from "../../../../../core/core.module";
 import { SharedModule } from "../../../../../shared/shared.module";
 
 import { CustomBlockType } from "../../../models";
-import { TextInputConfirmerComponent } from "./text-input-confirmer.component";
+import { COMPONENTS } from "../../../components";
+import { CONTAINERS, CheckBoxConfirmerContainerComponent } from "../../../containers";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("TextInputConfirmerComponent", () => {
-  let component: TextInputConfirmerComponent;
-  let fixture: ComponentFixture<TextInputConfirmerComponent>;
+describe("CheckBoxConfirmerComponent", () => {
+  let component: CheckBoxConfirmerContainerComponent;
+  let fixture: ComponentFixture<CheckBoxConfirmerContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -30,34 +36,36 @@ describe("TextInputConfirmerComponent", () => {
             deps: [HttpClient],
           },
         }),
+        StoreModule.forRoot({
+          ...fromRoot.reducers,
+          dynamicForm: combineReducers(fromDynamicForm.reducers),
+        }),
         CoreModule.forRoot(),
         SharedModule,
       ],
       declarations: [
-        TextInputConfirmerComponent,
+        ...COMPONENTS,
+        ...CONTAINERS,
       ],
       providers: [
         TranslateService,
       ],
     })
+      .overrideModule(BrowserDynamicTestingModule, {
+        // the usage of overrideModule comes from {@Link https://github.com/angular/angular/issues/10760}
+        set: {
+          entryComponents: [
+            ...CONTAINERS,
+          ]
+        }
+      })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextInputConfirmerComponent);
+    fixture = TestBed.createComponent(CheckBoxConfirmerContainerComponent);
     component = fixture.componentInstance;
-    component.block = {
-      id: 1,
-      type: CustomBlockType.TextInputConfirmer,
-      label: "",
-      value: "45",
-      required: true,
-      minLength: 0,
-      maxLength: 5,
-      disabled: false,
-      valid: true,
-    };
-    component.loading = false;
+    component.blockId = 1;
     fixture.detectChanges();
   });
 
