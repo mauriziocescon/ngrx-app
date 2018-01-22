@@ -1,3 +1,4 @@
+import { createSelector } from "@ngrx/store";
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 
 import { TextInputActionTypes, TextInputActions } from "../../../actions/blocks/text-input.actions";
@@ -74,3 +75,22 @@ export function reducer(state = initialState, action: TextInputActions): State {
     }
   }
 }
+
+export const {
+  selectIds: getTextInputIds,
+  selectEntities: getTextInputEntities,
+  selectAll: getAllTextInput,
+  selectTotal: getTotalTextInput,
+} = adapter.getSelectors();
+
+export const getTextInputBlocksValidityState = createSelector(
+  getTextInputIds,
+  getTextInputEntities,
+  (ids: number[], blocksEntities: { [id: string]: any }) => {
+    return ids.findIndex((id: number) => {
+      return blocksEntities[id].valid === false;
+    }) === -1;
+  }
+);
+
+export const getTextInputBlocksLoadingState = (state: State) => state.textInputBlocksLoading;

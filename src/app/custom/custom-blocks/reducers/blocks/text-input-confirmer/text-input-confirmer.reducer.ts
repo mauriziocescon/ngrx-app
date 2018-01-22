@@ -1,3 +1,4 @@
+import { createSelector } from "@ngrx/store";
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 
 import { TextInputConfirmerActionTypes, TextInputConfirmerActions } from "../../../actions/blocks/text-input-confirmer.actions";
@@ -74,3 +75,22 @@ export function reducer(state = initialState, action: TextInputConfirmerActions)
     }
   }
 }
+
+export const {
+  selectIds: getTextInputConfirmerIds,
+  selectEntities: getTextInputConfirmerEntities,
+  selectAll: getAllTextInputConfirmer,
+  selectTotal: getTotalTextInputConfirmer,
+} = adapter.getSelectors();
+
+export const getTextInputConfirmerBlocksValidityState = createSelector(
+  getTextInputConfirmerIds,
+  getTextInputConfirmerEntities,
+  (ids: number[], blocksEntities: { [id: string]: any }) => {
+    return ids.findIndex((id: number) => {
+      return blocksEntities[id].valid === false;
+    }) === -1;
+  }
+);
+
+export const getTextInputConfirmerBlocksLoadingState = (state: State) => state.textInputConfirmerBlocksLoading;

@@ -1,3 +1,4 @@
+import { createSelector } from "@ngrx/store";
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 
 import { DropdownActionTypes, DropdownActions } from "../../../actions/blocks/dropdown.actions";
@@ -60,3 +61,22 @@ export function reducer(state = initialState, action: DropdownActions): State {
     }
   }
 }
+
+export const {
+  selectIds: getDropdownIds,
+  selectEntities: getDropdownEntities,
+  selectAll: getAllDropdown,
+  selectTotal: getTotalDropdown,
+} = adapter.getSelectors();
+
+export const getDropdownBlocksValidityState = createSelector(
+  getDropdownIds,
+  getDropdownEntities,
+  (ids: number[], blocksEntities: { [id: string]: any }) => {
+    return ids.findIndex((id: number) => {
+      return blocksEntities[id].valid === false;
+    }) === -1;
+  }
+);
+
+export const getDropdownBlocksLoadingState = (state: State) => state.dropdownBlocksLoading;

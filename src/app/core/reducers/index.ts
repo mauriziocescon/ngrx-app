@@ -18,20 +18,9 @@ export const reducers = {
 
 export const getCoreState = createFeatureSelector<CoreState>("core");
 
-export const getLanguageState = createSelector(
-  getCoreState,
-  state => state.language.selectedLanguage,
-);
-
-export const getModalAlertsState = createSelector(
-  getCoreState,
-  state => state.modalAlerts,
-);
-
-export const getModalConfirmersState = createSelector(
-  getCoreState,
-  state => state.modalConfirmers,
-);
+export const getLanguageState = createSelector(getCoreState, state => state.language.selectedLanguage);
+export const getModalAlertsState = createSelector(getCoreState, state => state.modalAlerts);
+export const getModalConfirmersState = createSelector(getCoreState, state => state.modalConfirmers);
 
 export const {
   selectIds: getModalAlertsIds,
