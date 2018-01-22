@@ -6,6 +6,7 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
 import { StoreModule, Store, combineReducers } from "@ngrx/store";
 import * as fromRoot from "./reducers";
@@ -32,6 +33,11 @@ describe("AppContainerComponent", () => {
             deps: [HttpClient],
           },
         }),
+        LoggerModule.forRoot({
+          serverLoggingUrl: "",
+          level: NgxLoggerLevel.OFF,
+          serverLogLevel: NgxLoggerLevel.OFF,
+        }),
         StoreModule.forRoot({
           ...fromRoot.reducers,
         }),
@@ -39,10 +45,11 @@ describe("AppContainerComponent", () => {
         SharedModule,
       ],
       declarations: [
-        AppContainerComponent
+        AppContainerComponent,
       ],
       providers: [
         {provide: APP_BASE_HREF, useValue: "/"},
+        NGXLogger,
       ],
     }).compileComponents();
   }));

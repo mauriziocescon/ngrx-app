@@ -4,9 +4,10 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
-import { CoreModule } from "../../../../core/core.module";
-import { SharedModule } from "../../../../shared/shared.module";
+import { CoreModule } from "../../../../../core/core.module";
+import { SharedModule } from "../../../../../shared/shared.module";
 
 import { BlockType } from "../../../models";
 import { DropdownComponent } from "./dropdown.component";
@@ -30,6 +31,11 @@ describe("DropdownComponent", () => {
             deps: [HttpClient],
           },
         }),
+        LoggerModule.forRoot({
+          serverLoggingUrl: "",
+          level: NgxLoggerLevel.OFF,
+          serverLogLevel: NgxLoggerLevel.OFF,
+        }),
         CoreModule.forRoot(),
         SharedModule,
       ],
@@ -38,6 +44,7 @@ describe("DropdownComponent", () => {
       ],
       providers: [
         TranslateService,
+        NGXLogger,
       ],
     })
       .compileComponents();
