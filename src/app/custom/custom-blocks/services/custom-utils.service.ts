@@ -47,7 +47,7 @@ export class CustomBlockUtilsService extends BlockUtilsService {
         return true;
       }
       default: {
-        super.getComponentForBlock(block);
+        super.triggerComponentDidLoad(block);
       }
     }
   }

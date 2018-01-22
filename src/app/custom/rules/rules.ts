@@ -12,12 +12,12 @@ const blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock } =
 
 export const checkBoxBlockDidLoad = (checkBoxBlock: CheckBoxBlock, blocksMethods: BlocksMethods) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
-  console.log(`loadCheckBoxBlock: ${JSON.stringify(checkBoxBlock)}`);
+  console.log(`checkBoxBlockDidLoad: ${JSON.stringify(checkBoxBlock)}`);
 };
 
 export const dropdownBlockDidLoad = (dropdownBlock: DropdownBlock, blocksMethods: BlocksMethods) => {
   blocks[dropdownBlock.id] = dropdownBlock;
-  console.log(`loadDropdownBlock: ${JSON.stringify(dropdownBlock)}`);
+  console.log(`dropdownBlockDidLoad: ${JSON.stringify(dropdownBlock)}`);
 };
 
 export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blocksMethods: BlocksMethods) => {
@@ -29,7 +29,7 @@ export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blocksMeth
 
 export const checkBoxConfirmerBlockDidLoad = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blocksMethods: BlocksMethods) => {
   blocks[checkBoxConfirmerBlock.id] = checkBoxConfirmerBlock;
-  console.log(`loadCheckBoxBlock: ${JSON.stringify(checkBoxConfirmerBlock)}`);
+  console.log(`checkBoxConfirmerBlockDidLoad: ${JSON.stringify(checkBoxConfirmerBlock)}`);
 };
 
 // status changed
@@ -59,5 +59,5 @@ export const textInputBlockDidChange = (textInputBlock: TextInputBlock, blocksMe
 };
 
 export const checkBoxConfirmerBlockDidChange = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blocksMethods: BlocksMethods) => {
-  console.log(`checkBoxBlockDidChange: ${JSON.stringify(checkBoxConfirmerBlock)}`);
+  console.log(`checkBoxConfirmerBlockDidChange: ${JSON.stringify(checkBoxConfirmerBlock)}`);
 };
