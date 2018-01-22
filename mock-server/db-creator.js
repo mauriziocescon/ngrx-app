@@ -88,6 +88,42 @@ function getTextInput(index) {
   return textInput;
 }
 
+function getTextInputConfirmer(index) {
+  const value = faker.random.boolean() ? faker.lorem.words(faker.random.number(5)) : undefined;
+  const required = faker.random.boolean();
+  const minLength = faker.random.boolean() ? faker.random.number(5) : undefined;
+  const maxLength = faker.random.boolean() ? faker.random.number({min: 5, max: 10}) : undefined;
+
+  let textInputConfirmer = {
+    id: index,
+    type: "text-input-confirmer",
+    label: "COMPONENT.TEXT_INPUT_CONFIRMER.TEXT_INPUT_CONFIRMER_LABEL",
+    value: value,
+    disabled: false,
+    required: required,
+    minLength: minLength,
+    maxLength: maxLength,
+    valid: true,
+  };
+
+  if (required && (!value || !value.length)) {
+    textInputConfirmer.valid = false;
+    return textInputConfirmer;
+  }
+
+  if (minLength >= 0 && value !== undefined && value.length < minLength) {
+    textInputConfirmer.valid = false;
+    return textInputConfirmer;
+  }
+
+  if (maxLength >= 0 && value !== undefined && value.length > maxLength) {
+    textInputConfirmer.valid = false;
+    return textInputConfirmer;
+  }
+
+  return textInputConfirmer;
+}
+
 function getUnknownComponent(index) {
   return {
     id: index,
@@ -101,14 +137,17 @@ function getRandomBlock(index) {
   if (choice < 0.05) {
     return getUnknownComponent(index);
   }
-  else if (choice < 0.33) {
+  else if (choice < 0.25) {
     return getCheckBox(index);
   }
-  else if (choice < 0.66) {
+  else if (choice < 0.50) {
     return getDropdown(index);
   }
-  else {
+  else if (choice < 0.75) {
     return getTextInput(index);
+  }
+  else {
+    return getTextInputConfirmer(index);
   }
 }
 

@@ -7,9 +7,11 @@ import { empty } from "rxjs/observable/empty";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 
+import { ListActionTypes, FetchBlocksComplete } from "../../actions/list.actions";
+
+import { Block, BlockType, CheckBoxBlock } from "../../models";
 import { CheckBoxService } from "../../services";
-import { CheckBoxActionTypes, UpdateBlock } from "../../actions/blocks/check-box.actions";
-import { CheckBoxBlock } from "../../models";
+import { CheckBoxActionTypes, AddBlocks, UpdateBlock } from "../../actions/blocks/check-box.actions";
 
 @Injectable()
 export class CheckBoxEffect {
@@ -17,6 +19,16 @@ export class CheckBoxEffect {
   constructor(protected actions$: Actions,
               protected checkBoxService: CheckBoxService) {
   }
+
+  @Effect() blocksAvailable: Observable<Action> = this.actions$
+    .ofType(ListActionTypes.FETCH_BLOCKS_COMPLETE)
+    .map((action: FetchBlocksComplete) => action.payload)
+    .map((blocks: Block[]) => {
+      const checkBoxBlocks = blocks.filter((block: Block) => {
+        return block.type === BlockType.CheckBox;
+      });
+      return new AddBlocks({blocks: checkBoxBlocks});
+    });
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .ofType(CheckBoxActionTypes.UPDATE_BLOCK)

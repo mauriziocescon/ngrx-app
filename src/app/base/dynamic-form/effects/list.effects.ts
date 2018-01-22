@@ -13,10 +13,7 @@ import "rxjs/add/operator/switchMap";
 import { BlocksListService } from "../services";
 import { ListActionTypes, FetchBlocksComplete, FetchBlocksError } from "../actions/list.actions";
 
-import { Block, BlockType } from "../models";
-import { AddBlocks as AddCheckBoxBlocks } from "../actions/blocks/check-box.actions";
-import { AddBlocks as AddDropdownBlocks } from "../actions/blocks/dropdown.actions";
-import { AddBlocks as AddTextInputBlocks } from "../actions/blocks/text-input.actions";
+import { Block } from "../models";
 
 @Injectable()
 export class ListEffects {
@@ -31,20 +28,8 @@ export class ListEffects {
     .switchMap(() => {
       return this.blocksList.getBlocks()
         .mergeMap((blocks: Block[]) => {
-          const checkBoxBlocks = blocks.filter((block: Block) => {
-            return block.type === BlockType.CheckBox;
-          });
-          const dropdownBoxBlocks = blocks.filter((block: Block) => {
-            return block.type === BlockType.Dropdown;
-          });
-          const textInputBoxBlocks = blocks.filter((block: Block) => {
-            return block.type === BlockType.TextInput;
-          });
           return [
             new FetchBlocksComplete(blocks),
-            new AddCheckBoxBlocks({blocks: checkBoxBlocks}),
-            new AddDropdownBlocks({blocks: dropdownBoxBlocks}),
-            new AddTextInputBlocks({blocks: textInputBoxBlocks}),
           ];
         })
         .catch(err => of(new FetchBlocksError(err)));
