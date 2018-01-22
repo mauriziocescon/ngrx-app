@@ -14,13 +14,13 @@
       "RETRY": "Riprova",
       "VALIDATE": "Valida"
     },
-    "DROPDOWN": {
-      "DROPDOWN_LABEL": "Seleziona la posizione che preferisci",
-      "LOADING": "Caricamento..."
-    },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "Ho visionato tutti i documenti",
       "CHECK_BOX_LABEL": "Contratto",
+      "LOADING": "Caricamento..."
+    },
+    "DROPDOWN": {
+      "DROPDOWN_LABEL": "Seleziona la posizione che preferisci",
       "LOADING": "Caricamento..."
     },
     "TEXT_INPUT": {
@@ -33,10 +33,24 @@
     },
     "UNKNOWN": {
       "ALERT_MSG": "Componente sconosciuto"
+    },
+    "CHECK_BOX_CONFIRMER": {
+      "CHECK_BOX_CONFIRMER_DESC": "Ho visionato tutti i documenti",
+      "CHECK_BOX_CONFIRMER_LABEL": "Contratto",
+      "LOADING": "Caricamento..."
     }
   },
   "CONTAINER": {
     "CHECK_BOX": {
+      "ALERT_BUTTON": "Ok",
+      "ALERT_MESSAGE": "Fatto",
+      "ALERT_TITLE": "Alert",
+      "CONFIRMATION_MESSAGE": "Sei sicuro?",
+      "CONFIRMATION_NO_BUTTON": "No",
+      "CONFIRMATION_TITLE": "Conferma",
+      "CONFIRMATION_YES_BUTTON": "Si"
+    },
+    "CHECK_BOX_CONFIRMER": {
       "ALERT_BUTTON": "Ok",
       "ALERT_MESSAGE": "Fatto",
       "ALERT_TITLE": "Alert",
