@@ -59,6 +59,8 @@ import {
 export class CustomBlocksModule {
 }
 
+export * from "./models";
+
 export {
   CustomBlockUtilsService,
   CheckBoxConfirmerService,

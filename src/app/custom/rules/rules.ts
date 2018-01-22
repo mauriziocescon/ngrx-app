@@ -4,6 +4,8 @@ import {
   TextInputBlock,
 } from "../../base/dynamic-form/dynamic-form.module";
 
+import { CheckBoxConfirmerBlock } from "../custom-blocks/models";
+
 import { BlocksMethods } from "../hooks/models";
 
 const blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock } = {};
@@ -23,6 +25,11 @@ export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blocksMeth
   console.log(`textInputBlockDidLoad: ${JSON.stringify(textInputBlock)}`);
 
   blocksMethods.textInput.setValueForBlockId("Reset initial value during TextInput load event", textInputBlock.id);
+};
+
+export const checkBoxConfirmerBlockDidLoad = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blocksMethods: BlocksMethods) => {
+  blocks[checkBoxConfirmerBlock.id] = checkBoxConfirmerBlock;
+  console.log(`loadCheckBoxBlock: ${JSON.stringify(checkBoxConfirmerBlock)}`);
 };
 
 // status changed
@@ -49,4 +56,8 @@ export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blocksMetho
 
 export const textInputBlockDidChange = (textInputBlock: TextInputBlock, blocksMethods: BlocksMethods) => {
   console.log(`textInputBlockDidChange: ${JSON.stringify(textInputBlock)}`);
+};
+
+export const checkBoxConfirmerBlockDidChange = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blocksMethods: BlocksMethods) => {
+  console.log(`checkBoxBlockDidChange: ${JSON.stringify(checkBoxConfirmerBlock)}`);
 };

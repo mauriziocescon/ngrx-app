@@ -8,12 +8,12 @@ var businessMethods = {};
 
   businessMethods.checkBoxBlockDidLoad = function(checkBoxBlock, blocksMethods) {
     blocks[checkBoxBlock.id] = checkBoxBlock;
-    console.log(`loadCheckBoxBlock: ${JSON.stringify(checkBoxBlock)}`);
+    console.log(`checkBoxBlockDidLoad: ${JSON.stringify(checkBoxBlock)}`);
   };
 
   businessMethods.dropdownBlockDidLoad = function(dropdownBlock, blocksMethods) {
     blocks[dropdownBlock.id] = dropdownBlock;
-    console.log(`loadDropdownBlock: ${JSON.stringify(dropdownBlock)}`);
+    console.log(`dropdownBlockDidLoad: ${JSON.stringify(dropdownBlock)}`);
   };
 
   businessMethods.textInputBlockDidLoad = function(textInputBlock, blocksMethods) {
@@ -23,8 +23,12 @@ var businessMethods = {};
     blocksMethods.textInput.setValueForBlockId("Reset initial value during TextInput load event", textInputBlock.id);
   };
 
-  // status changed
+  businessMethods.checkBoxConfirmerBlockDidLoad = function(checkBoxConfirmerBlock, blocksMethods) {
+    blocks[checkBoxConfirmerBlock.id] = checkBoxConfirmerBlock;
+    console.log(`checkBoxConfirmerBlockDidLoad: ${JSON.stringify(checkBoxConfirmerBlock)}`);
+  };
 
+  // status changed
   businessMethods.checkBoxBlockDidChange = function(checkBoxBlock, blocksMethods) {
     console.log(`checkBoxBlockDidChange: ${JSON.stringify(checkBoxBlock)}`);
 
@@ -48,6 +52,10 @@ var businessMethods = {};
 
   businessMethods.textInputBlockDidChange = function(textInputBlock, blocksMethods) {
     console.log(`textInputBlockDidChange: ${JSON.stringify(textInputBlock)}`);
+  };
+
+  businessMethods.checkBoxConfirmerBlockDidChange = function(checkBoxConfirmerBlock, blocksMethods) {
+    console.log(`checkBoxConfirmerBlockDidChange: ${JSON.stringify(checkBoxConfirmerBlock)}`);
   };
 
 })();
