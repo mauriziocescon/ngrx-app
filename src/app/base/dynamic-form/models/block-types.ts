@@ -1,5 +1,5 @@
-export enum BlockType {
-  CheckBox = "check-box",
-  Dropdown = "dropdown",
-  TextInput = "text-input",
+export class BlockType {
+  static CheckBox = "check-box";
+  static Dropdown = "dropdown";
+  static TextInput = "text-input";
 }

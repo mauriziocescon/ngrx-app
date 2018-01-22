@@ -1,4 +1,4 @@
-import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../../base/dynamic-form/models";
+import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../../base/dynamic-form/dynamic-form.module";
 
 export interface BlocksHooks {
   checkBoxBlockDidLoad: (checkBoxBlock: CheckBoxBlock, blocksMethods: any) => void;

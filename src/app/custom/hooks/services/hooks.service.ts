@@ -14,7 +14,7 @@ import {
   CheckBoxBlock,
   DropdownBlock,
   TextInputBlock,
-} from "../../../base/dynamic-form/models";
+} from "../../../base/dynamic-form/dynamic-form.module";
 
 import { BlocksHooks, BlocksMethods } from "../models";
 import { BlockRulesService } from "./rules.service";

@@ -1,4 +1,4 @@
-import { Block } from "../block.model";
+import { Block } from "../../../../base/dynamic-form/dynamic-form.module";
 
 export interface TextInputConfirmerBlock extends Block {
   label?: string;

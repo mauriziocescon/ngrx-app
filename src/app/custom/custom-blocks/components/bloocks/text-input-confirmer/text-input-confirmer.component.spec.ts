@@ -8,7 +8,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { CoreModule } from "../../../../../core/core.module";
 import { SharedModule } from "../../../../../shared/shared.module";
 
-import { BlockType } from "../../../models";
+import { CustomBlockType } from "../../../models";
 import { TextInputConfirmerComponent } from "./text-input-confirmer.component";
 
 export function createTranslateLoader(http: HttpClient) {
@@ -48,7 +48,7 @@ describe("TextInputConfirmerComponent", () => {
     component = fixture.componentInstance;
     component.block = {
       id: 1,
-      type: BlockType.TextInputConfirmer,
+      type: CustomBlockType.TextInputConfirmer,
       label: "",
       value: "45",
       required: true,

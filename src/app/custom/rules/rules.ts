@@ -2,7 +2,7 @@ import {
   CheckBoxBlock,
   DropdownBlock,
   TextInputBlock,
-} from "../../base/dynamic-form/models";
+} from "../../base/dynamic-form/dynamic-form.module";
 
 import { BlocksMethods } from "../hooks/models";
 

@@ -1,4 +1,4 @@
-import { CheckBoxMethods, DropdownMethods, TextInputMethods } from "../../../base/dynamic-form/models";
+import { CheckBoxMethods, DropdownMethods, TextInputMethods } from "../../../base/dynamic-form/dynamic-form.module";
 
 export interface BlocksMethods {
   checkBox: CheckBoxMethods;

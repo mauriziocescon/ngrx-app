@@ -13,10 +13,10 @@ import { UnknownComponent } from "../components";
 
 @Injectable()
 export class BlockUtilsService {
+
   constructor(protected checkBoxService: CheckBoxService,
               protected dropdownService: DropdownService,
               protected textInputService: TextInputService) {
-
   }
 
   getComponentForBlock(block: Block): any {

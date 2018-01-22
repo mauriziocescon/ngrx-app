@@ -13,7 +13,7 @@ import * as fromDynamicForm from "../../../../../reducers";
 import { CoreModule } from "../../../../../core/core.module";
 import { SharedModule } from "../../../../../shared/shared.module";
 
-import { BlockType } from "../../../models";
+import { CustomBlockType } from "../../../models";
 import { COMPONENTS } from "../../../components";
 import { CONTAINERS, TextInputConfirmerContainerComponent } from "../../";
 

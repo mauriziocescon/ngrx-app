@@ -6,7 +6,7 @@ import "rxjs/add/operator/map";
 
 import * as fromCustomBlocks from "../../../reducers";
 import * as textInputConfirmer from "../../../actions/blocks/text-input-confirmer.actions";
-import { BlockType, TextInputConfirmerBlock } from "../../../models";
+import { CustomBlockType, TextInputConfirmerBlock } from "../../../models";
 
 @Component({
   selector: "ct-text-input-confirmer",
@@ -53,7 +53,7 @@ export class TextInputConfirmerContainerComponent {
         id: this.blockId,
         changes: {
           id: this.blockId,
-          type: BlockType.TextInputConfirmer,
+          type: CustomBlockType.TextInputConfirmer,
           label: this.textInputConfirmerBlock.label,
           value: value,
           required: this.textInputConfirmerBlock.required,

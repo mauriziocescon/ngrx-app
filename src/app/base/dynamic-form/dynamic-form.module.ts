@@ -58,6 +58,8 @@ import {
 export class DynamicFormModule {
 }
 
+export * from "./models";
+
 export {
   ListContainerComponent,
   CheckBoxService,

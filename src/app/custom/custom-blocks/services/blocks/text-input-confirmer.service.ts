@@ -6,16 +6,22 @@ import { Subject } from "rxjs/Subject";
 
 import * as fromDynamicForm from "../../../../reducers";
 import * as textInputConfirmer from "../../actions/blocks/text-input-confirmer.actions";
-import { BlockType, TextInputConfirmerBlock, TextInputConfirmerMethods } from "../../models";
+import { CustomBlockType, TextInputConfirmerBlock, TextInputConfirmerMethods } from "../../models";
 
 @Injectable()
 export class TextInputConfirmerService {
-  protected blockSubject$: Subject<TextInputConfirmerBlock>;
-  readonly blockObservable$: Observable<TextInputConfirmerBlock>;
+  protected blockLoadSubject$: Subject<TextInputConfirmerBlock>;
+  readonly blockLoadObservable$: Observable<TextInputConfirmerBlock>;
+
+  protected blockChangesSubject$: Subject<TextInputConfirmerBlock>;
+  readonly blockChangesObservable$: Observable<TextInputConfirmerBlock>;
 
   constructor(protected store: Store<fromDynamicForm.State>) {
-    this.blockSubject$ = new Subject();
-    this.blockObservable$ = this.blockSubject$.asObservable();
+    this.blockLoadSubject$ = new Subject();
+    this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
+
+    this.blockChangesSubject$ = new Subject();
+    this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
   getTextInputConfirmerMethods(): TextInputConfirmerMethods {
@@ -30,9 +36,13 @@ export class TextInputConfirmerService {
     };
   }
 
+  blockDidload(block: TextInputConfirmerBlock): void {
+    this.blockLoadSubject$.next(block);
+  }
+
   blockDidChange(block: { id: number, changes: TextInputConfirmerBlock }): void {
     const newBlock: TextInputConfirmerBlock = {...block.changes};
-    this.blockSubject$.next(newBlock);
+    this.blockChangesSubject$.next(newBlock);
   }
 
   changeLoading(loading: boolean, blockId: number): void {
@@ -54,7 +64,7 @@ export class TextInputConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.TextInputConfirmer,
+          type: CustomBlockType.TextInputConfirmer,
           label: label,
         },
       }
@@ -68,7 +78,7 @@ export class TextInputConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.TextInputConfirmer,
+          type: CustomBlockType.TextInputConfirmer,
           value: value,
         },
       }
@@ -82,7 +92,7 @@ export class TextInputConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.TextInputConfirmer,
+          type: CustomBlockType.TextInputConfirmer,
           required: required,
         },
       }
@@ -96,7 +106,7 @@ export class TextInputConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.TextInputConfirmer,
+          type: CustomBlockType.TextInputConfirmer,
           minLength: minLength,
         },
       }
@@ -110,7 +120,7 @@ export class TextInputConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.TextInputConfirmer,
+          type: CustomBlockType.TextInputConfirmer,
           maxLength: maxLength,
         },
       }
@@ -124,7 +134,7 @@ export class TextInputConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.TextInputConfirmer,
+          type: CustomBlockType.TextInputConfirmer,
           disabled: disabled,
         },
       }
