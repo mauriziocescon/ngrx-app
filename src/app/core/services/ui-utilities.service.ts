@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Action } from "@ngrx/store";
 
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { NGXLogger } from "ngx-logger";
 
 import { ModalAlertComponent } from "../components/modal-alert/modal-alert.component";
 import { ModalConfirmerComponent } from "../components/modal-confirmer/modal-confirmer.component";
@@ -17,7 +18,8 @@ import { ModalAlert, ModalConfirmer } from "../models";
 @Injectable()
 export class UIUtilitiesService {
 
-  constructor(protected modalService: NgbModal) {
+  constructor(protected modalService: NgbModal,
+              protected logger: NGXLogger) {
   }
 
   modalAlert(modalAlert: ModalAlert): Promise<Action> {
@@ -27,10 +29,10 @@ export class UIUtilitiesService {
     modalRef.componentInstance.buttonLabel = modalAlert.buttonLabel;
 
     return modalRef.result.then((result) => {
-      console.log(`Closed with: ${result}`);
+      this.logger.log(`Closed with: ${result}`);
       return new DismissModalAlert({id: modalAlert.id});
     }, (reason) => {
-      console.log(`Dismissed ${this.getDismissReason(reason)}`);
+      this.logger.log(`Dismissed ${this.getDismissReason(reason)}`);
       return new DismissModalAlert({id: modalAlert.id});
     });
   }
@@ -43,14 +45,14 @@ export class UIUtilitiesService {
     modalRef.componentInstance.noButtonLabel = modalConfirmer.noButtonLabel;
 
     return modalRef.result.then((result) => {
-      console.log(`Closed with: ${result}`);
+      this.logger.log(`Closed with: ${result}`);
       if (result) {
         return new DismissModalConfirmerWithPositiveResult({id: modalConfirmer.id});
       } else {
         return new DismissModalConfirmerWithNegativeResult({id: modalConfirmer.id});
       }
     }, (reason) => {
-      console.log(`Dismissed ${this.getDismissReason(reason)}`);
+      this.logger.log(`Dismissed ${this.getDismissReason(reason)}`);
       return new DismissModalConfirmer({id: modalConfirmer.id});
     });
   }

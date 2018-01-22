@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms"
 import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/operator/debounceTime";
 
+import { NGXLogger } from "ngx-logger";
+
 import { DropdownBlock } from "../../../models";
 
 @Component({
@@ -21,7 +23,8 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
 
   protected dropdownControlSubscription: Subscription;
 
-  constructor(protected formBuilder: FormBuilder) {
+  constructor(protected formBuilder: FormBuilder,
+              protected logger: NGXLogger) {
     this.valueDidChange = new EventEmitter<string>();
   }
 
@@ -67,7 +70,7 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
           this.valueDidChange.emit(value);
         },
         (err: any) => {
-          console.log(JSON.stringify(err));
+          this.logger.error(JSON.stringify(err));
         });
   }
 

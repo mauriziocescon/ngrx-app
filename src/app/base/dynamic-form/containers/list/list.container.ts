@@ -30,7 +30,8 @@ export class ListContainerComponent implements OnInit {
 
   formValidity$: Observable<boolean>;
 
-  constructor(protected store: Store<fromDynamicForm.State>, private logger: NGXLogger) {
+  constructor(protected store: Store<fromDynamicForm.State>,
+              protected logger: NGXLogger) {
     this.blocks$ = this.store.select(fromDynamicForm.getBlocksListState);
     this.loading$ = this.store.select(fromDynamicForm.getLoadingListState);
     this.error$ = this.store.select(fromDynamicForm.getErrorListState);

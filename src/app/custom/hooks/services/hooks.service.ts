@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
 
+import { NGXLogger } from "ngx-logger";
+
 import {
   CheckBoxService,
   DropdownService,
@@ -23,7 +25,8 @@ import { environment } from "../../../../environments/environment";
 export class BlockHooksService {
   blocksHooks: BlocksHooks;
 
-  constructor(protected blockRules: BlockRulesService,
+  constructor(protected logger: NGXLogger,
+              protected blockRules: BlockRulesService,
               protected checkBoxService: CheckBoxService,
               protected dropdownService: DropdownService,
               protected textInputService: TextInputService) {
@@ -65,7 +68,7 @@ export class BlockHooksService {
             this.blocksHooks.checkBoxBlockDidLoad(block, this.blocksMethods());
           }
         } catch (e) {
-          console.log(e);
+          this.logger.error(e);
         }
       });
   }
@@ -81,7 +84,7 @@ export class BlockHooksService {
             this.blocksHooks.dropdownBlockDidLoad(block, this.blocksMethods());
           }
         } catch (e) {
-          console.log(e);
+          this.logger.error(e);
         }
       });
   }
@@ -97,7 +100,7 @@ export class BlockHooksService {
             this.blocksHooks.textInputBlockDidLoad(block, this.blocksMethods());
           }
         } catch (e) {
-          console.log(e);
+          this.logger.error(e);
         }
       });
   }
@@ -113,7 +116,7 @@ export class BlockHooksService {
             this.blocksHooks.checkBoxBlockDidChange(block, this.blocksMethods());
           }
         } catch (e) {
-          console.log(e);
+          this.logger.error(e);
         }
       });
   }
@@ -129,7 +132,7 @@ export class BlockHooksService {
             this.blocksHooks.dropdownBlockDidChange(block, this.blocksMethods());
           }
         } catch (e) {
-          console.log(e);
+          this.logger.error(e);
         }
       });
   }
@@ -145,7 +148,7 @@ export class BlockHooksService {
             this.blocksHooks.textInputBlockDidChange(block, this.blocksMethods());
           }
         } catch (e) {
-          console.log(e);
+          this.logger.error(e);
         }
       });
   }

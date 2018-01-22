@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromPromise";
 
+import { NGXLogger } from "ngx-logger";
+
 import { environment } from "../../../../environments/environment";
 
 import * as $ from "jquery";
@@ -10,7 +12,7 @@ import * as $ from "jquery";
 @Injectable()
 export class BlockRulesService {
 
-  constructor() {
+  constructor(protected logger: NGXLogger) {
   }
 
   getRules(): Observable<any> {
@@ -24,10 +26,10 @@ export class BlockRulesService {
     return Observable.fromPromise(
       $.getScript(environment.rulesUrl + "rules.js")
         .done(() => {
-          console.log(`Rules downloaded from ${environment.rulesUrl}rules.js`);
+          this.logger.log(`Rules downloaded from ${environment.rulesUrl}rules.js`);
         })
         .fail((jqxhr, settings, exception) => {
-          console.log(`Error downloading rules`);
+          this.logger.log(`Error downloading rules`);
         }));
   }
 }
