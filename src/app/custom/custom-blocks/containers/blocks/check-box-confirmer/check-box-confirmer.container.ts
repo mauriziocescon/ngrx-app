@@ -18,7 +18,7 @@ import * as modalConfirmersActions from "../../../../../core/actions/modal-confi
 import { ModalAlert, ModalConfirmer, ModalConfirmerResultType } from "../../../../../core/models";
 
 @Component({
-  selector: "ct-check-box",
+  selector: "ct-check-box-confirmer",
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-check-box-confirmer
