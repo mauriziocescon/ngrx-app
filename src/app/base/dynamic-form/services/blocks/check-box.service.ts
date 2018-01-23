@@ -32,6 +32,7 @@ export class CheckBoxService {
       setDescriptionForBlockId: (description: string, blockId: number) => this.setDescriptionForBlockId(description, blockId),
       setRequiredForBlockId: (required: boolean, blockId: number) => this.setRequiredForBlockId(required, blockId),
       setDisabledForBlockId: (disabled: boolean, blockId: number) => this.setDisabledForBlockId(disabled, blockId),
+      setValidityForBlockId: (valid: boolean, blockId: number) => this.setValidityForBlockId(valid, blockId),
     };
   }
 
@@ -121,6 +122,20 @@ export class CheckBoxService {
           id: blockId,
           type: BlockType.CheckBox,
           disabled: disabled,
+        },
+      }
+    };
+    this.setBlock(newBlock);
+  }
+
+  setValidityForBlockId(valid: boolean, blockId: number): void {
+    const newBlock = {
+      block: {
+        id: blockId,
+        changes: {
+          id: blockId,
+          type: BlockType.CheckBox,
+          valid: valid,
         },
       }
     };

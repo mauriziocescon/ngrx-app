@@ -39,35 +39,8 @@ export function reducer(state = initialState, action: TextInputActions): State {
       if (!textInputBlock) {
         return state;
       }
-
-      const required = action.payload.block.changes.required || textInputBlock.required;
-      const value = action.payload.block.changes.value || textInputBlock.value;
-      const minLength = action.payload.block.changes.minLength || textInputBlock.minLength;
-      const maxLength = action.payload.block.changes.maxLength || textInputBlock.maxLength;
-      let valid = true;
-
-      if (required && (!value || !value.length)) {
-        valid = false;
-      }
-
-      if (minLength >= 0 && value !== undefined && value.length < minLength) {
-        valid = false;
-      }
-
-      if (maxLength >= 0 && value !== undefined && value.length > maxLength) {
-        valid = false;
-      }
-
-      const newBlock = {
-        ...action.payload.block,
-        changes: {
-          ...action.payload.block.changes,
-          valid: valid,
-        },
-      };
-
       return {
-        ...adapter.updateOne(newBlock, state),
+        ...adapter.updateOne(action.payload.block, state),
       };
     }
     default: {

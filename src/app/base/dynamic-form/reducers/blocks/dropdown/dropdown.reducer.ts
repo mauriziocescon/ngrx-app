@@ -39,21 +39,8 @@ export function reducer(state = initialState, action: DropdownActions): State {
       if (!dropdownBlock) {
         return state;
       }
-
-      const required = action.payload.block.changes.required || dropdownBlock.required;
-      const value = action.payload.block.changes.value || dropdownBlock.value;
-      const valid = required ? !!value : true;
-
-      const newBlock = {
-        ...action.payload.block,
-        changes: {
-          ...action.payload.block.changes,
-          valid: valid,
-        },
-      };
-
       return {
-        ...adapter.updateOne(newBlock, state),
+        ...adapter.updateOne(action.payload.block, state),
       };
     }
     default: {

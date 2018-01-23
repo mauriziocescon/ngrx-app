@@ -39,22 +39,8 @@ export function reducer(state = initialState, action: CheckBoxConfirmerActions):
       if (!checkBoxConfirmerBlock) {
         return state;
       }
-
-      const required = action.payload.block.changes.required || checkBoxConfirmerBlock.required;
-      const value = action.payload.block.changes.value || checkBoxConfirmerBlock.value;
-      const valid = required ? value : true;
-
-
-      const newBlock = {
-        ...action.payload.block,
-        changes: {
-          ...action.payload.block.changes,
-          valid: valid,
-        },
-      };
-
       return {
-        ...adapter.updateOne(newBlock, state),
+        ...adapter.updateOne(action.payload.block, state),
       };
     }
     default: {

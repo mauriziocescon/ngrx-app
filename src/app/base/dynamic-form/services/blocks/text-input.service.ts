@@ -33,6 +33,7 @@ export class TextInputService {
       setMinLengthForBlockId: (minLength: number, blockId: number) => this.setMinLengthForBlockId(minLength, blockId),
       setMaxLengthForBlockId: (maxLength: number, blockId: number) => this.setMaxLengthForBlockId(maxLength, blockId),
       setDisabledForBlockId: (disabled: boolean, blockId: number) => this.setDisabledForBlockId(disabled, blockId),
+      setValidityForBlockId: (valid: boolean, blockId: number) => this.setValidityForBlockId(valid, blockId),
     };
   }
 
@@ -136,6 +137,20 @@ export class TextInputService {
           id: blockId,
           type: BlockType.TextInput,
           disabled: disabled,
+        },
+      }
+    };
+    this.setBlock(newBlock);
+  }
+
+  setValidityForBlockId(valid: boolean, blockId: number): void {
+    const newBlock = {
+      block: {
+        id: blockId,
+        changes: {
+          id: blockId,
+          type: BlockType.CheckBox,
+          valid: valid,
         },
       }
     };

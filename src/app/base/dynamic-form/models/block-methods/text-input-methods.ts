@@ -6,4 +6,5 @@ export interface TextInputMethods {
   setMinLengthForBlockId: (minLength: number, blockId: number) => void;
   setMaxLengthForBlockId: (maxLength: number, blockId: number) => void;
   setDisabledForBlockId: (disabled: boolean, blockId: number) => void;
+  setValidityForBlockId: (valid: boolean, blockId: number) => void;
 }
