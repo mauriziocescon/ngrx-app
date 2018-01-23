@@ -60,6 +60,9 @@ export class TextInputContainerComponent {
           minLength: this.textInputBlock.minLength,
           maxLength: this.textInputBlock.maxLength,
           disabled: this.textInputBlock.disabled,
+          hooks: {
+            ...this.textInputBlock.hooks,
+          },
         },
       },
       notify: true,

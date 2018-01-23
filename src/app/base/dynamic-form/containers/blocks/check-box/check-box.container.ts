@@ -41,7 +41,7 @@ export class CheckBoxContainerComponent {
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
-    }
+  }
 
   valueDidChange(value: boolean): void {
     this.dispatchValueDidChangeAction(value);
@@ -59,6 +59,9 @@ export class CheckBoxContainerComponent {
           description: this.checkBoxBlock.description,
           required: this.checkBoxBlock.required,
           disabled: this.checkBoxBlock.disabled,
+          hooks: {
+            ...this.checkBoxBlock.hooks,
+          },
         },
       },
       notify: true,

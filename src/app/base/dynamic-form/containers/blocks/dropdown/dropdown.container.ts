@@ -59,6 +59,9 @@ export class DropdownContainerComponent {
           choices: [...this.dropdownBlock.choices],
           required: this.dropdownBlock.required,
           disabled: this.dropdownBlock.disabled,
+          hooks: {
+            ...this.dropdownBlock.hooks,
+          },
         },
       },
       notify: true,

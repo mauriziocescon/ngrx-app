@@ -41,7 +41,7 @@ export class DropdownService {
   }
 
   blockDidChange(block: { id: number, changes: DropdownBlock }): void {
-    const newBlock: DropdownBlock = {...block.changes};
+    const newBlock: DropdownBlock = {...block.changes, hooks: {...block.changes.hooks}};
     this.blockChangesSubject$.next(newBlock);
   }
 

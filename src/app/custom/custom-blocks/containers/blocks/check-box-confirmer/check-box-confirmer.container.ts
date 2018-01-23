@@ -78,6 +78,9 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
           description: this.checkBoxConfirmerBlock.description,
           required: this.checkBoxConfirmerBlock.required,
           disabled: this.checkBoxConfirmerBlock.disabled,
+          hooks: {
+            ...this.checkBoxConfirmerBlock.hooks,
+          },
         },
       },
       notify: true,

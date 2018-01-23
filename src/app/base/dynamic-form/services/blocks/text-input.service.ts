@@ -42,7 +42,7 @@ export class TextInputService {
   }
 
   blockDidChange(block: { id: number, changes: TextInputBlock }): void {
-    const newBlock: TextInputBlock = {...block.changes};
+    const newBlock: TextInputBlock = {...block.changes, hooks: {...block.changes.hooks}};
     this.blockChangesSubject$.next(newBlock);
   }
 

@@ -42,7 +42,7 @@ export class CheckBoxConfirmerService {
   }
 
   blockDidChange(block: { id: number, changes: CheckBoxConfirmerBlock }): void {
-    const newBlock: CheckBoxConfirmerBlock = {...block.changes};
+    const newBlock: CheckBoxConfirmerBlock = {...block.changes, hooks: {...block.changes.hooks}};
     this.blockChangesSubject$.next(newBlock);
   }
 

@@ -41,7 +41,7 @@ export class CheckBoxService {
   }
 
   blockDidChange(block: { id: number, changes: CheckBoxBlock }): void {
-    const newBlock: CheckBoxBlock = {...block.changes};
+    const newBlock: CheckBoxBlock = {...block.changes, hooks: {...block.changes.hooks}};
     this.blockChangesSubject$.next(newBlock);
   }
 
