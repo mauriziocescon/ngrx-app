@@ -42,9 +42,9 @@ export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blocksMetho
   blocks[checkBoxBlock.id] = checkBoxBlock;
   blocksMethods.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
 
-  const textInputBlockIndex = utilities.arrayOfTextInputBlocksFromBlocksObject(blocks)[0];
+  const textInputBlockIndex = utilities.arrayOfTextInputBlocksFromBlocksObject(blocks)[0].id;
   if (checkBoxBlock.value === true && textInputBlockIndex) {
-    blocksMethods.textInput.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, 0);
+    blocksMethods.textInput.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, textInputBlockIndex);
   }
 };
 
@@ -70,8 +70,10 @@ export const checkBoxConfirmerBlockDidChange = (checkBoxConfirmerBlock: CheckBox
   blocksMethods.checkBoxConfirmer.setValidityForBlockId(validators.checkBoxConfirmerBlockValidator(checkBoxConfirmerBlock), checkBoxConfirmerBlock.id);
 };
 
-export const ciao = (checkBoxBlock: CheckBoxBlock, blocksMethods: BlocksMethods) => {
+export const customCheckBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blocksMethods: BlocksMethods) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
+  blocksMethods.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
+
   if (checkBoxBlock.value === true) {
     alert("Hello world!");
   }

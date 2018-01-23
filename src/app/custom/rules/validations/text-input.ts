@@ -11,8 +11,5 @@ export const isValid = (textInputBlock: TextInputBlock) => {
   if (textInputBlock.maxLength >= 0 && textInputBlock.value !== undefined && textInputBlock.value.length > textInputBlock.maxLength) {
     return false;
   }
-  if (textInputBlock.value === "ciao") {
-    return false;
-  }
   return true;
 };
