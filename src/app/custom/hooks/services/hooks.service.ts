@@ -54,13 +54,11 @@ export class BlockHooksService {
     this.listenToLoadCheckBoxBlock();
     this.listenToLoadDropdownBlock();
     this.listenToLoadTextInputBlock();
-
-    this.listenToLoadCheckBoxConfirmerBlock();
-
     this.listenToCheckBoxBlockChanges();
     this.listenToDropdownBlockChanges();
     this.listenToTextInputBlockChanges();
 
+    this.listenToLoadCheckBoxConfirmerBlock();
     this.listenToCheckBoxConfirmerBlockChanges();
   }
 
@@ -70,9 +68,9 @@ export class BlockHooksService {
         try {
           if (environment.evaluateScriptsFromServer) {
             // @ts-ignore
-            businessMethods.checkBoxBlockDidLoad(block, this.blocksMethods());
+            businessMethods[block.hooks.checkBoxBlockDidLoad](block, this.blocksMethods());
           } else {
-            this.blocksHooks.checkBoxBlockDidLoad(block, this.blocksMethods());
+            this.blocksHooks[block.hooks.checkBoxBlockDidLoad](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -86,9 +84,9 @@ export class BlockHooksService {
         try {
           if (environment.evaluateScriptsFromServer) {
             // @ts-ignore
-            businessMethods.dropdownBlockDidLoad(block, this.blocksMethods());
+            businessMethods[block.hooks.dropdownBlockDidLoad](block, this.blocksMethods());
           } else {
-            this.blocksHooks.dropdownBlockDidLoad(block, this.blocksMethods());
+            this.blocksHooks[block.hooks.dropdownBlockDidLoad](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -102,25 +100,9 @@ export class BlockHooksService {
         try {
           if (environment.evaluateScriptsFromServer) {
             // @ts-ignore
-            businessMethods.textInputBlockDidLoad(block, this.blocksMethods());
+            businessMethods[block.hooks.textInputBlockDidLoad](block, this.blocksMethods());
           } else {
-            this.blocksHooks.textInputBlockDidLoad(block, this.blocksMethods());
-          }
-        } catch (e) {
-          this.logger.error(e);
-        }
-      });
-  }
-
-  listenToLoadCheckBoxConfirmerBlock(): void {
-    this.checkBoxConfirmerService.blockLoadObservable$
-      .subscribe((block: CheckBoxConfirmerBlock) => {
-        try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods.checkBoxBlockCofirmerDidLoad(block, this.blocksMethods());
-          } else {
-            this.blocksHooks.checkBoxConfirmerBlockDidLoad(block, this.blocksMethods());
+            this.blocksHooks[block.hooks.textInputBlockDidLoad](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -134,9 +116,9 @@ export class BlockHooksService {
         try {
           if (environment.evaluateScriptsFromServer) {
             // @ts-ignore
-            businessMethods.checkBoxBlockDidChange(block, this.blocksMethods());
+            businessMethods[block.hooks.checkBoxBlockDidChange](block, this.blocksMethods());
           } else {
-            this.blocksHooks.checkBoxBlockDidChange(block, this.blocksMethods());
+            this.blocksHooks[block.hooks.checkBoxBlockDidChange](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -150,9 +132,9 @@ export class BlockHooksService {
         try {
           if (environment.evaluateScriptsFromServer) {
             // @ts-ignore
-            businessMethods.dropdownBlockDidChange(block, this.blocksMethods());
+            businessMethods[block.hooks.dropdownBlockDidChange](block, this.blocksMethods());
           } else {
-            this.blocksHooks.dropdownBlockDidChange(block, this.blocksMethods());
+            this.blocksHooks[block.hooks.dropdownBlockDidChange](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -166,9 +148,25 @@ export class BlockHooksService {
         try {
           if (environment.evaluateScriptsFromServer) {
             // @ts-ignore
-            businessMethods.textInputBlockDidChange(block, this.blocksMethods());
+            businessMethods[block.hooks.textInputBlockDidChange](block, this.blocksMethods());
           } else {
-            this.blocksHooks.textInputBlockDidChange(block, this.blocksMethods());
+            this.blocksHooks[block.hooks.textInputBlockDidChange](block, this.blocksMethods());
+          }
+        } catch (e) {
+          this.logger.error(e);
+        }
+      });
+  }
+
+  listenToLoadCheckBoxConfirmerBlock(): void {
+    this.checkBoxConfirmerService.blockLoadObservable$
+      .subscribe((block: CheckBoxConfirmerBlock) => {
+        try {
+          if (environment.evaluateScriptsFromServer) {
+            // @ts-ignore
+            businessMethods[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
+          } else {
+            this.blocksHooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -182,9 +180,9 @@ export class BlockHooksService {
         try {
           if (environment.evaluateScriptsFromServer) {
             // @ts-ignore
-            businessMethods.checkBoxConfirmerBlockDidChange(block, this.blocksMethods());
+            businessMethods[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
           } else {
-            this.blocksHooks.checkBoxConfirmerBlockDidChange(block, this.blocksMethods());
+            this.blocksHooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);

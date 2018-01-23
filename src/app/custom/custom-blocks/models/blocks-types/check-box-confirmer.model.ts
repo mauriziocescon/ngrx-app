@@ -11,6 +11,6 @@ export interface CheckBoxConfirmerBlock extends Block {
 }
 
 interface CheckBoxConfirmerBlockHooks {
-  checkBoxBlockDidLoad: string;
-  checkBoxBlockDidChange: string;
+  checkBoxConfirmerBlockDidLoad: string;
+  checkBoxConfirmerBlockDidChange: string;
 }
