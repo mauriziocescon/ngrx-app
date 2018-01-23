@@ -24,7 +24,7 @@ export class BlockRulesService {
 
   getRulesFromScript(): Observable<any> {
     return Observable.fromPromise(
-      $.getScript(environment.rulesUrl + "rules.js")
+      $.getScript(environment.rulesUrl + "rules1.js")
         .done(() => {
           this.logger.log(`Rules downloaded from ${environment.rulesUrl}rules.js`);
         })
