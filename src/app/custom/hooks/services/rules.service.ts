@@ -18,7 +18,7 @@ export class BlockRulesService {
   getRules(): Observable<any> {
     return Observable.fromPromise(
       // @ts-ignore
-      import("../../rules/rules")
+      import("../../rules/rules1")
     );
   }
 
