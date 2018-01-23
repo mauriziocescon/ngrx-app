@@ -29,6 +29,10 @@ function getCheckBox(index) {
     disabled: false,
     required: required,
     valid: required ? !!value : true,
+    hookNames: {
+      checkBoxBlockDidLoad: "checkBoxBlockDidLoad",
+      checkBoxBlockDidChange: "checkBoxBlockDidChange",
+    },
   };
 
   return checkBox;
@@ -47,6 +51,10 @@ function getDropdown(index) {
     disabled: false,
     required: required,
     valid: required ? !!value : true,
+    hookNames: {
+      dropdownBlockDidLoad: "dropdownBlockDidLoad",
+      dropdownBlockDidChange: "dropdownBlockDidChange",
+    },
   };
 
   return dropdown;
@@ -68,6 +76,10 @@ function getTextInput(index) {
     minLength: minLength,
     maxLength: maxLength,
     valid: true,
+    hookNames: {
+      textInputBlockDidLoad: "textInputBlockDidLoad",
+      textInputBlockDidChange: "textInputBlockDidChange",
+    },
   };
 
   if (required && (!value || !value.length)) {
@@ -101,6 +113,10 @@ function getCheckBoxConfirmer(index) {
     disabled: false,
     required: required,
     valid: required ? !!value : true,
+    hookNames: {
+      checkBoxConfirmerBlockDidLoad: "checkBoxConfirmerBlockDidLoad",
+      checkBoxConfirmerBlockDidChange: "checkBoxConfirmerBlockDidChange",
+    },
   };
 
   return checkBoxConfirmer;

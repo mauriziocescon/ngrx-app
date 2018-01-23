@@ -7,4 +7,10 @@ export interface DropdownBlock extends Block {
   required?: boolean;
   disabled?: boolean;
   valid?: boolean;
+  hooks?: DropdownBlockHooks;
+}
+
+interface DropdownBlockHooks {
+  dropdownBlockDidLoad: string;
+  dropdownBlockDidChange: string;
 }

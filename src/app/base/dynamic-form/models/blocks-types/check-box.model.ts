@@ -7,4 +7,10 @@ export interface CheckBoxBlock extends Block {
   required?: boolean;
   disabled?: boolean;
   valid?: boolean;
+  hooks?: CheckBoxBlockHooks;
+}
+
+interface CheckBoxBlockHooks {
+  checkBoxBlockDidLoad: string;
+  checkBoxBlockDidChange: string;
 }

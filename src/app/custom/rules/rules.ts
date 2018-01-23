@@ -8,56 +8,47 @@ import { CheckBoxConfirmerBlock } from "../custom-blocks/models";
 
 import { BlocksMethods } from "../hooks/models";
 
-const blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock } = {};
-
+// blocks loaded
+// --------------
 export const checkBoxBlockDidLoad = (checkBoxBlock: CheckBoxBlock, blocksMethods: BlocksMethods) => {
-  blocks[checkBoxBlock.id] = checkBoxBlock;
-  console.log(`checkBoxBlockDidLoad: ${JSON.stringify(checkBoxBlock)}`);
+  // do nothing
 };
 
 export const dropdownBlockDidLoad = (dropdownBlock: DropdownBlock, blocksMethods: BlocksMethods) => {
-  blocks[dropdownBlock.id] = dropdownBlock;
-  console.log(`dropdownBlockDidLoad: ${JSON.stringify(dropdownBlock)}`);
+  // do nothing
 };
 
 export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blocksMethods: BlocksMethods) => {
-  blocks[textInputBlock.id] = textInputBlock;
-  console.log(`textInputBlockDidLoad: ${JSON.stringify(textInputBlock)}`);
-
   blocksMethods.textInput.setValueForBlockId("Reset initial value during TextInput load event", textInputBlock.id);
 };
 
 export const checkBoxConfirmerBlockDidLoad = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blocksMethods: BlocksMethods) => {
-  blocks[checkBoxConfirmerBlock.id] = checkBoxConfirmerBlock;
-  console.log(`checkBoxConfirmerBlockDidLoad: ${JSON.stringify(checkBoxConfirmerBlock)}`);
+  // do nothing
 };
 
-// status changed
+// blocks changed
+// --------------
 export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blocksMethods: BlocksMethods) => {
-  console.log(`checkBoxBlockDidChange: ${JSON.stringify(checkBoxBlock)}`);
-
   if (checkBoxBlock.value === true) {
     blocksMethods.textInput.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, 0);
   }
 };
 
 export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blocksMethods: BlocksMethods) => {
-  console.log(`dropdownBlockDidChange: ${JSON.stringify(dropdownBlock)}`);
-
   blocksMethods.textInput.setValueForBlockId(`When dropdown changes, reset to ${new Date().getTime()}`, 0);
 
   blocksMethods.dropdown.changeLoading(true, dropdownBlock.id);
   setTimeout(() => {
-    const newChoices = (blocks[dropdownBlock.id] as DropdownBlock).choices.concat(["4", "5"]);
+    const newChoices = dropdownBlock.choices.concat(["4", "5"]);
     blocksMethods.dropdown.setChoicesForBlockId(newChoices, dropdownBlock.id);
     blocksMethods.dropdown.changeLoading(false, dropdownBlock.id);
   }, 3000);
 };
 
 export const textInputBlockDidChange = (textInputBlock: TextInputBlock, blocksMethods: BlocksMethods) => {
-  console.log(`textInputBlockDidChange: ${JSON.stringify(textInputBlock)}`);
+  // do nothing
 };
 
 export const checkBoxConfirmerBlockDidChange = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blocksMethods: BlocksMethods) => {
-  console.log(`checkBoxConfirmerBlockDidChange: ${JSON.stringify(checkBoxConfirmerBlock)}`);
+  // do nothing
 };
