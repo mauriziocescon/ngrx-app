@@ -7,11 +7,11 @@ import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-transla
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
 import { StoreModule, Store, combineReducers } from "@ngrx/store";
-import * as fromRoot from "../../../../../reducers";
+import * as fromRoot from "../../../../reducers";
 import * as fromDynamicForm from "../../../reducers";
 
-import { CoreModule } from "../../../../../core/core.module";
-import { SharedModule } from "../../../../../shared/shared.module";
+import { CoreModule } from "../../../../core/core.module";
+import { SharedModule } from "../../../../shared/shared.module";
 
 import { BlockType } from "../../../models";
 import { COMPONENTS } from "../../../components";

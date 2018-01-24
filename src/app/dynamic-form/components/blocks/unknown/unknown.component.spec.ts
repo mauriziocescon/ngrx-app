@@ -5,8 +5,8 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
-import { CoreModule } from "../../../../../core/core.module";
-import { SharedModule } from "../../../../../shared/shared.module";
+import { CoreModule } from "../../../../core/core.module";
+import { SharedModule } from "../../../../shared/shared.module";
 
 import { GenericBlockContainerComponent } from "../../../containers";
 import { UnknownComponent } from "./unknown.component";

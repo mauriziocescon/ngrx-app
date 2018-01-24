@@ -1,5 +1,6 @@
+import { Enum } from "../../shared/shared.module";
+
 import { environment } from "../../../environments/environment";
-import { Enum } from "../../shared/utilities/enum";
 
 export class Api {
   blocks = environment.apiUrl + "blocks";

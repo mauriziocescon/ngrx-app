@@ -3,8 +3,11 @@ import {
   DropdownBlock,
   TextInputBlock,
 } from "../dynamic-form/dynamic-form.module";
-import { CheckBoxConfirmerBlock } from "../custom-blocks/models";
-import { CustomBlocksMethods } from "../custom-blocks/models";
+
+import {
+  CustomBlocksMethods,
+  CheckBoxConfirmerBlock,
+} from "../custom-blocks/custom-blocks.module";
 
 import * as utilities from "./utils/utilities";
 import * as validators from "./validations"

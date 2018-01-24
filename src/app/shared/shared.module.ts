@@ -12,7 +12,7 @@ import { BlockValidationDirective } from "./directives/validation.directive";
 
 import { Enum } from "./utilities/enum";
 import { KeyValue } from "./utilities/keyvalue";
-import { CustomRouterStateSerializer } from "./utilities/route-util";
+import { RouterStateUrl, CustomRouterStateSerializer } from "./utilities/route-util";
 
 @NgModule({
   imports: [
@@ -47,5 +47,6 @@ export {
   BlockValidationDirective,
   Enum,
   KeyValue,
+  RouterStateUrl,
   CustomRouterStateSerializer,
 };

@@ -7,8 +7,11 @@ import { empty } from "rxjs/observable/empty";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 
-import { FetchBlocksComplete, ListActionTypes } from "../../../dynamic-form/actions/list.actions";
-import { Block } from "../../../dynamic-form/dynamic-form.module";
+import {
+  Block,
+  FetchBlocksComplete,
+  ListActionTypes,
+} from "../../../dynamic-form/dynamic-form.module";
 
 import { CheckBoxConfirmerBlock, CustomBlockType } from "../../models";
 import { CheckBoxConfirmerService } from "../../services";

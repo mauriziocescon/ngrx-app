@@ -4,7 +4,7 @@ import * as fromRouter from "@ngrx/router-store";
 
 import * as fromCore from "../core/reducers";
 
-import { RouterStateUrl } from "../shared/utilities/route-util";
+import { RouterStateUrl } from "../shared/shared.module";
 
 import { environment } from "../../environments/environment";
 
