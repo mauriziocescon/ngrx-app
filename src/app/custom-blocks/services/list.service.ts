@@ -6,14 +6,21 @@ import { Observable } from "rxjs/Observable";
 
 import { AppConstantsService } from "../../core/core.module";
 
+import { BlockListService } from "../../dynamic-form/dynamic-form.module";
+
 import * as fromCustomBlocks from "../reducers";
 
 @Injectable()
-export class CustomBlockListService {
+export class CustomBlockListService extends BlockListService {
 
   constructor(protected http: HttpClient,
-              protected store: Store<fromCustomBlocks.State>,
+              protected store: Store<any>,
               protected appConstants: AppConstantsService) {
+    super(
+      http,
+      store,
+      appConstants,
+    );
   }
 
   getValiditySelector(): Observable<boolean> {
