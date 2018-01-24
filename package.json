@@ -16,7 +16,7 @@
     "json-server-watch": "nodemon ./mock-server/server.js",
     "ng": "ng",
     "serve": "ng serve --open | npm run json-server",
-    "build": "ng build --environment=prod",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
