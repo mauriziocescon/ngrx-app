@@ -4,7 +4,13 @@ import { TextInputService } from "./blocks/text-input.service";
 import { DropdownService } from "./blocks/dropdown.service";
 import { CheckBoxService } from "./blocks/check-box.service";
 
-import { Block, BlockType, CheckBoxBlock, DropdownBlock, TextInputBlock } from "../models";
+import {
+  Block,
+  BlockType,
+  CheckBoxBlock,
+  DropdownBlock,
+  TextInputBlock,
+} from "../models";
 
 import { CheckBoxContainerComponent } from "../containers/blocks/check-box/check-box.container";
 import { DropdownContainerComponent } from "../containers/blocks/dropdown/dropdown.container";
