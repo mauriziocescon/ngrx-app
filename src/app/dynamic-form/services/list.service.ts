@@ -16,7 +16,7 @@ import * as fromDynamicForm from "../reducers";
 export class BlockListService {
 
   constructor(protected http: HttpClient,
-              protected store: Store<fromDynamicForm.State>,
+              protected store: Store<any>,
               protected appConstants: AppConstantsService) {
   }
 
