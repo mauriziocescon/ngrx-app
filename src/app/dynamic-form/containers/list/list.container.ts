@@ -19,7 +19,7 @@ import { Block } from "../../models";
       [error]="error$ | async"
       (reloadList)="reloadList()"
       [formValidity]="formValidity$ | async"
-      (validate)="save()"
+      (nextStep)="nextStep()"
       (reset)="reset()">
     </cp-list>`,
 })
@@ -47,7 +47,7 @@ export class ListContainerComponent implements OnInit {
     this.store.dispatch(new list.FetchBlocks());
   }
 
-  save(): void {
+  nextStep(): void {
     // dispatch action to synch with the server
     // this.store.dispatch(new list.FetchBlocks());
 

@@ -10,9 +10,9 @@
       "INPUT_TEXT_PLACEHOLDER": "Inserisci testo",
       "LOAD_COMPLETED": "Caricamento completato",
       "LOADING": "Caricamento...",
+      "NEXT_STEP": "Procedi",
       "NO_RESULT": "Vuoto",
-      "RETRY": "Riprova",
-      "VALIDATE": "Valida"
+      "RETRY": "Riprova"
     },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "Ho visionato tutti i documenti",

@@ -10,9 +10,9 @@
       "INPUT_TEXT_PLACEHOLDER": "Text eingeben",
       "LOAD_COMPLETED": "Ladevorgang abgeschlossen",
       "LOADING": "Daten werden geladen",
+      "NEXT_STEP": "*** Next step ***",
       "NO_RESULT": "Leer",
-      "RETRY": "Erneut versuchen",
-      "VALIDATE": "*** Validate ***"
+      "RETRY": "Erneut versuchen"
     },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "*** I have checked all documents ***",

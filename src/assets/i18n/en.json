@@ -10,9 +10,9 @@
       "INPUT_TEXT_PLACEHOLDER": "Type some text",
       "LOAD_COMPLETED": "Loading completed",
       "LOADING": "Loading...",
+      "NEXT_STEP": "Next step",
       "NO_RESULT": "Empty",
-      "RETRY": "Retry",
-      "VALIDATE": "Validate"
+      "RETRY": "Retry"
     },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "I have checked all documents",

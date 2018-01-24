@@ -14,7 +14,7 @@ export class ListComponent {
   @Output() reloadList: EventEmitter<void>;
 
   @Input() formValidity: boolean;
-  @Output() validate: EventEmitter<void>;
+  @Output() nextStep: EventEmitter<void>;
   @Output() reset: EventEmitter<void>;
 
   list: any[];
@@ -22,7 +22,7 @@ export class ListComponent {
   constructor() {
     this.loading = false;
     this.reloadList = new EventEmitter();
-    this.validate = new EventEmitter();
+    this.nextStep = new EventEmitter();
     this.reset = new EventEmitter();
   }
 
@@ -54,8 +54,8 @@ export class ListComponent {
     this.reloadList.emit();
   }
 
-  validateForm(): void {
-    this.validate.emit();
+  moveToNextStep(): void {
+    this.nextStep.emit();
   }
 
   resetForm(): void {
