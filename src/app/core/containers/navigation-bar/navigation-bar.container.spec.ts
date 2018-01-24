@@ -7,6 +7,7 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
 import { StoreModule, Store, combineReducers } from "@ngrx/store";
 import * as fromRoot from "../../../reducers";
@@ -41,6 +42,11 @@ describe("NavigationBarContainerComponent", () => {
             deps: [HttpClient],
           },
         }),
+        LoggerModule.forRoot({
+          serverLoggingUrl: "",
+          level: NgxLoggerLevel.OFF,
+          serverLogLevel: NgxLoggerLevel.OFF,
+        }),
         StoreModule.forRoot({
           ...fromRoot.reducers,
           core: combineReducers(fromCore.reducers),
@@ -54,6 +60,7 @@ describe("NavigationBarContainerComponent", () => {
       providers: [
         {provide: APP_BASE_HREF, useValue: "/"},
         TranslateService,
+        NGXLogger,
         AppConstantsService,
         AppLanguageService,
         LocalStorageService,

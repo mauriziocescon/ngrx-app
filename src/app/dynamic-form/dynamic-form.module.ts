@@ -66,7 +66,10 @@ import {
 export class DynamicFormModule {
 }
 
-export { FetchBlocksComplete, ListActionTypes } from "./actions/list.actions";
+export {
+  FetchBlocksComplete,
+  ListActionTypes,
+} from "./actions/list.actions";
 
 export * from "./models";
 
