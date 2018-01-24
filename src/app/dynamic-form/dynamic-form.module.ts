@@ -5,10 +5,12 @@ import { EffectsModule } from "@ngrx/effects";
 import { SharedModule } from "../shared/shared.module";
 
 import { EFFECTS } from "./effects";
+import * as fromDynamicForm from "./reducers";
 import { reducers } from "./reducers";
 import {
   SERVICES,
   BlockHooksService,
+  BlockListService,
   BlockRulesService,
   BlockUtilsService,
   CheckBoxService,
@@ -71,10 +73,13 @@ export {
   ListActionTypes,
 } from "./actions/list.actions";
 
+export { fromDynamicForm };
+
 export * from "./models";
 
 export {
   ListContainerComponent,
+  BlockListService,
   BlockHooksService,
   BlockRulesService,
   BlockUtilsService,

@@ -7,13 +7,16 @@ import "rxjs/add/operator/map";
 
 import { TranslateService } from "@ngx-translate/core";
 
+import {
+  modalAlertsActions,
+  modalConfirmersActions,
+} from "../../../../core/core.module";
+
 import * as fromCustomBlocks from "../../../reducers";
 import * as checkBoxConfirmer from "../../../actions/blocks/check-box-confirmer.actions";
 import { CustomBlockType, CheckBoxConfirmerBlock } from "../../../models";
 
 import * as fromRoot from "../../../../reducers";
-import * as modalAlertsActions from "../../../../core/actions/modal-alert.actions";
-import * as modalConfirmersActions from "../../../../core/actions/modal-confirmer.actions";
 
 import { ModalAlert, ModalConfirmer, ModalConfirmerResultType } from "../../../../core/models";
 

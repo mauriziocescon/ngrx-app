@@ -4,6 +4,10 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { SharedModule } from "../shared/shared.module";
 
+import * as languageActions from "./actions/language.actions";
+import * as modalAlertsActions from "./actions/modal-alert.actions";
+import * as modalConfirmersActions from "./actions/modal-confirmer.actions";
+
 import {
   ModalAlertComponent,
   ModalConfirmerComponent,
@@ -79,6 +83,14 @@ export class CoreModule {
     };
   }
 }
+
+export {
+  languageActions,
+  modalAlertsActions,
+  modalConfirmersActions
+};
+
+export { EFFECTS as CORE_EFFECTS} from "./effects";
 
 export {
   AppConstantsService,

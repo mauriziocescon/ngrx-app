@@ -10,7 +10,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/mergeMap";
 import "rxjs/add/operator/switchMap";
 
-import { BlocksListService } from "../services";
+import { BlockListService } from "../services";
 import { ListActionTypes, FetchBlocksComplete, FetchBlocksError } from "../actions/list.actions";
 
 import { Block } from "../models";
@@ -19,7 +19,7 @@ import { Block } from "../models";
 export class ListEffects {
 
   constructor(protected update$: Actions,
-              protected blocksList: BlocksListService) {
+              protected blocksList: BlockListService) {
   }
 
   @Effect() fetchBlocks$: Observable<Action> = this.update$

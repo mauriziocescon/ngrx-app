@@ -15,7 +15,7 @@ import { CoreModule } from "../../../core/core.module";
 import { SharedModule } from "../../../shared/shared.module";
 
 import {
-  BlocksListService,
+  BlockListService,
   BlockUtilsService,
   CheckBoxService,
   DropdownService,
@@ -64,7 +64,7 @@ describe("GenericBlockContainerComponent", () => {
       providers: [
         TranslateService,
         NGXLogger,
-        BlocksListService,
+        BlockListService,
         BlockUtilsService,
         CheckBoxService,
         DropdownService,

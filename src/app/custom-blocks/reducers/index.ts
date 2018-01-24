@@ -1,5 +1,7 @@
 import { createSelector, createFeatureSelector, combineReducers } from "@ngrx/store";
 
+import { Block, fromDynamicForm } from "../../dynamic-form/dynamic-form.module";
+
 import { CheckBoxConfirmerBlock } from "../models";
 
 import * as fromRoot from "../../reducers";
@@ -38,17 +40,20 @@ export const getCheckBoxConfirmerBlocksLoadingState = createSelector(getCheckBox
 // -----------------
 // --------- generic
 export const getAllEditBlocksState = createSelector(
+  fromDynamicForm.getAllEditBlocksState,
   getAllCheckBoxConfirmer,
-  (checkBoxConfirmerBlocks: CheckBoxConfirmerBlock[]) => {
+  (blocks: Block[], checkBoxConfirmerBlocks: CheckBoxConfirmerBlock[]) => {
     return [
+      ...blocks,
       ...checkBoxConfirmerBlocks,
     ];
   },
 );
 
 export const getAllEditBlocksValidityState = createSelector(
+  fromDynamicForm.getAllEditBlocksValidityState,
   getCheckBoxConfirmerBlocksValidityState,
-  (checkBoxConfirmerValidity: boolean) => {
-    return checkBoxConfirmerValidity;
+  (blocskValidity: boolean, checkBoxConfirmerValidity: boolean) => {
+    return blocskValidity && checkBoxConfirmerValidity;
   }
 );

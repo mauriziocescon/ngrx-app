@@ -3,6 +3,7 @@ import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 
 import {
+  BlockListService,
   BlockHooksService,
   BlockRulesService,
   BlockUtilsService,
@@ -20,6 +21,7 @@ import { EFFECTS } from "./effects";
 import { reducers } from "./reducers";
 import {
   SERVICES,
+  CustomBlockListService,
   CustomBlockHooksService,
   CustomBlockRulesService,
   CustomBlockUtilsService,
@@ -59,6 +61,7 @@ import {
   ],
   providers: [
     ...SERVICES,
+    {provide: BlockListService, useClass: CustomBlockListService},
     {provide: BlockHooksService, useClass: CustomBlockHooksService},
     {provide: BlockRulesService, useClass: CustomBlockRulesService},
     {provide: BlockUtilsService, useClass: CustomBlockUtilsService},

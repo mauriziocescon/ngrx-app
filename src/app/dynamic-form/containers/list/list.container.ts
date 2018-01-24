@@ -5,9 +5,10 @@ import { Observable } from "rxjs/Observable";
 
 import { NGXLogger } from "ngx-logger";
 
-import * as fromDynamicForm from "../../reducers";
 import * as list from "../../actions/list.actions";
+import * as fromDynamicForm from "../../reducers";
 import { Block } from "../../models";
+import { BlockListService } from "../../services";
 
 @Component({
   selector: "ct-list",
@@ -31,12 +32,13 @@ export class ListContainerComponent implements OnInit {
   formValidity$: Observable<boolean>;
 
   constructor(protected store: Store<fromDynamicForm.State>,
-              protected logger: NGXLogger) {
+              protected logger: NGXLogger,
+              protected blocksList: BlockListService) {
     this.blocks$ = this.store.select(fromDynamicForm.getBlocksListState);
     this.loading$ = this.store.select(fromDynamicForm.getLoadingListState);
     this.error$ = this.store.select(fromDynamicForm.getErrorListState);
 
-    this.formValidity$ = this.store.select(fromDynamicForm.getAllEditBlocksValidityState);
+    this.formValidity$ = this.blocksList.getValiditySelector();
   }
 
   ngOnInit(): void {

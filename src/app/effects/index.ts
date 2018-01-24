@@ -1,4 +1,4 @@
-import { EFFECTS as CORE_EFFECTS} from "../core/effects";
+import { CORE_EFFECTS} from "../core/core.module";
 
 const EFFECTS = [
     ...CORE_EFFECTS,

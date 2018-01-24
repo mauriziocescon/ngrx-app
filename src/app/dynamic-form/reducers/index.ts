@@ -93,4 +93,3 @@ export const getAllEditBlocksValidityState = createSelector(
     return checkBoxValidity && dropdownValidity && textInputValidity;
   }
 );
-
