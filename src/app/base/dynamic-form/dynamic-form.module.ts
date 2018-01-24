@@ -6,7 +6,15 @@ import { SharedModule } from "../../shared/shared.module";
 
 import { EFFECTS } from "./effects";
 import { reducers } from "./reducers";
-import { SERVICES, CheckBoxService, DropdownService, TextInputService } from "./services";
+import {
+  SERVICES,
+  BlockHooksService,
+  BlockRulesService,
+  BlockUtilsService,
+  CheckBoxService,
+  DropdownService,
+  TextInputService,
+} from "./services";
 
 import { COMPONENTS, UnknownComponent } from "./components";
 import {
@@ -62,6 +70,9 @@ export * from "./models";
 
 export {
   ListContainerComponent,
+  BlockHooksService,
+  BlockRulesService,
+  BlockUtilsService,
   CheckBoxService,
   DropdownService,
   TextInputService,

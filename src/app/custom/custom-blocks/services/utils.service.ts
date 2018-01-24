@@ -1,18 +1,18 @@
 import { Injectable } from "@angular/core";
 
 import {
+  Block,
   BlockUtilsService,
   CheckBoxService,
   DropdownService,
   TextInputService,
-} from "../../../base/dynamic-form/services";
-
-import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
-
-import { Block } from "../../../base/dynamic-form/dynamic-form.module";
-import { CustomBlockType, CheckBoxConfirmerBlock } from "../models";
+} from "../../../base/dynamic-form/dynamic-form.module";
 
 import { CheckBoxConfirmerContainerComponent } from "../containers/blocks/check-box-confirmer/check-box-confirmer.container";
+
+import { CustomBlockType, CheckBoxConfirmerBlock } from "../models";
+
+import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
 
 @Injectable()
 export class CustomBlockUtilsService extends BlockUtilsService {

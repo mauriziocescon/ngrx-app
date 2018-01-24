@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/r
 
 import { Observable } from "rxjs/Observable";
 
-import { BlockHooksService, BlocksHooks } from "./custom/hooks/hooks.module";
+import { BlockHooksService, BlocksHooks } from "./base/dynamic-form/dynamic-form.module";
 
 @Injectable()
 export class RulesResolve implements Resolve<BlocksHooks> {

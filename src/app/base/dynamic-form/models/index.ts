@@ -2,10 +2,13 @@ import { Block } from "./block.model";
 import { BlockType } from "./block-types";
 import { BlockComponent } from "./generic-block.model";
 
-import { CheckBoxBlock } from "./blocks-types/check-box.model";
-import { DropdownBlock } from "./blocks-types/dropdown-block.model";
-import { TextInputBlock } from "./blocks-types/text-input.model";
+import { BlocksFunctions, BlocksHooks } from "./block-hooks/block-hooks";
 
+import { CheckBoxBlock } from "./blocks/check-box.model";
+import { DropdownBlock } from "./blocks/dropdown-block.model";
+import { TextInputBlock } from "./blocks/text-input.model";
+
+import { BlocksMethods } from "./block-methods/block-methods";
 import { CheckBoxMethods } from "./block-methods/check-box-methods.model";
 import { DropdownMethods } from "./block-methods/dropdown-methods.model";
 import { TextInputMethods } from "./block-methods/text-input-methods";
@@ -15,10 +18,14 @@ export {
   BlockType,
   BlockComponent,
 
+  BlocksFunctions,
+  BlocksHooks,
+
   CheckBoxBlock,
   DropdownBlock,
   TextInputBlock,
 
+  BlocksMethods,
   CheckBoxMethods,
   DropdownMethods,
   TextInputMethods,

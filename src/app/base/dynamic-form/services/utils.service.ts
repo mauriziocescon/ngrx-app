@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 
-import { TextInputService } from "./blocks/text-input.service";
-import { DropdownService } from "./blocks/dropdown.service";
-import { CheckBoxService } from "./blocks/check-box.service";
+import { CheckBoxContainerComponent } from "../containers/blocks/check-box/check-box.container";
+import { DropdownContainerComponent } from "../containers/blocks/dropdown/dropdown.container";
+import { TextInputContainerComponent } from "../containers/blocks/text-input/text-input.container";
+import { UnknownComponent } from "../components";
 
 import {
   Block,
@@ -12,10 +13,9 @@ import {
   TextInputBlock,
 } from "../models";
 
-import { CheckBoxContainerComponent } from "../containers/blocks/check-box/check-box.container";
-import { DropdownContainerComponent } from "../containers/blocks/dropdown/dropdown.container";
-import { TextInputContainerComponent } from "../containers/blocks/text-input/text-input.container";
-import { UnknownComponent } from "../components";
+import { TextInputService } from "./blocks/text-input.service";
+import { DropdownService } from "./blocks/dropdown.service";
+import { CheckBoxService } from "./blocks/check-box.service";
 
 @Injectable()
 export class BlockUtilsService {

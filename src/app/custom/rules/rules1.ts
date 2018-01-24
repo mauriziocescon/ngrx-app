@@ -4,7 +4,7 @@ import {
   TextInputBlock,
 } from "../../base/dynamic-form/dynamic-form.module";
 import { CheckBoxConfirmerBlock } from "../custom-blocks/models";
-import { BlocksMethods } from "../hooks/models";
+import { CustomBlocksMethods } from "../custom-blocks/models";
 
 import * as utilities from "./utils/utilities";
 import * as validators from "./validations"
@@ -15,30 +15,30 @@ const blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | C
 
 // blocks loaded
 // --------------
-export const checkBoxBlockDidLoad = (checkBoxBlock: CheckBoxBlock, blocksMethods: BlocksMethods) => {
+export const checkBoxBlockDidLoad = (checkBoxBlock: CheckBoxBlock, blocksMethods: CustomBlocksMethods) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
   blocksMethods.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
 };
 
-export const dropdownBlockDidLoad = (dropdownBlock: DropdownBlock, blocksMethods: BlocksMethods) => {
+export const dropdownBlockDidLoad = (dropdownBlock: DropdownBlock, blocksMethods: CustomBlocksMethods) => {
   blocks[dropdownBlock.id] = dropdownBlock;
   blocksMethods.dropdown.setValidityForBlockId(validators.dropdownBlockValidator(dropdownBlock), dropdownBlock.id);
 };
 
-export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blocksMethods: BlocksMethods) => {
+export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blocksMethods: CustomBlocksMethods) => {
   blocks[textInputBlock.id] = textInputBlock;
   blocksMethods.textInput.setValueForBlockId("Reset initial value during TextInput load event", textInputBlock.id);
   blocksMethods.textInput.setValidityForBlockId(validators.textInputBlockValidator(textInputBlock), textInputBlock.id);
 };
 
-export const checkBoxConfirmerBlockDidLoad = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blocksMethods: BlocksMethods) => {
+export const checkBoxConfirmerBlockDidLoad = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blocksMethods: CustomBlocksMethods) => {
   blocks[checkBoxConfirmerBlock.id] = checkBoxConfirmerBlock;
   blocksMethods.checkBoxConfirmer.setValidityForBlockId(validators.checkBoxConfirmerBlockValidator(checkBoxConfirmerBlock), checkBoxConfirmerBlock.id);
 };
 
 // blocks changed
 // --------------
-export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blocksMethods: BlocksMethods) => {
+export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blocksMethods: CustomBlocksMethods) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
   blocksMethods.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
 
@@ -48,7 +48,7 @@ export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blocksMetho
   }
 };
 
-export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blocksMethods: BlocksMethods) => {
+export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blocksMethods: CustomBlocksMethods) => {
   blocks[dropdownBlock.id] = dropdownBlock;
   blocksMethods.dropdown.setValidityForBlockId(validators.dropdownBlockValidator(dropdownBlock), dropdownBlock.id);
 
@@ -60,17 +60,17 @@ export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blocksMetho
   }, 3000);
 };
 
-export const textInputBlockDidChange = (textInputBlock: TextInputBlock, blocksMethods: BlocksMethods) => {
+export const textInputBlockDidChange = (textInputBlock: TextInputBlock, blocksMethods: CustomBlocksMethods) => {
   blocks[textInputBlock.id] = textInputBlock;
   blocksMethods.textInput.setValidityForBlockId(validators.textInputBlockValidator(textInputBlock), textInputBlock.id);
 };
 
-export const checkBoxConfirmerBlockDidChange = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blocksMethods: BlocksMethods) => {
+export const checkBoxConfirmerBlockDidChange = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blocksMethods: CustomBlocksMethods) => {
   blocks[checkBoxConfirmerBlock.id] = checkBoxConfirmerBlock;
   blocksMethods.checkBoxConfirmer.setValidityForBlockId(validators.checkBoxConfirmerBlockValidator(checkBoxConfirmerBlock), checkBoxConfirmerBlock.id);
 };
 
-export const customCheckBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blocksMethods: BlocksMethods) => {
+export const customCheckBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blocksMethods: CustomBlocksMethods) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
   blocksMethods.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
 

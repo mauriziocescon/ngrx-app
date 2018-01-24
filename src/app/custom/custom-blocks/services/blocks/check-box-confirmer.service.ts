@@ -4,10 +4,11 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
+import { BlockType } from "../../../../base/dynamic-form/dynamic-form.module";
+
 import * as fromDynamicForm from "../../../../reducers";
 import * as checkBoxConfirmer from "../../actions/blocks/check-box-confirmer.actions";
 import { CustomBlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerMethods } from "../../models";
-import { BlockType } from "../../../../base/dynamic-form/models";
 
 @Injectable()
 export class CheckBoxConfirmerService {

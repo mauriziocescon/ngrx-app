@@ -8,8 +8,8 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 
 import { FetchBlocksComplete, ListActionTypes } from "../../../../base/dynamic-form/actions/list.actions";
-
 import { Block } from "../../../../base/dynamic-form/dynamic-form.module";
+
 import { CheckBoxConfirmerBlock, CustomBlockType } from "../../models";
 import { CheckBoxConfirmerService } from "../../services";
 import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock } from "../../actions/blocks/check-box-confirmer.actions";

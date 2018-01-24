@@ -2,23 +2,29 @@ import { NgModule } from "@angular/core";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 
-import { BlockUtilsService } from "../../base/dynamic-form/services";
+import {
+  BlockHooksService,
+  BlockRulesService,
+  BlockUtilsService,
+} from "../../base/dynamic-form/dynamic-form.module";
 
 import { SharedModule } from "../../shared/shared.module";
-
-import { EFFECTS } from "./effects";
-import { reducers } from "./reducers";
-import {
-  CustomBlockUtilsService,
-  CheckBoxConfirmerService,
-  SERVICES,
-} from "./services";
 
 import { COMPONENTS } from "./components";
 import {
   CONTAINERS,
   CheckBoxConfirmerContainerComponent,
 } from "./containers";
+
+import { EFFECTS } from "./effects";
+import { reducers } from "./reducers";
+import {
+  SERVICES,
+  CustomBlockHooksService,
+  CustomBlockRulesService,
+  CustomBlockUtilsService,
+  CheckBoxConfirmerService,
+} from "./services";
 
 @NgModule({
   imports: [
@@ -53,6 +59,8 @@ import {
   ],
   providers: [
     ...SERVICES,
+    {provide: BlockHooksService, useClass: CustomBlockHooksService},
+    {provide: BlockRulesService, useClass: CustomBlockRulesService},
     {provide: BlockUtilsService, useClass: CustomBlockUtilsService},
   ],
 })
@@ -62,6 +70,8 @@ export class CustomBlocksModule {
 export * from "./models";
 
 export {
+  CustomBlockHooksService,
+  CustomBlockRulesService,
   CustomBlockUtilsService,
   CheckBoxConfirmerService,
 };

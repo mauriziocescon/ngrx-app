@@ -5,24 +5,19 @@ import { Observable } from "rxjs/Observable";
 import { NGXLogger } from "ngx-logger";
 
 import {
-  CheckBoxService,
-  DropdownService,
-  TextInputService
-} from "../../../base/dynamic-form/services";
-
-import {
+  BlocksHooks,
+  BlocksMethods,
   CheckBoxBlock,
   DropdownBlock,
   TextInputBlock,
-} from "../../../base/dynamic-form/dynamic-form.module";
+} from "../models";
 
-import { CheckBoxConfirmerService } from "../../custom-blocks/services";
-
-import { BlocksHooks, BlocksMethods } from "../models";
 import { BlockRulesService } from "./rules.service";
+import { CheckBoxService } from "./blocks/check-box.service";
+import { DropdownService } from "./blocks/dropdown.service";
+import { TextInputService } from "./blocks/text-input.service";
 
 import { environment } from "../../../../environments/environment";
-import { CheckBoxConfirmerBlock } from "../../custom-blocks/models";
 
 @Injectable()
 export class BlockHooksService {
@@ -32,8 +27,7 @@ export class BlockHooksService {
               protected blockRules: BlockRulesService,
               protected checkBoxService: CheckBoxService,
               protected dropdownService: DropdownService,
-              protected textInputService: TextInputService,
-              protected checkBoxConfirmerService: CheckBoxConfirmerService) {
+              protected textInputService: TextInputService) {
     this.startListener();
   }
 
@@ -54,12 +48,10 @@ export class BlockHooksService {
     this.listenToLoadCheckBoxBlock();
     this.listenToLoadDropdownBlock();
     this.listenToLoadTextInputBlock();
+
     this.listenToCheckBoxBlockChanges();
     this.listenToDropdownBlockChanges();
     this.listenToTextInputBlockChanges();
-
-    this.listenToLoadCheckBoxConfirmerBlock();
-    this.listenToCheckBoxConfirmerBlockChanges();
   }
 
   listenToLoadCheckBoxBlock(): void {
@@ -158,38 +150,6 @@ export class BlockHooksService {
       });
   }
 
-  listenToLoadCheckBoxConfirmerBlock(): void {
-    this.checkBoxConfirmerService.blockLoadObservable$
-      .subscribe((block: CheckBoxConfirmerBlock) => {
-        try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
-          } else {
-            this.blocksHooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
-          }
-        } catch (e) {
-          this.logger.error(e);
-        }
-      });
-  }
-
-  listenToCheckBoxConfirmerBlockChanges(): void {
-    this.checkBoxConfirmerService.blockChangesObservable$
-      .subscribe((block: CheckBoxConfirmerBlock) => {
-        try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
-          } else {
-            this.blocksHooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
-          }
-        } catch (e) {
-          this.logger.error(e);
-        }
-      });
-  }
-
   protected blocksMethods(): BlocksMethods {
     return {
       checkBox: {
@@ -200,9 +160,6 @@ export class BlockHooksService {
       },
       textInput: {
         ...this.textInputService.getTextInputMethods(),
-      },
-      checkBoxConfirmer: {
-        ...this.checkBoxConfirmerService.getCheckBoxConfirmerMethods(),
       },
     };
   }
