@@ -1,0 +1,9 @@
+@import "../../../../../styles";
+
+.text-input-component {
+  padding-top: 10px;
+
+  .addon {
+    color: $accent-color;
+  }
+}

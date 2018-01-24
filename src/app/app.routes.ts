@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 
-import { ListContainerComponent } from "./base/dynamic-form/dynamic-form.module";
+import { ListContainerComponent } from "./dynamic-form/dynamic-form.module";
 import { RulesResolve } from "./rules.resolve";
 
 export const appRoutes: Routes = [
