@@ -23,16 +23,16 @@ export const reducers = {
 
 // -----------------
 // ------------ AOT
-export const reducerToken = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>("CustomBlocksEditBlocksReducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>("CustomBlocksEditBlocksReducers");
 
 export const getReducers = () => {
   return {
-    editBlocks: fromEditBlocks.reducers,
+    editBlocks: combineReducers(fromEditBlocks.reducers),
   };
-};
+}
 
 export const reducerProvider = [
-  {provide: reducerToken, useFactory: getReducers}
+  {provide: TOKEN, useFactory: getReducers}
 ];
 
 // -----------------

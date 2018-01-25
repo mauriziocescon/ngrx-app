@@ -6,7 +6,7 @@ import { SharedModule } from "../shared/shared.module";
 
 import { EFFECTS } from "./effects";
 import * as fromDynamicForm from "./reducers";
-import { reducerToken, reducerProvider } from "./reducers";
+import { TOKEN, reducerProvider } from "./reducers";
 import {
   SERVICES,
   BlockHooksService,
@@ -36,7 +36,7 @@ import {
      * eagerly or lazily and will be dynamically added to
      * the existing state.
      */
-    StoreModule.forFeature("dynamicForm", reducerToken),
+    StoreModule.forFeature("dynamicForm", TOKEN),
 
     /**
      * Effects.forFeature is used to register effects

@@ -26,17 +26,17 @@ export const reducers = {
 
 // -----------------
 // ------------ AOT
-export const reducerToken = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>("DynamicFormEditBlocksReducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>("DynamicFormEditBlocksReducers");
 
 export const getReducers = () => {
   return {
     list: fromList.reducer,
-    editBlocks: fromEditBlocks.reducers,
+    editBlocks: combineReducers(fromEditBlocks.reducers),
   };
-};
+}
 
 export const reducerProvider = [
-  {provide: reducerToken, useFactory: getReducers}
+  {provide: TOKEN, useFactory: getReducers}
 ];
 
 // -----------------

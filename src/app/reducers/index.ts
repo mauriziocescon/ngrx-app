@@ -26,17 +26,17 @@ export const reducers = {
 
 // -----------------
 // ------------ AOT
-export const reducerToken = new InjectionToken<ActionReducerMap<State>>("Reducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<State>>("Reducers");
 
-export const getReducers = () => {
+export function getReducers() {
   return {
     routerReducer: fromRouter.routerReducer,
-    core: fromCore.reducers,
+    core: combineReducers(fromCore.reducers),
   };
-};
+}
 
 export const reducerProvider = [
-  {provide: reducerToken, useFactory: getReducers}
+  {provide: TOKEN, useFactory: getReducers}
 ];
 
 // console.log all actions

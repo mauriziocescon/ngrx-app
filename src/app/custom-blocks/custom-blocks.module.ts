@@ -17,7 +17,7 @@ import {
 } from "./containers";
 
 import { EFFECTS } from "./effects";
-import { reducerToken, reducerProvider } from "./reducers";
+import { TOKEN, reducerProvider } from "./reducers";
 import {
   SERVICES,
   CustomBlockListService,
@@ -36,7 +36,7 @@ import {
      * eagerly or lazily and will be dynamically added to
      * the existing state.
      */
-    StoreModule.forFeature("customBlocks", reducerToken),
+    StoreModule.forFeature("customBlocks", TOKEN),
 
     /**
      * Effects.forFeature is used to register effects
