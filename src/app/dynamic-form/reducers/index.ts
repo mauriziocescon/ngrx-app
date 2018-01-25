@@ -41,7 +41,7 @@ export const reducerProvider = [
 
 // -----------------
 // --- feature selector
-export const getDynamicFormState = createFeatureSelector<DynamicFormState>("DynamicForm");
+export const getDynamicFormState = createFeatureSelector<DynamicFormState>("dynamicForm");
 
 // -----------------
 // ------------ list

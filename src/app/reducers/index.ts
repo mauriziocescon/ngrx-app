@@ -26,7 +26,7 @@ export const reducers = {
 
 // -----------------
 // ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<State>>("Reducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<State>>("AppReducers");
 
 export const getReducers = () => {
   return {
