@@ -100,6 +100,7 @@ export function createTranslateLoader(http: HttpClient) {
      * by `@ngrx/router-store` to include only the desired pieces of the snapshot.
      */
     {provide: RouterStateSerializer, useClass: CustomRouterStateSerializer},
+    reducerProvider,
     RulesResolve,
   ],
   bootstrap: [
