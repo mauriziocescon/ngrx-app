@@ -29,7 +29,7 @@ export const getReducers = () => {
   return {
     editBlocks: combineReducers(fromEditBlocks.reducers),
   };
-}
+};
 
 export const reducerProvider = [
   {provide: TOKEN, useFactory: getReducers}

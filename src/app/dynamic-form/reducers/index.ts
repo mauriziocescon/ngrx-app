@@ -33,7 +33,7 @@ export const getReducers = () => {
     list: fromList.reducer,
     editBlocks: combineReducers(fromEditBlocks.reducers),
   };
-}
+};
 
 export const reducerProvider = [
   {provide: TOKEN, useFactory: getReducers}
