@@ -17,10 +17,6 @@ export interface State extends fromRoot.State {
   customBlocks: CustomBlocksState;
 }
 
-export const reducers = {
-  editBlocks: combineReducers(fromEditBlocks.reducers),
-};
-
 // -----------------
 // ------------ AOT
 export const TOKEN = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>("CustomBlocksEditBlocksReducers");

@@ -19,11 +19,6 @@ export interface State extends fromRoot.State {
   dynamicForm: DynamicFormState;
 }
 
-export const reducers = {
-  list: fromList.reducer,
-  editBlocks: combineReducers(fromEditBlocks.reducers),
-};
-
 // -----------------
 // ------------ AOT
 export const TOKEN = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>("DynamicFormEditBlocksReducers");

@@ -19,11 +19,6 @@ export interface State {
  * These reducer functions are called with each dispatched action
  * and the current or initial state and return a new immutable state.
  */
-export const reducers = {
-  routerReducer: fromRouter.routerReducer,
-  core: combineReducers(fromCore.reducers),
-};
-
 // -----------------
 // ------------ AOT
 export const TOKEN = new InjectionToken<ActionReducerMap<State>>("AppReducers");
