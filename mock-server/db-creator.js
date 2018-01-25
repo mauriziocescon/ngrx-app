@@ -9,6 +9,7 @@ if (fs.existsSync("./mock-server/db.json")) {
 
 // db creation
 const data = {
+  rulesConfig: [],
   blocks: [],
   logs: [],
 };
@@ -152,6 +153,12 @@ function getRandomBlock(index) {
 // blocks
 for (let i = 0; i < numberOfBlocks; i++) {
   data.blocks.push(getRandomBlock(i));
+}
+
+// rules config
+for (let i = 0; i < numberOfBlocks; i++) {
+  data.rulesConfig.push({type: 1, value: "rules1"});
+  data.rulesConfig.push({type: 2, value: "rules2"});
 }
 
 // save file

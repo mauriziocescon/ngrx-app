@@ -6,12 +6,11 @@ import { SharedModule } from "../shared/shared.module";
 
 import { EFFECTS } from "./effects";
 import * as fromDynamicForm from "./reducers";
-import { reducers } from "./reducers";
+import { reducerToken, reducerProvider } from "./reducers";
 import {
   SERVICES,
   BlockHooksService,
   BlockListService,
-  BlockRulesService,
   BlockUtilsService,
   CheckBoxService,
   DropdownService,
@@ -37,7 +36,7 @@ import {
      * eagerly or lazily and will be dynamically added to
      * the existing state.
      */
-    StoreModule.forFeature("dynamicForm", reducers),
+    StoreModule.forFeature("dynamicForm", reducerToken),
 
     /**
      * Effects.forFeature is used to register effects
@@ -62,6 +61,7 @@ import {
     UnknownComponent,
   ],
   providers: [
+    reducerProvider,
     ...SERVICES,
   ],
 })
@@ -81,7 +81,6 @@ export {
   ListContainerComponent,
   BlockListService,
   BlockHooksService,
-  BlockRulesService,
   BlockUtilsService,
   CheckBoxService,
   DropdownService,

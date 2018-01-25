@@ -1,6 +1,5 @@
 import { BlockListService } from "./list.service";
 import { BlockHooksService } from "./hooks.service";
-import { BlockRulesService } from "./rules.service";
 import { BlockUtilsService } from "./utils.service";
 
 import { CheckBoxService } from "./blocks/check-box.service";
@@ -10,7 +9,6 @@ import { TextInputService } from "./blocks/text-input.service";
 export const SERVICES = [
   BlockHooksService,
   BlockListService,
-  BlockRulesService,
   BlockUtilsService,
   CheckBoxService,
   DropdownService,
@@ -19,7 +17,6 @@ export const SERVICES = [
 
 export {
   BlockHooksService,
-  BlockRulesService,
   BlockListService,
   BlockUtilsService,
   CheckBoxService,

@@ -8,7 +8,6 @@ export const environment = {
   apiUrl: "http://localhost:5000/api/",
   logsUrl: "http://localhost:5000/api/logs/",
   rulesUrl: "http://localhost:5000/rules/",
-  rules: "../../custom-rules/rules1",
   evaluateScriptsFromServer: false,
   production: false
 };

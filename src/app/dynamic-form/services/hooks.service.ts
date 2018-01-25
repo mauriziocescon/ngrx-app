@@ -12,7 +12,6 @@ import {
   TextInputBlock,
 } from "../models";
 
-import { BlockRulesService } from "./rules.service";
 import { CheckBoxService } from "./blocks/check-box.service";
 import { DropdownService } from "./blocks/dropdown.service";
 import { TextInputService } from "./blocks/text-input.service";
@@ -21,27 +20,13 @@ import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class BlockHooksService {
-  blocksHooks: BlocksHooks;
+  hooks: BlocksHooks;
 
   constructor(protected logger: NGXLogger,
-              protected blockRules: BlockRulesService,
               protected checkBoxService: CheckBoxService,
               protected dropdownService: DropdownService,
               protected textInputService: TextInputService) {
     this.startListener();
-  }
-
-  fetchRules(): Observable<any> | BlocksHooks {
-    if (environment.evaluateScriptsFromServer) {
-      return this.blockRules.getRulesFromScript();
-    } else {
-      this.blockRules.getRules()
-        .subscribe((hooks: BlocksHooks) => {
-          return this.blocksHooks = hooks;
-        }, (error: any) => {
-          return {};
-        });
-    }
   }
 
   startListener(): void {
@@ -62,7 +47,7 @@ export class BlockHooksService {
             // @ts-ignore
             businessMethods[block.hooks.checkBoxBlockDidLoad](block, this.blocksMethods());
           } else {
-            this.blocksHooks[block.hooks.checkBoxBlockDidLoad](block, this.blocksMethods());
+            this.hooks[block.hooks.checkBoxBlockDidLoad](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -78,7 +63,7 @@ export class BlockHooksService {
             // @ts-ignore
             businessMethods[block.hooks.dropdownBlockDidLoad](block, this.blocksMethods());
           } else {
-            this.blocksHooks[block.hooks.dropdownBlockDidLoad](block, this.blocksMethods());
+            this.hooks[block.hooks.dropdownBlockDidLoad](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -94,7 +79,7 @@ export class BlockHooksService {
             // @ts-ignore
             businessMethods[block.hooks.textInputBlockDidLoad](block, this.blocksMethods());
           } else {
-            this.blocksHooks[block.hooks.textInputBlockDidLoad](block, this.blocksMethods());
+            this.hooks[block.hooks.textInputBlockDidLoad](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -110,7 +95,7 @@ export class BlockHooksService {
             // @ts-ignore
             businessMethods[block.hooks.checkBoxBlockDidChange](block, this.blocksMethods());
           } else {
-            this.blocksHooks[block.hooks.checkBoxBlockDidChange](block, this.blocksMethods());
+            this.hooks[block.hooks.checkBoxBlockDidChange](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -126,7 +111,7 @@ export class BlockHooksService {
             // @ts-ignore
             businessMethods[block.hooks.dropdownBlockDidChange](block, this.blocksMethods());
           } else {
-            this.blocksHooks[block.hooks.dropdownBlockDidChange](block, this.blocksMethods());
+            this.hooks[block.hooks.dropdownBlockDidChange](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -142,7 +127,7 @@ export class BlockHooksService {
             // @ts-ignore
             businessMethods[block.hooks.textInputBlockDidChange](block, this.blocksMethods());
           } else {
-            this.blocksHooks[block.hooks.textInputBlockDidChange](block, this.blocksMethods());
+            this.hooks[block.hooks.textInputBlockDidChange](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);

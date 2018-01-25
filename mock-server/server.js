@@ -3,6 +3,7 @@ const express = require("express");
 const jsonServer = require("json-server");
 const app = jsonServer.create();
 const router = jsonServer.router(path.join(__dirname, "./db.json"));
+const db = require("./db.json");
 const middlewares = jsonServer.defaults({
   static: "dist",
 });
@@ -14,14 +15,11 @@ const port = process.env.PORT || 5000;
 // Add middlewares
 app.use(middlewares);
 
-// Add rules to static resources
-app.use("/rules", express.static(path.join(__dirname, "/rules")));
-
 // Simulate server side delay
 app.use((req, res, next) => {
   const randomOutcome = Math.random();
   if (randomOutcome < 0.01) {
-    setTimeout(next, Math.floor(( Math.random() * 8000 ) + 100));
+    setTimeout(next, Math.floor((Math.random() * 8000) + 100));
   } else {
     next();
   }
@@ -85,11 +83,26 @@ app.use((req, res, next) => {
       res.status(550).jsonp({
         error: "Permission denied",
       });
+      return;
     }
   } else {
     // Continue to JSON Server router
     next();
   }
+});
+
+// Add rules to static resources
+app.use("/rules", express.static(path.join(__dirname, "/rules")));
+
+// Rules config
+app.use("/rules-config", (req, res, next) => {
+  const rulesConfig = db.rulesConfig;
+  const index = Math.max(rulesConfig.findIndex((rule) => {
+    return rule.type === req.query.rule;
+  }), 0);
+  return res.status(200).jsonp({
+    rule: rulesConfig[index].value,
+  });
 });
 
 // Mount the router based on db.json

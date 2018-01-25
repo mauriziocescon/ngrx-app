@@ -5,7 +5,6 @@ import { EffectsModule } from "@ngrx/effects";
 import {
   BlockListService,
   BlockHooksService,
-  BlockRulesService,
   BlockUtilsService,
 } from "../dynamic-form/dynamic-form.module";
 
@@ -18,12 +17,11 @@ import {
 } from "./containers";
 
 import { EFFECTS } from "./effects";
-import { reducers } from "./reducers";
+import { reducerToken, reducerProvider } from "./reducers";
 import {
   SERVICES,
   CustomBlockListService,
   CustomBlockHooksService,
-  CustomBlockRulesService,
   CustomBlockUtilsService,
   CheckBoxConfirmerService,
 } from "./services";
@@ -38,7 +36,7 @@ import {
      * eagerly or lazily and will be dynamically added to
      * the existing state.
      */
-    StoreModule.forFeature("customBlocks", reducers),
+    StoreModule.forFeature("customBlocks", reducerToken),
 
     /**
      * Effects.forFeature is used to register effects
@@ -60,10 +58,10 @@ import {
     CheckBoxConfirmerContainerComponent,
   ],
   providers: [
+    reducerProvider,
     ...SERVICES,
     {provide: BlockListService, useClass: CustomBlockListService},
     {provide: BlockHooksService, useClass: CustomBlockHooksService},
-    {provide: BlockRulesService, useClass: CustomBlockRulesService},
     {provide: BlockUtilsService, useClass: CustomBlockUtilsService},
   ],
 })
@@ -74,7 +72,6 @@ export * from "./models";
 
 export {
   CustomBlockHooksService,
-  CustomBlockRulesService,
   CustomBlockUtilsService,
   CheckBoxConfirmerService,
 };

@@ -14,7 +14,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
 
 import { appRoutes } from "./app.routes";
-import { reducers, metaReducers } from "./reducers";
+import { reducerToken, reducerProvider, metaReducers } from "./reducers";
 import { EFFECTS } from "./effects";
 
 import { CoreModule } from "./core/core.module";
@@ -44,7 +44,7 @@ export function createTranslateLoader(http: HttpClient) {
      * meta-reducer. This returns all providers for an @ngrx/store
      * based application.
      */
-    StoreModule.forRoot(reducers, {metaReducers}),
+    StoreModule.forRoot(reducerToken, {metaReducers}),
 
     /**
      * @ngrx/router-store keeps router state up-to-date in the store.

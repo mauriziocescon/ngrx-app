@@ -1,3 +1,4 @@
+import { InjectionToken } from "@angular/core";
 import { ActionReducer, ActionReducerMap, combineReducers, MetaReducer } from "@ngrx/store";
 import { storeFreeze } from "ngrx-store-freeze";
 import * as fromRouter from "@ngrx/router-store";
@@ -18,10 +19,25 @@ export interface State {
  * These reducer functions are called with each dispatched action
  * and the current or initial state and return a new immutable state.
  */
-export const reducers: ActionReducerMap<State> = {
+export const reducers = {
   routerReducer: fromRouter.routerReducer,
   core: combineReducers(fromCore.reducers),
 };
+
+// -----------------
+// ------------ AOT
+export const reducerToken = new InjectionToken<ActionReducerMap<State>>("Reducers");
+
+export const getReducers = () => {
+  return {
+    routerReducer: fromRouter.routerReducer,
+    core: fromCore.reducers,
+  };
+};
+
+export const reducerProvider = [
+  {provide: reducerToken, useFactory: getReducers}
+];
 
 // console.log all actions
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {

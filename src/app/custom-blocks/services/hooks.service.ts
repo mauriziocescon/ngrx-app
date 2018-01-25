@@ -15,24 +15,21 @@ import {
   CheckBoxConfirmerBlock,
 } from "../models";
 
-import { CustomBlockRulesService } from "./rules.service";
 import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
 
 import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class CustomBlockHooksService extends BlockHooksService {
-  blocksHooks: CustomBlocksHooks;
+  hooks: CustomBlocksHooks;
 
   constructor(protected logger: NGXLogger,
-              protected blockRules: CustomBlockRulesService,
               protected checkBoxService: CheckBoxService,
               protected dropdownService: DropdownService,
               protected textInputService: TextInputService,
               protected checkBoxConfirmerService: CheckBoxConfirmerService) {
     super(
       logger,
-      blockRules,
       checkBoxService,
       dropdownService,
       textInputService,
@@ -54,7 +51,7 @@ export class CustomBlockHooksService extends BlockHooksService {
             // @ts-ignore
             businessMethods[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
           } else {
-            this.blocksHooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
+            this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -70,7 +67,7 @@ export class CustomBlockHooksService extends BlockHooksService {
             // @ts-ignore
             businessMethods[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
           } else {
-            this.blocksHooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
+            this.hooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);

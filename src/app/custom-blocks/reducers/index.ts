@@ -1,4 +1,5 @@
-import { createSelector, createFeatureSelector, combineReducers } from "@ngrx/store";
+import { InjectionToken } from "@angular/core";
+import { createSelector, createFeatureSelector, combineReducers, ActionReducerMap } from "@ngrx/store";
 
 import { Block, fromDynamicForm } from "../../dynamic-form/dynamic-form.module";
 
@@ -20,6 +21,22 @@ export const reducers = {
   editBlocks: combineReducers(fromEditBlocks.reducers),
 };
 
+// -----------------
+// ------------ AOT
+export const reducerToken = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>("CustomBlocksEditBlocksReducers");
+
+export const getReducers = () => {
+  return {
+    editBlocks: fromEditBlocks.reducers,
+  };
+};
+
+export const reducerProvider = [
+  {provide: reducerToken, useFactory: getReducers}
+];
+
+// -----------------
+// --- feature selector
 export const getCustomBlocksState = createFeatureSelector<CustomBlocksState>("customBlocks");
 
 // -----------------
