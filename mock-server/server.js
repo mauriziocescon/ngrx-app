@@ -95,14 +95,12 @@ app.use((req, res, next) => {
 app.use("/rules", express.static(path.join(__dirname, "/rules")));
 
 // Rules config
-app.use("/rules-config", (req, res, next) => {
+app.get("/api/rules-config", (req, res) => {
   const rulesConfig = db.rulesConfig;
   const index = Math.max(rulesConfig.findIndex((rule) => {
     return rule.type === req.query.rule;
   }), 0);
-  return res.status(200).jsonp({
-    rule: rulesConfig[index].value,
-  });
+  return res.status(200).jsonp(rulesConfig[index].value);
 });
 
 // Mount the router based on db.json

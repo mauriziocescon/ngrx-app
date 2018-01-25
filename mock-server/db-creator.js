@@ -156,10 +156,8 @@ for (let i = 0; i < numberOfBlocks; i++) {
 }
 
 // rules config
-for (let i = 0; i < numberOfBlocks; i++) {
-  data.rulesConfig.push({type: 1, value: "rules1"});
-  data.rulesConfig.push({type: 2, value: "rules2"});
-}
+data.rulesConfig.push({type: 1, value: "rules1"});
+data.rulesConfig.push({type: 2, value: "rules2"});
 
 // save file
 fs.writeFile("mock-server/db.json", JSON.stringify(data, null, 2), (err) => {

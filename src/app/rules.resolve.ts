@@ -40,7 +40,7 @@ export class RulesResolve implements Resolve<BlocksHooks> {
         .subscribe((hooks: BlocksHooks) => {
           return this.blockHooks.hooks = hooks;
         }, (error: any) => {
-          return {};
+          return this.blockHooks.hooks = {};
         });
     }
   }
@@ -52,7 +52,9 @@ export class RulesResolve implements Resolve<BlocksHooks> {
     };
 
     return this.http.get<string>(url, options)
-      .map(data => setOfRules[data])
+      .map((data) => {
+        return setOfRules[data];
+      })
       .catch(err => {
         return Observable.throw(err.message || "Server error");
       });
