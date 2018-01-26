@@ -11,7 +11,6 @@ import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
 import { StoreModule, Store, combineReducers } from "@ngrx/store";
 import * as fromRoot from "../../../reducers";
-import * as fromCore from "../../reducers";
 
 import { SharedModule } from "../../../shared/shared.module";
 
@@ -47,10 +46,7 @@ describe("NavigationBarContainerComponent", () => {
           level: NgxLoggerLevel.OFF,
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
-        StoreModule.forRoot({
-          ...fromRoot.reducers,
-          core: combineReducers(fromCore.reducers),
-        }),
+        StoreModule.forRoot(fromRoot.TOKEN),
         SharedModule,
       ],
       declarations: [
@@ -61,6 +57,7 @@ describe("NavigationBarContainerComponent", () => {
         {provide: APP_BASE_HREF, useValue: "/"},
         TranslateService,
         NGXLogger,
+        fromRoot.reducerProvider,
         AppConstantsService,
         AppLanguageService,
         LocalStorageService,

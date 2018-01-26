@@ -9,7 +9,7 @@ import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
 import { StoreModule, Store, combineReducers } from "@ngrx/store";
 import * as fromRoot from "../../../../reducers";
-import * as fromDynamicForm from "../../../../reducers";
+import * as fromCustomBlocks from "../../../reducers";
 
 import { CoreModule } from "../../../../core/core.module";
 import { SharedModule } from "../../../../shared/shared.module";
@@ -42,10 +42,8 @@ describe("CheckBoxConfirmerComponent", () => {
           level: NgxLoggerLevel.OFF,
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
-        StoreModule.forRoot({
-          ...fromRoot.reducers,
-          dynamicForm: combineReducers(fromDynamicForm.reducers),
-        }),
+        StoreModule.forRoot(fromRoot.TOKEN),
+        StoreModule.forFeature("customBlocks", fromCustomBlocks.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
       ],
@@ -56,6 +54,8 @@ describe("CheckBoxConfirmerComponent", () => {
       providers: [
         TranslateService,
         NGXLogger,
+        fromRoot.reducerProvider,
+        fromCustomBlocks.reducerProvider,
       ],
     })
       .overrideModule(BrowserDynamicTestingModule, {

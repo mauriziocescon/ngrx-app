@@ -42,10 +42,8 @@ describe("TextInputComponent", () => {
           level: NgxLoggerLevel.OFF,
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
-        StoreModule.forRoot({
-          ...fromRoot.reducers,
-          dynamicForm: combineReducers(fromDynamicForm.reducers),
-        }),
+        StoreModule.forRoot(fromRoot.TOKEN),
+        StoreModule.forFeature("dynamicForm", fromDynamicForm.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
       ],
@@ -56,6 +54,8 @@ describe("TextInputComponent", () => {
       providers: [
         TranslateService,
         NGXLogger,
+        fromRoot.reducerProvider,
+        fromDynamicForm.reducerProvider,
       ],
     })
       .overrideModule(BrowserDynamicTestingModule, {

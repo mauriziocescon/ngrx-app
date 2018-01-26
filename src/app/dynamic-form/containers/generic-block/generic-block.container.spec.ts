@@ -24,7 +24,7 @@ import {
 
 import { BlockType } from "../../models";
 import { COMPONENTS } from "../../components";
-import { CONTAINERS, GenericBlockContainerComponent } from "../";
+import { CONTAINERS, GenericBlockContainerComponent } from "../../containers";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
@@ -50,10 +50,8 @@ describe("GenericBlockContainerComponent", () => {
           level: NgxLoggerLevel.OFF,
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
-        StoreModule.forRoot({
-          ...fromRoot.reducers,
-          dynamicForm: combineReducers(fromDynamicForm.reducers),
-        }),
+        StoreModule.forRoot(fromRoot.TOKEN),
+        StoreModule.forFeature("dynamicForm", fromDynamicForm.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
       ],
@@ -64,6 +62,8 @@ describe("GenericBlockContainerComponent", () => {
       providers: [
         TranslateService,
         NGXLogger,
+        fromRoot.reducerProvider,
+        fromDynamicForm.reducerProvider,
         BlockListService,
         BlockUtilsService,
         CheckBoxService,

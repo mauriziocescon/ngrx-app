@@ -38,9 +38,7 @@ describe("AppContainerComponent", () => {
           level: NgxLoggerLevel.OFF,
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
-        StoreModule.forRoot({
-          ...fromRoot.reducers,
-        }),
+        StoreModule.forRoot(fromRoot.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
       ],
@@ -50,6 +48,7 @@ describe("AppContainerComponent", () => {
       providers: [
         {provide: APP_BASE_HREF, useValue: "/"},
         NGXLogger,
+        fromRoot.reducerProvider,
       ],
     }).compileComponents();
   }));
