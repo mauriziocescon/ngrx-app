@@ -41,7 +41,7 @@ export const getEditBlocksState = createSelector(getCustomBlocksState, state => 
 
 // -----------------
 // ------ check-box-confirmer
-export const getCheckBoxConfirmerState = createSelector(getEditBlocksState, state => state.checkBoxConfirmer);
+export const getCheckBoxConfirmerState = createSelector(getEditBlocksState, fromEditBlocks.getCheckBoxConfirmerState);
 
 export const getCheckBoxConfirmerIds = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerIds);
 export const getCheckBoxConfirmerEntities = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerEntities);

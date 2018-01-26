@@ -7,3 +7,5 @@ export interface State {
 export const reducers = {
   checkBoxConfirmer: fromCheckBoxConfirmer.reducer,
 };
+
+export const getCheckBoxConfirmerState = (state: State) => state.checkBoxConfirmer;

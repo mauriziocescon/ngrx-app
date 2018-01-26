@@ -13,3 +13,7 @@ export const reducers = {
   dropdown: fromDropdown.reducer,
   textInput: fromTextInput.reducer,
 };
+
+export const getCheckBoxState = (state: State) => state.checkBox;
+export const getDropdownState = (state: State) => state.dropdown;
+export const getTextInputState = (state: State) => state.textInput;

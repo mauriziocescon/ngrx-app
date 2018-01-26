@@ -52,7 +52,7 @@ export const getEditBlocksState = createSelector(getDynamicFormState, state => s
 
 // -----------------
 // ------- check-box
-export const getCheckBoxState = createSelector(getEditBlocksState, state => state.checkBox);
+export const getCheckBoxState = createSelector(getEditBlocksState, fromEditBlocks.getCheckBoxState);
 
 export const getCheckBoxIds = createSelector(getCheckBoxState, fromCheckBox.getCheckBoxIds);
 export const getCheckBoxEntities = createSelector(getCheckBoxState, fromCheckBox.getCheckBoxEntities);
@@ -63,7 +63,7 @@ export const getCheckBoxBlocksLoadingState = createSelector(getCheckBoxState, fr
 
 // -----------------
 // -------- dropdown
-export const getDropdownState = createSelector(getEditBlocksState, state => state.dropdown);
+export const getDropdownState = createSelector(getEditBlocksState, fromEditBlocks.getDropdownState);
 
 export const getDropdownIds = createSelector(getDropdownState, fromDropdown.getDropdownIds);
 export const getDropdownEntities = createSelector(getDropdownState, fromDropdown.getDropdownEntities);
@@ -74,7 +74,7 @@ export const getDropdownBlocksLoadingState = createSelector(getDropdownState, fr
 
 // -----------------
 // ------ text-input
-export const getTextInputState = createSelector(getEditBlocksState, state => state.textInput);
+export const getTextInputState = createSelector(getEditBlocksState, fromEditBlocks.getTextInputState);
 
 export const getTextInputIds = createSelector(getTextInputState, fromTextInput.getTextInputIds);
 export const getTextInputEntities = createSelector(getTextInputState, fromTextInput.getTextInputEntities);
