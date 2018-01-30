@@ -11,6 +11,7 @@ import {
 } from "./containers";
 
 import { EFFECTS } from "./effects";
+import * as fromB1 from "./reducers";
 import { TOKEN, reducerProvider } from "./reducers";
 import {
   SERVICES,
@@ -58,10 +59,13 @@ import {
 export class B1BlocksModule {
 }
 
+export { fromB1 };
+
 export * from "./models";
 
 export {
   B1BlockHooksService,
   B1BlockUtilsService,
   CheckBoxConfirmerService,
+  CheckBoxConfirmerContainerComponent,
 };

@@ -9,15 +9,14 @@ import {
   TextInputService,
 } from "../../dynamic-form/dynamic-form.module";
 
+import { B1BlockHooksService } from "../../b1";
+
+import { B2BlockHooksService } from "../../b2";
+
 import {
   CustomBlocksHooks,
   CustomBlocksMethods,
-  CheckBoxConfirmerBlock,
 } from "../models";
-
-import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
-
-import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class CustomBlockHooksService extends BlockHooksService {
@@ -27,7 +26,8 @@ export class CustomBlockHooksService extends BlockHooksService {
               protected checkBoxService: CheckBoxService,
               protected dropdownService: DropdownService,
               protected textInputService: TextInputService,
-              protected checkBoxConfirmerService: CheckBoxConfirmerService) {
+              protected b1BlockHooksService: B1BlockHooksService,
+              protected b2BlockHooksService: B2BlockHooksService) {
     super(
       logger,
       checkBoxService,
@@ -38,46 +38,15 @@ export class CustomBlockHooksService extends BlockHooksService {
   }
 
   startListenerForCustomBlocks(): void {
-    this.listenToLoadCheckBoxConfirmerBlock();
-
-    this.listenToCheckBoxConfirmerBlockChanges();
-  }
-
-  listenToLoadCheckBoxConfirmerBlock(): void {
-    this.checkBoxConfirmerService.blockLoadObservable$
-      .subscribe((block: CheckBoxConfirmerBlock) => {
-        try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
-          } else {
-            this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
-          }
-        } catch (e) {
-          this.logger.error(e);
-        }
-      });
-  }
-
-  listenToCheckBoxConfirmerBlockChanges(): void {
-    this.checkBoxConfirmerService.blockChangesObservable$
-      .subscribe((block: CheckBoxConfirmerBlock) => {
-        try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
-          } else {
-            this.hooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
-          }
-        } catch (e) {
-          this.logger.error(e);
-        }
-      });
+    this.b1BlockHooksService.startListenerForB1Blocks();
+    this.b2BlockHooksService.startListenerForB2Blocks();
   }
 
   protected blocksMethods(): CustomBlocksMethods {
-    const methods = super.blocksMethods() as CustomBlocksMethods;
-    methods.checkBoxConfirmer = this.checkBoxConfirmerService.getCheckBoxConfirmerMethods();
-    return methods;
+    return {
+      ...super.blocksMethods(),
+      ...this.b1BlockHooksService.blocksMethods(),
+      ...this.b2BlockHooksService.blocksMethods(),
+    };
   }
 }

@@ -33,7 +33,7 @@ export class B2BlockUtilsService {
         return true;
       }
       default: {
-        return undefined;
+        return false;
       }
     }
   }

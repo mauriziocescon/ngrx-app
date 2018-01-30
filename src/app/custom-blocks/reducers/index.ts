@@ -1,72 +1,31 @@
-import { InjectionToken } from "@angular/core";
-import { createSelector, createFeatureSelector, combineReducers, ActionReducerMap } from "@ngrx/store";
+import { createSelector } from "@ngrx/store";
 
 import { Block, fromDynamicForm } from "../../dynamic-form/dynamic-form.module";
 
-import { CheckBoxConfirmerBlock } from "../models";
+import { fromB1 } from "../../b1";
 
-import * as fromRoot from "../../reducers";
-import * as fromEditBlocks from "./blocks";
-import * as fromCheckBoxConfirmer from "./blocks/check-box-confirmer/check-box-confirmer.reducer";
-
-export interface CustomBlocksState {
-  editBlocks: fromEditBlocks.State;
-}
-
-export interface State extends fromRoot.State {
-  customBlocks: CustomBlocksState;
-}
-
-// -----------------
-// ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>("CustomBlocksEditBlocksReducers");
-
-export const getReducers = () => {
-  return {
-    editBlocks: combineReducers(fromEditBlocks.reducers),
-  };
-};
-
-export const reducerProvider = [
-  {provide: TOKEN, useFactory: getReducers}
-];
-
-// -----------------
-// --- feature selector
-export const getCustomBlocksState = createFeatureSelector<CustomBlocksState>("customBlocks");
-
-// -----------------
-// ----- edit blocks
-export const getEditBlocksState = createSelector(getCustomBlocksState, state => state.editBlocks);
-
-// -----------------
-// ------ check-box-confirmer
-export const getCheckBoxConfirmerState = createSelector(getEditBlocksState, fromEditBlocks.getCheckBoxConfirmerState);
-
-export const getCheckBoxConfirmerIds = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerIds);
-export const getCheckBoxConfirmerEntities = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerEntities);
-export const getAllCheckBoxConfirmer = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getAllCheckBoxConfirmer);
-export const getTotalCheckBoxConfirmer = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getTotalCheckBoxConfirmer);
-export const getCheckBoxConfirmerBlocksValidityState = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerBlocksValidityState);
-export const getCheckBoxConfirmerBlocksLoadingState = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerBlocksLoadingState);
+import { fromB2 } from "../../b2";
 
 // -----------------
 // --------- generic
 export const getAllEditBlocksState = createSelector(
   fromDynamicForm.getAllEditBlocksState,
-  getAllCheckBoxConfirmer,
-  (blocks: Block[], checkBoxConfirmerBlocks: CheckBoxConfirmerBlock[]) => {
+  fromB1.getAllEditBlocksState,
+  fromB2.getAllEditBlocksState,
+  (blocks: Block[], b1Blocks: Block[], b2Blocks: Block[]) => {
     return [
       ...blocks,
-      ...checkBoxConfirmerBlocks,
+      ...b1Blocks,
+      ...b2Blocks,
     ];
   },
 );
 
 export const getAllEditBlocksValidityState = createSelector(
   fromDynamicForm.getAllEditBlocksValidityState,
-  getCheckBoxConfirmerBlocksValidityState,
-  (blocskValidity: boolean, checkBoxConfirmerValidity: boolean) => {
-    return blocskValidity && checkBoxConfirmerValidity;
+  fromB1.getAllEditBlocksValidityState,
+  fromB2.getAllEditBlocksValidityState,
+  (blocskValidity: boolean, b1BlocksValidity: boolean, b2BlocksValidity: boolean) => {
+    return blocskValidity && b1BlocksValidity && b2BlocksValidity;
   }
 );

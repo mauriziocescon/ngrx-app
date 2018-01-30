@@ -59,7 +59,7 @@ export class B1BlockHooksService {
       });
   }
 
-  protected blocksMethods(): B1BlocksMethods {
+  blocksMethods(): B1BlocksMethods {
     return {
       checkBoxConfirmer: {
         ...this.checkBoxConfirmerService.getCheckBoxConfirmerMethods(),

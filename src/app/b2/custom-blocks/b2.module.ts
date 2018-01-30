@@ -11,6 +11,7 @@ import {
 } from "./containers";
 
 import { EFFECTS } from "./effects";
+import * as fromB2 from "./reducers";
 import { TOKEN, reducerProvider } from "./reducers";
 import {
   SERVICES,
@@ -59,6 +60,8 @@ export class B2BlocksModule {
 }
 
 export * from "./models";
+
+export { fromB2 };
 
 export {
   B2BlockHooksService,

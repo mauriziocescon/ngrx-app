@@ -59,7 +59,7 @@ export class B2BlockHooksService {
       });
   }
 
-  protected blocksMethods(): B2BlocksMethods {
+  blocksMethods(): B2BlocksMethods {
     return {
       datePicker: {
         ...this.datePickerService.getDatePickerMethods(),

@@ -8,11 +8,9 @@ import {
   TextInputService,
 } from "../../dynamic-form/dynamic-form.module";
 
-import { CheckBoxConfirmerContainerComponent } from "../containers/blocks/check-box-confirmer/check-box-confirmer.container";
+import { B1BlockUtilsService } from "../../b1";
 
-import { CustomBlockType } from "../models";
-
-import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
+import { B2BlockUtilsService } from "../../b2";
 
 @Injectable()
 export class CustomBlockUtilsService extends BlockUtilsService {
@@ -20,7 +18,8 @@ export class CustomBlockUtilsService extends BlockUtilsService {
   constructor(protected checkBoxService: CheckBoxService,
               protected dropdownService: DropdownService,
               protected textInputService: TextInputService,
-              protected checkBoxConfirmerService: CheckBoxConfirmerService) {
+              protected b1BlockUtilsService: B1BlockUtilsService,
+              protected b2BlockUtilsService: B2BlockUtilsService) {
     super(
       checkBoxService,
       dropdownService,
@@ -29,26 +28,14 @@ export class CustomBlockUtilsService extends BlockUtilsService {
   }
 
   getComponentForBlock(block: Block): any {
-    switch (block.type) {
-      case CustomBlockType.CheckBoxConfirmer: {
-        return CheckBoxConfirmerContainerComponent;
-      }
-      default: {
-        return super.getComponentForBlock(block);
-      }
-    }
+    return this.b1BlockUtilsService.getComponentForBlock(block) |
+      this.b2BlockUtilsService.getComponentForBlock(block) |
+      super.getComponentForBlock(block);
   }
 
   triggerComponentDidLoad(block: Block): boolean {
-    switch (block.type) {
-      case CustomBlockType.CheckBoxConfirmer: {
-        const checkBoxConfirmerBlock = block as CheckBoxConfirmerBlock;
-        this.checkBoxConfirmerService.blockDidload(checkBoxConfirmerBlock);
-        return true;
-      }
-      default: {
-        super.triggerComponentDidLoad(block);
-      }
-    }
+    return this.b1BlockUtilsService.triggerComponentDidLoad(block) ||
+      this.b2BlockUtilsService.triggerComponentDidLoad(block) ||
+      super.triggerComponentDidLoad(block);
   }
 }
