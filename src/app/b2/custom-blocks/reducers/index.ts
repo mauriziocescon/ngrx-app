@@ -5,7 +5,7 @@ import { CheckBoxConfirmerBlock } from "../models";
 
 import * as fromRoot from "../../../reducers";
 import * as fromEditBlocks from "./blocks";
-import * as fromCheckBoxConfirmer from "./blocks/check-box-confirmer/check-box-confirmer.reducer";
+import * as fromCheckBoxConfirmer from "./blocks/date-picker/date-picker.reducer";
 
 export interface B2BlocksState {
   editBlocks: fromEditBlocks.State;

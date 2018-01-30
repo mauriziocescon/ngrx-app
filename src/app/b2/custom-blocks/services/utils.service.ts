@@ -6,7 +6,7 @@ import { CheckBoxConfirmerContainerComponent } from "../containers";
 
 import { B2BlockType, CheckBoxConfirmerBlock } from "../models";
 
-import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
+import { CheckBoxConfirmerService } from "./blocks/date-picker.service";
 
 @Injectable()
 export class B2BlockUtilsService {

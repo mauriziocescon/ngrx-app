@@ -10,7 +10,7 @@ import { CoreModule } from "../../../../../core/core.module";
 import { SharedModule } from "../../../../../shared/shared.module";
 
 import { B2BlockType } from "../../../models";
-import { CheckBoxConfirmerComponent } from "./check-box-confirmer.component";
+import { CheckBoxConfirmerComponent } from "./date-picker.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");

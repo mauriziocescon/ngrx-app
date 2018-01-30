@@ -8,7 +8,7 @@ import {
   CheckBoxConfirmerBlock,
 } from "../models";
 
-import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
+import { CheckBoxConfirmerService } from "./blocks/date-picker.service";
 
 import { environment } from "../../../../environments/environment";
 

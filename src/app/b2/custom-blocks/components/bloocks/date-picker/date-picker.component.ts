@@ -10,8 +10,8 @@ import { CheckBoxConfirmerBlock } from "../../../models";
 
 @Component({
   selector: "cp-check-box-confirmer",
-  templateUrl: "./check-box-confirmer.component.html",
-  styleUrls: ["./check-box-confirmer.component.scss"]
+  templateUrl: "./date-picker.component.html",
+  styleUrls: ["./date-picker.component.scss"]
 })
 export class CheckBoxConfirmerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: CheckBoxConfirmerBlock;

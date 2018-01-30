@@ -16,7 +16,7 @@ import {
 } from "../../../../../core/core.module";
 
 import * as fromB2Blocks from "../../../reducers";
-import * as checkBoxConfirmer from "../../../actions/blocks/check-box-confirmer.actions";
+import * as checkBoxConfirmer from "../../../actions/blocks/date-picker.actions";
 import { B2BlockType, CheckBoxConfirmerBlock } from "../../../models";
 
 import * as fromRoot from "../../../../../reducers";

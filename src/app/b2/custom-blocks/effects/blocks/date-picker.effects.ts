@@ -15,7 +15,7 @@ import {
 
 import { CheckBoxConfirmerBlock, B2BlockType } from "../../models";
 import { CheckBoxConfirmerService } from "../../services";
-import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock } from "../../actions/blocks/check-box-confirmer.actions";
+import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock } from "../../actions/blocks/date-picker.actions";
 
 @Injectable()
 export class CheckBoxConfirmerEffects {

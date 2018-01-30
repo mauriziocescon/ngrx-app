@@ -1,4 +1,4 @@
-import { CheckBoxConfirmerComponent } from "./bloocks/check-box-confirmer/check-box-confirmer.component";
+import { CheckBoxConfirmerComponent } from "./bloocks/date-picker/date-picker.component";
 
 export const COMPONENTS = [
   CheckBoxConfirmerComponent,

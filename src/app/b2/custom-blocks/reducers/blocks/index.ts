@@ -1,4 +1,4 @@
-import * as fromCheckBoxConfirmer from "./check-box-confirmer/check-box-confirmer.reducer";
+import * as fromCheckBoxConfirmer from "./date-picker/date-picker.reducer";
 
 export interface State {
   checkBoxConfirmer: fromCheckBoxConfirmer.State;

@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
 import * as fromB2Blocks from "../../reducers";
-import * as checkBoxConfirmer from "../../actions/blocks/check-box-confirmer.actions";
+import * as checkBoxConfirmer from "../../actions/blocks/date-picker.actions";
 import { B2BlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerMethods } from "../../models";
 
 @Injectable()

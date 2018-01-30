@@ -1,4 +1,4 @@
-import { CheckBoxConfirmerBlock } from "../blocks/check-box-confirmer.model";
+import { CheckBoxConfirmerBlock } from "../blocks/date-picker.model";
 
 import { B2BlocksMethods } from "../block-methods/block-methods";
 
