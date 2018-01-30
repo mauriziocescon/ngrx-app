@@ -7,7 +7,7 @@ import { SharedModule } from "../../shared/shared.module";
 import { COMPONENTS } from "./components";
 import {
   CONTAINERS,
-  CheckBoxConfirmerContainerComponent,
+  DatePickerContainerComponent,
 } from "./containers";
 
 import { EFFECTS } from "./effects";
@@ -16,7 +16,7 @@ import {
   SERVICES,
   B2BlockHooksService,
   B2BlockUtilsService,
-  CheckBoxConfirmerService,
+  DatePickerService,
 } from "./services";
 
 @NgModule({
@@ -48,7 +48,7 @@ import {
     ...CONTAINERS,
   ],
   entryComponents: [
-    CheckBoxConfirmerContainerComponent,
+    DatePickerContainerComponent,
   ],
   providers: [
     reducerProvider,
@@ -63,5 +63,5 @@ export * from "./models";
 export {
   B2BlockHooksService,
   B2BlockUtilsService,
-  CheckBoxConfirmerService,
+  DatePickerService,
 };

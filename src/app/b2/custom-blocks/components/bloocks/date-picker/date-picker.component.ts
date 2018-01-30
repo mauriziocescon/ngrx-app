@@ -6,22 +6,22 @@ import "rxjs/add/operator/debounceTime";
 
 import { NGXLogger } from "ngx-logger";
 
-import { CheckBoxConfirmerBlock } from "../../../models";
+import { DatePickerBlock } from "../../../models";
 
 @Component({
-  selector: "cp-check-box-confirmer",
+  selector: "cp-date-picker",
   templateUrl: "./date-picker.component.html",
   styleUrls: ["./date-picker.component.scss"]
 })
-export class CheckBoxConfirmerComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() block: CheckBoxConfirmerBlock;
+export class DatePickerComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() block: DatePickerBlock;
   @Input() loading: boolean;
   @Output() valueDidChange: EventEmitter<boolean>;
 
-  checkBoxConfirmerForm: FormGroup;
-  protected checkBoxConfirmerControl: FormControl;
+  datePickerForm: FormGroup;
+  protected datePickerControl: FormControl;
 
-  protected checkBoxConfirmerControlSubscription: Subscription;
+  protected datePickerControlSubscription: Subscription;
 
   constructor(protected formBuilder: FormBuilder,
               protected logger: NGXLogger) {
@@ -41,29 +41,29 @@ export class CheckBoxConfirmerComponent implements OnInit, OnChanges, OnDestroy 
       ...this.insertIf(this.block.required, Validators.required),
     ];
 
-    this.checkBoxConfirmerForm = this.formBuilder.group({
-      checkBoxConfirmer: this.checkBoxConfirmerControl = new FormControl(controlValue, options),
+    this.datePickerForm = this.formBuilder.group({
+      datePicker: this.datePickerControl = new FormControl(controlValue, options),
     });
 
-    this.subscribeToCheckBoxConfirmerControlValueChanges();
+    this.subscribeToDatePickerControlValueChanges();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.block.isFirstChange()) {
-      this.unsubscribeToCheckBoxConfirmerValueChanges();
-      this.checkBoxConfirmerControl.setValue(changes.block.currentValue.value);
-      this.subscribeToCheckBoxConfirmerControlValueChanges();
+      this.unsubscribeToDatePickerValueChanges();
+      this.datePickerControl.setValue(changes.block.currentValue.value);
+      this.subscribeToDatePickerControlValueChanges();
     }
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeToCheckBoxConfirmerValueChanges();
+    this.unsubscribeToDatePickerValueChanges();
   }
 
-  protected subscribeToCheckBoxConfirmerControlValueChanges(): void {
-    this.unsubscribeToCheckBoxConfirmerValueChanges();
+  protected subscribeToDatePickerControlValueChanges(): void {
+    this.unsubscribeToDatePickerValueChanges();
 
-    this.checkBoxConfirmerControlSubscription = this.checkBoxConfirmerControl
+    this.datePickerControlSubscription = this.datePickerControl
       .valueChanges
       .debounceTime(500)
       .subscribe((value: any) => {
@@ -78,9 +78,9 @@ export class CheckBoxConfirmerComponent implements OnInit, OnChanges, OnDestroy 
     return condition ? [element] : [];
   }
 
-  protected unsubscribeToCheckBoxConfirmerValueChanges(): void {
-    if (this.checkBoxConfirmerControlSubscription) {
-      this.checkBoxConfirmerControlSubscription.unsubscribe();
+  protected unsubscribeToDatePickerValueChanges(): void {
+    if (this.datePickerControlSubscription) {
+      this.datePickerControlSubscription.unsubscribe();
     }
   }
 }

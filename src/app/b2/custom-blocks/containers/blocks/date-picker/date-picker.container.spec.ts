@@ -16,15 +16,15 @@ import { SharedModule } from "../../../../../shared/shared.module";
 
 import { B2BlockType } from "../../../models";
 import { COMPONENTS } from "../../../components";
-import { CONTAINERS, CheckBoxConfirmerContainerComponent } from "../../../containers";
+import { CONTAINERS, DatePickerContainerComponent } from "../../../containers";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("CheckBoxConfirmerComponent", () => {
-  let component: CheckBoxConfirmerContainerComponent;
-  let fixture: ComponentFixture<CheckBoxConfirmerContainerComponent>;
+describe("DatePickerComponent", () => {
+  let component: DatePickerContainerComponent;
+  let fixture: ComponentFixture<DatePickerContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -70,7 +70,7 @@ describe("CheckBoxConfirmerComponent", () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckBoxConfirmerContainerComponent);
+    fixture = TestBed.createComponent(DatePickerContainerComponent);
     component = fixture.componentInstance;
     component.blockId = 1;
     fixture.detectChanges();

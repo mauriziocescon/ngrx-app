@@ -13,33 +13,33 @@ import {
   ListActionTypes,
 } from "../../../../dynamic-form/dynamic-form.module";
 
-import { CheckBoxConfirmerBlock, B2BlockType } from "../../models";
-import { CheckBoxConfirmerService } from "../../services";
-import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock } from "../../actions/blocks/date-picker.actions";
+import { DatePickerBlock, B2BlockType } from "../../models";
+import { DatePickerService } from "../../services";
+import { DatePickerActionTypes, AddBlocks, UpdateBlock } from "../../actions/blocks/date-picker.actions";
 
 @Injectable()
-export class CheckBoxConfirmerEffects {
+export class DatePickerEffects {
 
   constructor(protected actions$: Actions,
-              protected checkBoxConfirmerService: CheckBoxConfirmerService) {
+              protected datePickerService: DatePickerService) {
   }
 
   @Effect() blocksAvailable: Observable<Action> = this.actions$
     .ofType(ListActionTypes.FETCH_BLOCKS_COMPLETE)
     .map((action: FetchBlocksComplete) => action.payload)
     .map((blocks: Block[]) => {
-      const checkBoxConfirmerBoxBlocks = blocks.filter((block: Block) => {
-        return block.type === B2BlockType.CheckBoxConfirmer;
+      const datePickerBoxBlocks = blocks.filter((block: Block) => {
+        return block.type === B2BlockType.DatePicker;
       });
-      return new AddBlocks({blocks: checkBoxConfirmerBoxBlocks});
+      return new AddBlocks({blocks: datePickerBoxBlocks});
     });
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$
-    .ofType(CheckBoxConfirmerActionTypes.UPDATE_BLOCK)
+    .ofType(DatePickerActionTypes.UPDATE_BLOCK)
     .map((action: UpdateBlock) => action.payload)
-    .switchMap((payload: { block: { id: number, changes: CheckBoxConfirmerBlock }, notify: boolean }) => {
+    .switchMap((payload: { block: { id: number, changes: DatePickerBlock }, notify: boolean }) => {
       if (payload.notify) {
-        this.checkBoxConfirmerService.blockDidChange(payload.block);
+        this.datePickerService.blockDidChange(payload.block);
       }
       return empty();
     });

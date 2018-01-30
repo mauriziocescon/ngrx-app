@@ -1,5 +1,5 @@
-import { CheckBoxConfirmerMethods } from "./date-picker-methods";
+import { DatePickerMethods } from "./date-picker-methods";
 
 export interface B2BlocksMethods {
-  checkBoxConfirmer: CheckBoxConfirmerMethods;
+  datePicker: DatePickerMethods;
 }

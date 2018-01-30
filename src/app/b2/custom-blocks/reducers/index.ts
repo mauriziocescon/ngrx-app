@@ -1,11 +1,11 @@
 import { InjectionToken } from "@angular/core";
 import { createSelector, createFeatureSelector, combineReducers, ActionReducerMap } from "@ngrx/store";
 
-import { CheckBoxConfirmerBlock } from "../models";
+import { DatePickerBlock } from "../models";
 
 import * as fromRoot from "../../../reducers";
 import * as fromEditBlocks from "./blocks";
-import * as fromCheckBoxConfirmer from "./blocks/date-picker/date-picker.reducer";
+import * as fromDatePicker from "./blocks/date-picker/date-picker.reducer";
 
 export interface B2BlocksState {
   editBlocks: fromEditBlocks.State;
@@ -38,30 +38,30 @@ export const getB2BlocksState = createFeatureSelector<B2BlocksState>("b2Blocks")
 export const getEditBlocksState = createSelector(getB2BlocksState, state => state.editBlocks);
 
 // -----------------
-// ------ check-box-confirmer
-export const getCheckBoxConfirmerState = createSelector(getEditBlocksState, fromEditBlocks.getCheckBoxConfirmerState);
+// ------ date-picker
+export const getDatePickerState = createSelector(getEditBlocksState, fromEditBlocks.getDatePickerState);
 
-export const getCheckBoxConfirmerIds = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerIds);
-export const getCheckBoxConfirmerEntities = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerEntities);
-export const getAllCheckBoxConfirmer = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getAllCheckBoxConfirmer);
-export const getTotalCheckBoxConfirmer = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getTotalCheckBoxConfirmer);
-export const getCheckBoxConfirmerBlocksValidityState = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerBlocksValidityState);
-export const getCheckBoxConfirmerBlocksLoadingState = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerBlocksLoadingState);
+export const getDatePickerIds = createSelector(getDatePickerState, fromDatePicker.getDatePickerIds);
+export const getDatePickerEntities = createSelector(getDatePickerState, fromDatePicker.getDatePickerEntities);
+export const getAllDatePicker = createSelector(getDatePickerState, fromDatePicker.getAllDatePicker);
+export const getTotalDatePicker = createSelector(getDatePickerState, fromDatePicker.getTotalDatePicker);
+export const getDatePickerBlocksValidityState = createSelector(getDatePickerState, fromDatePicker.getDatePickerBlocksValidityState);
+export const getDatePickerBlocksLoadingState = createSelector(getDatePickerState, fromDatePicker.getDatePickerBlocksLoadingState);
 
 // -----------------
 // --------- generic
 export const getAllEditBlocksState = createSelector(
-  getAllCheckBoxConfirmer,
-  (checkBoxConfirmerBlocks: CheckBoxConfirmerBlock[]) => {
+  getAllDatePicker,
+  (datePickerBlocks: DatePickerBlock[]) => {
     return [
-      ...checkBoxConfirmerBlocks,
+      ...datePickerBlocks,
     ];
   },
 );
 
 export const getAllEditBlocksValidityState = createSelector(
-  getCheckBoxConfirmerBlocksValidityState,
-  (checkBoxConfirmerValidity: boolean) => {
-    return checkBoxConfirmerValidity;
+  getDatePickerBlocksValidityState,
+  (datePickerValidity: boolean) => {
+    return datePickerValidity;
   }
 );

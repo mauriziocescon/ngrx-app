@@ -5,16 +5,16 @@ import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
 import * as fromB2Blocks from "../../reducers";
-import * as checkBoxConfirmer from "../../actions/blocks/date-picker.actions";
-import { B2BlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerMethods } from "../../models";
+import * as datePicker from "../../actions/blocks/date-picker.actions";
+import { B2BlockType, DatePickerBlock, DatePickerMethods } from "../../models";
 
 @Injectable()
-export class CheckBoxConfirmerService {
-  protected blockLoadSubject$: Subject<CheckBoxConfirmerBlock>;
-  readonly blockLoadObservable$: Observable<CheckBoxConfirmerBlock>;
+export class DatePickerService {
+  protected blockLoadSubject$: Subject<DatePickerBlock>;
+  readonly blockLoadObservable$: Observable<DatePickerBlock>;
 
-  protected blockChangesSubject$: Subject<CheckBoxConfirmerBlock>;
-  readonly blockChangesObservable$: Observable<CheckBoxConfirmerBlock>;
+  protected blockChangesSubject$: Subject<DatePickerBlock>;
+  readonly blockChangesObservable$: Observable<DatePickerBlock>;
 
   constructor(protected store: Store<fromB2Blocks.State>) {
     this.blockLoadSubject$ = new Subject();
@@ -24,7 +24,7 @@ export class CheckBoxConfirmerService {
     this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
-  getCheckBoxConfirmerMethods(): CheckBoxConfirmerMethods {
+  getDatePickerMethods(): DatePickerMethods {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),
@@ -36,12 +36,12 @@ export class CheckBoxConfirmerService {
     };
   }
 
-  blockDidload(block: CheckBoxConfirmerBlock): void {
+  blockDidload(block: DatePickerBlock): void {
     this.blockLoadSubject$.next(block);
   }
 
-  blockDidChange(block: { id: number, changes: CheckBoxConfirmerBlock }): void {
-    const newBlock: CheckBoxConfirmerBlock = {...block.changes, hooks: {...block.changes.hooks}};
+  blockDidChange(block: { id: number, changes: DatePickerBlock }): void {
+    const newBlock: DatePickerBlock = {...block.changes, hooks: {...block.changes.hooks}};
     this.blockChangesSubject$.next(newBlock);
   }
 
@@ -50,12 +50,12 @@ export class CheckBoxConfirmerService {
       id: blockId,
       loading: loading,
     };
-    this.store.dispatch(new checkBoxConfirmer.Loading(newLoading));
+    this.store.dispatch(new datePicker.Loading(newLoading));
   }
 
-  protected setBlock(block: { block: { id: number, changes: CheckBoxConfirmerBlock } }): void {
+  protected setBlock(block: { block: { id: number, changes: DatePickerBlock } }): void {
     const newBlock = {block: block.block, notify: false};
-    this.store.dispatch(new checkBoxConfirmer.UpdateBlock(newBlock));
+    this.store.dispatch(new datePicker.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {
@@ -64,7 +64,7 @@ export class CheckBoxConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: B2BlockType.CheckBoxConfirmer,
+          type: B2BlockType.DatePicker,
           label: label,
         },
       }
@@ -78,7 +78,7 @@ export class CheckBoxConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: B2BlockType.CheckBoxConfirmer,
+          type: B2BlockType.DatePicker,
           value: value,
         },
       }
@@ -92,7 +92,7 @@ export class CheckBoxConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: B2BlockType.CheckBoxConfirmer,
+          type: B2BlockType.DatePicker,
           description: description,
         },
       }
@@ -106,7 +106,7 @@ export class CheckBoxConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: B2BlockType.CheckBoxConfirmer,
+          type: B2BlockType.DatePicker,
           required: required,
         },
       }
@@ -120,7 +120,7 @@ export class CheckBoxConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: B2BlockType.CheckBoxConfirmer,
+          type: B2BlockType.DatePicker,
           disabled: disabled,
         },
       }
@@ -134,7 +134,7 @@ export class CheckBoxConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: B2BlockType.CheckBoxConfirmer,
+          type: B2BlockType.DatePicker,
           valid: valid,
         },
       }

@@ -10,15 +10,15 @@ import { CoreModule } from "../../../../../core/core.module";
 import { SharedModule } from "../../../../../shared/shared.module";
 
 import { B2BlockType } from "../../../models";
-import { CheckBoxConfirmerComponent } from "./date-picker.component";
+import { DatePickerComponent } from "./date-picker.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("CheckBoxConfirmerComponent", () => {
-  let component: CheckBoxConfirmerComponent;
-  let fixture: ComponentFixture<CheckBoxConfirmerComponent>;
+describe("DatePickerComponent", () => {
+  let component: DatePickerComponent;
+  let fixture: ComponentFixture<DatePickerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -40,7 +40,7 @@ describe("CheckBoxConfirmerComponent", () => {
         SharedModule,
       ],
       declarations: [
-        CheckBoxConfirmerComponent,
+        DatePickerComponent,
       ],
       providers: [
         TranslateService,
@@ -51,11 +51,11 @@ describe("CheckBoxConfirmerComponent", () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckBoxConfirmerComponent);
+    fixture = TestBed.createComponent(DatePickerComponent);
     component = fixture.componentInstance;
     component.block = {
       id: 1,
-      type: B2BlockType.CheckBoxConfirmer,
+      type: B2BlockType.DatePicker,
       label: "",
       value: true,
       description: "",

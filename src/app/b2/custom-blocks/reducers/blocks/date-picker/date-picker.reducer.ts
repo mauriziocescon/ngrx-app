@@ -1,42 +1,42 @@
 import { createSelector } from "@ngrx/store";
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 
-import { CheckBoxConfirmerActionTypes, CheckBoxConfirmerActions } from "../../../actions/blocks/date-picker.actions";
-import { CheckBoxConfirmerBlock } from "../../../models";
+import { DatePickerActionTypes, DatePickerActions } from "../../../actions/blocks/date-picker.actions";
+import { DatePickerBlock } from "../../../models";
 
-export interface State extends EntityState<CheckBoxConfirmerBlock> {
-  checkBoxConfirmerBlocksLoading: { [id: string]: boolean };
+export interface State extends EntityState<DatePickerBlock> {
+  datePickerBlocksLoading: { [id: string]: boolean };
 }
 
-export const adapter: EntityAdapter<CheckBoxConfirmerBlock> = createEntityAdapter<CheckBoxConfirmerBlock>({
-  selectId: (block: CheckBoxConfirmerBlock) => block.id,
-  sortComparer: (a: CheckBoxConfirmerBlock, b: CheckBoxConfirmerBlock) => {
+export const adapter: EntityAdapter<DatePickerBlock> = createEntityAdapter<DatePickerBlock>({
+  selectId: (block: DatePickerBlock) => block.id,
+  sortComparer: (a: DatePickerBlock, b: DatePickerBlock) => {
     return a.id - b.id;
   },
 });
 
 export const initialState: State = adapter.getInitialState({
-  checkBoxConfirmerBlocksLoading: {},
+  datePickerBlocksLoading: {},
 });
 
-export function reducer(state = initialState, action: CheckBoxConfirmerActions): State {
+export function reducer(state = initialState, action: DatePickerActions): State {
   switch (action.type) {
-    case CheckBoxConfirmerActionTypes.LOADING: {
-      const newBlocksLoading = {...state.checkBoxConfirmerBlocksLoading};
+    case DatePickerActionTypes.LOADING: {
+      const newBlocksLoading = {...state.datePickerBlocksLoading};
       newBlocksLoading[action.payload.id] = action.payload.loading;
       return {
         ...state,
-        checkBoxConfirmerBlocksLoading: newBlocksLoading,
+        datePickerBlocksLoading: newBlocksLoading,
       };
     }
-    case CheckBoxConfirmerActionTypes.ADD_BLOCKS: {
+    case DatePickerActionTypes.ADD_BLOCKS: {
       return {
         ...adapter.addMany(action.payload.blocks, state),
       };
     }
-    case CheckBoxConfirmerActionTypes.UPDATE_BLOCK: {
-      const checkBoxConfirmerBlock = state.entities[action.payload.block.id];
-      if (!checkBoxConfirmerBlock) {
+    case DatePickerActionTypes.UPDATE_BLOCK: {
+      const datePickerBlock = state.entities[action.payload.block.id];
+      if (!datePickerBlock) {
         return state;
       }
       return {
@@ -50,15 +50,15 @@ export function reducer(state = initialState, action: CheckBoxConfirmerActions):
 }
 
 export const {
-  selectIds: getCheckBoxConfirmerIds,
-  selectEntities: getCheckBoxConfirmerEntities,
-  selectAll: getAllCheckBoxConfirmer,
-  selectTotal: getTotalCheckBoxConfirmer,
+  selectIds: getDatePickerIds,
+  selectEntities: getDatePickerEntities,
+  selectAll: getAllDatePicker,
+  selectTotal: getTotalDatePicker,
 } = adapter.getSelectors();
 
-export const getCheckBoxConfirmerBlocksValidityState = createSelector(
-  getCheckBoxConfirmerIds,
-  getCheckBoxConfirmerEntities,
+export const getDatePickerBlocksValidityState = createSelector(
+  getDatePickerIds,
+  getDatePickerEntities,
   (ids: number[], blocksEntities: { [id: string]: any }) => {
     return ids.findIndex((id: number) => {
       return blocksEntities[id].valid === false;
@@ -66,4 +66,4 @@ export const getCheckBoxConfirmerBlocksValidityState = createSelector(
   }
 );
 
-export const getCheckBoxConfirmerBlocksLoadingState = (state: State) => state.checkBoxConfirmerBlocksLoading;
+export const getDatePickerBlocksLoadingState = (state: State) => state.datePickerBlocksLoading;

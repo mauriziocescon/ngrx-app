@@ -1,16 +1,16 @@
 import { Block } from "../../../../dynamic-form/dynamic-form.module";
 
-export interface CheckBoxConfirmerBlock extends Block {
+export interface DatePickerBlock extends Block {
   label?: string;
   value?: boolean;
   description?: string;
   required?: boolean;
   disabled?: boolean;
   valid?: boolean;
-  hooks?: CheckBoxConfirmerBlockHooks;
+  hooks?: DatePickerBlockHooks;
 }
 
-interface CheckBoxConfirmerBlockHooks {
-  checkBoxConfirmerBlockDidLoad: string;
-  checkBoxConfirmerBlockDidChange: string;
+interface DatePickerBlockHooks {
+  datePickerBlockDidLoad: string;
+  datePickerBlockDidChange: string;
 }

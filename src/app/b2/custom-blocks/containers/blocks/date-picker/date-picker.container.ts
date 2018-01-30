@@ -16,26 +16,26 @@ import {
 } from "../../../../../core/core.module";
 
 import * as fromB2Blocks from "../../../reducers";
-import * as checkBoxConfirmer from "../../../actions/blocks/date-picker.actions";
-import { B2BlockType, CheckBoxConfirmerBlock } from "../../../models";
+import * as datePicker from "../../../actions/blocks/date-picker.actions";
+import { B2BlockType, DatePickerBlock } from "../../../models";
 
 import * as fromRoot from "../../../../../reducers";
 
 @Component({
-  selector: "ct-check-box-confirmer",
+  selector: "ct-date-picker",
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <cp-check-box-confirmer
+    <cp-date-picker
       [block]="block$ | async"
       [loading]="loading$ | async"
       (valueDidChange)="valueDidChange($event)">
-    </cp-check-box-confirmer>`,
+    </cp-date-picker>`,
 })
-export class CheckBoxConfirmerContainerComponent implements OnDestroy {
+export class DatePickerContainerComponent implements OnDestroy {
   @Input() blockId: number;
 
-  block$: Observable<CheckBoxConfirmerBlock>;
-  checkBoxConfirmerBlock: CheckBoxConfirmerBlock;
+  block$: Observable<DatePickerBlock>;
+  datePickerBlock: DatePickerBlock;
 
   loading$: Observable<boolean>;
 
@@ -44,17 +44,17 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
 
   constructor(protected store: Store<fromRoot.State>,
               protected translate: TranslateService) {
-    this.block$ = this.store.select(fromB2Blocks.getAllCheckBoxConfirmer)
-      .map((blocks: CheckBoxConfirmerBlock[]) => {
-        return blocks.find((block: CheckBoxConfirmerBlock) => {
+    this.block$ = this.store.select(fromB2Blocks.getAllDatePicker)
+      .map((blocks: DatePickerBlock[]) => {
+        return blocks.find((block: DatePickerBlock) => {
           return block.id === this.blockId;
         });
       })
       .map((block) => {
-        return this.checkBoxConfirmerBlock = block;
+        return this.datePickerBlock = block;
       });
 
-    this.loading$ = this.store.select(fromB2Blocks.getCheckBoxConfirmerBlocksLoadingState)
+    this.loading$ = this.store.select(fromB2Blocks.getDatePickerBlocksLoadingState)
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
@@ -76,38 +76,38 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
         id: this.blockId,
         changes: {
           id: this.blockId,
-          type: B2BlockType.CheckBoxConfirmer,
-          label: this.checkBoxConfirmerBlock.label,
+          type: B2BlockType.DatePicker,
+          label: this.datePickerBlock.label,
           value: value,
-          description: this.checkBoxConfirmerBlock.description,
-          required: this.checkBoxConfirmerBlock.required,
-          disabled: this.checkBoxConfirmerBlock.disabled,
+          description: this.datePickerBlock.description,
+          required: this.datePickerBlock.required,
+          disabled: this.datePickerBlock.disabled,
           hooks: {
-            ...this.checkBoxConfirmerBlock.hooks,
+            ...this.datePickerBlock.hooks,
           },
         },
       },
       notify: true,
     };
-    this.store.dispatch(new checkBoxConfirmer.UpdateBlock(block));
+    this.store.dispatch(new datePicker.UpdateBlock(block));
   }
 
   protected askForConfirmation(): void {
     this.subscribeToModalConfirmerResult();
 
     this.translate.get([
-      "CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE",
-      "CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON",
-      "CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE",
-      "CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON",
+      "CONTAINER.DATE_PICKER.CONFIRMATION_MESSAGE",
+      "CONTAINER.DATE_PICKER.CONFIRMATION_NO_BUTTON",
+      "CONTAINER.DATE_PICKER.CONFIRMATION_TITLE",
+      "CONTAINER.DATE_PICKER.CONFIRMATION_YES_BUTTON",
     ])
       .subscribe((translations: any) => {
         const modalConfirmer: ModalConfirmer = {
           id: this.blockId.toString(),
-          title: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE"],
-          message: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE"],
-          yesButtonLabel: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON"],
-          noButtonLabel: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON"],
+          title: translations["CONTAINER.DATE_PICKER.CONFIRMATION_TITLE"],
+          message: translations["CONTAINER.DATE_PICKER.CONFIRMATION_MESSAGE"],
+          yesButtonLabel: translations["CONTAINER.DATE_PICKER.CONFIRMATION_YES_BUTTON"],
+          noButtonLabel: translations["CONTAINER.DATE_PICKER.CONFIRMATION_NO_BUTTON"],
         };
         this.store.dispatch(new modalConfirmersActions.ShowModalConfirmer({modal: modalConfirmer}));
       });
@@ -128,16 +128,16 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
             this.dispatchValueDidChangeAction(true);
 
             this.translate.get([
-              "CONTAINER.CHECK_BOX_CONFIRMER.ALERT_BUTTON",
-              "CONTAINER.CHECK_BOX_CONFIRMER.ALERT_MESSAGE",
-              "CONTAINER.CHECK_BOX_CONFIRMER.ALERT_TITLE",
+              "CONTAINER.DATE_PICKER.ALERT_BUTTON",
+              "CONTAINER.DATE_PICKER.ALERT_MESSAGE",
+              "CONTAINER.DATE_PICKER.ALERT_TITLE",
             ])
               .subscribe((translations: any) => {
                 const modalAlert: ModalAlert = {
                   id: this.blockId.toString(),
-                  title: translations["CONTAINER.CHECK_BOX_CONFIRMER.ALERT_TITLE"],
-                  message: translations["CONTAINER.CHECK_BOX_CONFIRMER.ALERT_MESSAGE"],
-                  buttonLabel: translations["CONTAINER.CHECK_BOX_CONFIRMER.ALERT_BUTTON"],
+                  title: translations["CONTAINER.DATE_PICKER.ALERT_TITLE"],
+                  message: translations["CONTAINER.DATE_PICKER.ALERT_MESSAGE"],
+                  buttonLabel: translations["CONTAINER.DATE_PICKER.ALERT_BUTTON"],
                 };
                 this.store.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
               });

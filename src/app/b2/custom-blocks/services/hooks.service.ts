@@ -5,10 +5,10 @@ import { NGXLogger } from "ngx-logger";
 import {
   B2BlocksHooks,
   B2BlocksMethods,
-  CheckBoxConfirmerBlock,
+  DatePickerBlock,
 } from "../models";
 
-import { CheckBoxConfirmerService } from "./blocks/date-picker.service";
+import { DatePickerService } from "./blocks/date-picker.service";
 
 import { environment } from "../../../../environments/environment";
 
@@ -17,25 +17,25 @@ export class B2BlockHooksService {
   hooks: B2BlocksHooks;
 
   constructor(protected logger: NGXLogger,
-              protected checkBoxConfirmerService: CheckBoxConfirmerService) {
+              protected datePickerService: DatePickerService) {
     this.startListenerForB2Blocks();
   }
 
   startListenerForB2Blocks(): void {
-    this.listenToLoadCheckBoxConfirmerBlock();
+    this.listenToLoadDatePickerBlock();
 
-    this.listenToCheckBoxConfirmerBlockChanges();
+    this.listenToDatePickerBlockChanges();
   }
 
-  listenToLoadCheckBoxConfirmerBlock(): void {
-    this.checkBoxConfirmerService.blockLoadObservable$
-      .subscribe((block: CheckBoxConfirmerBlock) => {
+  listenToLoadDatePickerBlock(): void {
+    this.datePickerService.blockLoadObservable$
+      .subscribe((block: DatePickerBlock) => {
         try {
           if (environment.evaluateScriptsFromServer) {
             // @ts-ignore
-            businessMethods[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
+            businessMethods[block.hooks.datePickerBlockDidLoad](block, this.blocksMethods());
           } else {
-            this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
+            this.hooks[block.hooks.datePickerBlockDidLoad](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -43,15 +43,15 @@ export class B2BlockHooksService {
       });
   }
 
-  listenToCheckBoxConfirmerBlockChanges(): void {
-    this.checkBoxConfirmerService.blockChangesObservable$
-      .subscribe((block: CheckBoxConfirmerBlock) => {
+  listenToDatePickerBlockChanges(): void {
+    this.datePickerService.blockChangesObservable$
+      .subscribe((block: DatePickerBlock) => {
         try {
           if (environment.evaluateScriptsFromServer) {
             // @ts-ignore
-            businessMethods[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
+            businessMethods[block.hooks.datePickerBlockDidChange](block, this.blocksMethods());
           } else {
-            this.hooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
+            this.hooks[block.hooks.datePickerBlockDidChange](block, this.blocksMethods());
           }
         } catch (e) {
           this.logger.error(e);
@@ -61,8 +61,8 @@ export class B2BlockHooksService {
 
   protected blocksMethods(): B2BlocksMethods {
     return {
-      checkBoxConfirmer: {
-        ...this.checkBoxConfirmerService.getCheckBoxConfirmerMethods(),
+      datePicker: {
+        ...this.datePickerService.getDatePickerMethods(),
       }
     };
   }
