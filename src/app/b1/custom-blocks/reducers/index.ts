@@ -1,11 +1,11 @@
 import { InjectionToken } from "@angular/core";
 import { createSelector, createFeatureSelector, combineReducers, ActionReducerMap } from "@ngrx/store";
 
-import { Block, fromDynamicForm } from "../../dynamic-form/dynamic-form.module";
+import { Block, fromDynamicForm } from "../../../dynamic-form/dynamic-form.module";
 
 import { CheckBoxConfirmerBlock } from "../models";
 
-import * as fromRoot from "../../reducers";
+import * as fromRoot from "../../../reducers";
 import * as fromEditBlocks from "./blocks";
 import * as fromCheckBoxConfirmer from "./blocks/check-box-confirmer/check-box-confirmer.reducer";
 

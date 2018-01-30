@@ -7,7 +7,7 @@ import {
   CheckBoxService,
   DropdownService,
   TextInputService,
-} from "../../dynamic-form/dynamic-form.module";
+} from "../../../dynamic-form/dynamic-form.module";
 
 import {
   B1BlocksHooks,
@@ -17,7 +17,7 @@ import {
 
 import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
 
-import { environment } from "../../../environments/environment";
+import { environment } from "../../../../environments/environment";
 
 @Injectable()
 export class B1BlockHooksService extends BlockHooksService {

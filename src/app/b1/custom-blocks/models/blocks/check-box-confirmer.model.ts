@@ -1,4 +1,4 @@
-import { Block } from "../../../dynamic-form/dynamic-form.module";
+import { Block } from "../../../../dynamic-form/dynamic-form.module";
 
 export interface CheckBoxConfirmerBlock extends Block {
   label?: string;

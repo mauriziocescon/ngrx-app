@@ -11,7 +11,7 @@ import {
   Block,
   FetchBlocksComplete,
   ListActionTypes,
-} from "../../../dynamic-form/dynamic-form.module";
+} from "../../../../dynamic-form/dynamic-form.module";
 
 import { CheckBoxConfirmerBlock, B1BlockType } from "../../models";
 import { CheckBoxConfirmerService } from "../../services";

@@ -6,9 +6,9 @@ import {
   BlockListService,
   BlockHooksService,
   BlockUtilsService,
-} from "../dynamic-form/dynamic-form.module";
+} from "../../dynamic-form/dynamic-form.module";
 
-import { SharedModule } from "../shared/shared.module";
+import { SharedModule } from "../../shared/shared.module";
 
 import { COMPONENTS } from "./components";
 import {

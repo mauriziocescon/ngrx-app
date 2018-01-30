@@ -1,6 +1,6 @@
 import { B1BlockType } from "./block-types";
 
-import { CustomBlocksFunctions, CustomBlocksHooks } from "./block-hooks/block-hooks";
+import { B1BlocksFunctions, B1BlocksHooks } from "./block-hooks/block-hooks";
 
 import { CheckBoxConfirmerBlock } from "./blocks/check-box-confirmer.model";
 
@@ -10,8 +10,8 @@ import { CheckBoxConfirmerMethods } from "./block-methods/check-box-confirmer-me
 export {
   B1BlockType,
 
-  CustomBlocksFunctions,
-  CustomBlocksHooks,
+  B1BlocksFunctions,
+  B1BlocksHooks,
 
   CheckBoxConfirmerBlock,
 

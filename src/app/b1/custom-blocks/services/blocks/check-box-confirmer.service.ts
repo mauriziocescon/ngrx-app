@@ -4,9 +4,9 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import { BlockType } from "../../../dynamic-form/dynamic-form.module";
+import { BlockType } from "../../../../dynamic-form/dynamic-form.module";
 
-import * as fromDynamicForm from "../../../reducers";
+import * as fromDynamicForm from "../../../../reducers";
 import * as checkBoxConfirmer from "../../actions/blocks/check-box-confirmer.actions";
 import { B1BlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerMethods } from "../../models";
 

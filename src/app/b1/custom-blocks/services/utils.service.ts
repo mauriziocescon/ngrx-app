@@ -6,7 +6,7 @@ import {
   CheckBoxService,
   DropdownService,
   TextInputService,
-} from "../../dynamic-form/dynamic-form.module";
+} from "../../../dynamic-form/dynamic-form.module";
 
 import { CheckBoxConfirmerContainerComponent } from "../containers/blocks/check-box-confirmer/check-box-confirmer.container";
 

@@ -10,15 +10,15 @@ import { TranslateService } from "@ngx-translate/core";
 import {
   modalAlertsActions,
   modalConfirmersActions,
-} from "../../../../core/core.module";
+} from "../../../../../core/core.module";
 
 import * as fromB1Blocks from "../../../reducers";
 import * as checkBoxConfirmer from "../../../actions/blocks/check-box-confirmer.actions";
 import { B1BlockType, CheckBoxConfirmerBlock } from "../../../models";
 
-import * as fromRoot from "../../../../reducers";
+import * as fromRoot from "../../../../../reducers";
 
-import { ModalAlert, ModalConfirmer, ModalConfirmerResultType } from "../../../../core/models";
+import { ModalAlert, ModalConfirmer, ModalConfirmerResultType } from "../../../../../core/models";
 
 @Component({
   selector: "ct-check-box-confirmer",

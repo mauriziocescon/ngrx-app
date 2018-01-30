@@ -1,13 +1,13 @@
-import { BlocksFunctions, BlocksHooks } from "../../../dynamic-form/dynamic-form.module";
+import { BlocksFunctions, BlocksHooks } from "../../../../dynamic-form/dynamic-form.module";
 
 import { CheckBoxConfirmerBlock } from "../blocks/check-box-confirmer.model";
 
-import { CustomBlocksMethods } from "../block-methods/block-methods";
+import { B1BlocksMethods } from "../block-methods/block-methods";
 
-export interface CustomBlocksFunctions extends BlocksFunctions {
-  (block: CheckBoxConfirmerBlock, methods: CustomBlocksMethods): void;
+export interface B1BlocksFunctions extends BlocksFunctions {
+  (block: CheckBoxConfirmerBlock, methods: B1BlocksMethods): void;
 }
 
-export interface CustomBlocksHooks extends BlocksHooks {
-  [propName: string]: CustomBlocksFunctions;
+export interface B1BlocksHooks extends BlocksHooks {
+  [propName: string]: B1BlocksFunctions;
 }

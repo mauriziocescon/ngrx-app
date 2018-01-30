@@ -4,14 +4,14 @@ import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 
-import { AppConstantsService } from "../../core/core.module";
+import { AppConstantsService } from "../../../core/core.module";
 
-import { BlockListService } from "../../dynamic-form/dynamic-form.module";
+import { BlockListService } from "../../../dynamic-form/dynamic-form.module";
 
 import * as fromB1Blocks from "../reducers";
 
 @Injectable()
-export class CustomBlockListService extends BlockListService {
+export class B1BlockListService extends BlockListService {
 
   constructor(protected http: HttpClient,
               protected store: Store<any>,
