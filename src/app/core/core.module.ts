@@ -92,6 +92,8 @@ export {
 
 export { EFFECTS as CORE_EFFECTS} from "./effects";
 
+export * from "./models";
+
 export {
   AppConstantsService,
   AppLanguageService,
