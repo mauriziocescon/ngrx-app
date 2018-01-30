@@ -2,12 +2,6 @@ import { NgModule } from "@angular/core";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 
-import {
-  BlockListService,
-  BlockHooksService,
-  BlockUtilsService,
-} from "../../dynamic-form/dynamic-form.module";
-
 import { SharedModule } from "../../shared/shared.module";
 
 import { COMPONENTS } from "./components";
@@ -60,9 +54,6 @@ import {
   providers: [
     reducerProvider,
     ...SERVICES,
-    {provide: BlockListService, useClass: B1BlockListService},
-    {provide: BlockHooksService, useClass: B1BlockHooksService},
-    {provide: BlockUtilsService, useClass: B1BlockUtilsService},
   ],
 })
 export class B1BlocksModule {

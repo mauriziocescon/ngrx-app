@@ -4,9 +4,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import { BlockType } from "../../../../dynamic-form/dynamic-form.module";
-
-import * as fromDynamicForm from "../../../../reducers";
+import * as fromB2Blocks from "../../reducers";
 import * as checkBoxConfirmer from "../../actions/blocks/check-box-confirmer.actions";
 import { B2BlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerMethods } from "../../models";
 
@@ -18,7 +16,7 @@ export class CheckBoxConfirmerService {
   protected blockChangesSubject$: Subject<CheckBoxConfirmerBlock>;
   readonly blockChangesObservable$: Observable<CheckBoxConfirmerBlock>;
 
-  constructor(protected store: Store<fromDynamicForm.State>) {
+  constructor(protected store: Store<fromB2Blocks.State>) {
     this.blockLoadSubject$ = new Subject();
     this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
 
@@ -94,7 +92,7 @@ export class CheckBoxConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.CheckBox,
+          type: B2BlockType.CheckBoxConfirmer,
           description: description,
         },
       }
@@ -136,7 +134,7 @@ export class CheckBoxConfirmerService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.CheckBox,
+          type: B2BlockType.CheckBoxConfirmer,
           valid: valid,
         },
       }
