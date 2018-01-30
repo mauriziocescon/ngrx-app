@@ -13,7 +13,6 @@ import { SharedModule } from "../shared/shared.module";
 import { COMPONENTS } from "./components";
 import {
   CONTAINERS,
-  CheckBoxConfirmerContainerComponent,
 } from "./containers";
 
 import { EFFECTS } from "./effects";
@@ -23,7 +22,6 @@ import {
   CustomBlockListService,
   CustomBlockHooksService,
   CustomBlockUtilsService,
-  CheckBoxConfirmerService,
 } from "./services";
 
 @NgModule({
@@ -55,7 +53,6 @@ import {
     ...CONTAINERS,
   ],
   entryComponents: [
-    CheckBoxConfirmerContainerComponent,
   ],
   providers: [
     reducerProvider,
@@ -73,5 +70,4 @@ export * from "./models";
 export {
   CustomBlockHooksService,
   CustomBlockUtilsService,
-  CheckBoxConfirmerService,
 };

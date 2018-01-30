@@ -10,7 +10,7 @@ import {
 
 import { CheckBoxConfirmerContainerComponent } from "../containers/blocks/check-box-confirmer/check-box-confirmer.container";
 
-import { CustomBlockType, CheckBoxConfirmerBlock } from "../models";
+import { CustomBlockType } from "../models";
 
 import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
 
