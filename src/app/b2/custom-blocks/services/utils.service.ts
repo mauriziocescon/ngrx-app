@@ -1,31 +1,17 @@
 import { Injectable } from "@angular/core";
 
-import {
-  Block,
-  BlockUtilsService,
-  CheckBoxService,
-  DropdownService,
-  TextInputService,
-} from "../../../dynamic-form/dynamic-form.module";
+import { Block } from "../../../dynamic-form/dynamic-form.module";
 
-import { CheckBoxConfirmerContainerComponent } from "../containers/blocks/check-box-confirmer/check-box-confirmer.container";
+import { CheckBoxConfirmerContainerComponent } from "../containers";
 
 import { B2BlockType, CheckBoxConfirmerBlock } from "../models";
 
 import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
 
 @Injectable()
-export class B2BlockUtilsService extends BlockUtilsService {
+export class B2BlockUtilsService {
 
-  constructor(protected checkBoxService: CheckBoxService,
-              protected dropdownService: DropdownService,
-              protected textInputService: TextInputService,
-              protected checkBoxConfirmerService: CheckBoxConfirmerService) {
-    super(
-      checkBoxService,
-      dropdownService,
-      textInputService,
-    );
+  constructor(protected checkBoxConfirmerService: CheckBoxConfirmerService) {
   }
 
   getComponentForBlock(block: Block): any {
@@ -34,7 +20,7 @@ export class B2BlockUtilsService extends BlockUtilsService {
         return CheckBoxConfirmerContainerComponent;
       }
       default: {
-        return super.getComponentForBlock(block);
+        return undefined;
       }
     }
   }
@@ -47,7 +33,7 @@ export class B2BlockUtilsService extends BlockUtilsService {
         return true;
       }
       default: {
-        super.triggerComponentDidLoad(block);
+        return undefined;
       }
     }
   }

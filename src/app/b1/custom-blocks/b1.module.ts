@@ -14,7 +14,6 @@ import { EFFECTS } from "./effects";
 import { TOKEN, reducerProvider } from "./reducers";
 import {
   SERVICES,
-  B1BlockListService,
   B1BlockHooksService,
   B1BlockUtilsService,
   CheckBoxConfirmerService,
