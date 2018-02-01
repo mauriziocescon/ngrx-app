@@ -9,9 +9,9 @@ import {
   TextInputService,
 } from "../../dynamic-form/dynamic-form.module";
 
-import { B1BlockHooksService } from "../../b1";
+import { B1BlockHooksService, B1BlocksMethods } from "../../b1";
 
-import { B2BlockHooksService } from "../../b2";
+import { B2BlockHooksService,B2BlocksMethods } from "../../b2";
 
 import {
   CustomBlocksHooks,
@@ -34,19 +34,28 @@ export class CustomBlockHooksService extends BlockHooksService {
       dropdownService,
       textInputService,
     );
-    this.startListenerForCustomBlocks();
   }
 
-  startListenerForCustomBlocks(): void {
-    this.b1BlockHooksService.startListenerForB1Blocks();
-    this.b2BlockHooksService.startListenerForB2Blocks();
+  startListener(ecco?: boolean): void {
+    super.startListener();
+
+    if (!ecco) {
+      this.b1BlockHooksService.startListenerForB1Blocks();
+    } else {
+      this.b2BlockHooksService.startListenerForB2Blocks();
+    }
   }
 
-  protected blocksMethods(): CustomBlocksMethods {
-    return {
-      ...super.blocksMethods(),
-      ...this.b1BlockHooksService.blocksMethods(),
-      ...this.b2BlockHooksService.blocksMethods(),
-    };
+  blocksMethods(ecco?: boolean): CustomBlocksMethods {
+    let methods;
+
+    if (!ecco) {
+      methods = super.blocksMethods() as B1BlocksMethods;
+      methods.checkBoxConfirmer = this.b1BlockHooksService.blocksMethods().checkBoxConfirmer;
+    } else {
+      methods = super.blocksMethods() as B2BlocksMethods;
+      methods.datePicker = this.b2BlockHooksService.blocksMethods().datePicker;
+    }
+    return methods;
   }
 }

@@ -1,5 +1,5 @@
-import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../dynamic-form/dynamic-form.module";
-import { CheckBoxConfirmerBlock, CustomBlockType } from "../../custom-blocks/custom-blocks.module";
+import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../../dynamic-form/dynamic-form.module";
+import { CheckBoxConfirmerBlock, B1BlockType } from "../../custom-blocks/b1.module";
 
 export const arrayOfBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock }) => {
   const keys = Object.keys(blocks);
@@ -10,24 +10,24 @@ export const arrayOfBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBl
 
 export const arrayOfCheckBoxBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock }) => {
   return arrayOfBlocksFromBlocksObject(blocks).filter((block: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock) => {
-    return block.type = CustomBlockType.CheckBox;
+    return block.type = B1BlockType.CheckBox;
   });
 };
 
 export const arrayOfDropdownBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock }) => {
   return arrayOfBlocksFromBlocksObject(blocks).filter((block: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock) => {
-    return block.type = CustomBlockType.Dropdown;
+    return block.type = B1BlockType.Dropdown;
   });
 };
 
 export const arrayOfTextInputBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock }) => {
   return arrayOfBlocksFromBlocksObject(blocks).filter((block: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock) => {
-    return block.type = CustomBlockType.TextInput;
+    return block.type = B1BlockType.TextInput;
   });
 };
 
 export const arrayOfCheckBoxConfirmerBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock }) => {
   return arrayOfBlocksFromBlocksObject(blocks).filter((block: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock) => {
-    return block.type = CustomBlockType.CheckBoxConfirmer;
+    return block.type = B1BlockType.CheckBoxConfirmer;
   });
 };

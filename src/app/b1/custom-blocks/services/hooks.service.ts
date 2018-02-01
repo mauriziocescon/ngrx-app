@@ -4,7 +4,6 @@ import { NGXLogger } from "ngx-logger";
 
 import {
   B1BlocksHooks,
-  B1BlocksMethods,
   CheckBoxConfirmerBlock,
 } from "../models";
 
@@ -59,7 +58,7 @@ export class B1BlockHooksService {
       });
   }
 
-  blocksMethods(): B1BlocksMethods {
+  blocksMethods(): any {
     return {
       checkBoxConfirmer: {
         ...this.checkBoxConfirmerService.getCheckBoxConfirmerMethods(),

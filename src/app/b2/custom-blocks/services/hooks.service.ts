@@ -4,7 +4,6 @@ import { NGXLogger } from "ngx-logger";
 
 import {
   B2BlocksHooks,
-  B2BlocksMethods,
   DatePickerBlock,
 } from "../models";
 
@@ -59,10 +58,10 @@ export class B2BlockHooksService {
       });
   }
 
-  blocksMethods(): B2BlocksMethods {
+  blocksMethods(): any {
     return {
       datePicker: {
-        ...this.datePickerService.getDatePickerMethods(),
+        ...this.datePickerService.getDatePickerMethods()
       }
     };
   }

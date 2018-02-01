@@ -1,7 +1,5 @@
 import { Injectable } from "@angular/core";
 
-import { Observable } from "rxjs/Observable";
-
 import { NGXLogger } from "ngx-logger";
 
 import {
