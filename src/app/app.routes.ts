@@ -5,15 +5,15 @@ import { RulesResolve } from "./rules.resolve";
 
 export const appRoutes: Routes = [
   {
-    path: "dyn-forms/:module/step/:step",
+    path: "dyn-forms/:module/:step",
     component: ListContainerComponent,
     resolve: {
       rules: RulesResolve,
     }
   },
-  // {
-  //   path: "",
-  //   redirectTo: "/dyn-forms",
-  //   pathMatch: "full",
-  // },
+  {
+    path: "",
+    redirectTo: "/dyn-forms/b1/1",
+    pathMatch: "full",
+  },
 ];

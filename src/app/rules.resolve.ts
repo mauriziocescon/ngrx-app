@@ -58,7 +58,7 @@ export class RulesResolve implements Resolve<BlocksHooks> {
 
     return this.http.get<string>(url, options)
       .map((data) => {
-        return setOfRules[data];
+        return setOfRules[module][data];
       })
       .catch(err => {
         return Observable.throw(err.message || "Server error");

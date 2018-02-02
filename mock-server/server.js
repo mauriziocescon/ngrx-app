@@ -104,7 +104,7 @@ app.get("/api/rules-config", (req, res) => {
     return config.step === req.query.step;
   });
 
-  if (index) {
+  if (index !== -1) {
     return res.status(200).jsonp(module.steps[index].rules);
   } else {
     return res.status(400).jsonp({

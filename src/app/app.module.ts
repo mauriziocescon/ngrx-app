@@ -21,6 +21,8 @@ import { CoreModule } from "./core/core.module";
 import { SharedModule, CustomRouterStateSerializer } from "./shared/shared.module";
 import { DynamicFormModule } from "./dynamic-form/dynamic-form.module";
 import { CustomBlocksModule } from "./custom-blocks/custom-blocks.module";
+import { B1BlocksModule } from "./b1";
+import { B2BlocksModule } from "./b2";
 
 import { RulesResolve } from "./rules.resolve";
 
@@ -89,6 +91,8 @@ export function createTranslateLoader(http: HttpClient) {
     SharedModule,
     DynamicFormModule,
     CustomBlocksModule,
+    B1BlocksModule,
+    B2BlocksModule,
   ],
   declarations: [
     AppContainerComponent
