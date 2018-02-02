@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 
+import { Subscription } from "rxjs/Subscription";
+
 import { NGXLogger } from "ngx-logger";
 
 import {
@@ -15,18 +17,32 @@ import { environment } from "../../../../environments/environment";
 export class B2BlockHooksService {
   hooks: B2BlocksHooks;
 
+  datePickerBlockLoadSubscription: Subscription;
+  datePickerBlockChangesSubscription: Subscription;
+
   constructor(protected logger: NGXLogger,
               protected datePickerService: DatePickerService) {
-    this.startListenerForB2Blocks();
   }
 
-  startListenerForB2Blocks(): void {
-    this.listenToLoadDatePickerBlock();
+  setupB2Hooks(): void {
+    this.unsubscribeListeners();
+
+    this.listenToDatePickerBlockLoad();
 
     this.listenToDatePickerBlockChanges();
   }
 
-  listenToLoadDatePickerBlock(): void {
+  unsubscribeListeners(): void {
+    if (this.datePickerBlockLoadSubscription) {
+      this.datePickerBlockLoadSubscription.unsubscribe();
+    }
+
+    if (this.datePickerBlockChangesSubscription) {
+      this.datePickerBlockChangesSubscription.unsubscribe();
+    }
+  }
+
+  listenToDatePickerBlockLoad(): void {
     this.datePickerService.blockLoadObservable$
       .subscribe((block: DatePickerBlock) => {
         try {

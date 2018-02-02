@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 
+import { Subscription } from "rxjs/Subscription";
+
 import { NGXLogger } from "ngx-logger";
 
 import {
@@ -15,19 +17,33 @@ import { environment } from "../../../../environments/environment";
 export class B1BlockHooksService {
   hooks: B1BlocksHooks;
 
+  checkBoxConfirmerBlockLoadSubscription: Subscription;
+  checkBoxConfirmerBlockChangesSubscription: Subscription;
+
   constructor(protected logger: NGXLogger,
               protected checkBoxConfirmerService: CheckBoxConfirmerService) {
-    this.startListenerForB1Blocks();
   }
 
-  startListenerForB1Blocks(): void {
-    this.listenToLoadCheckBoxConfirmerBlock();
+  setupB1Hooks(): void {
+    this.unsubscribeListeners();
+
+    this.listenToCheckBoxConfirmerBlockLoad();
 
     this.listenToCheckBoxConfirmerBlockChanges();
   }
 
-  listenToLoadCheckBoxConfirmerBlock(): void {
-    this.checkBoxConfirmerService.blockLoadObservable$
+  unsubscribeListeners(): void {
+    if (this.checkBoxConfirmerBlockLoadSubscription) {
+      this.checkBoxConfirmerBlockLoadSubscription.unsubscribe();
+    }
+
+    if (this.checkBoxConfirmerBlockChangesSubscription) {
+      this.checkBoxConfirmerBlockChangesSubscription.unsubscribe();
+    }
+  }
+
+  listenToCheckBoxConfirmerBlockLoad(): void {
+    this.checkBoxConfirmerBlockLoadSubscription = this.checkBoxConfirmerService.blockLoadObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
           if (environment.evaluateScriptsFromServer) {
@@ -43,7 +59,7 @@ export class B1BlockHooksService {
   }
 
   listenToCheckBoxConfirmerBlockChanges(): void {
-    this.checkBoxConfirmerService.blockChangesObservable$
+    this.checkBoxConfirmerBlockChangesSubscription = this.checkBoxConfirmerService.blockChangesObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
           if (environment.evaluateScriptsFromServer) {

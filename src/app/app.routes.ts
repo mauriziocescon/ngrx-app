@@ -8,7 +8,7 @@ export const appRoutes: Routes = [
     path: "ct-list",
     component: ListContainerComponent,
     resolve: {
-      contact: RulesResolve,
+      rules: RulesResolve,
     }
   },
   {

@@ -11,11 +11,12 @@ import {
 
 import { B1BlockHooksService, B1BlocksMethods } from "../../b1";
 
-import { B2BlockHooksService,B2BlocksMethods } from "../../b2";
+import { B2BlockHooksService, B2BlocksMethods } from "../../b2";
 
 import {
   CustomBlocksHooks,
   CustomBlocksMethods,
+  Modules,
 } from "../models";
 
 @Injectable()
@@ -36,26 +37,38 @@ export class CustomBlockHooksService extends BlockHooksService {
     );
   }
 
-  startListener(ecco?: boolean): void {
-    super.startListener();
+  setupHooks(module?: string): void {
+    this.unsubscribeListeners();
 
-    if (!ecco) {
-      this.b1BlockHooksService.startListenerForB1Blocks();
-    } else {
-      this.b2BlockHooksService.startListenerForB2Blocks();
+    super.setupHooks();
+
+    if (module === Modules.b1) {
+      this.b1BlockHooksService.setupB1Hooks();
+    } else if (module === Modules.b2) {
+      this.b2BlockHooksService.setupB2Hooks();
     }
   }
 
-  blocksMethods(ecco?: boolean): CustomBlocksMethods {
+  protected unsubscribeListeners(): void {
+    super.unsubscribeListeners();
+
+    this.b1BlockHooksService.unsubscribeListeners();
+    this.b2BlockHooksService.unsubscribeListeners();
+  }
+
+  blocksMethods(module?: string): CustomBlocksMethods {
     let methods;
 
-    if (!ecco) {
+    if (module === Modules.b1) {
       methods = super.blocksMethods() as B1BlocksMethods;
       methods.checkBoxConfirmer = this.b1BlockHooksService.blocksMethods().checkBoxConfirmer;
-    } else {
+    } else if (module === Modules.b2) {
       methods = super.blocksMethods() as B2BlocksMethods;
       methods.datePicker = this.b2BlockHooksService.blocksMethods().datePicker;
+    } else {
+      methods = super.blocksMethods();
     }
+
     return methods;
   }
 }

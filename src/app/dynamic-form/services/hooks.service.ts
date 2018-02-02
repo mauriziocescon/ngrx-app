@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 
+import { Subscription } from "rxjs/Subscription";
+
 import { NGXLogger } from "ngx-logger";
 
 import {
@@ -20,25 +22,56 @@ import { environment } from "../../../environments/environment";
 export class BlockHooksService {
   hooks: BlocksHooks;
 
+  checkBoxBlockLoadSubscription: Subscription;
+  dropdownBlockLoadSubscription: Subscription;
+  textInputBlockLoadSubscription: Subscription;
+
+  checkBoxBlockChangesSubscription: Subscription;
+  dropdownBlockChangesSubscription: Subscription;
+  textInputBlockChangesSubscription: Subscription;
+
   constructor(protected logger: NGXLogger,
               protected checkBoxService: CheckBoxService,
               protected dropdownService: DropdownService,
               protected textInputService: TextInputService) {
-    this.startListener();
   }
 
-  startListener(): void {
-    this.listenToLoadCheckBoxBlock();
-    this.listenToLoadDropdownBlock();
-    this.listenToLoadTextInputBlock();
+  setupHooks(): void {
+    this.unsubscribeListeners();
+
+    this.listenToCheckBoxBlockLoad();
+    this.listenToDropdownBlockLoad();
+    this.listenToTextInputBlockLoad();
 
     this.listenToCheckBoxBlockChanges();
     this.listenToDropdownBlockChanges();
     this.listenToTextInputBlockChanges();
   }
 
-  listenToLoadCheckBoxBlock(): void {
-    this.checkBoxService.blockLoadObservable$
+  protected unsubscribeListeners(): void {
+    if (this.checkBoxBlockLoadSubscription) {
+      this.checkBoxBlockLoadSubscription.unsubscribe();
+    }
+    if (this.dropdownBlockLoadSubscription) {
+      this.dropdownBlockLoadSubscription.unsubscribe();
+    }
+    if (this.textInputBlockLoadSubscription) {
+      this.textInputBlockLoadSubscription.unsubscribe();
+    }
+
+    if (this.checkBoxBlockChangesSubscription) {
+      this.checkBoxBlockChangesSubscription.unsubscribe();
+    }
+    if (this.dropdownBlockChangesSubscription) {
+      this.dropdownBlockChangesSubscription.unsubscribe();
+    }
+    if (this.textInputBlockChangesSubscription) {
+      this.textInputBlockChangesSubscription.unsubscribe();
+    }
+  }
+
+  listenToCheckBoxBlockLoad(): void {
+    this.checkBoxBlockLoadSubscription = this.checkBoxService.blockLoadObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
           if (environment.evaluateScriptsFromServer) {
@@ -53,8 +86,8 @@ export class BlockHooksService {
       });
   }
 
-  listenToLoadDropdownBlock(): void {
-    this.dropdownService.blockLoadObservable$
+  listenToDropdownBlockLoad(): void {
+    this.dropdownBlockLoadSubscription = this.dropdownService.blockLoadObservable$
       .subscribe((block: DropdownBlock) => {
         try {
           if (environment.evaluateScriptsFromServer) {
@@ -69,8 +102,8 @@ export class BlockHooksService {
       });
   }
 
-  listenToLoadTextInputBlock(): void {
-    this.textInputService.blockLoadObservable$
+  listenToTextInputBlockLoad(): void {
+    this.textInputBlockLoadSubscription = this.textInputService.blockLoadObservable$
       .subscribe((block: TextInputBlock) => {
         try {
           if (environment.evaluateScriptsFromServer) {
@@ -86,7 +119,7 @@ export class BlockHooksService {
   }
 
   listenToCheckBoxBlockChanges(): void {
-    this.checkBoxService.blockChangesObservable$
+    this.checkBoxBlockChangesSubscription = this.checkBoxService.blockChangesObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
           if (environment.evaluateScriptsFromServer) {
@@ -102,7 +135,7 @@ export class BlockHooksService {
   }
 
   listenToDropdownBlockChanges(): void {
-    this.dropdownService.blockChangesObservable$
+    this.dropdownBlockChangesSubscription = this.dropdownService.blockChangesObservable$
       .subscribe((block: DropdownBlock) => {
         try {
           if (environment.evaluateScriptsFromServer) {
@@ -118,7 +151,7 @@ export class BlockHooksService {
   }
 
   listenToTextInputBlockChanges(): void {
-    this.textInputService.blockChangesObservable$
+    this.textInputBlockChangesSubscription = this.textInputService.blockChangesObservable$
       .subscribe((block: TextInputBlock) => {
         try {
           if (environment.evaluateScriptsFromServer) {

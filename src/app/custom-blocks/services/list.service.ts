@@ -12,6 +12,8 @@ import { fromB1 } from "../../b1";
 
 import { fromB2 } from "../../b2";
 
+import { Modules } from "../models";
+
 @Injectable()
 export class CustomBlockListService extends BlockListService {
 
@@ -25,11 +27,13 @@ export class CustomBlockListService extends BlockListService {
     );
   }
 
-  getValiditySelector(ecco?: boolean): Observable<boolean> {
-    if (!ecco) {
+  getValiditySelector(module?: string): Observable<boolean> {
+    if (module === Modules.b1) {
       return this.store.select(fromB1.getAllEditBlocksValidityState);
-    } else {
+    } else if (module === Modules.b2) {
       return this.store.select(fromB2.getAllEditBlocksValidityState);
+    } else {
+      super.getValiditySelector();
     }
   }
 }
