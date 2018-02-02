@@ -34,7 +34,7 @@ export class NavigationBarContainerComponent {
     this.appLanguage.setLanguageId(language);
   }
 
-  goTo(path: string): void {
-    this.router.navigate(["/dyn-forms"]);
+  goTo(route: { path: string, module: string, step: number }): void {
+    this.router.navigate(["/dyn-forms", {module: route.module, step: route.step}]);
   }
 }

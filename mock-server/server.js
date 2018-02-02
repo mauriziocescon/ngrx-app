@@ -97,10 +97,20 @@ app.use("/rules", express.static(path.join(__dirname, "/rules")));
 // Rules config
 app.get("/api/rules-config", (req, res) => {
   const rulesConfig = db.rulesConfig;
-  const index = Math.max(rulesConfig.findIndex((rule) => {
-    return rule.type === req.query.rule;
-  }), 0);
-  return res.status(200).jsonp(rulesConfig[index].value);
+  const module = rulesConfig.find((config) => {
+    return config.module === req.query.module;
+  });
+  const index = module.steps.findIndex((config) => {
+    return config.step === req.query.step;
+  });
+
+  if (index) {
+    return res.status(200).jsonp(module.steps[index].rules);
+  } else {
+    return res.status(400).jsonp({
+      error: "Bad Request",
+    });
+  }
 });
 
 // Mount the router based on db.json

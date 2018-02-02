@@ -9,18 +9,30 @@ export class NavigationBarComponent {
   @Input() languages: string[];
   @Input() selectedLanguageId: string;
   @Output() languageDidChange: EventEmitter<string>;
-  @Output() navigationDidChange: EventEmitter<string>;
+  @Output() navigationDidChange: EventEmitter<{ path: string, module: string, step: number }>;
 
   constructor() {
     this.languageDidChange = new EventEmitter<string>();
-    this.navigationDidChange = new EventEmitter<string>();
+    this.navigationDidChange = new EventEmitter<{ path: string, module: string, step: number }>();
   }
 
   selectLanguage(language: string): void {
     this.languageDidChange.emit(language);
   }
 
-  goToDynamicForm(): void {
-    this.languageDidChange.emit("/dyn-forms");
+  goToB1S1(): void {
+    this.navigationDidChange.emit({path: "/dyn-forms", module: "b1", step: 1});
+  }
+
+  goToB1S2(): void {
+    this.navigationDidChange.emit({path: "/dyn-forms", module: "b1", step: 2});
+  }
+
+  goToB2S1(): void {
+    this.navigationDidChange.emit({path: "/dyn-forms", module: "b2", step: 1});
+  }
+
+  goToB2S2(): void {
+    this.navigationDidChange.emit({path: "/dyn-forms", module: "b2", step: 2});
   }
 }

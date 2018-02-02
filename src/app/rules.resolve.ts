@@ -29,14 +29,16 @@ export class RulesResolve implements Resolve<BlocksHooks> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | BlocksHooks {
-    return this.fetchRules();
+    const module = route.paramMap.get("module");
+    const step = route.paramMap.get("step");
+    return this.fetchRules(module, step);
   }
 
-  fetchRules(): Observable<any> | BlocksHooks {
+  fetchRules(module: string, step: string): Observable<any> | BlocksHooks {
     if (environment.evaluateScriptsFromServer) {
       return this.getRulesFromScript();
     } else {
-      this.getRules()
+      this.getRules(module, step)
         .subscribe((hooks: BlocksHooks) => {
           return this.blockHooks.hooks = hooks;
         }, (error: any) => {
@@ -45,10 +47,13 @@ export class RulesResolve implements Resolve<BlocksHooks> {
     }
   }
 
-  getRules(param?: boolean): Observable<any> {
+  getRules(module: string, step: string): Observable<any> {
     const url = this.appConstants.Api.rulesConfig;
     const options = {
-      params: {type: "1"},
+      params: {
+        module: module,
+        step: step,
+      },
     };
 
     return this.http.get<string>(url, options)
