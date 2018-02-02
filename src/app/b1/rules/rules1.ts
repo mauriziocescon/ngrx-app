@@ -10,7 +10,7 @@ import {
 } from "../custom-blocks/b1.module";
 
 import * as utilities from "./utils/utilities";
-import * as validators from "./validations"
+import * as validators from "./validations";
 
 // variables
 // --------------
