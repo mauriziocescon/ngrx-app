@@ -1,7 +1,10 @@
 {
   "COMPONENT": {
     "NAVIGATION_BAR": {
-      "DYNAMIC_FORM": "*** Dynamic form ***",
+      "B1R1": "B1R1",
+      "B1R2": "B1R2",
+      "B2R1": "B2R1",
+      "B2R2": "B2R2",
       "NAME": "Name",
       "SELECT_LANGUAGE": "Sprache ӓndern"
     },

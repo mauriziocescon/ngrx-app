@@ -35,6 +35,6 @@ export class NavigationBarContainerComponent {
   }
 
   goTo(route: { path: string, module: string, instance: string, step: string }): void {
-    this.router.navigate(["/dyn-forms", {module: route.module, instance: route.instance, step: route.step}]);
+    this.router.navigate(["/dyn-forms", route.module, route.instance, route.step]);
   }
 }

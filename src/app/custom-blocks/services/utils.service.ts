@@ -28,8 +28,8 @@ export class CustomBlockUtilsService extends BlockUtilsService {
   }
 
   getComponentForBlock(block: Block): any {
-    return this.b1BlockUtilsService.getComponentForBlock(block) |
-      this.b2BlockUtilsService.getComponentForBlock(block) |
+    return this.b1BlockUtilsService.getComponentForBlock(block) ||
+      this.b2BlockUtilsService.getComponentForBlock(block) ||
       super.getComponentForBlock(block);
   }
 
