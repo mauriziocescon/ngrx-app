@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms"
 import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/operator/debounceTime";
 
+import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 import { NGXLogger } from "ngx-logger";
 
 import { DatePickerBlock } from "../../../models";
@@ -18,13 +19,9 @@ export class DatePickerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() loading: boolean;
   @Output() valueDidChange: EventEmitter<boolean>;
 
-  datePickerForm: FormGroup;
-  protected datePickerControl: FormControl;
+  selectedDate: NgbDateStruct;
 
-  protected datePickerControlSubscription: Subscription;
-
-  constructor(protected formBuilder: FormBuilder,
-              protected logger: NGXLogger) {
+  constructor(protected logger: NGXLogger) {
     this.valueDidChange = new EventEmitter<boolean>();
   }
 
@@ -33,54 +30,17 @@ export class DatePickerComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    const controlValue = {
-      value: this.block.value,
-      disabled: this.block.disabled
-    };
-    const options = [
-      ...this.insertIf(this.block.required, Validators.required),
-    ];
-
-    this.datePickerForm = this.formBuilder.group({
-      datePicker: this.datePickerControl = new FormControl(controlValue, options),
-    });
-
-    this.subscribeToDatePickerControlValueChanges();
+    const date = new Date(this.block.value);
+    this.selectedDate = {year: date.getFullYear(), month: date.getMonth(), day: date.getDay()};
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.block.isFirstChange()) {
-      this.unsubscribeToDatePickerValueChanges();
-      this.datePickerControl.setValue(changes.block.currentValue.value);
-      this.subscribeToDatePickerControlValueChanges();
+      const date = new Date(this.block.value);
+      this.selectedDate = {year: date.getFullYear(), month: date.getMonth(), day: date.getDay()};
     }
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeToDatePickerValueChanges();
-  }
-
-  protected subscribeToDatePickerControlValueChanges(): void {
-    this.unsubscribeToDatePickerValueChanges();
-
-    this.datePickerControlSubscription = this.datePickerControl
-      .valueChanges
-      .debounceTime(500)
-      .subscribe((value: any) => {
-          this.valueDidChange.emit(value);
-        },
-        (err: any) => {
-          this.logger.error(JSON.stringify(err));
-        });
-  }
-
-  protected insertIf(condition: boolean, element: any): any[] {
-    return condition ? [element] : [];
-  }
-
-  protected unsubscribeToDatePickerValueChanges(): void {
-    if (this.datePickerControlSubscription) {
-      this.datePickerControlSubscription.unsubscribe();
-    }
   }
 }
