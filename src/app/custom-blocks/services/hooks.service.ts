@@ -9,19 +9,20 @@ import {
   TextInputService,
 } from "../../dynamic-form/dynamic-form.module";
 
-import { B1BlockHooksService, B1BlocksMethods } from "../../b1";
+import { B1BlockHooksService, B1BlocksMethods, B1BlocksHooks } from "../../b1";
 
-import { B2BlockHooksService, B2BlocksMethods } from "../../b2";
+import { B2BlockHooksService, B2BlocksMethods, B2BlocksHooks } from "../../b2";
 
 import {
   CustomBlocksHooks,
   CustomBlocksMethods,
   Modules,
 } from "../models";
+import {  } from "../../b2/custom-blocks/models";
 
 @Injectable()
 export class CustomBlockHooksService extends BlockHooksService {
-  hooks: CustomBlocksHooks;
+  protected hooks: CustomBlocksHooks;
 
   constructor(protected logger: NGXLogger,
               protected checkBoxService: CheckBoxService,
@@ -37,15 +38,15 @@ export class CustomBlockHooksService extends BlockHooksService {
     );
   }
 
-  setupHooks(module?: string): void {
+  setupHooks(hooks: CustomBlocksHooks, module?: string, step?: string): void {
     this.unsubscribeListeners();
 
-    super.setupHooks();
+    super.setupHooks(hooks, module, step);
 
     if (module === Modules.b1) {
-      this.b1BlockHooksService.setupB1Hooks();
+      this.b1BlockHooksService.setupB1Hooks(hooks as B1BlocksHooks, module, step);
     } else if (module === Modules.b2) {
-      this.b2BlockHooksService.setupB2Hooks();
+      this.b2BlockHooksService.setupB2Hooks(hooks as B2BlocksHooks, module, step);
     }
   }
 

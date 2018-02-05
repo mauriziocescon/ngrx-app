@@ -40,9 +40,11 @@ export class RulesResolve implements Resolve<BlocksHooks> {
     } else {
       this.getRules(module, step)
         .subscribe((hooks: BlocksHooks) => {
-          return this.blockHooks.hooks = hooks;
+          this.blockHooks.setupHooks(hooks, module, step);
+          return hooks;
         }, (error: any) => {
-          return this.blockHooks.hooks = {};
+          this.blockHooks.setupHooks({}, module, step);
+          return {};
         });
     }
   }

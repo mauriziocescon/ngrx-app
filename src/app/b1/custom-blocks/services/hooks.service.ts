@@ -15,17 +15,20 @@ import { environment } from "../../../../environments/environment";
 
 @Injectable()
 export class B1BlockHooksService {
-  hooks: B1BlocksHooks;
+  protected hooks: B1BlocksHooks;
 
-  checkBoxConfirmerBlockLoadSubscription: Subscription;
-  checkBoxConfirmerBlockChangesSubscription: Subscription;
+  protected checkBoxConfirmerBlockLoadSubscription: Subscription;
+
+  protected checkBoxConfirmerBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
               protected checkBoxConfirmerService: CheckBoxConfirmerService) {
   }
 
-  setupB1Hooks(): void {
+  setupB1Hooks(hooks: B1BlocksHooks, module?: string, step?: string): void {
     this.unsubscribeListeners();
+
+    this.hooks = hooks;
 
     this.listenToCheckBoxConfirmerBlockLoad();
 

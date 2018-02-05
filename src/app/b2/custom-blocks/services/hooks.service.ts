@@ -15,17 +15,20 @@ import { environment } from "../../../../environments/environment";
 
 @Injectable()
 export class B2BlockHooksService {
-  hooks: B2BlocksHooks;
+  protected hooks: B2BlocksHooks;
 
-  datePickerBlockLoadSubscription: Subscription;
-  datePickerBlockChangesSubscription: Subscription;
+  protected datePickerBlockLoadSubscription: Subscription;
+
+  protected datePickerBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
               protected datePickerService: DatePickerService) {
   }
 
-  setupB2Hooks(): void {
+  setupB2Hooks(hooks: B2BlocksHooks, module?: string, step?: string): void {
     this.unsubscribeListeners();
+
+    this.hooks = hooks;
 
     this.listenToDatePickerBlockLoad();
 

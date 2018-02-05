@@ -20,15 +20,15 @@ import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class BlockHooksService {
-  hooks: BlocksHooks;
+  protected hooks: BlocksHooks;
 
-  checkBoxBlockLoadSubscription: Subscription;
-  dropdownBlockLoadSubscription: Subscription;
-  textInputBlockLoadSubscription: Subscription;
+  protected checkBoxBlockLoadSubscription: Subscription;
+  protected dropdownBlockLoadSubscription: Subscription;
+  protected textInputBlockLoadSubscription: Subscription;
 
-  checkBoxBlockChangesSubscription: Subscription;
-  dropdownBlockChangesSubscription: Subscription;
-  textInputBlockChangesSubscription: Subscription;
+  protected checkBoxBlockChangesSubscription: Subscription;
+  protected dropdownBlockChangesSubscription: Subscription;
+  protected textInputBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
               protected checkBoxService: CheckBoxService,
@@ -36,8 +36,10 @@ export class BlockHooksService {
               protected textInputService: TextInputService) {
   }
 
-  setupHooks(): void {
+  setupHooks(hooks: BlocksHooks, module?: string, step?: string): void {
     this.unsubscribeListeners();
+
+    this.hooks = hooks;
 
     this.listenToCheckBoxBlockLoad();
     this.listenToDropdownBlockLoad();
