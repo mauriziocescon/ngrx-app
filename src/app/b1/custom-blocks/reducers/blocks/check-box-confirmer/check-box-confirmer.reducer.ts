@@ -1,11 +1,14 @@
 import { createSelector } from "@ngrx/store";
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 
-import { CheckBoxConfirmerActionTypes, CheckBoxConfirmerActions } from "../../../actions/blocks/check-box-confirmer.actions";
+import {
+  CheckBoxConfirmerActionTypes,
+  CheckBoxConfirmerActions
+} from "../../../actions/blocks/check-box-confirmer.actions";
 import { CheckBoxConfirmerBlock } from "../../../models";
 
 export interface State extends EntityState<CheckBoxConfirmerBlock> {
-  checkBoxConfirmerBlocksLoading: { [id: string]: boolean };
+  checkBoxConfirmerBlocksLoading: {[id: string]: boolean};
 }
 
 export const adapter: EntityAdapter<CheckBoxConfirmerBlock> = createEntityAdapter<CheckBoxConfirmerBlock>({
@@ -43,6 +46,9 @@ export function reducer(state = initialState, action: CheckBoxConfirmerActions):
         ...adapter.updateOne(action.payload.block, state),
       };
     }
+    case CheckBoxConfirmerActionTypes.CLEAR_BLOCKS: {
+      return adapter.removeAll({...state, checkBoxConfirmerBlocksLoading: {}});
+    }
     default: {
       return state;
     }
@@ -59,7 +65,7 @@ export const {
 export const getCheckBoxConfirmerBlocksValidityState = createSelector(
   getCheckBoxConfirmerIds,
   getCheckBoxConfirmerEntities,
-  (ids: number[], blocksEntities: { [id: string]: any }) => {
+  (ids: number[], blocksEntities: {[id: string]: any}) => {
     return ids.findIndex((id: number) => {
       return blocksEntities[id].valid === false;
     }) === -1;

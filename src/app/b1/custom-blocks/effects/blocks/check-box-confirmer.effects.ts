@@ -15,7 +15,7 @@ import {
 
 import { CheckBoxConfirmerBlock, B1BlockType } from "../../models";
 import { CheckBoxConfirmerService } from "../../services";
-import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock } from "../../actions/blocks/check-box-confirmer.actions";
+import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/check-box-confirmer.actions";
 
 @Injectable()
 export class CheckBoxConfirmerEffects {
@@ -32,6 +32,12 @@ export class CheckBoxConfirmerEffects {
         return block.type === B1BlockType.CheckBoxConfirmer;
       });
       return new AddBlocks({blocks: checkBoxConfirmerBoxBlocks});
+    });
+
+  @Effect() clearBlocks: Observable<Action> = this.actions$
+    .ofType(ListActionTypes.CLEAR_BLOCKS)
+    .map(() => {
+      return new ClearBlocks();
     });
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$

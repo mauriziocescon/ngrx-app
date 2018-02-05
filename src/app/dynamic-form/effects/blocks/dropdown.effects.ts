@@ -11,7 +11,7 @@ import { ListActionTypes, FetchBlocksComplete } from "../../actions/list.actions
 
 import { Block, BlockType, DropdownBlock } from "../../models";
 import { DropdownService } from "../../services";
-import { DropdownActionTypes, AddBlocks, UpdateBlock } from "../../actions/blocks/dropdown.actions";
+import { DropdownActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/dropdown.actions";
 
 @Injectable()
 export class DropdownEffect {
@@ -28,6 +28,12 @@ export class DropdownEffect {
         return block.type === BlockType.Dropdown;
       });
       return new AddBlocks({blocks: dropdownBoxBlocks});
+    });
+
+  @Effect() clearBlocks: Observable<Action> = this.actions$
+    .ofType(ListActionTypes.CLEAR_BLOCKS)
+    .map(() => {
+      return new ClearBlocks();
     });
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$

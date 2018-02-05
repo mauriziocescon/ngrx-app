@@ -5,7 +5,7 @@ import { DatePickerActionTypes, DatePickerActions } from "../../../actions/block
 import { DatePickerBlock } from "../../../models";
 
 export interface State extends EntityState<DatePickerBlock> {
-  datePickerBlocksLoading: { [id: string]: boolean };
+  datePickerBlocksLoading: {[id: string]: boolean};
 }
 
 export const adapter: EntityAdapter<DatePickerBlock> = createEntityAdapter<DatePickerBlock>({
@@ -43,6 +43,9 @@ export function reducer(state = initialState, action: DatePickerActions): State 
         ...adapter.updateOne(action.payload.block, state),
       };
     }
+    case DatePickerActionTypes.CLEAR_BLOCKS: {
+      return adapter.removeAll({...state, datePickerBlocksLoading: {}});
+    }
     default: {
       return state;
     }
@@ -59,7 +62,7 @@ export const {
 export const getDatePickerBlocksValidityState = createSelector(
   getDatePickerIds,
   getDatePickerEntities,
-  (ids: number[], blocksEntities: { [id: string]: any }) => {
+  (ids: number[], blocksEntities: {[id: string]: any}) => {
     return ids.findIndex((id: number) => {
       return blocksEntities[id].valid === false;
     }) === -1;

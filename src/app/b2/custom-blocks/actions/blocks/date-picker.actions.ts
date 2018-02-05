@@ -6,6 +6,7 @@ export enum DatePickerActionTypes {
   LOADING = "[DatePickerBlock] Loading",
   ADD_BLOCKS = "[DatePickerBlock] Add blocks",
   UPDATE_BLOCK = "[DatePickerBlock] Update block",
+  CLEAR_BLOCKS = "[DatePickerBlock] Clear blocks",
 }
 
 export class Loading implements Action {
@@ -29,6 +30,10 @@ export class UpdateBlock implements Action {
   }
 }
 
+export class ClearBlocks implements Action {
+  readonly type = DatePickerActionTypes.CLEAR_BLOCKS;
+}
+
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
@@ -36,4 +41,5 @@ export class UpdateBlock implements Action {
 export type DatePickerActions =
   Loading |
   AddBlocks |
-  UpdateBlock;
+  UpdateBlock |
+  ClearBlocks;

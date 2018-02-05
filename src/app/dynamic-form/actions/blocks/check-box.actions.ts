@@ -6,6 +6,7 @@ export enum CheckBoxActionTypes {
   LOADING = "[CheckBox] Loading",
   ADD_BLOCKS = "[CheckBox] Add blocks",
   UPDATE_BLOCK = "[CheckBox] Update block",
+  CLEAR_BLOCKS = "[CheckBox] Clear blocks",
 }
 
 export class Loading implements Action {
@@ -29,6 +30,10 @@ export class UpdateBlock implements Action {
   }
 }
 
+export class ClearBlocks implements Action {
+  readonly type = CheckBoxActionTypes.CLEAR_BLOCKS;
+}
+
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
@@ -36,4 +41,5 @@ export class UpdateBlock implements Action {
 export type CheckBoxActions =
   Loading |
   AddBlocks |
-  UpdateBlock;
+  UpdateBlock |
+  ClearBlocks;

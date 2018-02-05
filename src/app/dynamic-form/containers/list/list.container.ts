@@ -48,15 +48,16 @@ export class ListContainerComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    this.reloadList();
-
     this.paramMapSubscription = this.route.paramMap
       .subscribe((paramMap: ParamMap) => {
         const module = paramMap.get("module");
         const instance = paramMap.get("instance");
         const step = paramMap.get("step");
 
-        this.reloadList(module, instance, step);
+        if (module && instance && step) {
+          this.store.dispatch(new list.ClearBlocks());
+          this.reloadList(module, instance, step);
+        }
       });
   }
 

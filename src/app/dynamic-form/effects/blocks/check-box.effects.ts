@@ -11,7 +11,7 @@ import { ListActionTypes, FetchBlocksComplete } from "../../actions/list.actions
 
 import { Block, BlockType, CheckBoxBlock } from "../../models";
 import { CheckBoxService } from "../../services";
-import { CheckBoxActionTypes, AddBlocks, UpdateBlock } from "../../actions/blocks/check-box.actions";
+import { CheckBoxActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/check-box.actions";
 
 @Injectable()
 export class CheckBoxEffect {
@@ -28,6 +28,12 @@ export class CheckBoxEffect {
         return block.type === BlockType.CheckBox;
       });
       return new AddBlocks({blocks: checkBoxBlocks});
+    });
+
+  @Effect() clearBlocks: Observable<Action> = this.actions$
+    .ofType(ListActionTypes.CLEAR_BLOCKS)
+    .map(() => {
+      return new ClearBlocks();
     });
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$

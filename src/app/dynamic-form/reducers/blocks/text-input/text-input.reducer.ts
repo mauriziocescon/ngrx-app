@@ -5,7 +5,7 @@ import { TextInputActionTypes, TextInputActions } from "../../../actions/blocks/
 import { TextInputBlock } from "../../../models";
 
 export interface State extends EntityState<TextInputBlock> {
-  textInputBlocksLoading: { [id: string]: boolean };
+  textInputBlocksLoading: {[id: string]: boolean};
 }
 
 export const adapter: EntityAdapter<TextInputBlock> = createEntityAdapter<TextInputBlock>({
@@ -43,6 +43,9 @@ export function reducer(state = initialState, action: TextInputActions): State {
         ...adapter.updateOne(action.payload.block, state),
       };
     }
+    case TextInputActionTypes.CLEAR_BLOCKS: {
+      return adapter.removeAll({...state, textInputBlocksLoading: {}});
+    }
     default: {
       return state;
     }
@@ -59,7 +62,7 @@ export const {
 export const getTextInputBlocksValidityState = createSelector(
   getTextInputIds,
   getTextInputEntities,
-  (ids: number[], blocksEntities: { [id: string]: any }) => {
+  (ids: number[], blocksEntities: {[id: string]: any}) => {
     return ids.findIndex((id: number) => {
       return blocksEntities[id].valid === false;
     }) === -1;

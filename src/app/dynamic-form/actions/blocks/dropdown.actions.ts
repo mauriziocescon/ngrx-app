@@ -6,6 +6,7 @@ export enum DropdownActionTypes {
   LOADING = "[Dropdown] Loading",
   ADD_BLOCKS = "[Dropdown] Add blocks",
   UPDATE_BLOCK = "[Dropdown] Update block",
+  CLEAR_BLOCKS = "[Dropdown] Clear blocks",
 }
 
 export class Loading implements Action {
@@ -29,6 +30,10 @@ export class UpdateBlock implements Action {
   }
 }
 
+export class ClearBlocks implements Action {
+  readonly type = DropdownActionTypes.CLEAR_BLOCKS;
+}
+
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
@@ -36,4 +41,5 @@ export class UpdateBlock implements Action {
 export type DropdownActions =
   Loading |
   AddBlocks |
-  UpdateBlock;
+  UpdateBlock |
+  ClearBlocks;

@@ -6,6 +6,7 @@ export enum ListActionTypes {
   FETCH_BLOCKS = "[List] Fetch blocks",
   FETCH_BLOCKS_COMPLETE = "[List] Fetch blocks complete",
   FETCH_BLOCKS_ERROR = "[List] Fetch blocks error",
+  CLEAR_BLOCKS = "[List] Clear blocks",
 }
 
 export class FetchBlocks implements Action {
@@ -29,6 +30,10 @@ export class FetchBlocksError implements Action {
   }
 }
 
+export class ClearBlocks implements Action {
+  readonly type = ListActionTypes.CLEAR_BLOCKS;
+}
+
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
@@ -36,4 +41,5 @@ export class FetchBlocksError implements Action {
 export type ListActions =
   FetchBlocks |
   FetchBlocksComplete |
-  FetchBlocksError;
+  FetchBlocksError |
+  ClearBlocks;

@@ -38,6 +38,13 @@ export function reducer(state = initialState, action: ListActions): State {
         error: action.payload,
       };
     }
+    case ListActionTypes.CLEAR_BLOCKS: {
+      return {
+        ...state,
+        blocks: [],
+        loading: false,
+      };
+    }
     default: {
       return state;
     }

@@ -15,7 +15,7 @@ import {
 
 import { DatePickerBlock, B2BlockType } from "../../models";
 import { DatePickerService } from "../../services";
-import { DatePickerActionTypes, AddBlocks, UpdateBlock } from "../../actions/blocks/date-picker.actions";
+import { DatePickerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/date-picker.actions";
 
 @Injectable()
 export class DatePickerEffects {
@@ -32,6 +32,12 @@ export class DatePickerEffects {
         return block.type === B2BlockType.DatePicker;
       });
       return new AddBlocks({blocks: datePickerBoxBlocks});
+    });
+
+  @Effect() clearBlocks: Observable<Action> = this.actions$
+    .ofType(ListActionTypes.CLEAR_BLOCKS)
+    .map(() => {
+      return new ClearBlocks();
     });
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$

@@ -5,7 +5,7 @@ import { DropdownActionTypes, DropdownActions } from "../../../actions/blocks/dr
 import { DropdownBlock } from "../../../models";
 
 export interface State extends EntityState<DropdownBlock> {
-  dropdownBlocksLoading: { [id: string]: boolean };
+  dropdownBlocksLoading: {[id: string]: boolean};
 }
 
 export const adapter: EntityAdapter<DropdownBlock> = createEntityAdapter<DropdownBlock>({
@@ -43,6 +43,9 @@ export function reducer(state = initialState, action: DropdownActions): State {
         ...adapter.updateOne(action.payload.block, state),
       };
     }
+    case DropdownActionTypes.CLEAR_BLOCKS: {
+      return adapter.removeAll({...state, dropdownBlocksLoading: {}});
+    }
     default: {
       return state;
     }
@@ -59,7 +62,7 @@ export const {
 export const getDropdownBlocksValidityState = createSelector(
   getDropdownIds,
   getDropdownEntities,
-  (ids: number[], blocksEntities: { [id: string]: any }) => {
+  (ids: number[], blocksEntities: {[id: string]: any}) => {
     return ids.findIndex((id: number) => {
       return blocksEntities[id].valid === false;
     }) === -1;

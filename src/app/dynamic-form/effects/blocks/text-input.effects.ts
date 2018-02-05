@@ -11,7 +11,7 @@ import { ListActionTypes, FetchBlocksComplete } from "../../actions/list.actions
 
 import { Block, BlockType, TextInputBlock } from "../../models";
 import { TextInputService } from "../../services";
-import { TextInputActionTypes, AddBlocks, UpdateBlock } from "../../actions/blocks/text-input.actions";
+import { TextInputActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/text-input.actions";
 
 @Injectable()
 export class TextInputEffect {
@@ -28,6 +28,12 @@ export class TextInputEffect {
         return block.type === BlockType.TextInput;
       });
       return new AddBlocks({blocks: textInputBoxBlocks});
+    });
+
+  @Effect() clearBlocks: Observable<Action> = this.actions$
+    .ofType(ListActionTypes.CLEAR_BLOCKS)
+    .map(() => {
+      return new ClearBlocks();
     });
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$

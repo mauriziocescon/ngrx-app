@@ -1,10 +1,10 @@
 {
   "COMPONENT": {
     "NAVIGATION_BAR": {
-      "B1S1": "B1 -> S1",
-      "B1S2": "B1 -> S2",
-      "B2S1": "B2 -> S1",
-      "B2S2": "B2 -> S2",
+      "B1S1": "B1->S1",
+      "B1S2": "B1->S2",
+      "B2S1": "B2->S1",
+      "B2S2": "B2->S2",
       "NAME": "Nome",
       "SELECT_LANGUAGE": "Cambia lingua"
     },
