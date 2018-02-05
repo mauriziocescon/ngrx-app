@@ -10,6 +10,9 @@ export enum ListActionTypes {
 
 export class FetchBlocks implements Action {
   readonly type = ListActionTypes.FETCH_BLOCKS;
+
+  constructor(public payload: { module: string, instance: string, step: string }) {
+  }
 }
 
 export class FetchBlocksComplete implements Action {

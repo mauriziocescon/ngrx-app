@@ -10,7 +10,7 @@ if (fs.existsSync("./mock-server/db.json")) {
 // db creation
 const data = {
   rulesConfig: [],
-  blocks: [],
+  instances: [],
   logs: [],
 };
 
@@ -123,6 +123,27 @@ function getCheckBoxConfirmer(index) {
   return checkBoxConfirmer;
 }
 
+function getDatePicker(index) {
+  const value = faker.random.boolean() ? faker.date.future() : undefined;
+  const required = faker.random.boolean();
+
+  let datePicker = {
+    id: index,
+    type: "date-picker",
+    label: "COMPONENT.DATE_PICKER.DATE_PICKER_LABEL",
+    value: value,
+    disabled: false,
+    required: required,
+    valid: required ? !!value : true,
+    hooks: {
+      datePickerBlockDidLoad: "datePickerBlockDidLoad",
+      datePickerBlockDidChange: "datePickerBlockDidChange",
+    },
+  };
+
+  return datePicker;
+}
+
 function getUnknownComponent(index) {
   return {
     id: index,
@@ -130,7 +151,7 @@ function getUnknownComponent(index) {
   };
 }
 
-function getRandomBlock(index) {
+function getRandomB1Block(index) {
   const choice = Math.random();
 
   if (choice < 0.05) {
@@ -150,10 +171,53 @@ function getRandomBlock(index) {
   }
 }
 
-// blocks
-for (let i = 0; i < numberOfBlocks; i++) {
-  data.blocks.push(getRandomBlock(i));
+function getRandomB2Block(index) {
+  const choice = Math.random();
+
+  if (choice < 0.05) {
+    return getUnknownComponent(index);
+  }
+  else if (choice < 0.25) {
+    return getCheckBox(index);
+  }
+  else if (choice < 0.50) {
+    return getDropdown(index);
+  }
+  else if (choice < 0.75) {
+    return getTextInput(index);
+  }
+  else {
+    return getDatePicker(index);
+  }
 }
+
+let instance;
+
+// module b1
+instance = {id: 0, module: "b1", instance: "1", step: "1", blocks: []};
+for (let i = 0; i < numberOfBlocks; i++) {
+  instance.blocks.push(getRandomB1Block(i));
+}
+data.instances.push(instance);
+
+instance = {id: 1, module: "b1", instance: "1", step: "2", blocks: []};
+for (let i = 0; i < numberOfBlocks; i++) {
+  instance.blocks.push(getRandomB1Block(i));
+}
+data.instances.push(instance);
+
+// module b2
+instance = {id: 2, module: "b2", instance: "1", step: "1", blocks: []};
+for (let i = 0; i < numberOfBlocks; i++) {
+  instance.blocks.push(getRandomB2Block(i));
+}
+data.instances.push(instance);
+
+instance = {id: 3, module: "b2", instance: "1", step: "2", blocks: []};
+for (let i = 0; i < numberOfBlocks; i++) {
+  instance.blocks.push(getRandomB2Block(i));
+}
+data.instances.push(instance);
 
 // rules config
 data.rulesConfig.push({module: "b1", steps: [{step: "1", rules: "rules1"}, {step: "2", rules: "rules2"}]});

@@ -20,12 +20,18 @@ export class BlockListService {
               protected appConstants: AppConstantsService) {
   }
 
-  getBlocks(): Observable<Block[]> {
+  getBlocks(module: string, instance: string, step: string): Observable<Block[]> {
+    const options = {
+      params: {
+        module: module,
+        instance: instance,
+        step: step,
+      }
+    };
+
     return this.http
-      .get<Block[]>(this.appConstants.Api.blocks, {observe: "response"})
-      .map(resp => {
-        return resp.body;
-      })
+      .get<Block[]>(this.appConstants.Api.blocks, options)
+      .map(data => data)
       .catch(err => Observable.throw(err.json().error || "Server error"));
   }
 

@@ -113,6 +113,23 @@ app.get("/api/rules-config", (req, res) => {
   }
 });
 
+// blocks
+app.get("/api/blocks", (req, res) => {
+  const instances = db.instances;
+  const instance = instances.find((i) => {
+    return i.module === req.query.module &&
+      i.instance === req.query.instance &&
+      i.step === req.query.step;
+  });
+  if (instance) {
+    return res.status(200).jsonp(instance.blocks);
+  } else {
+    return res.status(400).jsonp({
+      error: "Bad Request",
+    });
+  }
+});
+
 // Mount the router based on db.json
 app.use("/api", router);
 

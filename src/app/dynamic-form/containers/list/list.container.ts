@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
+import { ActivatedRoute, ActivatedRouteSnapshot } from "@angular/router";
 import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
@@ -32,6 +33,7 @@ export class ListContainerComponent implements OnInit {
   formValidity$: Observable<boolean>;
 
   constructor(protected store: Store<fromDynamicForm.State>,
+              protected route: ActivatedRoute,
               protected logger: NGXLogger,
               protected blocksList: BlockListService) {
     this.blocks$ = this.store.select(fromDynamicForm.getBlocksListState);
@@ -46,7 +48,11 @@ export class ListContainerComponent implements OnInit {
   }
 
   reloadList(): void {
-    this.store.dispatch(new list.FetchBlocks());
+    const module = this.route.snapshot.paramMap.get("module");
+    const instance = this.route.snapshot.paramMap.get("instance");
+    const step = this.route.snapshot.paramMap.get("step");
+
+    this.store.dispatch(new list.FetchBlocks({module: module, instance: instance, step: step}));
   }
 
   nextStep(): void {

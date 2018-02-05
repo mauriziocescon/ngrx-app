@@ -11,7 +11,7 @@ import "rxjs/add/operator/mergeMap";
 import "rxjs/add/operator/switchMap";
 
 import { BlockListService } from "../services";
-import { ListActionTypes, FetchBlocksComplete, FetchBlocksError } from "../actions/list.actions";
+import { ListActionTypes, FetchBlocks, FetchBlocksComplete, FetchBlocksError } from "../actions/list.actions";
 
 import { Block } from "../models";
 
@@ -25,8 +25,9 @@ export class ListEffects {
   @Effect() fetchBlocks$: Observable<Action> = this.update$
     .ofType(ListActionTypes.FETCH_BLOCKS)
     .debounceTime(400)
-    .switchMap(() => {
-      return this.blocksList.getBlocks()
+    .map((action: FetchBlocks) => action.payload)
+    .switchMap((params) => {
+      return this.blocksList.getBlocks(params.module, params.instance, params.step)
         .mergeMap((blocks: Block[]) => {
           return [
             new FetchBlocksComplete(blocks),
