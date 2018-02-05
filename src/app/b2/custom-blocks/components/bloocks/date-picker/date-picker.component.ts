@@ -1,8 +1,4 @@
-import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
-import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
-
-import { Subscription } from "rxjs/Subscription";
-import "rxjs/add/operator/debounceTime";
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
 
 import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 import { NGXLogger } from "ngx-logger";
@@ -14,15 +10,15 @@ import { DatePickerBlock } from "../../../models";
   templateUrl: "./date-picker.component.html",
   styleUrls: ["./date-picker.component.scss"]
 })
-export class DatePickerComponent implements OnInit, OnChanges, OnDestroy {
+export class DatePickerComponent implements OnInit, OnChanges {
   @Input() block: DatePickerBlock;
   @Input() loading: boolean;
-  @Output() valueDidChange: EventEmitter<boolean>;
+  @Output() valueDidChange: EventEmitter<string>;
 
   selectedDate: NgbDateStruct;
 
   constructor(protected logger: NGXLogger) {
-    this.valueDidChange = new EventEmitter<boolean>();
+    this.valueDidChange = new EventEmitter<string>();
   }
 
   get isLoading(): boolean {
@@ -41,6 +37,7 @@ export class DatePickerComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  onChange(date: Date): void {
+    this.valueDidChange.emit(date.toISOString());
   }
 }
