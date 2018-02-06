@@ -220,8 +220,8 @@ for (let i = 0; i < numberOfBlocks; i++) {
 data.instances.push(instance);
 
 // rules config
-data.rulesConfig.push({module: "b1", steps: [{step: "1", rules: "rules1"}, {step: "2", rules: "rules2"}]});
-data.rulesConfig.push({module: "b2", steps: [{step: "1", rules: "rules1"}, {step: "2", rules: "rules2"}]});
+data.rulesConfig.push({module: "b1", steps: [{step: "1", rules: "b1-rules1"}, {step: "2", rules: "b1-rules2"}]});
+data.rulesConfig.push({module: "b2", steps: [{step: "1", rules: "b2-rules1"}, {step: "2", rules: "b2-rules2"}]});
 
 // save file
 fs.writeFile("mock-server/db.json", JSON.stringify(data, null, 2), (err) => {
