@@ -8,7 +8,7 @@ import { Subscription } from "rxjs/Subscription";
 import { NGXLogger } from "ngx-logger";
 
 import * as list from "../../actions/list.actions";
-import * as fromDynamicForm from "../../reducers";
+import * as fromDynamicBlocksList from "../../reducers";
 import { Block } from "../../models";
 import { BlockListService } from "../../services";
 import { ParamMap } from "@angular/router/src/shared";
@@ -36,13 +36,13 @@ export class ListContainerComponent implements OnInit, OnDestroy{
 
   paramMapSubscription: Subscription;
 
-  constructor(protected store: Store<fromDynamicForm.State>,
+  constructor(protected store: Store<fromDynamicBlocksList.State>,
               protected route: ActivatedRoute,
               protected logger: NGXLogger,
               protected blocksList: BlockListService) {
-    this.blocks$ = this.store.select(fromDynamicForm.getFetchedBlocksState);
-    this.loading$ = this.store.select(fromDynamicForm.getFetchLoadingState);
-    this.error$ = this.store.select(fromDynamicForm.getFetchErrorState);
+    this.blocks$ = this.store.select(fromDynamicBlocksList.getFetchedBlocksState);
+    this.loading$ = this.store.select(fromDynamicBlocksList.getFetchLoadingState);
+    this.error$ = this.store.select(fromDynamicBlocksList.getFetchErrorState);
   }
 
   ngOnInit(): void {

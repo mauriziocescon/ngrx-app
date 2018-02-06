@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import * as fromDynamicForm from "../../reducers";
+import * as fromDynamicBlocksList from "../../reducers";
 import * as checkBox from "../../actions/blocks/check-box.actions";
 import { BlockType, CheckBoxBlock, CheckBoxMethods } from "../../models";
 
@@ -16,7 +16,7 @@ export class CheckBoxService {
   protected blockChangesSubject$: Subject<CheckBoxBlock>;
   readonly blockChangesObservable$: Observable<CheckBoxBlock>;
 
-  constructor(protected store: Store<fromDynamicForm.State>) {
+  constructor(protected store: Store<fromDynamicBlocksList.State>) {
     this.blockLoadSubject$ = new Subject();
     this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
 

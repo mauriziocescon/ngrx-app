@@ -10,7 +10,7 @@ import { AppConstantsService } from "../../core/core.module";
 
 import { Block } from "../models";
 
-import * as fromDynamicForm from "../reducers";
+import * as fromDynamicBlocksList from "../reducers";
 
 @Injectable()
 export class BlockListService {
@@ -50,6 +50,6 @@ export class BlockListService {
   }
 
   getValiditySelector(module: string, instance: string, step: string): Observable<boolean> {
-    return this.store.select(fromDynamicForm.getAllEditBlocksValidityState);
+    return this.store.select(fromDynamicBlocksList.getAllEditBlocksValidityState);
   }
 }

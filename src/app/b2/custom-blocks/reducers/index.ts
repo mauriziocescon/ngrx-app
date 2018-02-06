@@ -4,7 +4,7 @@ import { createSelector, createFeatureSelector, combineReducers, ActionReducerMa
 import { DatePickerBlock } from "../models";
 
 import * as fromRoot from "../../../reducers";
-import { fromDynamicForm, Block } from "../../../dynamic-blocks-list/dynamic-blocks-list.module";
+import { fromDynamicBlocksList, Block } from "../../../dynamic-blocks-list/dynamic-blocks-list.module";
 import * as fromEditBlocks from "./blocks";
 import * as fromDatePicker from "./blocks/date-picker/date-picker.reducer";
 
@@ -52,7 +52,7 @@ export const getDatePickerBlocksLoadingState = createSelector(getDatePickerState
 // -----------------
 // --------- generic
 export const getAllEditBlocksState = createSelector(
-  fromDynamicForm.getAllEditBlocksState,
+  fromDynamicBlocksList.getAllEditBlocksState,
   getAllDatePicker,
   (blocks: Block[], datePickerBlocks: DatePickerBlock[]) => {
     return [
@@ -63,7 +63,7 @@ export const getAllEditBlocksState = createSelector(
 );
 
 export const getAllEditBlocksValidityState = createSelector(
-  fromDynamicForm.getAllEditBlocksValidityState,
+  fromDynamicBlocksList.getAllEditBlocksValidityState,
   getDatePickerBlocksValidityState,
   (validity: boolean, datePickerValidity: boolean) => {
     return validity && datePickerValidity;

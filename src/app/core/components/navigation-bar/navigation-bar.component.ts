@@ -21,18 +21,18 @@ export class NavigationBarComponent {
   }
 
   goToB1S1(): void {
-    this.navigationDidChange.emit({path: "/dyn-forms", module: "b1", instance: "1", step: "1"});
+    this.navigationDidChange.emit({path: "/dyn-blocks-list", module: "b1", instance: "1", step: "1"});
   }
 
   goToB1S2(): void {
-    this.navigationDidChange.emit({path: "/dyn-forms", module: "b1", instance: "1", step: "2"});
+    this.navigationDidChange.emit({path: "/dyn-blocks-list", module: "b1", instance: "1", step: "2"});
   }
 
   goToB2S1(): void {
-    this.navigationDidChange.emit({path: "/dyn-forms", module: "b2", instance: "1", step: "1"});
+    this.navigationDidChange.emit({path: "/dyn-blocks-list", module: "b2", instance: "1", step: "1"});
   }
 
   goToB2S2(): void {
-    this.navigationDidChange.emit({path: "/dyn-forms", module: "b2", instance: "1", step: "2"});
+    this.navigationDidChange.emit({path: "/dyn-blocks-list", module: "b2", instance: "1", step: "2"});
   }
 }

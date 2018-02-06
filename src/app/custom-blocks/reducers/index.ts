@@ -1,6 +1,6 @@
 import { createSelector } from "@ngrx/store";
 
-import { Block, fromDynamicForm } from "../../dynamic-blocks-list/dynamic-blocks-list.module";
+import { Block, fromDynamicBlocksList } from "../../dynamic-blocks-list/dynamic-blocks-list.module";
 
 import { fromB1 } from "../../b1";
 
@@ -9,7 +9,7 @@ import { fromB2 } from "../../b2";
 // -----------------
 // --------- generic
 export const getAllEditBlocksState = createSelector(
-  fromDynamicForm.getAllEditBlocksState,
+  fromDynamicBlocksList.getAllEditBlocksState,
   fromB1.getAllEditBlocksState,
   fromB2.getAllEditBlocksState,
   (blocks: Block[], b1Blocks: Block[], b2Blocks: Block[]) => {
@@ -22,7 +22,7 @@ export const getAllEditBlocksState = createSelector(
 );
 
 export const getAllEditBlocksValidityState = createSelector(
-  fromDynamicForm.getAllEditBlocksValidityState,
+  fromDynamicBlocksList.getAllEditBlocksValidityState,
   fromB1.getAllEditBlocksValidityState,
   fromB2.getAllEditBlocksValidityState,
   (blocskValidity: boolean, b1BlocksValidity: boolean, b2BlocksValidity: boolean) => {

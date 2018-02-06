@@ -5,7 +5,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { SharedModule } from "../shared/shared.module";
 
 import { EFFECTS } from "./effects";
-import * as fromDynamicForm from "./reducers";
+import * as fromDynamicBlocksList from "./reducers";
 import { TOKEN, reducerProvider } from "./reducers";
 import {
   SERVICES,
@@ -36,7 +36,7 @@ import {
      * eagerly or lazily and will be dynamically added to
      * the existing state.
      */
-    StoreModule.forFeature("dynamicForm", TOKEN),
+    StoreModule.forFeature("dynamicBlocksList", TOKEN),
 
     /**
      * Effects.forFeature is used to register effects
@@ -65,7 +65,7 @@ import {
     ...SERVICES,
   ],
 })
-export class DynamicFormModule {
+export class DynamicBlocksListModule {
 }
 
 export {
@@ -73,7 +73,7 @@ export {
   ListActionTypes,
 } from "./actions/list.actions";
 
-export { fromDynamicForm };
+export { fromDynamicBlocksList };
 
 export * from "./models";
 

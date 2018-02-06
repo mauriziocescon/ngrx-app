@@ -10,18 +10,18 @@ import * as fromDropdown from "./blocks/dropdown/dropdown.reducer";
 import * as fromTextInput from "./blocks/text-input/text-input.reducer";
 import * as fromList from "./list.reducer";
 
-export interface DynamicFormState {
+export interface DynamicBlocksListState {
   blocksList: fromList.State;
   editBlocks: fromEditBlocks.State;
 }
 
 export interface State extends fromRoot.State {
-  dynamicForm: DynamicFormState;
+  dynamicBlocksList: DynamicBlocksListState;
 }
 
 // -----------------
 // ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>("DynamicFormEditBlocksReducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>("DynamicBlocksListReducers");
 
 export const getReducers = () => {
   return {
@@ -36,11 +36,11 @@ export const reducerProvider = [
 
 // -----------------
 // --- feature selector
-export const getDynamicFormState = createFeatureSelector<DynamicFormState>("dynamicForm");
+export const getDynamicBlocksListState = createFeatureSelector<DynamicBlocksListState>("dynamicBlocksList");
 
 // -----------------
 // ----- blocks list
-export const getListState = createSelector(getDynamicFormState, state => state.blocksList);
+export const getListState = createSelector(getDynamicBlocksListState, state => state.blocksList);
 
 export const getFetchedBlocksState = createSelector(getListState, state => state.fetchedBlocks);
 export const getFetchLoadingState = createSelector(getListState, state => state.fetchLoading);
@@ -52,7 +52,7 @@ export const getUpdateErrorState = createSelector(getListState, state => state.u
 
 // -----------------
 // ----- edit blocks
-export const getEditBlocksState = createSelector(getDynamicFormState, state => state.editBlocks);
+export const getEditBlocksState = createSelector(getDynamicBlocksListState, state => state.editBlocks);
 
 // -----------------
 // ------- check-box
