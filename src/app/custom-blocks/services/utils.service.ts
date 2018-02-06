@@ -6,7 +6,7 @@ import {
   CheckBoxService,
   DropdownService,
   TextInputService,
-} from "../../dynamic-form/dynamic-form.module";
+} from "../../dynamic-blocks-list/dynamic-blocks-list.module";
 
 import { B1BlockUtilsService } from "../../b1";
 

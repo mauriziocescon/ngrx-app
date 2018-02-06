@@ -1,4 +1,4 @@
-import { TextInputBlock } from "../../../dynamic-form/dynamic-form.module";
+import { TextInputBlock } from "../../../dynamic-blocks-list/dynamic-blocks-list.module";
 
 export const isValid = (textInputBlock: TextInputBlock) => {
 

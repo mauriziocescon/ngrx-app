@@ -11,7 +11,7 @@ import {
   Block,
   FetchBlocksComplete,
   ListActionTypes,
-} from "../../../../dynamic-form/dynamic-form.module";
+} from "../../../../dynamic-blocks-list/dynamic-blocks-list.module";
 
 import { DatePickerBlock, B2BlockType } from "../../models";
 import { DatePickerService } from "../../services";

@@ -11,7 +11,7 @@ import { NGXLogger } from "ngx-logger";
 
 import { AppConstantsService } from "./core/core.module";
 
-import { BlockHooksService, BlocksHooks } from "./dynamic-form/dynamic-form.module";
+import { BlockHooksService, BlocksHooks } from "./dynamic-blocks-list/dynamic-blocks-list.module";
 
 import * as setOfRules from "./custom-rules";
 

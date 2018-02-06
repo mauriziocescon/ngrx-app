@@ -4,7 +4,7 @@ import { createSelector, createFeatureSelector, combineReducers, ActionReducerMa
 import { CheckBoxConfirmerBlock } from "../models";
 
 import * as fromRoot from "../../../reducers";
-import { fromDynamicForm, Block } from "../../../dynamic-form/dynamic-form.module";
+import { fromDynamicForm, Block } from "../../../dynamic-blocks-list/dynamic-blocks-list.module";
 import * as fromEditBlocks from "./blocks";
 import * as fromCheckBoxConfirmer from "./blocks/check-box-confirmer/check-box-confirmer.reducer";
 

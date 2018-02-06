@@ -6,7 +6,7 @@ import { Observable } from "rxjs/Observable";
 
 import { AppConstantsService } from "../../core/core.module";
 
-import { BlockListService } from "../../dynamic-form/dynamic-form.module";
+import { BlockListService } from "../../dynamic-blocks-list/dynamic-blocks-list.module";
 
 import { fromB1 } from "../../b1";
 

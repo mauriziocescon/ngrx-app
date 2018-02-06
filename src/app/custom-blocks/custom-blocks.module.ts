@@ -4,7 +4,7 @@ import {
   BlockListService,
   BlockHooksService,
   BlockUtilsService,
-} from "../dynamic-form/dynamic-form.module";
+} from "../dynamic-blocks-list/dynamic-blocks-list.module";
 
 import { SharedModule } from "../shared/shared.module";
 

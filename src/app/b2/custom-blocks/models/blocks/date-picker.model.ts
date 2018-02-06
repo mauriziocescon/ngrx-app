@@ -1,4 +1,4 @@
-import { Block } from "../../../../dynamic-form/dynamic-form.module";
+import { Block } from "../../../../dynamic-blocks-list/dynamic-blocks-list.module";
 
 export interface DatePickerBlock extends Block {
   label?: string;

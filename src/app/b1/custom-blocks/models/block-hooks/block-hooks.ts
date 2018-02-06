@@ -1,4 +1,4 @@
-import { BlocksFunctions, BlocksHooks } from "../../../../dynamic-form/dynamic-form.module";
+import { BlocksFunctions, BlocksHooks } from "../../../../dynamic-blocks-list/dynamic-blocks-list.module";
 
 import { CheckBoxConfirmerBlock } from "../blocks/check-box-confirmer.model";
 

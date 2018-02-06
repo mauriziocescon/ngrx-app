@@ -1,6 +1,6 @@
 import { createSelector } from "@ngrx/store";
 
-import { Block, fromDynamicForm } from "../../dynamic-form/dynamic-form.module";
+import { Block, fromDynamicForm } from "../../dynamic-blocks-list/dynamic-blocks-list.module";
 
 import { fromB1 } from "../../b1";
 

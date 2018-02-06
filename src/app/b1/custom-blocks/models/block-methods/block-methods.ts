@@ -1,4 +1,4 @@
-import { BlocksMethods } from "../../../../dynamic-form/dynamic-form.module";
+import { BlocksMethods } from "../../../../dynamic-blocks-list/dynamic-blocks-list.module";
 
 import { CheckBoxConfirmerMethods } from "./check-box-confirmer-methods";
 
