@@ -11,7 +11,7 @@ import * as fromTextInput from "./blocks/text-input/text-input.reducer";
 import * as fromList from "./list.reducer";
 
 export interface DynamicFormState {
-  list: fromList.State;
+  blocksList: fromList.State;
   editBlocks: fromEditBlocks.State;
 }
 
@@ -25,7 +25,7 @@ export const TOKEN = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>(
 
 export const getReducers = () => {
   return {
-    list: fromList.reducer,
+    blocksList: fromList.reducer,
     editBlocks: combineReducers(fromEditBlocks.reducers),
   };
 };
@@ -39,12 +39,16 @@ export const reducerProvider = [
 export const getDynamicFormState = createFeatureSelector<DynamicFormState>("dynamicForm");
 
 // -----------------
-// ------------ list
-export const getListState = createSelector(getDynamicFormState, state => state.list);
+// ----- blocks list
+export const getListState = createSelector(getDynamicFormState, state => state.blocksList);
 
-export const getBlocksListState = createSelector(getListState, state => state.blocks);
-export const getLoadingListState = createSelector(getListState, state => state.loading);
-export const getErrorListState = createSelector(getListState, state => state.error);
+export const getFetchedBlocksState = createSelector(getListState, state => state.fetchedBlocks);
+export const getFetchLoadingState = createSelector(getListState, state => state.fetchLoading);
+export const getFetchErrorState = createSelector(getListState, state => state.fetchError);
+
+export const getUpdateBlocksState = createSelector(getListState, state => state.updateBlocks);
+export const getUpdateLoadingState = createSelector(getListState, state => state.updateLoading);
+export const getUpdateErrorState = createSelector(getListState, state => state.updateError);
 
 // -----------------
 // ----- edit blocks

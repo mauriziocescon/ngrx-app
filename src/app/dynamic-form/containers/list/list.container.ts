@@ -40,9 +40,9 @@ export class ListContainerComponent implements OnInit, OnDestroy{
               protected route: ActivatedRoute,
               protected logger: NGXLogger,
               protected blocksList: BlockListService) {
-    this.blocks$ = this.store.select(fromDynamicForm.getBlocksListState);
-    this.loading$ = this.store.select(fromDynamicForm.getLoadingListState);
-    this.error$ = this.store.select(fromDynamicForm.getErrorListState);
+    this.blocks$ = this.store.select(fromDynamicForm.getFetchedBlocksState);
+    this.loading$ = this.store.select(fromDynamicForm.getFetchLoadingState);
+    this.error$ = this.store.select(fromDynamicForm.getFetchErrorState);
   }
 
   ngOnInit(): void {
