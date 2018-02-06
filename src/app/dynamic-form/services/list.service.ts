@@ -26,11 +26,25 @@ export class BlockListService {
         module: module,
         instance: instance,
         step: step,
-      }
+      },
     };
 
     return this.http
       .get<Block[]>(this.appConstants.Api.blocks, options)
+      .map(data => data)
+      .catch(err => Observable.throw(err.json().error || "Server error"));
+  }
+
+  updateBlocks(module: string, instance: string, step: string, blocks: Block[]): Observable<any> {
+    const body = {
+        module: module,
+        instance: instance,
+        step: step,
+        blocks: blocks,
+      };
+
+    return this.http
+      .post<Block[]>(this.appConstants.Api.blocks, body)
       .map(data => data)
       .catch(err => Observable.throw(err.json().error || "Server error"));
   }

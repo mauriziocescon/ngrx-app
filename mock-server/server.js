@@ -1,4 +1,5 @@
 const path = require("path");
+const fs = require("fs");
 const express = require("express");
 const jsonServer = require("json-server");
 const app = jsonServer.create();
@@ -7,6 +8,8 @@ const db = require("./db.json");
 const middlewares = jsonServer.defaults({
   static: "dist",
 });
+
+const utils = require("./utils");
 
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
@@ -91,6 +94,10 @@ app.use((req, res, next) => {
   }
 });
 
+// To handle POST, PUT and PATCH you need to use a body-parser
+// You can use the one used by JSON Server
+app.use(jsonServer.bodyParser);
+
 // Add rules to static resources
 app.use("/rules", express.static(path.join(__dirname, "/rules")));
 
@@ -123,6 +130,27 @@ app.get("/api/blocks", (req, res) => {
   });
   if (instance) {
     return res.status(200).jsonp(instance.blocks);
+  } else {
+    return res.status(400).jsonp({
+      error: "Bad Request",
+    });
+  }
+});
+
+app.post("/api/blocks", (req, res) => {
+  const instances = db.instances;
+  const instance = instances.find((i) => {
+    return i.module === req.body.module &&
+      i.instance === req.body.instance &&
+      i.step === req.body.step;
+  });
+  if (instance) {
+    instance.blocks = req.body.blocks.sort((b1, b2) => {
+      return b1.id - b2.id;
+    });
+    utils.deleteDb();
+    utils.saveDb(db);
+    return res.status(200).jsonp(true);
   } else {
     return res.status(400).jsonp({
       error: "Bad Request",
