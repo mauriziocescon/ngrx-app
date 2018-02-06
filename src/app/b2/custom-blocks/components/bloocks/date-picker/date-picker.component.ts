@@ -37,7 +37,8 @@ export class DatePickerComponent implements OnInit, OnChanges {
     }
   }
 
-  onChange(date: Date): void {
-    this.valueDidChange.emit(date.toISOString());
+  onChange(newDate: NgbDateStruct): void {
+    const date = new Date(newDate.year, newDate.month, newDate.day);
+    this.valueDidChange.emit(date.toString());
   }
 }

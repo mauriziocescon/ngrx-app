@@ -124,7 +124,7 @@ function getCheckBoxConfirmer(index) {
 }
 
 function getDatePicker(index) {
-  const value = faker.date.future().toISOString();
+  const value = faker.date.future().toString();
   const required = faker.random.boolean();
 
   let datePicker = {

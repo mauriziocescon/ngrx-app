@@ -2,5 +2,8 @@
 
 .date-picker-component {
   padding-top: 10px;
-  background-color: lightgray;
+
+  .addon {
+    color: $accent-color;
+  }
 }
