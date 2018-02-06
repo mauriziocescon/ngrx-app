@@ -11,8 +11,6 @@ import {
 
 import { DatePickerService } from "./blocks/date-picker.service";
 
-import { environment } from "../../../../environments/environment";
-
 @Injectable()
 export class B2BlockHooksService {
   protected hooks: B2BlocksHooks;
@@ -49,12 +47,7 @@ export class B2BlockHooksService {
     this.datePickerService.blockLoadObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.datePickerBlockDidLoad](block, this.blocksMethods());
-          } else {
-            this.hooks[block.hooks.datePickerBlockDidLoad](block, this.blocksMethods());
-          }
+          this.hooks[block.hooks.datePickerBlockDidLoad](block, this.blocksMethods());
         } catch (e) {
           this.logger.error(e);
         }
@@ -65,12 +58,7 @@ export class B2BlockHooksService {
     this.datePickerService.blockChangesObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.datePickerBlockDidChange](block, this.blocksMethods());
-          } else {
-            this.hooks[block.hooks.datePickerBlockDidChange](block, this.blocksMethods());
-          }
+          this.hooks[block.hooks.datePickerBlockDidChange](block, this.blocksMethods());
         } catch (e) {
           this.logger.error(e);
         }

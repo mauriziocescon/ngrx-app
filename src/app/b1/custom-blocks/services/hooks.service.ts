@@ -11,8 +11,6 @@ import {
 
 import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
 
-import { environment } from "../../../../environments/environment";
-
 @Injectable()
 export class B1BlockHooksService {
   protected hooks: B1BlocksHooks;
@@ -49,12 +47,7 @@ export class B1BlockHooksService {
     this.checkBoxConfirmerBlockLoadSubscription = this.checkBoxConfirmerService.blockLoadObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
-          } else {
-            this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
-          }
+          this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
         } catch (e) {
           this.logger.error(e);
         }
@@ -65,12 +58,7 @@ export class B1BlockHooksService {
     this.checkBoxConfirmerBlockChangesSubscription = this.checkBoxConfirmerService.blockChangesObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
-          } else {
-            this.hooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
-          }
+          this.hooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
         } catch (e) {
           this.logger.error(e);
         }

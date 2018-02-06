@@ -16,8 +16,6 @@ import { CheckBoxService } from "./blocks/check-box.service";
 import { DropdownService } from "./blocks/dropdown.service";
 import { TextInputService } from "./blocks/text-input.service";
 
-import { environment } from "../../../environments/environment";
-
 @Injectable()
 export class BlockHooksService {
   protected hooks: BlocksHooks;
@@ -76,12 +74,7 @@ export class BlockHooksService {
     this.checkBoxBlockLoadSubscription = this.checkBoxService.blockLoadObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.checkBoxBlockDidLoad](block, this.blocksMethods());
-          } else {
-            this.hooks[block.hooks.checkBoxBlockDidLoad](block, this.blocksMethods());
-          }
+          this.hooks[block.hooks.checkBoxBlockDidLoad](block, this.blocksMethods());
         } catch (e) {
           this.logger.error(e);
         }
@@ -92,12 +85,7 @@ export class BlockHooksService {
     this.dropdownBlockLoadSubscription = this.dropdownService.blockLoadObservable$
       .subscribe((block: DropdownBlock) => {
         try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.dropdownBlockDidLoad](block, this.blocksMethods());
-          } else {
-            this.hooks[block.hooks.dropdownBlockDidLoad](block, this.blocksMethods());
-          }
+          this.hooks[block.hooks.dropdownBlockDidLoad](block, this.blocksMethods());
         } catch (e) {
           this.logger.error(e);
         }
@@ -108,12 +96,7 @@ export class BlockHooksService {
     this.textInputBlockLoadSubscription = this.textInputService.blockLoadObservable$
       .subscribe((block: TextInputBlock) => {
         try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.textInputBlockDidLoad](block, this.blocksMethods());
-          } else {
-            this.hooks[block.hooks.textInputBlockDidLoad](block, this.blocksMethods());
-          }
+          this.hooks[block.hooks.textInputBlockDidLoad](block, this.blocksMethods());
         } catch (e) {
           this.logger.error(e);
         }
@@ -124,12 +107,7 @@ export class BlockHooksService {
     this.checkBoxBlockChangesSubscription = this.checkBoxService.blockChangesObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.checkBoxBlockDidChange](block, this.blocksMethods());
-          } else {
-            this.hooks[block.hooks.checkBoxBlockDidChange](block, this.blocksMethods());
-          }
+          this.hooks[block.hooks.checkBoxBlockDidChange](block, this.blocksMethods());
         } catch (e) {
           this.logger.error(e);
         }
@@ -140,12 +118,7 @@ export class BlockHooksService {
     this.dropdownBlockChangesSubscription = this.dropdownService.blockChangesObservable$
       .subscribe((block: DropdownBlock) => {
         try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.dropdownBlockDidChange](block, this.blocksMethods());
-          } else {
-            this.hooks[block.hooks.dropdownBlockDidChange](block, this.blocksMethods());
-          }
+          this.hooks[block.hooks.dropdownBlockDidChange](block, this.blocksMethods());
         } catch (e) {
           this.logger.error(e);
         }
@@ -156,12 +129,7 @@ export class BlockHooksService {
     this.textInputBlockChangesSubscription = this.textInputService.blockChangesObservable$
       .subscribe((block: TextInputBlock) => {
         try {
-          if (environment.evaluateScriptsFromServer) {
-            // @ts-ignore
-            businessMethods[block.hooks.textInputBlockDidChange](block, this.blocksMethods());
-          } else {
-            this.hooks[block.hooks.textInputBlockDidChange](block, this.blocksMethods());
-          }
+          this.hooks[block.hooks.textInputBlockDidChange](block, this.blocksMethods());
         } catch (e) {
           this.logger.error(e);
         }
