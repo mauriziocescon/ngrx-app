@@ -35,7 +35,7 @@ export class BlockListService {
       .catch(err => Observable.throw(err.json().error || "Server error"));
   }
 
-  getValiditySelector(): Observable<boolean> {
+  getValiditySelector(module: string, instance: string, step: string): Observable<boolean> {
     return this.store.select(fromDynamicForm.getAllEditBlocksValidityState);
   }
 }

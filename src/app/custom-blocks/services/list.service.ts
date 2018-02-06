@@ -27,13 +27,13 @@ export class CustomBlockListService extends BlockListService {
     );
   }
 
-  getValiditySelector(module?: string): Observable<boolean> {
+  getValiditySelector(module: string, instance: string, step: string): Observable<boolean> {
     if (module === Modules.b1) {
       return this.store.select(fromB1.getAllEditBlocksValidityState);
     } else if (module === Modules.b2) {
       return this.store.select(fromB2.getAllEditBlocksValidityState);
     } else {
-      super.getValiditySelector();
+      super.getValiditySelector(module, instance, step);
     }
   }
 }

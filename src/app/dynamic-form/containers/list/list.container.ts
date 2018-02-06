@@ -43,8 +43,6 @@ export class ListContainerComponent implements OnInit, OnDestroy{
     this.blocks$ = this.store.select(fromDynamicForm.getBlocksListState);
     this.loading$ = this.store.select(fromDynamicForm.getLoadingListState);
     this.error$ = this.store.select(fromDynamicForm.getErrorListState);
-
-    this.formValidity$ = this.blocksList.getValiditySelector();
   }
 
   ngOnInit(): void {
@@ -53,6 +51,8 @@ export class ListContainerComponent implements OnInit, OnDestroy{
         const module = paramMap.get("module");
         const instance = paramMap.get("instance");
         const step = paramMap.get("step");
+
+        this.formValidity$ = this.blocksList.getValiditySelector(module, instance, step);
 
         if (module && instance && step) {
           this.store.dispatch(new list.ClearBlocks());

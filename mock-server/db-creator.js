@@ -64,8 +64,8 @@ function getDropdown(index) {
 function getTextInput(index) {
   const value = faker.random.boolean() ? faker.lorem.words(faker.random.number(5)) : undefined;
   const required = faker.random.boolean();
-  const minLength = faker.random.boolean() ? faker.random.number(5) : undefined;
-  const maxLength = faker.random.boolean() ? faker.random.number({min: 5, max: 10}) : undefined;
+  const minLength = required && faker.random.boolean() ? faker.random.number(5) : undefined;
+  const maxLength = required && faker.random.boolean() ? faker.random.number({min: 5, max: 10}) : undefined;
 
   let textInput = {
     id: index,
