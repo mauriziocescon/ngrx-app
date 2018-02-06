@@ -13,7 +13,7 @@ import { AppConstantsService } from "./core/core.module";
 
 import { BlockHooksService, BlocksHooks } from "./dynamic-blocks-list/dynamic-blocks-list.module";
 
-import * as setOfRules from "./custom-rules";
+import * as setOfRules from "./custom-rules-integration";
 
 @Injectable()
 export class RulesResolve implements Resolve<BlocksHooks> {

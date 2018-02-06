@@ -18,7 +18,6 @@ import {
   CustomBlocksMethods,
   Modules,
 } from "../models";
-import {  } from "../../b2/custom-blocks/models";
 
 @Injectable()
 export class CustomBlockHooksService extends BlockHooksService {

@@ -20,7 +20,7 @@ import { EFFECTS } from "./effects";
 import { CoreModule } from "./core/core.module";
 import { SharedModule, CustomRouterStateSerializer } from "./shared/shared.module";
 import { DynamicBlocksListModule } from "./dynamic-blocks-list/dynamic-blocks-list.module";
-import { CustomBlocksModule } from "./custom-blocks/custom-blocks.module";
+import { CustomBlocksIntegrationModule } from "./custom-blocks-integration/custom-blocks-integration.module";
 import { B1BlocksModule } from "./b1";
 import { B2BlocksModule } from "./b2";
 
@@ -90,7 +90,7 @@ export function createTranslateLoader(http: HttpClient) {
     CoreModule.forRoot(),
     SharedModule,
     DynamicBlocksListModule,
-    CustomBlocksModule,
+    CustomBlocksIntegrationModule,
     B1BlocksModule,
     B2BlocksModule,
   ],

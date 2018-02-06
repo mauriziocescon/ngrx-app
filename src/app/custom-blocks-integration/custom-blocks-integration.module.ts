@@ -30,7 +30,7 @@ import {
     {provide: BlockUtilsService, useClass: CustomBlockUtilsService},
   ],
 })
-export class CustomBlocksModule {
+export class CustomBlocksIntegrationModule {
 }
 
 export * from "./models";

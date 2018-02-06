@@ -57,5 +57,5 @@ export const textInputBlockDidChange = (textInputBlock: TextInputBlock, blocksMe
 
 export const datePickerBlockDidChange = (datePickerBlock: DatePickerBlock, blocksMethods: B2BlocksMethods) => {
   blocks[datePickerBlock.id] = datePickerBlock;
-  blocksMethods.textInput.setValidityForBlockId(validators.datePickerBlockValidator(datePickerBlock), datePickerBlock.id);
+  blocksMethods.datePicker.setValidityForBlockId(validators.datePickerBlockValidator(datePickerBlock), datePickerBlock.id);
 };
