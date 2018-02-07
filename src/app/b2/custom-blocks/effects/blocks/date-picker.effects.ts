@@ -13,7 +13,7 @@ import {
   ListActionTypes,
 } from "../../../../dynamic-blocks-list/dynamic-blocks-list.module";
 
-import { DatePickerBlock, B2BlockType } from "../../models";
+import { B2BlockType } from "../../models";
 import { DatePickerService } from "../../services";
 import { DatePickerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/date-picker.actions";
 
@@ -43,7 +43,7 @@ export class DatePickerEffects {
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .ofType(DatePickerActionTypes.UPDATE_BLOCK)
     .map((action: UpdateBlock) => action.payload)
-    .switchMap((payload: { block: { id: number, changes: DatePickerBlock }, notify: boolean }) => {
+    .switchMap((payload) => {
       if (payload.notify) {
         this.datePickerService.blockDidChange(payload.block);
       }

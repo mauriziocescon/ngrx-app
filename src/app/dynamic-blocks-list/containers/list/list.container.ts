@@ -27,7 +27,7 @@ import { ParamMap } from "@angular/router/src/shared";
       (reset)="reset()">
     </cp-list>`,
 })
-export class ListContainerComponent implements OnInit, OnDestroy{
+export class ListContainerComponent implements OnInit, OnDestroy {
   blocks$: Observable<Block[]>;
   loading$: Observable<boolean>;
   error$: Observable<string>;
@@ -85,6 +85,11 @@ export class ListContainerComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.unsubscribeToParamMap();
+  }
+
+  canDeactivate(): Observable<boolean> {
+    // todo: wrong. Fix it with the general synch-status
+    return this.store.select(fromDynamicBlocksList.getUpdateLoadingState);
   }
 
   protected unsubscribeToParamMap(): void {

@@ -3,20 +3,22 @@ import { Action } from "@ngrx/store";
 import { Effect, Actions } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
-import { empty } from "rxjs/observable/empty";
+// import { empty } from "rxjs/observable/empty";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/withLatestFrom";
 
-import { ListActionTypes, FetchBlocksComplete } from "../../actions/list.actions";
+import { ListActionTypes, FetchBlocksComplete, UpdateBlocks } from "../../actions/list.actions";
 
-import { Block, BlockType, CheckBoxBlock } from "../../models";
-import { CheckBoxService } from "../../services";
+import { Block, BlockType } from "../../models";
+import { BlockListService, CheckBoxService } from "../../services";
 import { CheckBoxActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/check-box.actions";
 
 @Injectable()
 export class CheckBoxEffect {
 
   constructor(protected actions$: Actions,
+              protected blocksList: BlockListService,
               protected checkBoxService: CheckBoxService) {
   }
 
@@ -39,10 +41,23 @@ export class CheckBoxEffect {
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .ofType(CheckBoxActionTypes.UPDATE_BLOCK)
     .map((action: UpdateBlock) => action.payload)
-    .switchMap((payload: { block: { id: number, changes: CheckBoxBlock }, notify: boolean }) => {
+    .withLatestFrom(this.helperFunction())
+    .switchMap(([payload, blocks]) => {
       if (payload.notify) {
         this.checkBoxService.blockDidChange(payload.block);
       }
-      return empty();
+      return [new UpdateBlocks(this.payloadFunction(blocks))];
     });
+
+  helperFunction(): any {
+    const params = this.blocksList.getUpdateBlocksInstanceSelector();
+    return this.blocksList.getAllEditBlocksSelector(params.module, params.instance, params.step);
+  }
+
+  payloadFunction(blocks): any {
+    return {
+      ...this.blocksList.getUpdateBlocksInstanceSelector(),
+      blocks: blocks,
+    };
+  }
 }

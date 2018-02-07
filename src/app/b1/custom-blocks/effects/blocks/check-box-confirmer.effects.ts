@@ -13,7 +13,7 @@ import {
   ListActionTypes,
 } from "../../../../dynamic-blocks-list/dynamic-blocks-list.module";
 
-import { CheckBoxConfirmerBlock, B1BlockType } from "../../models";
+import { B1BlockType } from "../../models";
 import { CheckBoxConfirmerService } from "../../services";
 import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/check-box-confirmer.actions";
 
@@ -43,7 +43,7 @@ export class CheckBoxConfirmerEffects {
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .ofType(CheckBoxConfirmerActionTypes.UPDATE_BLOCK)
     .map((action: UpdateBlock) => action.payload)
-    .switchMap((payload: { block: { id: number, changes: CheckBoxConfirmerBlock }, notify: boolean }) => {
+    .switchMap((payload) => {
       if (payload.notify) {
         this.checkBoxConfirmerService.blockDidChange(payload.block);
       }
