@@ -42,17 +42,17 @@ export const getDynamicBlocksListState = createFeatureSelector<DynamicBlocksList
 // ----- blocks list
 export const getListState = createSelector(getDynamicBlocksListState, state => state.blocksList);
 
-export const getFetchedBlocksState = createSelector(getListState, state => fromList.getFetchedBlocksState);
-export const getFetchLoadingState = createSelector(getListState, state => fromList.getFetchLoadingState);
-export const getFetchErrorState = createSelector(getListState, state => fromList.getFetchErrorState);
+export const getFetchedBlocksState = createSelector(getListState, fromList.getFetchedBlocksState);
+export const getFetchLoadingState = createSelector(getListState, fromList.getFetchLoadingState);
+export const getFetchErrorState = createSelector(getListState, fromList.getFetchErrorState);
 
 export const getUpdateBlocksForModuleState = createSelector(getListState, fromList.getUpdateBlocksForModuleState);
 export const getUpdateBlocksForInstanceState = createSelector(getListState, fromList.getUpdateBlocksForInstanceState);
 export const getUpdateBlocksForStepState = createSelector(getListState, fromList.getUpdateBlocksForStepState);
 
-export const getUpdateBlocksState = createSelector(getListState, state => fromList.getUpdateBlocksState);
-export const getUpdateLoadingState = createSelector(getListState, state => fromList.getUpdateLoadingState);
-export const getUpdateErrorState = createSelector(getListState, state => fromList.getUpdateErrorState);
+export const getUpdateBlocksState = createSelector(getListState, fromList.getUpdateBlocksState);
+export const getUpdateLoadingState = createSelector(getListState, fromList.getUpdateLoadingState);
+export const getUpdateErrorState = createSelector(getListState, fromList.getUpdateErrorState);
 
 // -----------------
 // ----- edit blocks
