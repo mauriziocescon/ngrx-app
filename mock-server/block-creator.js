@@ -134,6 +134,23 @@ const getUnknownComponent = function(index) {
   };
 };
 
+exports.getRandomBlock = function(index) {
+  const choice = Math.random();
+
+  if (choice < 0.05) {
+    return getUnknownComponent(index);
+  }
+  else if (choice < 0.35) {
+    return getCheckBox(index);
+  }
+  else if (choice < 0.66) {
+    return getDropdown(index);
+  }
+  else {
+    return getTextInput(index);
+  }
+};
+
 exports.getRandomB1Block = function(index) {
   const choice = Math.random();
 
