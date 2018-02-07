@@ -1,6 +1,6 @@
 const faker = require("faker");
 
-exports.getCheckBox = function(index) {
+const getCheckBox = function(index) {
   const value = faker.random.boolean() ? true : undefined;
   const required = faker.random.boolean();
 
@@ -22,7 +22,7 @@ exports.getCheckBox = function(index) {
   return checkBox;
 };
 
-exports.getDropdown = function(index) {
+const getDropdown = function(index) {
   const value = faker.random.boolean() ? "1" : undefined;
   const required = faker.random.boolean();
 
@@ -44,7 +44,7 @@ exports.getDropdown = function(index) {
   return dropdown;
 };
 
-exports.getTextInput = function(index) {
+const getTextInput = function(index) {
   const value = faker.random.boolean() ? faker.lorem.words(faker.random.number(5)) : undefined;
   const required = faker.random.boolean();
   const minLength = required && faker.random.boolean() ? faker.random.number(5) : undefined;
@@ -84,7 +84,7 @@ exports.getTextInput = function(index) {
   return textInput;
 };
 
-exports.getCheckBoxConfirmer = function(index) {
+const getCheckBoxConfirmer = function(index) {
   const value = faker.random.boolean() ? true : undefined;
   const required = faker.random.boolean();
 
@@ -106,7 +106,7 @@ exports.getCheckBoxConfirmer = function(index) {
   return checkBoxConfirmer;
 };
 
-exports.getDatePicker = function(index) {
+const getDatePicker = function(index) {
   const value = faker.date.future().toISOString();
   const required = faker.random.boolean();
 
@@ -127,7 +127,7 @@ exports.getDatePicker = function(index) {
   return datePicker;
 };
 
-exports.getUnknownComponent = function(index) {
+const getUnknownComponent = function(index) {
   return {
     id: index,
     type: "unknown",
