@@ -1,3 +1,5 @@
+import { createSelector } from "@ngrx/store";
+
 import { ListActionTypes, ListActions } from "../actions/list.actions";
 import { Block } from "../models";
 
@@ -95,3 +97,14 @@ export function reducer(state = initialState, action: ListActions): State {
     }
   }
 }
+
+export const getFetchedBlocksState = (state: State) => state.fetchedBlocks;
+export const getFetchLoadingState = (state: State) => state.fetchLoading;
+export const getFetchErrorState = (state: State) => state.fetchError;
+
+export const getUpdateBlocksForModuleState = (state: State) => state.updateBlocksForModule;
+export const getUpdateBlocksForInstanceState = (state: State) => state.updateBlocksForInstance;
+export const getUpdateBlocksForStepState = (state: State) => state.updateBlocksForStep;
+export const getUpdateBlocksState = (state: State) => state.updateBlocks;
+export const getUpdateLoadingState = (state: State) => state.updateLoading;
+export const getUpdateErrorState = (state: State) => state.updateError;

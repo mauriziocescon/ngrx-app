@@ -42,13 +42,17 @@ export const getDynamicBlocksListState = createFeatureSelector<DynamicBlocksList
 // ----- blocks list
 export const getListState = createSelector(getDynamicBlocksListState, state => state.blocksList);
 
-export const getFetchedBlocksState = createSelector(getListState, state => state.fetchedBlocks);
-export const getFetchLoadingState = createSelector(getListState, state => state.fetchLoading);
-export const getFetchErrorState = createSelector(getListState, state => state.fetchError);
+export const getFetchedBlocksState = createSelector(getListState, state => fromList.getFetchedBlocksState);
+export const getFetchLoadingState = createSelector(getListState, state => fromList.getFetchLoadingState);
+export const getFetchErrorState = createSelector(getListState, state => fromList.getFetchErrorState);
 
-export const getUpdateBlocksState = createSelector(getListState, state => state.updateBlocks);
-export const getUpdateLoadingState = createSelector(getListState, state => state.updateLoading);
-export const getUpdateErrorState = createSelector(getListState, state => state.updateError);
+export const getUpdateBlocksForModuleState = createSelector(getListState, fromList.getUpdateBlocksForModuleState);
+export const getUpdateBlocksForInstanceState = createSelector(getListState, fromList.getUpdateBlocksForInstanceState);
+export const getUpdateBlocksForStepState = createSelector(getListState, fromList.getUpdateBlocksForStepState);
+
+export const getUpdateBlocksState = createSelector(getListState, state => fromList.getUpdateBlocksState);
+export const getUpdateLoadingState = createSelector(getListState, state => fromList.getUpdateLoadingState);
+export const getUpdateErrorState = createSelector(getListState, state => fromList.getUpdateErrorState);
 
 // -----------------
 // ----- edit blocks
@@ -99,6 +103,19 @@ export const getAllEditBlocksState = createSelector(
       ...dropdownBlocks,
       ...textInputBlocks,
     ];
+  },
+);
+
+export const getUpdateBlocksInstanceState = createSelector(
+  getUpdateBlocksForModuleState,
+  getUpdateBlocksForInstanceState,
+  getUpdateBlocksForStepState,
+  (module: string, instance: string, step: string) => {
+    return {
+      module: module,
+      instance: instance,
+      step: step,
+    };
   },
 );
 
