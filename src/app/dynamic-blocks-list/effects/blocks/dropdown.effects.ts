@@ -9,7 +9,7 @@ import "rxjs/add/operator/switchMap";
 
 import { ListActionTypes, FetchBlocksComplete } from "../../actions/list.actions";
 
-import { Block, BlockType, DropdownBlock } from "../../models";
+import { Block, BlockType } from "../../models";
 import { DropdownService } from "../../services";
 import { DropdownActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/dropdown.actions";
 
@@ -39,7 +39,7 @@ export class DropdownEffect {
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .ofType(DropdownActionTypes.UPDATE_BLOCK)
     .map((action: UpdateBlock) => action.payload)
-    .switchMap((payload: { block: { id: number, changes: DropdownBlock }, notify: boolean }) => {
+    .switchMap((payload) => {
       if (payload.notify) {
         this.dropdownService.blockDidChange(payload.block);
       }

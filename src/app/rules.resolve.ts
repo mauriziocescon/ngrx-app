@@ -5,7 +5,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/r
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromPromise";
 import "rxjs/add/operator/catch";
-import "rxjs/add/operator/map";
+import "rxjs/add/operator/switchMap";
 
 import { NGXLogger } from "ngx-logger";
 
@@ -39,7 +39,7 @@ export class RulesResolve implements Resolve<BlocksHooks> {
       },
     };
     return this.http.get<string>(url, options)
-      .map((data) => {
+      .switchMap((data) => {
         const hooks = setOfRules[module][data];
         this.blockHooks.setupHooks(hooks, module, step);
         return hooks;

@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { Store } from "@ngrx/store";
 
@@ -16,7 +17,8 @@ import * as fromDynamicBlocksList from "../reducers";
 export class BlockListService {
 
   constructor(protected http: HttpClient,
-              protected store: Store<any>,
+              protected route: ActivatedRoute,
+              protected store: Store<fromDynamicBlocksList.State>,
               protected appConstants: AppConstantsService) {
   }
 
@@ -35,18 +37,34 @@ export class BlockListService {
       .catch(err => Observable.throw(err.json().error || "Server error"));
   }
 
-  updateBlocks(module: string, instance: string, step: string, blocks: Block[]): Observable<any> {
+  updateBlocks(module: string, instance: string, step: string, blocks: Block[]): Observable<boolean> {
     const body = {
-        module: module,
-        instance: instance,
-        step: step,
-        blocks: blocks,
-      };
+      module: module,
+      instance: instance,
+      step: step,
+      blocks: blocks,
+    };
 
     return this.http
       .post<Block[]>(this.appConstants.Api.blocks, body)
       .map(data => data)
       .catch(err => Observable.throw(err.json().error || "Server error"));
+  }
+
+  getUpdateBlocksInstanceSelector(): { module: string, instance: string, step: string } {
+    const module = this.route.snapshot.paramMap.get("module");
+    const instance = this.route.snapshot.paramMap.get("instance");
+    const step = this.route.snapshot.paramMap.get("step");
+
+    return {
+      module: module,
+      instance: instance,
+      step: step,
+    };
+  }
+
+  getAllEditBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
+    return this.store.select(fromDynamicBlocksList.getAllEditBlocksState);
   }
 
   getValiditySelector(module: string, instance: string, step: string): Observable<boolean> {

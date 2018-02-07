@@ -9,7 +9,7 @@ import "rxjs/add/operator/switchMap";
 
 import { ListActionTypes, FetchBlocksComplete } from "../../actions/list.actions";
 
-import { Block, BlockType, TextInputBlock } from "../../models";
+import { Block, BlockType } from "../../models";
 import { TextInputService } from "../../services";
 import { TextInputActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/text-input.actions";
 
@@ -39,7 +39,7 @@ export class TextInputEffect {
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .ofType(TextInputActionTypes.UPDATE_BLOCK)
     .map((action: UpdateBlock) => action.payload)
-    .switchMap((payload: { block: { id: number, changes: TextInputBlock }, notify: boolean }) => {
+    .switchMap((payload) => {
       if (payload.notify) {
         this.textInputService.blockDidChange(payload.block);
       }

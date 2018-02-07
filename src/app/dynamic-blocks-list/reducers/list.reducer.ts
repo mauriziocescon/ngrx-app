@@ -1,5 +1,3 @@
-import { createSelector } from "@ngrx/store";
-
 import { ListActionTypes, ListActions } from "../actions/list.actions";
 import { Block } from "../models";
 

@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 
-import { ListContainerComponent } from "./dynamic-blocks-list/dynamic-blocks-list.module";
+import { ListContainerComponent, ListGuard } from "./dynamic-blocks-list/dynamic-blocks-list.module";
 import { RulesResolve } from "./rules.resolve";
 
 export const appRoutes: Routes = [
@@ -9,7 +9,8 @@ export const appRoutes: Routes = [
     component: ListContainerComponent,
     resolve: {
       rules: RulesResolve,
-    }
+    },
+    canDeactivate: [ListGuard],
   },
   {
     path: "",

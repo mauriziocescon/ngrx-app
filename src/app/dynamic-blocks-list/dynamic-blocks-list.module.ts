@@ -11,6 +11,7 @@ import {
   SERVICES,
   BlockHooksService,
   BlockListService,
+  ListGuard,
   BlockUtilsService,
   CheckBoxService,
   DropdownService,
@@ -80,6 +81,7 @@ export * from "./models";
 export {
   ListContainerComponent,
   BlockListService,
+  ListGuard,
   BlockHooksService,
   BlockUtilsService,
   CheckBoxService,
