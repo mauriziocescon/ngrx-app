@@ -12,8 +12,11 @@ export class HomeComponent {
   @Input() loading: boolean;
   @Input() error: string;
   @Output() reloadList: EventEmitter<void>;
+  @Output() goTo: EventEmitter<Instance>;
 
   constructor() {
+    this.reloadList = new EventEmitter<void>();
+    this.goTo = new EventEmitter<Instance>();
   }
 
   get isLoadingData(): boolean {
@@ -40,8 +43,8 @@ export class HomeComponent {
     return instance.id;
   }
 
-  goTo(instance: Instance): void {
-
+  selectInstance(instance: Instance): void {
+    this.goTo.emit(instance);
   }
 
   loadList(): void {

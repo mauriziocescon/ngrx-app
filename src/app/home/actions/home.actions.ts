@@ -10,9 +10,6 @@ export enum HomeActionTypes {
 
 export class FetchInstances implements Action {
   readonly type = HomeActionTypes.FETCH_INSTANCES;
-
-  constructor(public payload: { module: string, instance: string, step: string }) {
-  }
 }
 
 export class FetchInstancesComplete implements Action {
