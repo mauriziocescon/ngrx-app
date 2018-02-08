@@ -23,6 +23,7 @@ import { ParamMap } from "@angular/router/src/shared";
       [error]="error$ | async"
       (reloadList)="reloadList()"
       [formValidity]="formValidity$ | async"
+      [synching]="synching$"
       (nextStep)="nextStep()"
       (reset)="reset()">
     </cp-list>`,
@@ -31,6 +32,8 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   blocks$: Observable<Block[]>;
   loading$: Observable<boolean>;
   error$: Observable<string>;
+
+  synching$: Observable<boolean>;
 
   formValidity$: Observable<boolean>;
 
@@ -43,6 +46,8 @@ export class ListContainerComponent implements OnInit, OnDestroy {
     this.blocks$ = this.store.select(fromDynamicBlocksList.getFetchedBlocksState);
     this.loading$ = this.store.select(fromDynamicBlocksList.getFetchLoadingState);
     this.error$ = this.store.select(fromDynamicBlocksList.getFetchErrorState);
+
+    this.synching$ = this.store.select(fromDynamicBlocksList.isSynchronizationRequiredState);
   }
 
   ngOnInit(): void {

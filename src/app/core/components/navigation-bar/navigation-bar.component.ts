@@ -9,30 +9,18 @@ export class NavigationBarComponent {
   @Input() languages: string[];
   @Input() selectedLanguageId: string;
   @Output() languageDidChange: EventEmitter<string>;
-  @Output() navigationDidChange: EventEmitter<{ path: string, module: string, instance: string, step: string }>;
+  @Output() navigationDidChange: EventEmitter<{path: string}>;
 
   constructor() {
     this.languageDidChange = new EventEmitter<string>();
-    this.navigationDidChange = new EventEmitter<{ path: string, module: string, instance: string, step: string }>();
+    this.navigationDidChange = new EventEmitter<{path: string}>();
   }
 
   selectLanguage(language: string): void {
     this.languageDidChange.emit(language);
   }
 
-  goToB1S1(): void {
-    this.navigationDidChange.emit({path: "/dyn-blocks-list", module: "b1", instance: "1", step: "1"});
-  }
-
-  goToB1S2(): void {
-    this.navigationDidChange.emit({path: "/dyn-blocks-list", module: "b1", instance: "1", step: "2"});
-  }
-
-  goToB2S1(): void {
-    this.navigationDidChange.emit({path: "/dyn-blocks-list", module: "b2", instance: "1", step: "1"});
-  }
-
-  goToB2S2(): void {
-    this.navigationDidChange.emit({path: "/dyn-blocks-list", module: "b2", instance: "1", step: "2"});
+  goHome(): void {
+    this.navigationDidChange.emit({path: "/home"});
   }
 }

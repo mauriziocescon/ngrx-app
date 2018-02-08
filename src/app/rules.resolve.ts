@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
 
 import { Observable } from "rxjs/Observable";
+import { of } from "rxjs/observable/of";
 import "rxjs/add/observable/fromPromise";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/switchMap";
@@ -24,7 +25,7 @@ export class RulesResolve implements Resolve<BlocksHooks> {
               protected blockHooks: BlockHooksService) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<BlocksHooks> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<BlocksHooks> | BlocksHooks {
     const module = route.paramMap.get("module");
     const step = route.paramMap.get("step");
     return this.fetchRules(module, step);
@@ -42,7 +43,7 @@ export class RulesResolve implements Resolve<BlocksHooks> {
       .switchMap((data) => {
         const hooks = setOfRules[module][data];
         this.blockHooks.setupHooks(hooks, module, step);
-        return hooks;
+        return of(hooks);
       })
       .catch(err => {
         this.blockHooks.setupHooks({}, module, step);

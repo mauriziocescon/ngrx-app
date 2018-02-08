@@ -34,7 +34,7 @@ export class NavigationBarContainerComponent {
     this.appLanguage.setLanguageId(language);
   }
 
-  goTo(route: { path: string, module: string, instance: string, step: string }): void {
-    this.router.navigate([route.path, route.module, route.instance, route.step]);
+  goTo(route: { path: string }): void {
+    this.router.navigate([route.path]);
   }
 }

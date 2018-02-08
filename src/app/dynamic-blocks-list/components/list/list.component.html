@@ -10,6 +10,9 @@
         <div class="col-6 col-sm-12 button-row">
           <button class="btn btn-default action-button" (click)="resetForm()">{{ "COMPONENT.LIST.CANCEL" | translate }}</button>
         </div>
+        <div class="col-12">
+          <div class="" [hidden]="!synching">{{ "COMPONENT.LIST.SYNCH" | translate }}</div>
+        </div>
       </div>
     </div>
     <div class="col-12 col-sm-10 col-lg-11">
