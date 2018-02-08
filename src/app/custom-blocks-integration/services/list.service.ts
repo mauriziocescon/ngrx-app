@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { Store } from "@ngrx/store";
 
@@ -19,12 +18,10 @@ import { Modules } from "../models";
 export class CustomBlockListService extends BlockListService {
 
   constructor(protected http: HttpClient,
-              protected route: ActivatedRoute,
               protected store: Store<any>,
               protected appConstants: AppConstantsService) {
     super(
       http,
-      route,
       store,
       appConstants,
     );

@@ -12,6 +12,7 @@ export const SERVICES = [
   BlockListService,
   ListGuard,
   BlockUtilsService,
+
   CheckBoxService,
   DropdownService,
   TextInputService,
@@ -22,6 +23,7 @@ export {
   BlockListService,
   ListGuard,
   BlockUtilsService,
+
   CheckBoxService,
   DropdownService,
   TextInputService,

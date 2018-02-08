@@ -7,16 +7,16 @@ import { TextInputContainerComponent } from "./blocks/text-input/text-input.cont
 
 export const CONTAINERS = [
   GenericBlockContainerComponent,
+  ListContainerComponent,
   CheckBoxContainerComponent,
   DropdownContainerComponent,
-  ListContainerComponent,
   TextInputContainerComponent,
 ];
 
 export {
   GenericBlockContainerComponent,
+  ListContainerComponent,
   CheckBoxContainerComponent,
   DropdownContainerComponent,
-  ListContainerComponent,
   TextInputContainerComponent,
 };

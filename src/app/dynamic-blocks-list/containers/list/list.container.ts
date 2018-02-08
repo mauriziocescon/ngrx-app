@@ -88,8 +88,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate(): Observable<boolean> {
-    // todo: wrong. Fix it with the general synch-status
-    return this.store.select(fromDynamicBlocksList.getUpdateLoadingState);
+    return this.store.select(fromDynamicBlocksList.isSynchronizationRequiredState);
   }
 
   protected unsubscribeToParamMap(): void {

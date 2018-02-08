@@ -4,6 +4,7 @@ import { Effect, Actions } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
+import { from } from "rxjs/observable/from";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/map";
@@ -20,6 +21,7 @@ import {
   UpdateBlocksComplete,
   UpdateBlocksError,
 } from "../actions/list.actions";
+import { Synchronized } from "../actions/synch.actions";
 
 import { Block } from "../models";
 
@@ -37,9 +39,7 @@ export class ListEffects {
     .switchMap((params) => {
       return this.blocksList.getBlocks(params.module, params.instance, params.step)
         .mergeMap((blocks: Block[]) => {
-          return [
-            new FetchBlocksComplete(blocks),
-          ];
+          return [new FetchBlocksComplete(blocks)];
         })
         .catch(err => of(new FetchBlocksError(err)));
     });
@@ -53,8 +53,12 @@ export class ListEffects {
         .mergeMap((result: boolean) => {
           return [
             new UpdateBlocksComplete(),
+            new Synchronized(),
           ];
         })
-        .catch(err => of(new UpdateBlocksError(err)));
+        .catch(err => from([
+          new UpdateBlocksError(err),
+          new Synchronized(),
+        ]));
     });
 }

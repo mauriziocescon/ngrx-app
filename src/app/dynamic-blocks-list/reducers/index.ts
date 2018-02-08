@@ -4,14 +4,16 @@ import { createSelector, createFeatureSelector, combineReducers, ActionReducerMa
 import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../models";
 
 import * as fromRoot from "../../reducers";
+import * as fromList from "./list.reducer";
+import * as fromSynch from "./synch.reducer";
 import * as fromEditBlocks from "./blocks";
 import * as fromCheckBox from "./blocks/check-box/check-box.reducer";
 import * as fromDropdown from "./blocks/dropdown/dropdown.reducer";
 import * as fromTextInput from "./blocks/text-input/text-input.reducer";
-import * as fromList from "./list.reducer";
 
 export interface DynamicBlocksListState {
   blocksList: fromList.State;
+  serverSynch: fromSynch.State;
   editBlocks: fromEditBlocks.State;
 }
 
@@ -55,10 +57,15 @@ export const getUpdateLoadingState = createSelector(getListState, fromList.getUp
 export const getUpdateErrorState = createSelector(getListState, fromList.getUpdateErrorState);
 
 // -----------------
+// ----------- synch
+export const getServerSynchState = createSelector(getDynamicBlocksListState, state => state.serverSynch);
+
+export const isSynchronizationRequiredState = createSelector(getServerSynchState, fromSynch.isSynchronizationRequiredState);
+
+// -----------------
 // ----- edit blocks
 export const getEditBlocksState = createSelector(getDynamicBlocksListState, state => state.editBlocks);
 
-// -----------------
 // ------- check-box
 export const getCheckBoxState = createSelector(getEditBlocksState, fromEditBlocks.getCheckBoxState);
 
@@ -69,7 +76,6 @@ export const getTotalCheckBox = createSelector(getCheckBoxState, fromCheckBox.ge
 export const getCheckBoxBlocksValidityState = createSelector(getCheckBoxState, fromCheckBox.getCheckBoxBlocksValidityState);
 export const getCheckBoxBlocksLoadingState = createSelector(getCheckBoxState, fromCheckBox.getCheckBoxBlocksLoadingState);
 
-// -----------------
 // -------- dropdown
 export const getDropdownState = createSelector(getEditBlocksState, fromEditBlocks.getDropdownState);
 
@@ -80,7 +86,6 @@ export const getTotalDropdown = createSelector(getDropdownState, fromDropdown.ge
 export const getDropdownBlocksValidityState = createSelector(getDropdownState, fromDropdown.getDropdownBlocksValidityState);
 export const getDropdownBlocksLoadingState = createSelector(getDropdownState, fromDropdown.getDropdownBlocksLoadingState);
 
-// -----------------
 // ------ text-input
 export const getTextInputState = createSelector(getEditBlocksState, fromEditBlocks.getTextInputState);
 

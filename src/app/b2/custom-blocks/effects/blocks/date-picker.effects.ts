@@ -13,9 +13,10 @@ import {
   ListActionTypes,
 } from "../../../../dynamic-blocks-list/dynamic-blocks-list.module";
 
+import { DatePickerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/date-picker.actions";
+
 import { B2BlockType } from "../../models";
 import { DatePickerService } from "../../services";
-import { DatePickerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/date-picker.actions";
 
 @Injectable()
 export class DatePickerEffects {

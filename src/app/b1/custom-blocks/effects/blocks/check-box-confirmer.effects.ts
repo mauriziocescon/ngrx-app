@@ -13,9 +13,10 @@ import {
   ListActionTypes,
 } from "../../../../dynamic-blocks-list/dynamic-blocks-list.module";
 
+import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/check-box-confirmer.actions";
+
 import { B1BlockType } from "../../models";
 import { CheckBoxConfirmerService } from "../../services";
-import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/check-box-confirmer.actions";
 
 @Injectable()
 export class CheckBoxConfirmerEffects {

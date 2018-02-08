@@ -3,15 +3,16 @@ import { Action } from "@ngrx/store";
 import { Effect, Actions } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
-import { empty } from "rxjs/observable/empty";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/withLatestFrom";
 
 import { ListActionTypes, FetchBlocksComplete } from "../../actions/list.actions";
+import { RequireSynch } from "../../actions/synch.actions";
+import { DropdownActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/dropdown.actions";
 
 import { Block, BlockType } from "../../models";
 import { DropdownService } from "../../services";
-import { DropdownActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/dropdown.actions";
 
 @Injectable()
 export class DropdownEffect {
@@ -43,6 +44,6 @@ export class DropdownEffect {
       if (payload.notify) {
         this.dropdownService.blockDidChange(payload.block);
       }
-      return empty();
+      return [new RequireSynch()];
     });
 }
