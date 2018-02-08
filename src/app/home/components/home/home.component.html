@@ -2,7 +2,7 @@
 
   <div class="row list-main-content" [hidden]="!showData">
     <div class="col-12" *ngFor="let instance of dataSource; trackBy: trackByBlock">
-      <div class="generic-block" (click)="selectInstance(instance)">
+      <div class="instance" (click)="selectInstance(instance)">
         {{ instance | json }}
       </div>
     </div>

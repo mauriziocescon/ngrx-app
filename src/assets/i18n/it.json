@@ -8,6 +8,12 @@
       "NAME": "Nome",
       "SELECT_LANGUAGE": "Cambia lingua"
     },
+    "HOME": {
+      "LOAD_COMPLETED": "Caricamento completato",
+      "LOADING": "Caricamento...",
+      "NO_RESULT": "Vuoto",
+      "RETRY": "Riprova"
+    },
     "LIST": {
       "CANCEL": "Annulla",
       "INPUT_TEXT_PLACEHOLDER": "Inserisci testo",

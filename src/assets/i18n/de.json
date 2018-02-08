@@ -8,6 +8,12 @@
       "NAME": "Name",
       "SELECT_LANGUAGE": "Sprache ӓndern"
     },
+    "HOME": {
+      "LOAD_COMPLETED": "Ladevorgang abgeschlossen",
+      "LOADING": "Daten werden geladen",
+      "NO_RESULT": "Leer",
+      "RETRY": "Erneut versuchen"
+    },
     "LIST": {
       "CANCEL": "*** Cancel ***",
       "INPUT_TEXT_PLACEHOLDER": "Text eingeben",

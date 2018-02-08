@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 
@@ -23,7 +23,7 @@ import { Instance } from "../../models";
     </cp-home>
   `,
 })
-export class HomeContainerComponent {
+export class HomeContainerComponent implements OnInit {
   instances$: Observable<Instance[]>;
   loading$: Observable<boolean>;
   error$: Observable<string>;
@@ -33,6 +33,10 @@ export class HomeContainerComponent {
     this.instances$ = this.store.select(fromHome.getFetchedInstancesState);
     this.loading$ = this.store.select(fromHome.getFetchLoadingState);
     this.error$ = this.store.select(fromHome.getFetchErrorState);
+  }
+
+  ngOnInit(): void {
+    this.reloadList();
   }
 
   reloadList(): void {
