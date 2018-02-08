@@ -17,8 +17,6 @@ export class ListComponent {
   @Output() nextStep: EventEmitter<void>;
   @Output() reset: EventEmitter<void>;
 
-  list: any[];
-
   constructor() {
     this.loading = false;
     this.reloadList = new EventEmitter();
