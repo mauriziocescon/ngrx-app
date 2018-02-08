@@ -31,7 +31,7 @@ export class HomeContainerComponent {
   constructor(protected store: Store<fromHome.State>,
               protected router: Router,) {
     this.instances$ = this.store.select(fromHome.getFetchedInstancesState);
-    this.loading$ = this.store.select(fromHome.getFetchLoadingState;
+    this.loading$ = this.store.select(fromHome.getFetchLoadingState);
     this.error$ = this.store.select(fromHome.getFetchErrorState);
   }
 

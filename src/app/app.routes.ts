@@ -1,9 +1,14 @@
 import { Routes } from "@angular/router";
 
+import { HomeContainerComponent } from "./home/home.module";
 import { ListContainerComponent, ListGuard } from "./dynamic-blocks-list/dynamic-blocks-list.module";
 import { RulesResolve } from "./rules.resolve";
 
 export const appRoutes: Routes = [
+  {
+    path: "home",
+    component: HomeContainerComponent,
+  },
   {
     path: "dyn-blocks-list/:module/:instance/:step",
     component: ListContainerComponent,
@@ -14,7 +19,7 @@ export const appRoutes: Routes = [
   },
   {
     path: "",
-    redirectTo: "/dyn-blocks-list/b1/1/1",
+    redirectTo: "/home",
     pathMatch: "full",
   },
 ];

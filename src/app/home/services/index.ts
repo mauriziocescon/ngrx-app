@@ -1,3 +1,9 @@
-export const SERVICES = [];
+import { HomeService } from "./home.service";
 
-export {};
+export const SERVICES = [
+  HomeService,
+];
+
+export {
+  HomeService,
+};

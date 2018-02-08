@@ -40,7 +40,7 @@ export class HomeComponent {
   }
 
   trackByBlock(index: number, instance: Instance): number {
-    return instance.id;
+    return parseInt(instance.id);
   }
 
   selectInstance(instance: Instance): void {

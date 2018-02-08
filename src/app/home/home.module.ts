@@ -9,8 +9,10 @@ import * as fromHome from "./reducers";
 import { SERVICES } from "./services";
 
 import { COMPONENTS } from "./components";
-import { CONTAINERS } from "./containers";
-import { HomeComponent } from './components/home/home.component';
+import {
+  CONTAINERS,
+  HomeContainerComponent,
+} from "./containers";
 
 @NgModule({
   imports: [
@@ -39,7 +41,6 @@ import { HomeComponent } from './components/home/home.component';
   declarations: [
     ...COMPONENTS,
     ...CONTAINERS,
-    HomeComponent,
   ],
   entryComponents: [
   ],
@@ -50,14 +51,8 @@ import { HomeComponent } from './components/home/home.component';
 export class HomeModule {
 }
 
-export {
-  FetchBlocksComplete,
-  HomeActionTypes,
-} from "./actions/home.actions";
-
-export { fromHome };
-
 export * from "./models";
 
 export {
+  HomeContainerComponent,
 };

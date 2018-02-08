@@ -1,3 +1,9 @@
-export const EFFECTS = [];
+import { HomeEffects } from "./home.effects";
 
-export {};
+export const EFFECTS = [
+  HomeEffects,
+];
+
+export {
+  HomeEffects,
+};
