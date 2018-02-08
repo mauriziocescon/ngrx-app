@@ -26,8 +26,8 @@ export class TextInputContainerComponent {
 
   loading$: Observable<boolean>;
 
-  constructor(protected store: Store<fromDynamicBlocksList.State>) {
-    this.block$ = this.store.select(fromDynamicBlocksList.getAllTextInput)
+  constructor(protected store$: Store<fromDynamicBlocksList.State>) {
+    this.block$ = this.store$.select(fromDynamicBlocksList.getAllTextInput)
       .map((blocks: TextInputBlock[]) => {
         return blocks.find((block: TextInputBlock) => {
           return block.id === this.blockId;
@@ -37,7 +37,7 @@ export class TextInputContainerComponent {
         return this.textInputBlock = block;
       });
 
-    this.loading$ = this.store.select(fromDynamicBlocksList.getTextInputBlocksLoadingState)
+    this.loading$ = this.store$.select(fromDynamicBlocksList.getTextInputBlocksLoadingState)
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
@@ -67,6 +67,6 @@ export class TextInputContainerComponent {
       },
       notify: true,
     };
-    this.store.dispatch(new textInput.UpdateBlock(block));
+    this.store$.dispatch(new textInput.UpdateBlock(block));
   }
 }

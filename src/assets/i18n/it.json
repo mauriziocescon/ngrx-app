@@ -18,7 +18,8 @@
       "LOADING": "Caricamento...",
       "NEXT_STEP": "Procedi",
       "NO_RESULT": "Vuoto",
-      "RETRY": "Riprova"
+      "RETRY": "Riprova",
+      "SYNCH": "Synch..."
     },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "Ho visionato tutti i documenti",

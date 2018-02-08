@@ -21,7 +21,7 @@ export class CheckBoxEffect {
               protected checkBoxService: CheckBoxService) {
   }
 
-  @Effect() blocksAvailable: Observable<Action> = this.actions$
+  @Effect() blocksAvailable$: Observable<Action> = this.actions$
     .ofType(ListActionTypes.FETCH_BLOCKS_COMPLETE)
     .map((action: FetchBlocksComplete) => action.payload)
     .map((blocks: Block[]) => {
@@ -31,7 +31,7 @@ export class CheckBoxEffect {
       return new AddBlocks({blocks: checkBoxBlocks});
     });
 
-  @Effect() clearBlocks: Observable<Action> = this.actions$
+  @Effect() clearBlocks$: Observable<Action> = this.actions$
     .ofType(ListActionTypes.CLEAR_BLOCKS)
     .map(() => {
       return new ClearBlocks();

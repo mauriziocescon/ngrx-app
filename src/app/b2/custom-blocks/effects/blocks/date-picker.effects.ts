@@ -25,7 +25,7 @@ export class DatePickerEffects {
               protected datePickerService: DatePickerService) {
   }
 
-  @Effect() blocksAvailable: Observable<Action> = this.actions$
+  @Effect() blocksAvailable$: Observable<Action> = this.actions$
     .ofType(ListActionTypes.FETCH_BLOCKS_COMPLETE)
     .map((action: FetchBlocksComplete) => action.payload)
     .map((blocks: Block[]) => {
@@ -35,7 +35,7 @@ export class DatePickerEffects {
       return new AddBlocks({blocks: datePickerBoxBlocks});
     });
 
-  @Effect() clearBlocks: Observable<Action> = this.actions$
+  @Effect() clearBlocks$: Observable<Action> = this.actions$
     .ofType(ListActionTypes.CLEAR_BLOCKS)
     .map(() => {
       return new ClearBlocks();

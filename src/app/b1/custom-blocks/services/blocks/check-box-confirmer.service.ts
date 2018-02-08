@@ -16,7 +16,7 @@ export class CheckBoxConfirmerService {
   protected blockChangesSubject$: Subject<CheckBoxConfirmerBlock>;
   readonly blockChangesObservable$: Observable<CheckBoxConfirmerBlock>;
 
-  constructor(protected store: Store<fromB1Blocks.State>) {
+  constructor(protected store$: Store<fromB1Blocks.State>) {
     this.blockLoadSubject$ = new Subject();
     this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
 
@@ -50,12 +50,12 @@ export class CheckBoxConfirmerService {
       id: blockId,
       loading: loading,
     };
-    this.store.dispatch(new checkBoxConfirmer.Loading(newLoading));
+    this.store$.dispatch(new checkBoxConfirmer.Loading(newLoading));
   }
 
   protected setBlock(block: { block: { id: number, changes: CheckBoxConfirmerBlock } }): void {
     const newBlock = {block: block.block, notify: false};
-    this.store.dispatch(new checkBoxConfirmer.UpdateBlock(newBlock));
+    this.store$.dispatch(new checkBoxConfirmer.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {

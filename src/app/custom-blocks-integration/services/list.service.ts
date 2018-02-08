@@ -18,20 +18,20 @@ import { Modules } from "../models";
 export class CustomBlockListService extends BlockListService {
 
   constructor(protected http: HttpClient,
-              protected store: Store<any>,
+              protected store$: Store<any>,
               protected appConstants: AppConstantsService) {
     super(
       http,
-      store,
+      store$,
       appConstants,
     );
   }
 
   getAllEditBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
     if (module === Modules.b1) {
-      return this.store.select(fromB1.getAllEditBlocksState);
+      return this.store$.select(fromB1.getAllEditBlocksState);
     } else if (module === Modules.b2) {
-      return this.store.select(fromB2.getAllEditBlocksState);
+      return this.store$.select(fromB2.getAllEditBlocksState);
     } else {
       super.getAllEditBlocksSelector(module, instance, step);
     }
@@ -39,9 +39,9 @@ export class CustomBlockListService extends BlockListService {
 
   getValiditySelector(module: string, instance: string, step: string): Observable<boolean> {
     if (module === Modules.b1) {
-      return this.store.select(fromB1.getAllEditBlocksValidityState);
+      return this.store$.select(fromB1.getAllEditBlocksValidityState);
     } else if (module === Modules.b2) {
-      return this.store.select(fromB2.getAllEditBlocksValidityState);
+      return this.store$.select(fromB2.getAllEditBlocksValidityState);
     } else {
       super.getValiditySelector(module, instance, step);
     }

@@ -16,7 +16,7 @@ export class DropdownService {
   protected blockChangesSubject$: Subject<DropdownBlock>;
   readonly blockChangesObservable$: Observable<DropdownBlock>;
 
-  constructor(protected store: Store<fromDynamicBlocksList.State>) {
+  constructor(protected store$: Store<fromDynamicBlocksList.State>) {
     this.blockLoadSubject$ = new Subject();
     this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
 
@@ -50,12 +50,12 @@ export class DropdownService {
       id: blockId,
       loading: loading,
     };
-    this.store.dispatch(new dropdown.Loading(newLoading));
+    this.store$.dispatch(new dropdown.Loading(newLoading));
   }
 
   protected setBlock(block: { block: { id: number, changes: DropdownBlock } }): void {
     const newBlock = {block: block.block, notify: false};
-    this.store.dispatch(new dropdown.UpdateBlock(newBlock));
+    this.store$.dispatch(new dropdown.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {

@@ -42,9 +42,9 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
   protected modalConfirmerResults$: Observable<{ [id: string]: ModalConfirmerResultType }>;
   protected modalConfirmerResultSubscription: Subscription;
 
-  constructor(protected store: Store<fromRoot.State>,
+  constructor(protected store$: Store<fromRoot.State>,
               protected translate: TranslateService) {
-    this.block$ = this.store.select(fromB1Blocks.getAllCheckBoxConfirmer)
+    this.block$ = this.store$.select(fromB1Blocks.getAllCheckBoxConfirmer)
       .map((blocks: CheckBoxConfirmerBlock[]) => {
         return blocks.find((block: CheckBoxConfirmerBlock) => {
           return block.id === this.blockId;
@@ -54,12 +54,12 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
         return this.checkBoxConfirmerBlock = block;
       });
 
-    this.loading$ = this.store.select(fromB1Blocks.getCheckBoxConfirmerBlocksLoadingState)
+    this.loading$ = this.store$.select(fromB1Blocks.getCheckBoxConfirmerBlocksLoadingState)
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
 
-    this.modalConfirmerResults$ = this.store.select(fromRoot.getModalConfirmerResults);
+    this.modalConfirmerResults$ = this.store$.select(fromRoot.getModalConfirmerResults);
   }
 
   valueDidChange(value: boolean): void {
@@ -89,7 +89,7 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
       },
       notify: true,
     };
-    this.store.dispatch(new checkBoxConfirmer.UpdateBlock(block));
+    this.store$.dispatch(new checkBoxConfirmer.UpdateBlock(block));
   }
 
   protected askForConfirmation(): void {
@@ -109,7 +109,7 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
           yesButtonLabel: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON"],
           noButtonLabel: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON"],
         };
-        this.store.dispatch(new modalConfirmersActions.ShowModalConfirmer({modal: modalConfirmer}));
+        this.store$.dispatch(new modalConfirmersActions.ShowModalConfirmer({modal: modalConfirmer}));
       });
   }
 
@@ -121,7 +121,7 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
         const result = modalConfirmerResult[this.blockId.toString()];
 
         if (result) {
-          this.store.dispatch(new modalConfirmersActions.CleanModalConfirmer({id: this.blockId.toString()}));
+          this.store$.dispatch(new modalConfirmersActions.CleanModalConfirmer({id: this.blockId.toString()}));
           this.unsubscribeToModalConfirmerResult();
 
           if (result === ModalConfirmerResultType.Positive) {
@@ -139,7 +139,7 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
                   message: translations["CONTAINER.CHECK_BOX_CONFIRMER.ALERT_MESSAGE"],
                   buttonLabel: translations["CONTAINER.CHECK_BOX_CONFIRMER.ALERT_BUTTON"],
                 };
-                this.store.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
+                this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
               });
           } else {
             this.dispatchValueDidChangeAction(false);

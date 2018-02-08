@@ -16,7 +16,7 @@ export class DatePickerService {
   protected blockChangesSubject$: Subject<DatePickerBlock>;
   readonly blockChangesObservable$: Observable<DatePickerBlock>;
 
-  constructor(protected store: Store<fromB2Blocks.State>) {
+  constructor(protected store$: Store<fromB2Blocks.State>) {
     this.blockLoadSubject$ = new Subject();
     this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
 
@@ -49,12 +49,12 @@ export class DatePickerService {
       id: blockId,
       loading: loading,
     };
-    this.store.dispatch(new datePicker.Loading(newLoading));
+    this.store$.dispatch(new datePicker.Loading(newLoading));
   }
 
   protected setBlock(block: { block: { id: number, changes: DatePickerBlock } }): void {
     const newBlock = {block: block.block, notify: false};
-    this.store.dispatch(new datePicker.UpdateBlock(newBlock));
+    this.store$.dispatch(new datePicker.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {

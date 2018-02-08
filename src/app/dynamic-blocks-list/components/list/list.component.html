@@ -11,7 +11,8 @@
           <button class="btn btn-default action-button" (click)="resetForm()">{{ "COMPONENT.LIST.CANCEL" | translate }}</button>
         </div>
         <div class="col-12">
-          <div class="" [hidden]="!synching">{{ "COMPONENT.LIST.SYNCH" | translate }}</div>
+          <span class="fa fa-refresh fa-spin" [hidden]="!synching"></span>
+          <span>{{ "COMPONENT.LIST.SYNCH" | translate }}</span>
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ import * as fromDynamicBlocksList from "../reducers";
 export class BlockListService {
 
   constructor(protected http: HttpClient,
-              protected store: Store<fromDynamicBlocksList.State>,
+              protected store$: Store<fromDynamicBlocksList.State>,
               protected appConstants: AppConstantsService) {
   }
 
@@ -50,10 +50,10 @@ export class BlockListService {
   }
 
   getAllEditBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
-    return this.store.select(fromDynamicBlocksList.getAllEditBlocksState);
+    return this.store$.select(fromDynamicBlocksList.getAllEditBlocksState);
   }
 
   getValiditySelector(module: string, instance: string, step: string): Observable<boolean> {
-    return this.store.select(fromDynamicBlocksList.getAllEditBlocksValidityState);
+    return this.store$.select(fromDynamicBlocksList.getAllEditBlocksValidityState);
   }
 }

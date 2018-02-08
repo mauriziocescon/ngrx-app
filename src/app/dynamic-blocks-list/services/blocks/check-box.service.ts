@@ -16,7 +16,7 @@ export class CheckBoxService {
   protected blockChangesSubject$: Subject<CheckBoxBlock>;
   readonly blockChangesObservable$: Observable<CheckBoxBlock>;
 
-  constructor(protected store: Store<fromDynamicBlocksList.State>) {
+  constructor(protected store$: Store<fromDynamicBlocksList.State>) {
     this.blockLoadSubject$ = new Subject();
     this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
 
@@ -50,12 +50,12 @@ export class CheckBoxService {
       id: blockId,
       loading: loading,
     };
-    this.store.dispatch(new checkBox.Loading(newLoading));
+    this.store$.dispatch(new checkBox.Loading(newLoading));
   }
 
   protected setBlock(block: { block: { id: number, changes: CheckBoxBlock } }): void {
     const newBlock = {block: block.block, notify: false};
-    this.store.dispatch(new checkBox.UpdateBlock(newBlock));
+    this.store$.dispatch(new checkBox.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {

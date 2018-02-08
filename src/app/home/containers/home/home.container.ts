@@ -28,11 +28,11 @@ export class HomeContainerComponent implements OnInit {
   loading$: Observable<boolean>;
   error$: Observable<string>;
 
-  constructor(protected store: Store<fromHome.State>,
+  constructor(protected store$: Store<fromHome.State>,
               protected router: Router,) {
-    this.instances$ = this.store.select(fromHome.getFetchedInstancesState);
-    this.loading$ = this.store.select(fromHome.getFetchLoadingState);
-    this.error$ = this.store.select(fromHome.getFetchErrorState);
+    this.instances$ = this.store$.select(fromHome.getFetchedInstancesState);
+    this.loading$ = this.store$.select(fromHome.getFetchLoadingState);
+    this.error$ = this.store$.select(fromHome.getFetchErrorState);
   }
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class HomeContainerComponent implements OnInit {
   }
 
   reloadList(): void {
-    this.store.dispatch(new home.FetchInstances());
+    this.store$.dispatch(new home.FetchInstances());
   }
 
   goTo(instance: Instance): void {

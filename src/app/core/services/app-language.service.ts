@@ -18,7 +18,7 @@ import localeIt from "@angular/common/locales/it";
 export class AppLanguageService {
   protected selectedLanguageId: string;
 
-  constructor(protected store: Store<fromCore.CoreState>,
+  constructor(protected store$: Store<fromCore.CoreState>,
               protected translate: TranslateService,
               protected appConstants: AppConstantsService,
               protected localStorage: LocalStorageService) {
@@ -36,12 +36,12 @@ export class AppLanguageService {
     if (localStorageLang && this.appConstants.Languages.SUPPORTED_LANG.indexOf(localStorageLang) !== -1) {
       this.selectedLanguageId = localStorageLang;
       this.registerLocale();
-      this.store.dispatch(new language.SetLanguage(this.selectedLanguageId));
+      this.store$.dispatch(new language.SetLanguage(this.selectedLanguageId));
     } else {
       this.selectedLanguageId = this.appConstants.Languages.SUPPORTED_LANG.indexOf(browserLang) === -1 ? defaultLang : browserLang;
       this.registerLocale();
       this.localStorage.setData(this.appConstants.LocalStorageKey.LANGUAGE_ID, this.selectedLanguageId);
-      this.store.dispatch(new language.SetLanguage(this.selectedLanguageId));
+      this.store$.dispatch(new language.SetLanguage(this.selectedLanguageId));
     }
   }
 
@@ -57,7 +57,7 @@ export class AppLanguageService {
       this.selectedLanguageId = languageId;
       this.localStorage.setData(this.appConstants.LocalStorageKey.LANGUAGE_ID, this.selectedLanguageId);
       this.registerLocale();
-      this.store.dispatch(new language.SetLanguage(this.selectedLanguageId));
+      this.store$.dispatch(new language.SetLanguage(this.selectedLanguageId));
       this.translate.use(languageId);
       location.reload(true);
     }

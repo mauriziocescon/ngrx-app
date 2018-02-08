@@ -18,7 +18,8 @@
       "LOADING": "Loading...",
       "NEXT_STEP": "Next step",
       "NO_RESULT": "Empty",
-      "RETRY": "Retry"
+      "RETRY": "Retry",
+      "SYNCH": "Synch..."
     },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "I have checked all documents",

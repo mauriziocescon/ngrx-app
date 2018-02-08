@@ -39,15 +39,15 @@ export class ListContainerComponent implements OnInit, OnDestroy {
 
   paramMapSubscription: Subscription;
 
-  constructor(protected store: Store<fromDynamicBlocksList.State>,
+  constructor(protected store$: Store<fromDynamicBlocksList.State>,
               protected route: ActivatedRoute,
               protected logger: NGXLogger,
               protected blocksList: BlockListService) {
-    this.blocks$ = this.store.select(fromDynamicBlocksList.getFetchedBlocksState);
-    this.loading$ = this.store.select(fromDynamicBlocksList.getFetchLoadingState);
-    this.error$ = this.store.select(fromDynamicBlocksList.getFetchErrorState);
+    this.blocks$ = this.store$.select(fromDynamicBlocksList.getFetchedBlocksState);
+    this.loading$ = this.store$.select(fromDynamicBlocksList.getFetchLoadingState);
+    this.error$ = this.store$.select(fromDynamicBlocksList.getFetchErrorState);
 
-    this.synching$ = this.store.select(fromDynamicBlocksList.isSynchronizationRequiredState);
+    this.synching$ = this.store$.select(fromDynamicBlocksList.isSynchronizationRequiredState);
   }
 
   ngOnInit(): void {
@@ -60,7 +60,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
         this.formValidity$ = this.blocksList.getValiditySelector(module, instance, step);
 
         if (module && instance && step) {
-          this.store.dispatch(new list.ClearBlocks());
+          this.store$.dispatch(new list.ClearBlocks());
           this.reloadList(module, instance, step);
         }
       });
@@ -71,7 +71,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
     const inst = instance || this.route.snapshot.paramMap.get("instance");
     const st = step || this.route.snapshot.paramMap.get("step");
 
-    this.store.dispatch(new list.FetchBlocks({module: mod, instance: inst, step: st}));
+    this.store$.dispatch(new list.FetchBlocks({module: mod, instance: inst, step: st}));
   }
 
   nextStep(): void {
@@ -93,7 +93,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate(): Observable<boolean> {
-    return this.store.select(fromDynamicBlocksList.isSynchronizationRequiredState);
+    return this.store$.select(fromDynamicBlocksList.isSynchronizationRequiredState);
   }
 
   protected unsubscribeToParamMap(): void {

@@ -6,6 +6,7 @@ import { Effect, Actions } from "@ngrx/effects";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/mergeMap";
 import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/withLatestFrom";
 
 import { UpdateBlocks } from "../actions/list.actions";
 import { SynchActionTypes } from "../actions/synch.actions";
@@ -20,7 +21,7 @@ export class SynchEffects {
               protected blocksList: BlockListService,) {
   }
 
-  @Effect() synchronization: Observable<Action> = this.actions$
+  @Effect() synchronization$: Observable<Action> = this.actions$
     .ofType(SynchActionTypes.REQUIRE_SYNCH)
     .withLatestFrom(this.helperFunction())
     .switchMap(([payload, blocks]) => {

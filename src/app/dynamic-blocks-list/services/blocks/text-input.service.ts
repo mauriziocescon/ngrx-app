@@ -16,7 +16,7 @@ export class TextInputService {
   protected blockChangesSubject$: Subject<TextInputBlock>;
   readonly blockChangesObservable$: Observable<TextInputBlock>;
 
-  constructor(protected store: Store<fromDynamicBlocksList.State>) {
+  constructor(protected store$: Store<fromDynamicBlocksList.State>) {
     this.blockLoadSubject$ = new Subject();
     this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
 
@@ -51,12 +51,12 @@ export class TextInputService {
       id: blockId,
       loading: loading,
     };
-    this.store.dispatch(new textInput.Loading(newLoading));
+    this.store$.dispatch(new textInput.Loading(newLoading));
   }
 
   protected setBlock(block: { block: { id: number, changes: TextInputBlock } }): void {
     const newBlock = {block: block.block, notify: false};
-    this.store.dispatch(new textInput.UpdateBlock(newBlock));
+    this.store$.dispatch(new textInput.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {

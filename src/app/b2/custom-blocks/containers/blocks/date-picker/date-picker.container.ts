@@ -30,9 +30,9 @@ export class DatePickerContainerComponent {
 
   loading$: Observable<boolean>;
 
-  constructor(protected store: Store<fromRoot.State>,
+  constructor(protected store$: Store<fromRoot.State>,
               protected translate: TranslateService) {
-    this.block$ = this.store.select(fromB2Blocks.getAllDatePicker)
+    this.block$ = this.store$.select(fromB2Blocks.getAllDatePicker)
       .map((blocks: DatePickerBlock[]) => {
         return blocks.find((block: DatePickerBlock) => {
           return block.id === this.blockId;
@@ -42,7 +42,7 @@ export class DatePickerContainerComponent {
         return this.datePickerBlock = block;
       });
 
-    this.loading$ = this.store.select(fromB2Blocks.getDatePickerBlocksLoadingState)
+    this.loading$ = this.store$.select(fromB2Blocks.getDatePickerBlocksLoadingState)
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
@@ -71,6 +71,6 @@ export class DatePickerContainerComponent {
       },
       notify: true,
     };
-    this.store.dispatch(new datePicker.UpdateBlock(block));
+    this.store$.dispatch(new datePicker.UpdateBlock(block));
   }
 }
