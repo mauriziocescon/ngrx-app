@@ -121,6 +121,20 @@ app.get("/api/rules-config", (req, res) => {
 });
 
 // blocks
+app.get("/api/instances", (req, res) => {
+  const instances = db.instances;
+  const lightInstances = instances.map((instance) => {
+    return {
+      id: instance.id,
+      module: instance.module,
+      instance: instance.instance,
+      step: instance.step,
+    };
+  });
+  return res.status(200).jsonp(lightInstances);
+});
+
+// blocks
 app.get("/api/blocks", (req, res) => {
   const instances = db.instances;
   const instance = instances.find((i) => {
