@@ -50,9 +50,9 @@ function main() {
   data.instances.push(instance);
 
   // rules config
-  data.rulesConfig.push({module: "b1", steps: [{step: "1", rules: "b1-rules1"}, {step: "2", rules: "b1-rules2"}]});
-  data.rulesConfig.push({module: "b2", steps: [{step: "1", rules: "b2-rules1"}, {step: "2", rules: "b2-rules2"}]});
-  data.rulesConfig.push({module: "b3", steps: [{step: "1", rules: "b3-rules1"}]});
+  data.rulesConfig.push({module: "b1", steps: [{step: "1", rules: "rules1"}, {step: "2", rules: "rules2"}]});
+  data.rulesConfig.push({module: "b2", steps: [{step: "1", rules: "rules1"}, {step: "2", rules: "rules2"}]});
+  data.rulesConfig.push({module: "b3", steps: [{step: "1", rules: "rules1"}]});
 
   utils.saveDb(data);
 }
