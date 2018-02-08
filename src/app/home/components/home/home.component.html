@@ -1,0 +1,18 @@
+<div class="container-fluid home-component">
+
+  <div class="row list-main-content" [hidden]="!showData">
+    <div class="col-12" *ngFor="let instance of dataSource; trackBy: trackByBlock">
+      <div class="generic-block" (click)="goTo(instance)">
+        {{ instance | json }}
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="full-width-message">{{ "COMPONENT.HOME.LOAD_COMPLETED" | translate }}</div>
+    </div>
+  </div>
+
+  <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.HOME.LOADING" | translate }}</div>
+  <div class="full-width-message" [hidden]="!hasNoData">{{ "COMPONENT.HOME.NO_RESULT" | translate }}</div>
+  <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">{{ "COMPONENT.HOME.RETRY" | translate }}</div>
+
+</div>
