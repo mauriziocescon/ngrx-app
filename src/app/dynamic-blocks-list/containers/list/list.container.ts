@@ -10,7 +10,6 @@ import "rxjs/add/operator/withLatestFrom";
 import { NGXLogger } from "ngx-logger";
 
 import * as list from "../../actions/list.actions";
-import * as sync from "../../actions/sync.actions";
 
 import { Block, DynBlocksRouteParams } from "../../models";
 
@@ -85,7 +84,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
             ...this.getRouteParams(),
             blocks: blocks,
           };
-          this.store$.dispatch(new sync.SyncRequired(payload));
+          this.store$.dispatch(new list.UpdateBlocks(payload));
         }
       });
   }

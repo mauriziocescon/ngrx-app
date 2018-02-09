@@ -1,7 +1,5 @@
 import { Action } from "@ngrx/store";
 
-import { Block } from "../models";
-
 export enum SyncActionTypes {
   SYNC_REQUIRED = "[Sync] Required to synchronize",
   SYNCHRONIZED = "[Sync] Synchronized",
@@ -9,9 +7,6 @@ export enum SyncActionTypes {
 
 export class SyncRequired implements Action {
   readonly type = SyncActionTypes.SYNC_REQUIRED;
-
-  constructor(public payload: { module: string, instance: string, step: string, blocks: Block[] }) {
-  }
 }
 
 export class Synchronized implements Action {
