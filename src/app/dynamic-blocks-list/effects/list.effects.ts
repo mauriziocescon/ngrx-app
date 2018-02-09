@@ -46,7 +46,7 @@ export class ListEffects {
 
   @Effect() updateBlocks$: Observable<Action> = this.actions$
     .ofType(ListActionTypes.UPDATE_BLOCKS)
-    .debounceTime(4000)
+    .debounceTime(400)
     .map((action: UpdateBlocks) => action.payload)
     .switchMap((payload) => {
       return this.blocksList.updateBlocks(payload.module, payload.instance, payload.step, payload.blocks)

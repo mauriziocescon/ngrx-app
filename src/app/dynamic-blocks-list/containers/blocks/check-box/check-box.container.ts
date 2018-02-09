@@ -4,8 +4,10 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
-import * as fromDynamicBlocksList from "../../../reducers";
 import * as checkBox from "../../../actions/blocks/check-box.actions";
+
+import * as fromDynamicBlocksList from "../../../reducers";
+
 import { BlockType, CheckBoxBlock } from "../../../models";
 
 @Component({

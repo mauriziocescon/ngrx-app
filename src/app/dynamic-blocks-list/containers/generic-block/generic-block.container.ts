@@ -7,9 +7,9 @@ import {
   Input
 } from "@angular/core";
 
-import { BlockUtilsService } from "../../services";
-
 import { AddComponentDirective } from "../../../shared/shared.module";
+
+import { BlockUtilsService } from "../../services";
 
 import { Block, BlockComponent } from "../../models";
 

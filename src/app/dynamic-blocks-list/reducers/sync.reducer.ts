@@ -10,7 +10,7 @@ const initialState: State = {
 
 export function reducer(state = initialState, action: SyncActions): State {
   switch (action.type) {
-    case SyncActionTypes.REQUIRE_SYNC: {
+    case SyncActionTypes.SYNC_REQUIRED: {
       return {
         ...state,
         requireSync: true,

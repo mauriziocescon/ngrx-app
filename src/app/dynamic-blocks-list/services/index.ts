@@ -1,6 +1,5 @@
 import { BlockListService } from "./list.service";
 import { ListGuard } from "./list-guard.service";
-import { BlocksSyncService } from "./sync.service";
 import { BlockHooksService } from "./hooks.service";
 import { BlockUtilsService } from "./utils.service";
 
@@ -12,7 +11,6 @@ export const SERVICES = [
   BlockHooksService,
   BlockListService,
   ListGuard,
-  BlocksSyncService,
   BlockUtilsService,
 
   CheckBoxService,
@@ -24,7 +22,6 @@ export {
   BlockHooksService,
   BlockListService,
   ListGuard,
-  BlocksSyncService,
   BlockUtilsService,
 
   CheckBoxService,

@@ -4,6 +4,8 @@ import { BlockComponent } from "./generic-block.model";
 
 import { BlocksFunctions, BlocksHooks } from "./block-hooks/block-hooks";
 
+import { DynBlocksRouteParams } from "./route-params.model";
+
 import { CheckBoxBlock } from "./blocks/check-box.model";
 import { DropdownBlock } from "./blocks/dropdown-block.model";
 import { TextInputBlock } from "./blocks/text-input.model";
@@ -20,6 +22,8 @@ export {
 
   BlocksFunctions,
   BlocksHooks,
+
+  DynBlocksRouteParams,
 
   CheckBoxBlock,
   DropdownBlock,

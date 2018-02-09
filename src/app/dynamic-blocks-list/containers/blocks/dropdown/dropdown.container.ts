@@ -4,8 +4,10 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
-import * as fromDynamicBlocksList from "../../../reducers";
 import * as dropdown from "../../../actions/blocks/dropdown.actions";
+
+import * as fromDynamicBlocksList from "../../../reducers";
+
 import { BlockType, DropdownBlock } from "../../../models";
 
 @Component({

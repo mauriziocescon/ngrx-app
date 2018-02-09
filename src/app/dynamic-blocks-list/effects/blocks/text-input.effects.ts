@@ -8,7 +8,7 @@ import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/withLatestFrom";
 
 import { ListActionTypes, FetchBlocksComplete } from "../../actions/list.actions";
-import { RequireSync } from "../../actions/sync.actions";
+import { SyncRequired } from "../../actions/sync.actions";
 import { TextInputActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/text-input.actions";
 
 import { Block, BlockType } from "../../models";
@@ -44,6 +44,6 @@ export class TextInputEffect {
       if (payload.notify) {
         this.textInputService.blockDidChange(payload.block);
       }
-      return [new RequireSync()];
+      return [new SyncRequired()];
     });
 }

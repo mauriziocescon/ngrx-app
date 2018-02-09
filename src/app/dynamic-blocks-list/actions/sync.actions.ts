@@ -1,12 +1,17 @@
 import { Action } from "@ngrx/store";
 
+import { Block } from "../models";
+
 export enum SyncActionTypes {
-  REQUIRE_SYNC = "[Sync] Required to synchronize",
+  SYNC_REQUIRED = "[Sync] Required to synchronize",
   SYNCHRONIZED = "[Sync] Synchronized",
 }
 
-export class RequireSync implements Action {
-  readonly type = SyncActionTypes.REQUIRE_SYNC;
+export class SyncRequired implements Action {
+  readonly type = SyncActionTypes.SYNC_REQUIRED;
+
+  constructor(public payload: { module: string, instance: string, step: string, blocks: Block[] }) {
+  }
 }
 
 export class Synchronized implements Action {
@@ -18,5 +23,5 @@ export class Synchronized implements Action {
  * so that reducers can easily compose action types
  */
 export type SyncActions =
-  RequireSync |
+  SyncRequired |
   Synchronized;
