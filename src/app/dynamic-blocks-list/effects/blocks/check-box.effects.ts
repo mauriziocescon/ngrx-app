@@ -5,7 +5,6 @@ import { Effect, Actions } from "@ngrx/effects";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/withLatestFrom";
 
 import { ListActionTypes, FetchBlocksComplete } from "../../actions/list.actions";
 import { SyncRequired } from "../../actions/sync.actions";
