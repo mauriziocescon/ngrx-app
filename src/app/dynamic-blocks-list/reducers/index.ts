@@ -28,6 +28,7 @@ export const TOKEN = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>(
 export const getReducers = () => {
   return {
     blocksList: fromList.reducer,
+    serverSync: fromSync.reducer,
     editBlocks: combineReducers(fromEditBlocks.reducers),
   };
 };
