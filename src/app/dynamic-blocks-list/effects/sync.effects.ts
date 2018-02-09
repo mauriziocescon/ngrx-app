@@ -4,12 +4,11 @@ import { Action } from "@ngrx/store";
 import { Effect, Actions } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
-import { empty } from "rxjs/observable/empty";
-import "rxjs/add/operator/mergeMap";
 import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/withLatestFrom";
 
-import { SyncActionTypes, RequireSync } from "../actions/sync.actions";
+import { UpdateBlocks } from "../actions/list.actions";
+import { SyncActionTypes } from "../actions/sync.actions";
 
 import { BlockListService } from "../services";
 
@@ -23,13 +22,9 @@ export class SyncEffects {
 
   @Effect() synchronization$: Observable<Action> = this.actions$
     .ofType(SyncActionTypes.REQUIRE_SYNC)
-    // .withLatestFrom(this.helperFunction())
-    // .switchMap(([payload, blocks]) => {
-    //   return [new UpdateBlocks(this.payloadFunction(blocks))];
-    // });
-    .switchMap((action: RequireSync) => {
-      alert("Aggiorna!");
-      return empty();
+    .withLatestFrom(this.helperFunction())
+    .switchMap(([payload, blocks]) => {
+      return [new UpdateBlocks(this.payloadFunction(blocks))];
     });
 
   helperFunction(): any {
