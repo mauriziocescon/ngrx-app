@@ -5,7 +5,7 @@ import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../models";
 
 import * as fromRoot from "../../reducers";
 import * as fromList from "./list.reducer";
-import * as fromSynch from "./synch.reducer";
+import * as fromSync from "./sync.reducer";
 import * as fromEditBlocks from "./blocks";
 import * as fromCheckBox from "./blocks/check-box/check-box.reducer";
 import * as fromDropdown from "./blocks/dropdown/dropdown.reducer";
@@ -13,7 +13,7 @@ import * as fromTextInput from "./blocks/text-input/text-input.reducer";
 
 export interface DynamicBlocksListState {
   blocksList: fromList.State;
-  serverSynch: fromSynch.State;
+  serverSync: fromSync.State;
   editBlocks: fromEditBlocks.State;
 }
 
@@ -57,10 +57,10 @@ export const getUpdateLoadingState = createSelector(getListState, fromList.getUp
 export const getUpdateErrorState = createSelector(getListState, fromList.getUpdateErrorState);
 
 // -----------------
-// ----------- synch
-export const getServerSynchState = createSelector(getDynamicBlocksListState, state => state.serverSynch);
+// ----------- sync
+export const getServerSyncState = createSelector(getDynamicBlocksListState, state => state.serverSync);
 
-export const isSynchronizationRequiredState = createSelector(getServerSynchState, fromSynch.isSynchronizationRequiredState);
+export const isSynchronizationRequiredState = createSelector(getServerSyncState, fromSync.isSynchronizationRequiredState);
 
 // -----------------
 // ----- edit blocks

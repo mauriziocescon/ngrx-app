@@ -21,7 +21,7 @@ import {
   UpdateBlocksComplete,
   UpdateBlocksError,
 } from "../actions/list.actions";
-import { Synchronized } from "../actions/synch.actions";
+import { Synchronized } from "../actions/sync.actions";
 
 import { Block } from "../models";
 

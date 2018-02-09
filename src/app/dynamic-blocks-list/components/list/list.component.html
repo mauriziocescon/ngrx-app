@@ -10,9 +10,9 @@
         <div class="col-6 col-sm-12 button-row">
           <button class="btn btn-default action-button" (click)="resetForm()">{{ "COMPONENT.LIST.CANCEL" | translate }}</button>
         </div>
-        <div class="col-12">
-          <span class="fa fa-refresh fa-spin" [hidden]="!synching"></span>
-          <span>{{ "COMPONENT.LIST.SYNCH" | translate }}</span>
+        <div class="col-12 button-row">
+          <span class="fa fa-refresh fa-spin" [hidden]="!syncing"></span>
+          <span>{{ "COMPONENT.LIST.SYNC" | translate }}</span>
         </div>
       </div>
     </div>

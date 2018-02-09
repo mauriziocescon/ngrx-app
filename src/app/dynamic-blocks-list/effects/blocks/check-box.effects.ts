@@ -8,7 +8,7 @@ import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/withLatestFrom";
 
 import { ListActionTypes, FetchBlocksComplete } from "../../actions/list.actions";
-import { RequireSynch } from "../../actions/synch.actions";
+import { RequireSync } from "../../actions/sync.actions";
 import { CheckBoxActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/check-box.actions";
 
 import { Block, BlockType } from "../../models";
@@ -44,6 +44,6 @@ export class CheckBoxEffect {
       if (payload.notify) {
         this.checkBoxService.blockDidChange(payload.block);
       }
-      return [new RequireSynch()];
+      return [new RequireSync()];
     });
 }

@@ -14,7 +14,7 @@ export class ListComponent {
   @Output() reloadList: EventEmitter<void>;
 
   @Input() formValidity: boolean;
-  @Input() synching: boolean;
+  @Input() syncing: boolean;
   @Output() nextStep: EventEmitter<void>;
   @Output() reset: EventEmitter<void>;
 
