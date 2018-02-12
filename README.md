@@ -3,6 +3,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
 
+## Demo 
+
+1. [Demo](https://mc-ngrx-app.herokuapp.com) powered by Heroku 
+
 ## Backend implementation 
 
 1. Based on [json-server](https://github.com/typicode/json-server) with mocks from [faker](https://github.com/Marak/faker.js) (APIs available at `http://localhost:5000/api/`)
