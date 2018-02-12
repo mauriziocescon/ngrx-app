@@ -149,7 +149,7 @@ export class TextInputService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.CheckBox,
+          type: BlockType.TextInput,
           valid: valid,
         },
       }

@@ -134,7 +134,7 @@ export class DropdownService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.CheckBox,
+          type: BlockType.Dropdown,
           valid: valid,
         },
       }
