@@ -10,7 +10,7 @@ export const appRoutes: Routes = [
     component: HomeContainerComponent,
   },
   {
-    path: "dyn-blocks-list/:module/:instance/:step",
+    path: "dyn-block-list/:module/:instance/:step",
     component: ListContainerComponent,
     resolve: {
       rules: RulesResolve,

@@ -44,6 +44,6 @@ export class HomeContainerComponent implements OnInit {
   }
 
   goTo(instance: Instance): void {
-    this.router.navigate(["/dyn-blocks-list", instance.module, instance.instance, instance.step]);
+    this.router.navigate(["/dyn-block-list", instance.module, instance.instance, instance.step]);
   }
 }
