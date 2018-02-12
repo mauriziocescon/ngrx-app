@@ -1,4 +1,4 @@
-import { BlocksMethods } from "../../../../dynamic-blocks-list/dynamic-blocks-list.module";
+import { BlocksMethods } from "../../../../dynamic-block-list/dynamic-block-list.module";
 
 import { DatePickerMethods } from "./date-picker-methods";
 

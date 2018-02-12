@@ -1,4 +1,4 @@
-import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../../dynamic-blocks-list/dynamic-blocks-list.module";
+import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../../dynamic-block-list/dynamic-block-list.module";
 import { DatePickerBlock, B2BlockType } from "../../custom-blocks/b2.module";
 
 export const arrayOfBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | DatePickerBlock }) => {

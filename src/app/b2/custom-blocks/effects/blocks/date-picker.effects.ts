@@ -11,7 +11,7 @@ import {
   Block,
   FetchBlocksComplete,
   ListActionTypes,
-} from "../../../../dynamic-blocks-list/dynamic-blocks-list.module";
+} from "../../../../dynamic-block-list/dynamic-block-list.module";
 
 import { DatePickerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/date-picker.actions";
 

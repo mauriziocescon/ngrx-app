@@ -12,7 +12,7 @@ import { NGXLogger } from "ngx-logger";
 
 import { AppConstantsService } from "./core/core.module";
 
-import { BlockHooksService, BlocksHooks } from "./dynamic-blocks-list/dynamic-blocks-list.module";
+import { BlockHooksService, BlocksHooks } from "./dynamic-block-list/dynamic-block-list.module";
 
 import * as setOfRules from "./custom-rules-integration";
 

@@ -2,7 +2,7 @@ import {
   CheckBoxBlock,
   DropdownBlock,
   TextInputBlock,
-} from "../../dynamic-blocks-list/dynamic-blocks-list.module";
+} from "../../dynamic-block-list/dynamic-block-list.module";
 
 import {
   B2BlocksMethods,

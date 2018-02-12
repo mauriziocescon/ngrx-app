@@ -4,7 +4,7 @@ import {
   BlockListService,
   BlockHooksService,
   BlockUtilsService,
-} from "../dynamic-blocks-list/dynamic-blocks-list.module";
+} from "../dynamic-block-list/dynamic-block-list.module";
 
 import { SharedModule } from "../shared/shared.module";
 

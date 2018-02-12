@@ -3,7 +3,7 @@ import {
   CheckBoxBlock,
   DropdownBlock,
   TextInputBlock,
-} from "../../dynamic-blocks-list/dynamic-blocks-list.module";
+} from "../../dynamic-block-list/dynamic-block-list.module";
 
 import * as utilities from "./utils/utilities";
 import * as validators from "./validations";
