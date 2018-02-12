@@ -10,13 +10,13 @@ import { AppConstantsService } from "../../core/core.module";
 
 import { Block } from "../models";
 
-import * as fromDynamicBlocksList from "../reducers";
+import * as fromDynamicBlockList from "../reducers";
 
 @Injectable()
 export class BlockListService {
 
   constructor(protected http: HttpClient,
-              protected store$: Store<fromDynamicBlocksList.State>,
+              protected store$: Store<fromDynamicBlockList.State>,
               protected appConstants: AppConstantsService) {
   }
 
@@ -50,10 +50,10 @@ export class BlockListService {
   }
 
   getAllEditBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
-    return this.store$.select(fromDynamicBlocksList.getAllEditBlocksState);
+    return this.store$.select(fromDynamicBlockList.getAllEditBlocksState);
   }
 
   getValiditySelector(module: string, instance: string, step: string): Observable<boolean> {
-    return this.store$.select(fromDynamicBlocksList.getAllEditBlocksValidityState);
+    return this.store$.select(fromDynamicBlockList.getAllEditBlocksValidityState);
   }
 }

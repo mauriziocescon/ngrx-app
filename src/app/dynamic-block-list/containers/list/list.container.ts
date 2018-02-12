@@ -13,7 +13,7 @@ import * as list from "../../actions/list.actions";
 
 import { Block, DynBlocksRouteParams } from "../../models";
 
-import * as fromDynamicBlocksList from "../../reducers";
+import * as fromDynamicBlockList from "../../reducers";
 
 import { BlockListService } from "../../services";
 
@@ -44,15 +44,15 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   paramMapSubscription: Subscription;
   syncRequired$Subscription: Subscription;
 
-  constructor(protected store$: Store<fromDynamicBlocksList.State>,
+  constructor(protected store$: Store<fromDynamicBlockList.State>,
               protected route: ActivatedRoute,
               protected logger: NGXLogger,
               protected blocksList: BlockListService) {
-    this.blocks$ = this.store$.select(fromDynamicBlocksList.getFetchedBlocksState);
-    this.loading$ = this.store$.select(fromDynamicBlocksList.getFetchLoadingState);
-    this.error$ = this.store$.select(fromDynamicBlocksList.getFetchErrorState);
+    this.blocks$ = this.store$.select(fromDynamicBlockList.getFetchedBlocksState);
+    this.loading$ = this.store$.select(fromDynamicBlockList.getFetchLoadingState);
+    this.error$ = this.store$.select(fromDynamicBlockList.getFetchErrorState);
 
-    this.syncRequired$ = this.store$.select(fromDynamicBlocksList.isSynchronizationRequiredState);
+    this.syncRequired$ = this.store$.select(fromDynamicBlockList.isSynchronizationRequiredState);
   }
 
   ngOnInit(): void {
@@ -99,7 +99,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate(): Observable<boolean> {
-    return this.store$.select(fromDynamicBlocksList.isSynchronizationRequiredState);
+    return this.store$.select(fromDynamicBlockList.isSynchronizationRequiredState);
   }
 
   nextStep(): void {

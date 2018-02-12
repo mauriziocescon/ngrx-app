@@ -9,7 +9,7 @@ import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
 import { StoreModule, Store, combineReducers } from "@ngrx/store";
 import * as fromRoot from "../../../../reducers";
-import * as fromDynamicBlocksList from "../../../reducers";
+import * as fromDynamicBlockList from "../../../reducers";
 
 import { CoreModule } from "../../../../core/core.module";
 import { SharedModule } from "../../../../shared/shared.module";
@@ -43,7 +43,7 @@ describe("TextInputComponent", () => {
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
         StoreModule.forRoot(fromRoot.TOKEN),
-        StoreModule.forFeature("dynamicBlocksList", fromDynamicBlocksList.TOKEN),
+        StoreModule.forFeature("dynamicBlockList", fromDynamicBlockList.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
       ],
@@ -55,7 +55,7 @@ describe("TextInputComponent", () => {
         TranslateService,
         NGXLogger,
         fromRoot.reducerProvider,
-        fromDynamicBlocksList.reducerProvider,
+        fromDynamicBlockList.reducerProvider,
       ],
     })
       .overrideModule(BrowserDynamicTestingModule, {
