@@ -6,15 +6,15 @@ import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../models";
 import * as fromRoot from "../../reducers";
 import * as fromList from "./list.reducer";
 import * as fromSync from "./sync.reducer";
-import * as fromEditBlocks from "./blocks";
+import * as fromEditedBlocks from "./blocks";
 import * as fromCheckBox from "./blocks/check-box/check-box.reducer";
 import * as fromDropdown from "./blocks/dropdown/dropdown.reducer";
 import * as fromTextInput from "./blocks/text-input/text-input.reducer";
 
 export interface DynamicBlockListState {
-  blocksList: fromList.State;
+  blockList: fromList.State;
   serverSync: fromSync.State;
-  editBlocks: fromEditBlocks.State;
+  editedBlocks: fromEditedBlocks.State;
 }
 
 export interface State extends fromRoot.State {
@@ -23,13 +23,13 @@ export interface State extends fromRoot.State {
 
 // -----------------
 // ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>("DynamicBlockListReducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>("DynamicBlockListReducers");
 
 export const getReducers = () => {
   return {
-    blocksList: fromList.reducer,
+    blockList: fromList.reducer,
     serverSync: fromSync.reducer,
-    editBlocks: combineReducers(fromEditBlocks.reducers),
+    editedBlocks: combineReducers(fromEditedBlocks.reducers),
   };
 };
 
@@ -43,7 +43,7 @@ export const getDynamicBlockListState = createFeatureSelector<DynamicBlockListSt
 
 // -----------------
 // ----- blocks list
-export const getListState = createSelector(getDynamicBlockListState, state => state.blocksList);
+export const getListState = createSelector(getDynamicBlockListState, state => state.blockList);
 
 export const getFetchedBlocksState = createSelector(getListState, fromList.getFetchedBlocksState);
 export const getFetchLoadingState = createSelector(getListState, fromList.getFetchLoadingState);
@@ -65,10 +65,10 @@ export const isSynchronizationRequiredState = createSelector(getServerSyncState,
 
 // -----------------
 // ----- edit blocks
-export const getEditBlocksState = createSelector(getDynamicBlockListState, state => state.editBlocks);
+export const getEditedBlocksState = createSelector(getDynamicBlockListState, state => state.editedBlocks);
 
 // ------- check-box
-export const getCheckBoxState = createSelector(getEditBlocksState, fromEditBlocks.getCheckBoxState);
+export const getCheckBoxState = createSelector(getEditedBlocksState, fromEditedBlocks.getCheckBoxState);
 
 export const getCheckBoxIds = createSelector(getCheckBoxState, fromCheckBox.getCheckBoxIds);
 export const getCheckBoxEntities = createSelector(getCheckBoxState, fromCheckBox.getCheckBoxEntities);
@@ -78,7 +78,7 @@ export const getCheckBoxBlocksValidityState = createSelector(getCheckBoxState, f
 export const getCheckBoxBlocksLoadingState = createSelector(getCheckBoxState, fromCheckBox.getCheckBoxBlocksLoadingState);
 
 // -------- dropdown
-export const getDropdownState = createSelector(getEditBlocksState, fromEditBlocks.getDropdownState);
+export const getDropdownState = createSelector(getEditedBlocksState, fromEditedBlocks.getDropdownState);
 
 export const getDropdownIds = createSelector(getDropdownState, fromDropdown.getDropdownIds);
 export const getDropdownEntities = createSelector(getDropdownState, fromDropdown.getDropdownEntities);
@@ -88,7 +88,7 @@ export const getDropdownBlocksValidityState = createSelector(getDropdownState, f
 export const getDropdownBlocksLoadingState = createSelector(getDropdownState, fromDropdown.getDropdownBlocksLoadingState);
 
 // ------ text-input
-export const getTextInputState = createSelector(getEditBlocksState, fromEditBlocks.getTextInputState);
+export const getTextInputState = createSelector(getEditedBlocksState, fromEditedBlocks.getTextInputState);
 
 export const getTextInputIds = createSelector(getTextInputState, fromTextInput.getTextInputIds);
 export const getTextInputEntities = createSelector(getTextInputState, fromTextInput.getTextInputEntities);
@@ -99,7 +99,7 @@ export const getTextInputBlocksLoadingState = createSelector(getTextInputState, 
 
 // -----------------
 // --------- generic
-export const getAllEditBlocksState = createSelector(
+export const getAllEditedBlocksState = createSelector(
   getAllCheckBox,
   getAllDropdown,
   getAllTextInput,
@@ -125,7 +125,7 @@ export const getUpdateBlocksInstanceState = createSelector(
   },
 );
 
-export const getAllEditBlocksValidityState = createSelector(
+export const getAllEditedBlocksValidityState = createSelector(
   getCheckBoxBlocksValidityState,
   getDropdownBlocksValidityState,
   getTextInputBlocksValidityState,

@@ -49,11 +49,11 @@ export class BlockListService {
       .catch(err => Observable.throw(err.json().error || "Server error"));
   }
 
-  getAllEditBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
-    return this.store$.select(fromDynamicBlockList.getAllEditBlocksState);
+  getAllEditedBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
+    return this.store$.select(fromDynamicBlockList.getAllEditedBlocksState);
   }
 
   getValiditySelector(module: string, instance: string, step: string): Observable<boolean> {
-    return this.store$.select(fromDynamicBlockList.getAllEditBlocksValidityState);
+    return this.store$.select(fromDynamicBlockList.getAllEditedBlocksValidityState);
   }
 }

@@ -29,7 +29,7 @@ import { Block } from "../models";
 export class ListEffects {
 
   constructor(protected actions$: Actions,
-              protected blocksList: BlockListService) {
+              protected blockList: BlockListService) {
   }
 
   @Effect() fetchBlocks$: Observable<Action> = this.actions$
@@ -37,7 +37,7 @@ export class ListEffects {
     .debounceTime(400)
     .map((action: FetchBlocks) => action.payload)
     .switchMap((params) => {
-      return this.blocksList.getBlocks(params.module, params.instance, params.step)
+      return this.blockList.getBlocks(params.module, params.instance, params.step)
         .mergeMap((blocks: Block[]) => {
           return [new FetchBlocksComplete(blocks)];
         })
@@ -49,7 +49,7 @@ export class ListEffects {
     .debounceTime(400)
     .map((action: UpdateBlocks) => action.payload)
     .switchMap((payload) => {
-      return this.blocksList.updateBlocks(payload.module, payload.instance, payload.step, payload.blocks)
+      return this.blockList.updateBlocks(payload.module, payload.instance, payload.step, payload.blocks)
         .mergeMap((result: boolean) => {
           return [
             new UpdateBlocksComplete(),

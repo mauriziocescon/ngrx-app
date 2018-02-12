@@ -5,11 +5,11 @@ import { DatePickerBlock } from "../models";
 
 import * as fromRoot from "../../../reducers";
 import { fromDynamicBlockList, Block } from "../../../dynamic-block-list/dynamic-block-list.module";
-import * as fromEditBlocks from "./blocks";
+import * as fromEditedBlocks from "./blocks";
 import * as fromDatePicker from "./blocks/date-picker/date-picker.reducer";
 
 export interface B2BlocksState {
-  editBlocks: fromEditBlocks.State;
+  editedBlocks: fromEditedBlocks.State;
 }
 
 export interface State extends fromRoot.State {
@@ -18,11 +18,11 @@ export interface State extends fromRoot.State {
 
 // -----------------
 // ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<fromEditBlocks.State>>("B2BlocksEditBlocksReducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>("B2EditedBlocksReducers");
 
 export const getReducers = () => {
   return {
-    editBlocks: combineReducers(fromEditBlocks.reducers),
+    editedBlocks: combineReducers(fromEditedBlocks.reducers),
   };
 };
 
@@ -36,11 +36,11 @@ export const getB2BlocksState = createFeatureSelector<B2BlocksState>("b2Blocks")
 
 // -----------------
 // ----- edit blocks
-export const getEditBlocksState = createSelector(getB2BlocksState, state => state.editBlocks);
+export const getEditedBlocksState = createSelector(getB2BlocksState, state => state.editedBlocks);
 
 // -----------------
 // ------ date-picker
-export const getDatePickerState = createSelector(getEditBlocksState, fromEditBlocks.getDatePickerState);
+export const getDatePickerState = createSelector(getEditedBlocksState, fromEditedBlocks.getDatePickerState);
 
 export const getDatePickerIds = createSelector(getDatePickerState, fromDatePicker.getDatePickerIds);
 export const getDatePickerEntities = createSelector(getDatePickerState, fromDatePicker.getDatePickerEntities);
@@ -51,8 +51,8 @@ export const getDatePickerBlocksLoadingState = createSelector(getDatePickerState
 
 // -----------------
 // --------- generic
-export const getAllEditBlocksState = createSelector(
-  fromDynamicBlockList.getAllEditBlocksState,
+export const getAllEditedBlocksState = createSelector(
+  fromDynamicBlockList.getAllEditedBlocksState,
   getAllDatePicker,
   (blocks: Block[], datePickerBlocks: DatePickerBlock[]) => {
     return [
@@ -62,8 +62,8 @@ export const getAllEditBlocksState = createSelector(
   },
 );
 
-export const getAllEditBlocksValidityState = createSelector(
-  fromDynamicBlockList.getAllEditBlocksValidityState,
+export const getAllEditedBlocksValidityState = createSelector(
+  fromDynamicBlockList.getAllEditedBlocksValidityState,
   getDatePickerBlocksValidityState,
   (validity: boolean, datePickerValidity: boolean) => {
     return validity && datePickerValidity;

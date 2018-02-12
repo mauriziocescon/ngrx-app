@@ -39,7 +39,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
 
   syncRequired$: Observable<boolean>;
   formValidity$: Observable<boolean>;
-  editBlocks: Observable<Block[]>;
+  editedBlocks: Observable<Block[]>;
 
   paramMapSubscription: Subscription;
   syncRequired$Subscription: Subscription;
@@ -47,7 +47,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   constructor(protected store$: Store<fromDynamicBlockList.State>,
               protected route: ActivatedRoute,
               protected logger: NGXLogger,
-              protected blocksList: BlockListService) {
+              protected blockList: BlockListService) {
     this.blocks$ = this.store$.select(fromDynamicBlockList.getFetchedBlocksState);
     this.loading$ = this.store$.select(fromDynamicBlockList.getFetchLoadingState);
     this.error$ = this.store$.select(fromDynamicBlockList.getFetchErrorState);
@@ -64,8 +64,8 @@ export class ListContainerComponent implements OnInit, OnDestroy {
     this.paramMapSubscription = this.route.paramMap
       .subscribe((paramMap: ParamMap) => {
         const params = this.getRouteParams();
-        this.formValidity$ = this.blocksList.getValiditySelector(params.module, params.instance, params.step);
-        this.editBlocks = this.blocksList.getAllEditBlocksSelector(params.module, params.instance, params.step);
+        this.formValidity$ = this.blockList.getValiditySelector(params.module, params.instance, params.step);
+        this.editedBlocks = this.blockList.getAllEditedBlocksSelector(params.module, params.instance, params.step);
 
         if (params.module && params.instance && params.step) {
           this.store$.dispatch(new list.ClearBlocks());
@@ -77,7 +77,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   protected subscribeToSyncing(): void {
     this.syncRequired$Subscription = this.syncRequired$
       .debounceTime(1000)
-      .withLatestFrom(this.editBlocks)
+      .withLatestFrom(this.editedBlocks)
       .subscribe(([syncRequired, blocks]) => {
         if (syncRequired) {
           const payload = {

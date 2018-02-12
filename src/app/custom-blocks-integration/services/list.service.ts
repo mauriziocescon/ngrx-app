@@ -27,21 +27,21 @@ export class CustomBlockListService extends BlockListService {
     );
   }
 
-  getAllEditBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
+  getAllEditedBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
     if (module === Modules.b1) {
-      return this.store$.select(fromB1.getAllEditBlocksState);
+      return this.store$.select(fromB1.getAllEditedBlocksState);
     } else if (module === Modules.b2) {
-      return this.store$.select(fromB2.getAllEditBlocksState);
+      return this.store$.select(fromB2.getAllEditedBlocksState);
     } else {
-      super.getAllEditBlocksSelector(module, instance, step);
+      super.getAllEditedBlocksSelector(module, instance, step);
     }
   }
 
   getValiditySelector(module: string, instance: string, step: string): Observable<boolean> {
     if (module === Modules.b1) {
-      return this.store$.select(fromB1.getAllEditBlocksValidityState);
+      return this.store$.select(fromB1.getAllEditedBlocksValidityState);
     } else if (module === Modules.b2) {
-      return this.store$.select(fromB2.getAllEditBlocksValidityState);
+      return this.store$.select(fromB2.getAllEditedBlocksValidityState);
     } else {
       super.getValiditySelector(module, instance, step);
     }
