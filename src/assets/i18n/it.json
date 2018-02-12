@@ -9,7 +9,8 @@
       "LOAD_COMPLETED": "Caricamento completato",
       "LOADING": "Caricamento...",
       "NO_RESULT": "Vuoto",
-      "RETRY": "Riprova"
+      "RETRY": "Riprova",
+      "SHOW": "Visualizza"
     },
     "LIST": {
       "CANCEL": "Annulla",

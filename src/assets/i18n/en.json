@@ -9,7 +9,8 @@
       "LOAD_COMPLETED": "Loading completed",
       "LOADING": "Loading...",
       "NO_RESULT": "Empty",
-      "RETRY": "Retry"
+      "RETRY": "Retry",
+      "SHOW": "Show"
     },
     "LIST": {
       "CANCEL": "Cancel",
