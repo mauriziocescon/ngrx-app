@@ -27,7 +27,7 @@ import { BlockListService } from "../../services";
       [error]="error$ | async"
       (reloadList)="reloadList()"
       [formValidity]="formValidity$ | async"
-      [syncing]="syncRequired$"
+      [syncing]="syncRequired$ | async"
       (nextStep)="nextStep()"
       (reset)="reset()">
     </cp-list>`,
