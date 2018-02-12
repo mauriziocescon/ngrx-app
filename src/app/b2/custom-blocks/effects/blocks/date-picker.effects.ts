@@ -3,7 +3,6 @@ import { Action } from "@ngrx/store";
 import { Effect, Actions } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
-import { empty } from "rxjs/observable/empty";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 
@@ -11,6 +10,7 @@ import {
   Block,
   FetchBlocksComplete,
   ListActionTypes,
+  SyncRequired,
 } from "../../../../dynamic-block-list/dynamic-block-list.module";
 
 import { DatePickerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/date-picker.actions";
@@ -48,6 +48,6 @@ export class DatePickerEffects {
       if (payload.notify) {
         this.datePickerService.blockDidChange(payload.block);
       }
-      return empty();
+      return [new SyncRequired()];
     });
 }

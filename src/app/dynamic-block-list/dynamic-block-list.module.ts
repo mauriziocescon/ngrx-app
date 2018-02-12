@@ -74,6 +74,11 @@ export {
   ListActionTypes,
 } from "./actions/list.actions";
 
+export {
+  SyncRequired,
+  SyncActionTypes,
+} from "./actions/sync.actions";
+
 export { fromDynamicBlockList };
 
 export * from "./models";
