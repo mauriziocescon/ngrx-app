@@ -10,11 +10,12 @@ import { Block } from "../../models";
 export class ListComponent {
   @Input() blocks: Block[];
   @Input() loading: boolean;
-  @Input() error: string;
+  @Input() fetchError: string;
   @Output() reloadList: EventEmitter<void>;
 
   @Input() formValidity: boolean;
   @Input() syncing: boolean;
+  @Input() syncError: string;
   @Output() nextStep: EventEmitter<void>;
   @Output() reset: EventEmitter<void>;
 

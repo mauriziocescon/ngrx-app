@@ -26,29 +26,35 @@ import { BlockUtilsService } from "../../services";
   template: `
     <cp-list
       [blocks]="blocks$ | async"
-      [loading]="loading$ | async"
-      [error]="error$ | async"
+      [loading]="fetchLoading$ | async"
+      [fetchError]="fetchError$ | async"
       (reloadList)="reloadList()"
       [formValidity]="formValidity$ | async"
       [syncing]="syncRequired$ | async"
+      [syncError]="syncError$ | async"
       (nextStep)="nextStep()"
       (reset)="reset()">
     </cp-list>`,
 })
 export class ListContainerComponent implements OnInit, OnDestroy {
   blocks$: Observable<Block[]>;
-  loading$: Observable<boolean>;
-  error$: Observable<string>;
+  fetchLoading$: Observable<boolean>;
+  fetchError$: Observable<string>;
 
   syncRequired$: Observable<boolean>;
   syncRequiredWithTimestamp$: Observable<{ syncRequired: boolean, timestamp: number }>;
+  syncError$: Observable<string>;
+
   formValidity$: Observable<boolean>;
   editedBlocks: Observable<Block[]>;
 
+  protected mAlertFetchErrorId: string;
+  protected mAlertSyncErrorId: string;
+
   protected paramMapSubscription: Subscription;
   protected syncRequiredWithTimestampSubscription: Subscription;
-  protected alertId: string;
-  protected modalAlertResultSubscription: Subscription;
+  protected modalAlertFetchErrorSubscription: Subscription;
+  protected modalAlertSyncErrorSubscription: Subscription;
 
   constructor(protected store$: Store<fromDynamicBlockList.State>,
               protected route: ActivatedRoute,
@@ -56,17 +62,23 @@ export class ListContainerComponent implements OnInit, OnDestroy {
               protected logger: NGXLogger,
               protected blockUtils: BlockUtilsService) {
     this.blocks$ = this.store$.select(fromDynamicBlockList.getFetchedBlocksState);
-    this.loading$ = this.store$.select(fromDynamicBlockList.getFetchLoadingState);
-    this.error$ = this.store$.select(fromDynamicBlockList.getFetchErrorState);
+    this.fetchLoading$ = this.store$.select(fromDynamicBlockList.getFetchLoadingState);
+    this.fetchError$ = this.store$.select(fromDynamicBlockList.getFetchErrorState);
+
+    this.mAlertFetchErrorId = "1";
+    this.mAlertSyncErrorId = "2";
 
     this.syncRequired$ = this.store$.select(fromDynamicBlockList.isSynchronizationRequiredState);
     this.syncRequiredWithTimestamp$ = this.store$.select(fromDynamicBlockList.isSynchronizationRequiredWithTimestampState);
+
+    this.syncError$ = this.store$.select(fromDynamicBlockList.getUpdateErrorState);
   }
 
   ngOnInit(): void {
     this.subscribeToParamMap();
     this.subscribeToSyncing();
-    this.subscribeToErrors();
+    this.subscribeToFetchErrors();
+    this.subscribeToSynchErrors();
   }
 
   protected subscribeToParamMap(): void {
@@ -87,7 +99,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
     this.syncRequiredWithTimestampSubscription = this.syncRequiredWithTimestamp$
       .withLatestFrom(this.editedBlocks)
       .subscribe(([sync, blocks]) => {
-        if (sync.syncRequired) {
+        if (sync.syncRequired === true) {
           const payload = {
             ...this.getRouteParams(),
             blocks: blocks,
@@ -97,8 +109,8 @@ export class ListContainerComponent implements OnInit, OnDestroy {
       });
   }
 
-  subscribeToErrors(): void {
-    this.modalAlertResultSubscription = this.error$
+  subscribeToFetchErrors(): void {
+    this.modalAlertFetchErrorSubscription = this.fetchError$
       .subscribe((err) => {
         if (err) {
           this.translate.get([
@@ -107,7 +119,28 @@ export class ListContainerComponent implements OnInit, OnDestroy {
           ])
             .subscribe((translations: any) => {
               const modalAlert: ModalAlert = {
-                id: this.alertId,
+                id: this.mAlertFetchErrorId,
+                title: translations["CONTAINER.LIST.ALERT_TITLE"],
+                message: err,
+                buttonLabel: translations["CONTAINER.LIST.ALERT_BUTTON"],
+              };
+              this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
+            });
+        }
+      });
+  }
+
+  subscribeToSynchErrors(): void {
+    this.modalAlertSyncErrorSubscription = this.syncError$
+      .subscribe((err) => {
+        if (err) {
+          this.translate.get([
+            "CONTAINER.LIST.ALERT_BUTTON",
+            "CONTAINER.LIST.ALERT_TITLE",
+          ])
+            .subscribe((translations: any) => {
+              const modalAlert: ModalAlert = {
+                id: this.mAlertSyncErrorId,
                 title: translations["CONTAINER.LIST.ALERT_TITLE"],
                 message: err,
                 buttonLabel: translations["CONTAINER.LIST.ALERT_BUTTON"],
@@ -164,8 +197,11 @@ export class ListContainerComponent implements OnInit, OnDestroy {
     if (this.syncRequiredWithTimestampSubscription) {
       this.syncRequiredWithTimestampSubscription.unsubscribe();
     }
-    if (this.modalAlertResultSubscription) {
-      this.modalAlertResultSubscription.unsubscribe();
+    if (this.modalAlertFetchErrorSubscription) {
+      this.modalAlertFetchErrorSubscription.unsubscribe();
+    }
+    if (this.modalAlertSyncErrorSubscription) {
+      this.modalAlertSyncErrorSubscription.unsubscribe();
     }
   }
 }

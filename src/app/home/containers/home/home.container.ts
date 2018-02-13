@@ -34,7 +34,7 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
   error$: Observable<string>;
 
   protected alertId: string;
-  protected modalAlertResultSubscription: Subscription;
+  protected modalAlertSubscription: Subscription;
 
   constructor(protected store$: Store<fromHome.State>,
               protected router: Router,
@@ -48,7 +48,7 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.reloadList();
-    this.subscribeToErrors();
+    this.subscribeToFetchErrors();
   }
 
   reloadList(): void {
@@ -59,8 +59,8 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
     this.router.navigate(["/dyn-block-list", instance.module, instance.instance, instance.step]);
   }
 
-  subscribeToErrors(): void {
-    this.modalAlertResultSubscription = this.error$
+  subscribeToFetchErrors(): void {
+    this.modalAlertSubscription = this.error$
       .subscribe((err) => {
         if (err) {
           this.translate.get([
@@ -85,8 +85,8 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
   }
 
   protected unsubscribeToModalConfirmerResult(): void {
-    if (this.modalAlertResultSubscription) {
-      this.modalAlertResultSubscription.unsubscribe();
+    if (this.modalAlertSubscription) {
+      this.modalAlertSubscription.unsubscribe();
     }
   }
 }

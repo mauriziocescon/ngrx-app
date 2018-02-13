@@ -1,6 +1,5 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders, LOCALE_ID } from "@angular/core";
 import { CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from "@angular/common";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { SharedModule } from "../shared/shared.module";
 
@@ -23,8 +22,6 @@ import { AppLanguageService } from "./services/app-language.service";
 import { LocalStorageService } from "./services/local-storage.service";
 import { UIUtilitiesService } from "./services/ui-utilities.service";
 import { UtilitiesService } from "./services/utilities.service";
-
-import { JsonServerInterceptor } from "./interceptors/json-server.interceptor";
 
 export function createLanguageIdLoader(appLanguageService: AppLanguageService) {
   return appLanguageService.getLanguageId();
@@ -74,11 +71,6 @@ export class CoreModule {
           useFactory: (createLanguageIdLoader),
           deps: [AppLanguageService]
         },
-        // {
-        //   provide: HTTP_INTERCEPTORS,
-        //   useClass: JsonServerInterceptor,
-        //   multi: true,
-        // },
       ]
     };
   }
