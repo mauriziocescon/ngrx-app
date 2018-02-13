@@ -59,6 +59,10 @@
       "CONFIRMATION_TITLE": "Conferma",
       "CONFIRMATION_YES_BUTTON": "Si"
     },
+    "LIST": {
+      "ALERT_BUTTON": "Ok",
+      "ALERT_TITLE": "Alert"
+    },
     "HOME": {
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Alert"

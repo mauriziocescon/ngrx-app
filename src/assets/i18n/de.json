@@ -59,6 +59,10 @@
       "CONFIRMATION_TITLE": "*** Confirmer ***",
       "CONFIRMATION_YES_BUTTON": "*** Yes ***"
     },
+    "LIST": {
+      "ALERT_BUTTON": "*** Ok ***",
+      "ALERT_TITLE": "*** Alert ***"
+    },
     "HOME": {
       "ALERT_BUTTON": "*** Ok ***",
       "ALERT_TITLE": "*** Alert ***"

@@ -7,6 +7,7 @@ import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/withLatestFrom";
 
+import { TranslateService } from "@ngx-translate/core";
 import { NGXLogger } from "ngx-logger";
 
 import * as list from "../../actions/list.actions";
@@ -16,6 +17,7 @@ import { Block, DynBlocksRouteParams } from "../../models";
 import * as fromDynamicBlockList from "../../reducers";
 
 import { BlockListService } from "../../services";
+import { ModalAlert, modalAlertsActions } from "../../../core/core.module";
 
 @Component({
   selector: "ct-list",
@@ -42,11 +44,14 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   formValidity$: Observable<boolean>;
   editedBlocks: Observable<Block[]>;
 
-  paramMapSubscription: Subscription;
-  syncRequiredWithTimestampSubscription: Subscription;
+  protected paramMapSubscription: Subscription;
+  protected syncRequiredWithTimestampSubscription: Subscription;
+  protected alertId: string;
+  protected modalAlertResultSubscription: Subscription;
 
   constructor(protected store$: Store<fromDynamicBlockList.State>,
               protected route: ActivatedRoute,
+              protected translate: TranslateService,
               protected logger: NGXLogger,
               protected blockList: BlockListService) {
     this.blocks$ = this.store$.select(fromDynamicBlockList.getFetchedBlocksState);
@@ -60,6 +65,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscribeToParamMap();
     this.subscribeToSyncing();
+    this.subscribeToErrors();
   }
 
   protected subscribeToParamMap(): void {
@@ -86,6 +92,27 @@ export class ListContainerComponent implements OnInit, OnDestroy {
             blocks: blocks,
           };
           this.store$.dispatch(new list.UpdateBlocks(payload));
+        }
+      });
+  }
+
+  subscribeToErrors(): void {
+    this.modalAlertResultSubscription = this.error$
+      .subscribe((err) => {
+        if (err) {
+          this.translate.get([
+            "CONTAINER.LIST.ALERT_BUTTON",
+            "CONTAINER.LIST.ALERT_TITLE",
+          ])
+            .subscribe((translations: any) => {
+              const modalAlert: ModalAlert = {
+                id: this.alertId,
+                title: translations["CONTAINER.LIST.ALERT_TITLE"],
+                message: err,
+                buttonLabel: translations["CONTAINER.LIST.ALERT_BUTTON"],
+              };
+              this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
+            });
         }
       });
   }
@@ -133,9 +160,11 @@ export class ListContainerComponent implements OnInit, OnDestroy {
     if (this.paramMapSubscription) {
       this.paramMapSubscription.unsubscribe();
     }
-
     if (this.syncRequiredWithTimestampSubscription) {
       this.syncRequiredWithTimestampSubscription.unsubscribe();
+    }
+    if (this.modalAlertResultSubscription) {
+      this.modalAlertResultSubscription.unsubscribe();
     }
   }
 }
