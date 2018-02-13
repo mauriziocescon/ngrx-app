@@ -48,6 +48,6 @@ export class DatePickerEffects {
       if (payload.notify) {
         this.datePickerService.blockDidChange(payload.block);
       }
-      return [new SyncRequired()];
+      return [new SyncRequired(Date.now())];
     });
 }

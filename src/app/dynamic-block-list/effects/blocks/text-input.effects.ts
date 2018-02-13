@@ -43,6 +43,6 @@ export class TextInputEffect {
       if (payload.notify) {
         this.textInputService.blockDidChange(payload.block);
       }
-      return [new SyncRequired()];
+      return [new SyncRequired(Date.now())];
     });
 }

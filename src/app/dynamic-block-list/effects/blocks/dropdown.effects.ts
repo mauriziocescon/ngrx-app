@@ -43,6 +43,6 @@ export class DropdownEffect {
       if (payload.notify) {
         this.dropdownService.blockDidChange(payload.block);
       }
-      return [new SyncRequired()];
+      return [new SyncRequired(Date.now())];
     });
 }

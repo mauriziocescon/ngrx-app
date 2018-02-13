@@ -8,7 +8,6 @@ import { from } from "rxjs/observable/from";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/map";
-import "rxjs/add/operator/mergeMap";
 import "rxjs/add/operator/switchMap";
 
 import { BlockListService } from "../services";
@@ -38,7 +37,7 @@ export class ListEffects {
     .map((action: FetchBlocks) => action.payload)
     .switchMap((params) => {
       return this.blockList.getBlocks(params.module, params.instance, params.step)
-        .mergeMap((blocks: Block[]) => {
+        .switchMap((blocks: Block[]) => {
           return [new FetchBlocksComplete(blocks)];
         })
         .catch(err => of(new FetchBlocksError(err)));
@@ -46,11 +45,11 @@ export class ListEffects {
 
   @Effect() updateBlocks$: Observable<Action> = this.actions$
     .ofType(ListActionTypes.UPDATE_BLOCKS)
-    .debounceTime(2500)
+    .debounceTime(5000)
     .map((action: UpdateBlocks) => action.payload)
     .switchMap((payload) => {
       return this.blockList.updateBlocks(payload.module, payload.instance, payload.step, payload.blocks)
-        .mergeMap((result: boolean) => {
+        .switchMap((result: boolean) => {
           return [
             new UpdateBlocksComplete(),
             new Synchronized(),

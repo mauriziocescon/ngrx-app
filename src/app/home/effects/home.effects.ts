@@ -7,7 +7,6 @@ import { of } from "rxjs/observable/of";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/map";
-import "rxjs/add/operator/mergeMap";
 import "rxjs/add/operator/switchMap";
 
 import { HomeService } from "../services";
@@ -32,7 +31,7 @@ export class HomeEffects {
     .debounceTime(400)
     .switchMap(() => {
       return this.homeService.getInstances()
-        .mergeMap((instances: Instance[]) => {
+        .switchMap((instances: Instance[]) => {
           return [new FetchInstancesComplete(instances)];
         })
         .catch(err => of(new FetchInstancesError(err)));

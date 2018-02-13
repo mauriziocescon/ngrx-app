@@ -7,6 +7,9 @@ export enum SyncActionTypes {
 
 export class SyncRequired implements Action {
   readonly type = SyncActionTypes.SYNC_REQUIRED;
+
+  constructor(public payload: number) {
+  }
 }
 
 export class Synchronized implements Action {

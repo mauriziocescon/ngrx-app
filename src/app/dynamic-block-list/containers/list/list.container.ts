@@ -38,11 +38,12 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   error$: Observable<string>;
 
   syncRequired$: Observable<boolean>;
+  syncRequiredWithTimestamp$: Observable<{ syncRequired: boolean, timestamp: number }>;
   formValidity$: Observable<boolean>;
   editedBlocks: Observable<Block[]>;
 
   paramMapSubscription: Subscription;
-  syncRequiredSubscription: Subscription;
+  syncRequiredWithTimestampSubscription: Subscription;
 
   constructor(protected store$: Store<fromDynamicBlockList.State>,
               protected route: ActivatedRoute,
@@ -53,6 +54,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
     this.error$ = this.store$.select(fromDynamicBlockList.getFetchErrorState);
 
     this.syncRequired$ = this.store$.select(fromDynamicBlockList.isSynchronizationRequiredState);
+    this.syncRequiredWithTimestamp$ = this.store$.select(fromDynamicBlockList.isSynchronizationRequiredWithTimestampState);
   }
 
   ngOnInit(): void {
@@ -75,10 +77,10 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   }
 
   protected subscribeToSyncing(): void {
-    this.syncRequiredSubscription = this.syncRequired$
+    this.syncRequiredWithTimestampSubscription = this.syncRequiredWithTimestamp$
       .withLatestFrom(this.editedBlocks)
-      .subscribe(([syncRequired, blocks]) => {
-        if (syncRequired) {
+      .subscribe(([sync, blocks]) => {
+        if (sync.syncRequired) {
           const payload = {
             ...this.getRouteParams(),
             blocks: blocks,
@@ -132,8 +134,8 @@ export class ListContainerComponent implements OnInit, OnDestroy {
       this.paramMapSubscription.unsubscribe();
     }
 
-    if (this.syncRequiredSubscription) {
-      this.syncRequiredSubscription.unsubscribe();
+    if (this.syncRequiredWithTimestampSubscription) {
+      this.syncRequiredWithTimestampSubscription.unsubscribe();
     }
   }
 }

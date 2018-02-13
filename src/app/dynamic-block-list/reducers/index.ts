@@ -62,6 +62,7 @@ export const getUpdateErrorState = createSelector(getListState, fromList.getUpda
 export const getServerSyncState = createSelector(getDynamicBlockListState, state => state.serverSync);
 
 export const isSynchronizationRequiredState = createSelector(getServerSyncState, fromSync.isSynchronizationRequiredState);
+export const isSynchronizationRequiredWithTimestampState = createSelector(getServerSyncState, fromSync.isSynchronizationRequiredWithTimestampState);
 
 // -----------------
 // ----- edit blocks

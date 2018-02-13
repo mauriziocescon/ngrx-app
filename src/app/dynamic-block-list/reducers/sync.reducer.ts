@@ -1,11 +1,13 @@
 import { SyncActionTypes, SyncActions } from "../actions/sync.actions";
 
 export interface State {
-  requireSync: boolean;
+  syncRequired: boolean;
+  timestamp: number;
 }
 
 const initialState: State = {
-  requireSync: false,
+  syncRequired: false,
+  timestamp: undefined,
 };
 
 export function reducer(state = initialState, action: SyncActions): State {
@@ -13,13 +15,15 @@ export function reducer(state = initialState, action: SyncActions): State {
     case SyncActionTypes.SYNC_REQUIRED: {
       return {
         ...state,
-        requireSync: true,
+        syncRequired: true,
+        timestamp: action.payload,
       };
     }
     case SyncActionTypes.SYNCHRONIZED: {
       return {
         ...state,
-        requireSync: false,
+        syncRequired: false,
+        timestamp: undefined,
       };
     }
     default: {
@@ -28,4 +32,5 @@ export function reducer(state = initialState, action: SyncActions): State {
   }
 }
 
-export const isSynchronizationRequiredState = (state: State) => state.requireSync;
+export const isSynchronizationRequiredState = (state: State) => state.syncRequired;
+export const isSynchronizationRequiredWithTimestampState = (state: State) => state;

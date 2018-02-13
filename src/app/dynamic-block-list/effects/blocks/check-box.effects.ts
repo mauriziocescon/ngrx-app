@@ -43,6 +43,6 @@ export class CheckBoxEffect {
       if (payload.notify) {
         this.checkBoxService.blockDidChange(payload.block);
       }
-      return [new SyncRequired()];
+      return [new SyncRequired(Date.now())];
     });
 }
