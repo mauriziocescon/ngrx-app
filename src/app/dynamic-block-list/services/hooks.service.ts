@@ -76,7 +76,7 @@ export class BlockHooksService {
         try {
           this.hooks[block.hooks.checkBoxBlockDidLoad](block, this.blocksMethods());
         } catch (e) {
-          this.logger.error(e);
+          this.logger.error(e.toString());
         }
       });
   }
@@ -87,7 +87,7 @@ export class BlockHooksService {
         try {
           this.hooks[block.hooks.dropdownBlockDidLoad](block, this.blocksMethods());
         } catch (e) {
-          this.logger.error(e);
+          this.logger.error(e.toString());
         }
       });
   }
@@ -98,7 +98,7 @@ export class BlockHooksService {
         try {
           this.hooks[block.hooks.textInputBlockDidLoad](block, this.blocksMethods());
         } catch (e) {
-          this.logger.error(e);
+          this.logger.error(e.toString());
         }
       });
   }
@@ -109,7 +109,7 @@ export class BlockHooksService {
         try {
           this.hooks[block.hooks.checkBoxBlockDidChange](block, this.blocksMethods());
         } catch (e) {
-          this.logger.error(e);
+          this.logger.error(e.toString());
         }
       });
   }
@@ -120,7 +120,7 @@ export class BlockHooksService {
         try {
           this.hooks[block.hooks.dropdownBlockDidChange](block, this.blocksMethods());
         } catch (e) {
-          this.logger.error(e);
+          this.logger.error(e.toString());
         }
       });
   }
@@ -131,7 +131,7 @@ export class BlockHooksService {
         try {
           this.hooks[block.hooks.textInputBlockDidChange](block, this.blocksMethods());
         } catch (e) {
-          this.logger.error(e);
+          this.logger.error(e.toString());
         }
       });
   }

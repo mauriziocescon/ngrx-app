@@ -49,7 +49,7 @@ export class B2BlockHooksService {
         try {
           this.hooks[block.hooks.datePickerBlockDidLoad](block, this.blocksMethods());
         } catch (e) {
-          this.logger.error(e);
+          this.logger.error(e.toString());
         }
       });
   }
@@ -60,7 +60,7 @@ export class B2BlockHooksService {
         try {
           this.hooks[block.hooks.datePickerBlockDidChange](block, this.blocksMethods());
         } catch (e) {
-          this.logger.error(e);
+          this.logger.error(e.toString());
         }
       });
   }

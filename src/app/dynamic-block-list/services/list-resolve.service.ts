@@ -12,9 +12,12 @@ import "rxjs/add/operator/switchMap";
 import { TranslateService } from "@ngx-translate/core";
 import { NGXLogger } from "ngx-logger";
 
-import { AppConstantsService, ModalAlert, modalAlertsActions } from "./core/core.module";
+import { AppConstantsService, ModalAlert, modalAlertsActions } from "../../core/core.module";
 
-import { BlockHooksService, BlockUtilsService, BlocksHooks } from "./dynamic-block-list/dynamic-block-list.module";
+import { BlocksHooks } from "../models";
+
+import { BlockHooksService } from "./hooks.service";
+import { BlockUtilsService } from "./utils.service";
 
 @Injectable()
 export class RulesResolve implements Resolve<BlocksHooks> {

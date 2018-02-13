@@ -49,7 +49,7 @@ export class B1BlockHooksService {
         try {
           this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
         } catch (e) {
-          this.logger.error(e);
+          this.logger.error(e.toString());
         }
       });
   }
@@ -60,7 +60,7 @@ export class B1BlockHooksService {
         try {
           this.hooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
         } catch (e) {
-          this.logger.error(e);
+          this.logger.error(e.toString());
         }
       });
   }

@@ -1,5 +1,6 @@
 import { BlockListService } from "./list.service";
 import { ListGuard } from "./list-guard.service";
+import { RulesResolve } from "./list-resolve.service";
 import { BlockHooksService } from "./hooks.service";
 import { BlockUtilsService } from "./utils.service";
 
@@ -11,6 +12,7 @@ export const SERVICES = [
   BlockHooksService,
   BlockListService,
   ListGuard,
+  RulesResolve,
   BlockUtilsService,
 
   CheckBoxService,
@@ -22,6 +24,7 @@ export {
   BlockHooksService,
   BlockListService,
   ListGuard,
+  RulesResolve,
   BlockUtilsService,
 
   CheckBoxService,

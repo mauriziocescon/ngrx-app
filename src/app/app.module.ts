@@ -25,8 +25,6 @@ import { CustomBlocksIntegrationModule } from "./b-integration";
 import { B1BlocksModule } from "./b1";
 import { B2BlocksModule } from "./b2";
 
-import { RulesResolve } from "./dyn-block-list.resolve";
-
 import { AppContainerComponent } from "./app.container";
 
 import { environment } from "../environments/environment";
@@ -107,7 +105,6 @@ export function createTranslateLoader(http: HttpClient) {
      */
     {provide: RouterStateSerializer, useClass: CustomRouterStateSerializer},
     reducerProvider,
-    RulesResolve,
   ],
   bootstrap: [
     AppContainerComponent,

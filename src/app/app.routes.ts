@@ -1,8 +1,7 @@
 import { Routes } from "@angular/router";
 
 import { HomeContainerComponent } from "./home/home.module";
-import { ListContainerComponent, ListGuard } from "./dynamic-block-list/dynamic-block-list.module";
-import { RulesResolve } from "./dyn-block-list.resolve";
+import { ListContainerComponent, ListGuard, RulesResolve } from "./dynamic-block-list/dynamic-block-list.module";
 
 export const appRoutes: Routes = [
   {
