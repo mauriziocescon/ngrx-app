@@ -10,24 +10,24 @@ export const arrayOfBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBl
 
 export const arrayOfCheckBoxBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock }) => {
   return arrayOfBlocksFromBlocksObject(blocks).filter((block: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock) => {
-    return block.type = B1BlockType.CheckBox;
+    return block.type === B1BlockType.CheckBox;
   });
 };
 
 export const arrayOfDropdownBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock }) => {
   return arrayOfBlocksFromBlocksObject(blocks).filter((block: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock) => {
-    return block.type = B1BlockType.Dropdown;
+    return block.type === B1BlockType.Dropdown;
   });
 };
 
 export const arrayOfTextInputBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock }) => {
   return arrayOfBlocksFromBlocksObject(blocks).filter((block: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock) => {
-    return block.type = B1BlockType.TextInput;
+    return block.type === B1BlockType.TextInput;
   });
 };
 
 export const arrayOfCheckBoxConfirmerBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock }) => {
   return arrayOfBlocksFromBlocksObject(blocks).filter((block: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock) => {
-    return block.type = B1BlockType.CheckBoxConfirmer;
+    return block.type === B1BlockType.CheckBoxConfirmer;
   });
 };

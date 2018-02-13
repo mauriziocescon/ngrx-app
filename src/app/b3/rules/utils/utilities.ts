@@ -9,18 +9,18 @@ export const arrayOfBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBl
 
 export const arrayOfCheckBoxBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock }) => {
   return arrayOfBlocksFromBlocksObject(blocks).filter((block: CheckBoxBlock | DropdownBlock | TextInputBlock) => {
-    return block.type = BlockType.CheckBox;
+    return block.type === BlockType.CheckBox;
   });
 };
 
 export const arrayOfDropdownBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock }) => {
   return arrayOfBlocksFromBlocksObject(blocks).filter((block: CheckBoxBlock | DropdownBlock | TextInputBlock) => {
-    return block.type = BlockType.Dropdown;
+    return block.type === BlockType.Dropdown;
   });
 };
 
 export const arrayOfTextInputBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock }) => {
   return arrayOfBlocksFromBlocksObject(blocks).filter((block: CheckBoxBlock | DropdownBlock | TextInputBlock) => {
-    return block.type = BlockType.TextInput;
+    return block.type === BlockType.TextInput;
   });
 };
