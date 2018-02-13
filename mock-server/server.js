@@ -10,6 +10,7 @@ const middlewares = jsonServer.defaults({
 });
 
 const utils = require("./utils");
+const dbUrl = "./mock-server/db.json";
 
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
@@ -31,7 +32,7 @@ app.use((req, res, next) => {
 // Simulate server side errors
 app.use((req, res, next) => {
   const randomOutcome = Math.random();
-  if (randomOutcome < 0.20 && req.path.startsWith("/api/")) {
+  if (randomOutcome < 0.01 && req.path.startsWith("/api/")) {
     const choice = Math.random();
 
     if (choice < 0.11) {
@@ -162,9 +163,14 @@ app.post("/api/blocks", (req, res) => {
     instance.blocks = req.body.blocks.sort((b1, b2) => {
       return b1.id - b2.id;
     });
-    utils.deleteDb();
-    utils.saveDb(db);
-    return res.status(200).jsonp(true);
+    utils.saveDb(dbUrl, db, (err) => {
+      if (err) {
+        return res.status(500).jsonp({
+          error: err,
+        });
+      }
+      return res.status(200).jsonp(true);
+    });
   } else {
     return res.status(400).jsonp({
       error: "Bad Request",
