@@ -6,8 +6,6 @@
       "SELECT_LANGUAGE": "Select the language"
     },
     "HOME": {
-      "ALERT_BUTTON": "Ok",
-      "ALERT_TITLE": "Alert",
       "LOAD_COMPLETED": "Loading completed",
       "LOADING": "Loading...",
       "NO_RESULT": "Empty",
@@ -60,6 +58,10 @@
       "CONFIRMATION_NO_BUTTON": "No",
       "CONFIRMATION_TITLE": "Confirmer",
       "CONFIRMATION_YES_BUTTON": "Yes"
+    },
+    "HOME": {
+      "ALERT_BUTTON": "Ok",
+      "ALERT_TITLE": "Alert"
     }
   }
 }
