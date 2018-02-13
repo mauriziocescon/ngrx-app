@@ -1,16 +1,18 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from "@angular/router";
+import { Store } from "@ngrx/store";
 
-import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import { Observable } from "rxjs/Observable";
+import { empty } from "rxjs/observable/empty";
 import { of } from "rxjs/observable/of";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/switchMap";
 
+import { TranslateService } from "@ngx-translate/core";
 import { NGXLogger } from "ngx-logger";
 
-import { AppConstantsService } from "./core/core.module";
+import { AppConstantsService, ModalAlert, modalAlertsActions } from "./core/core.module";
 
 import { BlockHooksService, BlocksHooks } from "./dynamic-block-list/dynamic-block-list.module";
 
@@ -18,11 +20,16 @@ import * as setOfRules from "./custom-rules-integration";
 
 @Injectable()
 export class RulesResolve implements Resolve<BlocksHooks> {
+  protected alertId: string;
 
-  constructor(protected http: HttpClient,
+  constructor(protected store$: Store<any>,
+              protected http: HttpClient,
+              protected router: Router,
+              protected translate: TranslateService,
               protected logger: NGXLogger,
               protected appConstants: AppConstantsService,
               protected blockHooks: BlockHooksService) {
+    this.alertId = "1";
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<BlocksHooks> | BlocksHooks {
@@ -46,18 +53,21 @@ export class RulesResolve implements Resolve<BlocksHooks> {
         return of(hooks);
       })
       .catch((err: HttpErrorResponse) => {
-        this.blockHooks.setupHooks(null, module, step);
-        return this.handleError(err);
+        this.translate.get([
+          "CONTAINER.HOME.ALERT_BUTTON",
+          "CONTAINER.HOME.ALERT_TITLE",
+        ])
+          .subscribe((translations: any) => {
+            const modalAlert: ModalAlert = {
+              id: this.alertId,
+              title: translations["CONTAINER.HOME.ALERT_TITLE"],
+              message: err.message,
+              buttonLabel: translations["CONTAINER.HOME.ALERT_BUTTON"],
+            };
+            this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
+          });
+        this.router.navigate(["/home"]);
+        return empty();
       });
-  }
-
-  protected handleError(err: HttpErrorResponse) {
-    if (err.error instanceof ErrorEvent) {
-      // A client-side or network error occurred
-      return new ErrorObservable(err.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      return new ErrorObservable(`Code ${err.status}, body: ${err.message}` || "Server error");
-    }
   }
 }

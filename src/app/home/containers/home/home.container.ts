@@ -33,7 +33,7 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
   loading$: Observable<boolean>;
   error$: Observable<string>;
 
-  alertId: string;
+  protected alertId: string;
   protected modalAlertResultSubscription: Subscription;
 
   constructor(protected store$: Store<fromHome.State>,
@@ -62,20 +62,21 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
   subscribeToErrors(): void {
     this.modalAlertResultSubscription = this.error$
       .subscribe((err) => {
-        this.translate.get([
-          "CONTAINER.HOME.ALERT_BUTTON",
-          "CONTAINER.HOME.ALERT_TITLE",
-        ])
-          .subscribe((translations: any) => {
-            const modalAlert: ModalAlert = {
-              id: this.alertId,
-              title: translations["CONTAINER.HOME.ALERT_TITLE"],
-              message: err,
-              buttonLabel: translations["CONTAINER.HOME.ALERT_BUTTON"],
-            };
-            this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
-          });
-
+        if (err) {
+          this.translate.get([
+            "CONTAINER.HOME.ALERT_BUTTON",
+            "CONTAINER.HOME.ALERT_TITLE",
+          ])
+            .subscribe((translations: any) => {
+              const modalAlert: ModalAlert = {
+                id: this.alertId,
+                title: translations["CONTAINER.HOME.ALERT_TITLE"],
+                message: err,
+                buttonLabel: translations["CONTAINER.HOME.ALERT_BUTTON"],
+              };
+              this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
+            });
+        }
       });
   }
 

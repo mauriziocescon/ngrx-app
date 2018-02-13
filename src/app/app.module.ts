@@ -25,7 +25,7 @@ import { CustomBlocksIntegrationModule } from "./custom-blocks-integration/custo
 import { B1BlocksModule } from "./b1";
 import { B2BlocksModule } from "./b2";
 
-import { RulesResolve } from "./rules.resolve";
+import { RulesResolve } from "./dyn-block-list.resolve";
 
 import { AppContainerComponent } from "./app.container";
 

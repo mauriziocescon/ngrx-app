@@ -74,11 +74,11 @@ export class CoreModule {
           useFactory: (createLanguageIdLoader),
           deps: [AppLanguageService]
         },
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: JsonServerInterceptor,
-          multi: true,
-        },
+        // {
+        //   provide: HTTP_INTERCEPTORS,
+        //   useClass: JsonServerInterceptor,
+        //   multi: true,
+        // },
       ]
     };
   }
