@@ -10,7 +10,6 @@ import { SharedModule } from "../shared/shared.module";
 
 import {
   SERVICES,
-  CustomBlockListService,
   CustomBlockHooksService,
   CustomBlockUtilsService,
 } from "./services";
@@ -25,7 +24,6 @@ import {
   ],
   providers: [
     ...SERVICES,
-    {provide: BlockListService, useClass: CustomBlockListService},
     {provide: BlockHooksService, useClass: CustomBlockHooksService},
     {provide: BlockUtilsService, useClass: CustomBlockUtilsService},
   ],

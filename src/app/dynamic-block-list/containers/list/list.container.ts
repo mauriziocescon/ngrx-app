@@ -10,14 +10,15 @@ import "rxjs/add/operator/withLatestFrom";
 import { TranslateService } from "@ngx-translate/core";
 import { NGXLogger } from "ngx-logger";
 
+import { ModalAlert, modalAlertsActions } from "../../../core/core.module";
+
 import * as list from "../../actions/list.actions";
 
 import { Block, DynBlocksRouteParams } from "../../models";
 
 import * as fromDynamicBlockList from "../../reducers";
 
-import { BlockListService } from "../../services";
-import { ModalAlert, modalAlertsActions } from "../../../core/core.module";
+import { BlockUtilsService } from "../../services";
 
 @Component({
   selector: "ct-list",
@@ -53,7 +54,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
               protected route: ActivatedRoute,
               protected translate: TranslateService,
               protected logger: NGXLogger,
-              protected blockList: BlockListService) {
+              protected blockUtils: BlockUtilsService) {
     this.blocks$ = this.store$.select(fromDynamicBlockList.getFetchedBlocksState);
     this.loading$ = this.store$.select(fromDynamicBlockList.getFetchLoadingState);
     this.error$ = this.store$.select(fromDynamicBlockList.getFetchErrorState);
@@ -72,8 +73,8 @@ export class ListContainerComponent implements OnInit, OnDestroy {
     this.paramMapSubscription = this.route.paramMap
       .subscribe((paramMap: ParamMap) => {
         const params = this.getRouteParams();
-        this.formValidity$ = this.blockList.getValiditySelector(params.module, params.instance, params.step);
-        this.editedBlocks = this.blockList.getAllEditedBlocksSelector(params.module, params.instance, params.step);
+        this.formValidity$ = this.blockUtils.getValiditySelector(params.module, params.instance, params.step);
+        this.editedBlocks = this.blockUtils.getAllEditedBlocksSelector(params.module, params.instance, params.step);
 
         if (params.module && params.instance && params.step) {
           this.store$.dispatch(new list.ClearBlocks());

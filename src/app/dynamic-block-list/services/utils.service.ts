@@ -1,4 +1,7 @@
 import { Injectable } from "@angular/core";
+import { Store } from "@ngrx/store";
+
+import { Observable } from "rxjs/Observable";
 
 import { CheckBoxContainerComponent } from "../containers/blocks/check-box/check-box.container";
 import { DropdownContainerComponent } from "../containers/blocks/dropdown/dropdown.container";
@@ -13,6 +16,8 @@ import {
   TextInputBlock,
 } from "../models";
 
+import * as fromDynamicBlockList from "../reducers";
+
 import { TextInputService } from "./blocks/text-input.service";
 import { DropdownService } from "./blocks/dropdown.service";
 import { CheckBoxService } from "./blocks/check-box.service";
@@ -20,7 +25,8 @@ import { CheckBoxService } from "./blocks/check-box.service";
 @Injectable()
 export class BlockUtilsService {
 
-  constructor(protected checkBoxService: CheckBoxService,
+  constructor(protected store$: Store<fromDynamicBlockList.State>,
+              protected checkBoxService: CheckBoxService,
               protected dropdownService: DropdownService,
               protected textInputService: TextInputService) {
   }
@@ -63,5 +69,13 @@ export class BlockUtilsService {
         return false;
       }
     }
+  }
+
+  getAllEditedBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
+    return this.store$.select(fromDynamicBlockList.getAllEditedBlocksState);
+  }
+
+  getValiditySelector(module: string, instance: string, step: string): Observable<boolean> {
+    return this.store$.select(fromDynamicBlockList.getAllEditedBlocksValidityState);
   }
 }

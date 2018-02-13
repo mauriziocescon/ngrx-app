@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Store } from "@ngrx/store";
 
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import { Observable } from "rxjs/Observable";
@@ -11,13 +10,10 @@ import { AppConstantsService } from "../../core/core.module";
 
 import { Block } from "../models";
 
-import * as fromDynamicBlockList from "../reducers";
-
 @Injectable()
 export class BlockListService {
 
   constructor(protected http: HttpClient,
-              protected store$: Store<fromDynamicBlockList.State>,
               protected appConstants: AppConstantsService) {
   }
 
@@ -58,13 +54,5 @@ export class BlockListService {
       // The backend returned an unsuccessful response code.
       return new ErrorObservable(`Code ${err.status}, body: ${err.message}` || "Server error");
     }
-  }
-
-  getAllEditedBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
-    return this.store$.select(fromDynamicBlockList.getAllEditedBlocksState);
-  }
-
-  getValiditySelector(module: string, instance: string, step: string): Observable<boolean> {
-    return this.store$.select(fromDynamicBlockList.getAllEditedBlocksValidityState);
   }
 }
