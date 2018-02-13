@@ -57,7 +57,7 @@ export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blocksMetho
 
   blocksMethods.dropdown.changeLoading(true, dropdownBlock.id);
   setTimeout(() => {
-    const newChoices = dropdownBlock.choices.concat(["4", "5"]);
+    const newChoices = ["1", "2", "3", "4", "5"];
     blocksMethods.dropdown.setChoicesForBlockId(newChoices, dropdownBlock.id);
     blocksMethods.dropdown.changeLoading(false, dropdownBlock.id);
   }, 3000);
