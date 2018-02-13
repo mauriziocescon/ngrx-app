@@ -5,6 +5,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/map";
 import "rxjs/add/operator/withLatestFrom";
 
 import { NGXLogger } from "ngx-logger";
@@ -99,7 +100,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate(): Observable<boolean> {
-    return this.store$.select(fromDynamicBlockList.isSynchronizationRequiredState);
+    return this.store$.select(fromDynamicBlockList.isSynchronizationRequiredState).map(requireSync => !requireSync);
   }
 
   nextStep(): void {
