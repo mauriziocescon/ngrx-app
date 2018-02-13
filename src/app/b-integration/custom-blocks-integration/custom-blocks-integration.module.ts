@@ -1,12 +1,11 @@
 import { NgModule } from "@angular/core";
 
 import {
-  BlockListService,
   BlockHooksService,
   BlockUtilsService,
-} from "../dynamic-block-list/dynamic-block-list.module";
+} from "../../dynamic-block-list/dynamic-block-list.module";
 
-import { SharedModule } from "../shared/shared.module";
+import { SharedModule } from "../../shared/shared.module";
 
 import {
   SERVICES,

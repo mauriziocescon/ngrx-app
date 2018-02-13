@@ -14,9 +14,7 @@ import { NGXLogger } from "ngx-logger";
 
 import { AppConstantsService, ModalAlert, modalAlertsActions } from "./core/core.module";
 
-import { BlockHooksService, BlocksHooks } from "./dynamic-block-list/dynamic-block-list.module";
-
-import * as setOfRules from "./custom-rules-integration";
+import { BlockHooksService, BlockUtilsService, BlocksHooks } from "./dynamic-block-list/dynamic-block-list.module";
 
 @Injectable()
 export class RulesResolve implements Resolve<BlocksHooks> {
@@ -28,7 +26,8 @@ export class RulesResolve implements Resolve<BlocksHooks> {
               protected translate: TranslateService,
               protected logger: NGXLogger,
               protected appConstants: AppConstantsService,
-              protected blockHooks: BlockHooksService) {
+              protected blockHooks: BlockHooksService,
+              protected blockUtils: BlockUtilsService) {
     this.alertId = "1";
   }
 
@@ -48,7 +47,7 @@ export class RulesResolve implements Resolve<BlocksHooks> {
     };
     return this.http.get<string>(url, options)
       .switchMap((data) => {
-        const hooks = setOfRules[module][data];
+        const hooks = this.blockUtils.getSetOfRules(module, data);
         this.blockHooks.setupHooks(hooks, module, step);
         return of(hooks);
       })
