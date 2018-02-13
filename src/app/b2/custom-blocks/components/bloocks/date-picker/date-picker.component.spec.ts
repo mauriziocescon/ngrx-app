@@ -57,7 +57,7 @@ describe("DatePickerComponent", () => {
       id: 1,
       type: B2BlockType.DatePicker,
       label: "",
-      value: true,
+      value: "2018-04-29T18:30:04.237Z",
       description: "",
       required: true,
       disabled: false,
