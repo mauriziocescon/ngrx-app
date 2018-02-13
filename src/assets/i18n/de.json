@@ -6,6 +6,8 @@
       "SELECT_LANGUAGE": "Sprache ӓndern"
     },
     "HOME": {
+      "ALERT_BUTTON": "*** Ok ***",
+      "ALERT_TITLE": "*** Alert ***",
       "LOAD_COMPLETED": "Ladevorgang abgeschlossen",
       "LOADING": "Daten werden geladen",
       "NO_RESULT": "Leer",
@@ -54,9 +56,6 @@
   },
   "CONTAINER": {
     "CHECK_BOX_CONFIRMER": {
-      "ALERT_BUTTON": "*** Ok ***",
-      "ALERT_MESSAGE": "*** Done ***",
-      "ALERT_TITLE": "*** Alert ***",
       "CONFIRMATION_MESSAGE": "*** Are you sure about that? ***",
       "CONFIRMATION_NO_BUTTON": "*** No ***",
       "CONFIRMATION_TITLE": "*** Confirmer ***",

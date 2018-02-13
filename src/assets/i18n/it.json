@@ -6,6 +6,8 @@
       "SELECT_LANGUAGE": "Cambia lingua"
     },
     "HOME": {
+      "ALERT_BUTTON": "Ok",
+      "ALERT_TITLE": "Alert",
       "LOAD_COMPLETED": "Caricamento completato",
       "LOADING": "Caricamento...",
       "NO_RESULT": "Vuoto",
@@ -54,9 +56,6 @@
   },
   "CONTAINER": {
     "CHECK_BOX_CONFIRMER": {
-      "ALERT_BUTTON": "Ok",
-      "ALERT_MESSAGE": "Fatto",
-      "ALERT_TITLE": "Alert",
       "CONFIRMATION_MESSAGE": "Sei sicuro?",
       "CONFIRMATION_NO_BUTTON": "No",
       "CONFIRMATION_TITLE": "Conferma",

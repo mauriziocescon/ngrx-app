@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import { Observable } from "rxjs/Observable";
 
 import { AppConstantsService } from "../../core/core.module";
@@ -18,6 +19,16 @@ export class HomeService {
     return this.http
       .get<Instance[]>(this.appConstants.Api.instances)
       .map(data => data)
-      .catch(err => Observable.throw(err.json().error || "Server error"));
+      .catch((err: HttpErrorResponse) => this.handleError(err));
+  }
+
+  protected handleError(err: HttpErrorResponse) {
+    if (err.error instanceof ErrorEvent) {
+      // A client-side or network error occurred
+      return new ErrorObservable(err.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      return new ErrorObservable(`Code ${err.status}, body: ${err.message}` || "Server error");
+    }
   }
 }

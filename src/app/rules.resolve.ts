@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
 
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
-import "rxjs/add/observable/fromPromise";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/switchMap";
 
@@ -45,9 +45,19 @@ export class RulesResolve implements Resolve<BlocksHooks> {
         this.blockHooks.setupHooks(hooks, module, step);
         return of(hooks);
       })
-      .catch(err => {
-        this.blockHooks.setupHooks({}, module, step);
-        return Observable.throw(err.message || "Server error");
+      .catch((err: HttpErrorResponse) => {
+        this.blockHooks.setupHooks(null, module, step);
+        return this.handleError(err);
       });
+  }
+
+  protected handleError(err: HttpErrorResponse) {
+    if (err.error instanceof ErrorEvent) {
+      // A client-side or network error occurred
+      return new ErrorObservable(err.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      return new ErrorObservable(`Code ${err.status}, body: ${err.message}` || "Server error");
+    }
   }
 }

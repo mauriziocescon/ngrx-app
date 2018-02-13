@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Store } from "@ngrx/store";
 
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
@@ -32,7 +33,7 @@ export class BlockListService {
     return this.http
       .get<Block[]>(this.appConstants.Api.blocks, options)
       .map(data => data)
-      .catch(err => Observable.throw(err.json().error || "Server error"));
+      .catch((err: HttpErrorResponse) => this.handleError(err));
   }
 
   updateBlocks(module: string, instance: string, step: string, blocks: Block[]): Observable<boolean> {
@@ -46,7 +47,17 @@ export class BlockListService {
     return this.http
       .post<Block[]>(this.appConstants.Api.blocks, body)
       .map(data => data)
-      .catch(err => Observable.throw(err.json().error || "Server error"));
+      .catch((err: HttpErrorResponse) => this.handleError(err));
+  }
+
+  protected handleError(err: HttpErrorResponse) {
+    if (err.error instanceof ErrorEvent) {
+      // A client-side or network error occurred
+      return new ErrorObservable(err.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      return new ErrorObservable(`Code ${err.status}, body: ${err.message}` || "Server error");
+    }
   }
 
   getAllEditedBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {

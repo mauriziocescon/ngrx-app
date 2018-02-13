@@ -22,17 +22,17 @@ function main() {
     let instance;
 
     // module b1
-    // instance = {id: 0, module: "b1", instance: "1", step: "1", blocks: []};
-    // for (let i = 0; i < numberOfBlocks; i++) {
-    //   instance.blocks.push(blockCreator.getRandomB1Block(i));
-    // }
-    // data.instances.push(instance);
+    instance = {id: 0, module: "b1", instance: "1", step: "1", blocks: []};
+    for (let i = 0; i < numberOfBlocks; i++) {
+      instance.blocks.push(blockCreator.getRandomB1Block(i));
+    }
+    data.instances.push(instance);
 
-    // instance = {id: 1, module: "b1", instance: "1", step: "2", blocks: []};
-    // for (let i = 0; i < numberOfBlocks; i++) {
-    //   instance.blocks.push(blockCreator.getRandomB1Block(i));
-    // }
-    // data.instances.push(instance);
+    instance = {id: 1, module: "b1", instance: "1", step: "2", blocks: []};
+    for (let i = 0; i < numberOfBlocks; i++) {
+      instance.blocks.push(blockCreator.getRandomB1Block(i));
+    }
+    data.instances.push(instance);
 
     // module b2
     instance = {id: 2, module: "b2", instance: "1", step: "1", blocks: []};
@@ -48,11 +48,11 @@ function main() {
     data.instances.push(instance);
 
     // module b3
-    // instance = {id: 4, module: "b3", instance: "1", step: "1", blocks: []};
-    // for (let i = 0; i < numberOfBlocks; i++) {
-    //   instance.blocks.push(blockCreator.getRandomBlock(i));
-    // }
-    // data.instances.push(instance);
+    instance = {id: 4, module: "b3", instance: "1", step: "1", blocks: []};
+    for (let i = 0; i < numberOfBlocks; i++) {
+      instance.blocks.push(blockCreator.getRandomBlock(i));
+    }
+    data.instances.push(instance);
 
     // rules config
     data.rulesConfig.push({module: "b1", steps: [{step: "1", rules: "rules1"}, {step: "2", rules: "rules2"}]});

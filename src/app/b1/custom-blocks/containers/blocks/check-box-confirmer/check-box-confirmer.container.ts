@@ -8,9 +8,7 @@ import "rxjs/add/operator/map";
 import { TranslateService } from "@ngx-translate/core";
 
 import {
-  modalAlertsActions,
   modalConfirmersActions,
-  ModalAlert,
   ModalConfirmer,
   ModalConfirmerResultType,
 } from "../../../../../core/core.module";
@@ -126,21 +124,6 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
 
           if (result === ModalConfirmerResultType.Positive) {
             this.dispatchValueDidChangeAction(true);
-
-            this.translate.get([
-              "CONTAINER.CHECK_BOX_CONFIRMER.ALERT_BUTTON",
-              "CONTAINER.CHECK_BOX_CONFIRMER.ALERT_MESSAGE",
-              "CONTAINER.CHECK_BOX_CONFIRMER.ALERT_TITLE",
-            ])
-              .subscribe((translations: any) => {
-                const modalAlert: ModalAlert = {
-                  id: this.blockId.toString(),
-                  title: translations["CONTAINER.CHECK_BOX_CONFIRMER.ALERT_TITLE"],
-                  message: translations["CONTAINER.CHECK_BOX_CONFIRMER.ALERT_MESSAGE"],
-                  buttonLabel: translations["CONTAINER.CHECK_BOX_CONFIRMER.ALERT_BUTTON"],
-                };
-                this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
-              });
           } else {
             this.dispatchValueDidChangeAction(false);
           }
