@@ -4,7 +4,6 @@ import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
-import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/withLatestFrom";
 
@@ -43,7 +42,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   editedBlocks: Observable<Block[]>;
 
   paramMapSubscription: Subscription;
-  syncRequired$Subscription: Subscription;
+  syncRequiredSubscription: Subscription;
 
   constructor(protected store$: Store<fromDynamicBlockList.State>,
               protected route: ActivatedRoute,
@@ -76,8 +75,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   }
 
   protected subscribeToSyncing(): void {
-    this.syncRequired$Subscription = this.syncRequired$
-      .debounceTime(1000)
+    this.syncRequiredSubscription = this.syncRequired$
       .withLatestFrom(this.editedBlocks)
       .subscribe(([syncRequired, blocks]) => {
         if (syncRequired) {
@@ -134,8 +132,8 @@ export class ListContainerComponent implements OnInit, OnDestroy {
       this.paramMapSubscription.unsubscribe();
     }
 
-    if (this.syncRequired$Subscription) {
-      this.syncRequired$Subscription.unsubscribe();
+    if (this.syncRequiredSubscription) {
+      this.syncRequiredSubscription.unsubscribe();
     }
   }
 }
