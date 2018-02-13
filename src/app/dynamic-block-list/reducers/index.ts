@@ -127,10 +127,11 @@ export const getUpdateBlocksInstanceState = createSelector(
 );
 
 export const getAllEditedBlocksValidityState = createSelector(
+  isSynchronizationRequiredState,
   getCheckBoxBlocksValidityState,
   getDropdownBlocksValidityState,
   getTextInputBlocksValidityState,
-  (checkBoxValidity: boolean, dropdownValidity: boolean, textInputValidity: boolean) => {
-    return checkBoxValidity && dropdownValidity && textInputValidity;
+  (syncRequired: boolean, checkBoxValidity: boolean, dropdownValidity: boolean, textInputValidity: boolean) => {
+    return !syncRequired && checkBoxValidity && dropdownValidity && textInputValidity;
   }
 );
