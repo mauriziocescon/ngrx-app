@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 
-import { HomeContainerComponent } from "./home/home.module";
+import { HomeContainerComponent } from "./instance-list/instance-list.module";
 import { ListContainerComponent, ListGuard, RulesResolve } from "./dynamic-block-list/dynamic-block-list.module";
 
 export const appRoutes: Routes = [

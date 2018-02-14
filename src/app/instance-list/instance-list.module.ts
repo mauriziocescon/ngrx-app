@@ -48,7 +48,7 @@ import {
     ...SERVICES,
   ],
 })
-export class HomeModule {
+export class InstanceListModule {
 }
 
 export * from "./models";
