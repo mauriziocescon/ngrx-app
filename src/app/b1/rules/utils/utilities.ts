@@ -1,4 +1,4 @@
-import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../../dynamic-block-list/dynamic-block-list.module";
+import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../../instance-detail/instance-detail.module";
 import { CheckBoxConfirmerBlock, B1BlockType } from "../../custom-blocks/b1.module";
 
 export const arrayOfBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock }) => {

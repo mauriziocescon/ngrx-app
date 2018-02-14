@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { Block } from "../../../dynamic-block-list/dynamic-block-list.module";
+import { Block } from "../../../instance-detail/instance-detail.module";
 
 import { DatePickerContainerComponent } from "../containers";
 

@@ -1,4 +1,4 @@
-import { BlockType } from "../../../dynamic-block-list/dynamic-block-list.module";
+import { BlockType } from "../../../instance-detail/instance-detail.module";
 
 export class B1BlockType extends BlockType {
   static CheckBoxConfirmer = "check-box-confirmer";

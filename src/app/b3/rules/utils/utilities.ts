@@ -1,4 +1,4 @@
-import { BlockType, CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../../dynamic-block-list/dynamic-block-list.module";
+import { BlockType, CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../../instance-detail/instance-detail.module";
 
 export const arrayOfBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock }) => {
   const keys = Object.keys(blocks);

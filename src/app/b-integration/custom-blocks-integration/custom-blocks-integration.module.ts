@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import {
   BlockHooksService,
   BlockUtilsService,
-} from "../../dynamic-block-list/dynamic-block-list.module";
+} from "../../instance-detail/instance-detail.module";
 
 import { SharedModule } from "../../shared/shared.module";
 

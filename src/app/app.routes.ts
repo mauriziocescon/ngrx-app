@@ -1,8 +1,7 @@
 import { Routes } from "@angular/router";
 
 import { InstanceListContainerComponent } from "./instance-list/instance-list.module";
-import { InstanceDetailContainerComponent } from "./instance-detail/instance-detail.module";
-import { ListContainerComponent, ListGuard, RulesResolve } from "./dynamic-block-list/dynamic-block-list.module";
+import { InstanceDetailContainerComponent, ListGuard, RulesResolve } from "./instance-detail/instance-detail.module";
 
 export const appRoutes: Routes = [
   {
@@ -10,12 +9,16 @@ export const appRoutes: Routes = [
     component: InstanceListContainerComponent,
   },
   {
-    path: "instance-detail",
+    path: "instance-detail/:module/:instance/:step",
     component: InstanceDetailContainerComponent,
+    resolve: {
+      rules: RulesResolve,
+    },
+    canDeactivate: [ListGuard],
   },
   {
     path: "dyn-block-list/:module/:instance/:step",
-    component: ListContainerComponent,
+    component: InstanceDetailContainerComponent,
     resolve: {
       rules: RulesResolve,
     },

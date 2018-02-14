@@ -7,7 +7,7 @@ import {
   CheckBoxService,
   DropdownService,
   TextInputService,
-} from "../../../dynamic-block-list/dynamic-block-list.module";
+} from "../../../instance-detail/instance-detail.module";
 
 import { B1BlockHooksService, B1BlocksMethods, B1BlocksHooks } from "../../../b1";
 import { B2BlockHooksService, B2BlocksMethods, B2BlocksHooks } from "../../../b2";

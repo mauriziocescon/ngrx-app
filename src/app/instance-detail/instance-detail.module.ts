@@ -5,7 +5,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { SharedModule } from "../shared/shared.module";
 
 import { EFFECTS } from "./effects";
-import * as fromDynamicBlockList from "./reducers";
+import * as fromInstanceDetail from "./reducers";
 import { TOKEN, reducerProvider } from "./reducers";
 import {
   SERVICES,
@@ -38,7 +38,7 @@ import {
      * eagerly or lazily and will be dynamically added to
      * the existing state.
      */
-    StoreModule.forFeature("dynamicBlockList", TOKEN),
+    StoreModule.forFeature("instanceDetail", TOKEN),
 
     /**
      * Effects.forFeature is used to register effects
@@ -70,7 +70,7 @@ import {
     ListContainerComponent,
   ],
 })
-export class DynamicBlockListModule {
+export class InstanceDetailModule {
 }
 
 export {
@@ -83,7 +83,7 @@ export {
   SyncActionTypes,
 } from "./actions/sync.actions";
 
-export { fromDynamicBlockList };
+export { fromInstanceDetail };
 
 export * from "./models";
 

@@ -11,7 +11,7 @@ import {
   FetchBlocksComplete,
   ListActionTypes,
   SyncRequired,
-} from "../../../../dynamic-block-list/dynamic-block-list.module";
+} from "../../../../instance-detail/instance-detail.module";
 
 import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/check-box-confirmer.actions";
 
