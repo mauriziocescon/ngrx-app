@@ -20,7 +20,6 @@ import {
 
 @Injectable()
 export class CustomBlockHooksService extends BlockHooksService {
-  protected hooks: CustomBlocksHooks;
 
   constructor(protected logger: NGXLogger,
               protected checkBoxService: CheckBoxService,
