@@ -23,7 +23,7 @@ export interface State extends fromRoot.State {
 
 // -----------------
 // ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>("DynamicBlockListReducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<DynamicBlockListState>>("DynamicBlockListReducers");
 
 export const getReducers = () => {
   return {
