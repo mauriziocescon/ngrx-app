@@ -1,5 +1,0 @@
-export const EFFECTS = [];
-
-export {
-
-};
