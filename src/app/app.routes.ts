@@ -1,12 +1,17 @@
 import { Routes } from "@angular/router";
 
 import { InstanceListContainerComponent } from "./instance-list/instance-list.module";
+import { InstanceDetailContainerComponent } from "./instance-detail/instance-detail.module";
 import { ListContainerComponent, ListGuard, RulesResolve } from "./dynamic-block-list/dynamic-block-list.module";
 
 export const appRoutes: Routes = [
   {
     path: "instance-list",
     component: InstanceListContainerComponent,
+  },
+  {
+    path: "instance-detail",
+    component: InstanceDetailContainerComponent,
   },
   {
     path: "dyn-block-list/:module/:instance/:step",

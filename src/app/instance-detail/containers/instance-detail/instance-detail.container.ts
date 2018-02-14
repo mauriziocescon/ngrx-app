@@ -1,5 +1,7 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 
+import { Observable } from "rxjs/Observable";
+
 @Component({
   selector: "ct-instance-detail",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -10,5 +12,9 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
 export class InstanceDetailContainerComponent {
 
   constructor() {
+  }
+
+  canDeactivate(): Observable<boolean> {
+
   }
 }

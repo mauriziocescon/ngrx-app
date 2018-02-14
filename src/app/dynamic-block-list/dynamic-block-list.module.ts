@@ -66,6 +66,9 @@ import {
     reducerProvider,
     ...SERVICES,
   ],
+  exports: [
+    ListContainerComponent,
+  ],
 })
 export class DynamicBlockListModule {
 }

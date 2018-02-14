@@ -4,6 +4,8 @@ import { EffectsModule } from "@ngrx/effects";
 
 import { SharedModule } from "../shared/shared.module";
 
+import { DynamicBlockListModule } from "../dynamic-block-list/dynamic-block-list.module";
+
 import { EFFECTS } from "./effects";
 import * as fromInstanceDetail from "./reducers";
 import { SERVICES } from "./services";
@@ -11,6 +13,7 @@ import { SERVICES } from "./services";
 import { COMPONENTS } from "./components";
 import {
   CONTAINERS,
+  InstanceDetailContainerComponent,
 } from "./containers";
 
 @NgModule({
@@ -36,6 +39,7 @@ import {
     EffectsModule.forFeature([
       ...EFFECTS,
     ]),
+    DynamicBlockListModule,
   ],
   declarations: [
     ...COMPONENTS,
@@ -46,6 +50,13 @@ import {
   providers: [
     ...SERVICES,
   ],
+  exports: [
+    InstanceDetailContainerComponent,
+  ],
 })
 export class InstanceDetailModule {
 }
+
+export {
+  InstanceDetailContainerComponent,
+};
