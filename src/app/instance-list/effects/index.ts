@@ -1,9 +1,9 @@
-import { HomeEffects } from "./home.effects";
+import { InstanceListEffects } from "./instance-list.effects";
 
 export const EFFECTS = [
-  HomeEffects,
+  InstanceListEffects,
 ];
 
 export {
-  HomeEffects,
+  InstanceListEffects,
 };

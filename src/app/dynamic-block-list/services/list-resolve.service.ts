@@ -56,19 +56,19 @@ export class RulesResolve implements Resolve<BlocksHooks> {
       })
       .catch((err: HttpErrorResponse) => {
         this.translate.get([
-          "CONTAINER.HOME.ALERT_BUTTON",
-          "CONTAINER.HOME.ALERT_TITLE",
+          "COMPONENT.LIST.ALERT_BUTTON",
+          "COMPONENT.LIST.ALERT_TITLE",
         ])
           .subscribe((translations: any) => {
             const modalAlert: ModalAlert = {
               id: this.alertId,
-              title: translations["CONTAINER.HOME.ALERT_TITLE"],
+              title: translations["COMPONENT.LIST.ALERT_TITLE"],
               message: err.message,
-              buttonLabel: translations["CONTAINER.HOME.ALERT_BUTTON"],
+              buttonLabel: translations["COMPONENT.LIST.ALERT_BUTTON"],
             };
             this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
           });
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/instance-list"]);
         return empty();
       });
   }

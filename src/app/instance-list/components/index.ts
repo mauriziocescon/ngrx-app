@@ -1,9 +1,9 @@
-import { HomeComponent } from "./home/home.component";
+import { InstanceListComponent } from "./instance-list/instance-list.component";
 
 export const COMPONENTS = [
-  HomeComponent,
+  InstanceListComponent,
 ];
 
 export {
-  HomeComponent,
+  InstanceListComponent,
 };

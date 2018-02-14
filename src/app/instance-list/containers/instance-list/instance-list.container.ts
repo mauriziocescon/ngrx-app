@@ -9,26 +9,26 @@ import { TranslateService } from "@ngx-translate/core";
 
 import { ModalAlert, modalAlertsActions } from "../../../core/core.module";
 
-import * as home from "../../actions/home.actions";
+import * as instanceList from "../../actions/instance-list.actions";
 
-import * as fromHome from "../../reducers";
+import * as fromInstanceList from "../../reducers";
 
 import { Instance } from "../../models";
 
 @Component({
-  selector: "ct-home",
+  selector: "ct-instance-list",
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <cp-home
+    <cp-instance-list
       [instances]="instances$ | async"
       [loading]="loading$ | async"
       [error]="error$ | async"
       (reloadList)="reloadList()"
       (goTo)="goTo($event)">
-    </cp-home>
+    </cp-instance-list>
   `,
 })
-export class HomeContainerComponent implements OnInit, OnDestroy {
+export class InstanceListContainerComponent implements OnInit, OnDestroy {
   instances$: Observable<Instance[]>;
   loading$: Observable<boolean>;
   error$: Observable<string>;
@@ -36,12 +36,12 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
   protected alertId: string;
   protected modalAlertSubscription: Subscription;
 
-  constructor(protected store$: Store<fromHome.State>,
+  constructor(protected store$: Store<fromInstanceList.State>,
               protected router: Router,
               protected translate: TranslateService) {
-    this.instances$ = this.store$.select(fromHome.getFetchedInstancesState);
-    this.loading$ = this.store$.select(fromHome.getFetchLoadingState);
-    this.error$ = this.store$.select(fromHome.getFetchErrorState);
+    this.instances$ = this.store$.select(fromInstanceList.getFetchedInstancesState);
+    this.loading$ = this.store$.select(fromInstanceList.getFetchLoadingState);
+    this.error$ = this.store$.select(fromInstanceList.getFetchErrorState);
 
     this.alertId = "1";
   }
@@ -52,7 +52,7 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
   }
 
   reloadList(): void {
-    this.store$.dispatch(new home.FetchInstances());
+    this.store$.dispatch(new instanceList.FetchInstances());
   }
 
   goTo(instance: Instance): void {
@@ -64,15 +64,15 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
       .subscribe((err) => {
         if (err) {
           this.translate.get([
-            "CONTAINER.HOME.ALERT_BUTTON",
-            "CONTAINER.HOME.ALERT_TITLE",
+            "CONTAINER.INSTANCE_LIST.ALERT_BUTTON",
+            "CONTAINER.INSTANCE_LIST.ALERT_TITLE",
           ])
             .subscribe((translations: any) => {
               const modalAlert: ModalAlert = {
                 id: this.alertId,
-                title: translations["CONTAINER.HOME.ALERT_TITLE"],
+                title: translations["CONTAINER.INSTANCE_LIST.ALERT_TITLE"],
                 message: err,
-                buttonLabel: translations["CONTAINER.HOME.ALERT_BUTTON"],
+                buttonLabel: translations["CONTAINER.INSTANCE_LIST.ALERT_BUTTON"],
               };
               this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
             });

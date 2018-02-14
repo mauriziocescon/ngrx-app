@@ -1,9 +1,9 @@
-import { HomeService } from "./home.service";
+import { InstanceListService } from "./instance-list.service";
 
 export const SERVICES = [
-  HomeService,
+  InstanceListService,
 ];
 
 export {
-  HomeService,
+  InstanceListService,
 };

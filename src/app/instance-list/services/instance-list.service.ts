@@ -9,7 +9,7 @@ import { AppConstantsService } from "../../core/core.module";
 import { Instance } from "../models";
 
 @Injectable()
-export class HomeService {
+export class InstanceListService {
 
   constructor(protected http: HttpClient,
               protected appConstants: AppConstantsService) {

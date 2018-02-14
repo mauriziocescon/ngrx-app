@@ -1,9 +1,9 @@
-import { HomeContainerComponent } from "./home/home.container";
+import { InstanceListContainerComponent } from "./instance-list/instance-list.container";
 
 export const CONTAINERS = [
-  HomeContainerComponent,
+  InstanceListContainerComponent,
 ];
 
 export {
-  HomeContainerComponent,
+  InstanceListContainerComponent,
 };

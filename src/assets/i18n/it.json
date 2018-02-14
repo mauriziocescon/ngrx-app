@@ -1,11 +1,11 @@
 {
   "COMPONENT": {
     "NAVIGATION_BAR": {
+      "INSTANCES": "Istanze",
       "NAME": "Nome",
-      "HOME": "Home",
       "SELECT_LANGUAGE": "Cambia lingua"
     },
-    "HOME": {
+    "INSTANCE_LIST": {
       "LOAD_COMPLETED": "Caricamento completato",
       "LOADING": "Caricamento...",
       "NO_RESULT": "Vuoto",
@@ -13,6 +13,8 @@
       "SHOW": "Visualizza"
     },
     "LIST": {
+      "ALERT_BUTTON": "Ok",
+      "ALERT_TITLE": "Avviso",
       "CANCEL": "Annulla",
       "INPUT_TEXT_PLACEHOLDER": "Inserisci testo",
       "LOAD_COMPLETED": "Caricamento completato",
@@ -53,19 +55,19 @@
     }
   },
   "CONTAINER": {
+    "INSTANCE_LIST": {
+      "ALERT_BUTTON": "Ok",
+      "ALERT_TITLE": "Avviso"
+    },
+    "LIST": {
+      "ALERT_BUTTON": "Ok",
+      "ALERT_TITLE": "Avviso"
+    },
     "CHECK_BOX_CONFIRMER": {
       "CONFIRMATION_MESSAGE": "Sei sicuro?",
       "CONFIRMATION_NO_BUTTON": "No",
       "CONFIRMATION_TITLE": "Conferma",
       "CONFIRMATION_YES_BUTTON": "Si"
     },
-    "LIST": {
-      "ALERT_BUTTON": "Ok",
-      "ALERT_TITLE": "Alert"
-    },
-    "HOME": {
-      "ALERT_BUTTON": "Ok",
-      "ALERT_TITLE": "Alert"
-    }
   }
 }

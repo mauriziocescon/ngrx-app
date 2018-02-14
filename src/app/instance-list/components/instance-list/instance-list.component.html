@@ -1,0 +1,23 @@
+<div class="container-fluid instance-list-component">
+
+  <div class="row list-main-content" [hidden]="!showData">
+    <div class="col-12 col-sm-6" *ngFor="let instance of dataSource; trackBy: trackByBlock">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{ instance.module }}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">{{ instance.step }}</h6>
+          <p class="card-text">{{ instance.instance }}</p>
+          <button class="btn btn-primary" (click)="selectInstance(instance)">{{ "COMPONENT.INSTANCE_LIST.SHOW" | translate }}</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="full-width-message">{{ "COMPONENT.INSTANCE_LIST.LOAD_COMPLETED" | translate }}</div>
+    </div>
+  </div>
+
+  <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.INSTANCE_LIST.LOADING" | translate }}</div>
+  <div class="full-width-message" [hidden]="!hasNoData">{{ "COMPONENT.INSTANCE_LIST.NO_RESULT" | translate }}</div>
+  <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">{{ "COMPONENT.INSTANCE_LIST.RETRY" | translate }}</div>
+
+</div>

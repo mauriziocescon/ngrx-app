@@ -1,28 +1,28 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 
 import * as fromRoot from "../../reducers";
-import * as fromHome from "./home.reducer";
+import * as fromInstanceList from "./instance-list.reducer";
 
-export interface HomeState {
-  instances: fromHome.State;
+export interface InstanceListState {
+  instances: fromInstanceList.State;
 }
 
 export interface State extends fromRoot.State {
-  home: HomeState;
+  instanceList: InstanceListState;
 }
 
 export const reducers = {
-  instances: fromHome.reducer,
+  instances: fromInstanceList.reducer,
 };
 
 // -----------------
 // --- feature selector
-export const getHomeState = createFeatureSelector<HomeState>("home");
+export const getInstanceListState = createFeatureSelector<InstanceListState>("instanceList");
 
 // -----------------
 // ------- instances
-export const getInstancesState = createSelector(getHomeState, state => state.instances);
+export const getInstancesState = createSelector(getInstanceListState, state => state.instances);
 
-export const getFetchedInstancesState = createSelector(getInstancesState, fromHome.getFetchedInstancesState);
-export const getFetchLoadingState = createSelector(getInstancesState, fromHome.getFetchLoadingState);
-export const getFetchErrorState = createSelector(getInstancesState, fromHome.getFetchErrorState);
+export const getFetchedInstancesState = createSelector(getInstancesState, fromInstanceList.getFetchedInstancesState);
+export const getFetchLoadingState = createSelector(getInstancesState, fromInstanceList.getFetchLoadingState);
+export const getFetchErrorState = createSelector(getInstancesState, fromInstanceList.getFetchErrorState);

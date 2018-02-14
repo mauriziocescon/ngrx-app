@@ -20,7 +20,7 @@ export class NavigationBarComponent {
     this.languageDidChange.emit(language);
   }
 
-  goHome(): void {
-    this.navigationDidChange.emit({path: "/home"});
+  goToInstanceList(): void {
+    this.navigationDidChange.emit({path: "/instance-list"});
   }
 }

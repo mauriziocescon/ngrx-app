@@ -1,4 +1,4 @@
-import { HomeActionTypes, HomeActions } from "../actions/home.actions";
+import { InstanceListActionTypes, InstanceListActions } from "../actions/instance-list.actions";
 import { Instance } from "../models";
 
 export interface State {
@@ -13,9 +13,9 @@ const initialState: State = {
   fetchError: undefined,
 };
 
-export function reducer(state = initialState, action: HomeActions): State {
+export function reducer(state = initialState, action: InstanceListActions): State {
   switch (action.type) {
-    case HomeActionTypes.FETCH_INSTANCES: {
+    case InstanceListActionTypes.FETCH_INSTANCES: {
       return {
         ...state,
         fetchedInstances: undefined,
@@ -23,7 +23,7 @@ export function reducer(state = initialState, action: HomeActions): State {
         fetchError: undefined,
       };
     }
-    case HomeActionTypes.FETCH_INSTANCES_COMPLETE: {
+    case InstanceListActionTypes.FETCH_INSTANCES_COMPLETE: {
       return {
         ...state,
         fetchedInstances: action.payload.map(blocks => blocks),
@@ -31,7 +31,7 @@ export function reducer(state = initialState, action: HomeActions): State {
         fetchError: undefined,
       };
     }
-    case HomeActionTypes.FETCH_INSTANCES_ERROR: {
+    case InstanceListActionTypes.FETCH_INSTANCES_ERROR: {
       return {
         ...state,
         fetchedInstances: undefined,

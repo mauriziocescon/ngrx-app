@@ -1,11 +1,11 @@
 {
   "COMPONENT": {
     "NAVIGATION_BAR": {
+      "INSTANCES": "Instances",
       "NAME": "Name",
-      "HOME": "Home",
       "SELECT_LANGUAGE": "Select the language"
     },
-    "HOME": {
+    "INSTANCE_LIST": {
       "LOAD_COMPLETED": "Loading completed",
       "LOADING": "Loading...",
       "NO_RESULT": "Empty",
@@ -13,6 +13,8 @@
       "SHOW": "Show"
     },
     "LIST": {
+      "ALERT_BUTTON": "Ok",
+      "ALERT_TITLE": "Alert",
       "CANCEL": "Cancel",
       "INPUT_TEXT_PLACEHOLDER": "Type some text",
       "LOAD_COMPLETED": "Loading completed",
@@ -53,19 +55,19 @@
     }
   },
   "CONTAINER": {
-    "CHECK_BOX_CONFIRMER": {
-      "CONFIRMATION_MESSAGE": "Are you sure about that?",
-      "CONFIRMATION_NO_BUTTON": "No",
-      "CONFIRMATION_TITLE": "Confirmer",
-      "CONFIRMATION_YES_BUTTON": "Yes"
+    "INSTANCE_LIST": {
+      "ALERT_BUTTON": "Ok",
+      "ALERT_TITLE": "Alert"
     },
     "LIST": {
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Alert"
     },
-    "HOME": {
-      "ALERT_BUTTON": "Ok",
-      "ALERT_TITLE": "Alert"
+    "CHECK_BOX_CONFIRMER": {
+      "CONFIRMATION_MESSAGE": "Are you sure about that?",
+      "CONFIRMATION_NO_BUTTON": "No",
+      "CONFIRMATION_TITLE": "Confirmer",
+      "CONFIRMATION_YES_BUTTON": "Yes"
     }
   }
 }

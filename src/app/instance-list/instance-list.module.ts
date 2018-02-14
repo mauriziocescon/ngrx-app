@@ -5,13 +5,13 @@ import { EffectsModule } from "@ngrx/effects";
 import { SharedModule } from "../shared/shared.module";
 
 import { EFFECTS } from "./effects";
-import * as fromHome from "./reducers";
+import * as fromInstanceList from "./reducers";
 import { SERVICES } from "./services";
 
 import { COMPONENTS } from "./components";
 import {
   CONTAINERS,
-  HomeContainerComponent,
+  InstanceListContainerComponent,
 } from "./containers";
 
 @NgModule({
@@ -24,7 +24,7 @@ import {
      * eagerly or lazily and will be dynamically added to
      * the existing state.
      */
-    StoreModule.forFeature("home", fromHome.reducers),
+    StoreModule.forFeature("instanceList", fromInstanceList.reducers),
 
     /**
      * Effects.forFeature is used to register effects
@@ -54,5 +54,5 @@ export class InstanceListModule {
 export * from "./models";
 
 export {
-  HomeContainerComponent,
+  InstanceListContainerComponent,
 };
