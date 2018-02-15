@@ -16,7 +16,7 @@ import {
   TextInputBlock,
 } from "../models";
 
-import * as fromDynamicBlockList from "../reducers";
+import * as fromInstanceDetail from "../reducers";
 
 import { TextInputService } from "./blocks/text-input.service";
 import { DropdownService } from "./blocks/dropdown.service";
@@ -25,7 +25,7 @@ import { CheckBoxService } from "./blocks/check-box.service";
 @Injectable()
 export class BlockUtilsService {
 
-  constructor(protected store$: Store<fromDynamicBlockList.State>,
+  constructor(protected store$: Store<fromInstanceDetail.State>,
               protected checkBoxService: CheckBoxService,
               protected dropdownService: DropdownService,
               protected textInputService: TextInputService) {
@@ -76,10 +76,10 @@ export class BlockUtilsService {
   }
 
   getAllEditedBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
-    return this.store$.select(fromDynamicBlockList.getAllEditedBlocksState);
+    return this.store$.select(fromInstanceDetail.getAllEditedBlocksState);
   }
 
   getValiditySelector(module: string, instance: string, step: string): Observable<boolean> {
-    return this.store$.select(fromDynamicBlockList.getAllEditedBlocksValidityState);
+    return this.store$.select(fromInstanceDetail.getAllEditedBlocksValidityState);
   }
 }

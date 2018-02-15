@@ -16,7 +16,7 @@ import * as list from "../../actions/list.actions";
 
 import { Block, DynBlocksRouteParams } from "../../models";
 
-import * as fromDynamicBlockList from "../../reducers";
+import * as fromInstanceDetail from "../../reducers";
 
 import { BlockUtilsService } from "../../services";
 
@@ -56,22 +56,22 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   protected modalAlertFetchErrorSubscription: Subscription;
   protected modalAlertSyncErrorSubscription: Subscription;
 
-  constructor(protected store$: Store<fromDynamicBlockList.State>,
+  constructor(protected store$: Store<fromInstanceDetail.State>,
               protected route: ActivatedRoute,
               protected translate: TranslateService,
               protected logger: NGXLogger,
               protected blockUtils: BlockUtilsService) {
-    this.blocks$ = this.store$.select(fromDynamicBlockList.getFetchedBlocksState);
-    this.fetchLoading$ = this.store$.select(fromDynamicBlockList.getFetchLoadingState);
-    this.fetchError$ = this.store$.select(fromDynamicBlockList.getFetchErrorState);
+    this.blocks$ = this.store$.select(fromInstanceDetail.getFetchedBlocksState);
+    this.fetchLoading$ = this.store$.select(fromInstanceDetail.getFetchLoadingState);
+    this.fetchError$ = this.store$.select(fromInstanceDetail.getFetchErrorState);
 
     this.mAlertFetchErrorId = "1";
     this.mAlertSyncErrorId = "2";
 
-    this.syncRequired$ = this.store$.select(fromDynamicBlockList.isSynchronizationRequiredState);
-    this.syncRequiredWithTimestamp$ = this.store$.select(fromDynamicBlockList.isSynchronizationRequiredWithTimestampState);
+    this.syncRequired$ = this.store$.select(fromInstanceDetail.isSynchronizationRequiredState);
+    this.syncRequiredWithTimestamp$ = this.store$.select(fromInstanceDetail.isSynchronizationRequiredWithTimestampState);
 
-    this.syncError$ = this.store$.select(fromDynamicBlockList.getUpdateErrorState);
+    this.syncError$ = this.store$.select(fromInstanceDetail.getUpdateErrorState);
   }
 
   ngOnInit(): void {
@@ -161,7 +161,7 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate(): Observable<boolean> {
-    return this.store$.select(fromDynamicBlockList.isSynchronizationRequiredState).map(requireSync => !requireSync);
+    return this.store$.select(fromInstanceDetail.isSynchronizationRequiredState).map(requireSync => !requireSync);
   }
 
   nextStep(): void {

@@ -6,7 +6,7 @@ import "rxjs/add/operator/map";
 
 import * as checkBox from "../../../actions/blocks/check-box.actions";
 
-import * as fromDynamicBlockList from "../../../reducers";
+import * as fromInstanceDetail from "../../../reducers";
 
 import { BlockType, CheckBoxBlock } from "../../../models";
 
@@ -28,8 +28,8 @@ export class CheckBoxContainerComponent {
 
   loading$: Observable<boolean>;
 
-  constructor(protected store$: Store<fromDynamicBlockList.State>) {
-    this.block$ = this.store$.select(fromDynamicBlockList.getAllCheckBox)
+  constructor(protected store$: Store<fromInstanceDetail.State>) {
+    this.block$ = this.store$.select(fromInstanceDetail.getAllCheckBox)
       .map((blocks: CheckBoxBlock[]) => {
         return blocks.find((block: CheckBoxBlock) => {
           return block.id === this.blockId;
@@ -39,7 +39,7 @@ export class CheckBoxContainerComponent {
         return this.checkBoxBlock = block;
       });
 
-    this.loading$ = this.store$.select(fromDynamicBlockList.getCheckBoxBlocksLoadingState)
+    this.loading$ = this.store$.select(fromInstanceDetail.getCheckBoxBlocksLoadingState)
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });

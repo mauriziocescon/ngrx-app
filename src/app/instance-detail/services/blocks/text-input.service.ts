@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import * as fromDynamicBlockList from "../../reducers";
+import * as fromInstanceDetail from "../../reducers";
 import * as textInput from "../../actions/blocks/text-input.actions";
 import { BlockType, TextInputBlock, TextInputMethods } from "../../models";
 
@@ -16,7 +16,7 @@ export class TextInputService {
   protected blockChangesSubject$: Subject<TextInputBlock>;
   readonly blockChangesObservable$: Observable<TextInputBlock>;
 
-  constructor(protected store$: Store<fromDynamicBlockList.State>) {
+  constructor(protected store$: Store<fromInstanceDetail.State>) {
     this.blockLoadSubject$ = new Subject();
     this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
 

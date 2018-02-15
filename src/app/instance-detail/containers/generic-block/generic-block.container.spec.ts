@@ -9,7 +9,7 @@ import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
 import { StoreModule, Store, combineReducers } from "@ngrx/store";
 import * as fromRoot from "../../../reducers";
-import * as fromDynamicBlockList from "../../reducers";
+import * as fromInstanceDetail from "../../reducers";
 
 import { CoreModule } from "../../../core/core.module";
 import { SharedModule } from "../../../shared/shared.module";
@@ -51,7 +51,7 @@ describe("GenericBlockContainerComponent", () => {
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
         StoreModule.forRoot(fromRoot.TOKEN),
-        StoreModule.forFeature("dynamicBlockList", fromDynamicBlockList.TOKEN),
+        StoreModule.forFeature("instanceDetail", fromInstanceDetail.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
       ],
@@ -63,7 +63,7 @@ describe("GenericBlockContainerComponent", () => {
         TranslateService,
         NGXLogger,
         fromRoot.reducerProvider,
-        fromDynamicBlockList.reducerProvider,
+        fromInstanceDetail.reducerProvider,
         BlockListService,
         BlockUtilsService,
         CheckBoxService,

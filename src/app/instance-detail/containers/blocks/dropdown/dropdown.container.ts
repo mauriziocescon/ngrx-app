@@ -6,7 +6,7 @@ import "rxjs/add/operator/map";
 
 import * as dropdown from "../../../actions/blocks/dropdown.actions";
 
-import * as fromDynamicBlockList from "../../../reducers";
+import * as fromInstanceDetail from "../../../reducers";
 
 import { BlockType, DropdownBlock } from "../../../models";
 
@@ -28,8 +28,8 @@ export class DropdownContainerComponent {
 
   loading$: Observable<boolean>;
 
-  constructor(protected store$: Store<fromDynamicBlockList.State>) {
-    this.block$ = this.store$.select(fromDynamicBlockList.getAllDropdown)
+  constructor(protected store$: Store<fromInstanceDetail.State>) {
+    this.block$ = this.store$.select(fromInstanceDetail.getAllDropdown)
       .map((blocks: DropdownBlock[]) => {
         return blocks.find((block: DropdownBlock) => {
           return block.id === this.blockId;
@@ -39,7 +39,7 @@ export class DropdownContainerComponent {
         return this.dropdownBlock = block;
       });
 
-    this.loading$ = this.store$.select(fromDynamicBlockList.getDropdownBlocksLoadingState)
+    this.loading$ = this.store$.select(fromInstanceDetail.getDropdownBlocksLoadingState)
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });

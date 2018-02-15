@@ -4,7 +4,7 @@ import { createSelector, createFeatureSelector, combineReducers, ActionReducerMa
 import { CheckBoxConfirmerBlock } from "../models";
 
 import * as fromRoot from "../../../reducers";
-import { fromDynamicBlockList, Block } from "../../../instance-detail/instance-detail.module";
+import { fromInstanceDetail, Block } from "../../../instance-detail/instance-detail.module";
 import * as fromEditedBlocks from "./blocks";
 import * as fromCheckBoxConfirmer from "./blocks/check-box-confirmer/check-box-confirmer.reducer";
 
@@ -52,7 +52,7 @@ export const getCheckBoxConfirmerBlocksLoadingState = createSelector(getCheckBox
 // -----------------
 // --------- generic
 export const getAllEditedBlocksState = createSelector(
-  fromDynamicBlockList.getAllEditedBlocksState,
+  fromInstanceDetail.getAllEditedBlocksState,
   getAllCheckBoxConfirmer,
   (blocks: Block[], checkBoxConfirmerBlocks: CheckBoxConfirmerBlock[]) => {
     return [
@@ -63,7 +63,7 @@ export const getAllEditedBlocksState = createSelector(
 );
 
 export const getAllEditedBlocksValidityState = createSelector(
-  fromDynamicBlockList.getAllEditedBlocksValidityState,
+  fromInstanceDetail.getAllEditedBlocksValidityState,
   getCheckBoxConfirmerBlocksValidityState,
   (validity: boolean, checkBoxConfirmerValidity: boolean) => {
     return validity && checkBoxConfirmerValidity;

@@ -11,19 +11,19 @@ import * as fromCheckBox from "./blocks/check-box/check-box.reducer";
 import * as fromDropdown from "./blocks/dropdown/dropdown.reducer";
 import * as fromTextInput from "./blocks/text-input/text-input.reducer";
 
-export interface DynamicBlockListState {
+export interface InstanceDetailState {
   blockList: fromList.State;
   serverSync: fromSync.State;
   editedBlocks: fromEditedBlocks.State;
 }
 
 export interface State extends fromRoot.State {
-  dynamicBlockList: DynamicBlockListState;
+  instanceDetail: InstanceDetailState;
 }
 
 // -----------------
 // ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<DynamicBlockListState>>("DynamicBlockListReducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<InstanceDetailState>>("InstanceDetailReducers");
 
 export const getReducers = () => {
   return {
@@ -39,11 +39,11 @@ export const reducerProvider = [
 
 // -----------------
 // --- feature selector
-export const getDynamicBlockListState = createFeatureSelector<DynamicBlockListState>("dynamicBlockList");
+export const getInstanceDetailState = createFeatureSelector<InstanceDetailState>("instanceDetail");
 
 // -----------------
 // ----- blocks list
-export const getListState = createSelector(getDynamicBlockListState, state => state.blockList);
+export const getListState = createSelector(getInstanceDetailState, state => state.blockList);
 
 export const getFetchedBlocksState = createSelector(getListState, fromList.getFetchedBlocksState);
 export const getFetchLoadingState = createSelector(getListState, fromList.getFetchLoadingState);
@@ -59,14 +59,14 @@ export const getUpdateErrorState = createSelector(getListState, fromList.getUpda
 
 // -----------------
 // ----------- sync
-export const getServerSyncState = createSelector(getDynamicBlockListState, state => state.serverSync);
+export const getServerSyncState = createSelector(getInstanceDetailState, state => state.serverSync);
 
 export const isSynchronizationRequiredState = createSelector(getServerSyncState, fromSync.isSynchronizationRequiredState);
 export const isSynchronizationRequiredWithTimestampState = createSelector(getServerSyncState, fromSync.isSynchronizationRequiredWithTimestampState);
 
 // -----------------
 // ----- edit blocks
-export const getEditedBlocksState = createSelector(getDynamicBlockListState, state => state.editedBlocks);
+export const getEditedBlocksState = createSelector(getInstanceDetailState, state => state.editedBlocks);
 
 // ------- check-box
 export const getCheckBoxState = createSelector(getEditedBlocksState, fromEditedBlocks.getCheckBoxState);

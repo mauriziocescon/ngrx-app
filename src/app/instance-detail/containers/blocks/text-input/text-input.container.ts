@@ -6,7 +6,7 @@ import "rxjs/add/operator/map";
 
 import * as textInput from "../../../actions/blocks/text-input.actions";
 
-import * as fromDynamicBlockList from "../../../reducers";
+import * as fromInstanceDetail from "../../../reducers";
 
 import { BlockType, TextInputBlock } from "../../../models";
 
@@ -28,8 +28,8 @@ export class TextInputContainerComponent {
 
   loading$: Observable<boolean>;
 
-  constructor(protected store$: Store<fromDynamicBlockList.State>) {
-    this.block$ = this.store$.select(fromDynamicBlockList.getAllTextInput)
+  constructor(protected store$: Store<fromInstanceDetail.State>) {
+    this.block$ = this.store$.select(fromInstanceDetail.getAllTextInput)
       .map((blocks: TextInputBlock[]) => {
         return blocks.find((block: TextInputBlock) => {
           return block.id === this.blockId;
@@ -39,7 +39,7 @@ export class TextInputContainerComponent {
         return this.textInputBlock = block;
       });
 
-    this.loading$ = this.store$.select(fromDynamicBlockList.getTextInputBlocksLoadingState)
+    this.loading$ = this.store$.select(fromInstanceDetail.getTextInputBlocksLoadingState)
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
