@@ -56,7 +56,7 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
   }
 
   goTo(instance: Instance): void {
-    this.router.navigate(["/dyn-block-list", instance.module, instance.instance, instance.step]);
+    this.router.navigate(["/instance-detail", instance.module, instance.instance, instance.step]);
   }
 
   subscribeToFetchErrors(): void {

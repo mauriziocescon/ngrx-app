@@ -1,6 +1,9 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
+
+import * as fromInstanceDetail from "../../reducers";
 
 @Component({
   selector: "ct-instance-detail",
@@ -11,10 +14,10 @@ import { Observable } from "rxjs/Observable";
 })
 export class InstanceDetailContainerComponent {
 
-  constructor() {
+  constructor(protected store$: Store<fromInstanceDetail.State>) {
   }
 
   canDeactivate(): Observable<boolean> {
-
+    return this.store$.select(fromInstanceDetail.isSynchronizationRequiredState).map(requireSync => !requireSync);
   }
 }

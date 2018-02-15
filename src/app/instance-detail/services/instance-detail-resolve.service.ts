@@ -16,8 +16,8 @@ import { AppConstantsService, ModalAlert, modalAlertsActions } from "../../core/
 
 import { BlocksHooks } from "../models";
 
-import { BlockHooksService } from "./hooks.service";
-import { BlockUtilsService } from "./utils.service";
+import { BlockHooksService } from "./list/hooks.service";
+import { BlockUtilsService } from "./list/utils.service";
 
 @Injectable()
 export class RulesResolve implements Resolve<BlocksHooks> {

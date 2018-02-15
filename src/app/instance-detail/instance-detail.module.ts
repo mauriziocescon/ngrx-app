@@ -11,7 +11,7 @@ import {
   SERVICES,
   BlockHooksService,
   BlockListService,
-  ListGuard,
+  InstanceDetailGuard,
   RulesResolve,
   BlockUtilsService,
   CheckBoxService,
@@ -22,7 +22,7 @@ import {
 import { COMPONENTS, UnknownComponent } from "./components";
 import {
   CONTAINERS,
-  ListContainerComponent,
+  InstanceDetailContainerComponent,
   CheckBoxContainerComponent,
   DropdownContainerComponent,
   TextInputContainerComponent,
@@ -67,7 +67,7 @@ import {
     ...SERVICES,
   ],
   exports: [
-    ListContainerComponent,
+    InstanceDetailContainerComponent,
   ],
 })
 export class InstanceDetailModule {
@@ -88,9 +88,9 @@ export { fromInstanceDetail };
 export * from "./models";
 
 export {
-  ListContainerComponent,
+  InstanceDetailContainerComponent,
   BlockListService,
-  ListGuard,
+  InstanceDetailGuard,
   RulesResolve,
   BlockHooksService,
   BlockUtilsService,

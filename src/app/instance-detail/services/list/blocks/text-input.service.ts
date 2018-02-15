@@ -4,9 +4,9 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import * as fromInstanceDetail from "../../reducers";
-import * as textInput from "../../actions/blocks/text-input.actions";
-import { BlockType, TextInputBlock, TextInputMethods } from "../../models";
+import * as fromInstanceDetail from "../../../reducers/index";
+import * as textInput from "../../../actions/blocks/text-input.actions";
+import { BlockType, TextInputBlock, TextInputMethods } from "../../../models/index";
 
 @Injectable()
 export class TextInputService {

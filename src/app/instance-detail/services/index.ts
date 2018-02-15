@@ -1,18 +1,20 @@
-import { BlockListService } from "./list.service";
-import { ListGuard } from "./list-guard.service";
-import { RulesResolve } from "./list-resolve.service";
-import { BlockHooksService } from "./hooks.service";
-import { BlockUtilsService } from "./utils.service";
+import { InstanceDetailGuard } from "./instance-detail-guard.service";
+import { RulesResolve } from "./instance-detail-resolve.service";
 
-import { CheckBoxService } from "./blocks/check-box.service";
-import { DropdownService } from "./blocks/dropdown.service";
-import { TextInputService } from "./blocks/text-input.service";
+import { BlockListService } from "./list/list.service";
+import { BlockHooksService } from "./list/hooks.service";
+import { BlockUtilsService } from "./list/utils.service";
+
+import { CheckBoxService } from "./list/blocks/check-box.service";
+import { DropdownService } from "./list/blocks/dropdown.service";
+import { TextInputService } from "./list/blocks/text-input.service";
 
 export const SERVICES = [
+  InstanceDetailGuard,
+  RulesResolve,
+
   BlockHooksService,
   BlockListService,
-  ListGuard,
-  RulesResolve,
   BlockUtilsService,
 
   CheckBoxService,
@@ -21,10 +23,11 @@ export const SERVICES = [
 ];
 
 export {
-  BlockHooksService,
-  BlockListService,
-  ListGuard,
+  InstanceDetailGuard,
   RulesResolve,
+
+  BlockListService,
+  BlockHooksService,
   BlockUtilsService,
 
   CheckBoxService,

@@ -160,10 +160,6 @@ export class ListContainerComponent implements OnInit, OnDestroy {
     this.store$.dispatch(new list.FetchBlocks({module: mod, instance: inst, step: st}));
   }
 
-  canDeactivate(): Observable<boolean> {
-    return this.store$.select(fromInstanceDetail.isSynchronizationRequiredState).map(requireSync => !requireSync);
-  }
-
   nextStep(): void {
     // dispatch action to move forward
     this.logger.log(`ListContainerComponent: save`);

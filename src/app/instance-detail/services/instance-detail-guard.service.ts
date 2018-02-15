@@ -7,12 +7,12 @@ import {
 
 import { Observable } from "rxjs/Observable";
 
-import { ListContainerComponent } from "../containers";
+import { InstanceDetailContainerComponent } from "../containers";
 
 @Injectable()
-export class ListGuard implements CanDeactivate<ListContainerComponent> {
+export class InstanceDetailGuard implements CanDeactivate<InstanceDetailContainerComponent> {
 
-  canDeactivate(component: ListContainerComponent,
+  canDeactivate(component: InstanceDetailContainerComponent,
                 route: ActivatedRouteSnapshot,
                 state: RouterStateSnapshot): Observable<boolean> | boolean {
     return component.canDeactivate ? component.canDeactivate() : true;
