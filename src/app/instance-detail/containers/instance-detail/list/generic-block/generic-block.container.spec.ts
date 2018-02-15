@@ -1,18 +1,17 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
-
+import { StoreModule, Store, combineReducers } from "@ngrx/store";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
-import { StoreModule, Store, combineReducers } from "@ngrx/store";
-import * as fromRoot from "../../../../../reducers";
-import * as fromInstanceDetail from "../../../../reducers";
-
 import { CoreModule } from "../../../../../core/core.module";
 import { SharedModule } from "../../../../../shared/shared.module";
+
+import * as fromRoot from "../../../../../reducers";
+import * as fromInstanceDetail from "../../../../reducers";
 
 import {
   BlockListService,
