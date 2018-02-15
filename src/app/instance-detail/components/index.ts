@@ -1,5 +1,6 @@
 import { InstanceDetailComponent } from "./instance-detail/instance-detail.component";
 
+import { NextStepComponent } from "./instance-detail/next-step/next-step.component";
 import { ListComponent } from "./instance-detail/list/list.component";
 
 import { UnknownComponent } from "./instance-detail/list/blocks/unknown/unknown.component";
@@ -9,6 +10,7 @@ import { TextInputComponent } from "./instance-detail/list/blocks/text-input/tex
 
 export const COMPONENTS = [
   InstanceDetailComponent,
+  NextStepComponent,
   ListComponent,
   UnknownComponent,
   CheckBoxComponent,
@@ -18,6 +20,7 @@ export const COMPONENTS = [
 
 export {
   InstanceDetailComponent,
+  NextStepComponent,
   ListComponent,
   UnknownComponent,
   CheckBoxComponent,
