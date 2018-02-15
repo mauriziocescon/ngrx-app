@@ -10,7 +10,7 @@ import {
   CheckBoxBlock,
   DropdownBlock,
   TextInputBlock,
-} from "../../models/index";
+} from "../../models";
 
 import { CheckBoxService } from "./blocks/check-box.service";
 import { DropdownService } from "./blocks/dropdown.service";

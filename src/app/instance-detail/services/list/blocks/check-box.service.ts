@@ -4,9 +4,9 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import * as fromInstanceDetail from "../../../reducers/index";
+import * as fromInstanceDetail from "../../../reducers";
 import * as checkBox from "../../../actions/blocks/check-box.actions";
-import { BlockType, CheckBoxBlock, CheckBoxMethods } from "../../../models/index";
+import { BlockType, CheckBoxBlock, CheckBoxMethods } from "../../../models";
 
 @Injectable()
 export class CheckBoxService {

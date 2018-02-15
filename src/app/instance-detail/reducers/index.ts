@@ -4,12 +4,12 @@ import { createSelector, createFeatureSelector, combineReducers, ActionReducerMa
 import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../models";
 
 import * as fromRoot from "../../reducers";
-import * as fromList from "./list.reducer";
-import * as fromSync from "./sync.reducer";
-import * as fromEditedBlocks from "./blocks";
-import * as fromCheckBox from "./blocks/check-box/check-box.reducer";
-import * as fromDropdown from "./blocks/dropdown/dropdown.reducer";
-import * as fromTextInput from "./blocks/text-input/text-input.reducer";
+import * as fromList from "./list/list.reducer";
+import * as fromSync from "./list/sync.reducer";
+import * as fromEditedBlocks from "./list/blocks";
+import * as fromCheckBox from "./list/blocks/check-box/check-box.reducer";
+import * as fromDropdown from "./list/blocks/dropdown/dropdown.reducer";
+import * as fromTextInput from "./list/blocks/text-input/text-input.reducer";
 
 export interface InstanceDetailState {
   blockList: fromList.State;

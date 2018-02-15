@@ -3,10 +3,10 @@ import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 
-import { CheckBoxContainerComponent } from "../../containers/blocks/check-box/check-box.container";
-import { DropdownContainerComponent } from "../../containers/blocks/dropdown/dropdown.container";
-import { TextInputContainerComponent } from "../../containers/blocks/text-input/text-input.container";
-import { UnknownComponent } from "../../components/index";
+import { CheckBoxContainerComponent } from "../../containers/instance-detail/list/generic-block/blocks/check-box/check-box.container";
+import { DropdownContainerComponent } from "../../containers/instance-detail/list/generic-block/blocks/dropdown/dropdown.container";
+import { TextInputContainerComponent } from "../../containers/instance-detail/list/generic-block/blocks/text-input/text-input.container";
+import { UnknownComponent } from "../../components";
 
 import {
   Block,
@@ -14,9 +14,9 @@ import {
   CheckBoxBlock,
   DropdownBlock,
   TextInputBlock,
-} from "../../models/index";
+} from "../../models";
 
-import * as fromInstanceDetail from "../../reducers/index";
+import * as fromInstanceDetail from "../../reducers";
 
 import { TextInputService } from "./blocks/text-input.service";
 import { DropdownService } from "./blocks/dropdown.service";

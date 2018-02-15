@@ -4,9 +4,9 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import * as fromInstanceDetail from "../../../reducers/index";
+import * as fromInstanceDetail from "../../../reducers";
 import * as dropdown from "../../../actions/blocks/dropdown.actions";
-import { BlockType, DropdownBlock, DropdownMethods } from "../../../models/index";
+import { BlockType, DropdownBlock, DropdownMethods } from "../../../models";
 
 @Injectable()
 export class DropdownService {

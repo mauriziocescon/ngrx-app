@@ -8,7 +8,7 @@ import "rxjs/add/operator/catch";
 
 import { AppConstantsService } from "../../../core/core.module";
 
-import { Block } from "../../models/index";
+import { Block } from "../../models";
 
 @Injectable()
 export class BlockListService {
