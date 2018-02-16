@@ -28,8 +28,8 @@ export class CheckBoxContainerComponent {
 
   loading$: Observable<boolean>;
 
-  constructor(protected checkBoxStoreSelectors: CheckBoxStoreService) {
-    this.block$ = this.checkBoxStoreSelectors.getAllCheckBox()
+  constructor(protected checkBoxStore: CheckBoxStoreService) {
+    this.block$ = this.checkBoxStore.getAllCheckBox()
       .map((blocks: CheckBoxBlock[]) => {
         return blocks.find((block: CheckBoxBlock) => {
           return block.id === this.blockId;
@@ -39,7 +39,7 @@ export class CheckBoxContainerComponent {
         return this.checkBoxBlock = block;
       });
 
-    this.loading$ = this.checkBoxStoreSelectors.getCheckBoxBlocksLoading()
+    this.loading$ = this.checkBoxStore.getCheckBoxBlocksLoading()
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
@@ -68,6 +68,6 @@ export class CheckBoxContainerComponent {
       },
       notify: true,
     };
-    this.checkBoxStoreSelectors.dispatchUpdateBlock(block);
+    this.checkBoxStore.dispatchUpdateBlock(block);
   }
 }

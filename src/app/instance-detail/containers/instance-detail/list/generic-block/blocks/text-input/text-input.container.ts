@@ -1,14 +1,11 @@
 import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
-import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
-import * as textInput from "../../../../../../actions/list/blocks/text-input.actions";
-
-import * as fromInstanceDetail from "../../../../../../reducers";
-
 import { BlockType, TextInputBlock } from "../../../../../../models";
+
+import { TextInputStoreService } from "./text-input-store.service";
 
 @Component({
   selector: "ct-text-input",
@@ -19,6 +16,9 @@ import { BlockType, TextInputBlock } from "../../../../../../models";
       [loading]="loading$ | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-text-input>`,
+  providers: [
+    TextInputStoreService,
+  ],
 })
 export class TextInputContainerComponent {
   @Input() blockId: number;
@@ -28,8 +28,8 @@ export class TextInputContainerComponent {
 
   loading$: Observable<boolean>;
 
-  constructor(protected store$: Store<fromInstanceDetail.State>) {
-    this.block$ = this.store$.select(fromInstanceDetail.getAllTextInput)
+  constructor(protected textInputStore: TextInputStoreService) {
+    this.block$ = this.textInputStore.getAllTextInput()
       .map((blocks: TextInputBlock[]) => {
         return blocks.find((block: TextInputBlock) => {
           return block.id === this.blockId;
@@ -39,7 +39,7 @@ export class TextInputContainerComponent {
         return this.textInputBlock = block;
       });
 
-    this.loading$ = this.store$.select(fromInstanceDetail.getTextInputBlocksLoadingState)
+    this.loading$ = this.textInputStore.getTextInputBlocksLoading()
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
@@ -69,6 +69,6 @@ export class TextInputContainerComponent {
       },
       notify: true,
     };
-    this.store$.dispatch(new textInput.UpdateBlock(block));
+    this.textInputStore.dispatchUpdateBlock(block);
   }
 }

@@ -1,14 +1,11 @@
 import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
-import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
-import * as dropdown from "../../../../../../actions/list/blocks/dropdown.actions";
-
-import * as fromInstanceDetail from "../../../../../../reducers";
-
 import { BlockType, DropdownBlock } from "../../../../../../models";
+
+import { DropdownStoreService } from "./dropdown-store.service";
 
 @Component({
   selector: "ct-dropdown",
@@ -19,6 +16,9 @@ import { BlockType, DropdownBlock } from "../../../../../../models";
       [loading]="loading$ | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-dropdown>`,
+  providers: [
+    DropdownStoreService,
+  ],
 })
 export class DropdownContainerComponent {
   @Input() blockId: number;
@@ -28,8 +28,8 @@ export class DropdownContainerComponent {
 
   loading$: Observable<boolean>;
 
-  constructor(protected store$: Store<fromInstanceDetail.State>) {
-    this.block$ = this.store$.select(fromInstanceDetail.getAllDropdown)
+  constructor(protected dropdownStore: DropdownStoreService) {
+    this.block$ = this.dropdownStore.getAllDropdown()
       .map((blocks: DropdownBlock[]) => {
         return blocks.find((block: DropdownBlock) => {
           return block.id === this.blockId;
@@ -39,7 +39,7 @@ export class DropdownContainerComponent {
         return this.dropdownBlock = block;
       });
 
-    this.loading$ = this.store$.select(fromInstanceDetail.getDropdownBlocksLoadingState)
+    this.loading$ = this.dropdownStore.getDropdownBlocksLoading()
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
@@ -68,6 +68,6 @@ export class DropdownContainerComponent {
       },
       notify: true,
     };
-    this.store$.dispatch(new dropdown.UpdateBlock(block));
+    this.dropdownStore.dispatchUpdateBlock(block);
   }
 }
