@@ -1,7 +1,7 @@
 <div class="container-fluid instance-list-component">
 
   <div class="row list-main-content" [hidden]="!showData">
-    <div class="col-12 col-sm-6" *ngFor="let instance of dataSource; trackBy: trackByBlock">
+    <div class="col-12 col-sm-6 instance" *ngFor="let instance of dataSource; trackBy: trackByBlock">
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">{{ instance.module }}</h4>

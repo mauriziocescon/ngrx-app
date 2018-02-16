@@ -58,6 +58,10 @@
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Alert"
     },
+    "INSTANCE_DETAIL": {
+      "ALERT_BUTTON": "Ok",
+      "ALERT_TITLE": "Alert"
+    },
     "LIST": {
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Alert"
