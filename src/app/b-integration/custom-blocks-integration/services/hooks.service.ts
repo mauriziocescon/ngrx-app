@@ -54,13 +54,13 @@ export class CustomBlockHooksService extends BlockHooksService {
     this.b2BlockHooksService.unsubscribeListeners();
   }
 
-  blocksMethods(module?: string): CustomBlocksMethods {
+  blocksMethods(): CustomBlocksMethods {
     let methods;
 
-    if (module === Modules.b1) {
+    if (this.module === Modules.b1) {
       methods = super.blocksMethods() as B1BlocksMethods;
       methods.checkBoxConfirmer = this.b1BlockHooksService.blocksMethods().checkBoxConfirmer;
-    } else if (module === Modules.b2) {
+    } else if (this.module === Modules.b2) {
       methods = super.blocksMethods() as B2BlocksMethods;
       methods.datePicker = this.b2BlockHooksService.blocksMethods().datePicker;
     } else {

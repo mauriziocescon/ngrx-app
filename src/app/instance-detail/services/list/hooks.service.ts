@@ -19,6 +19,8 @@ import { TextInputService } from "./blocks/text-input.service";
 @Injectable()
 export class BlockHooksService {
   protected hooks: BlocksHooks;
+  protected module: string;
+  protected step: string;
 
   protected checkBoxBlockLoadSubscription: Subscription;
   protected dropdownBlockLoadSubscription: Subscription;
@@ -38,6 +40,8 @@ export class BlockHooksService {
     this.unsubscribeListeners();
 
     this.hooks = hooks;
+    this.module = module;
+    this.step = step;
 
     this.listenToCheckBoxBlockLoad();
     this.listenToDropdownBlockLoad();
