@@ -1,5 +1,4 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnChanges, OnDestroy, Input, SimpleChanges } from "@angular/core";
-import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
@@ -9,13 +8,11 @@ import "rxjs/add/operator/withLatestFrom";
 import { TranslateService } from "@ngx-translate/core";
 import { NGXLogger } from "ngx-logger";
 
-import { ModalAlert, modalAlertsActions } from "../../../../core/core.module";
+import { ModalAlert } from "../../../../core/core.module";
 
-import * as list from "../../../actions/list/list.actions";
+import { Block, InstanceParams } from "../../../models";
 
-import { Block, DynBlocksRouteParams } from "../../../models";
-
-import * as fromInstanceDetail from "../../../reducers";
+import { ListStoreService } from "./list-store.service";
 
 @Component({
   selector: "ct-list",
@@ -27,9 +24,12 @@ import * as fromInstanceDetail from "../../../reducers";
       [fetchError]="fetchError$ | async"
       (reloadList)="reloadList()">
     </cp-list>`,
+  providers: [
+    ListStoreService,
+  ],
 })
 export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() routeParams: DynBlocksRouteParams;
+  @Input() instanceParams: InstanceParams;
 
   blocks$: Observable<Block[]>;
   fetchLoading$: Observable<boolean>;
@@ -39,12 +39,12 @@ export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
 
   protected modalAlertFetchErrorSubscription: Subscription;
 
-  constructor(protected store$: Store<fromInstanceDetail.State>,
-              protected translate: TranslateService,
-              protected logger: NGXLogger) {
-    this.blocks$ = this.store$.select(fromInstanceDetail.getFetchedBlocksState);
-    this.fetchLoading$ = this.store$.select(fromInstanceDetail.getFetchLoadingState);
-    this.fetchError$ = this.store$.select(fromInstanceDetail.getFetchErrorState);
+  constructor(protected translate: TranslateService,
+              protected logger: NGXLogger,
+              protected listStore: ListStoreService) {
+    this.blocks$ = this.listStore.getFetchedBlocks();
+    this.fetchLoading$ = this.listStore.getFetchLoading();
+    this.fetchError$ = this.listStore.getFetchError();
 
     this.mAlertFetchErrorId = "1";
   }
@@ -54,9 +54,9 @@ export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.routeParams.module && this.routeParams.instance && this.routeParams.step) {
-      this.store$.dispatch(new list.ClearBlocks());
-      this.reloadList(this.routeParams.module, this.routeParams.instance, this.routeParams.step);
+    if (this.instanceParams.module && this.instanceParams.instance && this.instanceParams.step) {
+      this.listStore.dispatchClearBlocks();
+      this.reloadList(this.instanceParams.module, this.instanceParams.instance, this.instanceParams.step);
     }
   }
 
@@ -75,21 +75,21 @@ export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
                 message: err,
                 buttonLabel: translations["CONTAINER.LIST.ALERT_BUTTON"],
               };
-              this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
+              this.listStore.dispatchShowModalAlert(modalAlert);
             });
         }
       });
   }
 
   reloadList(module?: string, instance?: string, step?: string): void {
-    const params = this.getRouteParams(module, instance, step);
-    this.store$.dispatch(new list.FetchBlocks({module: params.module, instance: params.instance, step: params.step}));
+    const params = this.getInstanceParams(module, instance, step);
+    this.listStore.dispatchFetchBlocks(params.module, params.instance, params.step);
   }
 
-  protected getRouteParams(module?: string, instance?: string, step?: string): DynBlocksRouteParams {
-    const mod = module || this.routeParams.module;
-    const inst = instance || this.routeParams.instance;
-    const st = step || this.routeParams.step;
+  protected getInstanceParams(module?: string, instance?: string, step?: string): InstanceParams {
+    const mod = module || this.instanceParams.module;
+    const inst = instance || this.instanceParams.instance;
+    const st = step || this.instanceParams.step;
 
     return {
       module: mod,

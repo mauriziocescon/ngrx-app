@@ -13,7 +13,7 @@ import { ModalAlert, modalAlertsActions } from "../../../../core/core.module";
 
 import * as list from "../../../actions/list/list.actions";
 
-import { Block, DynBlocksRouteParams } from "../../../models";
+import { Block, InstanceParams } from "../../../models";
 
 import * as fromInstanceDetail from "../../../reducers";
 
@@ -32,7 +32,7 @@ import { BlockUtilsService } from "../../../services";
     </cp-next-step>`,
 })
 export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() routeParams: DynBlocksRouteParams;
+  @Input() instanceParams: InstanceParams;
 
   syncRequired$: Observable<boolean>;
   syncRequiredWithTimestamp$: Observable<{ syncRequired: boolean, timestamp: number }>;
@@ -61,8 +61,8 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
     this.subscribeToSynchErrors();
   }
   ngOnChanges(changes: SimpleChanges): void {
-    this.formValidity$ = this.blockUtils.getValiditySelector(this.routeParams.module, this.routeParams.instance, this.routeParams.step);
-    this.editedBlocks = this.blockUtils.getAllEditedBlocksSelector(this.routeParams.module, this.routeParams.instance, this.routeParams.step);
+    this.formValidity$ = this.blockUtils.getValiditySelector(this.instanceParams.module, this.instanceParams.instance, this.instanceParams.step);
+    this.editedBlocks = this.blockUtils.getAllEditedBlocksSelector(this.instanceParams.module, this.instanceParams.instance, this.instanceParams.step);
   }
 
   protected subscribeToSyncing(): void {
@@ -71,7 +71,7 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
       .subscribe(([sync, blocks]) => {
         if (sync.syncRequired === true) {
           const payload = {
-            ...this.routeParams,
+            ...this.instanceParams,
             blocks: blocks,
           };
           this.store$.dispatch(new list.UpdateBlocks(payload));

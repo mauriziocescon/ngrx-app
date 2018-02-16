@@ -5,7 +5,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
 
-import { DynBlocksRouteParams } from "../../models";
+import { InstanceParams } from "../../models";
 
 import * as fromInstanceDetail from "../../reducers";
 
@@ -15,19 +15,19 @@ import * as fromInstanceDetail from "../../reducers";
   template: `
     <div class="container-fluid">
       <div class="row">
-        <ct-next-step 
+        <ct-next-step
           class="col-12 col-sm-2 col-lg-1"
-          [routeParams]="routeParams">
+          [instanceParams]="routeParams">
         </ct-next-step>
-        <ct-list 
+        <ct-list
           class="col-12 col-sm-10 col-lg-11"
-          [routeParams]="routeParams">
+          [instanceParams]="routeParams">
         </ct-list>
       </div>
     </div>`,
 })
 export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
-  protected routeParams: DynBlocksRouteParams;
+  protected routeParams: InstanceParams;
   protected paramMapSubscription: Subscription;
 
   constructor(protected store$: Store<fromInstanceDetail.State>,
