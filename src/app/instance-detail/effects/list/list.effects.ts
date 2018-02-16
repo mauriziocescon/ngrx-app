@@ -19,8 +19,8 @@ import {
   UpdateBlocks,
   UpdateBlocksComplete,
   UpdateBlocksError,
-} from "../../actions/list.actions";
-import { Synchronized } from "../../actions/sync.actions";
+} from "../../actions/list/list.actions";
+import { Synchronized } from "../../actions/list/sync.actions";
 
 import { Block } from "../../models";
 

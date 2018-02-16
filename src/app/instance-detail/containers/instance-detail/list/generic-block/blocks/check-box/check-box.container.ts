@@ -1,14 +1,11 @@
 import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
-import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
-import * as checkBox from "../../../../../../actions/blocks/check-box.actions";
-
-import * as fromInstanceDetail from "../../../../../../reducers";
-
 import { BlockType, CheckBoxBlock } from "../../../../../../models";
+
+import { CheckBoxStoreService } from "./check-box-store.service";
 
 @Component({
   selector: "ct-check-box",
@@ -19,6 +16,9 @@ import { BlockType, CheckBoxBlock } from "../../../../../../models";
       [loading]="loading$ | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-check-box>`,
+  providers: [
+    CheckBoxStoreService,
+  ],
 })
 export class CheckBoxContainerComponent {
   @Input() blockId: number;
@@ -28,8 +28,8 @@ export class CheckBoxContainerComponent {
 
   loading$: Observable<boolean>;
 
-  constructor(protected store$: Store<fromInstanceDetail.State>) {
-    this.block$ = this.store$.select(fromInstanceDetail.getAllCheckBox)
+  constructor(protected checkBoxStoreSelectors: CheckBoxStoreService) {
+    this.block$ = this.checkBoxStoreSelectors.getAllCheckBox()
       .map((blocks: CheckBoxBlock[]) => {
         return blocks.find((block: CheckBoxBlock) => {
           return block.id === this.blockId;
@@ -39,7 +39,7 @@ export class CheckBoxContainerComponent {
         return this.checkBoxBlock = block;
       });
 
-    this.loading$ = this.store$.select(fromInstanceDetail.getCheckBoxBlocksLoadingState)
+    this.loading$ = this.checkBoxStoreSelectors.getCheckBoxBlocksLoading()
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
@@ -68,6 +68,6 @@ export class CheckBoxContainerComponent {
       },
       notify: true,
     };
-    this.store$.dispatch(new checkBox.UpdateBlock(block));
+    this.checkBoxStoreSelectors.dispatchUpdateBlock(block);
   }
 }

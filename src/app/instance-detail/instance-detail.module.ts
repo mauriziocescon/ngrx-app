@@ -76,12 +76,12 @@ export class InstanceDetailModule {
 export {
   FetchBlocksComplete,
   ListActionTypes,
-} from "./actions/list.actions";
+} from "./actions/list/list.actions";
 
 export {
   SyncRequired,
   SyncActionTypes,
-} from "./actions/sync.actions";
+} from "./actions/list/sync.actions";
 
 export { fromInstanceDetail };
 

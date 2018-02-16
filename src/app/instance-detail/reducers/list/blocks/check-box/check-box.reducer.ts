@@ -1,7 +1,7 @@
 import { createSelector } from "@ngrx/store";
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 
-import { CheckBoxActionTypes, CheckBoxActions } from "../../../../actions/blocks/check-box.actions";
+import { CheckBoxActionTypes, CheckBoxActions } from "../../../../actions/list/blocks/check-box.actions";
 import { CheckBoxBlock } from "../../../../models";
 
 export interface State extends EntityState<CheckBoxBlock> {

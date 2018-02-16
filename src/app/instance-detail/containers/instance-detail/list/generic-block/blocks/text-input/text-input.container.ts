@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
-import * as textInput from "../../../../../../actions/blocks/text-input.actions";
+import * as textInput from "../../../../../../actions/list/blocks/text-input.actions";
 
 import * as fromInstanceDetail from "../../../../../../reducers";
 

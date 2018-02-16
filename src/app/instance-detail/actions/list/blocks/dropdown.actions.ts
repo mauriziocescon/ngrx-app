@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { DropdownBlock } from "../../models";
+import { DropdownBlock } from "../../../models";
 
 export enum DropdownActionTypes {
   LOADING = "[Dropdown] Loading",

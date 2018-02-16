@@ -1,7 +1,7 @@
 import { createSelector } from "@ngrx/store";
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 
-import { TextInputActionTypes, TextInputActions } from "../../../../actions/blocks/text-input.actions";
+import { TextInputActionTypes, TextInputActions } from "../../../../actions/list/blocks/text-input.actions";
 import { TextInputBlock } from "../../../../models";
 
 export interface State extends EntityState<TextInputBlock> {

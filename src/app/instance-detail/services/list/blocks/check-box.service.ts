@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
 import * as fromInstanceDetail from "../../../reducers";
-import * as checkBox from "../../../actions/blocks/check-box.actions";
+import * as checkBox from "../../../actions/list/blocks/check-box.actions";
 import { BlockType, CheckBoxBlock, CheckBoxMethods } from "../../../models";
 
 @Injectable()

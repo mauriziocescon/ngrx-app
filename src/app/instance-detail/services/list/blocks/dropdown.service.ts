@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
 import * as fromInstanceDetail from "../../../reducers";
-import * as dropdown from "../../../actions/blocks/dropdown.actions";
+import * as dropdown from "../../../actions/list/blocks/dropdown.actions";
 import { BlockType, DropdownBlock, DropdownMethods } from "../../../models";
 
 @Injectable()

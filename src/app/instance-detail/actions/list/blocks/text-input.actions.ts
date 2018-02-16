@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { TextInputBlock } from "../../models";
+import { TextInputBlock } from "../../../models";
 
 export enum TextInputActionTypes {
   LOADING = "[TextInput] Loading",

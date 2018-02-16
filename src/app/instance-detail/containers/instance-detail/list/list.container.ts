@@ -11,7 +11,7 @@ import { NGXLogger } from "ngx-logger";
 
 import { ModalAlert, modalAlertsActions } from "../../../../core/core.module";
 
-import * as list from "../../../actions/list.actions";
+import * as list from "../../../actions/list/list.actions";
 
 import { Block, DynBlocksRouteParams } from "../../../models";
 

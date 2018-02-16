@@ -6,9 +6,9 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 
-import { ListActionTypes, FetchBlocksComplete } from "../../../actions/list.actions";
-import { SyncRequired } from "../../../actions/sync.actions";
-import { CheckBoxActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../../actions/blocks/check-box.actions";
+import { ListActionTypes, FetchBlocksComplete } from "../../../actions/list/list.actions";
+import { SyncRequired } from "../../../actions/list/sync.actions";
+import { CheckBoxActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../../actions/list/blocks/check-box.actions";
 
 import { Block, BlockType } from "../../../models";
 import { CheckBoxService } from "../../../services";

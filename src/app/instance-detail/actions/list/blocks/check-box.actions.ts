@@ -1,6 +1,6 @@
 import { Action } from "@ngrx/store";
 
-import { CheckBoxBlock } from "../../models";
+import { CheckBoxBlock } from "../../../models";
 
 export enum CheckBoxActionTypes {
   LOADING = "[CheckBox] Loading",

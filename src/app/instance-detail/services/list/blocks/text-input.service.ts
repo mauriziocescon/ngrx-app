@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
 import * as fromInstanceDetail from "../../../reducers";
-import * as textInput from "../../../actions/blocks/text-input.actions";
+import * as textInput from "../../../actions/list/blocks/text-input.actions";
 import { BlockType, TextInputBlock, TextInputMethods } from "../../../models";
 
 @Injectable()

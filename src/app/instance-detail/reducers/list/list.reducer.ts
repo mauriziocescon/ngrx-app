@@ -1,4 +1,4 @@
-import { ListActionTypes, ListActions } from "../../actions/list.actions";
+import { ListActionTypes, ListActions } from "../../actions/list/list.actions";
 import { Block } from "../../models";
 
 export interface State {

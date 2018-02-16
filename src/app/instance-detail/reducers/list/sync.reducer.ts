@@ -1,4 +1,4 @@
-import { SyncActionTypes, SyncActions } from "../../actions/sync.actions";
+import { SyncActionTypes, SyncActions } from "../../actions/list/sync.actions";
 
 export interface State {
   syncRequired: boolean;

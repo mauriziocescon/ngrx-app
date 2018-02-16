@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
-import * as dropdown from "../../../../../../actions/blocks/dropdown.actions";
+import * as dropdown from "../../../../../../actions/list/blocks/dropdown.actions";
 
 import * as fromInstanceDetail from "../../../../../../reducers";
 
