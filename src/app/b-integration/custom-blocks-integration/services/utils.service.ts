@@ -48,7 +48,7 @@ export class CustomBlockUtilsService extends BlockUtilsService {
   }
 
   getSetOfRules(module: string, name: string): any {
-    return setOfRules[module][name];
+    return setOfRules[module][name] ? setOfRules[module][name] : {};
   }
 
   getAllEditedBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
@@ -57,7 +57,7 @@ export class CustomBlockUtilsService extends BlockUtilsService {
     } else if (module === Modules.b2) {
       return this.store$.select(fromB2.getAllEditedBlocksState);
     } else {
-      super.getAllEditedBlocksSelector(module, instance, step);
+      return super.getAllEditedBlocksSelector(module, instance, step);
     }
   }
 
@@ -67,7 +67,7 @@ export class CustomBlockUtilsService extends BlockUtilsService {
     } else if (module === Modules.b2) {
       return this.store$.select(fromB2.getAllEditedBlocksValidityState);
     } else {
-      super.getValiditySelector(module, instance, step);
+      return super.getValiditySelector(module, instance, step);
     }
   }
 }
