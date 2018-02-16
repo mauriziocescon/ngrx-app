@@ -56,15 +56,15 @@ export class RulesResolve implements Resolve<BlocksHooks> {
       })
       .catch((err: HttpErrorResponse) => {
         this.translate.get([
-          "COMPONENT.LIST.ALERT_BUTTON",
-          "COMPONENT.LIST.ALERT_TITLE",
+          "CONTAINER.INSTANCE_DETAIL.ALERT_BUTTON",
+          "CONTAINER.INSTANCE_DETAIL.ALERT_TITLE",
         ])
           .subscribe((translations: any) => {
             const modalAlert: ModalAlert = {
               id: this.alertId,
-              title: translations["COMPONENT.LIST.ALERT_TITLE"],
+              title: translations["CONTAINER.INSTANCE_DETAIL.ALERT_TITLE"],
               message: err.message,
-              buttonLabel: translations["COMPONENT.LIST.ALERT_BUTTON"],
+              buttonLabel: translations["CONTAINER.INSTANCE_DETAIL.ALERT_BUTTON"],
             };
             this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
           });
