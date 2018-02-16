@@ -10,15 +10,15 @@ import { CheckBoxStoreService } from "./check-box-store.service";
 @Component({
   selector: "ct-check-box",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    CheckBoxStoreService,
+  ],
   template: `
     <cp-check-box
       [block]="block$ | async"
       [loading]="loading$ | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-check-box>`,
-  providers: [
-    CheckBoxStoreService,
-  ],
 })
 export class CheckBoxContainerComponent {
   @Input() blockId: number;

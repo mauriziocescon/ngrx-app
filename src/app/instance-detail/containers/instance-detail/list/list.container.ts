@@ -17,6 +17,9 @@ import { ListStoreService } from "./list-store.service";
 @Component({
   selector: "ct-list",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    ListStoreService,
+  ],
   template: `
     <cp-list
       [blocks]="blocks$ | async"
@@ -24,9 +27,6 @@ import { ListStoreService } from "./list-store.service";
       [fetchError]="fetchError$ | async"
       (reloadList)="reloadList()">
     </cp-list>`,
-  providers: [
-    ListStoreService,
-  ],
 })
 export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() instanceParams: InstanceParams;

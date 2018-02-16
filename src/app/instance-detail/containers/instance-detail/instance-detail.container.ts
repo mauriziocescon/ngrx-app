@@ -1,17 +1,19 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
 
 import { InstanceParams } from "../../models";
 
-import * as fromInstanceDetail from "../../reducers";
+import { InstanceDetailStoreService } from "./instance-detail-store.service";
 
 @Component({
   selector: "ct-instance-detail",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    InstanceDetailStoreService,
+  ],
   template: `
     <div class="container-fluid">
       <div class="row">
@@ -30,8 +32,8 @@ export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
   protected routeParams: InstanceParams;
   protected paramMapSubscription: Subscription;
 
-  constructor(protected store$: Store<fromInstanceDetail.State>,
-              protected route: ActivatedRoute) {
+  constructor(protected route: ActivatedRoute,
+              protected instanceDetailStore: InstanceDetailStoreService) {
   }
 
   ngOnInit(): void {
@@ -50,7 +52,8 @@ export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate(): Observable<boolean> {
-    return this.store$.select(fromInstanceDetail.isSynchronizationRequiredState).map(requireSync => !requireSync);
+    return this.instanceDetailStore.isSynchronizationRequired()
+      .map(requireSync => !requireSync);
   }
 
   ngOnDestroy(): void {

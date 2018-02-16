@@ -10,15 +10,15 @@ import { DropdownStoreService } from "./dropdown-store.service";
 @Component({
   selector: "ct-dropdown",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    DropdownStoreService,
+  ],
   template: `
     <cp-dropdown
       [block]="block$ | async"
       [loading]="loading$ | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-dropdown>`,
-  providers: [
-    DropdownStoreService,
-  ],
 })
 export class DropdownContainerComponent {
   @Input() blockId: number;

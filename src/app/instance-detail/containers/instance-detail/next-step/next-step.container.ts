@@ -1,5 +1,4 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnChanges, OnDestroy, Input, SimpleChanges } from "@angular/core";
-import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
@@ -9,19 +8,20 @@ import "rxjs/add/operator/withLatestFrom";
 import { TranslateService } from "@ngx-translate/core";
 import { NGXLogger } from "ngx-logger";
 
-import { ModalAlert, modalAlertsActions } from "../../../../core/core.module";
-
-import * as list from "../../../actions/list/list.actions";
+import { ModalAlert } from "../../../../core/core.module";
 
 import { Block, InstanceParams } from "../../../models";
 
-import * as fromInstanceDetail from "../../../reducers";
-
 import { BlockUtilsService } from "../../../services";
+
+import { NextStepStoreService } from "./next-step-store.service";
 
 @Component({
   selector: "ct-next-step",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    NextStepStoreService,
+  ],
   template: `
     <cp-next-step
       [formValidity]="formValidity$ | async"
@@ -46,20 +46,21 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   protected syncRequiredWithTimestampSubscription: Subscription;
   protected modalAlertSyncErrorSubscription: Subscription;
 
-  constructor(protected store$: Store<fromInstanceDetail.State>,
+  constructor(protected nextStepStore: NextStepStoreService,
               protected translate: TranslateService,
               protected logger: NGXLogger,
               protected blockUtils: BlockUtilsService) {
-    this.syncRequired$ = this.store$.select(fromInstanceDetail.isSynchronizationRequiredState);
-    this.syncRequiredWithTimestamp$ = this.store$.select(fromInstanceDetail.isSynchronizationRequiredWithTimestampState);
+    this.syncRequired$ = this.nextStepStore.getSyncRequired();
+    this.syncRequiredWithTimestamp$ = this.nextStepStore.getSyncRequiredWithTimestamp();
 
-    this.syncError$ = this.store$.select(fromInstanceDetail.getUpdateErrorState);
+    this.syncError$ = this.nextStepStore.getUpdateError();
   }
 
   ngOnInit(): void {
     this.subscribeToSyncing();
     this.subscribeToSynchErrors();
   }
+
   ngOnChanges(changes: SimpleChanges): void {
     this.formValidity$ = this.blockUtils.getValiditySelector(this.instanceParams.module, this.instanceParams.instance, this.instanceParams.step);
     this.editedBlocks = this.blockUtils.getAllEditedBlocksSelector(this.instanceParams.module, this.instanceParams.instance, this.instanceParams.step);
@@ -74,7 +75,7 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
             ...this.instanceParams,
             blocks: blocks,
           };
-          this.store$.dispatch(new list.UpdateBlocks(payload));
+          this.nextStepStore.dispatchUpdateBlock(payload);
         }
       });
   }
@@ -94,7 +95,7 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
                 message: err,
                 buttonLabel: translations["CONTAINER.NEXT_STEP.ALERT_BUTTON"],
               };
-              this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
+              this.nextStepStore.dispatchShowModalAlert(modalAlert);
             });
         }
       });

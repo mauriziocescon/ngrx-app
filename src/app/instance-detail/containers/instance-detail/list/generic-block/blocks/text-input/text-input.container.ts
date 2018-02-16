@@ -10,15 +10,15 @@ import { TextInputStoreService } from "./text-input-store.service";
 @Component({
   selector: "ct-text-input",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    TextInputStoreService,
+  ],
   template: `
     <cp-text-input
       [block]="block$ | async"
       [loading]="loading$ | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-text-input>`,
-  providers: [
-    TextInputStoreService,
-  ],
 })
 export class TextInputContainerComponent {
   @Input() blockId: number;

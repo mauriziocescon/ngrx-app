@@ -1,5 +1,4 @@
 import { Component, ChangeDetectionStrategy, Input, OnDestroy } from "@angular/core";
-import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
@@ -8,20 +7,20 @@ import "rxjs/add/operator/map";
 import { TranslateService } from "@ngx-translate/core";
 
 import {
-  modalConfirmersActions,
   ModalConfirmer,
   ModalConfirmerResultType,
 } from "../../../../../core/core.module";
 
-import * as fromB1Blocks from "../../../reducers";
-import * as checkBoxConfirmer from "../../../actions/blocks/check-box-confirmer.actions";
 import { B1BlockType, CheckBoxConfirmerBlock } from "../../../models";
 
-import * as fromRoot from "../../../../../reducers";
+import { CheckBoxConfirmerStoreService } from "./check-box-confirmer-store.service";
 
 @Component({
   selector: "ct-check-box-confirmer",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    CheckBoxConfirmerStoreService,
+  ],
   template: `
     <cp-check-box-confirmer
       [block]="block$ | async"
@@ -40,9 +39,9 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
   protected modalConfirmerResults$: Observable<{ [id: string]: ModalConfirmerResultType }>;
   protected modalConfirmerResultSubscription: Subscription;
 
-  constructor(protected store$: Store<fromRoot.State>,
+  constructor(protected checkBoxConfirmerStore: CheckBoxConfirmerStoreService,
               protected translate: TranslateService) {
-    this.block$ = this.store$.select(fromB1Blocks.getAllCheckBoxConfirmer)
+    this.block$ = this.checkBoxConfirmerStore.getAllCheckBoxConfirmer()
       .map((blocks: CheckBoxConfirmerBlock[]) => {
         return blocks.find((block: CheckBoxConfirmerBlock) => {
           return block.id === this.blockId;
@@ -52,12 +51,12 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
         return this.checkBoxConfirmerBlock = block;
       });
 
-    this.loading$ = this.store$.select(fromB1Blocks.getCheckBoxConfirmerBlocksLoadingState)
+    this.loading$ = this.checkBoxConfirmerStore.getCheckBoxConfirmerBlocksLoading()
       .map((blocksLoading: { [id: string]: boolean }) => {
         return blocksLoading[this.blockId];
       });
 
-    this.modalConfirmerResults$ = this.store$.select(fromRoot.getModalConfirmerResults);
+    this.modalConfirmerResults$ = this.checkBoxConfirmerStore.getModalConfirmerResults();
   }
 
   valueDidChange(value: boolean): void {
@@ -87,7 +86,7 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
       },
       notify: true,
     };
-    this.store$.dispatch(new checkBoxConfirmer.UpdateBlock(block));
+    this.checkBoxConfirmerStore.dispatchUpdateBlock(block);
   }
 
   protected askForConfirmation(): void {
@@ -107,7 +106,7 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
           yesButtonLabel: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON"],
           noButtonLabel: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON"],
         };
-        this.store$.dispatch(new modalConfirmersActions.ShowModalConfirmer({modal: modalConfirmer}));
+        this.checkBoxConfirmerStore.dispatchShowModalConfirmer(modalConfirmer);
       });
   }
 
@@ -119,7 +118,7 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
         const result = modalConfirmerResult[this.blockId.toString()];
 
         if (result) {
-          this.store$.dispatch(new modalConfirmersActions.CleanModalConfirmer({id: this.blockId.toString()}));
+          this.checkBoxConfirmerStore.dispatchCleanModalConfirmer({id: this.blockId.toString()});
           this.unsubscribeToModalConfirmerResult();
 
           if (result === ModalConfirmerResultType.Positive) {
