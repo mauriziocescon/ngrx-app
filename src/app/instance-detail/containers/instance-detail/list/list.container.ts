@@ -1,5 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Component, ChangeDetectionStrategy, OnInit, OnChanges, OnDestroy, Input, SimpleChanges } from "@angular/core";
 import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
@@ -18,8 +17,6 @@ import { Block, DynBlocksRouteParams } from "../../../models";
 
 import * as fromInstanceDetail from "../../../reducers";
 
-import { BlockUtilsService } from "../../../services";
-
 @Component({
   selector: "ct-list",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,85 +25,39 @@ import { BlockUtilsService } from "../../../services";
       [blocks]="blocks$ | async"
       [loading]="fetchLoading$ | async"
       [fetchError]="fetchError$ | async"
-      (reloadList)="reloadList()"
-      [formValidity]="formValidity$ | async"
-      [syncing]="syncRequired$ | async"
-      [syncError]="syncError$ | async"
-      (nextStep)="nextStep()"
-      (reset)="reset()">
+      (reloadList)="reloadList()">
     </cp-list>`,
 })
-export class ListContainerComponent implements OnInit, OnDestroy {
+export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() routeParams: DynBlocksRouteParams;
+
   blocks$: Observable<Block[]>;
   fetchLoading$: Observable<boolean>;
   fetchError$: Observable<string>;
 
-  syncRequired$: Observable<boolean>;
-  syncRequiredWithTimestamp$: Observable<{ syncRequired: boolean, timestamp: number }>;
-  syncError$: Observable<string>;
-
-  formValidity$: Observable<boolean>;
-  editedBlocks: Observable<Block[]>;
-
   protected mAlertFetchErrorId: string;
-  protected mAlertSyncErrorId: string;
 
-  protected paramMapSubscription: Subscription;
-  protected syncRequiredWithTimestampSubscription: Subscription;
   protected modalAlertFetchErrorSubscription: Subscription;
-  protected modalAlertSyncErrorSubscription: Subscription;
 
   constructor(protected store$: Store<fromInstanceDetail.State>,
-              protected route: ActivatedRoute,
               protected translate: TranslateService,
-              protected logger: NGXLogger,
-              protected blockUtils: BlockUtilsService) {
+              protected logger: NGXLogger) {
     this.blocks$ = this.store$.select(fromInstanceDetail.getFetchedBlocksState);
     this.fetchLoading$ = this.store$.select(fromInstanceDetail.getFetchLoadingState);
     this.fetchError$ = this.store$.select(fromInstanceDetail.getFetchErrorState);
 
     this.mAlertFetchErrorId = "1";
-    this.mAlertSyncErrorId = "2";
-
-    this.syncRequired$ = this.store$.select(fromInstanceDetail.isSynchronizationRequiredState);
-    this.syncRequiredWithTimestamp$ = this.store$.select(fromInstanceDetail.isSynchronizationRequiredWithTimestampState);
-
-    this.syncError$ = this.store$.select(fromInstanceDetail.getUpdateErrorState);
   }
 
   ngOnInit(): void {
-    this.subscribeToParamMap();
-    this.subscribeToSyncing();
     this.subscribeToFetchErrors();
-    this.subscribeToSynchErrors();
   }
 
-  protected subscribeToParamMap(): void {
-    this.paramMapSubscription = this.route.paramMap
-      .subscribe((paramMap: ParamMap) => {
-        const params = this.getRouteParams();
-        this.formValidity$ = this.blockUtils.getValiditySelector(params.module, params.instance, params.step);
-        this.editedBlocks = this.blockUtils.getAllEditedBlocksSelector(params.module, params.instance, params.step);
-
-        if (params.module && params.instance && params.step) {
-          this.store$.dispatch(new list.ClearBlocks());
-          this.reloadList(params.module, params.instance, params.step);
-        }
-      });
-  }
-
-  protected subscribeToSyncing(): void {
-    this.syncRequiredWithTimestampSubscription = this.syncRequiredWithTimestamp$
-      .withLatestFrom(this.editedBlocks)
-      .subscribe(([sync, blocks]) => {
-        if (sync.syncRequired === true) {
-          const payload = {
-            ...this.getRouteParams(),
-            blocks: blocks,
-          };
-          this.store$.dispatch(new list.UpdateBlocks(payload));
-        }
-      });
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.routeParams.module && this.routeParams.instance && this.routeParams.step) {
+      this.store$.dispatch(new list.ClearBlocks());
+      this.reloadList(this.routeParams.module, this.routeParams.instance, this.routeParams.step);
+    }
   }
 
   subscribeToFetchErrors(): void {
@@ -130,50 +81,15 @@ export class ListContainerComponent implements OnInit, OnDestroy {
       });
   }
 
-  subscribeToSynchErrors(): void {
-    this.modalAlertSyncErrorSubscription = this.syncError$
-      .subscribe((err) => {
-        if (err) {
-          this.translate.get([
-            "CONTAINER.LIST.ALERT_BUTTON",
-            "CONTAINER.LIST.ALERT_TITLE",
-          ])
-            .subscribe((translations: any) => {
-              const modalAlert: ModalAlert = {
-                id: this.mAlertSyncErrorId,
-                title: translations["CONTAINER.LIST.ALERT_TITLE"],
-                message: err,
-                buttonLabel: translations["CONTAINER.LIST.ALERT_BUTTON"],
-              };
-              this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
-            });
-        }
-      });
-  }
-
   reloadList(module?: string, instance?: string, step?: string): void {
-    const params = this.getRouteParams();
-    const mod = module || params.module;
-    const inst = instance || params.instance;
-    const st = step || params.step;
-
-    this.store$.dispatch(new list.FetchBlocks({module: mod, instance: inst, step: st}));
-  }
-
-  nextStep(): void {
-    // dispatch action to move forward
-    this.logger.log(`ListContainerComponent: save`);
-  }
-
-  reset(): void {
-    // dispatch action to reset the store
-    this.logger.log(`ListContainerComponent: reset`);
+    const params = this.getRouteParams(module, instance, step);
+    this.store$.dispatch(new list.FetchBlocks({module: params.module, instance: params.instance, step: params.step}));
   }
 
   protected getRouteParams(module?: string, instance?: string, step?: string): DynBlocksRouteParams {
-    const mod = module || this.route.snapshot.paramMap.get("module");
-    const inst = instance || this.route.snapshot.paramMap.get("instance");
-    const st = step || this.route.snapshot.paramMap.get("step");
+    const mod = module || this.routeParams.module;
+    const inst = instance || this.routeParams.instance;
+    const st = step || this.routeParams.step;
 
     return {
       module: mod,
@@ -187,17 +103,8 @@ export class ListContainerComponent implements OnInit, OnDestroy {
   }
 
   protected unsubscribeAll(): void {
-    if (this.paramMapSubscription) {
-      this.paramMapSubscription.unsubscribe();
-    }
-    if (this.syncRequiredWithTimestampSubscription) {
-      this.syncRequiredWithTimestampSubscription.unsubscribe();
-    }
     if (this.modalAlertFetchErrorSubscription) {
       this.modalAlertFetchErrorSubscription.unsubscribe();
-    }
-    if (this.modalAlertSyncErrorSubscription) {
-      this.modalAlertSyncErrorSubscription.unsubscribe();
     }
   }
 }

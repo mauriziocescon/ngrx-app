@@ -13,15 +13,14 @@
       "SHOW": "Show"
     },
     "LIST": {
-      "ALERT_BUTTON": "Ok",
-      "ALERT_TITLE": "Alert",
-      "CANCEL": "Cancel",
-      "INPUT_TEXT_PLACEHOLDER": "Type some text",
       "LOAD_COMPLETED": "Loading completed",
       "LOADING": "Loading...",
-      "NEXT_STEP": "Next step",
       "NO_RESULT": "Empty",
-      "RETRY": "Retry",
+      "RETRY": "Retry"
+    },
+    "NEXT_STEP": {
+      "CANCEL": "Cancel",
+      "NEXT_STEP": "Next step",
       "SYNC": "Sync..."
     },
     "CHECK_BOX": {
@@ -60,6 +59,10 @@
       "ALERT_TITLE": "Alert"
     },
     "LIST": {
+      "ALERT_BUTTON": "Ok",
+      "ALERT_TITLE": "Alert"
+    },
+    "NEXT_STEP": {
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Alert"
     },

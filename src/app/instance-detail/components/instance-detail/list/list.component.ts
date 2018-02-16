@@ -13,17 +13,9 @@ export class ListComponent {
   @Input() fetchError: string;
   @Output() reloadList: EventEmitter<void>;
 
-  @Input() formValidity: boolean;
-  @Input() syncing: boolean;
-  @Input() syncError: string;
-  @Output() nextStep: EventEmitter<void>;
-  @Output() reset: EventEmitter<void>;
-
   constructor() {
     this.loading = false;
     this.reloadList = new EventEmitter();
-    this.nextStep = new EventEmitter();
-    this.reset = new EventEmitter();
   }
 
   get isLoadingData(): boolean {
@@ -52,13 +44,5 @@ export class ListComponent {
 
   loadList(): void {
     this.reloadList.emit();
-  }
-
-  moveToNextStep(): void {
-    this.nextStep.emit();
-  }
-
-  resetForm(): void {
-    this.reset.emit();
   }
 }

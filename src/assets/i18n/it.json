@@ -13,15 +13,14 @@
       "SHOW": "Visualizza"
     },
     "LIST": {
-      "ALERT_BUTTON": "Ok",
-      "ALERT_TITLE": "Avviso",
-      "CANCEL": "Annulla",
-      "INPUT_TEXT_PLACEHOLDER": "Inserisci testo",
       "LOAD_COMPLETED": "Caricamento completato",
       "LOADING": "Caricamento...",
-      "NEXT_STEP": "Procedi",
       "NO_RESULT": "Vuoto",
-      "RETRY": "Riprova",
+      "RETRY": "Riprova"
+    },
+    "NEXT_STEP": {
+      "CANCEL": "Annulla",
+      "NEXT_STEP": "Procedi",
       "SYNC": "Sync..."
     },
     "CHECK_BOX": {
@@ -60,6 +59,10 @@
       "ALERT_TITLE": "Avviso"
     },
     "LIST": {
+      "ALERT_BUTTON": "Ok",
+      "ALERT_TITLE": "Avviso"
+    },
+    "NEXT_STEP": {
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Avviso"
     },

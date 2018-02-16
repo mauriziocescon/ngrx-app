@@ -1,32 +1,13 @@
 <div class="container-fluid list-component">
 
   <div class="row list-main-content" [hidden]="!showData">
-
-    <div class="col-12 col-sm-2 col-lg-1">
-      <div class="row">
-        <div class="col-6 col-sm-12 button-row">
-          <button class="btn btn-primary action-button" (click)="moveToNextStep()" [disabled]="!formValidity">{{ "COMPONENT.LIST.NEXT_STEP" | translate }}</button>
-        </div>
-        <div class="col-6 col-sm-12 button-row">
-          <button class="btn btn-default action-button" (click)="resetForm()">{{ "COMPONENT.LIST.CANCEL" | translate }}</button>
-        </div>
-        <div class="col-12 button-row" [hidden]="!syncing">
-          <span class="fa fa-refresh fa-spin"></span>
-          <span>{{ "COMPONENT.LIST.SYNC" | translate }}</span>
-        </div>
+    <div class="col-12" *ngFor="let block of dataSource; trackBy: trackByBlock">
+      <div class="generic-block">
+        <ct-generic-block [block]="block"></ct-generic-block>
       </div>
     </div>
-    <div class="col-12 col-sm-10 col-lg-11">
-      <div class="row">
-        <div class="col-12" *ngFor="let block of dataSource; trackBy: trackByBlock">
-          <div class="generic-block">
-            <ct-generic-block [block]="block"></ct-generic-block>
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="full-width-message">{{ "COMPONENT.LIST.LOAD_COMPLETED" | translate }}</div>
-        </div>
-      </div>
+    <div class="col-12">
+      <div class="full-width-message">{{ "COMPONENT.LIST.LOAD_COMPLETED" | translate }}</div>
     </div>
   </div>
 

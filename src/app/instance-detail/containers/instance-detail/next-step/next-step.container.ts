@@ -1,5 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Component, ChangeDetectionStrategy, OnInit, OnChanges, OnDestroy, Input, SimpleChanges } from "@angular/core";
 import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
@@ -10,11 +9,14 @@ import "rxjs/add/operator/withLatestFrom";
 import { TranslateService } from "@ngx-translate/core";
 import { NGXLogger } from "ngx-logger";
 
+import { ModalAlert, modalAlertsActions } from "../../../../core/core.module";
+
+import * as list from "../../../actions/list.actions";
+
 import { Block, DynBlocksRouteParams } from "../../../models";
 
 import * as fromInstanceDetail from "../../../reducers";
-import * as list from "../../../actions/list.actions";
-import { ModalAlert, modalAlertsActions } from "../../../../core/core.module";
+
 import { BlockUtilsService } from "../../../services";
 
 @Component({
@@ -29,7 +31,9 @@ import { BlockUtilsService } from "../../../services";
       (reset)="reset()">
     </cp-next-step>`,
 })
-export class NextStepContainerComponent implements OnInit, OnDestroy {
+export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() routeParams: DynBlocksRouteParams;
+
   syncRequired$: Observable<boolean>;
   syncRequiredWithTimestamp$: Observable<{ syncRequired: boolean, timestamp: number }>;
   syncError$: Observable<string>;
@@ -39,12 +43,10 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
 
   protected mAlertSyncErrorId: string;
 
-  protected paramMapSubscription: Subscription;
   protected syncRequiredWithTimestampSubscription: Subscription;
   protected modalAlertSyncErrorSubscription: Subscription;
 
   constructor(protected store$: Store<fromInstanceDetail.State>,
-              protected route: ActivatedRoute,
               protected translate: TranslateService,
               protected logger: NGXLogger,
               protected blockUtils: BlockUtilsService) {
@@ -55,18 +57,12 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscribeToParamMap();
     this.subscribeToSyncing();
     this.subscribeToSynchErrors();
   }
-
-  protected subscribeToParamMap(): void {
-    this.paramMapSubscription = this.route.paramMap
-      .subscribe((paramMap: ParamMap) => {
-        const params = this.getRouteParams();
-        this.formValidity$ = this.blockUtils.getValiditySelector(params.module, params.instance, params.step);
-        this.editedBlocks = this.blockUtils.getAllEditedBlocksSelector(params.module, params.instance, params.step);
-      });
+  ngOnChanges(changes: SimpleChanges): void {
+    this.formValidity$ = this.blockUtils.getValiditySelector(this.routeParams.module, this.routeParams.instance, this.routeParams.step);
+    this.editedBlocks = this.blockUtils.getAllEditedBlocksSelector(this.routeParams.module, this.routeParams.instance, this.routeParams.step);
   }
 
   protected subscribeToSyncing(): void {
@@ -75,7 +71,7 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
       .subscribe(([sync, blocks]) => {
         if (sync.syncRequired === true) {
           const payload = {
-            ...this.getRouteParams(),
+            ...this.routeParams,
             blocks: blocks,
           };
           this.store$.dispatch(new list.UpdateBlocks(payload));
@@ -88,15 +84,15 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
       .subscribe((err) => {
         if (err) {
           this.translate.get([
-            "CONTAINER.LIST.ALERT_BUTTON",
-            "CONTAINER.LIST.ALERT_TITLE",
+            "CONTAINER.NEXT_STEP.ALERT_BUTTON",
+            "CONTAINER.NEXT_STEP.ALERT_TITLE",
           ])
             .subscribe((translations: any) => {
               const modalAlert: ModalAlert = {
                 id: this.mAlertSyncErrorId,
-                title: translations["CONTAINER.LIST.ALERT_TITLE"],
+                title: translations["CONTAINER.NEXT_STEP.ALERT_TITLE"],
                 message: err,
-                buttonLabel: translations["CONTAINER.LIST.ALERT_BUTTON"],
+                buttonLabel: translations["CONTAINER.NEXT_STEP.ALERT_BUTTON"],
               };
               this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
             });
@@ -106,34 +102,19 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
 
   nextStep(): void {
     // dispatch action to move forward
-    this.logger.log(`ListContainerComponent: save`);
+    this.logger.log(`NextStepContainerComponent: save`);
   }
 
   reset(): void {
     // dispatch action to reset the store
-    this.logger.log(`ListContainerComponent: reset`);
+    this.logger.log(`NextStepContainerComponent: reset`);
   }
 
   ngOnDestroy(): void {
     this.unsubscribeAll();
   }
 
-  protected getRouteParams(module?: string, instance?: string, step?: string): DynBlocksRouteParams {
-    const mod = module || this.route.snapshot.paramMap.get("module");
-    const inst = instance || this.route.snapshot.paramMap.get("instance");
-    const st = step || this.route.snapshot.paramMap.get("step");
-
-    return {
-      module: mod,
-      instance: inst,
-      step: st,
-    };
-  }
-
   protected unsubscribeAll(): void {
-    if (this.paramMapSubscription) {
-      this.paramMapSubscription.unsubscribe();
-    }
     if (this.syncRequiredWithTimestampSubscription) {
       this.syncRequiredWithTimestampSubscription.unsubscribe();
     }
