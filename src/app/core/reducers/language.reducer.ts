@@ -5,7 +5,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  selectedLanguage: undefined,
+  selectedLanguage: "en",
 };
 
 export function reducer(state = initialState, action: LanguageActions): State {
