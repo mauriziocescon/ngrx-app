@@ -29,7 +29,7 @@ import { InstanceDetailStoreService } from "./instance-detail-store.service";
     </div>`,
 })
 export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
-  protected routeParams: InstanceParams;
+  routeParams: InstanceParams;
   protected paramMapSubscription: Subscription;
 
   constructor(protected route: ActivatedRoute,

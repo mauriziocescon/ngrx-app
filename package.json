@@ -16,7 +16,7 @@
     "json-server-watch": "nodemon ./mock-server/server.js",
     "ng": "ng",
     "serve": "ng serve --open | npm run json-server",
-    "build": "ng build --prod --build-optimizer false",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -79,7 +79,7 @@
     "@angular/cli": "1.7.0",
     "@angular/compiler-cli": "5.2.5",
     "@angular/language-service": "5.2.5",
-    "@types/bootstrap": "3.3.37",
+    "@types/bootstrap": "3.3.38",
     "@types/faker": "4.1.2",
     "@types/jasmine": "2.8.6",
     "@types/jasminewd2": "2.0.3",
