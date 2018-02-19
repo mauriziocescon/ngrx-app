@@ -28,9 +28,9 @@ export class B2BlockHooksService {
 
     this.hooks = hooks;
 
-    this.listenToDatePickerBlockLoad();
+    this.subscribeToDatePickerBlockLoad();
 
-    this.listenToDatePickerBlockChanges();
+    this.subscribeToDatePickerBlockChanges();
   }
 
   unsubscribeAll(): void {
@@ -43,7 +43,7 @@ export class B2BlockHooksService {
     }
   }
 
-  listenToDatePickerBlockLoad(): void {
+  subscribeToDatePickerBlockLoad(): void {
     this.datePickerService.blockLoadObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
@@ -54,7 +54,7 @@ export class B2BlockHooksService {
       });
   }
 
-  listenToDatePickerBlockChanges(): void {
+  subscribeToDatePickerBlockChanges(): void {
     this.datePickerService.blockChangesObservable$
       .subscribe((block: DatePickerBlock) => {
         try {

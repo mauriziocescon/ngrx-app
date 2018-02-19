@@ -28,9 +28,9 @@ export class B1BlockHooksService {
 
     this.hooks = hooks;
 
-    this.listenToCheckBoxConfirmerBlockLoad();
+    this.subscribeToCheckBoxConfirmerBlockLoad();
 
-    this.listenToCheckBoxConfirmerBlockChanges();
+    this.subscribeToCheckBoxConfirmerBlockChanges();
   }
 
   unsubscribeAll(): void {
@@ -43,7 +43,7 @@ export class B1BlockHooksService {
     }
   }
 
-  listenToCheckBoxConfirmerBlockLoad(): void {
+  subscribeToCheckBoxConfirmerBlockLoad(): void {
     this.checkBoxConfirmerBlockLoadSubscription = this.checkBoxConfirmerService.blockLoadObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
@@ -54,7 +54,7 @@ export class B1BlockHooksService {
       });
   }
 
-  listenToCheckBoxConfirmerBlockChanges(): void {
+  subscribeToCheckBoxConfirmerBlockChanges(): void {
     this.checkBoxConfirmerBlockChangesSubscription = this.checkBoxConfirmerService.blockChangesObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
