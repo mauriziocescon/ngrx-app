@@ -9,7 +9,7 @@ import * as checkBox from "../../../actions/list/blocks/check-box.actions";
 import { BlockType, CheckBoxBlock, CheckBoxMethods } from "../../../models";
 
 @Injectable()
-export class CheckBoxService {
+export class CheckBoxActionsService {
   protected blockLoadSubject$: Subject<CheckBoxBlock>;
   readonly blockLoadObservable$: Observable<CheckBoxBlock>;
 

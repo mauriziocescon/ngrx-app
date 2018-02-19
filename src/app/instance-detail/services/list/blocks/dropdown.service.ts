@@ -9,7 +9,7 @@ import * as dropdown from "../../../actions/list/blocks/dropdown.actions";
 import { BlockType, DropdownBlock, DropdownMethods } from "../../../models";
 
 @Injectable()
-export class DropdownService {
+export class DropdownActionsService {
   protected blockLoadSubject$: Subject<DropdownBlock>;
   readonly blockLoadObservable$: Observable<DropdownBlock>;
 

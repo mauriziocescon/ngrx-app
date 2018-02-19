@@ -6,9 +6,9 @@ import { Observable } from "rxjs/Observable";
 import {
   Block,
   BlockUtilsService,
-  CheckBoxService,
-  DropdownService,
-  TextInputService,
+  CheckBoxActionsService,
+  DropdownActionsService,
+  TextInputActionsService,
 } from "../../../instance-detail/instance-detail.module";
 
 import { B1BlockUtilsService, fromB1 } from "../../../b1";
@@ -22,9 +22,9 @@ import { Modules } from "../models";
 export class CustomBlockUtilsService extends BlockUtilsService {
 
   constructor(protected store$: Store<any>,
-              protected checkBoxService: CheckBoxService,
-              protected dropdownService: DropdownService,
-              protected textInputService: TextInputService,
+              protected checkBoxService: CheckBoxActionsService,
+              protected dropdownService: DropdownActionsService,
+              protected textInputService: TextInputActionsService,
               protected b1BlockUtilsService: B1BlockUtilsService,
               protected b2BlockUtilsService: B2BlockUtilsService) {
     super(

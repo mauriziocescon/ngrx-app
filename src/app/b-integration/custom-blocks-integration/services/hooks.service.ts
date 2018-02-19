@@ -4,9 +4,9 @@ import { NGXLogger } from "ngx-logger";
 
 import {
   BlockHooksService,
-  CheckBoxService,
-  DropdownService,
-  TextInputService,
+  CheckBoxActionsService,
+  DropdownActionsService,
+  TextInputActionsService,
 } from "../../../instance-detail/instance-detail.module";
 
 import { B1BlockHooksService, B1BlocksMethods, B1BlocksHooks } from "../../../b1";
@@ -22,9 +22,9 @@ import {
 export class CustomBlockHooksService extends BlockHooksService {
 
   constructor(protected logger: NGXLogger,
-              protected checkBoxService: CheckBoxService,
-              protected dropdownService: DropdownService,
-              protected textInputService: TextInputService,
+              protected checkBoxService: CheckBoxActionsService,
+              protected dropdownService: DropdownActionsService,
+              protected textInputService: TextInputActionsService,
               protected b1BlockHooksService: B1BlockHooksService,
               protected b2BlockHooksService: B2BlockHooksService) {
     super(
@@ -36,7 +36,7 @@ export class CustomBlockHooksService extends BlockHooksService {
   }
 
   setupHooks(hooks: CustomBlocksHooks, module?: string, step?: string): void {
-    this.unsubscribeListeners();
+    this.unsubscribeAll();
 
     super.setupHooks(hooks, module, step);
 
@@ -47,24 +47,24 @@ export class CustomBlockHooksService extends BlockHooksService {
     }
   }
 
-  protected unsubscribeListeners(): void {
-    super.unsubscribeListeners();
+  protected unsubscribeAll(): void {
+    super.unsubscribeAll();
 
     this.b1BlockHooksService.unsubscribeListeners();
     this.b2BlockHooksService.unsubscribeListeners();
   }
 
-  blocksMethods(): CustomBlocksMethods {
+  getActions(): CustomBlocksMethods {
     let methods;
 
     if (this.module === Modules.b1) {
-      methods = super.blocksMethods() as B1BlocksMethods;
+      methods = super.getActions() as B1BlocksMethods;
       methods.checkBoxConfirmer = this.b1BlockHooksService.blocksMethods().checkBoxConfirmer;
     } else if (this.module === Modules.b2) {
-      methods = super.blocksMethods() as B2BlocksMethods;
+      methods = super.getActions() as B2BlocksMethods;
       methods.datePicker = this.b2BlockHooksService.blocksMethods().datePicker;
     } else {
-      methods = super.blocksMethods();
+      methods = super.getActions();
     }
 
     return methods;

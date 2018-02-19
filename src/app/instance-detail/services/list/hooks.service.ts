@@ -12,9 +12,9 @@ import {
   TextInputBlock,
 } from "../../models";
 
-import { CheckBoxService } from "./blocks/check-box.service";
-import { DropdownService } from "./blocks/dropdown.service";
-import { TextInputService } from "./blocks/text-input.service";
+import { CheckBoxActionsService } from "./blocks/check-box.service";
+import { DropdownActionsService } from "./blocks/dropdown.service";
+import { TextInputActionsService } from "./blocks/text-input.service";
 
 @Injectable()
 export class BlockHooksService {
@@ -31,28 +31,28 @@ export class BlockHooksService {
   protected textInputBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected checkBoxService: CheckBoxService,
-              protected dropdownService: DropdownService,
-              protected textInputService: TextInputService) {
+              protected checkBoxService: CheckBoxActionsService,
+              protected dropdownService: DropdownActionsService,
+              protected textInputService: TextInputActionsService) {
   }
 
   setupHooks(hooks: BlocksHooks, module?: string, step?: string): void {
-    this.unsubscribeListeners();
+    this.unsubscribeAll();
 
     this.hooks = hooks;
     this.module = module;
     this.step = step;
 
-    this.listenToCheckBoxBlockLoad();
-    this.listenToDropdownBlockLoad();
-    this.listenToTextInputBlockLoad();
+    this.subscribeToCheckBoxBlockLoad();
+    this.subscribeToDropdownBlockLoad();
+    this.subscribeToTextInputBlockLoad();
 
-    this.listenToCheckBoxBlockChanges();
-    this.listenToDropdownBlockChanges();
-    this.listenToTextInputBlockChanges();
+    this.subscribeToCheckBoxBlockChanges();
+    this.subscribeToDropdownBlockChanges();
+    this.subscribeToTextInputBlockChanges();
   }
 
-  protected unsubscribeListeners(): void {
+  protected unsubscribeAll(): void {
     if (this.checkBoxBlockLoadSubscription) {
       this.checkBoxBlockLoadSubscription.unsubscribe();
     }
@@ -74,73 +74,73 @@ export class BlockHooksService {
     }
   }
 
-  listenToCheckBoxBlockLoad(): void {
+  subscribeToCheckBoxBlockLoad(): void {
     this.checkBoxBlockLoadSubscription = this.checkBoxService.blockLoadObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
-          this.hooks[block.hooks.checkBoxBlockDidLoad](block, this.blocksMethods());
+          this.hooks[block.hooks.checkBoxBlockDidLoad](block, this.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
       });
   }
 
-  listenToDropdownBlockLoad(): void {
+  subscribeToDropdownBlockLoad(): void {
     this.dropdownBlockLoadSubscription = this.dropdownService.blockLoadObservable$
       .subscribe((block: DropdownBlock) => {
         try {
-          this.hooks[block.hooks.dropdownBlockDidLoad](block, this.blocksMethods());
+          this.hooks[block.hooks.dropdownBlockDidLoad](block, this.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
       });
   }
 
-  listenToTextInputBlockLoad(): void {
+  subscribeToTextInputBlockLoad(): void {
     this.textInputBlockLoadSubscription = this.textInputService.blockLoadObservable$
       .subscribe((block: TextInputBlock) => {
         try {
-          this.hooks[block.hooks.textInputBlockDidLoad](block, this.blocksMethods());
+          this.hooks[block.hooks.textInputBlockDidLoad](block, this.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
       });
   }
 
-  listenToCheckBoxBlockChanges(): void {
+  subscribeToCheckBoxBlockChanges(): void {
     this.checkBoxBlockChangesSubscription = this.checkBoxService.blockChangesObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
-          this.hooks[block.hooks.checkBoxBlockDidChange](block, this.blocksMethods());
+          this.hooks[block.hooks.checkBoxBlockDidChange](block, this.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
       });
   }
 
-  listenToDropdownBlockChanges(): void {
+  subscribeToDropdownBlockChanges(): void {
     this.dropdownBlockChangesSubscription = this.dropdownService.blockChangesObservable$
       .subscribe((block: DropdownBlock) => {
         try {
-          this.hooks[block.hooks.dropdownBlockDidChange](block, this.blocksMethods());
+          this.hooks[block.hooks.dropdownBlockDidChange](block, this.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
       });
   }
 
-  listenToTextInputBlockChanges(): void {
+  subscribeToTextInputBlockChanges(): void {
     this.textInputBlockChangesSubscription = this.textInputService.blockChangesObservable$
       .subscribe((block: TextInputBlock) => {
         try {
-          this.hooks[block.hooks.textInputBlockDidChange](block, this.blocksMethods());
+          this.hooks[block.hooks.textInputBlockDidChange](block, this.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
       });
   }
 
-  protected blocksMethods(): BlocksMethods {
+  protected getActions(): BlocksMethods {
     return {
       checkBox: {
         ...this.checkBoxService.getCheckBoxMethods(),

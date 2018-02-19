@@ -9,7 +9,7 @@ import * as textInput from "../../../actions/list/blocks/text-input.actions";
 import { BlockType, TextInputBlock, TextInputMethods } from "../../../models";
 
 @Injectable()
-export class TextInputService {
+export class TextInputActionsService {
   protected blockLoadSubject$: Subject<TextInputBlock>;
   readonly blockLoadObservable$: Observable<TextInputBlock>;
 

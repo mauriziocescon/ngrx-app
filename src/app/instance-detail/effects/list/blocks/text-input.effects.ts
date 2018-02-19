@@ -11,13 +11,13 @@ import { SyncRequired } from "../../../actions/list/sync.actions";
 import { TextInputActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../../actions/list/blocks/text-input.actions";
 
 import { Block, BlockType } from "../../../models";
-import { TextInputService } from "../../../services";
+import { TextInputActionsService } from "../../../services";
 
 @Injectable()
 export class TextInputEffect {
 
   constructor(protected actions$: Actions,
-              protected textInputService: TextInputService) {
+              protected textInputService: TextInputActionsService) {
   }
 
   @Effect() blocksAvailable$: Observable<Action> = this.actions$

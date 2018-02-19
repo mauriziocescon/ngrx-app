@@ -11,13 +11,13 @@ import { SyncRequired } from "../../../actions/list/sync.actions";
 import { CheckBoxActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../../actions/list/blocks/check-box.actions";
 
 import { Block, BlockType } from "../../../models";
-import { CheckBoxService } from "../../../services";
+import { CheckBoxActionsService } from "../../../services";
 
 @Injectable()
 export class CheckBoxEffect {
 
   constructor(protected actions$: Actions,
-              protected checkBoxService: CheckBoxService) {
+              protected checkBoxService: CheckBoxActionsService) {
   }
 
   @Effect() blocksAvailable$: Observable<Action> = this.actions$

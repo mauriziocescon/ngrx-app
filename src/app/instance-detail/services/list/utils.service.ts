@@ -18,17 +18,17 @@ import {
 
 import * as fromInstanceDetail from "../../reducers";
 
-import { TextInputService } from "./blocks/text-input.service";
-import { DropdownService } from "./blocks/dropdown.service";
-import { CheckBoxService } from "./blocks/check-box.service";
+import { TextInputActionsService } from "./blocks/text-input.service";
+import { DropdownActionsService } from "./blocks/dropdown.service";
+import { CheckBoxActionsService } from "./blocks/check-box.service";
 
 @Injectable()
 export class BlockUtilsService {
 
   constructor(protected store$: Store<fromInstanceDetail.State>,
-              protected checkBoxService: CheckBoxService,
-              protected dropdownService: DropdownService,
-              protected textInputService: TextInputService) {
+              protected checkBoxService: CheckBoxActionsService,
+              protected dropdownService: DropdownActionsService,
+              protected textInputService: TextInputActionsService) {
   }
 
   getComponentForBlock(block: Block): any {

@@ -11,13 +11,13 @@ import { SyncRequired } from "../../../actions/list/sync.actions";
 import { DropdownActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../../actions/list/blocks/dropdown.actions";
 
 import { Block, BlockType } from "../../../models";
-import { DropdownService } from "../../../services";
+import { DropdownActionsService } from "../../../services";
 
 @Injectable()
 export class DropdownEffect {
 
   constructor(protected actions$: Actions,
-              protected dropdownService: DropdownService) {
+              protected dropdownService: DropdownActionsService) {
   }
 
   @Effect() blocksAvailable$: Observable<Action> = this.actions$

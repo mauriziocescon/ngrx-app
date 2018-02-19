@@ -14,9 +14,9 @@ import {
   InstanceDetailGuard,
   RulesResolve,
   BlockUtilsService,
-  CheckBoxService,
-  DropdownService,
-  TextInputService,
+  CheckBoxActionsService,
+  DropdownActionsService,
+  TextInputActionsService,
 } from "./services";
 
 import { COMPONENTS, UnknownComponent } from "./components";
@@ -94,7 +94,7 @@ export {
   RulesResolve,
   BlockHooksService,
   BlockUtilsService,
-  CheckBoxService,
-  DropdownService,
-  TextInputService,
+  CheckBoxActionsService,
+  DropdownActionsService,
+  TextInputActionsService,
 };
