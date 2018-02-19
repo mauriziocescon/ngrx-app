@@ -6,12 +6,12 @@ import { CheckBoxConfirmerContainerComponent } from "../containers";
 
 import { B1BlockType, CheckBoxConfirmerBlock } from "../models";
 
-import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
+import { CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer-actions.service";
 
 @Injectable()
 export class B1BlockUtilsService {
 
-  constructor(protected checkBoxConfirmerService: CheckBoxConfirmerService) {
+  constructor(protected checkBoxConfirmerService: CheckBoxConfirmerActionsService) {
   }
 
   getComponentForBlock(block: Block): any {

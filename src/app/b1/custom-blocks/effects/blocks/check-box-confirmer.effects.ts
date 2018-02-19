@@ -16,13 +16,13 @@ import {
 import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/check-box-confirmer.actions";
 
 import { B1BlockType } from "../../models";
-import { CheckBoxConfirmerService } from "../../services";
+import { CheckBoxConfirmerActionsService } from "../../services";
 
 @Injectable()
 export class CheckBoxConfirmerEffects {
 
   constructor(protected actions$: Actions,
-              protected checkBoxConfirmerService: CheckBoxConfirmerService) {
+              protected checkBoxConfirmerService: CheckBoxConfirmerActionsService) {
   }
 
   @Effect() blocksAvailable$: Observable<Action> = this.actions$

@@ -9,7 +9,7 @@ import {
   CheckBoxConfirmerBlock,
 } from "../models";
 
-import { CheckBoxConfirmerService } from "./blocks/check-box-confirmer.service";
+import { CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer-actions.service";
 
 @Injectable()
 export class B1BlockHooksService {
@@ -20,7 +20,7 @@ export class B1BlockHooksService {
   protected checkBoxConfirmerBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected checkBoxConfirmerService: CheckBoxConfirmerService) {
+              protected checkBoxConfirmerService: CheckBoxConfirmerActionsService) {
   }
 
   setupB1Hooks(hooks: B1BlocksHooks, module?: string, step?: string): void {

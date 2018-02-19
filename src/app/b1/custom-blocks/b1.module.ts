@@ -17,7 +17,7 @@ import {
   SERVICES,
   B1BlockHooksService,
   B1BlockUtilsService,
-  CheckBoxConfirmerService,
+  CheckBoxConfirmerActionsService,
 } from "./services";
 
 @NgModule({
@@ -66,6 +66,6 @@ export * from "./models";
 export {
   B1BlockHooksService,
   B1BlockUtilsService,
-  CheckBoxConfirmerService,
+  CheckBoxConfirmerActionsService,
   CheckBoxConfirmerContainerComponent,
 };
