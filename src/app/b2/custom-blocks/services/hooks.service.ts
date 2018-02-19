@@ -4,6 +4,8 @@ import { Subscription } from "rxjs/Subscription";
 
 import { NGXLogger } from "ngx-logger";
 
+import { BlockHooksService } from "../../../instance-detail/instance-detail.module";
+
 import {
   B2BlocksHooks,
   DatePickerBlock,
@@ -20,7 +22,8 @@ export class B2BlockHooksService {
   protected datePickerBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected datePickerService: DatePickerActionsService) {
+              protected datePickerService: DatePickerActionsService,
+              protected blockHooksService: BlockHooksService) {
   }
 
   setupB2Hooks(hooks: B2BlocksHooks, module?: string, step?: string): void {
@@ -47,7 +50,7 @@ export class B2BlockHooksService {
     this.datePickerService.blockLoadObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
-          this.hooks[block.hooks.datePickerBlockDidLoad](block, this.blocksMethods());
+          this.hooks[block.hooks.datePickerBlockDidLoad](block, this.blockHooksService.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
@@ -58,14 +61,14 @@ export class B2BlockHooksService {
     this.datePickerService.blockChangesObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
-          this.hooks[block.hooks.datePickerBlockDidChange](block, this.blocksMethods());
+          this.hooks[block.hooks.datePickerBlockDidChange](block, this.blockHooksService.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
       });
   }
 
-  blocksMethods(): any {
+  getActions(): any {
     return {
       datePicker: {
         ...this.datePickerService.getDatePickerMethods()

@@ -65,10 +65,10 @@ export class CustomBlockHooksService extends BlockHooksService {
 
     if (this.module === Modules.b1) {
       methods = super.getActions() as B1BlocksMethods;
-      methods.checkBoxConfirmer = this.b1BlockHooksService.blocksMethods().checkBoxConfirmer;
+      methods.checkBoxConfirmer = this.b1BlockHooksService.getActions().checkBoxConfirmer;
     } else if (this.module === Modules.b2) {
       methods = super.getActions() as B2BlocksMethods;
-      methods.datePicker = this.b2BlockHooksService.blocksMethods().datePicker;
+      methods.datePicker = this.b2BlockHooksService.getActions().datePicker;
     } else {
       methods = super.getActions();
     }

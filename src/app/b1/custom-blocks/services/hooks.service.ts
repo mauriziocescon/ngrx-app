@@ -4,6 +4,8 @@ import { Subscription } from "rxjs/Subscription";
 
 import { NGXLogger } from "ngx-logger";
 
+import { BlockHooksService } from "../../../instance-detail/instance-detail.module";
+
 import {
   B1BlocksHooks,
   CheckBoxConfirmerBlock,
@@ -20,7 +22,8 @@ export class B1BlockHooksService {
   protected checkBoxConfirmerBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected checkBoxConfirmerService: CheckBoxConfirmerActionsService) {
+              protected checkBoxConfirmerService: CheckBoxConfirmerActionsService,
+              protected blockHooksService: BlockHooksService) {
   }
 
   setupB1Hooks(hooks: B1BlocksHooks, module?: string, step?: string): void {
@@ -47,7 +50,7 @@ export class B1BlockHooksService {
     this.checkBoxConfirmerBlockLoadSubscription = this.checkBoxConfirmerService.blockLoadObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
-          this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksMethods());
+          this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blockHooksService.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
@@ -58,14 +61,14 @@ export class B1BlockHooksService {
     this.checkBoxConfirmerBlockChangesSubscription = this.checkBoxConfirmerService.blockChangesObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
-          this.hooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksMethods());
+          this.hooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blockHooksService.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
       });
   }
 
-  blocksMethods(): any {
+  getActions(): any {
     return {
       checkBoxConfirmer: {
         ...this.checkBoxConfirmerService.getCheckBoxConfirmerMethods(),
