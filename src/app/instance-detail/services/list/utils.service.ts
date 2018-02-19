@@ -71,10 +71,6 @@ export class BlockUtilsService {
     }
   }
 
-  getSetOfRules(module: string, name: string): any {
-    return {};
-  }
-
   getAllEditedBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
     return this.store$.select(fromInstanceDetail.getAllEditedBlocksState);
   }

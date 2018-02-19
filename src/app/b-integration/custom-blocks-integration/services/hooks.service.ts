@@ -18,6 +18,8 @@ import {
   Modules,
 } from "../models";
 
+import * as setOfRules from "../../custom-rules-integration";
+
 @Injectable()
 export class CustomBlockHooksService extends BlockHooksService {
 
@@ -52,6 +54,10 @@ export class CustomBlockHooksService extends BlockHooksService {
 
     this.b1BlockHooksService.unsubscribeAll();
     this.b2BlockHooksService.unsubscribeAll();
+  }
+
+  getSetOfRules(module: string, name: string): any {
+    return setOfRules[module][name] ? setOfRules[module][name] : {};
   }
 
   getActions(): CustomBlocksMethods {

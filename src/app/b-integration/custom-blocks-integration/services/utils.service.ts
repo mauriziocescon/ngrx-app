@@ -14,8 +14,6 @@ import {
 import { B1BlockUtilsService, fromB1 } from "../../../b1";
 import { B2BlockUtilsService, fromB2 } from "../../../b2";
 
-import * as setOfRules from "../../custom-rules-integration";
-
 import { Modules } from "../models";
 
 @Injectable()
@@ -45,10 +43,6 @@ export class CustomBlockUtilsService extends BlockUtilsService {
     return this.b1BlockUtilsService.triggerComponentDidLoad(block) ||
       this.b2BlockUtilsService.triggerComponentDidLoad(block) ||
       super.triggerComponentDidLoad(block);
-  }
-
-  getSetOfRules(module: string, name: string): any {
-    return setOfRules[module][name] ? setOfRules[module][name] : {};
   }
 
   getAllEditedBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {

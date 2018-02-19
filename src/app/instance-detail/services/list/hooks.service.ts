@@ -140,7 +140,15 @@ export class BlockHooksService {
       });
   }
 
-  protected getActions(): BlocksMethods {
+  getSetOfRules(module: string, name: string): any {
+    return {};
+  }
+
+  getHooks(): BlocksHooks {
+    return this.hooks;
+  }
+
+  getActions(): BlocksMethods {
     return {
       checkBox: {
         ...this.checkBoxService.getCheckBoxMethods(),

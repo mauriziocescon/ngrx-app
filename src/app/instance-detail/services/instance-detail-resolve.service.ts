@@ -17,7 +17,6 @@ import { AppConstantsService, ModalAlert, modalAlertsActions } from "../../core/
 import { BlocksHooks } from "../models";
 
 import { BlockHooksService } from "./list/hooks.service";
-import { BlockUtilsService } from "./list/utils.service";
 
 @Injectable()
 export class RulesResolve implements Resolve<BlocksHooks> {
@@ -29,8 +28,7 @@ export class RulesResolve implements Resolve<BlocksHooks> {
               protected translate: TranslateService,
               protected logger: NGXLogger,
               protected appConstants: AppConstantsService,
-              protected blockHooks: BlockHooksService,
-              protected blockUtils: BlockUtilsService) {
+              protected blockHooks: BlockHooksService) {
     this.alertId = "1";
   }
 
@@ -50,7 +48,7 @@ export class RulesResolve implements Resolve<BlocksHooks> {
     };
     return this.http.get<string>(url, options)
       .switchMap((data) => {
-        const hooks = this.blockUtils.getSetOfRules(module, data);
+        const hooks = this.blockHooks.getSetOfRules(module, data);
         this.blockHooks.setupHooks(hooks, module, step);
         return of(hooks);
       })
