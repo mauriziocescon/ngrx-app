@@ -9,7 +9,7 @@ import {
   DatePickerBlock,
 } from "../models";
 
-import { DatePickerService } from "./blocks/date-picker.service";
+import { DatePickerActionsService } from "./blocks/date-picker-actions.service";
 
 @Injectable()
 export class B2BlockHooksService {
@@ -20,7 +20,7 @@ export class B2BlockHooksService {
   protected datePickerBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected datePickerService: DatePickerService) {
+              protected datePickerService: DatePickerActionsService) {
   }
 
   setupB2Hooks(hooks: B2BlocksHooks, module?: string, step?: string): void {

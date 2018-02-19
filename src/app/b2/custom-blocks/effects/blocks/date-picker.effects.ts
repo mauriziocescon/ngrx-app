@@ -16,13 +16,13 @@ import {
 import { DatePickerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/date-picker.actions";
 
 import { B2BlockType } from "../../models";
-import { DatePickerService } from "../../services";
+import { DatePickerActionsService } from "../../services";
 
 @Injectable()
 export class DatePickerEffects {
 
   constructor(protected actions$: Actions,
-              protected datePickerService: DatePickerService) {
+              protected datePickerService: DatePickerActionsService) {
   }
 
   @Effect() blocksAvailable$: Observable<Action> = this.actions$

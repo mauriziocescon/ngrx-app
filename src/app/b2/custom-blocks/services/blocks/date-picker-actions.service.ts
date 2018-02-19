@@ -9,7 +9,7 @@ import * as datePicker from "../../actions/blocks/date-picker.actions";
 import { B2BlockType, DatePickerBlock, DatePickerMethods } from "../../models";
 
 @Injectable()
-export class DatePickerService {
+export class DatePickerActionsService {
   protected blockLoadSubject$: Subject<DatePickerBlock>;
   readonly blockLoadObservable$: Observable<DatePickerBlock>;
 

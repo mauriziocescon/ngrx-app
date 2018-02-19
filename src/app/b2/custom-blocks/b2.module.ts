@@ -17,7 +17,7 @@ import {
   SERVICES,
   B2BlockHooksService,
   B2BlockUtilsService,
-  DatePickerService,
+  DatePickerActionsService,
 } from "./services";
 
 @NgModule({
@@ -66,5 +66,5 @@ export { fromB2 };
 export {
   B2BlockHooksService,
   B2BlockUtilsService,
-  DatePickerService,
+  DatePickerActionsService,
 };
