@@ -24,7 +24,7 @@ export class CheckBoxActionsService {
     this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
-  getCheckBoxMethods(): CheckBoxMethods {
+  getCheckBoxActions(): CheckBoxMethods {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),

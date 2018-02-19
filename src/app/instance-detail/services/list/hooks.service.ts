@@ -151,13 +151,13 @@ export class BlockHooksService {
   getActions(): BlocksMethods {
     return {
       checkBox: {
-        ...this.checkBoxService.getCheckBoxMethods(),
+        ...this.checkBoxService.getCheckBoxActions(),
       },
       dropdown: {
-        ...this.dropdownService.getDropdownMethods(),
+        ...this.dropdownService.getDropdownActions(),
       },
       textInput: {
-        ...this.textInputService.getTextInputMethods(),
+        ...this.textInputService.getTextInputActions(),
       },
     };
   }

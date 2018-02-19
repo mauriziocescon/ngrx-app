@@ -24,7 +24,7 @@ export class DatePickerActionsService {
     this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
-  getDatePickerMethods(): DatePickerMethods {
+  getDatePickerActions(): DatePickerMethods {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),

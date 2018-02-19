@@ -24,7 +24,7 @@ export class TextInputActionsService {
     this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
-  getTextInputMethods(): TextInputMethods {
+  getTextInputActions(): TextInputMethods {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),

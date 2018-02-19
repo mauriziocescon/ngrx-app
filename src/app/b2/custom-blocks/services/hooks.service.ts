@@ -71,7 +71,7 @@ export class B2BlockHooksService {
   getActions(): any {
     return {
       datePicker: {
-        ...this.datePickerService.getDatePickerMethods()
+        ...this.datePickerService.getDatePickerActions()
       }
     };
   }

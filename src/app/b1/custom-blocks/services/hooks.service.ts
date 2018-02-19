@@ -71,7 +71,7 @@ export class B1BlockHooksService {
   getActions(): any {
     return {
       checkBoxConfirmer: {
-        ...this.checkBoxConfirmerService.getCheckBoxConfirmerMethods(),
+        ...this.checkBoxConfirmerService.getCheckBoxConfirmerActions(),
       }
     };
   }

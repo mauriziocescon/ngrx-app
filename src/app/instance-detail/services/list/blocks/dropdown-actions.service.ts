@@ -24,7 +24,7 @@ export class DropdownActionsService {
     this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
-  getDropdownMethods(): DropdownMethods {
+  getDropdownActions(): DropdownMethods {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),
