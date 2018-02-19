@@ -50,8 +50,8 @@ export class CustomBlockHooksService extends BlockHooksService {
   protected unsubscribeAll(): void {
     super.unsubscribeAll();
 
-    this.b1BlockHooksService.unsubscribeListeners();
-    this.b2BlockHooksService.unsubscribeListeners();
+    this.b1BlockHooksService.unsubscribeAll();
+    this.b2BlockHooksService.unsubscribeAll();
   }
 
   getActions(): CustomBlocksMethods {

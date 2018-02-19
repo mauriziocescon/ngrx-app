@@ -24,7 +24,7 @@ export class B1BlockHooksService {
   }
 
   setupB1Hooks(hooks: B1BlocksHooks, module?: string, step?: string): void {
-    this.unsubscribeListeners();
+    this.unsubscribeAll();
 
     this.hooks = hooks;
 
@@ -33,7 +33,7 @@ export class B1BlockHooksService {
     this.listenToCheckBoxConfirmerBlockChanges();
   }
 
-  unsubscribeListeners(): void {
+  unsubscribeAll(): void {
     if (this.checkBoxConfirmerBlockLoadSubscription) {
       this.checkBoxConfirmerBlockLoadSubscription.unsubscribe();
     }

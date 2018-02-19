@@ -24,7 +24,7 @@ export class B2BlockHooksService {
   }
 
   setupB2Hooks(hooks: B2BlocksHooks, module?: string, step?: string): void {
-    this.unsubscribeListeners();
+    this.unsubscribeAll();
 
     this.hooks = hooks;
 
@@ -33,7 +33,7 @@ export class B2BlockHooksService {
     this.listenToDatePickerBlockChanges();
   }
 
-  unsubscribeListeners(): void {
+  unsubscribeAll(): void {
     if (this.datePickerBlockLoadSubscription) {
       this.datePickerBlockLoadSubscription.unsubscribe();
     }
