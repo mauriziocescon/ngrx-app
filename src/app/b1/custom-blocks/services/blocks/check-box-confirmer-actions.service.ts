@@ -9,7 +9,7 @@ import * as checkBoxConfirmer from "../../actions/blocks/check-box-confirmer.act
 import { B1BlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerMethods } from "../../models";
 
 @Injectable()
-export class CheckBoxConfirmerService {
+export class CheckBoxConfirmerActionsService {
   protected blockLoadSubject$: Subject<CheckBoxConfirmerBlock>;
   readonly blockLoadObservable$: Observable<CheckBoxConfirmerBlock>;
 
