@@ -18,9 +18,9 @@ import {
 
 import * as fromInstanceDetail from "../../reducers";
 
-import { TextInputActionsService } from "./blocks/text-input.service";
-import { DropdownActionsService } from "./blocks/dropdown.service";
-import { CheckBoxActionsService } from "./blocks/check-box.service";
+import { TextInputActionsService } from "./blocks/text-input-actions.service";
+import { DropdownActionsService } from "./blocks/dropdown-actions.service";
+import { CheckBoxActionsService } from "./blocks/check-box-actions.service";
 
 @Injectable()
 export class BlockUtilsService {

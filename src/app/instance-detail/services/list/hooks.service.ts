@@ -12,9 +12,9 @@ import {
   TextInputBlock,
 } from "../../models";
 
-import { CheckBoxActionsService } from "./blocks/check-box.service";
-import { DropdownActionsService } from "./blocks/dropdown.service";
-import { TextInputActionsService } from "./blocks/text-input.service";
+import { CheckBoxActionsService } from "./blocks/check-box-actions.service";
+import { DropdownActionsService } from "./blocks/dropdown-actions.service";
+import { TextInputActionsService } from "./blocks/text-input-actions.service";
 
 @Injectable()
 export class BlockHooksService {

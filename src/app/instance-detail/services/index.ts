@@ -5,9 +5,9 @@ import { BlockListService } from "./list/list.service";
 import { BlockHooksService } from "./list/hooks.service";
 import { BlockUtilsService } from "./list/utils.service";
 
-import { CheckBoxActionsService } from "./list/blocks/check-box.service";
-import { DropdownActionsService } from "./list/blocks/dropdown.service";
-import { TextInputActionsService } from "./list/blocks/text-input.service";
+import { CheckBoxActionsService } from "./list/blocks/check-box-actions.service";
+import { DropdownActionsService } from "./list/blocks/dropdown-actions.service";
+import { TextInputActionsService } from "./list/blocks/text-input-actions.service";
 
 export const SERVICES = [
   InstanceDetailGuard,
