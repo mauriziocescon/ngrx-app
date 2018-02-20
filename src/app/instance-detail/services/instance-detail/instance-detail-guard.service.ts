@@ -7,7 +7,7 @@ import {
 
 import { Observable } from "rxjs/Observable";
 
-import { InstanceDetailContainerComponent } from "../containers";
+import { InstanceDetailContainerComponent } from "../../containers";
 
 @Injectable()
 export class InstanceDetailGuard implements CanDeactivate<InstanceDetailContainerComponent> {

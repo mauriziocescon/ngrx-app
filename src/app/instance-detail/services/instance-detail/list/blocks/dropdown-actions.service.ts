@@ -4,17 +4,17 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import * as fromInstanceDetail from "../../../reducers";
-import * as checkBox from "../../../actions/list/blocks/check-box.actions";
-import { BlockType, CheckBoxBlock, CheckBoxMethods } from "../../../models";
+import * as fromInstanceDetail from "../../../../reducers";
+import * as dropdown from "../../../../actions/list/blocks/dropdown.actions";
+import { BlockType, DropdownBlock, DropdownMethods } from "../../../../models";
 
 @Injectable()
-export class CheckBoxActionsService {
-  protected blockLoadSubject$: Subject<CheckBoxBlock>;
-  readonly blockLoadObservable$: Observable<CheckBoxBlock>;
+export class DropdownActionsService {
+  protected blockLoadSubject$: Subject<DropdownBlock>;
+  readonly blockLoadObservable$: Observable<DropdownBlock>;
 
-  protected blockChangesSubject$: Subject<CheckBoxBlock>;
-  readonly blockChangesObservable$: Observable<CheckBoxBlock>;
+  protected blockChangesSubject$: Subject<DropdownBlock>;
+  readonly blockChangesObservable$: Observable<DropdownBlock>;
 
   constructor(protected store$: Store<fromInstanceDetail.State>) {
     this.blockLoadSubject$ = new Subject();
@@ -24,24 +24,24 @@ export class CheckBoxActionsService {
     this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
-  getCheckBoxActions(): CheckBoxMethods {
+  getDropdownActions(): DropdownMethods {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),
-      setValueForBlockId: (value: boolean, blockId: number) => this.setValueForBlockId(value, blockId),
-      setDescriptionForBlockId: (description: string, blockId: number) => this.setDescriptionForBlockId(description, blockId),
+      setValueForBlockId: (value: string, blockId: number) => this.setValueForBlockId(value, blockId),
+      setChoicesForBlockId: (choices: string[], blockId: number) => this.setChoicesForBlockId(choices, blockId),
       setRequiredForBlockId: (required: boolean, blockId: number) => this.setRequiredForBlockId(required, blockId),
       setDisabledForBlockId: (disabled: boolean, blockId: number) => this.setDisabledForBlockId(disabled, blockId),
       setValidityForBlockId: (valid: boolean, blockId: number) => this.setValidityForBlockId(valid, blockId),
     };
   }
 
-  blockDidload(block: CheckBoxBlock): void {
+  blockDidload(block: DropdownBlock): void {
     this.blockLoadSubject$.next(block);
   }
 
-  blockDidChange(block: { id: number, changes: CheckBoxBlock }): void {
-    const newBlock: CheckBoxBlock = {...block.changes, hooks: {...block.changes.hooks}};
+  blockDidChange(block: { id: number, changes: DropdownBlock }): void {
+    const newBlock: DropdownBlock = {...block.changes, hooks: {...block.changes.hooks}};
     this.blockChangesSubject$.next(newBlock);
   }
 
@@ -50,12 +50,12 @@ export class CheckBoxActionsService {
       id: blockId,
       loading: loading,
     };
-    this.store$.dispatch(new checkBox.Loading(newLoading));
+    this.store$.dispatch(new dropdown.Loading(newLoading));
   }
 
-  protected setBlock(block: { block: { id: number, changes: CheckBoxBlock } }): void {
+  protected setBlock(block: { block: { id: number, changes: DropdownBlock } }): void {
     const newBlock = {block: block.block, notify: false};
-    this.store$.dispatch(new checkBox.UpdateBlock(newBlock));
+    this.store$.dispatch(new dropdown.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {
@@ -64,7 +64,7 @@ export class CheckBoxActionsService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.CheckBox,
+          type: BlockType.Dropdown,
           label: label,
         },
       }
@@ -72,13 +72,13 @@ export class CheckBoxActionsService {
     this.setBlock(newBlock);
   }
 
-  setValueForBlockId(value: boolean, blockId: number): void {
+  setValueForBlockId(value: string, blockId: number): void {
     const newBlock = {
       block: {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.CheckBox,
+          type: BlockType.Dropdown,
           value: value,
         },
       }
@@ -86,14 +86,14 @@ export class CheckBoxActionsService {
     this.setBlock(newBlock);
   }
 
-  setDescriptionForBlockId(description: string, blockId: number): void {
+  setChoicesForBlockId(choices: string[], blockId: number): void {
     const newBlock = {
       block: {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.CheckBox,
-          description: description,
+          type: BlockType.Dropdown,
+          choices: choices,
         },
       }
     };
@@ -106,7 +106,7 @@ export class CheckBoxActionsService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.CheckBox,
+          type: BlockType.Dropdown,
           required: required,
         },
       }
@@ -120,7 +120,7 @@ export class CheckBoxActionsService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.CheckBox,
+          type: BlockType.Dropdown,
           disabled: disabled,
         },
       }
@@ -134,7 +134,7 @@ export class CheckBoxActionsService {
         id: blockId,
         changes: {
           id: blockId,
-          type: BlockType.CheckBox,
+          type: BlockType.Dropdown,
           valid: valid,
         },
       }

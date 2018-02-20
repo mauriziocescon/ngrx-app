@@ -6,9 +6,9 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 
-import { AppConstantsService } from "../../../core/core.module";
+import { AppConstantsService } from "../../../../core/core.module";
 
-import { Block } from "../../models";
+import { Block } from "../../../models";
 
 @Injectable()
 export class BlockListService {

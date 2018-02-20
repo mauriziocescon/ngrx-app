@@ -12,9 +12,9 @@ import "rxjs/add/operator/switchMap";
 import { TranslateService } from "@ngx-translate/core";
 import { NGXLogger } from "ngx-logger";
 
-import { AppConstantsService, ModalAlert, modalAlertsActions } from "../../core/core.module";
+import { AppConstantsService, ModalAlert, modalAlertsActions } from "../../../core/core.module";
 
-import { BlocksHooks } from "../models";
+import { BlocksHooks } from "../../models";
 
 import { BlockHooksService } from "./list/hooks.service";
 

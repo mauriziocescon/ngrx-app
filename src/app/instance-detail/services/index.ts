@@ -1,16 +1,16 @@
-import { InstanceDetailGuard } from "./instance-detail-guard.service";
-import { RulesResolve } from "./instance-detail-resolve.service";
+import { InstanceDetailGuard } from "./instance-detail/instance-detail-guard.service";
+import { RulesResolve } from "./instance-detail/instance-detail-resolve.service";
 
-import { BlocksActionsService } from "./list/blocks/block-actions.service";
-import { BlockListService } from "./list/list.service";
-import { BlockHooksService } from "./list/hooks.service";
-import { BlockUtilsService } from "./list/utils.service";
+import { BlocksActionsService } from "./instance-detail/list/blocks/block-actions.service";
+import { BlockListService } from "./instance-detail/list/list.service";
+import { BlockHooksService } from "./instance-detail/list/hooks.service";
+import { BlockUtilsService } from "./instance-detail/list/utils.service";
 
-import { BlockHooksTriggerService } from "./list/blocks/block-hooks-trigger.service";
+import { BlockHooksTriggerService } from "./instance-detail/list/blocks/block-hooks-trigger.service";
 
-import { CheckBoxActionsService } from "./list/blocks/check-box-actions.service";
-import { DropdownActionsService } from "./list/blocks/dropdown-actions.service";
-import { TextInputActionsService } from "./list/blocks/text-input-actions.service";
+import { CheckBoxActionsService } from "./instance-detail/list/blocks/check-box-actions.service";
+import { DropdownActionsService } from "./instance-detail/list/blocks/dropdown-actions.service";
+import { TextInputActionsService } from "./instance-detail/list/blocks/text-input-actions.service";
 
 export const SERVICES = [
   InstanceDetailGuard,

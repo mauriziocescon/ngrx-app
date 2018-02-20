@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { BlockHooksService } from "../../../instance-detail/instance-detail.module";
 
-import { BlockHooksTriggerService } from "../../../instance-detail/services/list/blocks/block-hooks-trigger.service";
+import { BlockHooksTriggerService } from "../../../instance-detail/services/instance-detail/list/blocks/block-hooks-trigger.service";
 
 import { B1BlockHooksService, B1BlocksHooks } from "../../../b1";
 import { B2BlockHooksService, B2BlocksHooks } from "../../../b2";
