@@ -15,6 +15,7 @@ import * as fromB1 from "./reducers";
 import { TOKEN, reducerProvider } from "./reducers";
 import {
   SERVICES,
+  B1BlocksActionsService,
   B1BlockHooksService,
   B1BlockUtilsService,
   CheckBoxConfirmerActionsService,
@@ -64,6 +65,7 @@ export { fromB1 };
 export * from "./models";
 
 export {
+  B1BlocksActionsService,
   B1BlockHooksService,
   B1BlockUtilsService,
   CheckBoxConfirmerActionsService,

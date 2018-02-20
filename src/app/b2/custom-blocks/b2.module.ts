@@ -15,6 +15,7 @@ import * as fromB2 from "./reducers";
 import { TOKEN, reducerProvider } from "./reducers";
 import {
   SERVICES,
+  B2BlocksActionsService,
   B2BlockHooksService,
   B2BlockUtilsService,
   DatePickerActionsService,
@@ -64,6 +65,7 @@ export * from "./models";
 export { fromB2 };
 
 export {
+  B2BlocksActionsService,
   B2BlockHooksService,
   B2BlockUtilsService,
   DatePickerActionsService,
