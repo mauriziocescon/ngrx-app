@@ -50,7 +50,7 @@ export class B1BlockHooksService {
     this.checkBoxConfirmerBlockLoadSubscription = this.checkBoxConfirmerService.blockLoadObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
-          this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blockHooksService.getActions());
+          this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.getActions()/*this.blockHooksService.getActions()*/);
         } catch (e) {
           this.logger.error(e.toString());
         }
@@ -61,7 +61,7 @@ export class B1BlockHooksService {
     this.checkBoxConfirmerBlockChangesSubscription = this.checkBoxConfirmerService.blockChangesObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
-          this.hooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blockHooksService.getActions());
+          this.hooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.getActions() /*this.blockHooksService.getActions()*/);
         } catch (e) {
           this.logger.error(e.toString());
         }
