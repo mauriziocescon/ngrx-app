@@ -1,20 +1,14 @@
 import { Injectable } from "@angular/core";
 
-import { NGXLogger } from "ngx-logger";
+import { BlockHooksService } from "../../../instance-detail/instance-detail.module";
 
-import {
-  BlockHooksService,
-  CheckBoxActionsService,
-  DropdownActionsService,
-  TextInputActionsService,
-} from "../../../instance-detail/instance-detail.module";
+import { BlockHooksTriggerService } from "../../../instance-detail/services/list/blocks/block-hooks-trigger.service";
 
-import { B1BlockHooksService, B1BlocksMethods, B1BlocksHooks } from "../../../b1";
-import { B2BlockHooksService, B2BlocksMethods, B2BlocksHooks } from "../../../b2";
+import { B1BlockHooksService, B1BlocksHooks } from "../../../b1";
+import { B2BlockHooksService, B2BlocksHooks } from "../../../b2";
 
 import {
   CustomBlocksHooks,
-  CustomBlocksMethods,
   Modules,
 } from "../models";
 
@@ -23,17 +17,11 @@ import * as setOfRules from "../../custom-rules-integration";
 @Injectable()
 export class CustomBlockHooksService extends BlockHooksService {
 
-  constructor(protected logger: NGXLogger,
-              protected checkBoxService: CheckBoxActionsService,
-              protected dropdownService: DropdownActionsService,
-              protected textInputService: TextInputActionsService,
+  constructor(protected blockHooksTriggerService: BlockHooksTriggerService,
               protected b1BlockHooksService: B1BlockHooksService,
               protected b2BlockHooksService: B2BlockHooksService) {
     super(
-      logger,
-      checkBoxService,
-      dropdownService,
-      textInputService,
+      blockHooksTriggerService,
     );
   }
 
@@ -49,30 +37,14 @@ export class CustomBlockHooksService extends BlockHooksService {
     }
   }
 
-  protected unsubscribeAll(): void {
-    super.unsubscribeAll();
-
-    this.b1BlockHooksService.unsubscribeAll();
-    this.b2BlockHooksService.unsubscribeAll();
-  }
-
   getSetOfRules(module: string, name: string): any {
     return setOfRules[module][name] ? setOfRules[module][name] : {};
   }
 
-  getActions(): CustomBlocksMethods {
-    let methods;
+  unsubscribeAll(): void {
+    super.unsubscribeAll();
 
-    if (this.module === Modules.b1) {
-      methods = super.getActions() as B1BlocksMethods;
-      methods.checkBoxConfirmer = this.b1BlockHooksService.getActions().checkBoxConfirmer;
-    } else if (this.module === Modules.b2) {
-      methods = super.getActions() as B2BlocksMethods;
-      methods.datePicker = this.b2BlockHooksService.getActions().datePicker;
-    } else {
-      methods = super.getActions();
-    }
-
-    return methods;
+    this.b1BlockHooksService.unsubscribeAll();
+    this.b2BlockHooksService.unsubscribeAll();
   }
 }

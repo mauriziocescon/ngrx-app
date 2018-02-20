@@ -1,78 +1,29 @@
 import { Injectable } from "@angular/core";
 
-import { Subscription } from "rxjs/Subscription";
+import { B2BlocksHooks } from "../models";
 
-import { NGXLogger } from "ngx-logger";
-
-import { BlockHooksService } from "../../../instance-detail/instance-detail.module";
-
-import {
-  B2BlocksHooks,
-  DatePickerBlock,
-} from "../models";
-
-import { DatePickerActionsService } from "./blocks/date-picker-actions.service";
+import { B2BlockHooksTriggerService } from "./blocks/block-hooks-trigger.service";
 
 @Injectable()
 export class B2BlockHooksService {
   protected hooks: B2BlocksHooks;
+  protected module: string;
+  protected step: string;
 
-  protected datePickerBlockLoadSubscription: Subscription;
-
-  protected datePickerBlockChangesSubscription: Subscription;
-
-  constructor(protected logger: NGXLogger,
-              protected datePickerService: DatePickerActionsService,
-              protected blockHooksService: BlockHooksService) {
+  constructor(protected blockActionsTriggerService: B2BlockHooksTriggerService) {
   }
 
   setupB2Hooks(hooks: B2BlocksHooks, module?: string, step?: string): void {
-    this.unsubscribeAll();
+    this.blockActionsTriggerService.unsubscribeAll();
 
     this.hooks = hooks;
+    this.module = module;
+    this.step = step;
 
-    this.subscribeToDatePickerBlockLoad();
-
-    this.subscribeToDatePickerBlockChanges();
+    this.blockActionsTriggerService.subscribeAll(this.hooks);
   }
 
   unsubscribeAll(): void {
-    if (this.datePickerBlockLoadSubscription) {
-      this.datePickerBlockLoadSubscription.unsubscribe();
-    }
-
-    if (this.datePickerBlockChangesSubscription) {
-      this.datePickerBlockChangesSubscription.unsubscribe();
-    }
-  }
-
-  subscribeToDatePickerBlockLoad(): void {
-    this.datePickerService.blockLoadObservable$
-      .subscribe((block: DatePickerBlock) => {
-        try {
-          this.hooks[block.hooks.datePickerBlockDidLoad](block, this.blockHooksService.getActions());
-        } catch (e) {
-          this.logger.error(e.toString());
-        }
-      });
-  }
-
-  subscribeToDatePickerBlockChanges(): void {
-    this.datePickerService.blockChangesObservable$
-      .subscribe((block: DatePickerBlock) => {
-        try {
-          this.hooks[block.hooks.datePickerBlockDidChange](block, this.blockHooksService.getActions());
-        } catch (e) {
-          this.logger.error(e.toString());
-        }
-      });
-  }
-
-  getActions(): any {
-    return {
-      datePicker: {
-        ...this.datePickerService.getDatePickerActions()
-      }
-    };
+    this.blockActionsTriggerService.unsubscribeAll();
   }
 }

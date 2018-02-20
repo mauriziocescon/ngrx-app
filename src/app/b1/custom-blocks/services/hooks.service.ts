@@ -1,78 +1,29 @@
 import { Injectable } from "@angular/core";
 
-import { Subscription } from "rxjs/Subscription";
+import { B1BlocksHooks } from "../models";
 
-import { NGXLogger } from "ngx-logger";
-
-import { BlockHooksService } from "../../../instance-detail/instance-detail.module";
-
-import {
-  B1BlocksHooks,
-  CheckBoxConfirmerBlock,
-} from "../models";
-
-import { CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer-actions.service";
+import { B1BlockHooksTriggerService } from "./blocks/block-hooks-trigger.service";
 
 @Injectable()
 export class B1BlockHooksService {
   protected hooks: B1BlocksHooks;
+  protected module: string;
+  protected step: string;
 
-  protected checkBoxConfirmerBlockLoadSubscription: Subscription;
-
-  protected checkBoxConfirmerBlockChangesSubscription: Subscription;
-
-  constructor(protected logger: NGXLogger,
-              protected checkBoxConfirmerService: CheckBoxConfirmerActionsService,
-              protected blockHooksService: BlockHooksService) {
+  constructor(protected blockActionsTriggerService: B1BlockHooksTriggerService) {
   }
 
   setupB1Hooks(hooks: B1BlocksHooks, module?: string, step?: string): void {
-    this.unsubscribeAll();
+    this.blockActionsTriggerService.unsubscribeAll();
 
     this.hooks = hooks;
+    this.module = module;
+    this.step = step;
 
-    this.subscribeToCheckBoxConfirmerBlockLoad();
-
-    this.subscribeToCheckBoxConfirmerBlockChanges();
+    this.blockActionsTriggerService.subscribeAll(this.hooks);
   }
 
   unsubscribeAll(): void {
-    if (this.checkBoxConfirmerBlockLoadSubscription) {
-      this.checkBoxConfirmerBlockLoadSubscription.unsubscribe();
-    }
-
-    if (this.checkBoxConfirmerBlockChangesSubscription) {
-      this.checkBoxConfirmerBlockChangesSubscription.unsubscribe();
-    }
-  }
-
-  subscribeToCheckBoxConfirmerBlockLoad(): void {
-    this.checkBoxConfirmerBlockLoadSubscription = this.checkBoxConfirmerService.blockLoadObservable$
-      .subscribe((block: CheckBoxConfirmerBlock) => {
-        try {
-          this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.getActions()/*this.blockHooksService.getActions()*/);
-        } catch (e) {
-          this.logger.error(e.toString());
-        }
-      });
-  }
-
-  subscribeToCheckBoxConfirmerBlockChanges(): void {
-    this.checkBoxConfirmerBlockChangesSubscription = this.checkBoxConfirmerService.blockChangesObservable$
-      .subscribe((block: CheckBoxConfirmerBlock) => {
-        try {
-          this.hooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.getActions() /*this.blockHooksService.getActions()*/);
-        } catch (e) {
-          this.logger.error(e.toString());
-        }
-      });
-  }
-
-  getActions(): any {
-    return {
-      checkBoxConfirmer: {
-        ...this.checkBoxConfirmerService.getCheckBoxConfirmerActions(),
-      }
-    };
+    this.blockActionsTriggerService.unsubscribeAll();
   }
 }

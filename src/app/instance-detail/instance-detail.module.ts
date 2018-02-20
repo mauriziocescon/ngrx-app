@@ -9,11 +9,16 @@ import * as fromInstanceDetail from "./reducers";
 import { TOKEN, reducerProvider } from "./reducers";
 import {
   SERVICES,
-  BlockHooksService,
-  BlockListService,
   InstanceDetailGuard,
   RulesResolve,
+
+  BlockListService,
+
+  BlocksActionsService,
+  BlockHooksService,
   BlockUtilsService,
+
+  BlockHooksTriggerService,
   CheckBoxActionsService,
   DropdownActionsService,
   TextInputActionsService,
@@ -89,11 +94,18 @@ export * from "./models";
 
 export {
   InstanceDetailContainerComponent,
-  BlockListService,
+
   InstanceDetailGuard,
   RulesResolve,
+
+  BlockListService,
+
+  BlocksActionsService,
   BlockHooksService,
   BlockUtilsService,
+
+  BlockHooksTriggerService,
+
   CheckBoxActionsService,
   DropdownActionsService,
   TextInputActionsService,
