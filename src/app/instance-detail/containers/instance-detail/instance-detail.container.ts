@@ -1,8 +1,6 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
-import { Subscription } from "rxjs/Subscription";
 
 import { InstanceParams } from "../../models";
 
@@ -29,43 +27,19 @@ import { InstanceParamsService } from "../../services";
       </div>
     </div>`,
 })
-export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
+export class InstanceDetailContainerComponent implements OnInit {
   routeParams: InstanceParams;
-  protected paramMapSubscription: Subscription;
 
-  constructor(protected route: ActivatedRoute,
-              protected instanceDetailStore: InstanceDetailStoreService,
+  constructor(protected instanceDetailStore: InstanceDetailStoreService,
               protected instanceParams: InstanceParamsService) {
   }
 
   ngOnInit(): void {
-    this.subscribeToParamMap();
-  }
-
-  protected subscribeToParamMap(): void {
-    this.paramMapSubscription = this.route.paramMap
-      .subscribe((paramMap: ParamMap) => {
-        this.routeParams = {
-          module: paramMap.get("module"),
-          instance: paramMap.get("instance"),
-          step: paramMap.get("step"),
-        };
-        this.instanceParams.setInstanceParams(this.routeParams);
-      });
+    this.routeParams = this.instanceParams.getInstanceParams();
   }
 
   canDeactivate(): Observable<boolean> {
     return this.instanceDetailStore.isSynchronizationRequired()
       .map(requireSync => !requireSync);
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribeAll();
-  }
-
-  protected unsubscribeAll(): void {
-    if (this.paramMapSubscription) {
-      this.paramMapSubscription.unsubscribe();
-    }
   }
 }

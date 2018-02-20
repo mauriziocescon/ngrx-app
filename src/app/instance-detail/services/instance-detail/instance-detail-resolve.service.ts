@@ -16,6 +16,7 @@ import { AppConstantsService, ModalAlert, modalAlertsActions } from "../../../co
 
 import { BlocksHooks } from "../../models";
 
+import { InstanceParamsService } from "./instance-params.service";
 import { BlockHooksService } from "./list/hooks.service";
 
 @Injectable()
@@ -28,17 +29,26 @@ export class RulesResolve implements Resolve<BlocksHooks> {
               protected translate: TranslateService,
               protected logger: NGXLogger,
               protected appConstants: AppConstantsService,
+              protected instanceParams: InstanceParamsService,
               protected blockHooks: BlockHooksService) {
     this.alertId = "1";
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<BlocksHooks> | BlocksHooks {
     const module = route.paramMap.get("module");
+    const instance = route.paramMap.get("instance");
     const step = route.paramMap.get("step");
-    return this.fetchRules(module, step);
+    const params = {
+      module: module,
+      instance: instance,
+      step: step,
+    };
+    this.instanceParams.setInstanceParams(params);
+
+    return this.fetchRulesConfig(module, step);
   }
 
-  fetchRules(module: string, step: string): Observable<BlocksHooks> {
+  fetchRulesConfig(module: string, step: string): Observable<BlocksHooks> {
     const url = this.appConstants.Api.rulesConfig;
     const options = {
       params: {
@@ -47,8 +57,8 @@ export class RulesResolve implements Resolve<BlocksHooks> {
       },
     };
     return this.http.get<string>(url, options)
-      .switchMap((data) => {
-        const hooks = this.blockHooks.getSetOfRules(module, data);
+      .switchMap((config) => {
+        const hooks = this.blockHooks.getSetOfRules(module, config);
         this.blockHooks.setupHooks(hooks, module, step);
         return of(hooks);
       })
