@@ -11,6 +11,7 @@ import {
   SERVICES,
   InstanceDetailGuard,
   RulesResolve,
+  InstanceParamsService,
 
   BlockListService,
 
@@ -97,6 +98,7 @@ export {
 
   InstanceDetailGuard,
   RulesResolve,
+  InstanceParamsService,
 
   BlockListService,
 

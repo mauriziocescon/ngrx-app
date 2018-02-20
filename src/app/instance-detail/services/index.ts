@@ -1,5 +1,6 @@
 import { InstanceDetailGuard } from "./instance-detail/instance-detail-guard.service";
 import { RulesResolve } from "./instance-detail/instance-detail-resolve.service";
+import { InstanceParamsService } from "./instance-detail/instance-params.service";
 
 import { BlocksActionsService } from "./instance-detail/list/blocks/block-actions.service";
 import { BlockListService } from "./instance-detail/list/list.service";
@@ -15,6 +16,7 @@ import { TextInputActionsService } from "./instance-detail/list/blocks/text-inpu
 export const SERVICES = [
   InstanceDetailGuard,
   RulesResolve,
+  InstanceParamsService,
 
   BlocksActionsService,
   BlockHooksService,
@@ -31,6 +33,7 @@ export const SERVICES = [
 export {
   InstanceDetailGuard,
   RulesResolve,
+  InstanceParamsService,
 
   BlocksActionsService,
   BlockListService,

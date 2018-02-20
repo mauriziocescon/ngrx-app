@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import {
+  InstanceParamsService,
   CheckBoxActionsService,
   DropdownActionsService,
   TextInputActionsService,
@@ -16,7 +17,7 @@ import { Modules } from "../../models";
 @Injectable()
 export class CustomBlocksActionsService extends BlocksActionsService {
 
-  constructor(protected route: ActivatedRoute,
+  constructor(protected instanceParams: InstanceParamsService,
               protected checkBoxService: CheckBoxActionsService,
               protected dropdownService: DropdownActionsService,
               protected textInputService: TextInputActionsService,
@@ -30,7 +31,7 @@ export class CustomBlocksActionsService extends BlocksActionsService {
   }
 
   getActions(): any {
-    const module = this.route.snapshot.paramMap.get("module");
+    const module = this.instanceParams.getInstanceParams().module;
 
     if (module === Modules.b1) {
       return this.b1BlocksActionsService.getActions();

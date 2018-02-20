@@ -7,6 +7,7 @@ import { Subscription } from "rxjs/Subscription";
 import { InstanceParams } from "../../models";
 
 import { InstanceDetailStoreService } from "./instance-detail-store.service";
+import { InstanceParamsService } from "../../services";
 
 @Component({
   selector: "ct-instance-detail",
@@ -33,7 +34,8 @@ export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
   protected paramMapSubscription: Subscription;
 
   constructor(protected route: ActivatedRoute,
-              protected instanceDetailStore: InstanceDetailStoreService) {
+              protected instanceDetailStore: InstanceDetailStoreService,
+              protected instanceParams: InstanceParamsService) {
   }
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
           instance: paramMap.get("instance"),
           step: paramMap.get("step"),
         };
+        this.instanceParams.setInstanceParams(this.routeParams);
       });
   }
 
