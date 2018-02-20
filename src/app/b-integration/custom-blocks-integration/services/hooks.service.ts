@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
 
-import { BlockHooksService } from "../../../instance-detail/instance-detail.module";
-
-import { BlockHooksTriggerService } from "../../../instance-detail/services/instance-detail/list/blocks/block-hooks-trigger.service";
+import {
+  InstanceParamsService,
+  BlockHooksService,
+  BlockHooksTriggerService,
+} from "../../../instance-detail/instance-detail.module";
 
 import { B1BlockHooksService, B1BlocksHooks } from "../../../b1";
 import { B2BlockHooksService, B2BlocksHooks } from "../../../b2";
@@ -17,27 +19,33 @@ import * as setOfRules from "../../custom-rules-integration";
 @Injectable()
 export class CustomBlockHooksService extends BlockHooksService {
 
-  constructor(protected blockHooksTriggerService: BlockHooksTriggerService,
+  constructor(protected instanceParams: InstanceParamsService,
+              protected blockHooksTriggerService: BlockHooksTriggerService,
               protected b1BlockHooksService: B1BlockHooksService,
               protected b2BlockHooksService: B2BlockHooksService) {
     super(
+      instanceParams,
       blockHooksTriggerService,
     );
   }
 
-  setupHooks(hooks: CustomBlocksHooks, module?: string, step?: string): void {
+  setConfig(config: string): void {
     this.unsubscribeAll();
+    super.setConfig(config);
+  }
 
-    super.setupHooks(hooks, module, step);
+  subscribeAll(hooks: CustomBlocksHooks): void {
+    super.subscribeAll(hooks);
+    const module = this.instanceParams.getInstanceParams().module;
 
     if (module === Modules.b1) {
-      this.b1BlockHooksService.setupB1Hooks(hooks as B1BlocksHooks, module, step);
+      this.b1BlockHooksService.subscribeAll(hooks as B1BlocksHooks);
     } else if (module === Modules.b2) {
-      this.b2BlockHooksService.setupB2Hooks(hooks as B2BlocksHooks, module, step);
+      this.b2BlockHooksService.subscribeAll(hooks as B2BlocksHooks);
     }
   }
 
-  getSetOfRules(module: string, name: string): any {
+  getSetOfHooks(module: string, name: string): any {
     return setOfRules[module][name] ? setOfRules[module][name] : {};
   }
 

@@ -4,8 +4,6 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from "@a
 import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
-import { empty } from "rxjs/observable/empty";
-import { of } from "rxjs/observable/of";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/switchMap";
 
@@ -14,13 +12,11 @@ import { NGXLogger } from "ngx-logger";
 
 import { AppConstantsService, ModalAlert, modalAlertsActions } from "../../../core/core.module";
 
-import { BlocksHooks } from "../../models";
-
 import { InstanceParamsService } from "./instance-params.service";
 import { BlockHooksService } from "./list/hooks.service";
 
 @Injectable()
-export class RulesResolve implements Resolve<BlocksHooks> {
+export class RulesResolve implements Resolve<string> {
   protected alertId: string;
 
   constructor(protected store$: Store<any>,
@@ -34,7 +30,7 @@ export class RulesResolve implements Resolve<BlocksHooks> {
     this.alertId = "1";
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<BlocksHooks> | BlocksHooks {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<string> | string {
     const module = route.paramMap.get("module");
     const instance = route.paramMap.get("instance");
     const step = route.paramMap.get("step");
@@ -48,7 +44,7 @@ export class RulesResolve implements Resolve<BlocksHooks> {
     return this.fetchRulesConfig(module, step);
   }
 
-  fetchRulesConfig(module: string, step: string): Observable<BlocksHooks> {
+  fetchRulesConfig(module: string, step: string): Observable<string> {
     const url = this.appConstants.Api.rulesConfig;
     const options = {
       params: {
@@ -58,9 +54,8 @@ export class RulesResolve implements Resolve<BlocksHooks> {
     };
     return this.http.get<string>(url, options)
       .switchMap((config) => {
-        const hooks = this.blockHooks.getSetOfRules(module, config);
-        this.blockHooks.setupHooks(hooks, module, step);
-        return of(hooks);
+        this.blockHooks.setConfig(config);
+        return config;
       })
       .catch((err: HttpErrorResponse) => {
         this.translate.get([
@@ -77,7 +72,7 @@ export class RulesResolve implements Resolve<BlocksHooks> {
             this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
           });
         this.router.navigate(["/instance-list"]);
-        return empty();
+        return "";
       });
   }
 }

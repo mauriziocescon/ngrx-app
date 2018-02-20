@@ -1,33 +1,34 @@
 import { Injectable } from "@angular/core";
 
+import { InstanceParamsService } from "../instance-params.service";
+
 import { BlocksHooks } from "../../../models";
 
 import { BlockHooksTriggerService } from "./blocks/block-hooks-trigger.service";
 
 @Injectable()
 export class BlockHooksService {
-  protected hooks: BlocksHooks;
-  protected module: string;
-  protected step: string;
+  protected config: string;
 
-  constructor(protected blockHooksTriggerService: BlockHooksTriggerService) {
+  constructor(protected instanceParams: InstanceParamsService,
+              protected blockHooksTriggerService: BlockHooksTriggerService) {
   }
 
-  setupHooks(hooks: BlocksHooks, module?: string, step?: string): void {
+  setConfig(config: string): void {
+    this.config = config;
+    const module = this.instanceParams.getInstanceParams().module;
+    this.subscribeAll(this.getSetOfHooks(module, this.config));
+  }
+
+  protected subscribeAll(hooks: BlocksHooks): void {
+    this.blockHooksTriggerService.subscribeAll(hooks);
+  }
+
+  protected unsubscribeAll(): void {
     this.blockHooksTriggerService.unsubscribeAll();
-
-    this.hooks = hooks;
-    this.module = module;
-    this.step = step;
-
-    this.blockHooksTriggerService.subscribeAll(this.hooks);
   }
 
-  getSetOfRules(module: string, name: string): any {
+  protected getSetOfHooks(module: string, name: string): any {
     return {};
-  }
-
-  unsubscribeAll(): void {
-    this.blockHooksTriggerService.unsubscribeAll();
   }
 }
