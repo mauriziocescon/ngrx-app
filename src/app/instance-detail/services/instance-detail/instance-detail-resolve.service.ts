@@ -13,7 +13,7 @@ import { NGXLogger } from "ngx-logger";
 import { AppConstantsService, ModalAlert, modalAlertsActions } from "../../../core/core.module";
 
 import { InstanceParamsService } from "./instance-params.service";
-import { BlockHooksService } from "./list/hooks.service";
+import { BlockHooksIntegrationService } from "../integration/hooks.service";
 
 @Injectable()
 export class RulesResolve implements Resolve<string> {
@@ -26,7 +26,7 @@ export class RulesResolve implements Resolve<string> {
               protected logger: NGXLogger,
               protected appConstants: AppConstantsService,
               protected instanceParams: InstanceParamsService,
-              protected blockHooks: BlockHooksService) {
+              protected blockHooks: BlockHooksIntegrationService) {
     this.alertId = "1";
   }
 

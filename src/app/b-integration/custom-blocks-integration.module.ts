@@ -11,9 +11,8 @@ import { SharedModule } from "../shared/shared.module";
 import {
   SERVICES,
   CustomBlocksActionsService,
-  CustomBlockHooksService,
   CustomBlockUtilsService,
-} from "./services/index";
+} from "./services";
 
 @NgModule({
   imports: [
@@ -24,16 +23,14 @@ import {
   providers: [
     ...SERVICES,
     {provide: BlocksActionsService, useClass: CustomBlocksActionsService},
-    {provide: BlockHooksService, useClass: CustomBlockHooksService},
     {provide: BlockUtilsService, useClass: CustomBlockUtilsService},
   ],
 })
 export class CustomBlocksIntegrationModule {
 }
 
-export * from "./models/index";
+export * from "./models";
 
 export {
-  CustomBlockHooksService,
   CustomBlockUtilsService,
 };

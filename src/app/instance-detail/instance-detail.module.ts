@@ -93,6 +93,8 @@ export { fromInstanceDetail };
 
 export * from "./models";
 
+export * from "./tokens";
+
 export {
   InstanceDetailContainerComponent,
 

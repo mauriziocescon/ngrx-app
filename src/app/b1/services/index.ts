@@ -5,8 +5,10 @@ import { B1BlocksActionsService } from "./blocks/block-actions.service";
 import { B1BlockHooksTriggerService } from "./blocks/block-hooks-trigger.service";
 import { CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer-actions.service";
 
+import { BLOCK_HOOKS_TOKEN } from "../../instance-detail/instance-detail.module";
+
 export const SERVICES = [
-  B1BlockHooksService,
+  {provide: BLOCK_HOOKS_TOKEN, useClass: B1BlockHooksService, multi: true},
   B1BlockUtilsService,
 
   B1BlocksActionsService,
@@ -15,7 +17,6 @@ export const SERVICES = [
 ];
 
 export {
-  B1BlockHooksService,
   B1BlockUtilsService,
 
   B1BlocksActionsService,

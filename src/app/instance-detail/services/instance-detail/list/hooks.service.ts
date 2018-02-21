@@ -4,14 +4,19 @@ import { InstanceParamsService } from "../instance-params.service";
 
 import { BlocksHooks } from "../../../models";
 
+import { IBlockHooks } from "../../../tokens";
+
 import { BlockHooksTriggerService } from "./blocks/block-hooks-trigger.service";
 
 @Injectable()
-export class BlockHooksService {
+export class BlockHooksService implements IBlockHooks {
+  key: string;
+
   protected config: string;
 
   constructor(protected instanceParams: InstanceParamsService,
               protected blockHooksTriggerService: BlockHooksTriggerService) {
+    this.key = "base";
   }
 
   setConfig(config: string): void {
@@ -20,15 +25,15 @@ export class BlockHooksService {
     this.subscribeAll(this.getSetOfHooks(module, this.config));
   }
 
-  protected subscribeAll(hooks: BlocksHooks): void {
+  subscribeAll(hooks: BlocksHooks): void {
     this.blockHooksTriggerService.subscribeAll(hooks);
   }
 
-  protected unsubscribeAll(): void {
+  unsubscribeAll(): void {
     this.blockHooksTriggerService.unsubscribeAll();
   }
 
-  protected getSetOfHooks(module: string, name: string): any {
+  getSetOfHooks(module: string, name: string): any {
     return {};
   }
 }

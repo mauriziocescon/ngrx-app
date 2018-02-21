@@ -1,15 +1,19 @@
 import { Injectable } from "@angular/core";
 
-import { B2BlocksHooks } from "../models";
+import { IBlockHooks } from "../../instance-detail/instance-detail.module";
 
-import { B2BlockHooksTriggerService } from "./blocks/block-hooks-trigger.service";
+import { B2BlocksHooks } from "../models";
 
 import * as setOfRules from "../rules";
 
+import { B2BlockHooksTriggerService } from "./blocks/block-hooks-trigger.service";
+
 @Injectable()
-export class B2BlockHooksService {
+export class B2BlockHooksService implements IBlockHooks {
+  key: string;
 
   constructor(protected blockActionsTriggerService: B2BlockHooksTriggerService) {
+    this.key = "b2";
   }
 
   subscribeAll(hooks: B2BlocksHooks): void {

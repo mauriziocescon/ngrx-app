@@ -13,13 +13,15 @@ import { CheckBoxActionsService } from "./instance-detail/list/blocks/check-box-
 import { DropdownActionsService } from "./instance-detail/list/blocks/dropdown-actions.service";
 import { TextInputActionsService } from "./instance-detail/list/blocks/text-input-actions.service";
 
+import { BLOCK_HOOKS_TOKEN } from "../tokens";
+
 export const SERVICES = [
   InstanceDetailGuard,
   RulesResolve,
   InstanceParamsService,
 
   BlocksActionsService,
-  BlockHooksService,
+  {provide: BLOCK_HOOKS_TOKEN, useClass: BlockHooksService, multi: true},
   BlockListService,
   BlockUtilsService,
 

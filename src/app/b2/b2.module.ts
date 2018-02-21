@@ -16,7 +16,6 @@ import { TOKEN, reducerProvider } from "./reducers";
 import {
   SERVICES,
   B2BlocksActionsService,
-  B2BlockHooksService,
   B2BlockUtilsService,
   DatePickerActionsService,
 } from "./services";
@@ -66,7 +65,6 @@ export { fromB2 };
 
 export {
   B2BlocksActionsService,
-  B2BlockHooksService,
   B2BlockUtilsService,
   DatePickerActionsService,
 };
