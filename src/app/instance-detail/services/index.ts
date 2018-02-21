@@ -15,6 +15,7 @@ import { TextInputActionsService } from "./instance-detail/list/blocks/text-inpu
 
 import {
   INTEGRATION_SERVICES,
+  BlockActionsIntegrationService,
   BlockUtilsIntegrationService,
 } from "./integration";
 
@@ -32,7 +33,6 @@ export const SERVICES = [
 
   BlockHooksTriggerService,
 
-  CheckBoxActionsService,
   DropdownActionsService,
   TextInputActionsService,
 
@@ -44,7 +44,6 @@ export {
   RulesResolve,
   InstanceParamsService,
 
-  BlocksActionsService,
   BlockListService,
   BlockHooksService,
   BlockUtilsService,
@@ -55,5 +54,6 @@ export {
   DropdownActionsService,
   TextInputActionsService,
 
+  BlockActionsIntegrationService,
   BlockUtilsIntegrationService,
 };

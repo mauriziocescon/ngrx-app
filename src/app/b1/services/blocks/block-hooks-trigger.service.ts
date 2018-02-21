@@ -1,10 +1,10 @@
-import { Inject, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 
 import { Subscription } from "rxjs/Subscription";
 
 import { NGXLogger } from "ngx-logger";
 
-import { BLOCK_ACTIONS_TOKEN, IBlockActions } from "../../../instance-detail/instance-detail.module";
+import { BlockActionsIntegrationService } from "../../../instance-detail/instance-detail.module";
 
 import {
   B1BlocksHooks,
@@ -22,7 +22,7 @@ export class B1BlockHooksTriggerService {
   protected checkBoxConfirmerBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              @Inject(BLOCK_ACTIONS_TOKEN) protected blocksActions: IBlockActions,
+              protected blocksActions: BlockActionsIntegrationService,
               protected checkBoxConfirmerService: CheckBoxConfirmerActionsService) {
   }
 

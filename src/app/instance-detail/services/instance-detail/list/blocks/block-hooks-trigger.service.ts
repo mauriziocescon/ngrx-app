@@ -15,7 +15,7 @@ import { CheckBoxActionsService } from "./check-box-actions.service";
 import { DropdownActionsService } from "./dropdown-actions.service";
 import { TextInputActionsService } from "./text-input-actions.service";
 
-import { BlocksActionsService } from "./block-actions.service";
+import { BlockActionsIntegrationService } from "../../../integration";
 
 @Injectable()
 export class BlockHooksTriggerService {
@@ -30,7 +30,7 @@ export class BlockHooksTriggerService {
   protected textInputBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected blocksActionsService: BlocksActionsService,
+              protected blocksActions: BlockActionsIntegrationService,
               protected checkBoxService: CheckBoxActionsService,
               protected dropdownService: DropdownActionsService,
               protected textInputService: TextInputActionsService) {
@@ -76,7 +76,7 @@ export class BlockHooksTriggerService {
     this.checkBoxBlockLoadSubscription = this.checkBoxService.blockLoadObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
-          this.hooks[block.hooks.checkBoxBlockDidLoad](block, this.blocksActionsService.getActions());
+          this.hooks[block.hooks.checkBoxBlockDidLoad](block, this.blocksActions.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
@@ -87,7 +87,7 @@ export class BlockHooksTriggerService {
     this.dropdownBlockLoadSubscription = this.dropdownService.blockLoadObservable$
       .subscribe((block: DropdownBlock) => {
         try {
-          this.hooks[block.hooks.dropdownBlockDidLoad](block, this.blocksActionsService.getActions());
+          this.hooks[block.hooks.dropdownBlockDidLoad](block, this.blocksActions.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
@@ -98,7 +98,7 @@ export class BlockHooksTriggerService {
     this.textInputBlockLoadSubscription = this.textInputService.blockLoadObservable$
       .subscribe((block: TextInputBlock) => {
         try {
-          this.hooks[block.hooks.textInputBlockDidLoad](block, this.blocksActionsService.getActions());
+          this.hooks[block.hooks.textInputBlockDidLoad](block, this.blocksActions.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
@@ -109,7 +109,7 @@ export class BlockHooksTriggerService {
     this.checkBoxBlockChangesSubscription = this.checkBoxService.blockChangesObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
-          this.hooks[block.hooks.checkBoxBlockDidChange](block, this.blocksActionsService.getActions());
+          this.hooks[block.hooks.checkBoxBlockDidChange](block, this.blocksActions.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
@@ -120,7 +120,7 @@ export class BlockHooksTriggerService {
     this.dropdownBlockChangesSubscription = this.dropdownService.blockChangesObservable$
       .subscribe((block: DropdownBlock) => {
         try {
-          this.hooks[block.hooks.dropdownBlockDidChange](block, this.blocksActionsService.getActions());
+          this.hooks[block.hooks.dropdownBlockDidChange](block, this.blocksActions.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
@@ -131,7 +131,7 @@ export class BlockHooksTriggerService {
     this.textInputBlockChangesSubscription = this.textInputService.blockChangesObservable$
       .subscribe((block: TextInputBlock) => {
         try {
-          this.hooks[block.hooks.textInputBlockDidChange](block, this.blocksActionsService.getActions());
+          this.hooks[block.hooks.textInputBlockDidChange](block, this.blocksActions.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }

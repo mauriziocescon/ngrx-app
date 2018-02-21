@@ -15,7 +15,6 @@ import {
 
   BlockListService,
 
-  BlocksActionsService,
   BlockHooksService,
   BlockUtilsService,
 
@@ -104,9 +103,9 @@ export {
 
   BlockListService,
 
-  BlocksActionsService,
   BlockHooksService,
   BlockUtilsService,
+  BlocksActionsIntegrationService,
 
   BlockHooksTriggerService,
 

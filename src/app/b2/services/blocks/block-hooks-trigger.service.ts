@@ -1,10 +1,10 @@
-import { Inject, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 
 import { Subscription } from "rxjs/Subscription";
 
 import { NGXLogger } from "ngx-logger";
 
-import { BLOCK_ACTIONS_TOKEN, IBlockActions } from "../../../instance-detail/instance-detail.module";
+import { BlockActionsIntegrationService } from "../../../instance-detail/instance-detail.module";
 
 import {
   B2BlocksHooks,
@@ -22,7 +22,7 @@ export class B2BlockHooksTriggerService {
   protected datePickerBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              @Inject(BLOCK_ACTIONS_TOKEN) protected blocksActions: IBlockActions,
+              protected blocksActions: BlockActionsIntegrationService,
               protected datePickerService: DatePickerActionsService) {
   }
 
