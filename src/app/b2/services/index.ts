@@ -17,7 +17,6 @@ export const SERVICES = [
 ];
 
 export {
-  B2BlockHooksService,
   B2BlockUtilsService,
 
   B2BlocksActionsService,
