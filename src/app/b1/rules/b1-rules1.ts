@@ -7,7 +7,7 @@ import {
 import {
   B1BlocksMethods,
   CheckBoxConfirmerBlock,
-} from "../custom-blocks/b1.module";
+} from "../models";
 
 import * as utilities from "./utils/utilities";
 import * as validators from "./validations";

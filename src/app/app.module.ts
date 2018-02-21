@@ -22,9 +22,10 @@ import { SharedModule, CustomRouterStateSerializer } from "./shared/shared.modul
 import { InstanceListModule } from "./instance-list/instance-list.module";
 import { InstanceDetailModule } from "./instance-detail/instance-detail.module";
 
-import { CustomBlocksIntegrationModule } from "./b-integration";
-import { B1BlocksModule } from "./b1";
-import { B2BlocksModule } from "./b2";
+import { CustomBlocksIntegrationModule } from "./b-integration/custom-blocks-integration.module";
+import { B1BlocksModule } from "./b1/b1.module";
+import { B2BlocksModule } from "./b2/b2.module";
+import { B3BlocksModule } from "./b3/b3.module";
 
 import { AppContainerComponent } from "./app.container";
 
@@ -94,6 +95,7 @@ export function createTranslateLoader(http: HttpClient) {
     CustomBlocksIntegrationModule,
     B1BlocksModule,
     B2BlocksModule,
+    B3BlocksModule,
   ],
   declarations: [
     AppContainerComponent

@@ -1,4 +1,4 @@
-import { DatePickerBlock } from "../../custom-blocks/b2.module";
+import { DatePickerBlock } from "../../models";
 
 export const isValid = (datePickerBlock: DatePickerBlock) => {
   const unixTimeZero = Date.parse(datePickerBlock.value);

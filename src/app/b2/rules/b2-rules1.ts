@@ -7,7 +7,7 @@ import {
 import {
   B2BlocksMethods,
   DatePickerBlock,
-} from "../custom-blocks/b2.module";
+} from "../models";
 
 import * as utilities from "./utils/utilities";
 import * as validators from "./validations";
