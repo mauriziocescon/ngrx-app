@@ -18,14 +18,14 @@ import {
   BlockUtilsIntegrationService,
 } from "./integration";
 
-import { BLOCK_HOOKS_TOKEN, BLOCK_UTILS_TOKEN } from "../tokens";
+import { BLOCK_ACTIONS_TOKEN, BLOCK_HOOKS_TOKEN, BLOCK_UTILS_TOKEN } from "../tokens";
 
 export const SERVICES = [
   InstanceDetailGuard,
   RulesResolve,
   InstanceParamsService,
 
-  BlocksActionsService,
+  {provide: BLOCK_ACTIONS_TOKEN, useClass: BlocksActionsService, multi: true},
   BlockListService,
   {provide: BLOCK_HOOKS_TOKEN, useClass: BlockHooksService, multi: true},
   {provide: BLOCK_UTILS_TOKEN, useClass: BlockUtilsService, multi: true},

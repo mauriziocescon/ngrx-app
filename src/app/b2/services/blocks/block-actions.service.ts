@@ -1,33 +1,22 @@
 import { Injectable } from "@angular/core";
 
-import {
-  BlocksActionsService,
-  CheckBoxActionsService,
-  DropdownActionsService,
-  TextInputActionsService,
-} from "../../../instance-detail/instance-detail.module";
-
-import { B2BlocksMethods } from "../../models";
+import { IBlockActions } from "../../../instance-detail/instance-detail.module";
 
 import { DatePickerActionsService } from "./date-picker-actions.service";
 
 @Injectable()
-export class B2BlocksActionsService extends BlocksActionsService {
+export class B2BlocksActionsService implements IBlockActions {
+  key: string;
 
-  constructor(protected checkBoxService: CheckBoxActionsService,
-              protected dropdownService: DropdownActionsService,
-              protected textInputService: TextInputActionsService,
-              protected datePickerActionsService: DatePickerActionsService) {
-    super(
-      checkBoxService,
-      dropdownService,
-      textInputService,
-    );
+  constructor(protected datePickerActionsService: DatePickerActionsService) {
+    this.key = "b2";
   }
 
-  getActions(): B2BlocksMethods {
-    const actions = super.getActions() as B2BlocksMethods;
-    actions.datePicker = this.datePickerActionsService.getDatePickerActions();
-    return actions;
+  getActions(): any {
+    return {
+      datePicker: {
+        ...this.datePickerActionsService.getDatePickerActions(),
+      },
+    };
   }
 }

@@ -1,33 +1,22 @@
 import { Injectable } from "@angular/core";
 
-import {
-  BlocksActionsService,
-  CheckBoxActionsService,
-  DropdownActionsService,
-  TextInputActionsService,
-} from "../../../instance-detail/instance-detail.module";
-
-import { B1BlocksMethods } from "../../models";
+import { IBlockActions } from "../../../instance-detail/instance-detail.module";
 
 import { CheckBoxConfirmerActionsService } from "./check-box-confirmer-actions.service";
 
 @Injectable()
-export class B1BlocksActionsService extends BlocksActionsService {
+export class B1BlocksActionsService implements IBlockActions {
+  key: string;
 
-  constructor(protected checkBoxService: CheckBoxActionsService,
-              protected dropdownService: DropdownActionsService,
-              protected textInputService: TextInputActionsService,
-              protected checkBoxConfirmerActionsService: CheckBoxConfirmerActionsService) {
-    super(
-      checkBoxService,
-      dropdownService,
-      textInputService,
-    );
+  constructor(protected checkBoxConfirmerActionsService: CheckBoxConfirmerActionsService) {
+    this.key = "b1";
   }
 
-  getActions(): B1BlocksMethods {
-    const actions = super.getActions() as B1BlocksMethods;
-    actions.checkBoxConfirmer = this.checkBoxConfirmerActionsService.getCheckBoxConfirmerActions();
-    return actions;
+  getActions(): any {
+    return {
+      checkBoxConfirmer: {
+        ...this.checkBoxConfirmerActionsService.getCheckBoxConfirmerActions(),
+      },
+    };
   }
 }

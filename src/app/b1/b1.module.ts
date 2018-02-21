@@ -11,35 +11,14 @@ import {
 } from "./containers";
 
 import { EFFECTS } from "./effects";
-import * as fromB1 from "./reducers";
 import { TOKEN, reducerProvider } from "./reducers";
-import {
-  SERVICES,
-  B1BlocksActionsService,
-  B1BlockUtilsService,
-  CheckBoxConfirmerActionsService,
-} from "./services";
+import { SERVICES } from "./services";
 
 @NgModule({
   imports: [
     SharedModule,
 
-    /**
-     * StoreModule.forFeature is used for composing state
-     * from feature modules. These modules can be loaded
-     * eagerly or lazily and will be dynamically added to
-     * the existing state.
-     */
     StoreModule.forFeature("b1Blocks", TOKEN),
-
-    /**
-     * Effects.forFeature is used to register effects
-     * from feature modules. Effects can be loaded
-     * eagerly or lazily and will be started immediately.
-     *
-     * All Effects will only be instantiated once regardless of
-     * whether they are registered once or multiple times.
-     */
     EffectsModule.forFeature([
       ...EFFECTS,
     ]),
@@ -58,14 +37,3 @@ import {
 })
 export class B1BlocksModule {
 }
-
-export { fromB1 };
-
-export * from "./models";
-
-export {
-  B1BlocksActionsService,
-  B1BlockUtilsService,
-  CheckBoxConfirmerActionsService,
-  CheckBoxConfirmerContainerComponent,
-};

@@ -1,8 +1,10 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 
 import { Subscription } from "rxjs/Subscription";
 
 import { NGXLogger } from "ngx-logger";
+
+import { BLOCK_ACTIONS_TOKEN, IBlockActions } from "../../../instance-detail/instance-detail.module";
 
 import {
   B2BlocksHooks,
@@ -10,8 +12,6 @@ import {
 } from "../../models";
 
 import { DatePickerActionsService } from "./date-picker-actions.service";
-
-import { B2BlocksActionsService } from "./block-actions.service";
 
 @Injectable()
 export class B2BlockHooksTriggerService {
@@ -22,7 +22,7 @@ export class B2BlockHooksTriggerService {
   protected datePickerBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected b2BlocksActionsService: B2BlocksActionsService,
+              @Inject(BLOCK_ACTIONS_TOKEN) protected blocksActions: IBlockActions,
               protected datePickerService: DatePickerActionsService) {
   }
 
@@ -49,7 +49,7 @@ export class B2BlockHooksTriggerService {
     this.datePickerService.blockLoadObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
-          this.hooks[block.hooks.datePickerBlockDidLoad](block, this.b2BlocksActionsService.getActions());
+          this.hooks[block.hooks.datePickerBlockDidLoad](block, this.blocksActions.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
@@ -60,7 +60,7 @@ export class B2BlockHooksTriggerService {
     this.datePickerService.blockChangesObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
-          this.hooks[block.hooks.datePickerBlockDidChange](block, this.b2BlocksActionsService.getActions());
+          this.hooks[block.hooks.datePickerBlockDidChange](block, this.blocksActions.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }

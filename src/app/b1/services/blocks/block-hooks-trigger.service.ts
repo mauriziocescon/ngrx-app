@@ -1,8 +1,10 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 
 import { Subscription } from "rxjs/Subscription";
 
 import { NGXLogger } from "ngx-logger";
+
+import { BLOCK_ACTIONS_TOKEN, IBlockActions } from "../../../instance-detail/instance-detail.module";
 
 import {
   B1BlocksHooks,
@@ -10,8 +12,6 @@ import {
 } from "../../models";
 
 import { CheckBoxConfirmerActionsService } from "./check-box-confirmer-actions.service";
-
-import { B1BlocksActionsService } from "./block-actions.service";
 
 @Injectable()
 export class B1BlockHooksTriggerService {
@@ -22,7 +22,7 @@ export class B1BlockHooksTriggerService {
   protected checkBoxConfirmerBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected b1BlocksActionsService: B1BlocksActionsService,
+              @Inject(BLOCK_ACTIONS_TOKEN) protected blocksActions: IBlockActions,
               protected checkBoxConfirmerService: CheckBoxConfirmerActionsService) {
   }
 
@@ -49,7 +49,7 @@ export class B1BlockHooksTriggerService {
     this.checkBoxConfirmerBlockLoadSubscription = this.checkBoxConfirmerService.blockLoadObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
-          this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.b1BlocksActionsService.getActions());
+          this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad](block, this.blocksActions.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
@@ -60,7 +60,7 @@ export class B1BlockHooksTriggerService {
     this.checkBoxConfirmerBlockChangesSubscription = this.checkBoxConfirmerService.blockChangesObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
-          this.hooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.b1BlocksActionsService.getActions());
+          this.hooks[block.hooks.checkBoxConfirmerBlockDidChange](block, this.blocksActions.getActions());
         } catch (e) {
           this.logger.error(e.toString());
         }
