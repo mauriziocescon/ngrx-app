@@ -1,17 +1,25 @@
 import { Injectable } from "@angular/core";
+import { Store } from "@ngrx/store";
 
-import { Block } from "../../instance-detail/instance-detail.module";
+import { Observable } from "rxjs/Observable";
+
+import { Block, IBlockUtils } from "../../instance-detail/instance-detail.module";
 
 import { DatePickerContainerComponent } from "../containers";
 
 import { B2BlockType, DatePickerBlock } from "../models";
 
+import * as fromB2 from "../reducers";
+
 import { DatePickerActionsService } from "./blocks/date-picker-actions.service";
 
 @Injectable()
-export class B2BlockUtilsService {
+export class B2BlockUtilsService implements IBlockUtils {
+  key: string;
 
-  constructor(protected datePickerService: DatePickerActionsService) {
+  constructor(protected store$: Store<fromB2.State>,
+              protected datePickerService: DatePickerActionsService) {
+    this.key = "b2";
   }
 
   getComponentForBlock(block: Block): any {
@@ -36,5 +44,13 @@ export class B2BlockUtilsService {
         return false;
       }
     }
+  }
+
+  getAllEditedBlocksSelector(): Observable<Block[]> {
+    return this.store$.select(fromB2.getAllEditedBlocksState);
+  }
+
+  getValiditySelector(): Observable<boolean> {
+    return this.store$.select(fromB2.getAllEditedBlocksValidityState);
   }
 }

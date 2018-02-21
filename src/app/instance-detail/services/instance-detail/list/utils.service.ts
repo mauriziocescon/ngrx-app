@@ -18,17 +18,21 @@ import {
 
 import * as fromInstanceDetail from "../../../reducers";
 
+import { IBlockUtils } from "../../../tokens";
+
 import { TextInputActionsService } from "./blocks/text-input-actions.service";
 import { DropdownActionsService } from "./blocks/dropdown-actions.service";
 import { CheckBoxActionsService } from "./blocks/check-box-actions.service";
 
 @Injectable()
-export class BlockUtilsService {
+export class BlockUtilsService implements IBlockUtils {
+  key: string;
 
   constructor(protected store$: Store<fromInstanceDetail.State>,
               protected checkBoxService: CheckBoxActionsService,
               protected dropdownService: DropdownActionsService,
               protected textInputService: TextInputActionsService) {
+    this.key = "base";
   }
 
   getComponentForBlock(block: Block): any {
@@ -71,11 +75,11 @@ export class BlockUtilsService {
     }
   }
 
-  getAllEditedBlocksSelector(module: string, instance: string, step: string): Observable<Block[]> {
+  getAllEditedBlocksSelector(): Observable<Block[]> {
     return this.store$.select(fromInstanceDetail.getAllEditedBlocksState);
   }
 
-  getValiditySelector(module: string, instance: string, step: string): Observable<boolean> {
+  getValiditySelector(): Observable<boolean> {
     return this.store$.select(fromInstanceDetail.getAllEditedBlocksValidityState);
   }
 }

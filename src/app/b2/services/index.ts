@@ -5,11 +5,11 @@ import { B2BlocksActionsService } from "./blocks/block-actions.service";
 import { B2BlockHooksTriggerService } from "./blocks/block-hooks-trigger.service";
 import { DatePickerActionsService } from "./blocks/date-picker-actions.service";
 
-import { BLOCK_HOOKS_TOKEN } from "../../instance-detail/instance-detail.module";
+import { BLOCK_HOOKS_TOKEN, BLOCK_UTILS_TOKEN } from "../../instance-detail/instance-detail.module";
 
 export const SERVICES = [
   {provide: BLOCK_HOOKS_TOKEN, useClass: B2BlockHooksService, multi: true},
-  B2BlockUtilsService,
+  {provide: BLOCK_UTILS_TOKEN, useClass: B2BlockUtilsService, multi: true},
 
   B2BlocksActionsService,
   B2BlockHooksTriggerService,
@@ -17,8 +17,6 @@ export const SERVICES = [
 ];
 
 export {
-  B2BlockUtilsService,
-
   B2BlocksActionsService,
   B2BlockHooksTriggerService,
   DatePickerActionsService,

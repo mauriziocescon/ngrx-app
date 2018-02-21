@@ -1,17 +1,25 @@
 import { Injectable } from "@angular/core";
+import { Store } from "@ngrx/store";
 
-import { Block } from "../../instance-detail/instance-detail.module";
+import { Observable } from "rxjs/Observable";
+
+import { Block, IBlockUtils } from "../../instance-detail/instance-detail.module";
 
 import { CheckBoxConfirmerContainerComponent } from "../containers";
 
 import { B1BlockType, CheckBoxConfirmerBlock } from "../models";
 
+import * as fromB1 from "../reducers";
+
 import { CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer-actions.service";
 
 @Injectable()
-export class B1BlockUtilsService {
+export class B1BlockUtilsService implements IBlockUtils {
+  key: string;
 
-  constructor(protected checkBoxConfirmerService: CheckBoxConfirmerActionsService) {
+  constructor(protected store$: Store<fromB1.State>,
+              protected checkBoxConfirmerService: CheckBoxConfirmerActionsService) {
+    this.key = "b1";
   }
 
   getComponentForBlock(block: Block): any {
@@ -36,5 +44,13 @@ export class B1BlockUtilsService {
         return false;
       }
     }
+  }
+
+  getAllEditedBlocksSelector(): Observable<Block[]> {
+    return this.store$.select(fromB1.getAllEditedBlocksState);
+  }
+
+  getValiditySelector(): Observable<boolean> {
+    return this.store$.select(fromB1.getAllEditedBlocksValidityState);
   }
 }

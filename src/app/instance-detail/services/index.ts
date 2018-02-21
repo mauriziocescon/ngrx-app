@@ -13,7 +13,12 @@ import { CheckBoxActionsService } from "./instance-detail/list/blocks/check-box-
 import { DropdownActionsService } from "./instance-detail/list/blocks/dropdown-actions.service";
 import { TextInputActionsService } from "./instance-detail/list/blocks/text-input-actions.service";
 
-import { BLOCK_HOOKS_TOKEN } from "../tokens";
+import {
+  INTEGRATION_SERVICES,
+  BlockUtilsIntegrationService,
+} from "./integration";
+
+import { BLOCK_HOOKS_TOKEN, BLOCK_UTILS_TOKEN } from "../tokens";
 
 export const SERVICES = [
   InstanceDetailGuard,
@@ -21,15 +26,17 @@ export const SERVICES = [
   InstanceParamsService,
 
   BlocksActionsService,
-  {provide: BLOCK_HOOKS_TOKEN, useClass: BlockHooksService, multi: true},
   BlockListService,
-  BlockUtilsService,
+  {provide: BLOCK_HOOKS_TOKEN, useClass: BlockHooksService, multi: true},
+  {provide: BLOCK_UTILS_TOKEN, useClass: BlockUtilsService, multi: true},
 
   BlockHooksTriggerService,
 
   CheckBoxActionsService,
   DropdownActionsService,
   TextInputActionsService,
+
+  INTEGRATION_SERVICES,
 ];
 
 export {
@@ -47,4 +54,6 @@ export {
   CheckBoxActionsService,
   DropdownActionsService,
   TextInputActionsService,
+
+  BlockUtilsIntegrationService,
 };

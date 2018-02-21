@@ -13,7 +13,7 @@ import { NGXLogger } from "ngx-logger";
 import { AppConstantsService, ModalAlert, modalAlertsActions } from "../../../core/core.module";
 
 import { InstanceParamsService } from "./instance-params.service";
-import { BlockHooksIntegrationService } from "../integration/hooks.service";
+import { BlockHooksIntegrationService } from "../integration";
 
 @Injectable()
 export class RulesResolve implements Resolve<string> {
