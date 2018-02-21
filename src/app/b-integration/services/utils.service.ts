@@ -14,7 +14,7 @@ import {
 import { B1BlockUtilsService, fromB1 } from "../../b1/b1.module";
 import { B2BlockUtilsService, fromB2 } from "../../b2/b2.module";
 
-import { Modules } from "../models/index";
+import { Modules } from "../models";
 
 @Injectable()
 export class CustomBlockUtilsService extends BlockUtilsService {

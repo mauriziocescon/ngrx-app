@@ -11,7 +11,7 @@ import {
 import { B1BlocksActionsService } from "../../../b1/b1.module";
 
 import { B2BlocksActionsService } from "../../../b2/b2.module";
-import { Modules } from "../../models/index";
+import { Modules } from "../../models";
 
 @Injectable()
 export class CustomBlocksActionsService extends BlocksActionsService {
