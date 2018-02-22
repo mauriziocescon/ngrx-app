@@ -22,7 +22,7 @@ export class BlockHooksService implements IBlockHooks {
     this.blockHooksTriggerService.unsubscribeAll();
   }
 
-  getSetOfHooks(module: string, name: string): any {
+  getSetOfHooks(config: string): any {
     return {};
   }
 }

@@ -4,5 +4,5 @@ export interface IBlockHooks {
   key: string;
   subscribeAll(hooks: BlocksHooks): void;
   unsubscribeAll(): void;
-  getSetOfHooks(module: string, name: string): any;
+  getSetOfHooks(config: string): any;
 }

@@ -22,8 +22,8 @@ export class BlockHooksIntegrationService {
     this.baseService = this.blockHooks.find((bh: IBlockHooks) => {
       return bh.key === "base";
     });
-    this.baseService.subscribeAll(this.getSetOfHooks(module, config));
-    this.customService.subscribeAll(this.getSetOfHooks(module, config));
+    this.baseService.subscribeAll(this.getSetOfHooks(config));
+    this.customService.subscribeAll(this.getSetOfHooks(config));
   }
 
   unsubscribeAll(): void {
@@ -32,7 +32,7 @@ export class BlockHooksIntegrationService {
     });
   }
 
-  getSetOfHooks(module: string, name: string): any {
-    return this.customService.getSetOfHooks(module, name);
+  getSetOfHooks(config: string): any {
+    return this.customService.getSetOfHooks(config);
   }
 }

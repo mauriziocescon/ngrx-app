@@ -24,7 +24,7 @@ export class B1BlockHooksService implements IBlockHooks {
     this.blockActionsTriggerService.unsubscribeAll();
   }
 
-  getSetOfHooks(name: string): any {
-    return setOfRules[name] ? setOfRules[name] : {};
+  getSetOfHooks(config: string): any {
+    return setOfRules[config] ? setOfRules[config] : {};
   }
 }
