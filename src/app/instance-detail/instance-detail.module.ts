@@ -11,17 +11,7 @@ import {
   SERVICES,
   InstanceDetailGuard,
   RulesResolve,
-  InstanceParamsService,
-
-  BlockListService,
-
-  BlockHooksService,
-  BlockUtilsService,
-
-  BlockHooksTriggerService,
-  CheckBoxActionsService,
-  DropdownActionsService,
-  TextInputActionsService,
+  BlockActionsIntegrationService,
 } from "./services";
 
 import { COMPONENTS, UnknownComponent } from "./components";
@@ -32,8 +22,6 @@ import {
   DropdownContainerComponent,
   TextInputContainerComponent,
 } from "./containers";
-
-import { BlockActionsIntegrationService } from "./services/integration/actions.service";
 
 @NgModule({
   imports: [
@@ -86,17 +74,6 @@ export {
 
   InstanceDetailGuard,
   RulesResolve,
-  InstanceParamsService,
 
-  BlockListService,
-
-  BlockHooksService,
-  BlockUtilsService,
   BlockActionsIntegrationService,
-
-  BlockHooksTriggerService,
-
-  CheckBoxActionsService,
-  DropdownActionsService,
-  TextInputActionsService,
 };
