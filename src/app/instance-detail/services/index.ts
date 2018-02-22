@@ -33,6 +33,7 @@ export const SERVICES = [
 
   BlockHooksTriggerService,
 
+  CheckBoxActionsService,
   DropdownActionsService,
   TextInputActionsService,
 

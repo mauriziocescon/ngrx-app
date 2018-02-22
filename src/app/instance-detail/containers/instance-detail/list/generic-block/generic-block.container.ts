@@ -9,7 +9,7 @@ import {
 
 import { AddComponentDirective } from "../../../../../shared/shared.module";
 
-import { BlockUtilsService } from "../../../../services";
+import { BlockUtilsIntegrationService } from "../../../../services";
 
 import { Block, BlockComponent } from "../../../../models";
 
@@ -25,7 +25,7 @@ export class GenericBlockContainerComponent implements AfterViewInit {
   @ViewChild(AddComponentDirective) adComponent: AddComponentDirective;
 
   constructor(protected componentFactoryResolver: ComponentFactoryResolver,
-              protected blockUtils: BlockUtilsService) {
+              protected blockUtils: BlockUtilsIntegrationService) {
   }
 
   ngAfterViewInit(): void {
