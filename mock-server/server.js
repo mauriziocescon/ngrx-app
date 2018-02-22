@@ -113,7 +113,7 @@ app.get("/api/rules-config", (req, res) => {
       });
     }
   }
-  return res.status(200).jsonp("");
+  return res.status(200).jsonp("not_found");
 });
 
 // blocks
