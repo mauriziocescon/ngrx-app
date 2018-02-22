@@ -24,8 +24,12 @@ export class BlockUtilsIntegrationService {
     this.baseService = this.blockUtils.find((bh: IBlockUtils) => {
       return bh.key === "base";
     });
-    return this.customService.getComponentForBlock(block) ||
-      this.baseService.getComponentForBlock(block);
+
+    if (this.customService) {
+      return this.customService.getComponentForBlock(block) ||
+        this.baseService.getComponentForBlock(block);
+    }
+    return this.baseService.getComponentForBlock(block);
   }
 
   triggerComponentDidLoad(block: Block): boolean {
@@ -36,8 +40,11 @@ export class BlockUtilsIntegrationService {
     this.baseService = this.blockUtils.find((bh: IBlockUtils) => {
       return bh.key === "base";
     });
-    return this.customService.triggerComponentDidLoad(block) ||
-      this.baseService.triggerComponentDidLoad(block);
+    if (this.customService) {
+      return this.customService.triggerComponentDidLoad(block) ||
+        this.baseService.triggerComponentDidLoad(block);
+    }
+    return this.baseService.triggerComponentDidLoad(block);
   }
 
   getAllEditedBlocksSelector(): Observable<Block[]> {
@@ -48,9 +55,10 @@ export class BlockUtilsIntegrationService {
     this.baseService = this.blockUtils.find((bh: IBlockUtils) => {
       return bh.key === "base";
     });
-
-    return this.customService.getAllEditedBlocksSelector() ||
-      this.baseService.getAllEditedBlocksSelector();
+    if (this.customService) {
+      return this.customService.getAllEditedBlocksSelector();
+    }
+    return this.baseService.getAllEditedBlocksSelector();
   }
 
   getValiditySelector(): Observable<boolean> {
@@ -61,7 +69,9 @@ export class BlockUtilsIntegrationService {
     this.baseService = this.blockUtils.find((bh: IBlockUtils) => {
       return bh.key === "base";
     });
-    return this.customService.getValiditySelector() ||
-      this.baseService.getValiditySelector();
+    if (this.customService) {
+      return this.customService.getValiditySelector();
+    }
+    return this.baseService.getValiditySelector();
   }
 }

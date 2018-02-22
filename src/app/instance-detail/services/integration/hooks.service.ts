@@ -22,17 +22,24 @@ export class BlockHooksIntegrationService {
     this.baseService = this.blockHooks.find((bh: IBlockHooks) => {
       return bh.key === "base";
     });
+    if (this.customService) {
+      this.customService.subscribeAll(this.getSetOfHooks(config));
+    }
     this.baseService.subscribeAll(this.getSetOfHooks(config));
-    this.customService.subscribeAll(this.getSetOfHooks(config));
   }
 
   unsubscribeAll(): void {
     this.blockHooks.forEach((bh: IBlockHooks) => {
-      bh.unsubscribeAll();
+      if (bh.unsubscribeAll) {
+        bh.unsubscribeAll();
+      }
     });
   }
 
   getSetOfHooks(config: string): any {
-    return this.customService.getSetOfHooks(config);
+    if (this.customService) {
+      return this.customService.getSetOfHooks(config);
+    }
+    return this.baseService.getSetOfHooks(config);
   }
 }

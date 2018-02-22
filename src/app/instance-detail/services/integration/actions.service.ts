@@ -23,7 +23,7 @@ export class BlockActionsIntegrationService {
     });
 
     return {
-      ...this.customService.getActions(),
+      ...(this.customService ? this.customService.getActions() : {}),
       ...(this.baseService.getActions() ? this.baseService.getActions() : {}),
     };
   }

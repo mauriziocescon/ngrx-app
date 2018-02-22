@@ -32,7 +32,7 @@ export class BlockListService {
       .catch((err: HttpErrorResponse) => this.handleError(err));
   }
 
-  updateBlocks(module: string, instance: string, step: string, blocks: Block[]): Observable<boolean> {
+  updateBlocks(module: string, instance: string, step: string, blocks: Block[]): Observable<Block[]> {
     const body = {
       module: module,
       instance: instance,

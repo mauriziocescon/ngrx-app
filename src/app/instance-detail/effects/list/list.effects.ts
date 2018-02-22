@@ -45,11 +45,11 @@ export class ListEffects {
 
   @Effect() updateBlocks$: Observable<Action> = this.actions$
     .ofType(ListActionTypes.UPDATE_BLOCKS)
-    .debounceTime(5000)
+    .debounceTime(3000)
     .map((action: UpdateBlocks) => action.payload)
     .switchMap((payload) => {
       return this.blockList.updateBlocks(payload.module, payload.instance, payload.step, payload.blocks)
-        .switchMap((result: boolean) => {
+        .switchMap((blocks: Block[]) => {
           return [
             new UpdateBlocksComplete(),
             new Synchronized(),

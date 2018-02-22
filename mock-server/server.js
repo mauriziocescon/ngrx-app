@@ -10,6 +10,7 @@ const middlewares = jsonServer.defaults({
 });
 
 const utils = require("./utils");
+const blocksValidation = require("./validations/blocks");
 const dbUrl = "./mock-server/db.json";
 
 // set the port of our application
@@ -46,7 +47,7 @@ app.use((req, res, next) => {
       });
     }
     else if (choice < 0.33) {
-      return  res.status(403).jsonp({
+      return res.status(403).jsonp({
         error: "Forbidden",
       });
     }
@@ -99,17 +100,20 @@ app.get("/api/rules-config", (req, res) => {
   const module = rulesConfig.find((config) => {
     return config.module === req.query.module;
   });
-  const index = module.steps.findIndex((config) => {
-    return config.step === req.query.step;
-  });
 
-  if (index !== -1) {
-    return res.status(200).jsonp(module.steps[index].rules);
-  } else {
-    return res.status(400).jsonp({
-      error: "Bad Request",
+  if (module) {
+    const index = module.steps.findIndex((config) => {
+      return config.step === req.query.step;
     });
+    if (index !== -1) {
+      return res.status(200).jsonp(module.steps[index].rules);
+    } else {
+      return res.status(400).jsonp({
+        error: "Bad Request",
+      });
+    }
   }
+  return res.status(200).jsonp("");
 });
 
 // blocks
@@ -154,13 +158,19 @@ app.post("/api/blocks", (req, res) => {
     instance.blocks = req.body.blocks.sort((b1, b2) => {
       return b1.id - b2.id;
     });
+
+    // hard coded validation
+    if (instance === 5) {
+      instance.blocks = blocksValidation.validate(instance.blocks);
+    }
+
     utils.saveDb(dbUrl, db, (err) => {
       if (err) {
         return res.status(500).jsonp({
           error: err,
         });
       }
-      return res.status(200).jsonp(true);
+      return res.status(200).jsonp(db.instances);
     });
   } else {
     return res.status(400).jsonp({
