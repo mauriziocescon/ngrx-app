@@ -170,7 +170,7 @@ app.post("/api/blocks", (req, res) => {
           error: err,
         });
       }
-      return res.status(200).jsonp(db.instances);
+      return res.status(200).jsonp(instance.blocks);
     });
   } else {
     return res.status(400).jsonp({
