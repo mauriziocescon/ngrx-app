@@ -160,7 +160,7 @@ app.post("/api/blocks", (req, res) => {
     });
 
     // hard coded validation
-    if (instance === 5) {
+    if (instance.id === 5) {
       instance.blocks = blocksValidation.validate(instance.blocks);
     }
 
