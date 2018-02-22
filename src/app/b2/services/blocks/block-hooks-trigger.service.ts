@@ -49,7 +49,10 @@ export class B2BlockHooksTriggerService {
     this.datePickerService.blockLoadObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
-          this.hooks[block.hooks.datePickerBlockDidLoad](block, this.blocksActions.getActions());
+          const datePickerBlockDidLoad = this.hooks[block.hooks.datePickerBlockDidLoad];
+          if (datePickerBlockDidLoad) {
+            datePickerBlockDidLoad(block, this.blocksActions.getActions());
+          }
         } catch (e) {
           this.logger.error(e.toString());
         }
@@ -60,7 +63,10 @@ export class B2BlockHooksTriggerService {
     this.datePickerService.blockChangesObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
-          this.hooks[block.hooks.datePickerBlockDidChange](block, this.blocksActions.getActions());
+          const datePickerBlockDidChange = this.hooks[block.hooks.datePickerBlockDidChange];
+          if (datePickerBlockDidChange) {
+            datePickerBlockDidChange(block, this.blocksActions.getActions());
+          }
         } catch (e) {
           this.logger.error(e.toString());
         }
