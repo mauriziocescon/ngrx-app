@@ -19,3 +19,7 @@ export const SERVICES = [
   B2BlockHooksTriggerService,
   DatePickerActionsService,
 ];
+
+export {
+  DatePickerActionsService,
+};

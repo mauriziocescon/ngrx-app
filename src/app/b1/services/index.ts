@@ -19,3 +19,7 @@ export const SERVICES = [
   B1BlockHooksTriggerService,
   CheckBoxConfirmerActionsService,
 ];
+
+export {
+  CheckBoxConfirmerActionsService,
+};
