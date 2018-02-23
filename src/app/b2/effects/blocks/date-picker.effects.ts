@@ -29,10 +29,14 @@ export class DatePickerEffects {
     .ofType(ListActionTypes.FETCH_BLOCKS_COMPLETE)
     .map((action: FetchBlocksComplete) => action.payload)
     .map((blocks: Block[]) => {
-      const datePickerBoxBlocks = blocks.filter((block: Block) => {
-        return block.type === B2BlockType.DatePicker;
-      });
-      return new AddBlocks({blocks: datePickerBoxBlocks});
+      const datePickerBoxBlocks = blocks
+        .filter((block: Block) => {
+          return block.type === B2BlockType.DatePicker;
+        })
+        .map((block: Block) => {
+          return { id: block.id, changes: { ...block }};
+        });
+      return new AddBlocks(datePickerBoxBlocks);
     });
 
   @Effect() clearBlocks$: Observable<Action> = this.actions$

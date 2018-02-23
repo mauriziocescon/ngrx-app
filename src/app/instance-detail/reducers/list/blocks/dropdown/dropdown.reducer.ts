@@ -31,7 +31,7 @@ export function reducer(state = initialState, action: DropdownActions): State {
     }
     case DropdownActionTypes.ADD_BLOCKS: {
       return {
-        ...adapter.addMany(action.payload.blocks, state),
+        ...adapter.upsertMany(action.payload, state),
       };
     }
     case DropdownActionTypes.UPDATE_BLOCK: {

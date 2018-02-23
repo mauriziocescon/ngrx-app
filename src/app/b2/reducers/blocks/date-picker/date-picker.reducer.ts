@@ -31,7 +31,7 @@ export function reducer(state = initialState, action: DatePickerActions): State 
     }
     case DatePickerActionTypes.ADD_BLOCKS: {
       return {
-        ...adapter.addMany(action.payload.blocks, state),
+        ...adapter.upsertMany(action.payload, state),
       };
     }
     case DatePickerActionTypes.UPDATE_BLOCK: {

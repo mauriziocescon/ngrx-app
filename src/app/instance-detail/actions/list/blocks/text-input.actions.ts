@@ -20,7 +20,7 @@ export class Loading implements Action {
 export class AddBlocks implements Action {
   readonly type = TextInputActionTypes.ADD_BLOCKS;
 
-  constructor(public payload: { blocks: TextInputBlock[] }) {
+  constructor(public payload: Update<TextInputBlock>[]) {
   }
 }
 

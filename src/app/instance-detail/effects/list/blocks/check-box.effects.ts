@@ -24,10 +24,14 @@ export class CheckBoxEffect {
     .ofType(ListActionTypes.FETCH_BLOCKS_COMPLETE)
     .map((action: FetchBlocksComplete) => action.payload)
     .map((blocks: Block[]) => {
-      const checkBoxBlocks = blocks.filter((block: Block) => {
-        return block.type === BlockType.CheckBox;
-      });
-      return new AddBlocks({blocks: checkBoxBlocks});
+      const checkBoxBlocks = blocks
+        .filter((block: Block) => {
+          return block.type === BlockType.CheckBox;
+        })
+        .map((block: Block) => {
+          return { id: block.id, changes: { ...block }};
+        });
+      return new AddBlocks(checkBoxBlocks);
     });
 
   @Effect() clearBlocks$: Observable<Action> = this.actions$

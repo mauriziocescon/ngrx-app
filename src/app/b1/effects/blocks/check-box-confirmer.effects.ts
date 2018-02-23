@@ -29,10 +29,14 @@ export class CheckBoxConfirmerEffects {
     .ofType(ListActionTypes.FETCH_BLOCKS_COMPLETE)
     .map((action: FetchBlocksComplete) => action.payload)
     .map((blocks: Block[]) => {
-      const checkBoxConfirmerBoxBlocks = blocks.filter((block: Block) => {
-        return block.type === B1BlockType.CheckBoxConfirmer;
-      });
-      return new AddBlocks({blocks: checkBoxConfirmerBoxBlocks});
+      const checkBoxConfirmerBoxBlocks = blocks
+        .filter((block: Block) => {
+          return block.type === B1BlockType.CheckBoxConfirmer;
+        })
+        .map((block: Block) => {
+          return { id: block.id, changes: { ...block }};
+        });
+      return new AddBlocks(checkBoxConfirmerBoxBlocks);
     });
 
   @Effect() clearBlocks$: Observable<Action> = this.actions$

@@ -34,7 +34,7 @@ export function reducer(state = initialState, action: CheckBoxConfirmerActions):
     }
     case CheckBoxConfirmerActionTypes.ADD_BLOCKS: {
       return {
-        ...adapter.addMany(action.payload.blocks, state),
+        ...adapter.upsertMany(action.payload, state),
       };
     }
     case CheckBoxConfirmerActionTypes.UPDATE_BLOCK: {
