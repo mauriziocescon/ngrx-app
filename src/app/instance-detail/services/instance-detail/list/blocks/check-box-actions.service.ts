@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { Update } from "@ngrx/entity";
 
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
@@ -40,8 +41,8 @@ export class CheckBoxActionsService {
     this.blockLoadSubject$.next(block);
   }
 
-  blockDidChange(block: { id: number, changes: CheckBoxBlock }): void {
-    const newBlock: CheckBoxBlock = {...block.changes, hooks: {...block.changes.hooks}};
+  blockDidChange(block: Update<CheckBoxBlock>): void {
+    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as CheckBoxBlock;
     this.blockChangesSubject$.next(newBlock);
   }
 
@@ -53,91 +54,79 @@ export class CheckBoxActionsService {
     this.store$.dispatch(new checkBox.Loading(newLoading));
   }
 
-  protected setBlock(block: { block: { id: number, changes: CheckBoxBlock } }): void {
-    const newBlock = {block: block.block, notify: false};
+  protected setBlock(block: Update<CheckBoxBlock>): void {
+    const newBlock = {block: block, notify: false};
     this.store$.dispatch(new checkBox.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<CheckBoxBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: BlockType.CheckBox,
-          label: label,
-        },
-      }
+        type: BlockType.CheckBox,
+        label: label,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setValueForBlockId(value: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<CheckBoxBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: BlockType.CheckBox,
-          value: value,
-        },
-      }
+        type: BlockType.CheckBox,
+        value: value,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setDescriptionForBlockId(description: string, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<CheckBoxBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: BlockType.CheckBox,
-          description: description,
-        },
-      }
+        type: BlockType.CheckBox,
+        description: description,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setRequiredForBlockId(required: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<CheckBoxBlock>= {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: BlockType.CheckBox,
-          required: required,
-        },
-      }
+        type: BlockType.CheckBox,
+        required: required,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setDisabledForBlockId(disabled: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<CheckBoxBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: BlockType.CheckBox,
-          disabled: disabled,
-        },
-      }
+        type: BlockType.CheckBox,
+        disabled: disabled,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setValidityForBlockId(valid: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<CheckBoxBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: BlockType.CheckBox,
-          valid: valid,
-        },
-      }
+        type: BlockType.CheckBox,
+        valid: valid,
+      },
     };
     this.setBlock(newBlock);
   }

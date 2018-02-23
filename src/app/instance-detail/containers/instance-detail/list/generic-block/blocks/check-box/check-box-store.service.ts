@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { Update } from "@ngrx/entity";
 
 import { Observable } from "rxjs/Observable";
 
@@ -23,7 +24,7 @@ export class CheckBoxStoreService {
     return this.store$.select(fromInstanceDetail.getCheckBoxBlocksLoadingState);
   }
 
-  dispatchUpdateBlock(block: { block: { id: number, changes: CheckBoxBlock }, notify: boolean }): void {
+  dispatchUpdateBlock(block: { block: Update<CheckBoxBlock>, notify: boolean }): void {
     this.store$.dispatch(new checkBox.UpdateBlock(block));
   }
 }

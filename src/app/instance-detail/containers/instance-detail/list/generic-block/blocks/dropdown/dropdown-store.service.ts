@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { Update } from "@ngrx/entity";
 
 import { Observable } from "rxjs/Observable";
 
@@ -23,7 +24,7 @@ export class DropdownStoreService {
     return this.store$.select(fromInstanceDetail.getDropdownBlocksLoadingState);
   }
 
-  dispatchUpdateBlock(block: { block: { id: number, changes: DropdownBlock }, notify: boolean }): void {
+  dispatchUpdateBlock(block: { block: Update<DropdownBlock>, notify: boolean }): void {
     this.store$.dispatch(new dropdown.UpdateBlock(block));
   }
 }

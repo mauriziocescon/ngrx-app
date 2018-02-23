@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { Update } from "@ngrx/entity";
 
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
@@ -40,8 +41,8 @@ export class DropdownActionsService {
     this.blockLoadSubject$.next(block);
   }
 
-  blockDidChange(block: { id: number, changes: DropdownBlock }): void {
-    const newBlock: DropdownBlock = {...block.changes, hooks: {...block.changes.hooks}};
+  blockDidChange(block: Update<DropdownBlock>): void {
+    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as DropdownBlock;
     this.blockChangesSubject$.next(newBlock);
   }
 
@@ -53,91 +54,79 @@ export class DropdownActionsService {
     this.store$.dispatch(new dropdown.Loading(newLoading));
   }
 
-  protected setBlock(block: { block: { id: number, changes: DropdownBlock } }): void {
-    const newBlock = {block: block.block, notify: false};
+  protected setBlock(block: Update<DropdownBlock>): void {
+    const newBlock = {block: block, notify: false};
     this.store$.dispatch(new dropdown.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<DropdownBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: BlockType.Dropdown,
-          label: label,
-        },
-      }
+        type: BlockType.Dropdown,
+        label: label,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setValueForBlockId(value: string, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<DropdownBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: BlockType.Dropdown,
-          value: value,
-        },
-      }
+        type: BlockType.Dropdown,
+        value: value,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setChoicesForBlockId(choices: string[], blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<DropdownBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: BlockType.Dropdown,
-          choices: choices,
-        },
-      }
+        type: BlockType.Dropdown,
+        choices: choices,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setRequiredForBlockId(required: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<DropdownBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: BlockType.Dropdown,
-          required: required,
-        },
-      }
+        type: BlockType.Dropdown,
+        required: required,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setDisabledForBlockId(disabled: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<DropdownBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: BlockType.Dropdown,
-          disabled: disabled,
-        },
-      }
+        type: BlockType.Dropdown,
+        disabled: disabled,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setValidityForBlockId(valid: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<DropdownBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: BlockType.Dropdown,
-          valid: valid,
-        },
-      }
+        type: BlockType.Dropdown,
+        valid: valid,
+      },
     };
     this.setBlock(newBlock);
   }

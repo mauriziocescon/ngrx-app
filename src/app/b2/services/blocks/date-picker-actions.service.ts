@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { Update } from "@ngrx/entity";
 
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
@@ -39,8 +40,8 @@ export class DatePickerActionsService {
     this.blockLoadSubject$.next(block);
   }
 
-  blockDidChange(block: { id: number, changes: DatePickerBlock }): void {
-    const newBlock: DatePickerBlock = {...block.changes, hooks: {...block.changes.hooks}};
+  blockDidChange(block: Update<DatePickerBlock>): void {
+    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as DatePickerBlock;
     this.blockChangesSubject$.next(newBlock);
   }
 
@@ -52,77 +53,67 @@ export class DatePickerActionsService {
     this.store$.dispatch(new datePicker.Loading(newLoading));
   }
 
-  protected setBlock(block: { block: { id: number, changes: DatePickerBlock } }): void {
-    const newBlock = {block: block.block, notify: false};
+  protected setBlock(block: Update<DatePickerBlock>): void {
+    const newBlock = {block: block, notify: false};
     this.store$.dispatch(new datePicker.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<DatePickerBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: B2BlockType.DatePicker,
-          label: label,
-        },
-      }
+        type: B2BlockType.DatePicker,
+        label: label,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setValueForBlockId(value: string, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<DatePickerBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: B2BlockType.DatePicker,
-          value: value,
-        },
-      }
+        type: B2BlockType.DatePicker,
+        value: value,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setRequiredForBlockId(required: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<DatePickerBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: B2BlockType.DatePicker,
-          required: required,
-        },
-      }
+        type: B2BlockType.DatePicker,
+        required: required,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setDisabledForBlockId(disabled: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<DatePickerBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: B2BlockType.DatePicker,
-          disabled: disabled,
-        },
-      }
+        type: B2BlockType.DatePicker,
+        disabled: disabled,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setValidityForBlockId(valid: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<DatePickerBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: B2BlockType.DatePicker,
-          valid: valid,
-        },
-      }
+        type: B2BlockType.DatePicker,
+        valid: valid,
+      },
     };
     this.setBlock(newBlock);
   }

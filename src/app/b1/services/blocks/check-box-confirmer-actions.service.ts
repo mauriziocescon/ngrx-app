@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { Update } from "@ngrx/entity";
 
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
@@ -40,8 +41,8 @@ export class CheckBoxConfirmerActionsService {
     this.blockLoadSubject$.next(block);
   }
 
-  blockDidChange(block: { id: number, changes: CheckBoxConfirmerBlock }): void {
-    const newBlock: CheckBoxConfirmerBlock = {...block.changes, hooks: {...block.changes.hooks}};
+  blockDidChange(block: Update<CheckBoxConfirmerBlock>): void {
+    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as CheckBoxConfirmerBlock;
     this.blockChangesSubject$.next(newBlock);
   }
 
@@ -53,91 +54,79 @@ export class CheckBoxConfirmerActionsService {
     this.store$.dispatch(new checkBoxConfirmer.Loading(newLoading));
   }
 
-  protected setBlock(block: { block: { id: number, changes: CheckBoxConfirmerBlock } }): void {
-    const newBlock = {block: block.block, notify: false};
+  protected setBlock(block: Update<CheckBoxConfirmerBlock>): void {
+    const newBlock = {block: block, notify: false};
     this.store$.dispatch(new checkBoxConfirmer.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<CheckBoxConfirmerBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: B1BlockType.CheckBoxConfirmer,
-          label: label,
-        },
-      }
+        type: B1BlockType.CheckBoxConfirmer,
+        label: label,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setValueForBlockId(value: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<CheckBoxConfirmerBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: B1BlockType.CheckBoxConfirmer,
-          value: value,
-        },
-      }
+        type: B1BlockType.CheckBoxConfirmer,
+        value: value,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setDescriptionForBlockId(description: string, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<CheckBoxConfirmerBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: B1BlockType.CheckBoxConfirmer,
-          description: description,
-        },
-      }
+        type: B1BlockType.CheckBoxConfirmer,
+        description: description,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setRequiredForBlockId(required: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<CheckBoxConfirmerBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: B1BlockType.CheckBoxConfirmer,
-          required: required,
-        },
-      }
+        type: B1BlockType.CheckBoxConfirmer,
+        required: required,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setDisabledForBlockId(disabled: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<CheckBoxConfirmerBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: B1BlockType.CheckBoxConfirmer,
-          disabled: disabled,
-        },
-      }
+        type: B1BlockType.CheckBoxConfirmer,
+        disabled: disabled,
+      },
     };
     this.setBlock(newBlock);
   }
 
   setValidityForBlockId(valid: boolean, blockId: number): void {
-    const newBlock = {
-      block: {
+    const newBlock: Update<CheckBoxConfirmerBlock> = {
+      id: blockId,
+      changes: {
         id: blockId,
-        changes: {
-          id: blockId,
-          type: B1BlockType.CheckBoxConfirmer,
-          valid: valid,
-        },
-      }
+        type: B1BlockType.CheckBoxConfirmer,
+        valid: valid,
+      },
     };
     this.setBlock(newBlock);
   }

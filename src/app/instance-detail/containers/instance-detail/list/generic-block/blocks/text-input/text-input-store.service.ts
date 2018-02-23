@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { Update } from "@ngrx/entity";
 
 import { Observable } from "rxjs/Observable";
 
@@ -23,7 +24,7 @@ export class TextInputStoreService {
     return this.store$.select(fromInstanceDetail.getTextInputBlocksLoadingState);
   }
 
-  dispatchUpdateBlock(block: { block: { id: number, changes: TextInputBlock }, notify: boolean }): void {
+  dispatchUpdateBlock(block: { block: Update<TextInputBlock>, notify: boolean }): void {
     this.store$.dispatch(new textInput.UpdateBlock(block));
   }
 }

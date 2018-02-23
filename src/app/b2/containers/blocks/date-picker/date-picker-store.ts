@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { Update } from "@ngrx/entity";
 
 import { Observable } from "rxjs/Observable";
 
@@ -23,7 +24,7 @@ export class DatePickerStoreService {
     return this.store$.select(fromB2Blocks.getDatePickerBlocksLoadingState);
   }
 
-  dispatchUpdateBlock(block: { block: { id: number, changes: DatePickerBlock }, notify: boolean }): void {
+  dispatchUpdateBlock(block: { block: Update<DatePickerBlock>, notify: boolean }): void {
     this.store$.dispatch(new datePicker.UpdateBlock(block));
   }
 }
