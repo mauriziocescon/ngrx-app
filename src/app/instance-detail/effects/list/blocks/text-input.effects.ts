@@ -21,8 +21,8 @@ export class TextInputEffect {
   }
 
   @Effect() blocksAvailable$: Observable<Action> = this.actions$
-    .ofType(ListActionTypes.FETCH_BLOCKS_COMPLETE)
-    .map((action: FetchBlocksComplete) => action.payload)
+    .ofType<FetchBlocksComplete>(ListActionTypes.FETCH_BLOCKS_COMPLETE)
+    .map(action => action.payload)
     .map((blocks: Block[]) => {
       const textInputBoxBlocks = blocks
         .filter((block: Block) => {
@@ -35,14 +35,14 @@ export class TextInputEffect {
     });
 
   @Effect() clearBlocks$: Observable<Action> = this.actions$
-    .ofType(ListActionTypes.CLEAR_BLOCKS)
+    .ofType<ClearBlocks>(ListActionTypes.CLEAR_BLOCKS)
     .map(() => {
       return new ClearBlocks();
     });
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$
-    .ofType(TextInputActionTypes.UPDATE_BLOCK)
-    .map((action: UpdateBlock) => action.payload)
+    .ofType<UpdateBlock>(TextInputActionTypes.UPDATE_BLOCK)
+    .map(action => action.payload)
     .switchMap((payload) => {
       if (payload.notify) {
         this.textInputService.blockDidChange(payload.block);

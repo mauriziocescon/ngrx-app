@@ -32,9 +32,9 @@ export class ListEffects {
   }
 
   @Effect() fetchBlocks$: Observable<Action> = this.actions$
-    .ofType(ListActionTypes.FETCH_BLOCKS)
+    .ofType<FetchBlocks>(ListActionTypes.FETCH_BLOCKS)
     .debounceTime(400)
-    .map((action: FetchBlocks) => action.payload)
+    .map(action => action.payload)
     .switchMap((params) => {
       return this.blockList.getBlocks(params.module, params.instance, params.step)
         .switchMap((blocks: Block[]) => {
@@ -44,9 +44,9 @@ export class ListEffects {
     });
 
   @Effect() updateBlocks$: Observable<Action> = this.actions$
-    .ofType(ListActionTypes.UPDATE_BLOCKS)
+    .ofType<UpdateBlocks>(ListActionTypes.UPDATE_BLOCKS)
     .debounceTime(3000)
-    .map((action: UpdateBlocks) => action.payload)
+    .map(action => action.payload)
     .switchMap((payload) => {
       return this.blockList.updateBlocks(payload.module, payload.instance, payload.step, payload.blocks)
         .switchMap((blocks: Block[]) => {

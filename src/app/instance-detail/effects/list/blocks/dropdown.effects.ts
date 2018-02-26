@@ -21,8 +21,8 @@ export class DropdownEffect {
   }
 
   @Effect() blocksAvailable$: Observable<Action> = this.actions$
-    .ofType(ListActionTypes.FETCH_BLOCKS_COMPLETE)
-    .map((action: FetchBlocksComplete) => action.payload)
+    .ofType<FetchBlocksComplete>(ListActionTypes.FETCH_BLOCKS_COMPLETE)
+    .map(action => action.payload)
     .map((blocks: Block[]) => {
       const dropdownBoxBlocks = blocks
         .filter((block: Block) => {
@@ -35,14 +35,14 @@ export class DropdownEffect {
     });
 
   @Effect() clearBlocks$: Observable<Action> = this.actions$
-    .ofType(ListActionTypes.CLEAR_BLOCKS)
+    .ofType<ClearBlocks>(ListActionTypes.CLEAR_BLOCKS)
     .map(() => {
       return new ClearBlocks();
     });
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$
-    .ofType(DropdownActionTypes.UPDATE_BLOCK)
-    .map((action: UpdateBlock) => action.payload)
+    .ofType<UpdateBlock>(DropdownActionTypes.UPDATE_BLOCK)
+    .map(action => action.payload)
     .switchMap((payload) => {
       if (payload.notify) {
         this.dropdownService.blockDidChange(payload.block);

@@ -21,15 +21,15 @@ export class ModalsEffects {
   }
 
   @Effect() showModalAlert$: Observable<Action> = this.actions$
-    .ofType(ModalAlertActionTypes.SHOW_MODAL_ALERT)
-    .map((action: ShowModalAlert) => action.payload.modal)
+    .ofType<ShowModalAlert>(ModalAlertActionTypes.SHOW_MODAL_ALERT)
+    .map(action => action.payload.modal)
     .switchMap((modalAlert: ModalAlert) => {
       return fromPromise(this.uiUtilitiesService.modalAlert(modalAlert));
     });
 
   @Effect() showModalConfirmer$: Observable<Action> = this.actions$
-    .ofType(ModalConfirmerActionTypes.SHOW_MODAL_CONFIRMER)
-    .map((action: ShowModalConfirmer) => action.payload.modal)
+    .ofType<ShowModalConfirmer>(ModalConfirmerActionTypes.SHOW_MODAL_CONFIRMER)
+    .map(action => action.payload.modal)
     .switchMap((modalConfirmer: ModalConfirmer) => {
       return fromPromise(this.uiUtilitiesService.modalConfirmer(modalConfirmer));
     });
