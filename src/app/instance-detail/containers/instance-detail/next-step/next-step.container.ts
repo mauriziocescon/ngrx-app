@@ -103,12 +103,12 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
 
   nextStep(): void {
     // dispatch action to move forward
-    this.logger.log(`NextStepContainerComponent: save`);
+    alert(`NextStepContainerComponent: save`);
   }
 
   reset(): void {
     // dispatch action to reset the store
-    this.logger.log(`NextStepContainerComponent: reset`);
+    alert(`NextStepContainerComponent: reset`);
   }
 
   ngOnDestroy(): void {
