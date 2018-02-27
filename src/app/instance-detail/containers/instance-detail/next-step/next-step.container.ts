@@ -12,7 +12,7 @@ import { ModalAlert } from "../../../../core/core.module";
 
 import { Block, InstanceParams } from "../../../models";
 
-import { BlockUtilsIntegrationService } from "../../../services";
+import { InstanceDetailIntegrationStoreService } from "../../../services";
 
 import { NextStepStoreService } from "./next-step-store.service";
 
@@ -47,9 +47,9 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   protected modalAlertSyncErrorSubscription: Subscription;
 
   constructor(protected nextStepStore: NextStepStoreService,
+              protected instanceDetailStore: InstanceDetailIntegrationStoreService,
               protected translate: TranslateService,
-              protected logger: NGXLogger,
-              protected blockUtils: BlockUtilsIntegrationService) {
+              protected logger: NGXLogger) {
     this.syncRequired$ = this.nextStepStore.getSyncRequired();
     this.syncRequiredWithTimestamp$ = this.nextStepStore.getSyncRequiredWithTimestamp();
 
@@ -62,8 +62,8 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.formValidity$ = this.blockUtils.getValiditySelector();
-    this.editedBlocks = this.blockUtils.getAllEditedBlocksSelector();
+    this.formValidity$ = this.instanceDetailStore.getValiditySelector();
+    this.editedBlocks = this.instanceDetailStore.getAllEditedBlocksSelector();
   }
 
   protected subscribeToSyncing(): void {

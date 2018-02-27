@@ -1,7 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-
-import { Observable } from "rxjs/Observable";
 
 import { CheckBoxContainerComponent } from "../../../containers/instance-detail/list/generic-block/blocks/check-box/check-box.container";
 import { DropdownContainerComponent } from "../../../containers/instance-detail/list/generic-block/blocks/dropdown/dropdown.container";
@@ -16,8 +13,6 @@ import {
   TextInputBlock,
 } from "../../../models";
 
-import * as fromInstanceDetail from "../../../reducers";
-
 import { IBlockUtils } from "../../../tokens";
 
 import { TextInputActionsService } from "./blocks/text-input-actions.service";
@@ -28,8 +23,7 @@ import { CheckBoxActionsService } from "./blocks/check-box-actions.service";
 export class BlockUtilsService implements IBlockUtils {
   key: string;
 
-  constructor(protected store$: Store<fromInstanceDetail.State>,
-              protected checkBoxActions: CheckBoxActionsService,
+  constructor(protected checkBoxActions: CheckBoxActionsService,
               protected dropdownActions: DropdownActionsService,
               protected textInputActions: TextInputActionsService) {
     this.key = "base";
@@ -73,13 +67,5 @@ export class BlockUtilsService implements IBlockUtils {
         return false;
       }
     }
-  }
-
-  getAllEditedBlocksSelector(): Observable<Block[]> {
-    return this.store$.select(fromInstanceDetail.getAllEditedBlocksState);
-  }
-
-  getValiditySelector(): Observable<boolean> {
-    return this.store$.select(fromInstanceDetail.getAllEditedBlocksValidityState);
   }
 }

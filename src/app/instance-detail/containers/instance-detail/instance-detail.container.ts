@@ -4,15 +4,12 @@ import { Observable } from "rxjs/Observable";
 
 import { InstanceParams } from "../../models";
 
-import { InstanceDetailStoreService } from "./instance-detail-store.service";
 import { InstanceParamsService } from "../../services";
+import { InstanceDetailIntegrationStoreService } from "../../services";
 
 @Component({
   selector: "ct-instance-detail",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    InstanceDetailStoreService,
-  ],
   template: `
     <div class="container-fluid">
       <div class="row">
@@ -30,7 +27,7 @@ import { InstanceParamsService } from "../../services";
 export class InstanceDetailContainerComponent implements OnInit {
   routeParams: InstanceParams;
 
-  constructor(protected instanceDetailStore: InstanceDetailStoreService,
+  constructor(protected instanceDetailStore: InstanceDetailIntegrationStoreService,
               protected instanceParams: InstanceParamsService) {
   }
 

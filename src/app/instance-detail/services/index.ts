@@ -1,5 +1,6 @@
 import { InstanceDetailGuard } from "./instance-detail/instance-detail-guard.service";
 import { RulesResolve } from "./instance-detail/instance-detail-resolve.service";
+import { InstanceDetailStoreService } from "./instance-detail/instance-detail-store.service";
 import { InstanceParamsService } from "./instance-detail/instance-params.service";
 
 import { BlockActionsService } from "./instance-detail/list/block-actions.service";
@@ -19,13 +20,20 @@ import {
   INTEGRATION_SERVICES,
   BlockActionsIntegrationService,
   BlockUtilsIntegrationService,
+  InstanceDetailIntegrationStoreService,
 } from "./integration";
 
-import { BLOCK_ACTIONS_TOKEN, BLOCK_HOOKS_TOKEN, BLOCK_UTILS_TOKEN } from "../tokens";
+import {
+  BLOCK_ACTIONS_TOKEN,
+  BLOCK_HOOKS_TOKEN,
+  INSTANCE_DETAIL_STORE_TOKEN,
+  BLOCK_UTILS_TOKEN,
+} from "../tokens";
 
 export const SERVICES = [
   InstanceDetailGuard,
   RulesResolve,
+  {provide: INSTANCE_DETAIL_STORE_TOKEN, useClass: InstanceDetailStoreService, multi: true},
   InstanceParamsService,
 
   {provide: BLOCK_ACTIONS_TOKEN, useClass: BlockActionsService, multi: true},
@@ -50,8 +58,6 @@ export {
   InstanceParamsService,
 
   BlockListService,
-  BlockHooksService,
-  BlockUtilsService,
 
   CheckBoxActionsService,
   DropdownActionsService,
@@ -59,4 +65,5 @@ export {
 
   BlockActionsIntegrationService,
   BlockUtilsIntegrationService,
+  InstanceDetailIntegrationStoreService,
 };

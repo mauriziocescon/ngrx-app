@@ -1,7 +1,5 @@
 import { Inject, Injectable } from "@angular/core";
 
-import { Observable } from "rxjs/Observable";
-
 import { Block } from "../../../instance-detail/instance-detail.module";
 
 import { InstanceParamsService } from "../instance-detail/instance-params.service";
@@ -45,33 +43,5 @@ export class BlockUtilsIntegrationService {
         this.defaultBlockUtils.triggerComponentDidLoad(block);
     }
     return this.defaultBlockUtils.triggerComponentDidLoad(block);
-  }
-
-  getAllEditedBlocksSelector(): Observable<Block[]> {
-    const module = this.instanceParams.getInstanceParams().module;
-    this.bBlockUtils = this.blockUtils.find((bh: IBlockUtils) => {
-      return bh.key === module;
-    });
-    this.defaultBlockUtils = this.blockUtils.find((bh: IBlockUtils) => {
-      return bh.key === "base";
-    });
-    if (this.bBlockUtils) {
-      return this.bBlockUtils.getAllEditedBlocksSelector();
-    }
-    return this.defaultBlockUtils.getAllEditedBlocksSelector();
-  }
-
-  getValiditySelector(): Observable<boolean> {
-    const module = this.instanceParams.getInstanceParams().module;
-    this.bBlockUtils = this.blockUtils.find((bh: IBlockUtils) => {
-      return bh.key === module;
-    });
-    this.defaultBlockUtils = this.blockUtils.find((bh: IBlockUtils) => {
-      return bh.key === "base";
-    });
-    if (this.bBlockUtils) {
-      return this.bBlockUtils.getValiditySelector();
-    }
-    return this.defaultBlockUtils.getValiditySelector();
   }
 }
