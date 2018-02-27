@@ -6,22 +6,27 @@ import { InstanceParamsService } from "../instance-detail/instance-params.servic
 
 @Injectable()
 export class BlockHooksIntegrationService {
-  protected defaultBlockHooks: IBlockHooks;
-  protected bBlockHooks: IBlockHooks;
 
   constructor(protected instanceParams: InstanceParamsService,
               @Inject(BLOCK_HOOKS_TOKEN) protected blockHooks: IBlockHooks[]) {
   }
 
+  protected get defaultBlockHooks(): IBlockHooks {
+    return this.blockHooks.find((blockHooks: IBlockHooks) => {
+      return blockHooks.key === "base";
+    });
+  }
+
+  protected get bBlockHooks(): IBlockHooks | undefined {
+    const module = this.instanceParams.getInstanceParams().module;
+    return this.blockHooks.find((blockHooks: IBlockHooks) => {
+      return blockHooks.key === module;
+    });
+  }
+
   setConfig(config: string): void {
     this.unsubscribeAll();
-    const module = this.instanceParams.getInstanceParams().module;
-    this.bBlockHooks = this.blockHooks.find((bh: IBlockHooks) => {
-      return bh.key === module;
-    });
-    this.defaultBlockHooks = this.blockHooks.find((bh: IBlockHooks) => {
-      return bh.key === "base";
-    });
+
     if (this.bBlockHooks) {
       this.bBlockHooks.subscribeAll(this.getSetOfHooks(config));
     }
@@ -29,9 +34,9 @@ export class BlockHooksIntegrationService {
   }
 
   unsubscribeAll(): void {
-    this.blockHooks.forEach((bh: IBlockHooks) => {
-      if (bh.unsubscribeAll) {
-        bh.unsubscribeAll();
+    this.blockHooks.forEach((blockHooks: IBlockHooks) => {
+      if (blockHooks.unsubscribeAll) {
+        blockHooks.unsubscribeAll();
       }
     });
   }

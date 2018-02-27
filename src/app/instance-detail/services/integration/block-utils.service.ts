@@ -1,28 +1,32 @@
 import { Inject, Injectable } from "@angular/core";
 
-import { Block } from "../../../instance-detail/instance-detail.module";
+import { Block } from "../../models";
+
+import { BLOCK_UTILS_TOKEN, IBlockUtils } from "../../tokens";
 
 import { InstanceParamsService } from "../instance-detail/instance-params.service";
-import { BLOCK_UTILS_TOKEN, IBlockUtils } from "../../tokens";
 
 @Injectable()
 export class BlockUtilsIntegrationService {
-  protected defaultBlockUtils: IBlockUtils;
-  protected bBlockUtils: IBlockUtils;
 
   constructor(protected instanceParams: InstanceParamsService,
               @Inject(BLOCK_UTILS_TOKEN) protected blockUtils: IBlockUtils[]) {
   }
 
-  getComponentForBlock(block: Block): any {
-    const module = this.instanceParams.getInstanceParams().module;
-    this.bBlockUtils = this.blockUtils.find((bh: IBlockUtils) => {
-      return bh.key === module;
+  protected get defaultBlockUtils(): IBlockUtils {
+    return this.blockUtils.find((blockUtils: IBlockUtils) => {
+      return blockUtils.key === "base";
     });
-    this.defaultBlockUtils = this.blockUtils.find((bh: IBlockUtils) => {
-      return bh.key === "base";
-    });
+  }
 
+  protected get bBlockUtils(): IBlockUtils | undefined {
+    const module = this.instanceParams.getInstanceParams().module;
+    return this.blockUtils.find((blockUtils: IBlockUtils) => {
+      return blockUtils.key === module;
+    });
+  }
+
+  getComponentForBlock(block: Block): any {
     if (this.bBlockUtils) {
       return this.bBlockUtils.getComponentForBlock(block) ||
         this.defaultBlockUtils.getComponentForBlock(block);
@@ -31,13 +35,6 @@ export class BlockUtilsIntegrationService {
   }
 
   triggerComponentDidLoad(block: Block): boolean {
-    const module = this.instanceParams.getInstanceParams().module;
-    this.bBlockUtils = this.blockUtils.find((bh: IBlockUtils) => {
-      return bh.key === module;
-    });
-    this.defaultBlockUtils = this.blockUtils.find((bh: IBlockUtils) => {
-      return bh.key === "base";
-    });
     if (this.bBlockUtils) {
       return this.bBlockUtils.triggerComponentDidLoad(block) ||
         this.defaultBlockUtils.triggerComponentDidLoad(block);

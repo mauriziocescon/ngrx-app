@@ -6,22 +6,25 @@ import { InstanceParamsService } from "../instance-detail/instance-params.servic
 
 @Injectable()
 export class BlockActionsIntegrationService {
-  protected defaultBlockActions: IBlockActions;
-  protected bBlockActions: IBlockActions;
 
   constructor(protected instanceParams: InstanceParamsService,
               @Inject(BLOCK_ACTIONS_TOKEN) protected blockActions: IBlockActions[]) {
   }
 
-  getActions(): any {
-    const module = this.instanceParams.getInstanceParams().module;
-    this.bBlockActions = this.blockActions.find((bh: IBlockActions) => {
-      return bh.key === module;
+  protected get defaultBlockActions(): IBlockActions {
+    return this.blockActions.find((blockActions: IBlockActions) => {
+      return blockActions.key === "base";
     });
-    this.defaultBlockActions = this.blockActions.find((bh: IBlockActions) => {
-      return bh.key === "base";
-    });
+  }
 
+  protected get bBlockActions(): IBlockActions | undefined {
+    const module = this.instanceParams.getInstanceParams().module;
+    return this.blockActions.find((blockActions: IBlockActions) => {
+      return blockActions.key === module;
+    });
+  }
+
+  getActions(): any {
     return {
       ...(this.bBlockActions ? this.bBlockActions.getActions() : {}),
       ...(this.defaultBlockActions.getActions() ? this.defaultBlockActions.getActions() : {}),

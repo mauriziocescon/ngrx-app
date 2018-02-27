@@ -10,28 +10,29 @@ import { InstanceParamsService } from "../instance-detail/instance-params.servic
 
 @Injectable()
 export class InstanceDetailIntegrationStoreService {
-  protected defaultInstanceDetailStore: IInstanceDetailStore;
-  protected bInstanceDetailStore: IInstanceDetailStore;
 
   constructor(protected instanceParams: InstanceParamsService,
               @Inject(INSTANCE_DETAIL_STORE_TOKEN) protected instanceDetailStore: IInstanceDetailStore[]) {
   }
 
-  isSynchronizationRequired(): Observable<boolean> {
-    this.defaultInstanceDetailStore = this.instanceDetailStore.find((bh: IInstanceDetailStore) => {
-      return bh.key === "base";
+  protected get defaultInstanceDetailStore(): IInstanceDetailStore {
+    return this.instanceDetailStore.find((instanceDetailStore: IInstanceDetailStore) => {
+      return instanceDetailStore.key === "base";
     });
+  }
+
+  protected get bInstanceDetailStore(): IInstanceDetailStore | undefined {
+    const module = this.instanceParams.getInstanceParams().module;
+    return this.instanceDetailStore.find((instanceDetailStore: IInstanceDetailStore) => {
+      return instanceDetailStore.key === module;
+    });
+  }
+
+  isSynchronizationRequired(): Observable<boolean> {
     return this.defaultInstanceDetailStore.isSynchronizationRequired();
   }
 
   getAllEditedBlocksSelector(): Observable<Block[]> {
-    const module = this.instanceParams.getInstanceParams().module;
-    this.defaultInstanceDetailStore = this.instanceDetailStore.find((bh: IInstanceDetailStore) => {
-      return bh.key === module;
-    });
-    this.bInstanceDetailStore = this.instanceDetailStore.find((bh: IInstanceDetailStore) => {
-      return bh.key === "base";
-    });
     if (this.bInstanceDetailStore) {
       return this.bInstanceDetailStore.getAllEditedBlocksSelector();
     }
@@ -39,13 +40,6 @@ export class InstanceDetailIntegrationStoreService {
   }
 
   getValiditySelector(): Observable<boolean> {
-    const module = this.instanceParams.getInstanceParams().module;
-    this.defaultInstanceDetailStore = this.instanceDetailStore.find((bh: IInstanceDetailStore) => {
-      return bh.key === module;
-    });
-    this.bInstanceDetailStore = this.instanceDetailStore.find((bh: IInstanceDetailStore) => {
-      return bh.key === "base";
-    });
     if (this.bInstanceDetailStore) {
       return this.bInstanceDetailStore.getValiditySelector();
     }
