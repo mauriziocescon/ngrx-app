@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 
+import { AppConstantsService } from "../../../../core/core.module";
+
 import { CheckBoxContainerComponent } from "../../../containers/instance-detail/list/generic-block/blocks/check-box/check-box.container";
 import { DropdownContainerComponent } from "../../../containers/instance-detail/list/generic-block/blocks/dropdown/dropdown.container";
 import { TextInputContainerComponent } from "../../../containers/instance-detail/list/generic-block/blocks/text-input/text-input.container";
@@ -23,10 +25,11 @@ import { CheckBoxActionsService } from "./blocks/check-box-actions.service";
 export class BlockUtilsService implements IBlockUtils {
   key: string;
 
-  constructor(protected checkBoxActions: CheckBoxActionsService,
+  constructor(protected appConstants: AppConstantsService,
+              protected checkBoxActions: CheckBoxActionsService,
               protected dropdownActions: DropdownActionsService,
               protected textInputActions: TextInputActionsService) {
-    this.key = "base";
+    this.key = this.appConstants.Application.INSTANCE_DETAIL_KEY;
   }
 
   getComponentForBlock(block: Block): any {

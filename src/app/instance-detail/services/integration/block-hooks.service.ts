@@ -1,5 +1,7 @@
 import { Inject, Injectable } from "@angular/core";
 
+import { AppConstantsService } from "../../../core/core.module";
+
 import { BLOCK_HOOKS_TOKEN, IBlockHooks } from "../../tokens";
 
 import { InstanceParamsService } from "../instance-detail/instance-params.service";
@@ -7,13 +9,14 @@ import { InstanceParamsService } from "../instance-detail/instance-params.servic
 @Injectable()
 export class BlockHooksIntegrationService {
 
-  constructor(protected instanceParams: InstanceParamsService,
+  constructor(protected appConstants: AppConstantsService,
+              protected instanceParams: InstanceParamsService,
               @Inject(BLOCK_HOOKS_TOKEN) protected blockHooks: IBlockHooks[]) {
   }
 
   protected get defaultBlockHooks(): IBlockHooks {
     return this.blockHooks.find((blockHooks: IBlockHooks) => {
-      return blockHooks.key === "base";
+      return blockHooks.key === this.appConstants.Application.INSTANCE_DETAIL_KEY;
     });
   }
 

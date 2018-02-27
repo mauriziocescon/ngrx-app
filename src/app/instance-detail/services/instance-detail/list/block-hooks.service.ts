@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 
+import { AppConstantsService } from "../../../../core/core.module";
+
 import { BlockHooks } from "../../../models";
 
 import { IBlockHooks } from "../../../tokens";
@@ -12,10 +14,11 @@ import { DropdownHooksTriggerService } from "./blocks/dropdown-hooks-trigger.ser
 export class BlockHooksService implements IBlockHooks {
   key: string;
 
-  constructor(protected checkBoxHooksTrigger: CheckBoxHooksTriggerService,
+  constructor(protected appConstants: AppConstantsService,
+              protected checkBoxHooksTrigger: CheckBoxHooksTriggerService,
               protected dropdownHooksTrigger: DropdownHooksTriggerService,
               protected textInputHooksTrigger: TextInputHooksTriggerService) {
-    this.key = "base";
+    this.key = this.appConstants.Application.INSTANCE_DETAIL_KEY;
   }
 
   subscribeAll(hooks: BlockHooks): void {

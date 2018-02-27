@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 
+import { AppConstantsService } from "../../../../core/core.module";
+
 import { BlockActions } from "../../../models";
 
 import { IBlockActions } from "../../../tokens";
@@ -12,10 +14,11 @@ import { TextInputActionsService } from "./blocks/text-input-actions.service";
 export class BlockActionsService implements IBlockActions {
   key: string;
 
-  constructor(protected checkBoxActions: CheckBoxActionsService,
+  constructor(protected appConstants: AppConstantsService,
+              protected checkBoxActions: CheckBoxActionsService,
               protected dropdownActions: DropdownActionsService,
               protected textInputActions: TextInputActionsService) {
-    this.key = "base";
+    this.key = this.appConstants.Application.INSTANCE_DETAIL_KEY;
   }
 
   getActions(): BlockActions {

@@ -2,6 +2,8 @@ import { Inject, Injectable } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
 
+import { AppConstantsService } from "../../../core/core.module";
+
 import { Block } from "../../models";
 
 import { INSTANCE_DETAIL_STORE_TOKEN, IInstanceDetailStore } from "../../tokens";
@@ -11,13 +13,14 @@ import { InstanceParamsService } from "../instance-detail/instance-params.servic
 @Injectable()
 export class InstanceDetailIntegrationStoreService {
 
-  constructor(protected instanceParams: InstanceParamsService,
+  constructor(protected appConstants: AppConstantsService,
+              protected instanceParams: InstanceParamsService,
               @Inject(INSTANCE_DETAIL_STORE_TOKEN) protected instanceDetailStore: IInstanceDetailStore[]) {
   }
 
   protected get defaultInstanceDetailStore(): IInstanceDetailStore {
     return this.instanceDetailStore.find((instanceDetailStore: IInstanceDetailStore) => {
-      return instanceDetailStore.key === "base";
+      return instanceDetailStore.key === this.appConstants.Application.INSTANCE_DETAIL_KEY;
     });
   }
 
