@@ -6,8 +6,8 @@ import { InstanceParamsService } from "../instance-detail/instance-params.servic
 
 @Injectable()
 export class BlockActionsIntegrationService {
-  protected baseService: IBlockActions;
-  protected customService: IBlockActions;
+  protected defaultBlockActions: IBlockActions;
+  protected bBlockActions: IBlockActions;
 
   constructor(protected instanceParams: InstanceParamsService,
               @Inject(BLOCK_ACTIONS_TOKEN) protected blockActions: IBlockActions[]) {
@@ -15,16 +15,16 @@ export class BlockActionsIntegrationService {
 
   getActions(): any {
     const module = this.instanceParams.getInstanceParams().module;
-    this.customService = this.blockActions.find((bh: IBlockActions) => {
+    this.bBlockActions = this.blockActions.find((bh: IBlockActions) => {
       return bh.key === module;
     });
-    this.baseService = this.blockActions.find((bh: IBlockActions) => {
+    this.defaultBlockActions = this.blockActions.find((bh: IBlockActions) => {
       return bh.key === "base";
     });
 
     return {
-      ...(this.customService ? this.customService.getActions() : {}),
-      ...(this.baseService.getActions() ? this.baseService.getActions() : {}),
+      ...(this.bBlockActions ? this.bBlockActions.getActions() : {}),
+      ...(this.defaultBlockActions.getActions() ? this.defaultBlockActions.getActions() : {}),
     };
   }
 }

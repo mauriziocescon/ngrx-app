@@ -6,8 +6,8 @@ import { InstanceParamsService } from "../instance-detail/instance-params.servic
 
 @Injectable()
 export class BlockHooksIntegrationService {
-  protected baseService: IBlockHooks;
-  protected customService: IBlockHooks;
+  protected defaultBlockHooks: IBlockHooks;
+  protected bBlockHooks: IBlockHooks;
 
   constructor(protected instanceParams: InstanceParamsService,
               @Inject(BLOCK_HOOKS_TOKEN) protected blockHooks: IBlockHooks[]) {
@@ -16,16 +16,16 @@ export class BlockHooksIntegrationService {
   setConfig(config: string): void {
     this.unsubscribeAll();
     const module = this.instanceParams.getInstanceParams().module;
-    this.customService = this.blockHooks.find((bh: IBlockHooks) => {
+    this.bBlockHooks = this.blockHooks.find((bh: IBlockHooks) => {
       return bh.key === module;
     });
-    this.baseService = this.blockHooks.find((bh: IBlockHooks) => {
+    this.defaultBlockHooks = this.blockHooks.find((bh: IBlockHooks) => {
       return bh.key === "base";
     });
-    if (this.customService) {
-      this.customService.subscribeAll(this.getSetOfHooks(config));
+    if (this.bBlockHooks) {
+      this.bBlockHooks.subscribeAll(this.getSetOfHooks(config));
     }
-    this.baseService.subscribeAll(this.getSetOfHooks(config));
+    this.defaultBlockHooks.subscribeAll(this.getSetOfHooks(config));
   }
 
   unsubscribeAll(): void {
@@ -37,9 +37,9 @@ export class BlockHooksIntegrationService {
   }
 
   getSetOfHooks(config: string): any {
-    if (this.customService) {
-      return this.customService.getSetOfHooks(config);
+    if (this.bBlockHooks) {
+      return this.bBlockHooks.getSetOfHooks(config);
     }
-    return this.baseService.getSetOfHooks(config);
+    return this.defaultBlockHooks.getSetOfHooks(config);
   }
 }

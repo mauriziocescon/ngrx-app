@@ -6,22 +6,22 @@ import { B1BlocksHooks } from "../models";
 
 import * as setOfRules from "../rules";
 
-import { B1BlockHooksTriggerService } from "./blocks/block-hooks-trigger.service";
+import { B1CheckBoxConfirmerHooksTriggerService } from "./blocks/check-box-confirmer-hooks-trigger.service";
 
 @Injectable()
 export class B1BlockHooksService implements IBlockHooks {
   key: string;
 
-  constructor(protected blockActionsTriggerService: B1BlockHooksTriggerService) {
+  constructor(protected checkBoxConfirmerHooksTrigger: B1CheckBoxConfirmerHooksTriggerService) {
     this.key = "b1";
   }
 
   subscribeAll(hooks: B1BlocksHooks): void {
-    this.blockActionsTriggerService.subscribeAll(hooks);
+    this.checkBoxConfirmerHooksTrigger.subscribeAll(hooks);
   }
 
   unsubscribeAll(): void {
-    this.blockActionsTriggerService.unsubscribeAll();
+    this.checkBoxConfirmerHooksTrigger.unsubscribeAll();
   }
 
   getSetOfHooks(config: string): any {

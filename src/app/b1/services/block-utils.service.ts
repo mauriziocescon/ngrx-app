@@ -11,14 +11,14 @@ import { B1BlockType, CheckBoxConfirmerBlock } from "../models";
 
 import * as fromB1 from "../reducers";
 
-import { CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer-actions.service";
+import { B1CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer-actions.service";
 
 @Injectable()
 export class B1BlockUtilsService implements IBlockUtils {
   key: string;
 
   constructor(protected store$: Store<fromB1.State>,
-              protected checkBoxConfirmerService: CheckBoxConfirmerActionsService) {
+              protected checkBoxConfirmerActions: B1CheckBoxConfirmerActionsService) {
     this.key = "b1";
   }
 
@@ -37,7 +37,7 @@ export class B1BlockUtilsService implements IBlockUtils {
     switch (block.type) {
       case B1BlockType.CheckBoxConfirmer: {
         const checkBoxConfirmerBlock = block as CheckBoxConfirmerBlock;
-        this.checkBoxConfirmerService.blockDidload(checkBoxConfirmerBlock);
+        this.checkBoxConfirmerActions.blockDidload(checkBoxConfirmerBlock);
         return true;
       }
       default: {

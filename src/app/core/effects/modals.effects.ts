@@ -17,20 +17,20 @@ import { ModalAlert, ModalConfirmer } from "../models";
 export class ModalsEffects {
 
   constructor(protected actions$: Actions,
-              protected uiUtilitiesService: UIUtilitiesService) {
+              protected uiUtilities: UIUtilitiesService) {
   }
 
   @Effect() showModalAlert$: Observable<Action> = this.actions$
     .ofType<ShowModalAlert>(ModalAlertActionTypes.SHOW_MODAL_ALERT)
     .map(action => action.payload.modal)
     .switchMap((modalAlert: ModalAlert) => {
-      return fromPromise(this.uiUtilitiesService.modalAlert(modalAlert));
+      return fromPromise(this.uiUtilities.modalAlert(modalAlert));
     });
 
   @Effect() showModalConfirmer$: Observable<Action> = this.actions$
     .ofType<ShowModalConfirmer>(ModalConfirmerActionTypes.SHOW_MODAL_CONFIRMER)
     .map(action => action.payload.modal)
     .switchMap((modalConfirmer: ModalConfirmer) => {
-      return fromPromise(this.uiUtilitiesService.modalConfirmer(modalConfirmer));
+      return fromPromise(this.uiUtilities.modalConfirmer(modalConfirmer));
     });
 }

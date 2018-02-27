@@ -16,13 +16,13 @@ import {
 import { DatePickerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/date-picker.actions";
 
 import { B2BlockType } from "../../models";
-import { DatePickerActionsService } from "../../services";
+import { B2DatePickerActionsService } from "../../services";
 
 @Injectable()
 export class DatePickerEffects {
 
   constructor(protected actions$: Actions,
-              protected datePickerService: DatePickerActionsService) {
+              protected datePickerActions: B2DatePickerActionsService) {
   }
 
   @Effect() blocksAvailable$: Observable<Action> = this.actions$
@@ -50,7 +50,7 @@ export class DatePickerEffects {
     .map(action => action.payload)
     .switchMap((payload) => {
       if (payload.notify) {
-        this.datePickerService.blockDidChange(payload.block);
+        this.datePickerActions.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];
     });

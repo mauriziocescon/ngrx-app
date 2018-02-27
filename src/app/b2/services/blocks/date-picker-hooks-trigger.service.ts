@@ -11,26 +11,24 @@ import {
   DatePickerBlock,
 } from "../../models";
 
-import { DatePickerActionsService } from "./date-picker-actions.service";
+import { B2DatePickerActionsService } from "./date-picker-actions.service";
 
 @Injectable()
-export class B2BlockHooksTriggerService {
+export class B2DatePickerHooksTriggerService {
   protected hooks: B2BlocksHooks;
 
   protected datePickerBlockLoadSubscription: Subscription;
-
   protected datePickerBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected blocksActions: BlockActionsIntegrationService,
-              protected datePickerService: DatePickerActionsService) {
+              protected blockActions: BlockActionsIntegrationService,
+              protected datePickerActions: B2DatePickerActionsService) {
   }
 
   subscribeAll(hooks: B2BlocksHooks): void {
     this.hooks = hooks;
 
     this.subscribeToDatePickerBlockLoad();
-
     this.subscribeToDatePickerBlockChanges();
   }
 
@@ -46,12 +44,12 @@ export class B2BlockHooksTriggerService {
   }
 
   protected subscribeToDatePickerBlockLoad(): void {
-    this.datePickerService.blockLoadObservable$
+    this.datePickerBlockLoadSubscription = this.datePickerActions.blockLoadObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
           const datePickerBlockDidLoad = this.hooks[block.hooks.datePickerBlockDidLoad];
           if (datePickerBlockDidLoad) {
-            datePickerBlockDidLoad(block, this.blocksActions.getActions());
+            datePickerBlockDidLoad(block, this.blockActions.getActions());
           }
         } catch (e) {
           this.logger.error(e.toString());
@@ -60,12 +58,12 @@ export class B2BlockHooksTriggerService {
   }
 
   protected subscribeToDatePickerBlockChanges(): void {
-    this.datePickerService.blockChangesObservable$
+    this.datePickerBlockChangesSubscription = this.datePickerActions.blockChangesObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
           const datePickerBlockDidChange = this.hooks[block.hooks.datePickerBlockDidChange];
           if (datePickerBlockDidChange) {
-            datePickerBlockDidChange(block, this.blocksActions.getActions());
+            datePickerBlockDidChange(block, this.blockActions.getActions());
           }
         } catch (e) {
           this.logger.error(e.toString());

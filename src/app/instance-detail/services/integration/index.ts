@@ -1,6 +1,6 @@
-import { BlockActionsIntegrationService } from "./actions.service";
-import { BlockHooksIntegrationService } from "./hooks.service";
-import { BlockUtilsIntegrationService } from "./utils.service";
+import { BlockActionsIntegrationService } from "./block-actions.service";
+import { BlockHooksIntegrationService } from "./block-hooks.service";
+import { BlockUtilsIntegrationService } from "./block-utils.service";
 
 export const INTEGRATION_SERVICES = [
   BlockActionsIntegrationService,

@@ -16,13 +16,13 @@ import {
 import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/check-box-confirmer.actions";
 
 import { B1BlockType } from "../../models";
-import { CheckBoxConfirmerActionsService } from "../../services";
+import { B1CheckBoxConfirmerActionsService } from "../../services";
 
 @Injectable()
 export class CheckBoxConfirmerEffects {
 
   constructor(protected actions$: Actions,
-              protected checkBoxConfirmerService: CheckBoxConfirmerActionsService) {
+              protected checkBoxConfirmerActions: B1CheckBoxConfirmerActionsService) {
   }
 
   @Effect() blocksAvailable$: Observable<Action> = this.actions$
@@ -50,7 +50,7 @@ export class CheckBoxConfirmerEffects {
     .map(action => action.payload)
     .switchMap((payload) => {
       if (payload.notify) {
-        this.checkBoxConfirmerService.blockDidChange(payload.block);
+        this.checkBoxConfirmerActions.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];
     });

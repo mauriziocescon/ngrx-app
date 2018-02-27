@@ -9,7 +9,7 @@ import { DropdownActionsService } from "./blocks/dropdown-actions.service";
 import { TextInputActionsService } from "./blocks/text-input-actions.service";
 
 @Injectable()
-export class BlocksActionsService implements IBlockActions {
+export class BlockActionsService implements IBlockActions {
   key: string;
 
   constructor(protected checkBoxActions: CheckBoxActionsService,

@@ -11,14 +11,14 @@ import { B2BlockType, DatePickerBlock } from "../models";
 
 import * as fromB2 from "../reducers";
 
-import { DatePickerActionsService } from "./blocks/date-picker-actions.service";
+import { B2DatePickerActionsService } from "./blocks/date-picker-actions.service";
 
 @Injectable()
 export class B2BlockUtilsService implements IBlockUtils {
   key: string;
 
   constructor(protected store$: Store<fromB2.State>,
-              protected datePickerService: DatePickerActionsService) {
+              protected datePickerActions: B2DatePickerActionsService) {
     this.key = "b2";
   }
 
@@ -37,7 +37,7 @@ export class B2BlockUtilsService implements IBlockUtils {
     switch (block.type) {
       case B2BlockType.DatePicker: {
         const datePickerBlock = block as DatePickerBlock;
-        this.datePickerService.blockDidload(datePickerBlock);
+        this.datePickerActions.blockDidload(datePickerBlock);
         return true;
       }
       default: {

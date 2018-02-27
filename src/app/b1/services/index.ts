@@ -1,9 +1,11 @@
 import { B1BlockHooksService } from "./block-hooks.service";
 import { B1BlockUtilsService } from "./block-utils.service";
 
-import { B1BlocksActionsService } from "./block-actions.service";
-import { B1BlockHooksTriggerService } from "./blocks/block-hooks-trigger.service";
-import { CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer-actions.service";
+import { B1BlockActionsService } from "./block-actions.service";
+
+import { B1CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer-actions.service";
+
+import { B1CheckBoxConfirmerHooksTriggerService } from "./blocks/check-box-confirmer-hooks-trigger.service";
 
 import {
   BLOCK_ACTIONS_TOKEN,
@@ -15,11 +17,13 @@ export const SERVICES = [
   {provide: BLOCK_HOOKS_TOKEN, useClass: B1BlockHooksService, multi: true},
   {provide: BLOCK_UTILS_TOKEN, useClass: B1BlockUtilsService, multi: true},
 
-  {provide: BLOCK_ACTIONS_TOKEN, useClass: B1BlocksActionsService, multi: true},
-  B1BlockHooksTriggerService,
-  CheckBoxConfirmerActionsService,
+  {provide: BLOCK_ACTIONS_TOKEN, useClass: B1BlockActionsService, multi: true},
+
+  B1CheckBoxConfirmerActionsService,
+
+  B1CheckBoxConfirmerHooksTriggerService,
 ];
 
 export {
-  CheckBoxConfirmerActionsService,
+  B1CheckBoxConfirmerActionsService,
 };

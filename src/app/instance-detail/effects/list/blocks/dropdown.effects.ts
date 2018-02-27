@@ -17,7 +17,7 @@ import { DropdownActionsService } from "../../../services";
 export class DropdownEffect {
 
   constructor(protected actions$: Actions,
-              protected dropdownService: DropdownActionsService) {
+              protected dropdownActions: DropdownActionsService) {
   }
 
   @Effect() blocksAvailable$: Observable<Action> = this.actions$
@@ -45,7 +45,7 @@ export class DropdownEffect {
     .map(action => action.payload)
     .switchMap((payload) => {
       if (payload.notify) {
-        this.dropdownService.blockDidChange(payload.block);
+        this.dropdownActions.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];
     });

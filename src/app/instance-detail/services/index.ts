@@ -2,7 +2,7 @@ import { InstanceDetailGuard } from "./instance-detail/instance-detail-guard.ser
 import { RulesResolve } from "./instance-detail/instance-detail-resolve.service";
 import { InstanceParamsService } from "./instance-detail/instance-params.service";
 
-import { BlocksActionsService } from "./instance-detail/list/block-actions.service";
+import { BlockActionsService } from "./instance-detail/list/block-actions.service";
 import { BlockListService } from "./instance-detail/list/list.service";
 import { BlockHooksService } from "./instance-detail/list/block-hooks.service";
 import { BlockUtilsService } from "./instance-detail/list/block-utils.service";
@@ -28,7 +28,7 @@ export const SERVICES = [
   RulesResolve,
   InstanceParamsService,
 
-  {provide: BLOCK_ACTIONS_TOKEN, useClass: BlocksActionsService, multi: true},
+  {provide: BLOCK_ACTIONS_TOKEN, useClass: BlockActionsService, multi: true},
   BlockListService,
   {provide: BLOCK_HOOKS_TOKEN, useClass: BlockHooksService, multi: true},
   {provide: BLOCK_UTILS_TOKEN, useClass: BlockUtilsService, multi: true},

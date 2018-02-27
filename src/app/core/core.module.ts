@@ -23,8 +23,8 @@ import { LocalStorageService } from "./services/local-storage.service";
 import { UIUtilitiesService } from "./services/ui-utilities.service";
 import { UtilitiesService } from "./services/utilities.service";
 
-export function createLanguageIdLoader(appLanguageService: AppLanguageService) {
-  return appLanguageService.getLanguageId();
+export function createLanguageIdLoader(appLanguage: AppLanguageService) {
+  return appLanguage.getLanguageId();
 }
 
 @NgModule({

@@ -17,7 +17,7 @@ import { CheckBoxActionsService } from "../../../services";
 export class CheckBoxEffect {
 
   constructor(protected actions$: Actions,
-              protected checkBoxService: CheckBoxActionsService) {
+              protected checkBoxActions: CheckBoxActionsService) {
   }
 
   @Effect() blocksAvailable$: Observable<Action> = this.actions$
@@ -45,7 +45,7 @@ export class CheckBoxEffect {
     .map(action => action.payload)
     .switchMap((payload) => {
       if (payload.notify) {
-        this.checkBoxService.blockDidChange(payload.block);
+        this.checkBoxActions.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];
     });

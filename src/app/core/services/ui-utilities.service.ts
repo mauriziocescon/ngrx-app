@@ -18,12 +18,12 @@ import { ModalAlert, ModalConfirmer } from "../models";
 @Injectable()
 export class UIUtilitiesService {
 
-  constructor(protected modalService: NgbModal,
+  constructor(protected modal: NgbModal,
               protected logger: NGXLogger) {
   }
 
   modalAlert(modalAlert: ModalAlert): Promise<Action> {
-    const modalRef = this.modalService.open(ModalAlertComponent);
+    const modalRef = this.modal.open(ModalAlertComponent);
     modalRef.componentInstance.title = modalAlert.title;
     modalRef.componentInstance.message = modalAlert.message;
     modalRef.componentInstance.buttonLabel = modalAlert.buttonLabel;
@@ -38,7 +38,7 @@ export class UIUtilitiesService {
   }
 
   modalConfirmer(modalConfirmer: ModalConfirmer): Promise<Action> {
-    const modalRef = this.modalService.open(ModalConfirmerComponent);
+    const modalRef = this.modal.open(ModalConfirmerComponent);
     modalRef.componentInstance.title = modalConfirmer.title;
     modalRef.componentInstance.message = modalConfirmer.message;
     modalRef.componentInstance.yesButtonLabel = modalConfirmer.yesButtonLabel;

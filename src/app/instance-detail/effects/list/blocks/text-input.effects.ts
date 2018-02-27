@@ -17,7 +17,7 @@ import { TextInputActionsService } from "../../../services";
 export class TextInputEffect {
 
   constructor(protected actions$: Actions,
-              protected textInputService: TextInputActionsService) {
+              protected textInputActions: TextInputActionsService) {
   }
 
   @Effect() blocksAvailable$: Observable<Action> = this.actions$
@@ -45,7 +45,7 @@ export class TextInputEffect {
     .map(action => action.payload)
     .switchMap((payload) => {
       if (payload.notify) {
-        this.textInputService.blockDidChange(payload.block);
+        this.textInputActions.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];
     });
