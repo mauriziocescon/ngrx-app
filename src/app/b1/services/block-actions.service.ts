@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 
-import { IBlockActions } from "../../../instance-detail/instance-detail.module";
+import { IBlockActions } from "../../instance-detail/instance-detail.module";
 
-import { CheckBoxConfirmerActionsService } from "./check-box-confirmer-actions.service";
+import { CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer-actions.service";
 
 @Injectable()
 export class B1BlocksActionsService implements IBlockActions {

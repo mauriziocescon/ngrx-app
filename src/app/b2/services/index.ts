@@ -1,7 +1,7 @@
-import { B2BlockHooksService } from "./hooks.service";
-import { B2BlockUtilsService } from "./utils.service";
+import { B2BlockHooksService } from "./block-hooks.service";
+import { B2BlockUtilsService } from "./block-utils.service";
 
-import { B2BlocksActionsService } from "./blocks/block-actions.service";
+import { B2BlocksActionsService } from "./block-actions.service";
 import { B2BlockHooksTriggerService } from "./blocks/block-hooks-trigger.service";
 import { DatePickerActionsService } from "./blocks/date-picker-actions.service";
 

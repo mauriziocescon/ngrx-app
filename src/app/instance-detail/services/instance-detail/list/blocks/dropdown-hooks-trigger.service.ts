@@ -21,8 +21,8 @@ export class DropdownHooksTriggerService {
   protected dropdownBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected blockActionsService: BlockActionsIntegrationService,
-              protected dropdownActionsService: DropdownActionsService) {
+              protected blockActions: BlockActionsIntegrationService,
+              protected dropdownActions: DropdownActionsService) {
   }
 
   subscribeAll(hooks: BlocksHooks): void {
@@ -44,12 +44,12 @@ export class DropdownHooksTriggerService {
   }
 
   protected subscribeToDropdownBlockLoad(): void {
-    this.dropdownBlockLoadSubscription = this.dropdownActionsService.blockLoadObservable$
+    this.dropdownBlockLoadSubscription = this.dropdownActions.blockLoadObservable$
       .subscribe((block: DropdownBlock) => {
         try {
           const dropdownBlockDidLoad = this.hooks[block.hooks.dropdownBlockDidLoad];
           if (dropdownBlockDidLoad) {
-            dropdownBlockDidLoad(block, this.blockActionsService.getActions());
+            dropdownBlockDidLoad(block, this.blockActions.getActions());
           }
         } catch (e) {
           this.logger.error(e.toString());
@@ -58,12 +58,12 @@ export class DropdownHooksTriggerService {
   }
 
   protected subscribeToDropdownBlockChanges(): void {
-    this.dropdownBlockChangesSubscription = this.dropdownActionsService.blockChangesObservable$
+    this.dropdownBlockChangesSubscription = this.dropdownActions.blockChangesObservable$
       .subscribe((block: DropdownBlock) => {
         try {
           const dropdownBlockDidChange = this.hooks[block.hooks.dropdownBlockDidChange];
           if (dropdownBlockDidChange) {
-            dropdownBlockDidChange(block, this.blockActionsService.getActions());
+            dropdownBlockDidChange(block, this.blockActions.getActions());
           }
         } catch (e) {
           this.logger.error(e.toString());

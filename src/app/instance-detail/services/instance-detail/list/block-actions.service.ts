@@ -12,22 +12,22 @@ import { TextInputActionsService } from "./blocks/text-input-actions.service";
 export class BlocksActionsService implements IBlockActions {
   key: string;
 
-  constructor(protected checkBoxService: CheckBoxActionsService,
-              protected dropdownService: DropdownActionsService,
-              protected textInputService: TextInputActionsService) {
+  constructor(protected checkBoxActions: CheckBoxActionsService,
+              protected dropdownActions: DropdownActionsService,
+              protected textInputActions: TextInputActionsService) {
     this.key = "base";
   }
 
   getActions(): BlocksMethods {
     return {
       checkBox: {
-        ...this.checkBoxService.getCheckBoxActions(),
+        ...this.checkBoxActions.getCheckBoxActions(),
       },
       dropdown: {
-        ...this.dropdownService.getDropdownActions(),
+        ...this.dropdownActions.getDropdownActions(),
       },
       textInput: {
-        ...this.textInputService.getTextInputActions(),
+        ...this.textInputActions.getTextInputActions(),
       },
     };
   }

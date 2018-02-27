@@ -21,8 +21,8 @@ export class TextInputHooksTriggerService {
   protected textInputBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected blockActionsService: BlockActionsIntegrationService,
-              protected textInputActionsService: TextInputActionsService) {
+              protected blockActions: BlockActionsIntegrationService,
+              protected textInputActions: TextInputActionsService) {
   }
 
   subscribeAll(hooks: BlocksHooks): void {
@@ -44,12 +44,12 @@ export class TextInputHooksTriggerService {
   }
 
   protected subscribeToTextInputBlockLoad(): void {
-    this.textInputBlockLoadSubscription = this.textInputActionsService.blockLoadObservable$
+    this.textInputBlockLoadSubscription = this.textInputActions.blockLoadObservable$
       .subscribe((block: TextInputBlock) => {
         try {
           const textInputBlockDidLoad = this.hooks[block.hooks.textInputBlockDidLoad];
           if (textInputBlockDidLoad) {
-            textInputBlockDidLoad(block, this.blockActionsService.getActions());
+            textInputBlockDidLoad(block, this.blockActions.getActions());
           }
         } catch (e) {
           this.logger.error(e.toString());
@@ -58,12 +58,12 @@ export class TextInputHooksTriggerService {
   }
 
   protected subscribeToTextInputBlockChanges(): void {
-    this.textInputBlockChangesSubscription = this.textInputActionsService.blockChangesObservable$
+    this.textInputBlockChangesSubscription = this.textInputActions.blockChangesObservable$
       .subscribe((block: TextInputBlock) => {
         try {
           const textInputBlockDidChange = this.hooks[block.hooks.textInputBlockDidChange];
           if (textInputBlockDidChange) {
-            textInputBlockDidChange(block, this.blockActionsService.getActions());
+            textInputBlockDidChange(block, this.blockActions.getActions());
           }
         } catch (e) {
           this.logger.error(e.toString());

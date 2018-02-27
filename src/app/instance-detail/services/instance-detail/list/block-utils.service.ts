@@ -29,9 +29,9 @@ export class BlockUtilsService implements IBlockUtils {
   key: string;
 
   constructor(protected store$: Store<fromInstanceDetail.State>,
-              protected checkBoxService: CheckBoxActionsService,
-              protected dropdownService: DropdownActionsService,
-              protected textInputService: TextInputActionsService) {
+              protected checkBoxActions: CheckBoxActionsService,
+              protected dropdownActions: DropdownActionsService,
+              protected textInputActions: TextInputActionsService) {
     this.key = "base";
   }
 
@@ -56,17 +56,17 @@ export class BlockUtilsService implements IBlockUtils {
     switch (block.type) {
       case BlockType.CheckBox: {
         const checkBoxBlock = block as CheckBoxBlock;
-        this.checkBoxService.blockDidload(checkBoxBlock);
+        this.checkBoxActions.blockDidload(checkBoxBlock);
         return true;
       }
       case BlockType.Dropdown: {
         const dropdownBlock = block as DropdownBlock;
-        this.dropdownService.blockDidload(dropdownBlock);
+        this.dropdownActions.blockDidload(dropdownBlock);
         return true;
       }
       case BlockType.TextInput: {
         const textInputBlock = block as TextInputBlock;
-        this.textInputService.blockDidload(textInputBlock);
+        this.textInputActions.blockDidload(textInputBlock);
         return true;
       }
       default: {

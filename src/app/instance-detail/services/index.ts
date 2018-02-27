@@ -7,8 +7,6 @@ import { BlockListService } from "./instance-detail/list/list.service";
 import { BlockHooksService } from "./instance-detail/list/block-hooks.service";
 import { BlockUtilsService } from "./instance-detail/list/block-utils.service";
 
-import { BlockHooksTriggerService } from "./instance-detail/list/block-hooks-trigger.service";
-
 import { CheckBoxActionsService } from "./instance-detail/list/blocks/check-box-actions.service";
 import { DropdownActionsService } from "./instance-detail/list/blocks/dropdown-actions.service";
 import { TextInputActionsService } from "./instance-detail/list/blocks/text-input-actions.service";
@@ -35,8 +33,6 @@ export const SERVICES = [
   {provide: BLOCK_HOOKS_TOKEN, useClass: BlockHooksService, multi: true},
   {provide: BLOCK_UTILS_TOKEN, useClass: BlockUtilsService, multi: true},
 
-  BlockHooksTriggerService,
-
   CheckBoxActionsService,
   DropdownActionsService,
   TextInputActionsService,
@@ -56,8 +52,6 @@ export {
   BlockListService,
   BlockHooksService,
   BlockUtilsService,
-
-  BlockHooksTriggerService,
 
   CheckBoxActionsService,
   DropdownActionsService,

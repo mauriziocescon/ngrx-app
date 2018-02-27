@@ -21,8 +21,8 @@ export class CheckBoxHooksTriggerService {
   protected checkBoxBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected blockActionsService: BlockActionsIntegrationService,
-              protected checkBoxActionsService: CheckBoxActionsService) {
+              protected blockActions: BlockActionsIntegrationService,
+              protected checkBoxActions: CheckBoxActionsService) {
   }
 
   subscribeAll(hooks: BlocksHooks): void {
@@ -44,12 +44,12 @@ export class CheckBoxHooksTriggerService {
   }
 
   protected subscribeToCheckBoxBlockLoad(): void {
-    this.checkBoxBlockLoadSubscription = this.checkBoxActionsService.blockLoadObservable$
+    this.checkBoxBlockLoadSubscription = this.checkBoxActions.blockLoadObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
           const checkBoxBlockDidLoad = this.hooks[block.hooks.checkBoxBlockDidLoad];
           if (checkBoxBlockDidLoad) {
-            checkBoxBlockDidLoad(block, this.blockActionsService.getActions());
+            checkBoxBlockDidLoad(block, this.blockActions.getActions());
           }
         } catch (e) {
           this.logger.error(e.toString());
@@ -58,12 +58,12 @@ export class CheckBoxHooksTriggerService {
   }
 
   protected subscribeToCheckBoxBlockChanges(): void {
-    this.checkBoxBlockChangesSubscription = this.checkBoxActionsService.blockChangesObservable$
+    this.checkBoxBlockChangesSubscription = this.checkBoxActions.blockChangesObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
           const checkBoxBlockDidChange = this.hooks[block.hooks.checkBoxBlockDidChange];
           if (checkBoxBlockDidChange) {
-            checkBoxBlockDidChange(block, this.blockActionsService.getActions());
+            checkBoxBlockDidChange(block, this.blockActions.getActions());
           }
         } catch (e) {
           this.logger.error(e.toString());
