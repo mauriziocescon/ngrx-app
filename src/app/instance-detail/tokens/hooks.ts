@@ -1,4 +1,4 @@
-import { BlockHooks } from "../models/index";
+import { BlockHooks } from "../models";
 
 export interface IBlockHooks {
   key: string;

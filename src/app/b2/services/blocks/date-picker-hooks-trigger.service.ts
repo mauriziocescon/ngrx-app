@@ -7,7 +7,7 @@ import { NGXLogger } from "ngx-logger";
 import { BlockActionsIntegrationService } from "../../../instance-detail/instance-detail.module";
 
 import {
-  B2BlocksHooks,
+  B2BlockHooks,
   DatePickerBlock,
 } from "../../models";
 
@@ -15,7 +15,7 @@ import { B2DatePickerActionsService } from "./date-picker-actions.service";
 
 @Injectable()
 export class B2DatePickerHooksTriggerService {
-  protected hooks: B2BlocksHooks;
+  protected hooks: B2BlockHooks;
 
   protected datePickerBlockLoadSubscription: Subscription;
   protected datePickerBlockChangesSubscription: Subscription;
@@ -25,7 +25,7 @@ export class B2DatePickerHooksTriggerService {
               protected datePickerActions: B2DatePickerActionsService) {
   }
 
-  subscribeAll(hooks: B2BlocksHooks): void {
+  subscribeAll(hooks: B2BlockHooks): void {
     this.hooks = hooks;
 
     this.subscribeToDatePickerBlockLoad();

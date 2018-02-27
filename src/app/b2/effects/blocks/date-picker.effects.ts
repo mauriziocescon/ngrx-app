@@ -25,7 +25,7 @@ export class DatePickerEffects {
               protected datePickerActions: B2DatePickerActionsService) {
   }
 
-  @Effect() blocksAvailable$: Observable<Action> = this.actions$
+  @Effect() blockAvailable$: Observable<Action> = this.actions$
     .ofType<FetchBlocksComplete>(ListActionTypes.FETCH_BLOCKS_COMPLETE)
     .map(action => action.payload)
     .map((blocks: Block[]) => {

@@ -8,6 +8,6 @@ export interface B2BlockActionList extends BlockActionList {
   (block: DatePickerBlock, actions: B2BlockActions): void;
 }
 
-export interface B2BlocksHooks extends BlockHooks {
+export interface B2BlockHooks extends BlockHooks {
   [propName: string]: B2BlockActionList;
 }

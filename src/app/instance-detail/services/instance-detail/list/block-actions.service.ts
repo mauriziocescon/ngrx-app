@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 
-import { BlockActions } from "../../../models/index";
+import { BlockActions } from "../../../models";
 
-import { IBlockActions } from "../../../tokens/index";
+import { IBlockActions } from "../../../tokens";
 
 import { CheckBoxActionsService } from "./blocks/check-box-actions.service";
 import { DropdownActionsService } from "./blocks/dropdown-actions.service";

@@ -1,6 +1,6 @@
 import { B2BlockType } from "./block-types";
 
-import { B2BlockActionList, B2BlocksHooks } from "./block-hooks/block-hooks";
+import { B2BlockActionList, B2BlockHooks } from "./block-hooks/block-hooks";
 
 import { DatePickerBlock } from "./blocks/date-picker.model";
 
@@ -11,7 +11,7 @@ export {
   B2BlockType,
 
   B2BlockActionList,
-  B2BlocksHooks,
+  B2BlockHooks,
 
   DatePickerBlock,
 

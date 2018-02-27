@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { IBlockHooks } from "../../instance-detail/instance-detail.module";
 
-import { B2BlocksHooks } from "../models";
+import { B2BlockHooks } from "../models";
 
 import * as setOfRules from "../rules";
 
@@ -16,7 +16,7 @@ export class B2BlockHooksService implements IBlockHooks {
     this.key = "b2";
   }
 
-  subscribeAll(hooks: B2BlocksHooks): void {
+  subscribeAll(hooks: B2BlockHooks): void {
     this.datePickerHooksTrigger.subscribeAll(hooks);
   }
 
