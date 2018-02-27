@@ -4,7 +4,7 @@ import { BlocksHooks } from "../../../models";
 
 import { IBlockHooks } from "../../../tokens";
 
-import { BlockHooksTriggerService } from "./blocks/block-hooks-trigger.service";
+import { BlockHooksTriggerService } from "./block-hooks-trigger.service";
 
 @Injectable()
 export class BlockHooksService implements IBlockHooks {
