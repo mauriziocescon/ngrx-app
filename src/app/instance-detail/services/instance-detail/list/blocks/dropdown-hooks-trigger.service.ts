@@ -5,7 +5,7 @@ import { Subscription } from "rxjs/Subscription";
 import { NGXLogger } from "ngx-logger";
 
 import {
-  BlocksHooks,
+  BlockHooks,
   DropdownBlock,
 } from "../../../../models";
 
@@ -15,7 +15,7 @@ import { BlockActionsIntegrationService } from "../../../integration";
 
 @Injectable()
 export class DropdownHooksTriggerService {
-  protected hooks: BlocksHooks | {};
+  protected hooks: BlockHooks | {};
 
   protected dropdownBlockLoadSubscription: Subscription;
   protected dropdownBlockChangesSubscription: Subscription;
@@ -25,7 +25,7 @@ export class DropdownHooksTriggerService {
               protected dropdownActions: DropdownActionsService) {
   }
 
-  subscribeAll(hooks: BlocksHooks): void {
+  subscribeAll(hooks: BlockHooks): void {
     this.hooks = hooks;
 
     this.subscribeToDropdownBlockLoad();

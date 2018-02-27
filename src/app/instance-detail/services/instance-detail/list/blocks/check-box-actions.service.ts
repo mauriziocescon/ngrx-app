@@ -7,7 +7,7 @@ import { Subject } from "rxjs/Subject";
 
 import * as fromInstanceDetail from "../../../../reducers";
 import * as checkBox from "../../../../actions/list/blocks/check-box.actions";
-import { BlockType, CheckBoxBlock, CheckBoxMethods } from "../../../../models";
+import { BlockType, CheckBoxBlock, CheckBoxActions } from "../../../../models";
 
 @Injectable()
 export class CheckBoxActionsService {
@@ -25,7 +25,7 @@ export class CheckBoxActionsService {
     this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
-  getCheckBoxActions(): CheckBoxMethods {
+  getCheckBoxActions(): CheckBoxActions {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),
@@ -54,7 +54,7 @@ export class CheckBoxActionsService {
     this.store$.dispatch(new checkBox.Loading(newLoading));
   }
 
-  protected setBlock(block: Update<CheckBoxBlock>): void {
+  protected dispatchUpdate(block: Update<CheckBoxBlock>): void {
     const newBlock = {block: block, notify: false};
     this.store$.dispatch(new checkBox.UpdateBlock(newBlock));
   }
@@ -68,7 +68,7 @@ export class CheckBoxActionsService {
         label: label,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setValueForBlockId(value: boolean, blockId: number): void {
@@ -80,7 +80,7 @@ export class CheckBoxActionsService {
         value: value,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setDescriptionForBlockId(description: string, blockId: number): void {
@@ -92,7 +92,7 @@ export class CheckBoxActionsService {
         description: description,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setRequiredForBlockId(required: boolean, blockId: number): void {
@@ -104,7 +104,7 @@ export class CheckBoxActionsService {
         required: required,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setDisabledForBlockId(disabled: boolean, blockId: number): void {
@@ -116,7 +116,7 @@ export class CheckBoxActionsService {
         disabled: disabled,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setValidityForBlockId(valid: boolean, blockId: number): void {
@@ -128,6 +128,6 @@ export class CheckBoxActionsService {
         valid: valid,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 }

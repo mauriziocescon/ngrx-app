@@ -7,7 +7,7 @@ import { Subject } from "rxjs/Subject";
 
 import * as fromInstanceDetail from "../../../../reducers";
 import * as textInput from "../../../../actions/list/blocks/text-input.actions";
-import { BlockType, TextInputBlock, TextInputMethods } from "../../../../models";
+import { BlockType, TextInputBlock, TextInputActions } from "../../../../models";
 
 @Injectable()
 export class TextInputActionsService {
@@ -25,7 +25,7 @@ export class TextInputActionsService {
     this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
-  getTextInputActions(): TextInputMethods {
+  getTextInputActions(): TextInputActions {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),
@@ -55,7 +55,7 @@ export class TextInputActionsService {
     this.store$.dispatch(new textInput.Loading(newLoading));
   }
 
-  protected setBlock(block: Update<TextInputBlock>): void {
+  protected dispatchUpdate(block: Update<TextInputBlock>): void {
     const newBlock = {block: block, notify: false};
     this.store$.dispatch(new textInput.UpdateBlock(newBlock));
   }
@@ -69,7 +69,7 @@ export class TextInputActionsService {
         label: label,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setValueForBlockId(value: string, blockId: number): void {
@@ -81,7 +81,7 @@ export class TextInputActionsService {
         value: value,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setRequiredForBlockId(required: boolean, blockId: number): void {
@@ -93,7 +93,7 @@ export class TextInputActionsService {
         required: required,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setMinLengthForBlockId(minLength: number, blockId: number): void {
@@ -105,7 +105,7 @@ export class TextInputActionsService {
         minLength: minLength,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setMaxLengthForBlockId(maxLength: number, blockId: number): void {
@@ -117,7 +117,7 @@ export class TextInputActionsService {
         maxLength: maxLength,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setDisabledForBlockId(disabled: boolean, blockId: number): void {
@@ -129,7 +129,7 @@ export class TextInputActionsService {
         disabled: disabled,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setValidityForBlockId(valid: boolean, blockId: number): void {
@@ -141,6 +141,6 @@ export class TextInputActionsService {
         valid: valid,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 }

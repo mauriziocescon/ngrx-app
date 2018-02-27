@@ -1,4 +1,4 @@
-export interface CheckBoxConfirmerMethods {
+export interface CheckBoxActions {
   changeLoading: (loading: boolean, blockId: number) => void;
   setLabelForBlockId: (label: string, blockId: number) => void;
   setValueForBlockId: (value: boolean, blockId: number) => void;

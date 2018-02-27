@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { BlocksHooks } from "../../../models";
+import { BlockHooks } from "../../../models";
 
 import { IBlockHooks } from "../../../tokens";
 
@@ -18,7 +18,7 @@ export class BlockHooksService implements IBlockHooks {
     this.key = "base";
   }
 
-  subscribeAll(hooks: BlocksHooks): void {
+  subscribeAll(hooks: BlockHooks): void {
     this.checkBoxHooksTrigger.subscribeAll(hooks);
     this.dropdownHooksTrigger.subscribeAll(hooks);
     this.textInputHooksTrigger.subscribeAll(hooks);

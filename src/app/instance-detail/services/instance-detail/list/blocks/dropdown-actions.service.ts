@@ -7,7 +7,7 @@ import { Subject } from "rxjs/Subject";
 
 import * as fromInstanceDetail from "../../../../reducers";
 import * as dropdown from "../../../../actions/list/blocks/dropdown.actions";
-import { BlockType, DropdownBlock, DropdownMethods } from "../../../../models";
+import { BlockType, DropdownBlock, DropdownActions } from "../../../../models";
 
 @Injectable()
 export class DropdownActionsService {
@@ -25,7 +25,7 @@ export class DropdownActionsService {
     this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
-  getDropdownActions(): DropdownMethods {
+  getDropdownActions(): DropdownActions {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),
@@ -54,7 +54,7 @@ export class DropdownActionsService {
     this.store$.dispatch(new dropdown.Loading(newLoading));
   }
 
-  protected setBlock(block: Update<DropdownBlock>): void {
+  protected dispatchUpdate(block: Update<DropdownBlock>): void {
     const newBlock = {block: block, notify: false};
     this.store$.dispatch(new dropdown.UpdateBlock(newBlock));
   }
@@ -68,7 +68,7 @@ export class DropdownActionsService {
         label: label,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setValueForBlockId(value: string, blockId: number): void {
@@ -80,7 +80,7 @@ export class DropdownActionsService {
         value: value,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setChoicesForBlockId(choices: string[], blockId: number): void {
@@ -92,7 +92,7 @@ export class DropdownActionsService {
         choices: choices,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setRequiredForBlockId(required: boolean, blockId: number): void {
@@ -104,7 +104,7 @@ export class DropdownActionsService {
         required: required,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setDisabledForBlockId(disabled: boolean, blockId: number): void {
@@ -116,7 +116,7 @@ export class DropdownActionsService {
         disabled: disabled,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setValidityForBlockId(valid: boolean, blockId: number): void {
@@ -128,6 +128,6 @@ export class DropdownActionsService {
         valid: valid,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 }

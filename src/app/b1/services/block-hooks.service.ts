@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { IBlockHooks } from "../../instance-detail/instance-detail.module";
 
-import { B1BlocksHooks } from "../models";
+import { B1BlockHooks } from "../models";
 
 import * as setOfRules from "../rules";
 
@@ -16,7 +16,7 @@ export class B1BlockHooksService implements IBlockHooks {
     this.key = "b1";
   }
 
-  subscribeAll(hooks: B1BlocksHooks): void {
+  subscribeAll(hooks: B1BlockHooks): void {
     this.checkBoxConfirmerHooksTrigger.subscribeAll(hooks);
   }
 

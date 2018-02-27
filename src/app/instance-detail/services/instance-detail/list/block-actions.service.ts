@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { BlocksMethods } from "../../../models/index";
+import { BlockActions } from "../../../models/index";
 
 import { IBlockActions } from "../../../tokens/index";
 
@@ -18,7 +18,7 @@ export class BlockActionsService implements IBlockActions {
     this.key = "base";
   }
 
-  getActions(): BlocksMethods {
+  getActions(): BlockActions {
     return {
       checkBox: {
         ...this.checkBoxActions.getCheckBoxActions(),

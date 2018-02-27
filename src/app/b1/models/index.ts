@@ -1,20 +1,20 @@
 import { B1BlockType } from "./block-types";
 
-import { B1BlocksFunctions, B1BlocksHooks } from "./block-hooks/block-hooks";
+import { B1BlockActionList, B1BlockHooks } from "./block-hooks/block-hooks";
 
 import { CheckBoxConfirmerBlock } from "./blocks/check-box-confirmer.model";
 
-import { B1BlocksMethods } from "./block-methods/block-methods";
-import { CheckBoxConfirmerMethods } from "./block-methods/check-box-confirmer-methods";
+import { B1BlockActions } from "./block-actions/block-actions";
+import { CheckBoxConfirmerActions } from "./block-actions/check-box-confirmer-actions";
 
 export {
   B1BlockType,
 
-  B1BlocksFunctions,
-  B1BlocksHooks,
+  B1BlockActionList,
+  B1BlockHooks,
 
   CheckBoxConfirmerBlock,
 
-  B1BlocksMethods,
-  CheckBoxConfirmerMethods,
+  B1BlockActions,
+  CheckBoxConfirmerActions,
 };

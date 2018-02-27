@@ -7,7 +7,7 @@ import { Subject } from "rxjs/Subject";
 
 import * as fromB2Blocks from "../../reducers";
 import * as datePicker from "../../actions/blocks/date-picker.actions";
-import { B2BlockType, DatePickerBlock, DatePickerMethods } from "../../models";
+import { B2BlockType, DatePickerBlock, DatePickerActions } from "../../models";
 
 @Injectable()
 export class B2DatePickerActionsService {
@@ -25,7 +25,7 @@ export class B2DatePickerActionsService {
     this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
-  getDatePickerActions(): DatePickerMethods {
+  getDatePickerActions(): DatePickerActions {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),
@@ -53,7 +53,7 @@ export class B2DatePickerActionsService {
     this.store$.dispatch(new datePicker.Loading(newLoading));
   }
 
-  protected setBlock(block: Update<DatePickerBlock>): void {
+  protected dispatchUpdate(block: Update<DatePickerBlock>): void {
     const newBlock = {block: block, notify: false};
     this.store$.dispatch(new datePicker.UpdateBlock(newBlock));
   }
@@ -67,7 +67,7 @@ export class B2DatePickerActionsService {
         label: label,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setValueForBlockId(value: string, blockId: number): void {
@@ -79,7 +79,7 @@ export class B2DatePickerActionsService {
         value: value,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setRequiredForBlockId(required: boolean, blockId: number): void {
@@ -91,7 +91,7 @@ export class B2DatePickerActionsService {
         required: required,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setDisabledForBlockId(disabled: boolean, blockId: number): void {
@@ -103,7 +103,7 @@ export class B2DatePickerActionsService {
         disabled: disabled,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setValidityForBlockId(valid: boolean, blockId: number): void {
@@ -115,6 +115,6 @@ export class B2DatePickerActionsService {
         valid: valid,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 }

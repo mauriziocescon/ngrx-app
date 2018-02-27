@@ -5,7 +5,7 @@ import {
 } from "../../instance-detail/instance-detail.module";
 
 import {
-  B1BlocksMethods,
+  B1BlockActions,
   CheckBoxConfirmerBlock,
 } from "../models";
 
@@ -18,64 +18,64 @@ const blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | C
 
 // blocks loaded
 // --------------
-export const checkBoxBlockDidLoad = (checkBoxBlock: CheckBoxBlock, blocksMethods: B1BlocksMethods) => {
+export const checkBoxBlockDidLoad = (checkBoxBlock: CheckBoxBlock, blockActions: B1BlockActions) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
-  blocksMethods.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
+  blockActions.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
 };
 
-export const dropdownBlockDidLoad = (dropdownBlock: DropdownBlock, blocksMethods: B1BlocksMethods) => {
+export const dropdownBlockDidLoad = (dropdownBlock: DropdownBlock, blockActions: B1BlockActions) => {
   blocks[dropdownBlock.id] = dropdownBlock;
-  blocksMethods.dropdown.setValidityForBlockId(validators.dropdownBlockValidator(dropdownBlock), dropdownBlock.id);
+  blockActions.dropdown.setValidityForBlockId(validators.dropdownBlockValidator(dropdownBlock), dropdownBlock.id);
 };
 
-export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blocksMethods: B1BlocksMethods) => {
+export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blockActions: B1BlockActions) => {
   blocks[textInputBlock.id] = textInputBlock;
-  blocksMethods.textInput.setValueForBlockId("Reset initial value during TextInput load event", textInputBlock.id);
-  blocksMethods.textInput.setValidityForBlockId(validators.textInputBlockValidator(textInputBlock), textInputBlock.id);
+  blockActions.textInput.setValueForBlockId("Reset initial value during TextInput load event", textInputBlock.id);
+  blockActions.textInput.setValidityForBlockId(validators.textInputBlockValidator(textInputBlock), textInputBlock.id);
 };
 
-export const checkBoxConfirmerBlockDidLoad = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blocksMethods: B1BlocksMethods) => {
+export const checkBoxConfirmerBlockDidLoad = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blockActions: B1BlockActions) => {
   blocks[checkBoxConfirmerBlock.id] = checkBoxConfirmerBlock;
-  blocksMethods.checkBoxConfirmer.setValidityForBlockId(validators.checkBoxConfirmerBlockValidator(checkBoxConfirmerBlock), checkBoxConfirmerBlock.id);
+  blockActions.checkBoxConfirmer.setValidityForBlockId(validators.checkBoxConfirmerBlockValidator(checkBoxConfirmerBlock), checkBoxConfirmerBlock.id);
 };
 
 // blocks changed
 // --------------
-export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blocksMethods: B1BlocksMethods) => {
+export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blockActions: B1BlockActions) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
-  blocksMethods.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
+  blockActions.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
 
   const textInputBlockIndex = utilities.arrayOfTextInputBlocksFromBlocksObject(blocks)[0].id;
   if (checkBoxBlock.value === true && textInputBlockIndex) {
-    blocksMethods.textInput.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, textInputBlockIndex);
+    blockActions.textInput.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, textInputBlockIndex);
   }
 };
 
-export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blocksMethods: B1BlocksMethods) => {
+export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blockActions: B1BlockActions) => {
   blocks[dropdownBlock.id] = dropdownBlock;
-  blocksMethods.dropdown.setValidityForBlockId(validators.dropdownBlockValidator(dropdownBlock), dropdownBlock.id);
+  blockActions.dropdown.setValidityForBlockId(validators.dropdownBlockValidator(dropdownBlock), dropdownBlock.id);
 
-  blocksMethods.dropdown.changeLoading(true, dropdownBlock.id);
+  blockActions.dropdown.changeLoading(true, dropdownBlock.id);
   setTimeout(() => {
     const newChoices = ["1", "2", "3", "4", "5"];
-    blocksMethods.dropdown.setChoicesForBlockId(newChoices, dropdownBlock.id);
-    blocksMethods.dropdown.changeLoading(false, dropdownBlock.id);
+    blockActions.dropdown.setChoicesForBlockId(newChoices, dropdownBlock.id);
+    blockActions.dropdown.changeLoading(false, dropdownBlock.id);
   }, 3000);
 };
 
-export const textInputBlockDidChange = (textInputBlock: TextInputBlock, blocksMethods: B1BlocksMethods) => {
+export const textInputBlockDidChange = (textInputBlock: TextInputBlock, blockActions: B1BlockActions) => {
   blocks[textInputBlock.id] = textInputBlock;
-  blocksMethods.textInput.setValidityForBlockId(validators.textInputBlockValidator(textInputBlock), textInputBlock.id);
+  blockActions.textInput.setValidityForBlockId(validators.textInputBlockValidator(textInputBlock), textInputBlock.id);
 };
 
-export const checkBoxConfirmerBlockDidChange = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blocksMethods: B1BlocksMethods) => {
+export const checkBoxConfirmerBlockDidChange = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blockActions: B1BlockActions) => {
   blocks[checkBoxConfirmerBlock.id] = checkBoxConfirmerBlock;
-  blocksMethods.checkBoxConfirmer.setValidityForBlockId(validators.checkBoxConfirmerBlockValidator(checkBoxConfirmerBlock), checkBoxConfirmerBlock.id);
+  blockActions.checkBoxConfirmer.setValidityForBlockId(validators.checkBoxConfirmerBlockValidator(checkBoxConfirmerBlock), checkBoxConfirmerBlock.id);
 };
 
-export const customCheckBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blocksMethods: B1BlocksMethods) => {
+export const customCheckBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blockActions: B1BlockActions) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
-  blocksMethods.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
+  blockActions.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
 
   if (checkBoxBlock.value === true) {
     alert("Hello world!");

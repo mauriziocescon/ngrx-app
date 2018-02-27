@@ -5,7 +5,7 @@ import { Subscription } from "rxjs/Subscription";
 import { NGXLogger } from "ngx-logger";
 
 import {
-  BlocksHooks,
+  BlockHooks,
   TextInputBlock,
 } from "../../../../models";
 
@@ -15,7 +15,7 @@ import { BlockActionsIntegrationService } from "../../../integration";
 
 @Injectable()
 export class TextInputHooksTriggerService {
-  protected hooks: BlocksHooks | {};
+  protected hooks: BlockHooks | {};
 
   protected textInputBlockLoadSubscription: Subscription;
   protected textInputBlockChangesSubscription: Subscription;
@@ -25,7 +25,7 @@ export class TextInputHooksTriggerService {
               protected textInputActions: TextInputActionsService) {
   }
 
-  subscribeAll(hooks: BlocksHooks): void {
+  subscribeAll(hooks: BlockHooks): void {
     this.hooks = hooks;
 
     this.subscribeToTextInputBlockLoad();

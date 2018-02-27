@@ -1,8 +1,8 @@
-import { BlocksHooks } from "../models/index";
+import { BlockHooks } from "../models/index";
 
 export interface IBlockHooks {
   key: string;
-  subscribeAll(hooks: BlocksHooks): void;
+  subscribeAll(hooks: BlockHooks): void;
   unsubscribeAll(): void;
   getSetOfHooks(config: string): any;
 }

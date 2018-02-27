@@ -5,7 +5,7 @@ import { Subscription } from "rxjs/Subscription";
 import { NGXLogger } from "ngx-logger";
 
 import {
-  BlocksHooks,
+  BlockHooks,
   CheckBoxBlock,
 } from "../../../../models";
 
@@ -15,7 +15,7 @@ import { BlockActionsIntegrationService } from "../../../integration";
 
 @Injectable()
 export class CheckBoxHooksTriggerService {
-  protected hooks: BlocksHooks | {};
+  protected hooks: BlockHooks | {};
 
   protected checkBoxBlockLoadSubscription: Subscription;
   protected checkBoxBlockChangesSubscription: Subscription;
@@ -25,7 +25,7 @@ export class CheckBoxHooksTriggerService {
               protected checkBoxActions: CheckBoxActionsService) {
   }
 
-  subscribeAll(hooks: BlocksHooks): void {
+  subscribeAll(hooks: BlockHooks): void {
     this.hooks = hooks;
 
     this.subscribeToCheckBoxBlockLoad();

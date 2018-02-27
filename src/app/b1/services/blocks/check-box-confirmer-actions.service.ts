@@ -7,7 +7,7 @@ import { Subject } from "rxjs/Subject";
 
 import * as fromB1Blocks from "../../reducers";
 import * as checkBoxConfirmer from "../../actions/blocks/check-box-confirmer.actions";
-import { B1BlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerMethods } from "../../models";
+import { B1BlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerActions } from "../../models";
 
 @Injectable()
 export class B1CheckBoxConfirmerActionsService {
@@ -25,7 +25,7 @@ export class B1CheckBoxConfirmerActionsService {
     this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
-  getCheckBoxConfirmerActions(): CheckBoxConfirmerMethods {
+  getCheckBoxConfirmerActions(): CheckBoxConfirmerActions {
     return {
       changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),
@@ -54,7 +54,7 @@ export class B1CheckBoxConfirmerActionsService {
     this.store$.dispatch(new checkBoxConfirmer.Loading(newLoading));
   }
 
-  protected setBlock(block: Update<CheckBoxConfirmerBlock>): void {
+  protected dispatchUpdate(block: Update<CheckBoxConfirmerBlock>): void {
     const newBlock = {block: block, notify: false};
     this.store$.dispatch(new checkBoxConfirmer.UpdateBlock(newBlock));
   }
@@ -68,7 +68,7 @@ export class B1CheckBoxConfirmerActionsService {
         label: label,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setValueForBlockId(value: boolean, blockId: number): void {
@@ -80,7 +80,7 @@ export class B1CheckBoxConfirmerActionsService {
         value: value,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setDescriptionForBlockId(description: string, blockId: number): void {
@@ -92,7 +92,7 @@ export class B1CheckBoxConfirmerActionsService {
         description: description,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setRequiredForBlockId(required: boolean, blockId: number): void {
@@ -104,7 +104,7 @@ export class B1CheckBoxConfirmerActionsService {
         required: required,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setDisabledForBlockId(disabled: boolean, blockId: number): void {
@@ -116,7 +116,7 @@ export class B1CheckBoxConfirmerActionsService {
         disabled: disabled,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 
   setValidityForBlockId(valid: boolean, blockId: number): void {
@@ -128,6 +128,6 @@ export class B1CheckBoxConfirmerActionsService {
         valid: valid,
       },
     };
-    this.setBlock(newBlock);
+    this.dispatchUpdate(newBlock);
   }
 }

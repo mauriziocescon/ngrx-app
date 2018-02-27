@@ -7,7 +7,7 @@ import { NGXLogger } from "ngx-logger";
 import { BlockActionsIntegrationService } from "../../../instance-detail/instance-detail.module";
 
 import {
-  B1BlocksHooks,
+  B1BlockHooks,
   CheckBoxConfirmerBlock,
 } from "../../models";
 
@@ -15,7 +15,7 @@ import { B1CheckBoxConfirmerActionsService } from "./check-box-confirmer-actions
 
 @Injectable()
 export class B1CheckBoxConfirmerHooksTriggerService {
-  protected hooks: B1BlocksHooks;
+  protected hooks: B1BlockHooks;
 
   protected checkBoxConfirmerBlockLoadSubscription: Subscription;
   protected checkBoxConfirmerBlockChangesSubscription: Subscription;
@@ -25,7 +25,7 @@ export class B1CheckBoxConfirmerHooksTriggerService {
               protected checkBoxConfirmerActions: B1CheckBoxConfirmerActionsService) {
   }
 
-  subscribeAll(hooks: B1BlocksHooks): void {
+  subscribeAll(hooks: B1BlockHooks): void {
     this.hooks = hooks;
 
     this.subscribeToCheckBoxConfirmerBlockLoad();

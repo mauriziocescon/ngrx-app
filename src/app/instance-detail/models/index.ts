@@ -2,7 +2,7 @@ import { Block } from "./block.model";
 import { BlockType } from "./block-types";
 import { BlockComponent } from "./generic-block.model";
 
-import { BlocksFunctions, BlocksHooks } from "./block-hooks/block-hooks";
+import { BlockActionList, BlockHooks } from "./block-hooks/block-hooks";
 
 import { InstanceParams } from "./instance-params.model";
 
@@ -10,18 +10,18 @@ import { CheckBoxBlock } from "./blocks/check-box.model";
 import { DropdownBlock } from "./blocks/dropdown-block.model";
 import { TextInputBlock } from "./blocks/text-input.model";
 
-import { BlocksMethods } from "./block-methods/block-methods";
-import { CheckBoxMethods } from "./block-methods/check-box-methods.model";
-import { DropdownMethods } from "./block-methods/dropdown-methods.model";
-import { TextInputMethods } from "./block-methods/text-input-methods";
+import { BlockActions } from "./block-actions/block-actions";
+import { CheckBoxActions } from "./block-actions/check-box-actions.model";
+import { DropdownActions } from "./block-actions/dropdown-actions.model";
+import { TextInputActions } from "./block-actions/text-input-actions";
 
 export {
   Block,
   BlockType,
   BlockComponent,
 
-  BlocksFunctions,
-  BlocksHooks,
+  BlockActionList,
+  BlockHooks,
 
   InstanceParams,
 
@@ -29,8 +29,8 @@ export {
   DropdownBlock,
   TextInputBlock,
 
-  BlocksMethods,
-  CheckBoxMethods,
-  DropdownMethods,
-  TextInputMethods,
+  BlockActions,
+  CheckBoxActions,
+  DropdownActions,
+  TextInputActions,
 };
