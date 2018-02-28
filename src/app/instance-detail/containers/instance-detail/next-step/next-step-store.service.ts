@@ -25,7 +25,7 @@ export class NextStepStoreService {
     return this.store$.select(fromInstanceDetail.isSynchronizationRequiredWithTimestampState);
   }
 
-  getUpdateError(): Observable<string> {
+  getUpdateError(): Observable<string | undefined> {
     return this.store$.select(fromInstanceDetail.getUpdateErrorState);
   }
 

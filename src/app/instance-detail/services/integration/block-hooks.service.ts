@@ -17,7 +17,7 @@ export class BlockHooksIntegrationService {
   protected get defaultBlockHooks(): IBlockHooks {
     return this.blockHooks.find((blockHooks: IBlockHooks) => {
       return blockHooks.module === this.appConstants.Application.INSTANCE_DETAIL_MODULE;
-    });
+    }) as IBlockHooks;
   }
 
   protected get bBlockHooks(): IBlockHooks | undefined {

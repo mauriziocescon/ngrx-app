@@ -36,7 +36,7 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
 
   syncRequired$: Observable<boolean>;
   syncRequiredWithTimestamp$: Observable<{ syncRequired: boolean, timestamp: number }>;
-  syncError$: Observable<string>;
+  syncError$: Observable<string | undefined>;
 
   formValidity$: Observable<boolean>;
   editedBlocks: Observable<Block[]>;

@@ -19,7 +19,7 @@ export class BlockUtilsIntegrationService {
   protected get defaultBlockUtils(): IBlockUtils {
     return this.blockUtils.find((blockUtils: IBlockUtils) => {
       return blockUtils.module === this.appConstants.Application.INSTANCE_DETAIL_MODULE;
-    });
+    }) as IBlockUtils;
   }
 
   protected get bBlockUtils(): IBlockUtils | undefined {

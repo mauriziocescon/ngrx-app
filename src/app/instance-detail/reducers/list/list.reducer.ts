@@ -4,14 +4,14 @@ import { Block } from "../../models";
 export interface State {
   fetchedBlocks: Block[];
   fetchLoading: boolean;
-  fetchError: string;
+  fetchError: string | undefined;
 
   updateBlocksForModule: string;
   updateBlocksForInstance: string;
   updateBlocksForStep: string;
   updateBlocks: Block[];
   updateLoading: boolean;
-  updateError: string;
+  updateError: string | undefined;
 }
 
 const initialState: State = {

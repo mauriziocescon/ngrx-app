@@ -21,7 +21,7 @@ export class InstanceDetailIntegrationStoreService {
   protected get defaultInstanceDetailStore(): IInstanceDetailStore {
     return this.instanceDetailStore.find((instanceDetailStore: IInstanceDetailStore) => {
       return instanceDetailStore.module === this.appConstants.Application.INSTANCE_DETAIL_MODULE;
-    });
+    }) as IInstanceDetailStore;
   }
 
   protected get bInstanceDetailStore(): IInstanceDetailStore | undefined {

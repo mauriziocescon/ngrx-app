@@ -25,7 +25,7 @@ export class ListStoreService {
     return this.store$.select(fromInstanceDetail.getFetchLoadingState);
   }
 
-  getFetchError(): Observable<string> {
+  getFetchError(): Observable<string | undefined> {
     return this.store$.select(fromInstanceDetail.getFetchErrorState);
   }
 

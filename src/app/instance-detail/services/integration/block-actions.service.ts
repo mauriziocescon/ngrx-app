@@ -17,7 +17,7 @@ export class BlockActionsIntegrationService {
   protected get defaultBlockActions(): IBlockActions {
     return this.blockActions.find((blockActions: IBlockActions) => {
       return blockActions.module === this.appConstants.Application.INSTANCE_DETAIL_MODULE;
-    });
+    }) as IBlockActions;
   }
 
   protected get bBlockActions(): IBlockActions | undefined {

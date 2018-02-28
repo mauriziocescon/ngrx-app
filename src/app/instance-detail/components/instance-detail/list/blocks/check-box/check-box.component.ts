@@ -69,8 +69,8 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
       .subscribe((value: any) => {
           this.valueDidChange.emit(value);
         },
-        (err: any) => {
-          this.logger.error(JSON.stringify(err));
+        (e) => {
+          this.logger.error(e.toString());
         });
   }
 
