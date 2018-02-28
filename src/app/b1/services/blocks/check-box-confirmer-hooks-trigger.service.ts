@@ -15,7 +15,7 @@ import { B1CheckBoxConfirmerActionsService } from "./check-box-confirmer-actions
 
 @Injectable()
 export class B1CheckBoxConfirmerHooksTriggerService {
-  protected hooks: B1BlockHooks;
+  protected hooks: B1BlockHooks | undefined;
 
   protected checkBoxConfirmerBlockLoadSubscription: Subscription;
   protected checkBoxConfirmerBlockChangesSubscription: Subscription;
@@ -47,9 +47,11 @@ export class B1CheckBoxConfirmerHooksTriggerService {
     this.checkBoxConfirmerBlockLoadSubscription = this.checkBoxConfirmerActions.blockLoadObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
-          const checkBoxConfirmerBlockDidLoad = this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad];
-          if (checkBoxConfirmerBlockDidLoad) {
-            checkBoxConfirmerBlockDidLoad(block, this.blockActions.getActions());
+          if (this.hooks && block.hooks) {
+            const checkBoxConfirmerBlockDidLoad = this.hooks[block.hooks.checkBoxConfirmerBlockDidLoad];
+            if (checkBoxConfirmerBlockDidLoad) {
+              checkBoxConfirmerBlockDidLoad(block, this.blockActions.getActions());
+            }
           }
         } catch (e) {
           this.logger.error(e.toString());
@@ -61,9 +63,11 @@ export class B1CheckBoxConfirmerHooksTriggerService {
     this.checkBoxConfirmerBlockChangesSubscription = this.checkBoxConfirmerActions.blockChangesObservable$
       .subscribe((block: CheckBoxConfirmerBlock) => {
         try {
-          const checkBoxConfirmerBlockDidChange = this.hooks[block.hooks.checkBoxConfirmerBlockDidChange];
-          if (checkBoxConfirmerBlockDidChange) {
-            checkBoxConfirmerBlockDidChange(block, this.blockActions.getActions());
+          if (this.hooks && block.hooks) {
+            const checkBoxConfirmerBlockDidChange = this.hooks[block.hooks.checkBoxConfirmerBlockDidChange];
+            if (checkBoxConfirmerBlockDidChange) {
+              checkBoxConfirmerBlockDidChange(block, this.blockActions.getActions());
+            }
           }
         } catch (e) {
           this.logger.error(e.toString());

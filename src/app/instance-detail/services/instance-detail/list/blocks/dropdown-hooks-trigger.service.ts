@@ -15,7 +15,7 @@ import { BlockActionsIntegrationService } from "../../../integration";
 
 @Injectable()
 export class DropdownHooksTriggerService {
-  protected hooks: BlockHooks | {};
+  protected hooks: BlockHooks | undefined;
 
   protected dropdownBlockLoadSubscription: Subscription;
   protected dropdownBlockChangesSubscription: Subscription;
@@ -47,9 +47,11 @@ export class DropdownHooksTriggerService {
     this.dropdownBlockLoadSubscription = this.dropdownActions.blockLoadObservable$
       .subscribe((block: DropdownBlock) => {
         try {
-          const dropdownBlockDidLoad = this.hooks[block.hooks.dropdownBlockDidLoad];
-          if (dropdownBlockDidLoad) {
-            dropdownBlockDidLoad(block, this.blockActions.getActions());
+          if (this.hooks && block.hooks) {
+            const dropdownBlockDidLoad = this.hooks[block.hooks.dropdownBlockDidLoad];
+            if (dropdownBlockDidLoad) {
+              dropdownBlockDidLoad(block, this.blockActions.getActions());
+            }
           }
         } catch (e) {
           this.logger.error(e.toString());
@@ -61,9 +63,11 @@ export class DropdownHooksTriggerService {
     this.dropdownBlockChangesSubscription = this.dropdownActions.blockChangesObservable$
       .subscribe((block: DropdownBlock) => {
         try {
-          const dropdownBlockDidChange = this.hooks[block.hooks.dropdownBlockDidChange];
-          if (dropdownBlockDidChange) {
-            dropdownBlockDidChange(block, this.blockActions.getActions());
+          if (this.hooks && block.hooks) {
+            const dropdownBlockDidChange = this.hooks[block.hooks.dropdownBlockDidChange];
+            if (dropdownBlockDidChange) {
+              dropdownBlockDidChange(block, this.blockActions.getActions());
+            }
           }
         } catch (e) {
           this.logger.error(e.toString());

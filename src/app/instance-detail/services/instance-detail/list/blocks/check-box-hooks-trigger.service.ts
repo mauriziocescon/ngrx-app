@@ -15,7 +15,7 @@ import { BlockActionsIntegrationService } from "../../../integration";
 
 @Injectable()
 export class CheckBoxHooksTriggerService {
-  protected hooks: BlockHooks | {};
+  protected hooks: BlockHooks | undefined;
 
   protected checkBoxBlockLoadSubscription: Subscription;
   protected checkBoxBlockChangesSubscription: Subscription;
@@ -47,9 +47,11 @@ export class CheckBoxHooksTriggerService {
     this.checkBoxBlockLoadSubscription = this.checkBoxActions.blockLoadObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
-          const checkBoxBlockDidLoad = this.hooks[block.hooks.checkBoxBlockDidLoad];
-          if (checkBoxBlockDidLoad) {
-            checkBoxBlockDidLoad(block, this.blockActions.getActions());
+          if (this.hooks && block.hooks) {
+            const checkBoxBlockDidLoad = this.hooks[block.hooks.checkBoxBlockDidLoad];
+            if (checkBoxBlockDidLoad) {
+              checkBoxBlockDidLoad(block, this.blockActions.getActions());
+            }
           }
         } catch (e) {
           this.logger.error(e.toString());
@@ -61,9 +63,11 @@ export class CheckBoxHooksTriggerService {
     this.checkBoxBlockChangesSubscription = this.checkBoxActions.blockChangesObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
-          const checkBoxBlockDidChange = this.hooks[block.hooks.checkBoxBlockDidChange];
-          if (checkBoxBlockDidChange) {
-            checkBoxBlockDidChange(block, this.blockActions.getActions());
+          if (this.hooks && block.hooks) {
+            const checkBoxBlockDidChange = this.hooks[block.hooks.checkBoxBlockDidChange];
+            if (checkBoxBlockDidChange) {
+              checkBoxBlockDidChange(block, this.blockActions.getActions());
+            }
           }
         } catch (e) {
           this.logger.error(e.toString());

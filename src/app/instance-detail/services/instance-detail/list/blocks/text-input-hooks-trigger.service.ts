@@ -15,7 +15,7 @@ import { BlockActionsIntegrationService } from "../../../integration";
 
 @Injectable()
 export class TextInputHooksTriggerService {
-  protected hooks: BlockHooks | {};
+  protected hooks: BlockHooks | undefined;
 
   protected textInputBlockLoadSubscription: Subscription;
   protected textInputBlockChangesSubscription: Subscription;
@@ -47,9 +47,11 @@ export class TextInputHooksTriggerService {
     this.textInputBlockLoadSubscription = this.textInputActions.blockLoadObservable$
       .subscribe((block: TextInputBlock) => {
         try {
-          const textInputBlockDidLoad = this.hooks[block.hooks.textInputBlockDidLoad];
-          if (textInputBlockDidLoad) {
-            textInputBlockDidLoad(block, this.blockActions.getActions());
+          if (this.hooks && block.hooks) {
+            const textInputBlockDidLoad = this.hooks[block.hooks.textInputBlockDidLoad];
+            if (textInputBlockDidLoad) {
+              textInputBlockDidLoad(block, this.blockActions.getActions());
+            }
           }
         } catch (e) {
           this.logger.error(e.toString());
@@ -61,9 +63,11 @@ export class TextInputHooksTriggerService {
     this.textInputBlockChangesSubscription = this.textInputActions.blockChangesObservable$
       .subscribe((block: TextInputBlock) => {
         try {
-          const textInputBlockDidChange = this.hooks[block.hooks.textInputBlockDidChange];
-          if (textInputBlockDidChange) {
-            textInputBlockDidChange(block, this.blockActions.getActions());
+          if (this.hooks && block.hooks) {
+            const textInputBlockDidChange = this.hooks[block.hooks.textInputBlockDidChange];
+            if (textInputBlockDidChange) {
+              textInputBlockDidChange(block, this.blockActions.getActions());
+            }
           }
         } catch (e) {
           this.logger.error(e.toString());

@@ -15,7 +15,7 @@ import { B2DatePickerActionsService } from "./date-picker-actions.service";
 
 @Injectable()
 export class B2DatePickerHooksTriggerService {
-  protected hooks: B2BlockHooks;
+  protected hooks: B2BlockHooks | undefined;
 
   protected datePickerBlockLoadSubscription: Subscription;
   protected datePickerBlockChangesSubscription: Subscription;
@@ -47,9 +47,11 @@ export class B2DatePickerHooksTriggerService {
     this.datePickerBlockLoadSubscription = this.datePickerActions.blockLoadObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
-          const datePickerBlockDidLoad = this.hooks[block.hooks.datePickerBlockDidLoad];
-          if (datePickerBlockDidLoad) {
-            datePickerBlockDidLoad(block, this.blockActions.getActions());
+          if (this.hooks && block.hooks) {
+            const datePickerBlockDidLoad = this.hooks[block.hooks.datePickerBlockDidLoad];
+            if (datePickerBlockDidLoad) {
+              datePickerBlockDidLoad(block, this.blockActions.getActions());
+            }
           }
         } catch (e) {
           this.logger.error(e.toString());
@@ -61,9 +63,11 @@ export class B2DatePickerHooksTriggerService {
     this.datePickerBlockChangesSubscription = this.datePickerActions.blockChangesObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
-          const datePickerBlockDidChange = this.hooks[block.hooks.datePickerBlockDidChange];
-          if (datePickerBlockDidChange) {
-            datePickerBlockDidChange(block, this.blockActions.getActions());
+          if (this.hooks && block.hooks) {
+            const datePickerBlockDidChange = this.hooks[block.hooks.datePickerBlockDidChange];
+            if (datePickerBlockDidChange) {
+              datePickerBlockDidChange(block, this.blockActions.getActions());
+            }
           }
         } catch (e) {
           this.logger.error(e.toString());
