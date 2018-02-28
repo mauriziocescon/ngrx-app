@@ -16,32 +16,56 @@ const blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock } =
 // --------------
 export const checkBoxBlockDidLoad = (checkBoxBlock: CheckBoxBlock, blockActions: BlockActions) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
-  blockActions.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
+
+  const valid = validators.checkBoxBlockValidator(checkBoxBlock);
+  if (valid !== checkBoxBlock.valid) {
+    blockActions.checkBox.setValidityForBlockId(valid, checkBoxBlock.id);
+  }
 };
 
 export const dropdownBlockDidLoad = (dropdownBlock: DropdownBlock, blockActions: BlockActions) => {
   blocks[dropdownBlock.id] = dropdownBlock;
-  blockActions.dropdown.setValidityForBlockId(validators.dropdownBlockValidator(dropdownBlock), dropdownBlock.id);
+
+  const valid = validators.dropdownBlockValidator(dropdownBlock);
+  if (valid !== dropdownBlock.valid) {
+    blockActions.dropdown.setValidityForBlockId(valid, dropdownBlock.id);
+  }
 };
 
 export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blockActions: BlockActions) => {
   blocks[textInputBlock.id] = textInputBlock;
-  blockActions.textInput.setValidityForBlockId(validators.textInputBlockValidator(textInputBlock), textInputBlock.id);
+
+  const valid = validators.textInputBlockValidator(textInputBlock);
+  if (valid !== textInputBlock.valid) {
+    blockActions.textInput.setValidityForBlockId(valid, textInputBlock.id);
+  }
 };
 
 // blocks changed
 // --------------
 export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blockActions: BlockActions) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
-  blockActions.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
+
+  const valid = validators.checkBoxBlockValidator(checkBoxBlock);
+  if (valid !== checkBoxBlock.valid) {
+    blockActions.checkBox.setValidityForBlockId(valid, checkBoxBlock.id);
+  }
 };
 
 export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blockActions: BlockActions) => {
   blocks[dropdownBlock.id] = dropdownBlock;
-  blockActions.dropdown.setValidityForBlockId(validators.dropdownBlockValidator(dropdownBlock), dropdownBlock.id);
+
+  const valid = validators.dropdownBlockValidator(dropdownBlock);
+  if (valid !== dropdownBlock.valid) {
+    blockActions.dropdown.setValidityForBlockId(valid, dropdownBlock.id);
+  }
 };
 
 export const textInputBlockDidChange = (textInputBlock: TextInputBlock, blockActions: BlockActions) => {
   blocks[textInputBlock.id] = textInputBlock;
-  blockActions.textInput.setValidityForBlockId(validators.textInputBlockValidator(textInputBlock), textInputBlock.id);
+
+  const valid = validators.textInputBlockValidator(textInputBlock);
+  if (valid !== textInputBlock.valid) {
+    blockActions.textInput.setValidityForBlockId(valid, textInputBlock.id);
+  }
 };

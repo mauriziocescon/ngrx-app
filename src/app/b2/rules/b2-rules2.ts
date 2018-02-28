@@ -20,42 +20,74 @@ const blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | D
 // --------------
 export const checkBoxBlockDidLoad = (checkBoxBlock: CheckBoxBlock, blockActions: B2BlockActions) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
-  blockActions.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
+
+  const valid = validators.checkBoxBlockValidator(checkBoxBlock);
+  if (valid !== checkBoxBlock.valid) {
+    blockActions.checkBox.setValidityForBlockId(valid, checkBoxBlock.id);
+  }
 };
 
 export const dropdownBlockDidLoad = (dropdownBlock: DropdownBlock, blockActions: B2BlockActions) => {
   blocks[dropdownBlock.id] = dropdownBlock;
-  blockActions.dropdown.setValidityForBlockId(validators.dropdownBlockValidator(dropdownBlock), dropdownBlock.id);
+
+  const valid = validators.dropdownBlockValidator(dropdownBlock);
+  if (valid !== dropdownBlock.valid) {
+    blockActions.dropdown.setValidityForBlockId(valid, dropdownBlock.id);
+  }
 };
 
 export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blockActions: B2BlockActions) => {
   blocks[textInputBlock.id] = textInputBlock;
-  blockActions.textInput.setValidityForBlockId(validators.textInputBlockValidator(textInputBlock), textInputBlock.id);
+
+  const valid = validators.textInputBlockValidator(textInputBlock);
+  if (valid !== textInputBlock.valid) {
+    blockActions.textInput.setValidityForBlockId(valid, textInputBlock.id);
+  }
 };
 
 export const datePickerBlockDidLoad = (datePickerBlock: DatePickerBlock, blockActions: B2BlockActions) => {
   blocks[datePickerBlock.id] = datePickerBlock;
-  blockActions.datePicker.setValidityForBlockId(validators.datePickerBlockValidator(datePickerBlock), datePickerBlock.id);
+
+  const valid = validators.datePickerBlockValidator(datePickerBlock);
+  if (valid !== datePickerBlock.valid) {
+    blockActions.datePicker.setValidityForBlockId(valid, datePickerBlock.id);
+  }
 };
 
 // blocks changed
 // --------------
 export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blockActions: B2BlockActions) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
-  blockActions.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
+
+  const valid = validators.checkBoxBlockValidator(checkBoxBlock);
+  if (valid !== checkBoxBlock.valid) {
+    blockActions.checkBox.setValidityForBlockId(valid, checkBoxBlock.id);
+  }
 };
 
 export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blockActions: B2BlockActions) => {
   blocks[dropdownBlock.id] = dropdownBlock;
-  blockActions.dropdown.setValidityForBlockId(validators.dropdownBlockValidator(dropdownBlock), dropdownBlock.id);
+
+  const valid = validators.dropdownBlockValidator(dropdownBlock);
+  if (valid !== dropdownBlock.valid) {
+    blockActions.dropdown.setValidityForBlockId(valid, dropdownBlock.id);
+  }
 };
 
 export const textInputBlockDidChange = (textInputBlock: TextInputBlock, blockActions: B2BlockActions) => {
   blocks[textInputBlock.id] = textInputBlock;
-  blockActions.textInput.setValidityForBlockId(validators.textInputBlockValidator(textInputBlock), textInputBlock.id);
+
+  const valid = validators.textInputBlockValidator(textInputBlock);
+  if (valid !== textInputBlock.valid) {
+    blockActions.textInput.setValidityForBlockId(valid, textInputBlock.id);
+  }
 };
 
 export const datePickerBlockDidChange = (datePickerBlock: DatePickerBlock, blockActions: B2BlockActions) => {
   blocks[datePickerBlock.id] = datePickerBlock;
-  blockActions.datePicker.setValidityForBlockId(validators.datePickerBlockValidator(datePickerBlock), datePickerBlock.id);
+
+  const valid = validators.datePickerBlockValidator(datePickerBlock);
+  if (valid !== datePickerBlock.valid) {
+    blockActions.datePicker.setValidityForBlockId(valid, datePickerBlock.id);
+  }
 };

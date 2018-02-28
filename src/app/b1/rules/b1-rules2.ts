@@ -19,42 +19,74 @@ const blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | C
 // --------------
 export const checkBoxBlockDidLoad = (checkBoxBlock: CheckBoxBlock, blockActions: B1BlockActions) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
-  blockActions.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
+
+  const valid = validators.checkBoxBlockValidator(checkBoxBlock);
+  if (valid !== checkBoxBlock.valid) {
+    blockActions.checkBox.setValidityForBlockId(valid, checkBoxBlock.id);
+  }
 };
 
 export const dropdownBlockDidLoad = (dropdownBlock: DropdownBlock, blockActions: B1BlockActions) => {
   blocks[dropdownBlock.id] = dropdownBlock;
-  blockActions.dropdown.setValidityForBlockId(validators.dropdownBlockValidator(dropdownBlock), dropdownBlock.id);
+
+  const valid = validators.dropdownBlockValidator(dropdownBlock);
+  if (valid !== dropdownBlock.valid) {
+    blockActions.dropdown.setValidityForBlockId(valid, dropdownBlock.id);
+  }
 };
 
 export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blockActions: B1BlockActions) => {
   blocks[textInputBlock.id] = textInputBlock;
-  blockActions.textInput.setValidityForBlockId(validators.textInputBlockValidator(textInputBlock), textInputBlock.id);
+
+  const valid = validators.textInputBlockValidator(textInputBlock);
+  if (valid !== textInputBlock.valid) {
+    blockActions.textInput.setValidityForBlockId(valid, textInputBlock.id);
+  }
 };
 
 export const checkBoxConfirmerBlockDidLoad = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blockActions: B1BlockActions) => {
   blocks[checkBoxConfirmerBlock.id] = checkBoxConfirmerBlock;
-  blockActions.checkBoxConfirmer.setValidityForBlockId(validators.checkBoxConfirmerBlockValidator(checkBoxConfirmerBlock), checkBoxConfirmerBlock.id);
+
+  const valid = validators.checkBoxConfirmerBlockValidator(checkBoxConfirmerBlock);
+  if (valid !== checkBoxConfirmerBlock.valid) {
+    blockActions.checkBoxConfirmer.setValidityForBlockId(valid, checkBoxConfirmerBlock.id);
+  }
 };
 
 // blocks changed
 // --------------
 export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blockActions: B1BlockActions) => {
   blocks[checkBoxBlock.id] = checkBoxBlock;
-  blockActions.checkBox.setValidityForBlockId(validators.checkBoxBlockValidator(checkBoxBlock), checkBoxBlock.id);
+
+  const valid = validators.checkBoxBlockValidator(checkBoxBlock);
+  if (valid !== checkBoxBlock.valid) {
+    blockActions.checkBox.setValidityForBlockId(valid, checkBoxBlock.id);
+  }
 };
 
 export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blockActions: B1BlockActions) => {
   blocks[dropdownBlock.id] = dropdownBlock;
-  blockActions.dropdown.setValidityForBlockId(validators.dropdownBlockValidator(dropdownBlock), dropdownBlock.id);
+
+  const valid = validators.dropdownBlockValidator(dropdownBlock);
+  if (valid !== dropdownBlock.valid) {
+    blockActions.dropdown.setValidityForBlockId(valid, dropdownBlock.id);
+  }
 };
 
 export const textInputBlockDidChange = (textInputBlock: TextInputBlock, blockActions: B1BlockActions) => {
   blocks[textInputBlock.id] = textInputBlock;
-  blockActions.textInput.setValidityForBlockId(validators.textInputBlockValidator(textInputBlock), textInputBlock.id);
+
+  const valid = validators.textInputBlockValidator(textInputBlock);
+  if (valid !== textInputBlock.valid) {
+    blockActions.textInput.setValidityForBlockId(valid, textInputBlock.id);
+  }
 };
 
 export const checkBoxConfirmerBlockDidChange = (checkBoxConfirmerBlock: CheckBoxConfirmerBlock, blockActions: B1BlockActions) => {
   blocks[checkBoxConfirmerBlock.id] = checkBoxConfirmerBlock;
-  blockActions.checkBoxConfirmer.setValidityForBlockId(validators.checkBoxConfirmerBlockValidator(checkBoxConfirmerBlock), checkBoxConfirmerBlock.id);
+
+  const valid = validators.checkBoxConfirmerBlockValidator(checkBoxConfirmerBlock);
+  if (valid !== checkBoxConfirmerBlock.valid) {
+    blockActions.checkBoxConfirmer.setValidityForBlockId(valid, checkBoxConfirmerBlock.id);
+  }
 };
