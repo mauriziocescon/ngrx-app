@@ -12,13 +12,13 @@ import { DropdownHooksTriggerService } from "./blocks/dropdown-hooks-trigger.ser
 
 @Injectable()
 export class BlockHooksService implements IBlockHooks {
-  key: string;
+  module: string;
 
   constructor(protected appConstants: AppConstantsService,
               protected checkBoxHooksTrigger: CheckBoxHooksTriggerService,
               protected dropdownHooksTrigger: DropdownHooksTriggerService,
               protected textInputHooksTrigger: TextInputHooksTriggerService) {
-    this.key = this.appConstants.Application.INSTANCE_DETAIL_KEY;
+    this.module = this.appConstants.Application.INSTANCE_DETAIL_MODULE;
   }
 
   subscribeAll(hooks: BlockHooks): void {

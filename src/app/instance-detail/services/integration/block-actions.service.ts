@@ -16,14 +16,14 @@ export class BlockActionsIntegrationService {
 
   protected get defaultBlockActions(): IBlockActions {
     return this.blockActions.find((blockActions: IBlockActions) => {
-      return blockActions.key === this.appConstants.Application.INSTANCE_DETAIL_KEY;
+      return blockActions.module === this.appConstants.Application.INSTANCE_DETAIL_MODULE;
     });
   }
 
   protected get bBlockActions(): IBlockActions | undefined {
     const module = this.instanceParams.getInstanceParams().module;
     return this.blockActions.find((blockActions: IBlockActions) => {
-      return blockActions.key === module;
+      return blockActions.module === module;
     });
   }
 

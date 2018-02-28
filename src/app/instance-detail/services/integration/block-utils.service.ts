@@ -18,14 +18,14 @@ export class BlockUtilsIntegrationService {
 
   protected get defaultBlockUtils(): IBlockUtils {
     return this.blockUtils.find((blockUtils: IBlockUtils) => {
-      return blockUtils.key === this.appConstants.Application.INSTANCE_DETAIL_KEY;
+      return blockUtils.module === this.appConstants.Application.INSTANCE_DETAIL_MODULE;
     });
   }
 
   protected get bBlockUtils(): IBlockUtils | undefined {
     const module = this.instanceParams.getInstanceParams().module;
     return this.blockUtils.find((blockUtils: IBlockUtils) => {
-      return blockUtils.key === module;
+      return blockUtils.module === module;
     });
   }
 

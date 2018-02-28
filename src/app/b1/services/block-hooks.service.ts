@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 
 import { IBlockHooks } from "../../instance-detail/instance-detail.module";
 
+import { module } from "../constants";
+
 import { B1BlockHooks } from "../models";
 
 import * as setOfRules from "../rules";
@@ -10,10 +12,10 @@ import { B1CheckBoxConfirmerHooksTriggerService } from "./blocks/check-box-confi
 
 @Injectable()
 export class B1BlockHooksService implements IBlockHooks {
-  key: string;
+  module: string;
 
   constructor(protected checkBoxConfirmerHooksTrigger: B1CheckBoxConfirmerHooksTriggerService) {
-    this.key = "b1";
+    this.module = module;
   }
 
   subscribeAll(hooks: B1BlockHooks): void {

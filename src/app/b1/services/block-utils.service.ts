@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 
 import { Block, IBlockUtils } from "../../instance-detail/instance-detail.module";
 
+import { module } from "../constants";
+
 import { CheckBoxConfirmerContainerComponent } from "../containers";
 
 import { B1BlockType, CheckBoxConfirmerBlock } from "../models";
@@ -10,10 +12,10 @@ import { B1CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer-
 
 @Injectable()
 export class B1BlockUtilsService implements IBlockUtils {
-  key: string;
+  module: string;
 
   constructor(protected checkBoxConfirmerActions: B1CheckBoxConfirmerActionsService) {
-    this.key = "b1";
+    this.module = module;
   }
 
   getComponentForBlock(block: Block): any {

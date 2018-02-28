@@ -10,7 +10,7 @@ export class Api {
 
 export class Application {
   APP_NAME = "demo";
-  INSTANCE_DETAIL_KEY = "instance_detail_key";
+  INSTANCE_DETAIL_MODULE = "instance_detail_module";
 }
 
 export class Languages {

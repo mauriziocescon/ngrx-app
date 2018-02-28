@@ -23,13 +23,13 @@ import { CheckBoxActionsService } from "./blocks/check-box-actions.service";
 
 @Injectable()
 export class BlockUtilsService implements IBlockUtils {
-  key: string;
+  module: string;
 
   constructor(protected appConstants: AppConstantsService,
               protected checkBoxActions: CheckBoxActionsService,
               protected dropdownActions: DropdownActionsService,
               protected textInputActions: TextInputActionsService) {
-    this.key = this.appConstants.Application.INSTANCE_DETAIL_KEY;
+    this.module = this.appConstants.Application.INSTANCE_DETAIL_MODULE;
   }
 
   getComponentForBlock(block: Block): any {

@@ -16,14 +16,14 @@ export class BlockHooksIntegrationService {
 
   protected get defaultBlockHooks(): IBlockHooks {
     return this.blockHooks.find((blockHooks: IBlockHooks) => {
-      return blockHooks.key === this.appConstants.Application.INSTANCE_DETAIL_KEY;
+      return blockHooks.module === this.appConstants.Application.INSTANCE_DETAIL_MODULE;
     });
   }
 
   protected get bBlockHooks(): IBlockHooks | undefined {
     const module = this.instanceParams.getInstanceParams().module;
     return this.blockHooks.find((blockHooks: IBlockHooks) => {
-      return blockHooks.key === module;
+      return blockHooks.module === module;
     });
   }
 

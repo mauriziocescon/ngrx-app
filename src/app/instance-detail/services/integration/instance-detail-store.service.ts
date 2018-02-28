@@ -20,14 +20,14 @@ export class InstanceDetailIntegrationStoreService {
 
   protected get defaultInstanceDetailStore(): IInstanceDetailStore {
     return this.instanceDetailStore.find((instanceDetailStore: IInstanceDetailStore) => {
-      return instanceDetailStore.key === this.appConstants.Application.INSTANCE_DETAIL_KEY;
+      return instanceDetailStore.module === this.appConstants.Application.INSTANCE_DETAIL_MODULE;
     });
   }
 
   protected get bInstanceDetailStore(): IInstanceDetailStore | undefined {
     const module = this.instanceParams.getInstanceParams().module;
     return this.instanceDetailStore.find((instanceDetailStore: IInstanceDetailStore) => {
-      return instanceDetailStore.key === module;
+      return instanceDetailStore.module === module;
     });
   }
 

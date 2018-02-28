@@ -2,14 +2,16 @@ import { Injectable } from "@angular/core";
 
 import { IBlockActions } from "../../instance-detail/instance-detail.module";
 
+import { module } from "../constants";
+
 import { B2DatePickerActionsService } from "./blocks/date-picker-actions.service";
 
 @Injectable()
 export class B2BlockActionsService implements IBlockActions {
-  key: string;
+  module: string;
 
   constructor(protected datePickerActions: B2DatePickerActionsService) {
-    this.key = "b2";
+    this.module = module;
   }
 
   getActions(): any {

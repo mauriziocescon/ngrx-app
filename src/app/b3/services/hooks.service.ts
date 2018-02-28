@@ -2,14 +2,16 @@ import { Injectable } from "@angular/core";
 
 import { IBlockHooks } from "../../instance-detail/instance-detail.module";
 
+import { module } from "../constants";
+
 import * as setOfRules from "../rules";
 
 @Injectable()
 export class B3BlockHooksService implements IBlockHooks {
-  key: string;
+  module: string;
 
   constructor() {
-    this.key = "b3";
+    this.module = module;
   }
 
   subscribeAll(hooks: any): void {

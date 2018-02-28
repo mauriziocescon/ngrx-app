@@ -12,13 +12,13 @@ import { TextInputActionsService } from "./blocks/text-input-actions.service";
 
 @Injectable()
 export class BlockActionsService implements IBlockActions {
-  key: string;
+  module: string;
 
   constructor(protected appConstants: AppConstantsService,
               protected checkBoxActions: CheckBoxActionsService,
               protected dropdownActions: DropdownActionsService,
               protected textInputActions: TextInputActionsService) {
-    this.key = this.appConstants.Application.INSTANCE_DETAIL_KEY;
+    this.module = this.appConstants.Application.INSTANCE_DETAIL_MODULE;
   }
 
   getActions(): BlockActions {

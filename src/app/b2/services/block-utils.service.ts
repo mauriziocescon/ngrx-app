@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 
 import { Block, IBlockUtils } from "../../instance-detail/instance-detail.module";
 
+import { module } from "../constants";
+
 import { DatePickerContainerComponent } from "../containers";
 
 import { B2BlockType, DatePickerBlock } from "../models";
@@ -10,10 +12,10 @@ import { B2DatePickerActionsService } from "./blocks/date-picker-actions.service
 
 @Injectable()
 export class B2BlockUtilsService implements IBlockUtils {
-  key: string;
+  module: string;
 
   constructor(protected datePickerActions: B2DatePickerActionsService) {
-    this.key = "b2";
+    this.module = module;
   }
 
   getComponentForBlock(block: Block): any {

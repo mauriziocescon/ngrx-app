@@ -5,14 +5,16 @@ import { Observable } from "rxjs/Observable";
 
 import { Block, IInstanceDetailStore } from "../../instance-detail/instance-detail.module";
 
+import { module } from "../constants";
+
 import * as fromB1 from "../reducers";
 
 @Injectable()
 export class B1InstanceDetailStoreService implements IInstanceDetailStore {
-  key: string;
+  module: string;
 
   constructor(protected store$: Store<fromB1.State>) {
-    this.key = "b1";
+    this.module = module;
   }
 
   getAllEditedBlocksSelector(): Observable<Block[]> {

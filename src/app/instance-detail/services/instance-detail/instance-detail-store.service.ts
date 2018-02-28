@@ -13,11 +13,11 @@ import { IInstanceDetailStore } from "../../tokens";
 
 @Injectable()
 export class InstanceDetailStoreService implements IInstanceDetailStore {
-  key: string;
+  module: string;
 
   constructor(protected store$: Store<fromInstanceDetail.State>,
               protected appConstants: AppConstantsService) {
-    this.key = this.appConstants.Application.INSTANCE_DETAIL_KEY;
+    this.module = this.appConstants.Application.INSTANCE_DETAIL_MODULE;
   }
 
   isSynchronizationRequired(): Observable<boolean> {

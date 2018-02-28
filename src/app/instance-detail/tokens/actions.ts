@@ -1,4 +1,4 @@
 export interface IBlockActions {
-  key: string;
+  module: string;
   getActions(): any;
 }
