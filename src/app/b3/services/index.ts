@@ -1,4 +1,4 @@
-import { B3BlockHooksService } from "./hooks.service";
+import { B3BlockHooksService } from "./block-hooks.service";
 
 import { BLOCK_HOOKS_TOKEN } from "../../instance-detail/instance-detail.module";
 
