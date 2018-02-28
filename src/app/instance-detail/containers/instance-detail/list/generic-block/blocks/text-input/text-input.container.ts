@@ -23,8 +23,8 @@ import { TextInputStoreService } from "./text-input-store.service";
 export class TextInputContainerComponent {
   @Input() blockId: number;
 
-  block$: Observable<TextInputBlock>;
-  textInputBlock: TextInputBlock;
+  block$: Observable<TextInputBlock | undefined>;
+  textInputBlock: TextInputBlock | undefined;
 
   loading$: Observable<boolean>;
 
@@ -50,25 +50,27 @@ export class TextInputContainerComponent {
   }
 
   protected dispatchValueDidChangeAction(value: string): void {
-    const block = {
-      block: {
-        id: this.blockId,
-        changes: {
+    if (this.textInputBlock) {
+      const block = {
+        block: {
           id: this.blockId,
-          type: BlockType.TextInput,
-          label: this.textInputBlock.label,
-          value: value,
-          required: this.textInputBlock.required,
-          minLength: this.textInputBlock.minLength,
-          maxLength: this.textInputBlock.maxLength,
-          disabled: this.textInputBlock.disabled,
-          hooks: {
-            ...this.textInputBlock.hooks,
+          changes: {
+            id: this.blockId,
+            type: BlockType.TextInput,
+            label: this.textInputBlock.label,
+            value: value,
+            required: this.textInputBlock.required,
+            minLength: this.textInputBlock.minLength,
+            maxLength: this.textInputBlock.maxLength,
+            disabled: this.textInputBlock.disabled,
+            hooks: {
+              ...this.textInputBlock.hooks,
+            },
           },
         },
-      },
-      notify: true,
-    };
-    this.textInputStore.dispatchUpdateBlock(block);
+        notify: true,
+      };
+      this.textInputStore.dispatchUpdateBlock(block);
+    }
   }
 }

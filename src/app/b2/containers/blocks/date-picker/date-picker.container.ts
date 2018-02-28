@@ -25,8 +25,8 @@ import { DatePickerStoreService } from "./date-picker-store";
 export class DatePickerContainerComponent {
   @Input() blockId: number;
 
-  block$: Observable<DatePickerBlock>;
-  datePickerBlock: DatePickerBlock;
+  block$: Observable<DatePickerBlock | undefined>;
+  datePickerBlock: DatePickerBlock | undefined;
 
   loading$: Observable<boolean>;
 
@@ -53,24 +53,26 @@ export class DatePickerContainerComponent {
   }
 
   protected dispatchValueDidChangeAction(value: string): void {
-    const block = {
-      block: {
-        id: this.blockId,
-        changes: {
+    if (this.datePickerBlock) {
+      const block = {
+        block: {
           id: this.blockId,
-          type: B2BlockType.DatePicker,
-          label: this.datePickerBlock.label,
-          value: value,
-          description: this.datePickerBlock.description,
-          required: this.datePickerBlock.required,
-          disabled: this.datePickerBlock.disabled,
-          hooks: {
-            ...this.datePickerBlock.hooks,
+          changes: {
+            id: this.blockId,
+            type: B2BlockType.DatePicker,
+            label: this.datePickerBlock.label,
+            value: value,
+            description: this.datePickerBlock.description,
+            required: this.datePickerBlock.required,
+            disabled: this.datePickerBlock.disabled,
+            hooks: {
+              ...this.datePickerBlock.hooks,
+            },
           },
         },
-      },
-      notify: true,
-    };
-    this.datePickerStore.dispatchUpdateBlock(block);
+        notify: true,
+      };
+      this.datePickerStore.dispatchUpdateBlock(block);
+    }
   }
 }

@@ -23,8 +23,8 @@ import { CheckBoxStoreService } from "./check-box-store.service";
 export class CheckBoxContainerComponent {
   @Input() blockId: number;
 
-  block$: Observable<CheckBoxBlock>;
-  checkBoxBlock: CheckBoxBlock;
+  block$: Observable<CheckBoxBlock | undefined>;
+  checkBoxBlock: CheckBoxBlock | undefined;
 
   loading$: Observable<boolean>;
 
@@ -35,7 +35,7 @@ export class CheckBoxContainerComponent {
           return block.id === this.blockId;
         });
       })
-      .map((block) => {
+      .map(block => {
         return this.checkBoxBlock = block;
       });
 
@@ -50,24 +50,26 @@ export class CheckBoxContainerComponent {
   }
 
   protected dispatchValueDidChangeAction(value: boolean): void {
-    const block = {
-      block: {
-        id: this.blockId,
-        changes: {
+    if (this.checkBoxBlock) {
+      const block = {
+        block: {
           id: this.blockId,
-          type: BlockType.CheckBox,
-          label: this.checkBoxBlock.label,
-          value: value,
-          description: this.checkBoxBlock.description,
-          required: this.checkBoxBlock.required,
-          disabled: this.checkBoxBlock.disabled,
-          hooks: {
-            ...this.checkBoxBlock.hooks,
+          changes: {
+            id: this.blockId,
+            type: BlockType.CheckBox,
+            label: this.checkBoxBlock.label,
+            value: value,
+            description: this.checkBoxBlock.description,
+            required: this.checkBoxBlock.required,
+            disabled: this.checkBoxBlock.disabled,
+            hooks: {
+              ...this.checkBoxBlock.hooks,
+            },
           },
         },
-      },
-      notify: true,
-    };
-    this.checkBoxStore.dispatchUpdateBlock(block);
+        notify: true,
+      };
+      this.checkBoxStore.dispatchUpdateBlock(block);
+    }
   }
 }

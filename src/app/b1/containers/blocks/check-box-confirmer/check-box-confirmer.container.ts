@@ -31,8 +31,8 @@ import { CheckBoxConfirmerStoreService } from "./check-box-confirmer-store.servi
 export class CheckBoxConfirmerContainerComponent implements OnDestroy {
   @Input() blockId: number;
 
-  block$: Observable<CheckBoxConfirmerBlock>;
-  checkBoxConfirmerBlock: CheckBoxConfirmerBlock;
+  block$: Observable<CheckBoxConfirmerBlock | undefined>;
+  checkBoxConfirmerBlock: CheckBoxConfirmerBlock | undefined;
 
   loading$: Observable<boolean>;
 
@@ -68,25 +68,27 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
   }
 
   protected dispatchValueDidChangeAction(value: boolean): void {
-    const block = {
-      block: {
-        id: this.blockId,
-        changes: {
+    if (this.checkBoxConfirmerBlock) {
+      const block = {
+        block: {
           id: this.blockId,
-          type: B1BlockType.CheckBoxConfirmer,
-          label: this.checkBoxConfirmerBlock.label,
-          value: value,
-          description: this.checkBoxConfirmerBlock.description,
-          required: this.checkBoxConfirmerBlock.required,
-          disabled: this.checkBoxConfirmerBlock.disabled,
-          hooks: {
-            ...this.checkBoxConfirmerBlock.hooks,
+          changes: {
+            id: this.blockId,
+            type: B1BlockType.CheckBoxConfirmer,
+            label: this.checkBoxConfirmerBlock.label,
+            value: value,
+            description: this.checkBoxConfirmerBlock.description,
+            required: this.checkBoxConfirmerBlock.required,
+            disabled: this.checkBoxConfirmerBlock.disabled,
+            hooks: {
+              ...this.checkBoxConfirmerBlock.hooks,
+            },
           },
         },
-      },
-      notify: true,
-    };
-    this.checkBoxConfirmerStore.dispatchUpdateBlock(block);
+        notify: true,
+      };
+      this.checkBoxConfirmerStore.dispatchUpdateBlock(block);
+    }
   }
 
   protected askForConfirmation(): void {

@@ -23,8 +23,8 @@ import { DropdownStoreService } from "./dropdown-store.service";
 export class DropdownContainerComponent {
   @Input() blockId: number;
 
-  block$: Observable<DropdownBlock>;
-  dropdownBlock: DropdownBlock;
+  block$: Observable<DropdownBlock | undefined>;
+  dropdownBlock: DropdownBlock | undefined;
 
   loading$: Observable<boolean>;
 
@@ -50,24 +50,26 @@ export class DropdownContainerComponent {
   }
 
   protected dispatchValueDidChangeAction(value: string): void {
-    const block = {
-      block: {
-        id: this.blockId,
-        changes: {
+    if (this.dropdownBlock) {
+      const block = {
+        block: {
           id: this.blockId,
-          type: BlockType.Dropdown,
-          label: this.dropdownBlock.label,
-          value: value,
-          choices: [...this.dropdownBlock.choices],
-          required: this.dropdownBlock.required,
-          disabled: this.dropdownBlock.disabled,
-          hooks: {
-            ...this.dropdownBlock.hooks,
+          changes: {
+            id: this.blockId,
+            type: BlockType.Dropdown,
+            label: this.dropdownBlock.label,
+            value: value,
+            choices: [...this.dropdownBlock.choices],
+            required: this.dropdownBlock.required,
+            disabled: this.dropdownBlock.disabled,
+            hooks: {
+              ...this.dropdownBlock.hooks,
+            },
           },
         },
-      },
-      notify: true,
-    };
-    this.dropdownStore.dispatchUpdateBlock(block);
+        notify: true,
+      };
+      this.dropdownStore.dispatchUpdateBlock(block);
+    }
   }
 }
