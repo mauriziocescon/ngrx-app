@@ -15,7 +15,7 @@ import * as fromInstanceDetail from "../../../../reducers";
 
 import {
   BlockListService,
-  BlockUtilsService,
+  BlockUtilsIntegrationService,
   CheckBoxActionsService,
   DropdownActionsService,
   TextInputActionsService,
@@ -64,7 +64,7 @@ describe("GenericBlockContainerComponent", () => {
         fromRoot.reducerProvider,
         fromInstanceDetail.reducerProvider,
         BlockListService,
-        BlockUtilsService,
+        BlockUtilsIntegrationService,
         CheckBoxActionsService,
         DropdownActionsService,
         TextInputActionsService,
