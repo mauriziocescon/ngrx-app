@@ -47,7 +47,7 @@ export class TextInputHooksTriggerService {
     this.textInputBlockLoadSubscription = this.textInputActions.blockLoadObservable$
       .subscribe((block: TextInputBlock) => {
         try {
-          if (this.hooks && block.hooks) {
+          if (this.hooks && block.hooks && block.hooks.textInputBlockDidLoad) {
             const textInputBlockDidLoad = this.hooks[block.hooks.textInputBlockDidLoad];
             if (textInputBlockDidLoad) {
               textInputBlockDidLoad(block, this.blockActions.getActions());
@@ -63,7 +63,7 @@ export class TextInputHooksTriggerService {
     this.textInputBlockChangesSubscription = this.textInputActions.blockChangesObservable$
       .subscribe((block: TextInputBlock) => {
         try {
-          if (this.hooks && block.hooks) {
+          if (this.hooks && block.hooks && block.hooks.textInputBlockDidChange) {
             const textInputBlockDidChange = this.hooks[block.hooks.textInputBlockDidChange];
             if (textInputBlockDidChange) {
               textInputBlockDidChange(block, this.blockActions.getActions());

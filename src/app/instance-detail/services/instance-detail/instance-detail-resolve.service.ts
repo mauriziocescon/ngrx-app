@@ -31,17 +31,19 @@ export class RulesResolve implements Resolve<string> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<string> | string {
-    const module = route.paramMap.get("module");
-    const instance = route.paramMap.get("instance");
-    const step = route.paramMap.get("step");
-    const params = {
-      module: module,
-      instance: instance,
-      step: step,
-    };
-    this.instanceParams.setInstanceParams(params);
-
-    return this.fetchRulesConfig(module, step);
+    if (route.paramMap.has("module") && route.paramMap.has("instance") && route.paramMap.has("step")) {
+      const module = route.paramMap.get("module") as string;
+      const instance = route.paramMap.get("instance") as string;
+      const step = route.paramMap.get("step") as string;
+      const params = {
+        module: module,
+        instance: instance,
+        step: step,
+      };
+      this.instanceParams.setInstanceParams(params);
+      return this.fetchRulesConfig(module, step);
+    }
+    return "";
   }
 
   fetchRulesConfig(module: string, step: string): Observable<string> {
@@ -53,7 +55,7 @@ export class RulesResolve implements Resolve<string> {
       },
     };
     return this.http.get<string>(url, options)
-      .switchMap((config) => {
+      .switchMap((config: string) => {
         this.blockHooks.setConfig(config);
         return config;
       })

@@ -47,7 +47,7 @@ export class B2DatePickerHooksTriggerService {
     this.datePickerBlockLoadSubscription = this.datePickerActions.blockLoadObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
-          if (this.hooks && block.hooks) {
+          if (this.hooks && block.hooks && block.hooks.datePickerBlockDidLoad) {
             const datePickerBlockDidLoad = this.hooks[block.hooks.datePickerBlockDidLoad];
             if (datePickerBlockDidLoad) {
               datePickerBlockDidLoad(block, this.blockActions.getActions());
@@ -63,7 +63,7 @@ export class B2DatePickerHooksTriggerService {
     this.datePickerBlockChangesSubscription = this.datePickerActions.blockChangesObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
-          if (this.hooks && block.hooks) {
+          if (this.hooks && block.hooks && block.hooks.datePickerBlockDidChange) {
             const datePickerBlockDidChange = this.hooks[block.hooks.datePickerBlockDidChange];
             if (datePickerBlockDidChange) {
               datePickerBlockDidChange(block, this.blockActions.getActions());
