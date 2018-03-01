@@ -6,7 +6,7 @@ export interface State {
   datePicker: fromDatePicker.State;
 }
 
-export const reducers: ActionReducerMap<State> = {
+export const reducers: ActionReducerMap<State, any> = {
   datePicker: fromDatePicker.reducer,
 };
 

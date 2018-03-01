@@ -25,7 +25,7 @@ export interface State extends fromRoot.State {
 // ------------ AOT
 export const TOKEN = new InjectionToken<ActionReducerMap<InstanceDetailState>>("InstanceDetailReducers");
 
-export function getReducers(): ActionReducerMap<InstanceDetailState> {
+export function getReducers(): ActionReducerMap<InstanceDetailState, any> {
   return {
     blockList: fromList.reducer,
     serverSync: fromSync.reducer,

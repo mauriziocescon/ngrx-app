@@ -10,7 +10,7 @@ export interface State {
   textInput: fromTextInput.State;
 }
 
-export const reducers: ActionReducerMap<State> = {
+export const reducers: ActionReducerMap<State, any> = {
   checkBox: fromCheckBox.reducer,
   dropdown: fromDropdown.reducer,
   textInput: fromTextInput.reducer,

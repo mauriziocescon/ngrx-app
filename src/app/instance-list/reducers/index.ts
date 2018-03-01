@@ -1,4 +1,4 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { createFeatureSelector, createSelector, ActionReducerMap } from "@ngrx/store";
 
 import * as fromRoot from "../../reducers";
 import * as fromInstanceList from "./instance-list.reducer";
@@ -11,7 +11,7 @@ export interface State extends fromRoot.State {
   instanceList: InstanceListState;
 }
 
-export const reducers = {
+export const reducers: ActionReducerMap<InstanceListState, any> = {
   instances: fromInstanceList.reducer,
 };
 
