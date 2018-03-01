@@ -1,10 +1,12 @@
+import { ActionReducerMap } from "@ngrx/store";
+
 import * as fromDatePicker from "./date-picker/date-picker.reducer";
 
 export interface State {
   datePicker: fromDatePicker.State;
 }
 
-export const reducers = {
+export const reducers: ActionReducerMap<State> = {
   datePicker: fromDatePicker.reducer,
 };
 

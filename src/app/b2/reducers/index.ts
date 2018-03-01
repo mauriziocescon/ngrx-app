@@ -20,11 +20,11 @@ export interface State extends fromRoot.State {
 // ------------ AOT
 export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>("B2EditedBlocksReducers");
 
-export const getReducers = () => {
+export function getReducers(): ActionReducerMap<B2BlocksState> {
   return {
     editedBlocks: combineReducers(fromEditedBlocks.reducers),
   };
-};
+}
 
 export const reducerProvider = [
   {provide: TOKEN, useFactory: getReducers}

@@ -1,4 +1,4 @@
-import { createSelector, createFeatureSelector } from "@ngrx/store";
+import { createSelector, createFeatureSelector, ActionReducerMap } from "@ngrx/store";
 
 import * as fromLanguage from "./language.reducer";
 import * as fromModalAlerts from "./modal-alert.reducer";
@@ -10,7 +10,7 @@ export interface CoreState {
   modalConfirmers: fromModalConfirmers.State;
 }
 
-export const reducers = {
+export const reducers: ActionReducerMap<CoreState> = {
   language: fromLanguage.reducer,
   modalAlerts: fromModalAlerts.reducer,
   modalConfirmers: fromModalConfirmers.reducer,
