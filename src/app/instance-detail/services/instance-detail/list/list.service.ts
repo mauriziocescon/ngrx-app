@@ -28,7 +28,9 @@ export class BlockListService {
 
     return this.http
       .get<Block[]>(this.appConstants.Api.blocks, options)
-      .map(data => data)
+      .map(data => data.sort((a: Block, b: Block) => {
+        return a.order - b.order;
+      }))
       .catch((err: HttpErrorResponse) => this.handleError(err));
   }
 
