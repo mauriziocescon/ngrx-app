@@ -10,7 +10,7 @@ export interface CoreState {
   modalConfirmers: fromModalConfirmers.State;
 }
 
-export const reducers: ActionReducerMap<CoreState> = {
+export const reducers: ActionReducerMap<CoreState, any> = {
   language: fromLanguage.reducer,
   modalAlerts: fromModalAlerts.reducer,
   modalConfirmers: fromModalConfirmers.reducer,
