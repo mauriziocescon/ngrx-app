@@ -7,7 +7,7 @@ export interface DatePickerBlock extends Block {
   required: boolean;
   disabled: boolean;
   valid: boolean;
-  hooks?: DatePickerBlockHooks;
+  hooks: DatePickerBlockHooks;
 }
 
 interface DatePickerBlockHooks {

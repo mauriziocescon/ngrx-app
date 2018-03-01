@@ -47,7 +47,7 @@ export class CheckBoxHooksTriggerService {
     this.checkBoxBlockLoadSubscription = this.checkBoxActions.blockLoadObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
-          if (this.hooks && block.hooks && block.hooks.checkBoxBlockDidLoad) {
+          if (this.hooks && block.hooks.checkBoxBlockDidLoad) {
             const checkBoxBlockDidLoad = this.hooks[block.hooks.checkBoxBlockDidLoad];
             if (checkBoxBlockDidLoad) {
               checkBoxBlockDidLoad(block, this.blockActions.getActions());
@@ -63,7 +63,7 @@ export class CheckBoxHooksTriggerService {
     this.checkBoxBlockChangesSubscription = this.checkBoxActions.blockChangesObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
-          if (this.hooks && block.hooks && block.hooks.checkBoxBlockDidChange) {
+          if (this.hooks && block.hooks.checkBoxBlockDidChange) {
             const checkBoxBlockDidChange = this.hooks[block.hooks.checkBoxBlockDidChange];
             if (checkBoxBlockDidChange) {
               checkBoxBlockDidChange(block, this.blockActions.getActions());

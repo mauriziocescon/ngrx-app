@@ -8,7 +8,7 @@ export interface TextInputBlock extends Block {
   maxLength?: number;
   disabled: boolean;
   valid: boolean;
-  hooks?: TextInputBlockHooks;
+  hooks: TextInputBlockHooks;
 }
 
 interface TextInputBlockHooks {

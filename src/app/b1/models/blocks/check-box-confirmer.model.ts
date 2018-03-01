@@ -7,7 +7,7 @@ export interface CheckBoxConfirmerBlock extends Block {
   required: boolean;
   disabled: boolean;
   valid: boolean;
-  hooks?: CheckBoxConfirmerBlockHooks;
+  hooks: CheckBoxConfirmerBlockHooks;
 }
 
 interface CheckBoxConfirmerBlockHooks {

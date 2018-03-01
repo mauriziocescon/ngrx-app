@@ -47,7 +47,7 @@ export class DropdownHooksTriggerService {
     this.dropdownBlockLoadSubscription = this.dropdownActions.blockLoadObservable$
       .subscribe((block: DropdownBlock) => {
         try {
-          if (this.hooks && block.hooks && block.hooks.dropdownBlockDidLoad) {
+          if (this.hooks && block.hooks.dropdownBlockDidLoad) {
             const dropdownBlockDidLoad = this.hooks[block.hooks.dropdownBlockDidLoad];
             if (dropdownBlockDidLoad) {
               dropdownBlockDidLoad(block, this.blockActions.getActions());
@@ -63,7 +63,7 @@ export class DropdownHooksTriggerService {
     this.dropdownBlockChangesSubscription = this.dropdownActions.blockChangesObservable$
       .subscribe((block: DropdownBlock) => {
         try {
-          if (this.hooks && block.hooks && block.hooks.dropdownBlockDidChange) {
+          if (this.hooks && block.hooks.dropdownBlockDidChange) {
             const dropdownBlockDidChange = this.hooks[block.hooks.dropdownBlockDidChange];
             if (dropdownBlockDidChange) {
               dropdownBlockDidChange(block, this.blockActions.getActions());
