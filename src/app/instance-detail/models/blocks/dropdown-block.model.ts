@@ -2,7 +2,7 @@ import { Block } from "../block.model";
 
 export interface DropdownBlock extends Block {
   label: string;
-  value: string;
+  value?: string;
   choices: string[];
   required: boolean;
   disabled: boolean;

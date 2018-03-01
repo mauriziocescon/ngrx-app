@@ -2,7 +2,7 @@ import { Block } from "../../../instance-detail/instance-detail.module";
 
 export interface DatePickerBlock extends Block {
   label: string;
-  value: string;
+  value?: string;
   description: string;
   required: boolean;
   disabled: boolean;

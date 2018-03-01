@@ -26,12 +26,14 @@ export class DatePickerComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.selectedDate = this.fromModel(new Date(this.block.value));
+    const date = this.block.value ? new Date(this.block.value) : new Date();
+    this.selectedDate = this.fromModel(date);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.block.isFirstChange()) {
-      this.selectedDate = this.fromModel(new Date(this.block.value));
+      const date = this.block.value ? new Date(this.block.value) : new Date();
+      this.selectedDate = this.fromModel(date);
     }
   }
 
@@ -40,10 +42,10 @@ export class DatePickerComponent implements OnInit, OnChanges {
   }
 
   protected fromModel(date: Date): NgbDateStruct {
-    return (date && date.getFullYear) ? {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()} : null;
+    return {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()};
   }
 
   protected toModel(date: NgbDateStruct): Date {
-    return date ? new Date(date.year, date.month - 1, date.day) : null;
+    return new Date(date.year, date.month - 1, date.day);
   }
 }
