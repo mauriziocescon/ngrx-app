@@ -8,7 +8,7 @@ import {
 import { CheckBoxConfirmerBlock } from "../../../models";
 
 export interface State extends EntityState<CheckBoxConfirmerBlock> {
-  checkBoxConfirmerBlocksLoading: {[id: string]: boolean};
+  checkBoxConfirmerBlocksLoading: { [id: string]: boolean };
 }
 
 export const adapter: EntityAdapter<CheckBoxConfirmerBlock> = createEntityAdapter<CheckBoxConfirmerBlock>({
@@ -65,7 +65,8 @@ export const {
 export const getCheckBoxConfirmerBlocksValidityState = createSelector(
   getCheckBoxConfirmerIds,
   getCheckBoxConfirmerEntities,
-  (ids: string[], blocksEntities: {[id: string]: any}) => {
+  (ids: string[] | number[], blocksEntities: { [id: string]: CheckBoxConfirmerBlock }) => {
+    ids = ids as string[];
     return ids.findIndex((id: string) => {
       return blocksEntities[id].valid === false;
     }) === -1;

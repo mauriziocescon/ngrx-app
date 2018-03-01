@@ -2,9 +2,9 @@ import { InstanceListActionTypes, InstanceListActions } from "../actions/instanc
 import { Instance } from "../models";
 
 export interface State {
-  fetchedInstances: Instance[];
+  fetchedInstances: Instance[] | undefined;
   fetchLoading: boolean;
-  fetchError: string;
+  fetchError: string | undefined;
 }
 
 const initialState: State = {

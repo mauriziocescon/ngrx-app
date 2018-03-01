@@ -5,7 +5,7 @@ import { DropdownActionTypes, DropdownActions } from "../../../../actions/list/b
 import { DropdownBlock } from "../../../../models";
 
 export interface State extends EntityState<DropdownBlock> {
-  dropdownBlocksLoading: {[id: string]: boolean};
+  dropdownBlocksLoading: { [id: string]: boolean };
 }
 
 export const adapter: EntityAdapter<DropdownBlock> = createEntityAdapter<DropdownBlock>({
@@ -62,7 +62,8 @@ export const {
 export const getDropdownBlocksValidityState = createSelector(
   getDropdownIds,
   getDropdownEntities,
-  (ids: string[], blocksEntities: {[id: string]: any}) => {
+  (ids: string[] | number[], blocksEntities: { [id: string]: DropdownBlock }) => {
+    ids = ids as string[];
     return ids.findIndex((id: string) => {
       return blocksEntities[id].valid === false;
     }) === -1;

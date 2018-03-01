@@ -17,7 +17,7 @@ export class ListStoreService {
   constructor(protected store$: Store<fromInstanceDetail.State>) {
   }
 
-  getFetchedBlocks(): Observable<Block[]> {
+  getFetchedBlocks(): Observable<Block[] | undefined> {
     return this.store$.select(fromInstanceDetail.getFetchedBlocksState);
   }
 

@@ -5,7 +5,7 @@ import { TextInputActionTypes, TextInputActions } from "../../../../actions/list
 import { TextInputBlock } from "../../../../models";
 
 export interface State extends EntityState<TextInputBlock> {
-  textInputBlocksLoading: {[id: string]: boolean};
+  textInputBlocksLoading: { [id: string]: boolean };
 }
 
 export const adapter: EntityAdapter<TextInputBlock> = createEntityAdapter<TextInputBlock>({
@@ -62,7 +62,8 @@ export const {
 export const getTextInputBlocksValidityState = createSelector(
   getTextInputIds,
   getTextInputEntities,
-  (ids: string[], blocksEntities: {[id: string]: any}) => {
+  (ids: string[] | number[], blocksEntities: { [id: string]: TextInputBlock }) => {
+    ids = ids as string[];
     return ids.findIndex((id: string) => {
       return blocksEntities[id].valid === false;
     }) === -1;

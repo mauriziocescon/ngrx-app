@@ -5,7 +5,7 @@ import { CheckBoxActionTypes, CheckBoxActions } from "../../../../actions/list/b
 import { CheckBoxBlock } from "../../../../models";
 
 export interface State extends EntityState<CheckBoxBlock> {
-  checkBoxBlocksLoading: {[id: string]: boolean};
+  checkBoxBlocksLoading: { [id: string]: boolean };
 }
 
 export const adapter: EntityAdapter<CheckBoxBlock> = createEntityAdapter<CheckBoxBlock>({
@@ -62,7 +62,8 @@ export const {
 export const getCheckBoxBlocksValidityState = createSelector(
   getCheckBoxIds,
   getCheckBoxEntities,
-  (ids: string[], blocksEntities: {[id: string]: any}) => {
+  (ids: string[] | number[], blocksEntities: { [id: string]: CheckBoxBlock }) => {
+    ids = ids as string[];
     return ids.findIndex((id: string) => {
       return blocksEntities[id].valid === false;
     }) === -1;

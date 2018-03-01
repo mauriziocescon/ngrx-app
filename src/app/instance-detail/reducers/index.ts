@@ -117,7 +117,7 @@ export const getUpdateBlocksInstanceState = createSelector(
   getUpdateBlocksForModuleState,
   getUpdateBlocksForInstanceState,
   getUpdateBlocksForStepState,
-  (module: string, instance: string, step: string) => {
+  (module: string | undefined, instance: string | undefined, step: string | undefined) => {
     return {
       module: module,
       instance: instance,

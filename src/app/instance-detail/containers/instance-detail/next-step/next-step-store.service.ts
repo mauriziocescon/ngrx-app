@@ -21,7 +21,7 @@ export class NextStepStoreService {
     return this.store$.select(fromInstanceDetail.isSynchronizationRequiredState);
   }
 
-  getSyncRequiredWithTimestamp(): Observable<{ syncRequired: boolean, timestamp: number }> {
+  getSyncRequiredWithTimestamp(): Observable<{ syncRequired: boolean, timestamp: number | undefined }> {
     return this.store$.select(fromInstanceDetail.isSynchronizationRequiredWithTimestampState);
   }
 
