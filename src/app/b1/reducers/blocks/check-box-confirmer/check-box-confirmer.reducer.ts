@@ -14,7 +14,7 @@ export interface State extends EntityState<CheckBoxConfirmerBlock> {
 export const adapter: EntityAdapter<CheckBoxConfirmerBlock> = createEntityAdapter<CheckBoxConfirmerBlock>({
   selectId: (block: CheckBoxConfirmerBlock) => block.id,
   sortComparer: (a: CheckBoxConfirmerBlock, b: CheckBoxConfirmerBlock) => {
-    return a.id - b.id;
+    return a.order - b.order;
   },
 });
 
@@ -65,8 +65,8 @@ export const {
 export const getCheckBoxConfirmerBlocksValidityState = createSelector(
   getCheckBoxConfirmerIds,
   getCheckBoxConfirmerEntities,
-  (ids: number[], blocksEntities: {[id: string]: any}) => {
-    return ids.findIndex((id: number) => {
+  (ids: string[], blocksEntities: {[id: string]: any}) => {
+    return ids.findIndex((id: string) => {
       return blocksEntities[id].valid === false;
     }) === -1;
   }

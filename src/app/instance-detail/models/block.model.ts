@@ -1,6 +1,7 @@
 import { BlockType } from "./block-types";
 
 export interface Block {
-  id: number;
+  id: string;
   type: BlockType;
+  order: number;
 }

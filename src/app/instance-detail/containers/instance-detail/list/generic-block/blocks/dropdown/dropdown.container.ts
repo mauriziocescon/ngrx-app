@@ -21,7 +21,7 @@ import { DropdownStoreService } from "./dropdown-store.service";
     </cp-dropdown>`,
 })
 export class DropdownContainerComponent {
-  @Input() blockId: number;
+  @Input() blockId: string;
 
   block$: Observable<DropdownBlock | undefined>;
   dropdownBlock: DropdownBlock | undefined;
@@ -57,6 +57,7 @@ export class DropdownContainerComponent {
           changes: {
             id: this.blockId,
             type: BlockType.Dropdown,
+            order: this.dropdownBlock.order,
             label: this.dropdownBlock.label,
             value: value,
             choices: [...this.dropdownBlock.choices],

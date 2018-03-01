@@ -11,7 +11,7 @@ export interface State extends EntityState<TextInputBlock> {
 export const adapter: EntityAdapter<TextInputBlock> = createEntityAdapter<TextInputBlock>({
   selectId: (block: TextInputBlock) => block.id,
   sortComparer: (a: TextInputBlock, b: TextInputBlock) => {
-    return a.id - b.id;
+    return a.order - b.order;
   },
 });
 
@@ -62,8 +62,8 @@ export const {
 export const getTextInputBlocksValidityState = createSelector(
   getTextInputIds,
   getTextInputEntities,
-  (ids: number[], blocksEntities: {[id: string]: any}) => {
-    return ids.findIndex((id: number) => {
+  (ids: string[], blocksEntities: {[id: string]: any}) => {
+    return ids.findIndex((id: string) => {
       return blocksEntities[id].valid === false;
     }) === -1;
   }

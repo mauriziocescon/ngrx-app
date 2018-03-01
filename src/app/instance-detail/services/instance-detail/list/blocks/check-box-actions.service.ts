@@ -27,13 +27,13 @@ export class CheckBoxActionsService {
 
   getCheckBoxActions(): CheckBoxActions {
     return {
-      changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
-      setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),
-      setValueForBlockId: (value: boolean, blockId: number) => this.setValueForBlockId(value, blockId),
-      setDescriptionForBlockId: (description: string, blockId: number) => this.setDescriptionForBlockId(description, blockId),
-      setRequiredForBlockId: (required: boolean, blockId: number) => this.setRequiredForBlockId(required, blockId),
-      setDisabledForBlockId: (disabled: boolean, blockId: number) => this.setDisabledForBlockId(disabled, blockId),
-      setValidityForBlockId: (valid: boolean, blockId: number) => this.setValidityForBlockId(valid, blockId),
+      changeLoading: (loading: boolean, blockId: string) => this.changeLoading(loading, blockId),
+      setLabelForBlockId: (label: string, blockId: string) => this.setLabelForBlockId(label, blockId),
+      setValueForBlockId: (value: boolean, blockId: string) => this.setValueForBlockId(value, blockId),
+      setDescriptionForBlockId: (description: string, blockId: string) => this.setDescriptionForBlockId(description, blockId),
+      setRequiredForBlockId: (required: boolean, blockId: string) => this.setRequiredForBlockId(required, blockId),
+      setDisabledForBlockId: (disabled: boolean, blockId: string) => this.setDisabledForBlockId(disabled, blockId),
+      setValidityForBlockId: (valid: boolean, blockId: string) => this.setValidityForBlockId(valid, blockId),
     };
   }
 
@@ -46,7 +46,7 @@ export class CheckBoxActionsService {
     this.blockChangesSubject$.next(newBlock);
   }
 
-  changeLoading(loading: boolean, blockId: number): void {
+  changeLoading(loading: boolean, blockId: string): void {
     const newLoading = {
       id: blockId,
       loading: loading,
@@ -59,7 +59,7 @@ export class CheckBoxActionsService {
     this.store$.dispatch(new checkBox.UpdateBlock(newBlock));
   }
 
-  setLabelForBlockId(label: string, blockId: number): void {
+  setLabelForBlockId(label: string, blockId: string): void {
     const newBlock: Update<CheckBoxBlock> = {
       id: blockId,
       changes: {
@@ -71,7 +71,7 @@ export class CheckBoxActionsService {
     this.dispatchUpdate(newBlock);
   }
 
-  setValueForBlockId(value: boolean, blockId: number): void {
+  setValueForBlockId(value: boolean, blockId: string): void {
     const newBlock: Update<CheckBoxBlock> = {
       id: blockId,
       changes: {
@@ -83,7 +83,7 @@ export class CheckBoxActionsService {
     this.dispatchUpdate(newBlock);
   }
 
-  setDescriptionForBlockId(description: string, blockId: number): void {
+  setDescriptionForBlockId(description: string, blockId: string): void {
     const newBlock: Update<CheckBoxBlock> = {
       id: blockId,
       changes: {
@@ -95,7 +95,7 @@ export class CheckBoxActionsService {
     this.dispatchUpdate(newBlock);
   }
 
-  setRequiredForBlockId(required: boolean, blockId: number): void {
+  setRequiredForBlockId(required: boolean, blockId: string): void {
     const newBlock: Update<CheckBoxBlock>= {
       id: blockId,
       changes: {
@@ -107,7 +107,7 @@ export class CheckBoxActionsService {
     this.dispatchUpdate(newBlock);
   }
 
-  setDisabledForBlockId(disabled: boolean, blockId: number): void {
+  setDisabledForBlockId(disabled: boolean, blockId: string): void {
     const newBlock: Update<CheckBoxBlock> = {
       id: blockId,
       changes: {
@@ -119,7 +119,7 @@ export class CheckBoxActionsService {
     this.dispatchUpdate(newBlock);
   }
 
-  setValidityForBlockId(valid: boolean, blockId: number): void {
+  setValidityForBlockId(valid: boolean, blockId: string): void {
     const newBlock: Update<CheckBoxBlock> = {
       id: blockId,
       changes: {

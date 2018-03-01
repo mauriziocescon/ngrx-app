@@ -2,7 +2,7 @@ import { SyncActionTypes, SyncActions } from "../../actions/list/sync.actions";
 
 export interface State {
   syncRequired: boolean;
-  timestamp: number;
+  timestamp: number | undefined;
 }
 
 const initialState: State = {

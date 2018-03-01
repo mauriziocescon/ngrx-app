@@ -23,7 +23,7 @@ import { DatePickerStoreService } from "./date-picker-store";
     </cp-date-picker>`,
 })
 export class DatePickerContainerComponent {
-  @Input() blockId: number;
+  @Input() blockId: string;
 
   block$: Observable<DatePickerBlock | undefined>;
   datePickerBlock: DatePickerBlock | undefined;
@@ -60,6 +60,7 @@ export class DatePickerContainerComponent {
           changes: {
             id: this.blockId,
             type: B2BlockType.DatePicker,
+            order: this.datePickerBlock.order,
             label: this.datePickerBlock.label,
             value: value,
             description: this.datePickerBlock.description,

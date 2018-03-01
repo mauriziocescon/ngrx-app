@@ -27,12 +27,12 @@ export class B2DatePickerActionsService {
 
   getDatePickerActions(): DatePickerActions {
     return {
-      changeLoading: (loading: boolean, blockId: number) => this.changeLoading(loading, blockId),
-      setLabelForBlockId: (label: string, blockId: number) => this.setLabelForBlockId(label, blockId),
-      setValueForBlockId: (value: string, blockId: number) => this.setValueForBlockId(value, blockId),
-      setRequiredForBlockId: (required: boolean, blockId: number) => this.setRequiredForBlockId(required, blockId),
-      setDisabledForBlockId: (disabled: boolean, blockId: number) => this.setDisabledForBlockId(disabled, blockId),
-      setValidityForBlockId: (valid: boolean, blockId: number) => this.setValidityForBlockId(valid, blockId),
+      changeLoading: (loading: boolean, blockId: string) => this.changeLoading(loading, blockId),
+      setLabelForBlockId: (label: string, blockId: string) => this.setLabelForBlockId(label, blockId),
+      setValueForBlockId: (value: string, blockId: string) => this.setValueForBlockId(value, blockId),
+      setRequiredForBlockId: (required: boolean, blockId: string) => this.setRequiredForBlockId(required, blockId),
+      setDisabledForBlockId: (disabled: boolean, blockId: string) => this.setDisabledForBlockId(disabled, blockId),
+      setValidityForBlockId: (valid: boolean, blockId: string) => this.setValidityForBlockId(valid, blockId),
     };
   }
 
@@ -45,7 +45,7 @@ export class B2DatePickerActionsService {
     this.blockChangesSubject$.next(newBlock);
   }
 
-  changeLoading(loading: boolean, blockId: number): void {
+  changeLoading(loading: boolean, blockId: string): void {
     const newLoading = {
       id: blockId,
       loading: loading,
@@ -58,7 +58,7 @@ export class B2DatePickerActionsService {
     this.store$.dispatch(new datePicker.UpdateBlock(newBlock));
   }
 
-  setLabelForBlockId(label: string, blockId: number): void {
+  setLabelForBlockId(label: string, blockId: string): void {
     const newBlock: Update<DatePickerBlock> = {
       id: blockId,
       changes: {
@@ -70,7 +70,7 @@ export class B2DatePickerActionsService {
     this.dispatchUpdate(newBlock);
   }
 
-  setValueForBlockId(value: string, blockId: number): void {
+  setValueForBlockId(value: string, blockId: string): void {
     const newBlock: Update<DatePickerBlock> = {
       id: blockId,
       changes: {
@@ -82,7 +82,7 @@ export class B2DatePickerActionsService {
     this.dispatchUpdate(newBlock);
   }
 
-  setRequiredForBlockId(required: boolean, blockId: number): void {
+  setRequiredForBlockId(required: boolean, blockId: string): void {
     const newBlock: Update<DatePickerBlock> = {
       id: blockId,
       changes: {
@@ -94,7 +94,7 @@ export class B2DatePickerActionsService {
     this.dispatchUpdate(newBlock);
   }
 
-  setDisabledForBlockId(disabled: boolean, blockId: number): void {
+  setDisabledForBlockId(disabled: boolean, blockId: string): void {
     const newBlock: Update<DatePickerBlock> = {
       id: blockId,
       changes: {
@@ -106,7 +106,7 @@ export class B2DatePickerActionsService {
     this.dispatchUpdate(newBlock);
   }
 
-  setValidityForBlockId(valid: boolean, blockId: number): void {
+  setValidityForBlockId(valid: boolean, blockId: string): void {
     const newBlock: Update<DatePickerBlock> = {
       id: blockId,
       changes: {

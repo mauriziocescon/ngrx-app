@@ -21,7 +21,7 @@ import { TextInputStoreService } from "./text-input-store.service";
     </cp-text-input>`,
 })
 export class TextInputContainerComponent {
-  @Input() blockId: number;
+  @Input() blockId: string;
 
   block$: Observable<TextInputBlock | undefined>;
   textInputBlock: TextInputBlock | undefined;
@@ -57,6 +57,7 @@ export class TextInputContainerComponent {
           changes: {
             id: this.blockId,
             type: BlockType.TextInput,
+            order: this.textInputBlock.order,
             label: this.textInputBlock.label,
             value: value,
             required: this.textInputBlock.required,

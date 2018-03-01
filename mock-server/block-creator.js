@@ -1,12 +1,13 @@
 const faker = require("faker");
 
-const getCheckBox = function(index) {
+const getCheckBox = function(id) {
   const value = faker.random.boolean() ? true : undefined;
   const required = faker.random.boolean();
 
   let checkBox = {
-    id: index,
+    id: id,
     type: "check-box",
+    order: parseInt(id),
     label: "COMPONENT.CHECK_BOX.CHECK_BOX_LABEL",
     value: value,
     description: "COMPONENT.CHECK_BOX.CHECK_BOX_DESC",
@@ -22,13 +23,14 @@ const getCheckBox = function(index) {
   return checkBox;
 };
 
-const getDropdown = function(index) {
+const getDropdown = function(id) {
   const value = faker.random.boolean() ? "1" : undefined;
   const required = faker.random.boolean();
 
   let dropdown = {
-    id: index,
+    id: id,
     type: "dropdown",
+    order: parseInt(id),
     label: "COMPONENT.DROPDOWN.DROPDOWN_LABEL",
     value: value,
     choices: ["1", "2", "3"],
@@ -44,15 +46,16 @@ const getDropdown = function(index) {
   return dropdown;
 };
 
-const getTextInput = function(index) {
+const getTextInput = function(id) {
   const value = faker.random.boolean() ? faker.lorem.words(faker.random.number(5)) : undefined;
   const required = faker.random.boolean();
   const minLength = required && faker.random.boolean() ? faker.random.number(5) : undefined;
   const maxLength = required && faker.random.boolean() ? faker.random.number({min: 5, max: 10}) : undefined;
 
   let textInput = {
-    id: index,
+    id: id,
     type: "text-input",
+    order: parseInt(id),
     label: "COMPONENT.TEXT_INPUT.TEXT_INPUT_LABEL",
     value: value,
     disabled: false,
@@ -84,13 +87,14 @@ const getTextInput = function(index) {
   return textInput;
 };
 
-const getCheckBoxConfirmer = function(index) {
+const getCheckBoxConfirmer = function(id) {
   const value = faker.random.boolean() ? true : undefined;
   const required = faker.random.boolean();
 
   let checkBoxConfirmer = {
-    id: index,
+    id: id,
     type: "check-box-confirmer",
+    order: parseInt(id),
     label: "COMPONENT.CHECK_BOX_CONFIRMER.CHECK_BOX_CONFIRMER_LABEL",
     value: value,
     description: "COMPONENT.CHECK_BOX_CONFIRMER.CHECK_BOX_CONFIRMER_DESC",
@@ -106,13 +110,14 @@ const getCheckBoxConfirmer = function(index) {
   return checkBoxConfirmer;
 };
 
-const getDatePicker = function(index) {
+const getDatePicker = function(id) {
   const value = faker.date.future().toISOString();
   const required = faker.random.boolean();
 
   let datePicker = {
-    id: index,
+    id: id,
     type: "date-picker",
+    order: parseInt(id),
     label: "COMPONENT.DATE_PICKER.DATE_PICKER_LABEL",
     value: value,
     disabled: false,
@@ -127,66 +132,67 @@ const getDatePicker = function(index) {
   return datePicker;
 };
 
-const getUnknownComponent = function(index) {
+const getUnknownComponent = function(id) {
   return {
-    id: index,
+    id: id,
     type: "unknown",
+    order: parseInt(id),
   };
 };
 
-exports.getRandomBlock = function(index) {
+exports.getRandomBlock = function(id) {
   const choice = Math.random();
 
   if (choice < 0.05) {
-    return getUnknownComponent(index);
+    return getUnknownComponent(id);
   }
   else if (choice < 0.35) {
-    return getCheckBox(index);
+    return getCheckBox(id);
   }
   else if (choice < 0.66) {
-    return getDropdown(index);
+    return getDropdown(id);
   }
   else {
-    return getTextInput(index);
+    return getTextInput(id);
   }
 };
 
-exports.getRandomB1Block = function(index) {
+exports.getRandomB1Block = function(id) {
   const choice = Math.random();
 
   if (choice < 0.05) {
-    return getUnknownComponent(index);
+    return getUnknownComponent(id);
   }
   else if (choice < 0.25) {
-    return getCheckBox(index);
+    return getCheckBox(id);
   }
   else if (choice < 0.50) {
-    return getDropdown(index);
+    return getDropdown(id);
   }
   else if (choice < 0.75) {
-    return getTextInput(index);
+    return getTextInput(id);
   }
   else {
-    return getCheckBoxConfirmer(index);
+    return getCheckBoxConfirmer(id);
   }
 };
 
-exports.getRandomB2Block = function(index) {
+exports.getRandomB2Block = function(id) {
   const choice = Math.random();
 
   if (choice < 0.05) {
-    return getUnknownComponent(index);
+    return getUnknownComponent(id);
   }
   else if (choice < 0.25) {
-    return getCheckBox(index);
+    return getCheckBox(id);
   }
   else if (choice < 0.50) {
-    return getDropdown(index);
+    return getDropdown(id);
   }
   else if (choice < 0.75) {
-    return getTextInput(index);
+    return getTextInput(id);
   }
   else {
-    return getDatePicker(index);
+    return getDatePicker(id);
   }
 };

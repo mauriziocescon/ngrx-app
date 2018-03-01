@@ -2,14 +2,14 @@ import { ListActionTypes, ListActions } from "../../actions/list/list.actions";
 import { Block } from "../../models";
 
 export interface State {
-  fetchedBlocks: Block[];
+  fetchedBlocks: Block[] | undefined;
   fetchLoading: boolean;
   fetchError: string | undefined;
 
-  updateBlocksForModule: string;
-  updateBlocksForInstance: string;
-  updateBlocksForStep: string;
-  updateBlocks: Block[];
+  updateBlocksForModule: string | undefined;
+  updateBlocksForInstance: string | undefined;
+  updateBlocksForStep: string | undefined;
+  updateBlocks: Block[] | undefined;
   updateLoading: boolean;
   updateError: string | undefined;
 }

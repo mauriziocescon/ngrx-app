@@ -21,7 +21,7 @@ import { CheckBoxStoreService } from "./check-box-store.service";
     </cp-check-box>`,
 })
 export class CheckBoxContainerComponent {
-  @Input() blockId: number;
+  @Input() blockId: string;
 
   block$: Observable<CheckBoxBlock | undefined>;
   checkBoxBlock: CheckBoxBlock | undefined;
@@ -57,6 +57,7 @@ export class CheckBoxContainerComponent {
           changes: {
             id: this.blockId,
             type: BlockType.CheckBox,
+            order: this.checkBoxBlock.order,
             label: this.checkBoxBlock.label,
             value: value,
             description: this.checkBoxBlock.description,

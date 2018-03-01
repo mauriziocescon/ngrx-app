@@ -39,7 +39,7 @@ export class ListComponent {
   }
 
   trackByBlock(index: number, block: Block): number {
-    return block.id;
+    return parseInt(block.id);
   }
 
   loadList(): void {

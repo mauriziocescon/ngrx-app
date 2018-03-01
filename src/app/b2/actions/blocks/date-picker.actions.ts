@@ -13,7 +13,7 @@ export enum DatePickerActionTypes {
 export class Loading implements Action {
   readonly type = DatePickerActionTypes.LOADING;
 
-  constructor(public payload: { id: number, loading: boolean }) {
+  constructor(public payload: { id: string, loading: boolean }) {
   }
 }
 

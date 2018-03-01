@@ -22,42 +22,42 @@ function main() {
     let instance;
 
     // module b1
-    instance = {id: 0, module: "b1", instance: "1", step: "1", blocks: []};
+    instance = {id: "0", module: "b1", instance: "1", step: "1", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(blockCreator.getRandomB1Block(i));
+      instance.blocks.push(blockCreator.getRandomB1Block(i.toString()));
     }
     data.instances.push(instance);
 
-    instance = {id: 1, module: "b1", instance: "1", step: "2", blocks: []};
+    instance = {id: "1", module: "b1", instance: "1", step: "2", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(blockCreator.getRandomB1Block(i));
+      instance.blocks.push(blockCreator.getRandomB1Block(i.toString()));
     }
     data.instances.push(instance);
 
     // module b2
-    instance = {id: 2, module: "b2", instance: "1", step: "1", blocks: []};
+    instance = {id: "2", module: "b2", instance: "1", step: "1", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(blockCreator.getRandomB2Block(i));
+      instance.blocks.push(blockCreator.getRandomB2Block(i.toString()));
     }
     data.instances.push(instance);
 
-    instance = {id: 3, module: "b2", instance: "1", step: "2", blocks: []};
+    instance = {id: "3", module: "b2", instance: "1", step: "2", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(blockCreator.getRandomB2Block(i));
+      instance.blocks.push(blockCreator.getRandomB2Block(i.toString()));
     }
     data.instances.push(instance);
 
     // module b3
-    instance = {id: 4, module: "b3", instance: "1", step: "1", blocks: []};
+    instance = {id: "4", module: "b3", instance: "1", step: "1", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(blockCreator.getRandomBlock(i));
+      instance.blocks.push(blockCreator.getRandomBlock(i.toString()));
     }
     data.instances.push(instance);
 
     // module b4
-    instance = {id: 5, module: "b4", instance: "1", step: "1", blocks: []};
+    instance = {id: "5", module: "b4", instance: "1", step: "1", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(blockCreator.getRandomBlock(i));
+      instance.blocks.push(blockCreator.getRandomBlock(i.toString()));
     }
     data.instances.push(instance);
 

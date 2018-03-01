@@ -11,7 +11,7 @@ export interface State extends EntityState<CheckBoxBlock> {
 export const adapter: EntityAdapter<CheckBoxBlock> = createEntityAdapter<CheckBoxBlock>({
   selectId: (block: CheckBoxBlock) => block.id,
   sortComparer: (a: CheckBoxBlock, b: CheckBoxBlock) => {
-    return a.id - b.id;
+    return a.order - b.order;
   },
 });
 
@@ -62,8 +62,8 @@ export const {
 export const getCheckBoxBlocksValidityState = createSelector(
   getCheckBoxIds,
   getCheckBoxEntities,
-  (ids: number[], blocksEntities: {[id: string]: any}) => {
-    return ids.findIndex((id: number) => {
+  (ids: string[], blocksEntities: {[id: string]: any}) => {
+    return ids.findIndex((id: string) => {
       return blocksEntities[id].valid === false;
     }) === -1;
   }

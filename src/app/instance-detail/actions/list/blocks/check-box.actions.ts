@@ -13,7 +13,7 @@ export enum CheckBoxActionTypes {
 export class Loading implements Action {
   readonly type = CheckBoxActionTypes.LOADING;
 
-  constructor(public payload: { id: number, loading: boolean }) {
+  constructor(public payload: { id: string, loading: boolean }) {
   }
 }
 

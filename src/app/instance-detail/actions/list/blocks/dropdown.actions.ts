@@ -13,7 +13,7 @@ export enum DropdownActionTypes {
 export class Loading implements Action {
   readonly type = DropdownActionTypes.LOADING;
 
-  constructor(public payload: { id: number, loading: boolean }) {
+  constructor(public payload: { id: string, loading: boolean }) {
   }
 }
 

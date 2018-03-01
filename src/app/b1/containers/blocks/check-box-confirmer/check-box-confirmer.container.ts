@@ -29,7 +29,7 @@ import { CheckBoxConfirmerStoreService } from "./check-box-confirmer-store.servi
     </cp-check-box-confirmer>`,
 })
 export class CheckBoxConfirmerContainerComponent implements OnDestroy {
-  @Input() blockId: number;
+  @Input() blockId: string;
 
   block$: Observable<CheckBoxConfirmerBlock | undefined>;
   checkBoxConfirmerBlock: CheckBoxConfirmerBlock | undefined;
@@ -75,6 +75,7 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
           changes: {
             id: this.blockId,
             type: B1BlockType.CheckBoxConfirmer,
+            order: this.checkBoxConfirmerBlock.order,
             label: this.checkBoxConfirmerBlock.label,
             value: value,
             description: this.checkBoxConfirmerBlock.description,

@@ -13,7 +13,7 @@ export enum TextInputActionTypes {
 export class Loading implements Action {
   readonly type = TextInputActionTypes.LOADING;
 
-  constructor(public payload: { id: number, loading: boolean }) {
+  constructor(public payload: { id: string, loading: boolean }) {
   }
 }
 

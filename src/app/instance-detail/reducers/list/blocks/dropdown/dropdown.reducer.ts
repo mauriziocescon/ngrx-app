@@ -11,7 +11,7 @@ export interface State extends EntityState<DropdownBlock> {
 export const adapter: EntityAdapter<DropdownBlock> = createEntityAdapter<DropdownBlock>({
   selectId: (block: DropdownBlock) => block.id,
   sortComparer: (a: DropdownBlock, b: DropdownBlock) => {
-    return a.id - b.id;
+    return a.order - b.order;
   },
 });
 
@@ -62,8 +62,8 @@ export const {
 export const getDropdownBlocksValidityState = createSelector(
   getDropdownIds,
   getDropdownEntities,
-  (ids: number[], blocksEntities: {[id: string]: any}) => {
-    return ids.findIndex((id: number) => {
+  (ids: string[], blocksEntities: {[id: string]: any}) => {
+    return ids.findIndex((id: string) => {
       return blocksEntities[id].valid === false;
     }) === -1;
   }
