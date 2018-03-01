@@ -27,6 +27,7 @@ export class B2BlockHooksService implements IBlockHooks {
   }
 
   getSetOfHooks(config: string): any {
-    return setOfRules[config] ? setOfRules[config] : {};
+    const hooks = setOfRules[config] as any;
+    return hooks ? hooks : {};
   }
 }
