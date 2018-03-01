@@ -4,7 +4,7 @@ import { ModalConfirmerActionTypes, ModalConfirmerActions } from "../actions/mod
 import { ModalConfirmer, ModalConfirmerResultType } from "../models";
 
 export interface State extends EntityState<ModalConfirmer> {
-  modalConfirmerResults: { [id: string]: ModalConfirmerResultType };
+  modalConfirmerResults: { [id: string]: ModalConfirmerResultType | undefined };
 }
 
 export const adapter: EntityAdapter<ModalConfirmer> = createEntityAdapter<ModalConfirmer>({

@@ -54,8 +54,9 @@ describe("TextInputComponent", () => {
     fixture = TestBed.createComponent(TextInputComponent);
     component = fixture.componentInstance;
     component.block = {
-      id: 1,
+      id: "1",
       type: BlockType.TextInput,
+      order: 1,
       label: "",
       value: "45",
       required: true,

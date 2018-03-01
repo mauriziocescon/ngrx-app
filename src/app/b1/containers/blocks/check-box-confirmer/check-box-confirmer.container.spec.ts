@@ -72,7 +72,7 @@ describe("CheckBoxConfirmerComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckBoxConfirmerContainerComponent);
     component = fixture.componentInstance;
-    component.blockId = 1;
+    component.blockId = "1";
     fixture.detectChanges();
   });
 

@@ -71,7 +71,7 @@ describe("DropdownComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DropdownContainerComponent);
     component = fixture.componentInstance;
-    component.blockId = 1;
+    component.blockId = "1";
     fixture.detectChanges();
   });
 

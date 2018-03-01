@@ -54,8 +54,9 @@ describe("DropdownComponent", () => {
     fixture = TestBed.createComponent(DropdownComponent);
     component = fixture.componentInstance;
     component.block = {
-      id: 1,
+      id: "1",
       type: BlockType.Dropdown,
+      order: 1,
       label: "",
       value: "1",
       choices: ["1", "2"],

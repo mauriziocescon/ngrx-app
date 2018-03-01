@@ -54,8 +54,9 @@ describe("CheckBoxConfirmerComponent", () => {
     fixture = TestBed.createComponent(CheckBoxConfirmerComponent);
     component = fixture.componentInstance;
     component.block = {
-      id: 1,
+      id: "1",
       type: B1BlockType.CheckBoxConfirmer,
+      order: 1,
       label: "",
       value: true,
       description: "",

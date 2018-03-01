@@ -85,8 +85,9 @@ describe("GenericBlockContainerComponent", () => {
     fixture = TestBed.createComponent(GenericBlockContainerComponent);
     component = fixture.componentInstance;
     component.block = {
-      id: 1,
+      id: "1",
       type: BlockType.CheckBox,
+      order: 1,
     };
     fixture.detectChanges();
   });

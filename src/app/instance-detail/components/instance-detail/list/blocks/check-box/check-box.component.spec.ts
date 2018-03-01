@@ -54,8 +54,9 @@ describe("CheckBoxComponent", () => {
     fixture = TestBed.createComponent(CheckBoxComponent);
     component = fixture.componentInstance;
     component.block = {
-      id: 1,
+      id: "1",
       type: BlockType.CheckBox,
+      order: 1,
       label: "",
       value: true,
       description: "",

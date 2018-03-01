@@ -29,9 +29,9 @@ import { Instance } from "../../models";
   `,
 })
 export class InstanceListContainerComponent implements OnInit, OnDestroy {
-  instances$: Observable<Instance[]>;
+  instances$: Observable<Instance[] | undefined>;
   loading$: Observable<boolean>;
-  error$: Observable<string>;
+  error$: Observable<string | undefined>;
 
   protected alertId: string;
   protected modalAlertSubscription: Subscription;

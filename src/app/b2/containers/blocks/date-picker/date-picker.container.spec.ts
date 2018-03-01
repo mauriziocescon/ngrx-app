@@ -72,7 +72,7 @@ describe("DatePickerComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DatePickerContainerComponent);
     component = fixture.componentInstance;
-    component.blockId = 1;
+    component.blockId = "1";
     fixture.detectChanges();
   });
 

@@ -54,8 +54,9 @@ describe("DatePickerComponent", () => {
     fixture = TestBed.createComponent(DatePickerComponent);
     component = fixture.componentInstance;
     component.block = {
-      id: 1,
+      id: "1",
       type: B2BlockType.DatePicker,
+      order: 1,
       label: "",
       value: "2018-04-29T18:30:04.237Z",
       description: "",

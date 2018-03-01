@@ -31,9 +31,9 @@ import { ListStoreService } from "./list-store.service";
 export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() instanceParams: InstanceParams;
 
-  blocks$: Observable<Block[]>;
+  blocks$: Observable<Block[] | undefined>;
   fetchLoading$: Observable<boolean>;
-  fetchError$: Observable<string>;
+  fetchError$: Observable<string | undefined>;
 
   protected mAlertFetchErrorId: string;
 
