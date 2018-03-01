@@ -30,18 +30,14 @@ export function reducer(state = initialState, action: DatePickerActions): State 
       };
     }
     case DatePickerActionTypes.ADD_BLOCKS: {
-      return {
-        ...adapter.upsertMany(action.payload, state),
-      };
+      return adapter.upsertMany(action.payload, state);
     }
     case DatePickerActionTypes.UPDATE_BLOCK: {
       const datePickerBlock = state.entities[action.payload.block.id];
       if (!datePickerBlock) {
         return state;
       }
-      return {
-        ...adapter.updateOne(action.payload.block, state),
-      };
+      return adapter.updateOne(action.payload.block, state);
     }
     case DatePickerActionTypes.CLEAR_BLOCKS: {
       return adapter.removeAll({...state, datePickerBlocksLoading: {}});

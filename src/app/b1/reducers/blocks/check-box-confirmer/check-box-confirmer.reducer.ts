@@ -27,24 +27,17 @@ export function reducer(state = initialState, action: CheckBoxConfirmerActions):
     case CheckBoxConfirmerActionTypes.LOADING: {
       const newBlocksLoading = {...state.checkBoxConfirmerBlocksLoading};
       newBlocksLoading[action.payload.id] = action.payload.loading;
-      return {
-        ...state,
-        checkBoxConfirmerBlocksLoading: newBlocksLoading,
-      };
+      return {...state, checkBoxConfirmerBlocksLoading: newBlocksLoading};
     }
     case CheckBoxConfirmerActionTypes.ADD_BLOCKS: {
-      return {
-        ...adapter.upsertMany(action.payload, state),
-      };
+      return adapter.upsertMany(action.payload, state);
     }
     case CheckBoxConfirmerActionTypes.UPDATE_BLOCK: {
       const checkBoxConfirmerBlock = state.entities[action.payload.block.id];
       if (!checkBoxConfirmerBlock) {
         return state;
       }
-      return {
-        ...adapter.updateOne(action.payload.block, state),
-      };
+      return adapter.updateOne(action.payload.block, state);
     }
     case CheckBoxConfirmerActionTypes.CLEAR_BLOCKS: {
       return adapter.removeAll({...state, checkBoxConfirmerBlocksLoading: {}});

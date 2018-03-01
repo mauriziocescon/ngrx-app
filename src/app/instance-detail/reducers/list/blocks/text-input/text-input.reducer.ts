@@ -30,18 +30,14 @@ export function reducer(state = initialState, action: TextInputActions): State {
       };
     }
     case TextInputActionTypes.ADD_BLOCKS: {
-      return {
-        ...adapter.upsertMany(action.payload, state),
-      };
+      return adapter.upsertMany(action.payload, state);
     }
     case TextInputActionTypes.UPDATE_BLOCK: {
       const textInputBlock = state.entities[action.payload.block.id];
       if (!textInputBlock) {
         return state;
       }
-      return {
-        ...adapter.updateOne(action.payload.block, state),
-      };
+      return adapter.updateOne(action.payload.block, state);
     }
     case TextInputActionTypes.CLEAR_BLOCKS: {
       return adapter.removeAll({...state, textInputBlocksLoading: {}});

@@ -30,18 +30,14 @@ export function reducer(state = initialState, action: DropdownActions): State {
       };
     }
     case DropdownActionTypes.ADD_BLOCKS: {
-      return {
-        ...adapter.upsertMany(action.payload, state),
-      };
+      return adapter.upsertMany(action.payload, state);
     }
     case DropdownActionTypes.UPDATE_BLOCK: {
       const dropdownBlock = state.entities[action.payload.block.id];
       if (!dropdownBlock) {
         return state;
       }
-      return {
-        ...adapter.updateOne(action.payload.block, state),
-      };
+      return adapter.updateOne(action.payload.block, state);
     }
     case DropdownActionTypes.CLEAR_BLOCKS: {
       return adapter.removeAll({...state, dropdownBlocksLoading: {}});

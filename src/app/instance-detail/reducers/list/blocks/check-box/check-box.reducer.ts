@@ -30,18 +30,14 @@ export function reducer(state = initialState, action: CheckBoxActions): State {
       };
     }
     case CheckBoxActionTypes.ADD_BLOCKS: {
-      return {
-        ...adapter.upsertMany(action.payload, state),
-      };
+      return adapter.upsertMany(action.payload, state);
     }
     case CheckBoxActionTypes.UPDATE_BLOCK: {
       const checkBoxBlock = state.entities[action.payload.block.id];
       if (!checkBoxBlock) {
         return state;
       }
-      return {
-        ...adapter.updateOne(action.payload.block, state),
-      };
+      return adapter.updateOne(action.payload.block, state);
     }
     case CheckBoxActionTypes.CLEAR_BLOCKS: {
       return adapter.removeAll({...state, checkBoxBlocksLoading: {}});

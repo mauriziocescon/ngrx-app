@@ -103,7 +103,7 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
     ])
       .subscribe((translations: any) => {
         const modalConfirmer: ModalConfirmer = {
-          id: this.blockId.toString(),
+          id: this.blockId,
           title: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE"],
           message: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE"],
           yesButtonLabel: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON"],
@@ -117,11 +117,11 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
     this.unsubscribeToModalConfirmerResult();
 
     this.modalConfirmerResultSubscription = this.modalConfirmerResults$
-      .subscribe((modalConfirmerResult: { [id: string]: ModalConfirmerResultType }) => {
-        const result = modalConfirmerResult[this.blockId.toString()];
+      .subscribe((modalConfirmerResult: { [id: string]: ModalConfirmerResultType | undefined}) => {
+        const result = modalConfirmerResult[this.blockId];
 
         if (result) {
-          this.checkBoxConfirmerStore.dispatchCleanModalConfirmer({id: this.blockId.toString()});
+          this.checkBoxConfirmerStore.dispatchCleanModalConfirmer({id: this.blockId});
           this.unsubscribeToModalConfirmerResult();
 
           if (result === ModalConfirmerResultType.Positive) {

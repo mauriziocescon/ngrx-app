@@ -16,14 +16,10 @@ export const initialState: State = adapter.getInitialState({});
 export function reducer(state = initialState, action: ModalAlertActions): State {
   switch (action.type) {
     case ModalAlertActionTypes.SHOW_MODAL_ALERT: {
-      return {
-        ...adapter.addOne(action.payload.modal, state),
-      };
+      return adapter.addOne(action.payload.modal, state);
     }
     case ModalAlertActionTypes.DISMISS_MODAL_ALERT: {
-      return {
-        ...adapter.removeOne(action.payload.id, state),
-      };
+      return adapter.removeOne(action.payload.id, state);
     }
     default: {
       return state;
