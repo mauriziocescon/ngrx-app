@@ -36,7 +36,7 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
 
   loading$: Observable<boolean>;
 
-  protected modalConfirmerResults$: Observable<{ [id: string]: ModalConfirmerResultType }>;
+  protected modalConfirmerResults$: Observable<{ [id: string]: ModalConfirmerResultType | undefined }>;
   protected modalConfirmerResultSubscription: Subscription;
 
   constructor(protected checkBoxConfirmerStore: CheckBoxConfirmerStoreService,

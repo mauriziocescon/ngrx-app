@@ -27,7 +27,7 @@ export class CheckBoxConfirmerStoreService {
     return this.store$.select(fromB1Blocks.getCheckBoxConfirmerBlocksLoadingState);
   }
 
-  getModalConfirmerResults(): Observable<{ [id: string]: ModalConfirmerResultType }> {
+  getModalConfirmerResults(): Observable<{ [id: string]: ModalConfirmerResultType | undefined }> {
     return this.store$.select(fromRoot.getModalConfirmerResults);
   }
 
