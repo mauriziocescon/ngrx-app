@@ -24,7 +24,8 @@
       "CANCEL": "Annulla",
       "HEADER": "Validazione",
       "NEXT_STEP": "Procedi",
-      "SYNC": "Sync..."
+      "SYNC": "Aggiornato",
+      "SYNCING": "Sync..."
     },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "Ho visionato tutti i documenti",

@@ -24,7 +24,8 @@
       "CANCEL": "*** Cancel ***",
       "HEADER": "*** Validation ***",
       "NEXT_STEP": "*** Next step ***",
-      "SYNC": "*** Sync... ***"
+      "SYNC": "*** Syncronized ***",
+      "SYNCING": "*** Sync... ***"
     },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "*** I have checked all documents ***",
