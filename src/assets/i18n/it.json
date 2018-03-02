@@ -20,19 +20,23 @@
     },
     "NEXT_STEP": {
       "CANCEL": "Annulla",
+      "HEADER": "Validazione",
       "NEXT_STEP": "Procedi",
       "SYNC": "Sync..."
     },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "Ho visionato tutti i documenti",
       "CHECK_BOX_LABEL": "Contratto",
+      "HEADER": "CheckBox",
       "LOADING": "Caricamento..."
     },
     "DROPDOWN": {
       "DROPDOWN_LABEL": "Seleziona la posizione che preferisci",
+      "HEADER": "Dropdown",
       "LOADING": "Caricamento..."
     },
     "TEXT_INPUT": {
+      "HEADER": "TextInput",
       "LOADING": "Caricamento...",
       "TEXT_INPUT_LABEL": "Inserisci delle motivazioni",
       "TEXT_INPUT_MSG_MAX_LENGTH": "La lunghezza deve essere <= {{ maxLength }}",
@@ -41,15 +45,18 @@
       "TEXT_INPUT_PLACEHOLDER": "Digita del testo"
     },
     "UNKNOWN": {
-      "ALERT_MSG": "Componente sconosciuto"
+      "ALERT_MSG": "Componente sconosciuto",
+      "HEADER": "Unknown"
     },
     "CHECK_BOX_CONFIRMER": {
       "CHECK_BOX_CONFIRMER_DESC": "Ho visionato tutti i documenti",
       "CHECK_BOX_CONFIRMER_LABEL": "Contratto",
+      "HEADER": "CheckBox Confirmer",
       "LOADING": "Caricamento..."
     },
     "DATE_PICKER": {
       "DATE_PICKER_LABEL": "Seleziona data",
+      "HEADER": "DatePicker",
       "LOADING": "Caricamento..."
     }
   },

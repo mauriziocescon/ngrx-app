@@ -20,19 +20,23 @@
     },
     "NEXT_STEP": {
       "CANCEL": "Cancel",
+      "HEADER": "Validation",
       "NEXT_STEP": "Next step",
       "SYNC": "Sync..."
     },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "I have checked all documents",
       "CHECK_BOX_LABEL": "Contract",
+      "HEADER": "CheckBox",
       "LOADING": "Loading..."
     },
     "DROPDOWN": {
       "DROPDOWN_LABEL": "Select the position you want",
+      "HEADER": "Dropdown",
       "LOADING": "Loading..."
     },
     "TEXT_INPUT": {
+      "HEADER": "TextInput",
       "LOADING": "Loading...",
       "TEXT_INPUT_LABEL": "Type some reasons",
       "TEXT_INPUT_MSG_MAX_LENGTH": "Length must be <= {{ maxLength }}",
@@ -41,15 +45,18 @@
       "TEXT_INPUT_PLACEHOLDER": "Type some text"
     },
     "UNKNOWN": {
-      "ALERT_MSG": "Unknown component"
+      "ALERT_MSG": "Unknown component",
+      "HEADER": "Unknown"
     },
     "CHECK_BOX_CONFIRMER": {
       "CHECK_BOX_CONFIRMER_DESC": "I have checked all documents",
       "CHECK_BOX_CONFIRMER_LABEL": "Contract",
+      "HEADER": "CheckBox Confirmer",
       "LOADING": "Loading..."
     },
     "DATE_PICKER": {
       "DATE_PICKER_LABEL": "Select date",
+      "HEADER": "DatePicker",
       "LOADING": "Loading..."
     }
   },
