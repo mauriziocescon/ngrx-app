@@ -64,6 +64,7 @@ describe("TextInputComponent", () => {
       maxLength: 5,
       disabled: false,
       valid: true,
+      hooks: {},
     };
     component.loading = false;
     fixture.detectChanges();

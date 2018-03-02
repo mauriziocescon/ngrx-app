@@ -63,6 +63,7 @@ describe("DatePickerComponent", () => {
       required: true,
       disabled: false,
       valid: true,
+      hooks: {},
     };
     component.loading = false;
     fixture.detectChanges();
