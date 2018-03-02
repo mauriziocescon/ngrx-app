@@ -14,11 +14,11 @@ import { InstanceDetailIntegrationStoreService } from "../../services";
     <div class="container-fluid">
       <div class="row">
         <ct-next-step
-          class="col-12 col-sm-2 col-lg-1"
+          class="col-12 col-sm-4 col-lg-2"
           [instanceParams]="routeParams">
         </ct-next-step>
         <ct-list
-          class="col-12 col-sm-10 col-lg-11"
+          class="col-12 col-sm-8 col-lg-10"
           [instanceParams]="routeParams">
         </ct-list>
       </div>

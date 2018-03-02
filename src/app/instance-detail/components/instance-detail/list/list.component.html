@@ -1,5 +1,4 @@
 <div class="container-fluid list-component">
-
   <div class="row list-main-content" [hidden]="!showData">
     <div class="col-12" *ngFor="let block of dataSource; trackBy: trackByBlock">
       <div class="generic-block">
@@ -10,9 +9,7 @@
       <div class="full-width-message">{{ "COMPONENT.LIST.LOAD_COMPLETED" | translate }}</div>
     </div>
   </div>
-
   <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.LIST.LOADING" | translate }}</div>
   <div class="full-width-message" [hidden]="!hasNoData">{{ "COMPONENT.LIST.NO_RESULT" | translate }}</div>
   <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">{{ "COMPONENT.LIST.RETRY" | translate }}</div>
-
 </div>

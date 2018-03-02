@@ -1,18 +1,23 @@
 <div class="container-fluid next-step-component">
-
   <div class="row">
     <div class="col-12">
-      <div class="col-6 col-sm-12 button-row">
-        <button class="btn btn-primary action-button" (click)="moveToNextStep()" [disabled]="!formValidity">{{ "COMPONENT.NEXT_STEP.NEXT_STEP" | translate }}</button>
-      </div>
-      <div class="col-6 col-sm-12 button-row">
-        <button class="btn btn-default action-button" (click)="resetForm()">{{ "COMPONENT.NEXT_STEP.CANCEL" | translate }}</button>
-      </div>
-      <div class="col-12 button-row" [hidden]="!syncing">
-        <span class="fa fa-refresh fa-spin"></span>
-        <span>{{ "COMPONENT.NEXT_STEP.SYNC" | translate }}</span>
+      <div class="card">
+        <div class="card-header">
+          <span>Featured</span>
+        </div>
+        <div class="card-body">
+          <div class="button-row">
+            <button class="btn btn-primary action-button" (click)="moveToNextStep()" [disabled]="!formValidity">{{ "COMPONENT.NEXT_STEP.NEXT_STEP" | translate }}</button>
+          </div>
+          <div class="button-row">
+            <button class="btn btn-default action-button" (click)="resetForm()">{{ "COMPONENT.NEXT_STEP.CANCEL" | translate }}</button>
+          </div>
+          <div class="button-row" [hidden]="!syncing">
+            <span class="fa fa-refresh fa-spin"></span>
+            <span>{{ "COMPONENT.NEXT_STEP.SYNC" | translate }}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
 </div>

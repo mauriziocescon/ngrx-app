@@ -2,26 +2,28 @@
   <div class="full-width-message" [hidden]="!isLoading">{{ "COMPONENT.DROPDOWN.LOADING" | translate }}</div>
   <div class="row" [hidden]="isLoading">
     <div class="col-12">
-      <div class="row">
-        <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <span>Featured</span>
           <span blockValidation [valid]="block.valid"></span>
         </div>
-      </div>
-      <form [formGroup]="dropdownForm">
-        <div class="form-group row">
-          <label for="dropdownBlock" class="col-sm-2 col-form-label">{{ block.label | translate }}</label>
-          <div class="col-sm-10">
-            <div class="input-group">
-              <select class="custom-select" id="dropdownBlock" formControlName="selectedValue">
-                <option *ngFor="let value of block.choices" [ngValue]="value">
-                  {{ value }}
-                </option>
-              </select>
+        <div class="card-body">
+          <form [formGroup]="dropdownForm">
+            <div class="form-group row">
+              <label for="dropdownBlock" class="col-sm-2 col-form-label">{{ block.label | translate }}</label>
+              <div class="col-sm-10">
+                <div class="input-group">
+                  <select class="custom-select" id="dropdownBlock" formControlName="selectedValue">
+                    <option *ngFor="let value of block.choices" [ngValue]="value">
+                      {{ value }}
+                    </option>
+                  </select>
+                </div>
+              </div>
             </div>
-            <!--<span style="float: right; padding-top: 50px; color: red;">{{ block | json }}</span>-->
-          </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
