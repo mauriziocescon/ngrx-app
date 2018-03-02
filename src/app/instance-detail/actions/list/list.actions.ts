@@ -55,10 +55,6 @@ export class ClearBlocks implements Action {
   readonly type = ListActionTypes.CLEAR_BLOCKS;
 }
 
-/**
- * Export a type alias of all actions in this action group
- * so that reducers can easily compose action types
- */
 export type ListActions =
   FetchBlocks |
   FetchBlocksComplete |

@@ -35,10 +35,6 @@ export class ClearBlocks implements Action {
   readonly type = CheckBoxActionTypes.CLEAR_BLOCKS;
 }
 
-/**
- * Export a type alias of all actions in this action group
- * so that reducers can easily compose action types
- */
 export type CheckBoxActions =
   Loading |
   AddBlocks |
