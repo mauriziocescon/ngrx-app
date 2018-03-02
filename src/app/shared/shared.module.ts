@@ -8,6 +8,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 
 import { AddComponentDirective } from "./directives/add-container.directive";
+import { ScrollToTopDirective } from "./directives/scroll-to-top.directive";
 import { BlockValidationDirective } from "./directives/validation.directive";
 
 import { Enum } from "./utilities/enum";
@@ -26,6 +27,7 @@ import { RouterStateUrl, CustomRouterStateSerializer } from "./utilities/route-u
   ],
   declarations: [
     AddComponentDirective,
+    ScrollToTopDirective,
     BlockValidationDirective,
   ],
   exports: [
@@ -36,6 +38,7 @@ import { RouterStateUrl, CustomRouterStateSerializer } from "./utilities/route-u
     NgbModule,
     TranslateModule,
     AddComponentDirective,
+    ScrollToTopDirective,
     BlockValidationDirective,
   ],
 })
@@ -44,6 +47,7 @@ export class SharedModule {
 
 export {
   AddComponentDirective,
+  ScrollToTopDirective,
   BlockValidationDirective,
   Enum,
   KeyValue,

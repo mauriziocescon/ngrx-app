@@ -19,5 +19,5 @@
   <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.INSTANCE_LIST.LOADING" | translate }}</div>
   <div class="full-width-message" [hidden]="!hasNoData">{{ "COMPONENT.INSTANCE_LIST.NO_RESULT" | translate }}</div>
   <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">{{ "COMPONENT.INSTANCE_LIST.RETRY" | translate }}</div>
-
+  <div class="go-up" scrollToTop></div>
 </div>
