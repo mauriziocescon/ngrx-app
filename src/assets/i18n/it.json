@@ -6,6 +6,8 @@
       "SELECT_LANGUAGE": "Cambia lingua"
     },
     "INSTANCE_LIST": {
+      "INSTANCE_DESCRIPTION": "Istanza: {{ instance }}, Step: {{ step }} ***",
+      "INSTANCE_HEADER": "Modulo: {{ module }}",
       "LOAD_COMPLETED": "Caricamento completato",
       "LOADING": "Caricamento...",
       "NO_RESULT": "Vuoto",

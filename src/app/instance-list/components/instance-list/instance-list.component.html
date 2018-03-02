@@ -1,12 +1,12 @@
 <div class="container-fluid instance-list-component">
-
   <div class="row list-main-content" [hidden]="!showData">
     <div class="col-12 col-sm-6 instance" *ngFor="let instance of dataSource; trackBy: trackByBlock">
       <div class="card">
+        <h5 class="card-header">
+          {{ "COMPONENT.INSTANCE_LIST.INSTANCE_HEADER" | translate: {module: instance.module} }}
+        </h5>
         <div class="card-body">
-          <h4 class="card-title">{{ instance.module }}</h4>
-          <h6 class="card-subtitle mb-2 text-muted">{{ instance.step }}</h6>
-          <p class="card-text">{{ instance.instance }}</p>
+          <p class="card-text">{{ "COMPONENT.INSTANCE_LIST.INSTANCE_DESCRIPTION" | translate: {instance: instance.instance, step: instance.step } }}</p>
           <button class="btn btn-primary" (click)="selectInstance(instance)">{{ "COMPONENT.INSTANCE_LIST.SHOW" | translate }}</button>
         </div>
       </div>
