@@ -10,7 +10,7 @@ import { RouterStateUrl } from "../shared/shared.module";
 import { environment } from "../../environments/environment";
 
 export interface State {
-  routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
+  router: fromRouter.RouterReducerState<RouterStateUrl>;
   core: fromCore.CoreState;
 }
 
@@ -25,7 +25,7 @@ export const TOKEN = new InjectionToken<ActionReducerMap<State>>("AppReducers");
 
 export function getReducers(): ActionReducerMap<State, any> {
   return {
-    routerReducer: fromRouter.routerReducer,
+    router: fromRouter.routerReducer,
     core: combineReducers(fromCore.reducers),
   };
 }

@@ -32,6 +32,7 @@ export class InstanceDetailIntegrationStoreService {
   }
 
   isSynchronizationRequired(): Observable<boolean> {
+    // @ts-ignore: error TS2532: Object is possibly 'undefined'.
     return this.defaultInstanceDetailStore.isSynchronizationRequired();
   }
 

@@ -23,6 +23,7 @@ export class B3BlockHooksService implements IBlockHooks {
   }
 
   getSetOfHooks(config: string): any {
+    // @ts-ignore: error TS7017: Element implicitly has an 'any' type because type 'typeof "..."' has no index signature.
     const hooks = setOfRules[config] as any;
     return hooks ? hooks : {};
   }

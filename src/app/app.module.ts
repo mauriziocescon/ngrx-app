@@ -40,8 +40,8 @@ export function createTranslateLoader(http: HttpClient) {
 
     RouterModule.forRoot(appRoutes, {useHash: true}),
     StoreModule.forRoot(TOKEN, {metaReducers}),
-    StoreRouterConnectingModule,
-    !environment.production ? StoreDevtoolsModule.instrument({name: "NgRx-App Store DevTools"}) : [],
+    StoreRouterConnectingModule.forRoot({stateKey: "router"}),
+    StoreDevtoolsModule.instrument({name: "NgRx-App Store DevTools", logOnly: environment.production),
     EffectsModule.forRoot(EFFECTS),
 
     NgbModule.forRoot(),
