@@ -35,7 +35,7 @@ export const reducerProvider = [
 export const getB1BlocksState = createFeatureSelector<B1BlocksState>("b1Blocks");
 
 // -----------------
-// ----- edit blocks
+// ----- edited blocks
 export const getEditedBlocksState = createSelector(getB1BlocksState, state => state.editedBlocks);
 
 // -----------------

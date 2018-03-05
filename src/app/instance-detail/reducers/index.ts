@@ -42,7 +42,7 @@ export const reducerProvider = [
 export const getInstanceDetailState = createFeatureSelector<InstanceDetailState>("instanceDetail");
 
 // -----------------
-// ----- blocks list
+// ----- block list
 export const getListState = createSelector(getInstanceDetailState, state => state.blockList);
 
 export const getFetchedBlocksState = createSelector(getListState, fromList.getFetchedBlocksState);
@@ -65,7 +65,7 @@ export const isSynchronizationRequiredState = createSelector(getServerSyncState,
 export const isSynchronizationRequiredWithTimestampState = createSelector(getServerSyncState, fromSync.isSynchronizationRequiredWithTimestampState);
 
 // -----------------
-// ----- edit blocks
+// ----- edited blocks
 export const getEditedBlocksState = createSelector(getInstanceDetailState, state => state.editedBlocks);
 
 // ------- check-box
