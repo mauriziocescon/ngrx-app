@@ -36,6 +36,11 @@ export class InstanceDetailIntegrationStoreService {
     return this.defaultInstanceDetailStore.isSynchronizationRequired();
   }
 
+  dispatchClearBlocks(): void {
+    // @ts-ignore: error TS2532: Object is possibly 'undefined'.
+    this.defaultInstanceDetailStore.dispatchClearBlocks();
+  }
+
   getAllEditedBlocksSelector(): Observable<Block[]> {
     if (this.bInstanceDetailStore) {
       return this.bInstanceDetailStore.getAllEditedBlocksSelector();

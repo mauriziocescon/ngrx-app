@@ -5,6 +5,8 @@ import { Observable } from "rxjs/Observable";
 
 import { AppConstantsService } from "../../../core/core.module";
 
+import * as list from "../../actions/list/list.actions";
+
 import { Block } from "../../models";
 
 import * as fromInstanceDetail from "../../reducers";
@@ -30,5 +32,9 @@ export class InstanceDetailStoreService implements IInstanceDetailStore {
 
   getValiditySelector(): Observable<boolean> {
     return this.store$.select(fromInstanceDetail.getAllEditedBlocksValidityState);
+  }
+
+  dispatchClearBlocks(): void {
+    this.store$.dispatch(new list.ClearBlocks());
   }
 }

@@ -45,6 +45,7 @@ export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.instanceDetailStore.dispatchClearBlocks();
     this.blockHooks.unsubscribeAll();
   }
 }
