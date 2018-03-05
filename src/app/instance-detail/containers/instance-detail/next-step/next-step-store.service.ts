@@ -6,6 +6,7 @@ import { Observable } from "rxjs/Observable";
 import { ModalAlert, modalAlertsActions } from "../../../../core/core.module";
 
 import * as list from "../../../actions/list/list.actions";
+import * as sync from "../../../actions/list/sync.actions";
 
 import { Block } from "../../../models";
 
@@ -35,5 +36,9 @@ export class NextStepStoreService {
 
   dispatchUpdateBlock(payload: { module: string, instance: string, step: string, blocks: Block[] }): void {
     this.store$.dispatch(new list.UpdateBlocks(payload));
+  }
+
+  dispatchSyncBlocks(): void {
+    this.store$.dispatch(new sync.SyncRequired(Date.now()));
   }
 }

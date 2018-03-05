@@ -28,7 +28,8 @@ import { NextStepStoreService } from "./next-step-store.service";
       [syncing]="syncRequired$ | async"
       [syncError]="syncError$ | async"
       (nextStep)="nextStep()"
-      (reset)="reset()">
+      (reset)="reset()" 
+      (retrySync)="retrySync()">
     </cp-next-step>`,
 })
 export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy {
@@ -109,6 +110,10 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   reset(): void {
     // dispatch action to reset the store
     alert(`NextStepContainerComponent: reset`);
+  }
+
+  retrySync(): void {
+    this.nextStepStore.dispatchSyncBlocks();
   }
 
   ngOnDestroy(): void {
