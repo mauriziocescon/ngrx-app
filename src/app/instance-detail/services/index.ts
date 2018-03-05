@@ -19,6 +19,7 @@ import { TextInputHooksTriggerService } from "./instance-detail/list/blocks/text
 import {
   INTEGRATION_SERVICES,
   BlockActionsIntegrationService,
+  BlockHooksIntegrationService,
   BlockUtilsIntegrationService,
   InstanceDetailIntegrationStoreService,
 } from "./integration";
@@ -64,6 +65,7 @@ export {
   TextInputActionsService,
 
   BlockActionsIntegrationService,
+  BlockHooksIntegrationService,
   BlockUtilsIntegrationService,
   InstanceDetailIntegrationStoreService,
 };
