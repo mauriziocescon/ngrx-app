@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Action } from "@ngrx/store";
-import { Effect, Actions } from "@ngrx/effects";
+import { Effect, Actions, EffectNotification, OnRunEffects } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/exhaustMap";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/takeUntil";
 
 import {
   Block,
@@ -13,13 +15,14 @@ import {
   SyncRequired,
 } from "../../../instance-detail/instance-detail.module";
 
+import { B2ActionTypes, StartEffects, StopEffects } from "../../actions/b2.actions";
 import { DatePickerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/date-picker.actions";
 
 import { B2BlockType } from "../../models";
 import { B2DatePickerActionsService } from "../../services";
 
 @Injectable()
-export class DatePickerEffects {
+export class DatePickerEffects implements OnRunEffects {
 
   constructor(protected actions$: Actions,
               protected datePickerActions: B2DatePickerActionsService) {
@@ -34,7 +37,7 @@ export class DatePickerEffects {
           return block.type === B2BlockType.DatePicker;
         })
         .map((block: Block) => {
-          return { id: block.id, changes: { ...block }};
+          return {id: block.id, changes: {...block}};
         });
       return new AddBlocks(datePickerBoxBlocks);
     });
@@ -54,4 +57,13 @@ export class DatePickerEffects {
       }
       return [new SyncRequired(Date.now())];
     });
+
+  ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>): Observable<EffectNotification> {
+    return this.actions$
+      .ofType<StartEffects>(B2ActionTypes.START_EFFECTS)
+      .exhaustMap(() => {
+        return resolvedEffects$.takeUntil(
+          this.actions$.ofType<StopEffects>(B2ActionTypes.STOP_EFFECTS));
+      });
+  }
 }

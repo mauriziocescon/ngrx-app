@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Action } from "@ngrx/store";
-import { Effect, Actions } from "@ngrx/effects";
+import { Effect, Actions, OnRunEffects, EffectNotification } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/exhaustMap";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/takeUntil";
 
 import {
   Block,
@@ -13,13 +15,19 @@ import {
   SyncRequired,
 } from "../../../instance-detail/instance-detail.module";
 
-import { CheckBoxConfirmerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/check-box-confirmer.actions";
+import { B1ActionTypes, StartEffects, StopEffects } from "../../actions/b1.actions";
+import {
+  CheckBoxConfirmerActionTypes,
+  AddBlocks,
+  UpdateBlock,
+  ClearBlocks
+} from "../../actions/blocks/check-box-confirmer.actions";
 
 import { B1BlockType } from "../../models";
 import { B1CheckBoxConfirmerActionsService } from "../../services";
 
 @Injectable()
-export class CheckBoxConfirmerEffects {
+export class CheckBoxConfirmerEffects implements OnRunEffects {
 
   constructor(protected actions$: Actions,
               protected checkBoxConfirmerActions: B1CheckBoxConfirmerActionsService) {
@@ -34,7 +42,7 @@ export class CheckBoxConfirmerEffects {
           return block.type === B1BlockType.CheckBoxConfirmer;
         })
         .map((block: Block) => {
-          return { id: block.id, changes: { ...block }};
+          return {id: block.id, changes: {...block}};
         });
       return new AddBlocks(checkBoxConfirmerBoxBlocks);
     });
@@ -54,4 +62,13 @@ export class CheckBoxConfirmerEffects {
       }
       return [new SyncRequired(Date.now())];
     });
+
+  ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>): Observable<EffectNotification> {
+    return this.actions$
+      .ofType<StartEffects>(B1ActionTypes.START_EFFECTS)
+      .exhaustMap(() => {
+        return resolvedEffects$.takeUntil(
+          this.actions$.ofType<StopEffects>(B1ActionTypes.STOP_EFFECTS));
+      });
+  }
 }

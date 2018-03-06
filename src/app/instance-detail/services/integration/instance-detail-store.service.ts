@@ -41,6 +41,22 @@ export class InstanceDetailIntegrationStoreService {
     this.defaultInstanceDetailStore.dispatchClearBlocks();
   }
 
+  dispatchStartEffects(): void {
+    if (this.bInstanceDetailStore) {
+      this.bInstanceDetailStore.dispatchStartEffects();
+    }
+    // @ts-ignore: error TS2532: Object is possibly 'undefined'.
+    this.defaultInstanceDetailStore.dispatchStartEffects();
+  }
+
+  dispatchStopEffects(): void {
+    if (this.bInstanceDetailStore) {
+      this.bInstanceDetailStore.dispatchStopEffects();
+    }
+    // @ts-ignore: error TS2532: Object is possibly 'undefined'.
+    this.defaultInstanceDetailStore.dispatchStopEffects();
+  }
+
   getAllEditedBlocksSelector(): Observable<Block[]> {
     if (this.bInstanceDetailStore) {
       return this.bInstanceDetailStore.getAllEditedBlocksSelector();

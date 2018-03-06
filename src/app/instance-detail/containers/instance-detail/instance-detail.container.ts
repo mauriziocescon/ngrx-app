@@ -36,6 +36,7 @@ export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.instanceDetailStore.dispatchStartEffects();
     this.routeParams = this.instanceParams.getInstanceParams();
   }
 
@@ -47,5 +48,6 @@ export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.instanceDetailStore.dispatchClearBlocks();
     this.blockHooks.unsubscribeAll();
+    this.instanceDetailStore.dispatchStopEffects();
   }
 }

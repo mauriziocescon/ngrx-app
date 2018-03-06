@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Observable";
 
 import { AppConstantsService } from "../../../core/core.module";
 
+import * as instanceDetail from "../../actions/instance-detail.actions";
 import * as list from "../../actions/list/list.actions";
 
 import { Block } from "../../models";
@@ -20,6 +21,14 @@ export class InstanceDetailStoreService implements IInstanceDetailStore {
   constructor(protected store$: Store<fromInstanceDetail.State>,
               protected appConstants: AppConstantsService) {
     this.module = this.appConstants.Application.INSTANCE_DETAIL_MODULE;
+  }
+
+  dispatchStartEffects(): void {
+    this.store$.dispatch(new instanceDetail.StartEffects());
+  }
+
+  dispatchStopEffects(): void {
+    this.store$.dispatch(new instanceDetail.StopEffects());
   }
 
   isSynchronizationRequired(): Observable<boolean> {

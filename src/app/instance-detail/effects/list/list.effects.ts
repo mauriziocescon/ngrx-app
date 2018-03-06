@@ -1,14 +1,16 @@
 import { Injectable } from "@angular/core";
 import { Action } from "@ngrx/store";
-import { Effect, Actions } from "@ngrx/effects";
+import { Effect, Actions, EffectNotification, OnRunEffects } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
 import { of } from "rxjs/observable/of";
 import { from } from "rxjs/observable/from";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/exhaustMap";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/takeUntil";
 
 import { BlockListService } from "../../services";
 import {
@@ -23,9 +25,10 @@ import {
 import { Synchronized } from "../../actions/list/sync.actions";
 
 import { Block } from "../../models";
+import { InstanceDetailActionTypes, StartEffects, StopEffects } from "../../actions/instance-detail.actions";
 
 @Injectable()
-export class ListEffects {
+export class ListEffects implements OnRunEffects {
 
   constructor(protected actions$: Actions,
               protected blockList: BlockListService) {
@@ -60,4 +63,13 @@ export class ListEffects {
           new Synchronized(),
         ]));
     });
+
+  ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>): Observable<EffectNotification> {
+    return this.actions$
+      .ofType<StartEffects>(InstanceDetailActionTypes.START_EFFECTS)
+      .exhaustMap(() => {
+        return resolvedEffects$.takeUntil(
+          this.actions$.ofType<StopEffects>(InstanceDetailActionTypes.STOP_EFFECTS));
+      });
+  }
 }

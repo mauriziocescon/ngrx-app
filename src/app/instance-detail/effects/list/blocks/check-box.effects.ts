@@ -1,20 +1,28 @@
 import { Injectable } from "@angular/core";
 import { Action } from "@ngrx/store";
-import { Effect, Actions } from "@ngrx/effects";
+import { Effect, Actions, OnRunEffects, EffectNotification } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/exhaustMap";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/takeUntil";
 
+import { InstanceDetailActionTypes, StartEffects, StopEffects } from "../../../actions/instance-detail.actions";
 import { ListActionTypes, FetchBlocksComplete } from "../../../actions/list/list.actions";
 import { SyncRequired } from "../../../actions/list/sync.actions";
-import { CheckBoxActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../../actions/list/blocks/check-box.actions";
+import {
+  CheckBoxActionTypes,
+  AddBlocks,
+  UpdateBlock,
+  ClearBlocks,
+} from "../../../actions/list/blocks/check-box.actions";
 
 import { Block, BlockType } from "../../../models";
 import { CheckBoxActionsService } from "../../../services";
 
 @Injectable()
-export class CheckBoxEffect {
+export class CheckBoxEffect implements OnRunEffects {
 
   constructor(protected actions$: Actions,
               protected checkBoxActions: CheckBoxActionsService) {
@@ -29,7 +37,7 @@ export class CheckBoxEffect {
           return block.type === BlockType.CheckBox;
         })
         .map((block: Block) => {
-          return { id: block.id, changes: { ...block }};
+          return {id: block.id, changes: {...block}};
         });
       return new AddBlocks(checkBoxBlocks);
     });
@@ -49,4 +57,13 @@ export class CheckBoxEffect {
       }
       return [new SyncRequired(Date.now())];
     });
+
+  ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>): Observable<EffectNotification> {
+    return this.actions$
+      .ofType<StartEffects>(InstanceDetailActionTypes.START_EFFECTS)
+      .exhaustMap(() => {
+        return resolvedEffects$.takeUntil(
+          this.actions$.ofType<StopEffects>(InstanceDetailActionTypes.STOP_EFFECTS));
+      });
+  }
 }
