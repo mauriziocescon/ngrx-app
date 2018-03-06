@@ -1,5 +1,8 @@
 import { Injectable } from "@angular/core";
+import { Update } from "@ngrx/entity";
 
+import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
 import { Subscription } from "rxjs/Subscription";
 
 import { NGXLogger } from "ngx-logger";
@@ -9,20 +12,28 @@ import {
   DropdownBlock,
 } from "../../../../../models";
 
-import { DropdownActionsService } from "./dropdown-actions.service";
-
 import { BlockActionsIntegrationService } from "../../../../integration";
 
 @Injectable()
 export class DropdownHooksTriggerService {
   protected hooks: BlockHooks | undefined;
 
+  protected blockLoadSubject$: Subject<DropdownBlock>;
+  readonly blockLoadObservable$: Observable<DropdownBlock>;
+
+  protected blockChangesSubject$: Subject<DropdownBlock>;
+  readonly blockChangesObservable$: Observable<DropdownBlock>;
+
   protected dropdownBlockLoadSubscription: Subscription;
   protected dropdownBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected blockActions: BlockActionsIntegrationService,
-              protected dropdownActions: DropdownActionsService) {
+              protected blockActions: BlockActionsIntegrationService) {
+    this.blockLoadSubject$ = new Subject();
+    this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
+
+    this.blockChangesSubject$ = new Subject();
+    this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
   subscribeAll(hooks: BlockHooks): void {
@@ -43,8 +54,17 @@ export class DropdownHooksTriggerService {
     }
   }
 
+  blockDidload(block: DropdownBlock): void {
+    this.blockLoadSubject$.next(block);
+  }
+
+  blockDidChange(block: Update<DropdownBlock>): void {
+    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as DropdownBlock;
+    this.blockChangesSubject$.next(newBlock);
+  }
+
   protected subscribeToDropdownBlockLoad(): void {
-    this.dropdownBlockLoadSubscription = this.dropdownActions.blockLoadObservable$
+    this.dropdownBlockLoadSubscription = this.blockLoadObservable$
       .subscribe((block: DropdownBlock) => {
         try {
           if (this.hooks && block.hooks.dropdownBlockDidLoad) {
@@ -60,7 +80,7 @@ export class DropdownHooksTriggerService {
   }
 
   protected subscribeToDropdownBlockChanges(): void {
-    this.dropdownBlockChangesSubscription = this.dropdownActions.blockChangesObservable$
+    this.dropdownBlockChangesSubscription = this.blockChangesObservable$
       .subscribe((block: DropdownBlock) => {
         try {
           if (this.hooks && block.hooks.dropdownBlockDidChange) {

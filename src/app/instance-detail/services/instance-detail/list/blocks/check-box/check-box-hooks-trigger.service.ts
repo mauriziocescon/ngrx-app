@@ -1,5 +1,8 @@
 import { Injectable } from "@angular/core";
+import { Update } from "@ngrx/entity";
 
+import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
 import { Subscription } from "rxjs/Subscription";
 
 import { NGXLogger } from "ngx-logger";
@@ -9,20 +12,28 @@ import {
   CheckBoxBlock,
 } from "../../../../../models";
 
-import { CheckBoxActionsService } from "./check-box-actions.service";
-
 import { BlockActionsIntegrationService } from "../../../../integration";
 
 @Injectable()
 export class CheckBoxHooksTriggerService {
   protected hooks: BlockHooks | undefined;
 
+  protected blockLoadSubject$: Subject<CheckBoxBlock>;
+  readonly blockLoadObservable$: Observable<CheckBoxBlock>;
+
+  protected blockChangesSubject$: Subject<CheckBoxBlock>;
+  readonly blockChangesObservable$: Observable<CheckBoxBlock>;
+
   protected checkBoxBlockLoadSubscription: Subscription;
   protected checkBoxBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected blockActions: BlockActionsIntegrationService,
-              protected checkBoxActions: CheckBoxActionsService) {
+              protected blockActions: BlockActionsIntegrationService) {
+    this.blockLoadSubject$ = new Subject();
+    this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
+
+    this.blockChangesSubject$ = new Subject();
+    this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
   subscribeAll(hooks: BlockHooks): void {
@@ -43,8 +54,17 @@ export class CheckBoxHooksTriggerService {
     }
   }
 
+  blockDidload(block: CheckBoxBlock): void {
+    this.blockLoadSubject$.next(block);
+  }
+
+  blockDidChange(block: Update<CheckBoxBlock>): void {
+    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as CheckBoxBlock;
+    this.blockChangesSubject$.next(newBlock);
+  }
+
   protected subscribeToCheckBoxBlockLoad(): void {
-    this.checkBoxBlockLoadSubscription = this.checkBoxActions.blockLoadObservable$
+    this.checkBoxBlockLoadSubscription = this.blockLoadObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
           if (this.hooks && block.hooks.checkBoxBlockDidLoad) {
@@ -60,7 +80,7 @@ export class CheckBoxHooksTriggerService {
   }
 
   protected subscribeToCheckBoxBlockChanges(): void {
-    this.checkBoxBlockChangesSubscription = this.checkBoxActions.blockChangesObservable$
+    this.checkBoxBlockChangesSubscription = this.blockChangesObservable$
       .subscribe((block: CheckBoxBlock) => {
         try {
           if (this.hooks && block.hooks.checkBoxBlockDidChange) {

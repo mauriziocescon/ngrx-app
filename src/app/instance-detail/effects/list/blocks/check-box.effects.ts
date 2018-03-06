@@ -20,13 +20,13 @@ import {
 
 import { Block, BlockType } from "../../../models";
 
-import { CheckBoxActionsService } from "../../../services";
+import { CheckBoxHooksTriggerService } from "../../../services";
 
 @Injectable()
 export class CheckBoxEffect implements OnRunEffects {
 
   constructor(protected actions$: Actions,
-              protected checkBoxActions: CheckBoxActionsService) {
+              protected checkBoxHooksTrigger: CheckBoxHooksTriggerService,) {
   }
 
   @Effect() blockAvailable$: Observable<Action> = this.actions$
@@ -54,7 +54,7 @@ export class CheckBoxEffect implements OnRunEffects {
     .map(action => action.payload)
     .switchMap((payload) => {
       if (payload.notify) {
-        this.checkBoxActions.blockDidChange(payload.block);
+        this.checkBoxHooksTrigger.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];
     });

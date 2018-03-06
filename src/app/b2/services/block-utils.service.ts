@@ -8,13 +8,13 @@ import { DatePickerContainerComponent } from "../containers";
 
 import { B2BlockType, DatePickerBlock } from "../models";
 
-import { B2DatePickerActionsService } from "./blocks/date-picker/date-picker-actions.service";
+import { B2DatePickerHooksTriggerService } from "./blocks/date-picker/date-picker-hooks-trigger.service";
 
 @Injectable()
 export class B2BlockUtilsService implements IBlockUtils {
   module: string;
 
-  constructor(protected datePickerActions: B2DatePickerActionsService) {
+  constructor(protected datePickerHooksTrigger: B2DatePickerHooksTriggerService) {
     this.module = module;
   }
 
@@ -33,7 +33,7 @@ export class B2BlockUtilsService implements IBlockUtils {
     switch (block.type) {
       case B2BlockType.DatePicker: {
         const datePickerBlock = block as DatePickerBlock;
-        this.datePickerActions.blockDidload(datePickerBlock);
+        this.datePickerHooksTrigger.blockDidload(datePickerBlock);
         return true;
       }
       default: {

@@ -2,9 +2,6 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Update } from "@ngrx/entity";
 
-import { Observable } from "rxjs/Observable";
-import { Subject } from "rxjs/Subject";
-
 import * as checkBoxConfirmer from "../../../actions/blocks/check-box-confirmer.actions";
 
 import { B1BlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerActions } from "../../../models";
@@ -13,18 +10,8 @@ import * as fromB1Blocks from "../../../reducers";
 
 @Injectable()
 export class B1CheckBoxConfirmerActionsService {
-  protected blockLoadSubject$: Subject<CheckBoxConfirmerBlock>;
-  readonly blockLoadObservable$: Observable<CheckBoxConfirmerBlock>;
-
-  protected blockChangesSubject$: Subject<CheckBoxConfirmerBlock>;
-  readonly blockChangesObservable$: Observable<CheckBoxConfirmerBlock>;
 
   constructor(protected store$: Store<fromB1Blocks.State>) {
-    this.blockLoadSubject$ = new Subject();
-    this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
-
-    this.blockChangesSubject$ = new Subject();
-    this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
   getCheckBoxConfirmerActions(): CheckBoxConfirmerActions {
@@ -37,15 +24,6 @@ export class B1CheckBoxConfirmerActionsService {
       setDisabledForBlockId: (disabled: boolean, blockId: string) => this.setDisabledForBlockId(disabled, blockId),
       setValidityForBlockId: (valid: boolean, blockId: string) => this.setValidityForBlockId(valid, blockId),
     };
-  }
-
-  blockDidload(block: CheckBoxConfirmerBlock): void {
-    this.blockLoadSubject$.next(block);
-  }
-
-  blockDidChange(block: Update<CheckBoxConfirmerBlock>): void {
-    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as CheckBoxConfirmerBlock;
-    this.blockChangesSubject$.next(newBlock);
   }
 
   changeLoading(loading: boolean, blockId: string): void {

@@ -2,9 +2,6 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Update } from "@ngrx/entity";
 
-import { Observable } from "rxjs/Observable";
-import { Subject } from "rxjs/Subject";
-
 import * as datePicker from "../../../actions/blocks/date-picker.actions";
 
 import { B2BlockType, DatePickerBlock, DatePickerActions } from "../../../models";
@@ -13,18 +10,8 @@ import * as fromB2Blocks from "../../../reducers";
 
 @Injectable()
 export class B2DatePickerActionsService {
-  protected blockLoadSubject$: Subject<DatePickerBlock>;
-  readonly blockLoadObservable$: Observable<DatePickerBlock>;
-
-  protected blockChangesSubject$: Subject<DatePickerBlock>;
-  readonly blockChangesObservable$: Observable<DatePickerBlock>;
 
   constructor(protected store$: Store<fromB2Blocks.State>) {
-    this.blockLoadSubject$ = new Subject();
-    this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
-
-    this.blockChangesSubject$ = new Subject();
-    this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
   getDatePickerActions(): DatePickerActions {
@@ -36,15 +23,6 @@ export class B2DatePickerActionsService {
       setDisabledForBlockId: (disabled: boolean, blockId: string) => this.setDisabledForBlockId(disabled, blockId),
       setValidityForBlockId: (valid: boolean, blockId: string) => this.setValidityForBlockId(valid, blockId),
     };
-  }
-
-  blockDidload(block: DatePickerBlock): void {
-    this.blockLoadSubject$.next(block);
-  }
-
-  blockDidChange(block: Update<DatePickerBlock>): void {
-    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as DatePickerBlock;
-    this.blockChangesSubject$.next(newBlock);
   }
 
   changeLoading(loading: boolean, blockId: string): void {

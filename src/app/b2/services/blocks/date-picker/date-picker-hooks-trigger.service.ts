@@ -1,5 +1,8 @@
 import { Injectable } from "@angular/core";
+import { Update } from "@ngrx/entity";
 
+import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
 import { Subscription } from "rxjs/Subscription";
 
 import { NGXLogger } from "ngx-logger";
@@ -11,18 +14,26 @@ import {
   DatePickerBlock,
 } from "../../../models";
 
-import { B2DatePickerActionsService } from "./date-picker-actions.service";
-
 @Injectable()
 export class B2DatePickerHooksTriggerService {
   protected hooks: B2BlockHooks | undefined;
+
+  protected blockLoadSubject$: Subject<DatePickerBlock>;
+  readonly blockLoadObservable$: Observable<DatePickerBlock>;
+
+  protected blockChangesSubject$: Subject<DatePickerBlock>;
+  readonly blockChangesObservable$: Observable<DatePickerBlock>;
 
   protected datePickerBlockLoadSubscription: Subscription;
   protected datePickerBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected blockActions: BlockActionsIntegrationService,
-              protected datePickerActions: B2DatePickerActionsService) {
+              protected blockActions: BlockActionsIntegrationService) {
+    this.blockLoadSubject$ = new Subject();
+    this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
+
+    this.blockChangesSubject$ = new Subject();
+    this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
   subscribeAll(hooks: B2BlockHooks): void {
@@ -43,8 +54,17 @@ export class B2DatePickerHooksTriggerService {
     }
   }
 
+  blockDidload(block: DatePickerBlock): void {
+    this.blockLoadSubject$.next(block);
+  }
+
+  blockDidChange(block: Update<DatePickerBlock>): void {
+    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as DatePickerBlock;
+    this.blockChangesSubject$.next(newBlock);
+  }
+
   protected subscribeToDatePickerBlockLoad(): void {
-    this.datePickerBlockLoadSubscription = this.datePickerActions.blockLoadObservable$
+    this.datePickerBlockLoadSubscription = this.blockLoadObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
           if (this.hooks && block.hooks.datePickerBlockDidLoad) {
@@ -60,7 +80,7 @@ export class B2DatePickerHooksTriggerService {
   }
 
   protected subscribeToDatePickerBlockChanges(): void {
-    this.datePickerBlockChangesSubscription = this.datePickerActions.blockChangesObservable$
+    this.datePickerBlockChangesSubscription = this.blockChangesObservable$
       .subscribe((block: DatePickerBlock) => {
         try {
           if (this.hooks && block.hooks.datePickerBlockDidChange) {

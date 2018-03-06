@@ -26,5 +26,5 @@ export const SERVICES = [
 ];
 
 export {
-  B2DatePickerActionsService,
+  B2DatePickerHooksTriggerService,
 };

@@ -8,13 +8,13 @@ import { CheckBoxConfirmerContainerComponent } from "../containers";
 
 import { B1BlockType, CheckBoxConfirmerBlock } from "../models";
 
-import { B1CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer/check-box-confirmer-actions.service";
+import { B1CheckBoxConfirmerHooksTriggerService } from "./blocks/check-box-confirmer/check-box-confirmer-hooks-trigger.service";
 
 @Injectable()
 export class B1BlockUtilsService implements IBlockUtils {
   module: string;
 
-  constructor(protected checkBoxConfirmerActions: B1CheckBoxConfirmerActionsService) {
+  constructor(protected checkBoxConfirmerHooksTrigger: B1CheckBoxConfirmerHooksTriggerService) {
     this.module = module;
   }
 
@@ -33,7 +33,7 @@ export class B1BlockUtilsService implements IBlockUtils {
     switch (block.type) {
       case B1BlockType.CheckBoxConfirmer: {
         const checkBoxConfirmerBlock = block as CheckBoxConfirmerBlock;
-        this.checkBoxConfirmerActions.blockDidload(checkBoxConfirmerBlock);
+        this.checkBoxConfirmerHooksTrigger.blockDidload(checkBoxConfirmerBlock);
         return true;
       }
       default: {

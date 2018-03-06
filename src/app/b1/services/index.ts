@@ -26,5 +26,5 @@ export const SERVICES = [
 ];
 
 export {
-  B1CheckBoxConfirmerActionsService,
+  B1CheckBoxConfirmerHooksTriggerService,
 };

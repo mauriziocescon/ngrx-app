@@ -1,5 +1,8 @@
 import { Injectable } from "@angular/core";
+import { Update } from "@ngrx/entity";
 
+import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
 import { Subscription } from "rxjs/Subscription";
 
 import { NGXLogger } from "ngx-logger";
@@ -9,20 +12,28 @@ import {
   TextInputBlock,
 } from "../../../../../models";
 
-import { TextInputActionsService } from "./text-input-actions.service";
-
 import { BlockActionsIntegrationService } from "../../../../integration";
 
 @Injectable()
 export class TextInputHooksTriggerService {
   protected hooks: BlockHooks | undefined;
 
+  protected blockLoadSubject$: Subject<TextInputBlock>;
+  readonly blockLoadObservable$: Observable<TextInputBlock>;
+
+  protected blockChangesSubject$: Subject<TextInputBlock>;
+  readonly blockChangesObservable$: Observable<TextInputBlock>;
+
   protected textInputBlockLoadSubscription: Subscription;
   protected textInputBlockChangesSubscription: Subscription;
 
   constructor(protected logger: NGXLogger,
-              protected blockActions: BlockActionsIntegrationService,
-              protected textInputActions: TextInputActionsService) {
+              protected blockActions: BlockActionsIntegrationService) {
+    this.blockLoadSubject$ = new Subject();
+    this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
+
+    this.blockChangesSubject$ = new Subject();
+    this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
   subscribeAll(hooks: BlockHooks): void {
@@ -43,8 +54,17 @@ export class TextInputHooksTriggerService {
     }
   }
 
+  blockDidload(block: TextInputBlock): void {
+    this.blockLoadSubject$.next(block);
+  }
+
+  blockDidChange(block: Update<TextInputBlock>): void {
+    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as TextInputBlock;
+    this.blockChangesSubject$.next(newBlock);
+  }
+
   protected subscribeToTextInputBlockLoad(): void {
-    this.textInputBlockLoadSubscription = this.textInputActions.blockLoadObservable$
+    this.textInputBlockLoadSubscription = this.blockLoadObservable$
       .subscribe((block: TextInputBlock) => {
         try {
           if (this.hooks && block.hooks.textInputBlockDidLoad) {
@@ -60,7 +80,7 @@ export class TextInputHooksTriggerService {
   }
 
   protected subscribeToTextInputBlockChanges(): void {
-    this.textInputBlockChangesSubscription = this.textInputActions.blockChangesObservable$
+    this.textInputBlockChangesSubscription = this.blockChangesObservable$
       .subscribe((block: TextInputBlock) => {
         try {
           if (this.hooks && block.hooks.textInputBlockDidChange) {

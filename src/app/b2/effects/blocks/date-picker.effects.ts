@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Action } from "@ngrx/store";
-import { Effect, Actions, EffectNotification, OnRunEffects } from "@ngrx/effects";
+import { Effect, Actions, OnRunEffects, EffectNotification } from "@ngrx/effects";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/exhaustMap";
@@ -16,17 +16,22 @@ import {
 } from "../../../instance-detail/instance-detail.module";
 
 import { B2EffectsActionTypes, StartEffects, StopEffects } from "../../actions/b2-effects.actions";
-import { DatePickerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/date-picker.actions";
+import {
+  DatePickerActionTypes,
+  AddBlocks,
+  UpdateBlock,
+  ClearBlocks,
+} from "../../actions/blocks/date-picker.actions";
 
 import { B2BlockType } from "../../models";
 
-import { B2DatePickerActionsService } from "../../services";
+import { B2DatePickerHooksTriggerService } from "../../services";
 
 @Injectable()
 export class DatePickerEffects implements OnRunEffects {
 
   constructor(protected actions$: Actions,
-              protected datePickerActions: B2DatePickerActionsService) {
+              protected datePickerHooksTrigger: B2DatePickerHooksTriggerService) {
   }
 
   @Effect() blockAvailable$: Observable<Action> = this.actions$
@@ -54,7 +59,7 @@ export class DatePickerEffects implements OnRunEffects {
     .map(action => action.payload)
     .switchMap((payload) => {
       if (payload.notify) {
-        this.datePickerActions.blockDidChange(payload.block);
+        this.datePickerHooksTrigger.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];
     });

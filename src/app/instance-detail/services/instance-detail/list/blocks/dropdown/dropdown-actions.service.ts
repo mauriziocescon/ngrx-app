@@ -2,9 +2,6 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Update } from "@ngrx/entity";
 
-import { Observable } from "rxjs/Observable";
-import { Subject } from "rxjs/Subject";
-
 import * as dropdown from "../../../../../actions/list/blocks/dropdown.actions";
 
 import { BlockType, DropdownBlock, DropdownActions } from "../../../../../models";
@@ -13,18 +10,8 @@ import * as fromInstanceDetail from "../../../../../reducers";
 
 @Injectable()
 export class DropdownActionsService {
-  protected blockLoadSubject$: Subject<DropdownBlock>;
-  readonly blockLoadObservable$: Observable<DropdownBlock>;
-
-  protected blockChangesSubject$: Subject<DropdownBlock>;
-  readonly blockChangesObservable$: Observable<DropdownBlock>;
 
   constructor(protected store$: Store<fromInstanceDetail.State>) {
-    this.blockLoadSubject$ = new Subject();
-    this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
-
-    this.blockChangesSubject$ = new Subject();
-    this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
   getDropdownActions(): DropdownActions {
@@ -37,15 +24,6 @@ export class DropdownActionsService {
       setDisabledForBlockId: (disabled: boolean, blockId: string) => this.setDisabledForBlockId(disabled, blockId),
       setValidityForBlockId: (valid: boolean, blockId: string) => this.setValidityForBlockId(valid, blockId),
     };
-  }
-
-  blockDidload(block: DropdownBlock): void {
-    this.blockLoadSubject$.next(block);
-  }
-
-  blockDidChange(block: Update<DropdownBlock>): void {
-    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as DropdownBlock;
-    this.blockChangesSubject$.next(newBlock);
   }
 
   changeLoading(loading: boolean, blockId: string): void {

@@ -20,13 +20,13 @@ import {
 
 import { Block, BlockType } from "../../../models";
 
-import { TextInputActionsService } from "../../../services";
+import { TextInputHooksTriggerService } from "../../../services";
 
 @Injectable()
 export class TextInputEffect implements OnRunEffects {
 
   constructor(protected actions$: Actions,
-              protected textInputActions: TextInputActionsService) {
+              protected textInputHooksTrigger: TextInputHooksTriggerService) {
   }
 
   @Effect() blockAvailable$: Observable<Action> = this.actions$
@@ -54,7 +54,7 @@ export class TextInputEffect implements OnRunEffects {
     .map(action => action.payload)
     .switchMap((payload) => {
       if (payload.notify) {
-        this.textInputActions.blockDidChange(payload.block);
+        this.textInputHooksTrigger.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];
     });

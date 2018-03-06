@@ -2,9 +2,6 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Update } from "@ngrx/entity";
 
-import { Observable } from "rxjs/Observable";
-import { Subject } from "rxjs/Subject";
-
 import * as textInput from "../../../../../actions/list/blocks/text-input.actions";
 
 import { BlockType, TextInputBlock, TextInputActions } from "../../../../../models";
@@ -13,18 +10,8 @@ import * as fromInstanceDetail from "../../../../../reducers";
 
 @Injectable()
 export class TextInputActionsService {
-  protected blockLoadSubject$: Subject<TextInputBlock>;
-  readonly blockLoadObservable$: Observable<TextInputBlock>;
-
-  protected blockChangesSubject$: Subject<TextInputBlock>;
-  readonly blockChangesObservable$: Observable<TextInputBlock>;
 
   constructor(protected store$: Store<fromInstanceDetail.State>) {
-    this.blockLoadSubject$ = new Subject();
-    this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
-
-    this.blockChangesSubject$ = new Subject();
-    this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
   getTextInputActions(): TextInputActions {
@@ -38,15 +25,6 @@ export class TextInputActionsService {
       setDisabledForBlockId: (disabled: boolean, blockId: string) => this.setDisabledForBlockId(disabled, blockId),
       setValidityForBlockId: (valid: boolean, blockId: string) => this.setValidityForBlockId(valid, blockId),
     };
-  }
-
-  blockDidload(block: TextInputBlock): void {
-    this.blockLoadSubject$.next(block);
-  }
-
-  blockDidChange(block: Update<TextInputBlock>): void {
-    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as TextInputBlock;
-    this.blockChangesSubject$.next(newBlock);
   }
 
   changeLoading(loading: boolean, blockId: string): void {

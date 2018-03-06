@@ -20,13 +20,13 @@ import {
 
 import { Block, BlockType } from "../../../models";
 
-import { DropdownActionsService } from "../../../services";
+import { DropdownHooksTriggerService } from "../../../services";
 
 @Injectable()
 export class DropdownEffect implements OnRunEffects {
 
   constructor(protected actions$: Actions,
-              protected dropdownActions: DropdownActionsService) {
+              protected dropdownHooksTrigger: DropdownHooksTriggerService) {
   }
 
   @Effect() blockAvailable$: Observable<Action> = this.actions$
@@ -54,7 +54,7 @@ export class DropdownEffect implements OnRunEffects {
     .map(action => action.payload)
     .switchMap((payload) => {
       if (payload.notify) {
-        this.dropdownActions.blockDidChange(payload.block);
+        this.dropdownHooksTrigger.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];
     });

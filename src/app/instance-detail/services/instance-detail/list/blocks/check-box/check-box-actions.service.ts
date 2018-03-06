@@ -2,9 +2,6 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Update } from "@ngrx/entity";
 
-import { Observable } from "rxjs/Observable";
-import { Subject } from "rxjs/Subject";
-
 import * as checkBox from "../../../../../actions/list/blocks/check-box.actions";
 
 import { BlockType, CheckBoxBlock, CheckBoxActions } from "../../../../../models";
@@ -13,18 +10,8 @@ import * as fromInstanceDetail from "../../../../../reducers";
 
 @Injectable()
 export class CheckBoxActionsService {
-  protected blockLoadSubject$: Subject<CheckBoxBlock>;
-  readonly blockLoadObservable$: Observable<CheckBoxBlock>;
-
-  protected blockChangesSubject$: Subject<CheckBoxBlock>;
-  readonly blockChangesObservable$: Observable<CheckBoxBlock>;
 
   constructor(protected store$: Store<fromInstanceDetail.State>) {
-    this.blockLoadSubject$ = new Subject();
-    this.blockLoadObservable$ = this.blockLoadSubject$.asObservable();
-
-    this.blockChangesSubject$ = new Subject();
-    this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
   getCheckBoxActions(): CheckBoxActions {
@@ -37,15 +24,6 @@ export class CheckBoxActionsService {
       setDisabledForBlockId: (disabled: boolean, blockId: string) => this.setDisabledForBlockId(disabled, blockId),
       setValidityForBlockId: (valid: boolean, blockId: string) => this.setValidityForBlockId(valid, blockId),
     };
-  }
-
-  blockDidload(block: CheckBoxBlock): void {
-    this.blockLoadSubject$.next(block);
-  }
-
-  blockDidChange(block: Update<CheckBoxBlock>): void {
-    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as CheckBoxBlock;
-    this.blockChangesSubject$.next(newBlock);
   }
 
   changeLoading(loading: boolean, blockId: string): void {

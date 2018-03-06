@@ -60,9 +60,9 @@ export {
 
   BlockListService,
 
-  CheckBoxActionsService,
-  DropdownActionsService,
-  TextInputActionsService,
+  CheckBoxHooksTriggerService,
+  DropdownHooksTriggerService,
+  TextInputHooksTriggerService,
 
   BlockActionsIntegrationService,
   BlockHooksIntegrationService,

@@ -25,13 +25,13 @@ import {
 
 import { B1BlockType } from "../../models";
 
-import { B1CheckBoxConfirmerActionsService } from "../../services";
+import { B1CheckBoxConfirmerHooksTriggerService } from "../../services";
 
 @Injectable()
 export class CheckBoxConfirmerEffects implements OnRunEffects {
 
   constructor(protected actions$: Actions,
-              protected checkBoxConfirmerActions: B1CheckBoxConfirmerActionsService) {
+              protected checkBoxConfirmerHooksTrigger: B1CheckBoxConfirmerHooksTriggerService) {
   }
 
   @Effect() blockAvailable$: Observable<Action> = this.actions$
@@ -59,7 +59,7 @@ export class CheckBoxConfirmerEffects implements OnRunEffects {
     .map(action => action.payload)
     .switchMap((payload) => {
       if (payload.notify) {
-        this.checkBoxConfirmerActions.blockDidChange(payload.block);
+        this.checkBoxConfirmerHooksTrigger.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];
     });

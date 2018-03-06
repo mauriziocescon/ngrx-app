@@ -17,18 +17,18 @@ import {
 
 import { IBlockUtils } from "../../../tokens";
 
-import { TextInputActionsService } from "./blocks/text-input/text-input-actions.service";
-import { DropdownActionsService } from "./blocks/dropdown/dropdown-actions.service";
-import { CheckBoxActionsService } from "./blocks/check-box/check-box-actions.service";
+import { CheckBoxHooksTriggerService } from "./blocks/check-box/check-box-hooks-trigger.service";
+import { DropdownHooksTriggerService } from "./blocks/dropdown/dropdown-hooks-trigger.service";
+import { TextInputHooksTriggerService } from "./blocks/text-input/text-input-hooks-trigger.service";
 
 @Injectable()
 export class BlockUtilsService implements IBlockUtils {
   module: string;
 
   constructor(protected appConstants: AppConstantsService,
-              protected checkBoxActions: CheckBoxActionsService,
-              protected dropdownActions: DropdownActionsService,
-              protected textInputActions: TextInputActionsService) {
+              protected checkBoxHooksTrigger: CheckBoxHooksTriggerService,
+              protected dropdownHooksTrigger: DropdownHooksTriggerService,
+              protected textInputHooksTrigger: TextInputHooksTriggerService) {
     this.module = this.appConstants.Application.INSTANCE_DETAIL_MODULE;
   }
 
@@ -53,17 +53,17 @@ export class BlockUtilsService implements IBlockUtils {
     switch (block.type) {
       case BlockType.CheckBox: {
         const checkBoxBlock = block as CheckBoxBlock;
-        this.checkBoxActions.blockDidload(checkBoxBlock);
+        this.checkBoxHooksTrigger.blockDidload(checkBoxBlock);
         return true;
       }
       case BlockType.Dropdown: {
         const dropdownBlock = block as DropdownBlock;
-        this.dropdownActions.blockDidload(dropdownBlock);
+        this.dropdownHooksTrigger.blockDidload(dropdownBlock);
         return true;
       }
       case BlockType.TextInput: {
         const textInputBlock = block as TextInputBlock;
-        this.textInputActions.blockDidload(textInputBlock);
+        this.textInputHooksTrigger.blockDidload(textInputBlock);
         return true;
       }
       default: {
