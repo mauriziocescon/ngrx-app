@@ -69,7 +69,7 @@ export class TextInputContainerComponent {
             },
           },
         },
-        notify: true,
+        triggerHooks: true,
       };
       this.textInputStore.dispatchUpdateBlock(block);
     }

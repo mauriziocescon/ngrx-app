@@ -58,7 +58,7 @@ export class DatePickerEffects implements OnRunEffects {
     .ofType<UpdateBlock>(DatePickerActionTypes.UPDATE_BLOCK)
     .map(action => action.payload)
     .switchMap((payload) => {
-      if (payload.notify) {
+      if (payload.triggerHooks) {
         this.datePickerHooksTrigger.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];

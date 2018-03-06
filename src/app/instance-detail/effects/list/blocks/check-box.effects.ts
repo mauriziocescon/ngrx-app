@@ -53,7 +53,7 @@ export class CheckBoxEffect implements OnRunEffects {
     .ofType<UpdateBlock>(CheckBoxActionTypes.UPDATE_BLOCK)
     .map(action => action.payload)
     .switchMap((payload) => {
-      if (payload.notify) {
+      if (payload.triggerHooks) {
         this.checkBoxHooksTrigger.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];

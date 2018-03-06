@@ -35,7 +35,7 @@ export class CheckBoxActionsService {
   }
 
   protected dispatchUpdate(block: Update<CheckBoxBlock>): void {
-    const newBlock = {block: block, notify: false};
+    const newBlock = {block: block, triggerHooks: false};
     this.store$.dispatch(new checkBox.UpdateBlock(newBlock));
   }
 

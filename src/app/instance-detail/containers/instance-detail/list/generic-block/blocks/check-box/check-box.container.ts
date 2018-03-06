@@ -68,7 +68,7 @@ export class CheckBoxContainerComponent {
             },
           },
         },
-        notify: true,
+        triggerHooks: true,
       };
       this.checkBoxStore.dispatchUpdateBlock(block);
     }

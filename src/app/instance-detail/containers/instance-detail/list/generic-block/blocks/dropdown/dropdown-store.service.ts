@@ -24,7 +24,7 @@ export class DropdownStoreService {
     return this.store$.select(fromInstanceDetail.getDropdownBlocksLoadingState);
   }
 
-  dispatchUpdateBlock(block: { block: Update<DropdownBlock>, notify: boolean }): void {
+  dispatchUpdateBlock(block: { block: Update<DropdownBlock>, triggerHooks: boolean }): void {
     this.store$.dispatch(new dropdown.UpdateBlock(block));
   }
 }

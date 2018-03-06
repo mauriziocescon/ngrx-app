@@ -68,7 +68,7 @@ export class DropdownContainerComponent {
             },
           },
         },
-        notify: true,
+        triggerHooks: true,
       };
       this.dropdownStore.dispatchUpdateBlock(block);
     }

@@ -27,7 +27,7 @@ export class AddBlocks implements Action {
 export class UpdateBlock implements Action {
   readonly type = DatePickerActionTypes.UPDATE_BLOCK;
 
-  constructor(public payload: { block: Update<DatePickerBlock>, notify: boolean }) {
+  constructor(public payload: { block: Update<DatePickerBlock>, triggerHooks: boolean }) {
   }
 }
 

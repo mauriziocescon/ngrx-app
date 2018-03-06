@@ -27,7 +27,7 @@ export class AddBlocks implements Action {
 export class UpdateBlock implements Action {
   readonly type = TextInputActionTypes.UPDATE_BLOCK;
 
-  constructor(public payload: { block: Update<TextInputBlock>, notify: boolean }) {
+  constructor(public payload: { block: Update<TextInputBlock>, triggerHooks: boolean }) {
   }
 }
 

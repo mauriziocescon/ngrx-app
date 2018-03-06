@@ -24,7 +24,7 @@ export class DatePickerStoreService {
     return this.store$.select(fromB2Blocks.getDatePickerBlocksLoadingState);
   }
 
-  dispatchUpdateBlock(block: { block: Update<DatePickerBlock>, notify: boolean }): void {
+  dispatchUpdateBlock(block: { block: Update<DatePickerBlock>, triggerHooks: boolean }): void {
     this.store$.dispatch(new datePicker.UpdateBlock(block));
   }
 }

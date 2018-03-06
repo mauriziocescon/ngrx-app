@@ -35,7 +35,7 @@ export class DropdownActionsService {
   }
 
   protected dispatchUpdate(block: Update<DropdownBlock>): void {
-    const newBlock = {block: block, notify: false};
+    const newBlock = {block: block, triggerHooks: false};
     this.store$.dispatch(new dropdown.UpdateBlock(newBlock));
   }
 

@@ -24,7 +24,7 @@ export class CheckBoxStoreService {
     return this.store$.select(fromInstanceDetail.getCheckBoxBlocksLoadingState);
   }
 
-  dispatchUpdateBlock(block: { block: Update<CheckBoxBlock>, notify: boolean }): void {
+  dispatchUpdateBlock(block: { block: Update<CheckBoxBlock>, triggerHooks: boolean }): void {
     this.store$.dispatch(new checkBox.UpdateBlock(block));
   }
 }

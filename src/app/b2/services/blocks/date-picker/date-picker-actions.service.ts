@@ -34,7 +34,7 @@ export class B2DatePickerActionsService {
   }
 
   protected dispatchUpdate(block: Update<DatePickerBlock>): void {
-    const newBlock = {block: block, notify: false};
+    const newBlock = {block: block, triggerHooks: false};
     this.store$.dispatch(new datePicker.UpdateBlock(newBlock));
   }
 

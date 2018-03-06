@@ -86,7 +86,7 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
             },
           },
         },
-        notify: true,
+        triggerHooks: true,
       };
       this.checkBoxConfirmerStore.dispatchUpdateBlock(block);
     }

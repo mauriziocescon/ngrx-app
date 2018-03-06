@@ -71,7 +71,7 @@ export class DatePickerContainerComponent {
             },
           },
         },
-        notify: true,
+        triggerHooks: true,
       };
       this.datePickerStore.dispatchUpdateBlock(block);
     }

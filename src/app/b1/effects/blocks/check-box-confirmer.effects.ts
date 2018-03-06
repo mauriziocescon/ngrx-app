@@ -58,7 +58,7 @@ export class CheckBoxConfirmerEffects implements OnRunEffects {
     .ofType<UpdateBlock>(CheckBoxConfirmerActionTypes.UPDATE_BLOCK)
     .map(action => action.payload)
     .switchMap((payload) => {
-      if (payload.notify) {
+      if (payload.triggerHooks) {
         this.checkBoxConfirmerHooksTrigger.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];

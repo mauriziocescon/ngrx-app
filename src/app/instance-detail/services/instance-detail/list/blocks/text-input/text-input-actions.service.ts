@@ -36,7 +36,7 @@ export class TextInputActionsService {
   }
 
   protected dispatchUpdate(block: Update<TextInputBlock>): void {
-    const newBlock = {block: block, notify: false};
+    const newBlock = {block: block, triggerHooks: false};
     this.store$.dispatch(new textInput.UpdateBlock(newBlock));
   }
 

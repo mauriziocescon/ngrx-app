@@ -39,7 +39,7 @@ export class CheckBoxConfirmerStoreService {
     this.store$.dispatch(new modalConfirmersActions.CleanModalConfirmer(payload));
   }
 
-  dispatchUpdateBlock(block: { block: Update<CheckBoxConfirmerBlock>, notify: boolean }): void {
+  dispatchUpdateBlock(block: { block: Update<CheckBoxConfirmerBlock>, triggerHooks: boolean }): void {
     this.store$.dispatch(new checkBoxConfirmer.UpdateBlock(block));
   }
 }

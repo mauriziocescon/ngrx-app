@@ -53,7 +53,7 @@ export class DropdownEffect implements OnRunEffects {
     .ofType<UpdateBlock>(DropdownActionTypes.UPDATE_BLOCK)
     .map(action => action.payload)
     .switchMap((payload) => {
-      if (payload.notify) {
+      if (payload.triggerHooks) {
         this.dropdownHooksTrigger.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];

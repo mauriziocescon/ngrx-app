@@ -35,7 +35,7 @@ export class B1CheckBoxConfirmerActionsService {
   }
 
   protected dispatchUpdate(block: Update<CheckBoxConfirmerBlock>): void {
-    const newBlock = {block: block, notify: false};
+    const newBlock = {block: block, triggerHooks: false};
     this.store$.dispatch(new checkBoxConfirmer.UpdateBlock(newBlock));
   }
 

@@ -24,7 +24,7 @@ export class TextInputStoreService {
     return this.store$.select(fromInstanceDetail.getTextInputBlocksLoadingState);
   }
 
-  dispatchUpdateBlock(block: { block: Update<TextInputBlock>, notify: boolean }): void {
+  dispatchUpdateBlock(block: { block: Update<TextInputBlock>, triggerHooks: boolean }): void {
     this.store$.dispatch(new textInput.UpdateBlock(block));
   }
 }

@@ -53,7 +53,7 @@ export class TextInputEffect implements OnRunEffects {
     .ofType<UpdateBlock>(TextInputActionTypes.UPDATE_BLOCK)
     .map(action => action.payload)
     .switchMap((payload) => {
-      if (payload.notify) {
+      if (payload.triggerHooks) {
         this.textInputHooksTrigger.blockDidChange(payload.block);
       }
       return [new SyncRequired(Date.now())];
