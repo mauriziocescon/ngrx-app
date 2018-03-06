@@ -5,9 +5,11 @@ import { Update } from "@ngrx/entity";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import * as fromInstanceDetail from "../../../../../reducers";
 import * as checkBox from "../../../../../actions/list/blocks/check-box.actions";
+
 import { BlockType, CheckBoxBlock, CheckBoxActions } from "../../../../../models";
+
+import * as fromInstanceDetail from "../../../../../reducers";
 
 @Injectable()
 export class CheckBoxActionsService {

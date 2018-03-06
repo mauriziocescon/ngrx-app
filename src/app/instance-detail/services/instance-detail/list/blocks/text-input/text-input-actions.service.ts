@@ -5,9 +5,11 @@ import { Update } from "@ngrx/entity";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import * as fromInstanceDetail from "../../../../../reducers";
 import * as textInput from "../../../../../actions/list/blocks/text-input.actions";
+
 import { BlockType, TextInputBlock, TextInputActions } from "../../../../../models";
+
+import * as fromInstanceDetail from "../../../../../reducers";
 
 @Injectable()
 export class TextInputActionsService {
