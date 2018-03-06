@@ -27,7 +27,7 @@ export class NextStepStoreService {
   }
 
   getUpdateError(): Observable<string | undefined> {
-    return this.store$.select(fromInstanceDetail.getUpdateErrorState);
+    return this.store$.select(fromInstanceDetail.getSyncErrorState);
   }
 
   dispatchShowModalAlert(modalAlert: ModalAlert): void {
@@ -35,7 +35,7 @@ export class NextStepStoreService {
   }
 
   dispatchUpdateBlock(payload: { module: string, instance: string, step: string, blocks: Block[] }): void {
-    this.store$.dispatch(new list.UpdateBlocks(payload));
+    this.store$.dispatch(new list.SyncBlocks(payload));
   }
 
   dispatchSyncBlocks(): void {

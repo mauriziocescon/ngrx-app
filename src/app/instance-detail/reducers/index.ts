@@ -49,13 +49,13 @@ export const getFetchedBlocksState = createSelector(getListState, fromList.getFe
 export const getFetchLoadingState = createSelector(getListState, fromList.getFetchLoadingState);
 export const getFetchErrorState = createSelector(getListState, fromList.getFetchErrorState);
 
-export const getUpdateBlocksForModuleState = createSelector(getListState, fromList.getUpdateBlocksForModuleState);
-export const getUpdateBlocksForInstanceState = createSelector(getListState, fromList.getUpdateBlocksForInstanceState);
-export const getUpdateBlocksForStepState = createSelector(getListState, fromList.getUpdateBlocksForStepState);
+export const getModuleForSyncBlocksState = createSelector(getListState, fromList.getModuleForSyncBlocksState);
+export const getInstanceForSyncBlocksState = createSelector(getListState, fromList.getInstanceForSyncBlocksState);
+export const getStepForSyncBlocksState = createSelector(getListState, fromList.getStepForSyncBlocksState);
 
-export const getUpdateBlocksState = createSelector(getListState, fromList.getUpdateBlocksState);
-export const getUpdateLoadingState = createSelector(getListState, fromList.getUpdateLoadingState);
-export const getUpdateErrorState = createSelector(getListState, fromList.getUpdateErrorState);
+export const getSyncingBlocksState = createSelector(getListState, fromList.getSyncingBlocksState);
+export const getSyncingLoadingState = createSelector(getListState, fromList.getSyncingLoadingState);
+export const getSyncErrorState = createSelector(getListState, fromList.getSyncErrorState);
 
 // -----------------
 // ----------- sync
@@ -114,9 +114,9 @@ export const getAllEditedBlocksState = createSelector(
 );
 
 export const getUpdateBlocksInstanceState = createSelector(
-  getUpdateBlocksForModuleState,
-  getUpdateBlocksForInstanceState,
-  getUpdateBlocksForStepState,
+  getModuleForSyncBlocksState,
+  getInstanceForSyncBlocksState,
+  getStepForSyncBlocksState,
   (module: string | undefined, instance: string | undefined, step: string | undefined) => {
     return {
       module: module,

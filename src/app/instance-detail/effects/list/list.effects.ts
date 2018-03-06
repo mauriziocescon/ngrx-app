@@ -18,9 +18,9 @@ import {
   FetchBlocks,
   FetchBlocksComplete,
   FetchBlocksError,
-  UpdateBlocks,
-  UpdateBlocksComplete,
-  UpdateBlocksError,
+  SyncBlocks,
+  SyncBlocksComplete,
+  SyncBlocksError,
 } from "../../actions/list/list.actions";
 import { Synchronized } from "../../actions/list/sync.actions";
 
@@ -48,19 +48,19 @@ export class ListEffects implements OnRunEffects {
     });
 
   @Effect() updateBlocks$: Observable<Action> = this.actions$
-    .ofType<UpdateBlocks>(ListActionTypes.UPDATE_BLOCKS)
+    .ofType<SyncBlocks>(ListActionTypes.SYNC_BLOCKS)
     .debounceTime(3000)
     .map(action => action.payload)
     .switchMap((payload) => {
       return this.blockList.updateBlocks(payload.module, payload.instance, payload.step, payload.blocks)
         .switchMap((blocks: Block[]) => {
           return [
-            new UpdateBlocksComplete(),
+            new SyncBlocksComplete(),
             new Synchronized(),
           ];
         })
         .catch(err => from([
-          new UpdateBlocksError(err),
+          new SyncBlocksError(err),
           new Synchronized(),
         ]));
     });
