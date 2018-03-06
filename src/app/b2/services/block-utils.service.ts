@@ -8,7 +8,7 @@ import { DatePickerContainerComponent } from "../containers";
 
 import { B2BlockType, DatePickerBlock } from "../models";
 
-import { B2DatePickerActionsService } from "./blocks/date-picker-actions.service";
+import { B2DatePickerActionsService } from "./blocks/date-picker/date-picker-actions.service";
 
 @Injectable()
 export class B2BlockUtilsService implements IBlockUtils {

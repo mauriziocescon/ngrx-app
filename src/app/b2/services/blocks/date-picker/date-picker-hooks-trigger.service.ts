@@ -4,12 +4,12 @@ import { Subscription } from "rxjs/Subscription";
 
 import { NGXLogger } from "ngx-logger";
 
-import { BlockActionsIntegrationService } from "../../../instance-detail/instance-detail.module";
+import { BlockActionsIntegrationService } from "../../../../instance-detail/instance-detail.module";
 
 import {
   B2BlockHooks,
   DatePickerBlock,
-} from "../../models";
+} from "../../../models";
 
 import { B2DatePickerActionsService } from "./date-picker-actions.service";
 

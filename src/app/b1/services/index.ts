@@ -3,9 +3,9 @@ import { B1BlockHooksService } from "./block-hooks.service";
 import { B1BlockUtilsService } from "./block-utils.service";
 import { B1InstanceDetailStoreService } from "./instance-detail-store.service";
 
-import { B1CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer-actions.service";
+import { B1CheckBoxConfirmerActionsService } from "./blocks/check-box-confirmer/check-box-confirmer-actions.service";
 
-import { B1CheckBoxConfirmerHooksTriggerService } from "./blocks/check-box-confirmer-hooks-trigger.service";
+import { B1CheckBoxConfirmerHooksTriggerService } from "./blocks/check-box-confirmer/check-box-confirmer-hooks-trigger.service";
 
 import {
   BLOCK_ACTIONS_TOKEN,

@@ -4,12 +4,12 @@ import { Subscription } from "rxjs/Subscription";
 
 import { NGXLogger } from "ngx-logger";
 
-import { BlockActionsIntegrationService } from "../../../instance-detail/instance-detail.module";
+import { BlockActionsIntegrationService } from "../../../../instance-detail/instance-detail.module";
 
 import {
   B1BlockHooks,
   CheckBoxConfirmerBlock,
-} from "../../models";
+} from "../../../models";
 
 import { B1CheckBoxConfirmerActionsService } from "./check-box-confirmer-actions.service";
 

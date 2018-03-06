@@ -5,9 +5,11 @@ import { Update } from "@ngrx/entity";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import * as fromB2Blocks from "../../reducers";
-import * as datePicker from "../../actions/blocks/date-picker.actions";
-import { B2BlockType, DatePickerBlock, DatePickerActions } from "../../models";
+import * as datePicker from "../../../actions/blocks/date-picker.actions";
+
+import { B2BlockType, DatePickerBlock, DatePickerActions } from "../../../models";
+
+import * as fromB2Blocks from "../../../reducers";
 
 @Injectable()
 export class B2DatePickerActionsService {

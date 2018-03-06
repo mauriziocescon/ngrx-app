@@ -4,7 +4,7 @@ import { IBlockActions } from "../../instance-detail/instance-detail.module";
 
 import { module } from "../constants";
 
-import { B2DatePickerActionsService } from "./blocks/date-picker-actions.service";
+import { B2DatePickerActionsService } from "./blocks/date-picker/date-picker-actions.service";
 
 @Injectable()
 export class B2BlockActionsService implements IBlockActions {

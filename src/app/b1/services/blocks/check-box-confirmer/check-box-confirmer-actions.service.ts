@@ -5,9 +5,11 @@ import { Update } from "@ngrx/entity";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import * as fromB1Blocks from "../../reducers";
-import * as checkBoxConfirmer from "../../actions/blocks/check-box-confirmer.actions";
-import { B1BlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerActions } from "../../models";
+import * as checkBoxConfirmer from "../../../actions/blocks/check-box-confirmer.actions";
+
+import { B1BlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerActions } from "../../../models";
+
+import * as fromB1Blocks from "../../../reducers";
 
 @Injectable()
 export class B1CheckBoxConfirmerActionsService {

@@ -3,9 +3,9 @@ import { B2BlockHooksService } from "./block-hooks.service";
 import { B2BlockUtilsService } from "./block-utils.service";
 import { B2InstanceDetailStoreService } from "./instance-detail-store.service";
 
-import { B2DatePickerActionsService } from "./blocks/date-picker-actions.service";
+import { B2DatePickerActionsService } from "./blocks/date-picker/date-picker-actions.service";
 
-import { B2DatePickerHooksTriggerService } from "./blocks/date-picker-hooks-trigger.service";
+import { B2DatePickerHooksTriggerService } from "./blocks/date-picker/date-picker-hooks-trigger.service";
 
 import {
   BLOCK_ACTIONS_TOKEN,

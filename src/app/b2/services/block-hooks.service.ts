@@ -8,7 +8,7 @@ import { B2BlockHooks } from "../models";
 
 import * as setOfRules from "../rules";
 
-import { B2DatePickerHooksTriggerService } from "./blocks/date-picker-hooks-trigger.service";
+import { B2DatePickerHooksTriggerService } from "./blocks/date-picker/date-picker-hooks-trigger.service";
 
 @Injectable()
 export class B2BlockHooksService implements IBlockHooks {

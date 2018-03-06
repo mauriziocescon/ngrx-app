@@ -8,7 +8,7 @@ import { B1BlockHooks } from "../models";
 
 import * as setOfRules from "../rules";
 
-import { B1CheckBoxConfirmerHooksTriggerService } from "./blocks/check-box-confirmer-hooks-trigger.service";
+import { B1CheckBoxConfirmerHooksTriggerService } from "./blocks/check-box-confirmer/check-box-confirmer-hooks-trigger.service";
 
 @Injectable()
 export class B1BlockHooksService implements IBlockHooks {
