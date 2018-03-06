@@ -76,7 +76,7 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
             ...this.instanceParams,
             blocks: blocks,
           };
-          this.nextStepStore.dispatchUpdateBlock(payload);
+          this.nextStepStore.dispatchSyncBlocks(payload);
         }
       });
   }
@@ -113,7 +113,7 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   retrySync(): void {
-    this.nextStepStore.dispatchSyncBlocks();
+    this.nextStepStore.dispatchSyncRequired();
   }
 
   ngOnDestroy(): void {

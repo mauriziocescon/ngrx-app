@@ -34,11 +34,11 @@ export class NextStepStoreService {
     this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
   }
 
-  dispatchUpdateBlock(payload: { module: string, instance: string, step: string, blocks: Block[] }): void {
+  dispatchSyncBlocks(payload: { module: string, instance: string, step: string, blocks: Block[] }): void {
     this.store$.dispatch(new list.SyncBlocks(payload));
   }
 
-  dispatchSyncBlocks(): void {
+  dispatchSyncRequired(): void {
     this.store$.dispatch(new sync.SyncRequired(Date.now()));
   }
 }

@@ -113,7 +113,7 @@ export const getAllEditedBlocksState = createSelector(
   },
 );
 
-export const getUpdateBlocksInstanceState = createSelector(
+export const getSyncBlocksInstanceState = createSelector(
   getModuleForSyncBlocksState,
   getInstanceForSyncBlocksState,
   getStepForSyncBlocksState,

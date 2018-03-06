@@ -47,12 +47,12 @@ export class ListEffects implements OnRunEffects {
         .catch(err => of(new FetchBlocksError(err)));
     });
 
-  @Effect() updateBlocks$: Observable<Action> = this.actions$
+  @Effect() syncBlocks$: Observable<Action> = this.actions$
     .ofType<SyncBlocks>(ListActionTypes.SYNC_BLOCKS)
     .debounceTime(3000)
     .map(action => action.payload)
     .switchMap((payload) => {
-      return this.blockList.updateBlocks(payload.module, payload.instance, payload.step, payload.blocks)
+      return this.blockList.syncBlocks(payload.module, payload.instance, payload.step, payload.blocks)
         .switchMap((blocks: Block[]) => {
           return [
             new SyncBlocksComplete(),
