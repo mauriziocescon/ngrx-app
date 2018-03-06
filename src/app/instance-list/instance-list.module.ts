@@ -11,7 +11,7 @@ import { SERVICES } from "./services";
 import { COMPONENTS } from "./components";
 import {
   CONTAINERS,
-  InstanceListContainerComponent,
+  InstanceListPageComponent,
 } from "./containers";
 
 @NgModule({
@@ -40,5 +40,5 @@ export class InstanceListModule {
 export * from "./models";
 
 export {
-  InstanceListContainerComponent,
+  InstanceListPageComponent,
 };

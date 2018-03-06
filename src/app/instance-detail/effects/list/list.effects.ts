@@ -12,7 +12,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/takeUntil";
 
-import { BlockListService } from "../../services";
+import { InstanceDetailEffectsActionTypes, StartEffects, StopEffects } from "../../actions/instance-detail-effects.actions";
 import {
   ListActionTypes,
   FetchBlocks,
@@ -25,7 +25,8 @@ import {
 import { Synchronized } from "../../actions/list/sync.actions";
 
 import { Block } from "../../models";
-import { InstanceDetailActionTypes, StartEffects, StopEffects } from "../../actions/instance-detail.actions";
+
+import { BlockListService } from "../../services";
 
 @Injectable()
 export class ListEffects implements OnRunEffects {
@@ -66,10 +67,10 @@ export class ListEffects implements OnRunEffects {
 
   ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>): Observable<EffectNotification> {
     return this.actions$
-      .ofType<StartEffects>(InstanceDetailActionTypes.START_EFFECTS)
+      .ofType<StartEffects>(InstanceDetailEffectsActionTypes.START_EFFECTS)
       .exhaustMap(() => {
         return resolvedEffects$.takeUntil(
-          this.actions$.ofType<StopEffects>(InstanceDetailActionTypes.STOP_EFFECTS));
+          this.actions$.ofType<StopEffects>(InstanceDetailEffectsActionTypes.STOP_EFFECTS));
       });
   }
 }

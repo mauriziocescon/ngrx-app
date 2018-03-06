@@ -15,10 +15,11 @@ import {
   SyncRequired,
 } from "../../../instance-detail/instance-detail.module";
 
-import { B2ActionTypes, StartEffects, StopEffects } from "../../actions/b2.actions";
+import { B2EffectsActionTypes, StartEffects, StopEffects } from "../../actions/b2-effects.actions";
 import { DatePickerActionTypes, AddBlocks, UpdateBlock, ClearBlocks } from "../../actions/blocks/date-picker.actions";
 
 import { B2BlockType } from "../../models";
+
 import { B2DatePickerActionsService } from "../../services";
 
 @Injectable()
@@ -60,10 +61,10 @@ export class DatePickerEffects implements OnRunEffects {
 
   ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>): Observable<EffectNotification> {
     return this.actions$
-      .ofType<StartEffects>(B2ActionTypes.START_EFFECTS)
+      .ofType<StartEffects>(B2EffectsActionTypes.START_EFFECTS)
       .exhaustMap(() => {
         return resolvedEffects$.takeUntil(
-          this.actions$.ofType<StopEffects>(B2ActionTypes.STOP_EFFECTS));
+          this.actions$.ofType<StopEffects>(B2EffectsActionTypes.STOP_EFFECTS));
       });
   }
 }

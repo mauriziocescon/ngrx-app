@@ -31,16 +31,6 @@ export class InstanceDetailIntegrationStoreService {
     });
   }
 
-  isSynchronizationRequired(): Observable<boolean> {
-    // @ts-ignore: error TS2532: Object is possibly 'undefined'.
-    return this.defaultInstanceDetailStore.isSynchronizationRequired();
-  }
-
-  dispatchClearBlocks(): void {
-    // @ts-ignore: error TS2532: Object is possibly 'undefined'.
-    this.defaultInstanceDetailStore.dispatchClearBlocks();
-  }
-
   dispatchStartEffects(): void {
     if (this.bInstanceDetailStore) {
       this.bInstanceDetailStore.dispatchStartEffects();

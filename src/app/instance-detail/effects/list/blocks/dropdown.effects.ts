@@ -8,7 +8,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/takeUntil";
 
-import { InstanceDetailActionTypes, StartEffects, StopEffects } from "../../../actions/instance-detail.actions";
+import { InstanceDetailEffectsActionTypes, StartEffects, StopEffects } from "../../../actions/instance-detail-effects.actions";
 import { ListActionTypes, FetchBlocksComplete } from "../../../actions/list/list.actions";
 import { SyncRequired } from "../../../actions/list/sync.actions";
 import {
@@ -19,6 +19,7 @@ import {
 } from "../../../actions/list/blocks/dropdown.actions";
 
 import { Block, BlockType } from "../../../models";
+
 import { DropdownActionsService } from "../../../services";
 
 @Injectable()
@@ -60,10 +61,10 @@ export class DropdownEffect implements OnRunEffects {
 
   ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>): Observable<EffectNotification> {
     return this.actions$
-      .ofType<StartEffects>(InstanceDetailActionTypes.START_EFFECTS)
+      .ofType<StartEffects>(InstanceDetailEffectsActionTypes.START_EFFECTS)
       .exhaustMap(() => {
         return resolvedEffects$.takeUntil(
-          this.actions$.ofType<StopEffects>(InstanceDetailActionTypes.STOP_EFFECTS));
+          this.actions$.ofType<StopEffects>(InstanceDetailEffectsActionTypes.STOP_EFFECTS));
       });
   }
 }

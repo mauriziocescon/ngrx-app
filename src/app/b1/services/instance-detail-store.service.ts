@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Observable";
 
 import { Block, IInstanceDetailStore } from "../../instance-detail/instance-detail.module";
 
-import * as b1 from "../actions/b1.actions";
+import * as b1Effects from "../actions/b1-effects.actions";
 
 import { module } from "../constants";
 
@@ -20,11 +20,11 @@ export class B1InstanceDetailStoreService implements IInstanceDetailStore {
   }
 
   dispatchStartEffects(): void {
-    this.store$.dispatch(new b1.StartEffects());
+    this.store$.dispatch(new b1Effects.StartEffects());
   }
 
   dispatchStopEffects(): void {
-    this.store$.dispatch(new b1.StopEffects());
+    this.store$.dispatch(new b1Effects.StopEffects());
   }
 
   getAllEditedBlocksSelector(): Observable<Block[]> {

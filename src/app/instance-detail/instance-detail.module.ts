@@ -17,7 +17,7 @@ import {
 import { COMPONENTS, UnknownComponent } from "./components";
 import {
   CONTAINERS,
-  InstanceDetailContainerComponent,
+  InstanceDetailPageComponent,
   CheckBoxContainerComponent,
   DropdownContainerComponent,
   TextInputContainerComponent,
@@ -47,7 +47,7 @@ import {
     ...SERVICES,
   ],
   exports: [
-    InstanceDetailContainerComponent,
+    InstanceDetailPageComponent,
   ],
 })
 export class InstanceDetailModule {
@@ -70,7 +70,7 @@ export * from "./models";
 export * from "./tokens";
 
 export {
-  InstanceDetailContainerComponent,
+  InstanceDetailPageComponent,
 
   InstanceDetailGuard,
   RulesResolve,

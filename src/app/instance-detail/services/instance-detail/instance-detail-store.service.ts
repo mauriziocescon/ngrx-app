@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Observable";
 
 import { AppConstantsService } from "../../../core/core.module";
 
-import * as instanceDetail from "../../actions/instance-detail.actions";
+import * as instanceDetailEffects from "../../actions/instance-detail-effects.actions";
 import * as list from "../../actions/list/list.actions";
 
 import { Block } from "../../models";
@@ -24,11 +24,11 @@ export class InstanceDetailStoreService implements IInstanceDetailStore {
   }
 
   dispatchStartEffects(): void {
-    this.store$.dispatch(new instanceDetail.StartEffects());
+    this.store$.dispatch(new instanceDetailEffects.StartEffects());
   }
 
   dispatchStopEffects(): void {
-    this.store$.dispatch(new instanceDetail.StopEffects());
+    this.store$.dispatch(new instanceDetailEffects.StopEffects());
   }
 
   isSynchronizationRequired(): Observable<boolean> {

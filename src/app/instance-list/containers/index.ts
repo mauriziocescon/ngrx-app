@@ -1,9 +1,9 @@
-import { InstanceListContainerComponent } from "./instance-list/instance-list.container";
+import { InstanceListPageComponent } from "./instance-list/instance-list-page.container";
 
 export const CONTAINERS = [
-  InstanceListContainerComponent,
+  InstanceListPageComponent,
 ];
 
 export {
-  InstanceListContainerComponent,
+  InstanceListPageComponent,
 };

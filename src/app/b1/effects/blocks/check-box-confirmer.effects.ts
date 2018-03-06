@@ -15,7 +15,7 @@ import {
   SyncRequired,
 } from "../../../instance-detail/instance-detail.module";
 
-import { B1ActionTypes, StartEffects, StopEffects } from "../../actions/b1.actions";
+import { B1EffectsActionTypes, StartEffects, StopEffects } from "../../actions/b1-effects.actions";
 import {
   CheckBoxConfirmerActionTypes,
   AddBlocks,
@@ -24,6 +24,7 @@ import {
 } from "../../actions/blocks/check-box-confirmer.actions";
 
 import { B1BlockType } from "../../models";
+
 import { B1CheckBoxConfirmerActionsService } from "../../services";
 
 @Injectable()
@@ -65,10 +66,10 @@ export class CheckBoxConfirmerEffects implements OnRunEffects {
 
   ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>): Observable<EffectNotification> {
     return this.actions$
-      .ofType<StartEffects>(B1ActionTypes.START_EFFECTS)
+      .ofType<StartEffects>(B1EffectsActionTypes.START_EFFECTS)
       .exhaustMap(() => {
         return resolvedEffects$.takeUntil(
-          this.actions$.ofType<StopEffects>(B1ActionTypes.STOP_EFFECTS));
+          this.actions$.ofType<StopEffects>(B1EffectsActionTypes.STOP_EFFECTS));
       });
   }
 }

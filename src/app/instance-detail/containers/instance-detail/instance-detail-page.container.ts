@@ -10,9 +10,14 @@ import {
   BlockHooksIntegrationService,
 } from "../../services";
 
+import { InstanceDetailPageStoreService } from "./instance-detail-page-store.service";
+
 @Component({
   selector: "ct-instance-detail",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    InstanceDetailPageStoreService,
+  ],
   template: `
     <div class="container-fluid">
       <div class="row">
@@ -27,10 +32,11 @@ import {
       </div>
     </div>`,
 })
-export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
+export class InstanceDetailPageComponent implements OnInit, OnDestroy {
   routeParams: InstanceParams;
 
-  constructor(protected instanceDetailStore: InstanceDetailIntegrationStoreService,
+  constructor(protected instanceDetailPageStore: InstanceDetailPageStoreService,
+              protected instanceDetailStore: InstanceDetailIntegrationStoreService,
               protected instanceParams: InstanceParamsService,
               protected blockHooks: BlockHooksIntegrationService) {
   }
@@ -41,12 +47,12 @@ export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate(): Observable<boolean> {
-    return this.instanceDetailStore.isSynchronizationRequired()
+    return this.instanceDetailPageStore.isSynchronizationRequired()
       .map(requireSync => !requireSync);
   }
 
   ngOnDestroy(): void {
-    this.instanceDetailStore.dispatchClearBlocks();
+    this.instanceDetailPageStore.dispatchClearBlocks();
     this.blockHooks.unsubscribeAll();
     this.instanceDetailStore.dispatchStopEffects();
   }

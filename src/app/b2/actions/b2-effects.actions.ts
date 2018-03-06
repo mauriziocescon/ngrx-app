@@ -1,18 +1,18 @@
 import { Action } from "@ngrx/store";
 
-export enum B2ActionTypes {
+export enum B2EffectsActionTypes {
   START_EFFECTS = "[B2] Start effects",
   STOP_EFFECTS = "[B2] Stop effects",
 }
 
 export class StartEffects implements Action {
-  readonly type = B2ActionTypes.START_EFFECTS;
+  readonly type = B2EffectsActionTypes.START_EFFECTS;
 }
 
 export class StopEffects implements Action {
-  readonly type = B2ActionTypes.STOP_EFFECTS;
+  readonly type = B2EffectsActionTypes.STOP_EFFECTS;
 }
 
-export type B2Actions =
+export type B2EffectsActions =
   StartEffects |
   StopEffects;

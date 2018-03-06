@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
-import { Store } from "@ngrx/store";
 
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
@@ -15,9 +14,14 @@ import * as fromInstanceList from "../../reducers";
 
 import { Instance } from "../../models";
 
+import { InstanceListStoreService } from "./instance-list-page-store.service";
+
 @Component({
   selector: "ct-instance-list",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    InstanceListStoreService,
+  ],
   template: `
     <cp-instance-list
       [instances]="instances$ | async"
@@ -28,7 +32,7 @@ import { Instance } from "../../models";
     </cp-instance-list>
   `,
 })
-export class InstanceListContainerComponent implements OnInit, OnDestroy {
+export class InstanceListPageComponent implements OnInit, OnDestroy {
   instances$: Observable<Instance[] | undefined>;
   loading$: Observable<boolean>;
   error$: Observable<string | undefined>;
@@ -36,23 +40,24 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
   protected alertId: string;
   protected modalAlertSubscription: Subscription;
 
-  constructor(protected store$: Store<fromInstanceList.State>,
+  constructor(protected instanceListStore: InstanceListStoreService,
               protected router: Router,
               protected translate: TranslateService) {
-    this.instances$ = this.store$.select(fromInstanceList.getFetchedInstancesState);
-    this.loading$ = this.store$.select(fromInstanceList.getFetchLoadingState);
-    this.error$ = this.store$.select(fromInstanceList.getFetchErrorState);
+    this.instances$ = this.instanceListStore.getFetchedInstances();
+    this.loading$ = this.instanceListStore.getFetchLoading();
+    this.error$ = this.instanceListStore.getFetchError();
 
     this.alertId = "1";
   }
 
   ngOnInit(): void {
+    this.instanceListStore.dispatchStartEffects();
     this.reloadList();
     this.subscribeToFetchErrors();
   }
 
   reloadList(): void {
-    this.store$.dispatch(new instanceList.FetchInstances());
+    this.instanceListStore.dispatchFetchInstances();
   }
 
   goTo(instance: Instance): void {
@@ -74,7 +79,7 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
                 message: err,
                 buttonLabel: translations["CONTAINER.INSTANCE_LIST.ALERT_BUTTON"],
               };
-              this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
+              this.instanceListStore.dispatchShowModalAlert(modalAlert);
             });
         }
       });
@@ -82,6 +87,7 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribeToModalConfirmerResult();
+    this.instanceListStore.dispatchStopEffects();
   }
 
   protected unsubscribeToModalConfirmerResult(): void {

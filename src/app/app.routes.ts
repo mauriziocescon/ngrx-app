@@ -1,16 +1,16 @@
 import { Routes } from "@angular/router";
 
-import { InstanceListContainerComponent } from "./instance-list/instance-list.module";
-import { InstanceDetailContainerComponent, InstanceDetailGuard, RulesResolve } from "./instance-detail/instance-detail.module";
+import { InstanceListPageComponent } from "./instance-list/instance-list.module";
+import { InstanceDetailPageComponent, InstanceDetailGuard, RulesResolve } from "./instance-detail/instance-detail.module";
 
 export const appRoutes: Routes = [
   {
     path: "instance-list",
-    component: InstanceListContainerComponent,
+    component: InstanceListPageComponent,
   },
   {
     path: "instance-detail/:module/:instance/:step",
-    component: InstanceDetailContainerComponent,
+    component: InstanceDetailPageComponent,
     resolve: {
       rules: RulesResolve,
     },
