@@ -8,13 +8,13 @@ import { BlockListService } from "./instance-detail/list/list.service";
 import { BlockHooksService } from "./instance-detail/list/block-hooks.service";
 import { BlockUtilsService } from "./instance-detail/list/block-utils.service";
 
-import { CheckBoxActionsService } from "./instance-detail/list/blocks/check-box-actions.service";
-import { DropdownActionsService } from "./instance-detail/list/blocks/dropdown-actions.service";
-import { TextInputActionsService } from "./instance-detail/list/blocks/text-input-actions.service";
+import { CheckBoxActionsService } from "./instance-detail/list/blocks/check-box/check-box-actions.service";
+import { DropdownActionsService } from "./instance-detail/list/blocks/dropdown/dropdown-actions.service";
+import { TextInputActionsService } from "./instance-detail/list/blocks/text-input/text-input-actions.service";
 
-import { CheckBoxHooksTriggerService } from "./instance-detail/list/blocks/check-box-hooks-trigger.service";
-import { DropdownHooksTriggerService } from "./instance-detail/list/blocks/dropdown-hooks-trigger.service";
-import { TextInputHooksTriggerService } from "./instance-detail/list/blocks/text-input-hooks-trigger.service";
+import { CheckBoxHooksTriggerService } from "./instance-detail/list/blocks/check-box/check-box-hooks-trigger.service";
+import { DropdownHooksTriggerService } from "./instance-detail/list/blocks/dropdown/dropdown-hooks-trigger.service";
+import { TextInputHooksTriggerService } from "./instance-detail/list/blocks/text-input/text-input-hooks-trigger.service";
 
 import {
   INTEGRATION_SERVICES,

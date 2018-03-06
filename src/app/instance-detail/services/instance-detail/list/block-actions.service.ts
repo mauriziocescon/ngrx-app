@@ -6,9 +6,9 @@ import { BlockActions } from "../../../models";
 
 import { IBlockActions } from "../../../tokens";
 
-import { CheckBoxActionsService } from "./blocks/check-box-actions.service";
-import { DropdownActionsService } from "./blocks/dropdown-actions.service";
-import { TextInputActionsService } from "./blocks/text-input-actions.service";
+import { CheckBoxActionsService } from "./blocks/check-box/check-box-actions.service";
+import { DropdownActionsService } from "./blocks/dropdown/dropdown-actions.service";
+import { TextInputActionsService } from "./blocks/text-input/text-input-actions.service";
 
 @Injectable()
 export class BlockActionsService implements IBlockActions {

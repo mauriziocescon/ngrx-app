@@ -35,7 +35,6 @@ export class InstanceDetailIntegrationStoreService {
     if (this.bInstanceDetailStore) {
       this.bInstanceDetailStore.dispatchStartEffects();
     }
-    // @ts-ignore: error TS2532: Object is possibly 'undefined'.
     this.defaultInstanceDetailStore.dispatchStartEffects();
   }
 
@@ -43,7 +42,6 @@ export class InstanceDetailIntegrationStoreService {
     if (this.bInstanceDetailStore) {
       this.bInstanceDetailStore.dispatchStopEffects();
     }
-    // @ts-ignore: error TS2532: Object is possibly 'undefined'.
     this.defaultInstanceDetailStore.dispatchStopEffects();
   }
 

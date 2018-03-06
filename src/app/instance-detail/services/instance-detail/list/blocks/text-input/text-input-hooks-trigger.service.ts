@@ -7,11 +7,11 @@ import { NGXLogger } from "ngx-logger";
 import {
   BlockHooks,
   TextInputBlock,
-} from "../../../../models";
+} from "../../../../../models";
 
 import { TextInputActionsService } from "./text-input-actions.service";
 
-import { BlockActionsIntegrationService } from "../../../integration";
+import { BlockActionsIntegrationService } from "../../../../integration";
 
 @Injectable()
 export class TextInputHooksTriggerService {

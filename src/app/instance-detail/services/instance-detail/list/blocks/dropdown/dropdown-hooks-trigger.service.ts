@@ -7,11 +7,11 @@ import { NGXLogger } from "ngx-logger";
 import {
   BlockHooks,
   DropdownBlock,
-} from "../../../../models";
+} from "../../../../../models";
 
 import { DropdownActionsService } from "./dropdown-actions.service";
 
-import { BlockActionsIntegrationService } from "../../../integration";
+import { BlockActionsIntegrationService } from "../../../../integration";
 
 @Injectable()
 export class DropdownHooksTriggerService {

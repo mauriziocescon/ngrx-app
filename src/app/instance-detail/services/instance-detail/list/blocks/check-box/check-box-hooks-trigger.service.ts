@@ -7,11 +7,11 @@ import { NGXLogger } from "ngx-logger";
 import {
   BlockHooks,
   CheckBoxBlock,
-} from "../../../../models";
+} from "../../../../../models";
 
 import { CheckBoxActionsService } from "./check-box-actions.service";
 
-import { BlockActionsIntegrationService } from "../../../integration";
+import { BlockActionsIntegrationService } from "../../../../integration";
 
 @Injectable()
 export class CheckBoxHooksTriggerService {

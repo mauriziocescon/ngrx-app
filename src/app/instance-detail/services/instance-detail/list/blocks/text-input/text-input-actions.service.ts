@@ -5,17 +5,17 @@ import { Update } from "@ngrx/entity";
 import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 
-import * as fromInstanceDetail from "../../../../reducers";
-import * as dropdown from "../../../../actions/list/blocks/dropdown.actions";
-import { BlockType, DropdownBlock, DropdownActions } from "../../../../models";
+import * as fromInstanceDetail from "../../../../../reducers";
+import * as textInput from "../../../../../actions/list/blocks/text-input.actions";
+import { BlockType, TextInputBlock, TextInputActions } from "../../../../../models";
 
 @Injectable()
-export class DropdownActionsService {
-  protected blockLoadSubject$: Subject<DropdownBlock>;
-  readonly blockLoadObservable$: Observable<DropdownBlock>;
+export class TextInputActionsService {
+  protected blockLoadSubject$: Subject<TextInputBlock>;
+  readonly blockLoadObservable$: Observable<TextInputBlock>;
 
-  protected blockChangesSubject$: Subject<DropdownBlock>;
-  readonly blockChangesObservable$: Observable<DropdownBlock>;
+  protected blockChangesSubject$: Subject<TextInputBlock>;
+  readonly blockChangesObservable$: Observable<TextInputBlock>;
 
   constructor(protected store$: Store<fromInstanceDetail.State>) {
     this.blockLoadSubject$ = new Subject();
@@ -25,24 +25,25 @@ export class DropdownActionsService {
     this.blockChangesObservable$ = this.blockChangesSubject$.asObservable();
   }
 
-  getDropdownActions(): DropdownActions {
+  getTextInputActions(): TextInputActions {
     return {
       changeLoading: (loading: boolean, blockId: string) => this.changeLoading(loading, blockId),
       setLabelForBlockId: (label: string, blockId: string) => this.setLabelForBlockId(label, blockId),
       setValueForBlockId: (value: string, blockId: string) => this.setValueForBlockId(value, blockId),
-      setChoicesForBlockId: (choices: string[], blockId: string) => this.setChoicesForBlockId(choices, blockId),
       setRequiredForBlockId: (required: boolean, blockId: string) => this.setRequiredForBlockId(required, blockId),
+      setMinLengthForBlockId: (minLength: number, blockId: string) => this.setMinLengthForBlockId(minLength, blockId),
+      setMaxLengthForBlockId: (maxLength: number, blockId: string) => this.setMaxLengthForBlockId(maxLength, blockId),
       setDisabledForBlockId: (disabled: boolean, blockId: string) => this.setDisabledForBlockId(disabled, blockId),
       setValidityForBlockId: (valid: boolean, blockId: string) => this.setValidityForBlockId(valid, blockId),
     };
   }
 
-  blockDidload(block: DropdownBlock): void {
+  blockDidload(block: TextInputBlock): void {
     this.blockLoadSubject$.next(block);
   }
 
-  blockDidChange(block: Update<DropdownBlock>): void {
-    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as DropdownBlock;
+  blockDidChange(block: Update<TextInputBlock>): void {
+    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as TextInputBlock;
     this.blockChangesSubject$.next(newBlock);
   }
 
@@ -51,20 +52,20 @@ export class DropdownActionsService {
       id: blockId,
       loading: loading,
     };
-    this.store$.dispatch(new dropdown.Loading(newLoading));
+    this.store$.dispatch(new textInput.Loading(newLoading));
   }
 
-  protected dispatchUpdate(block: Update<DropdownBlock>): void {
+  protected dispatchUpdate(block: Update<TextInputBlock>): void {
     const newBlock = {block: block, notify: false};
-    this.store$.dispatch(new dropdown.UpdateBlock(newBlock));
+    this.store$.dispatch(new textInput.UpdateBlock(newBlock));
   }
 
   setLabelForBlockId(label: string, blockId: string): void {
-    const newBlock: Update<DropdownBlock> = {
+    const newBlock: Update<TextInputBlock> = {
       id: blockId,
       changes: {
         id: blockId,
-        type: BlockType.Dropdown,
+        type: BlockType.TextInput,
         label: label,
       },
     };
@@ -72,47 +73,59 @@ export class DropdownActionsService {
   }
 
   setValueForBlockId(value: string, blockId: string): void {
-    const newBlock: Update<DropdownBlock> = {
+    const newBlock: Update<TextInputBlock> = {
       id: blockId,
       changes: {
         id: blockId,
-        type: BlockType.Dropdown,
+        type: BlockType.TextInput,
         value: value,
       },
     };
     this.dispatchUpdate(newBlock);
   }
 
-  setChoicesForBlockId(choices: string[], blockId: string): void {
-    const newBlock: Update<DropdownBlock> = {
-      id: blockId,
-      changes: {
-        id: blockId,
-        type: BlockType.Dropdown,
-        choices: choices,
-      },
-    };
-    this.dispatchUpdate(newBlock);
-  }
-
   setRequiredForBlockId(required: boolean, blockId: string): void {
-    const newBlock: Update<DropdownBlock> = {
+    const newBlock: Update<TextInputBlock> = {
       id: blockId,
       changes: {
         id: blockId,
-        type: BlockType.Dropdown,
+        type: BlockType.TextInput,
         required: required,
       },
     };
     this.dispatchUpdate(newBlock);
   }
 
-  setDisabledForBlockId(disabled: boolean, blockId: string): void {
-    const newBlock: Update<DropdownBlock> = {
+  setMinLengthForBlockId(minLength: number, blockId: string): void {
+    const newBlock: Update<TextInputBlock> = {
       id: blockId,
       changes: {
         id: blockId,
-        type: BlockType.Dropdown,
+        type: BlockType.TextInput,
+        minLength: minLength,
+      },
+    };
+    this.dispatchUpdate(newBlock);
+  }
+
+  setMaxLengthForBlockId(maxLength: number, blockId: string): void {
+    const newBlock: Update<TextInputBlock> = {
+      id: blockId,
+      changes: {
+        id: blockId,
+        type: BlockType.TextInput,
+        maxLength: maxLength,
+      },
+    };
+    this.dispatchUpdate(newBlock);
+  }
+
+  setDisabledForBlockId(disabled: boolean, blockId: string): void {
+    const newBlock: Update<TextInputBlock> = {
+      id: blockId,
+      changes: {
+        id: blockId,
+        type: BlockType.TextInput,
         disabled: disabled,
       },
     };
@@ -120,11 +133,11 @@ export class DropdownActionsService {
   }
 
   setValidityForBlockId(valid: boolean, blockId: string): void {
-    const newBlock: Update<DropdownBlock> = {
+    const newBlock: Update<TextInputBlock> = {
       id: blockId,
       changes: {
         id: blockId,
-        type: BlockType.Dropdown,
+        type: BlockType.TextInput,
         valid: valid,
       },
     };
