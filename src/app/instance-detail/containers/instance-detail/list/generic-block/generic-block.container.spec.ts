@@ -16,9 +16,9 @@ import * as fromInstanceDetail from "../../../../reducers";
 import {
   BlockListService,
   BlockUtilsIntegrationService,
-  CheckBoxActionsService,
-  DropdownActionsService,
-  TextInputActionsService,
+  CheckBoxHooksTriggerService,
+  DropdownHooksTriggerService,
+  TextInputHooksTriggerService,
 } from "../../../../services";
 
 import { BlockType } from "../../../../models";
@@ -65,9 +65,9 @@ describe("GenericBlockContainerComponent", () => {
         fromInstanceDetail.reducerProvider,
         BlockListService,
         BlockUtilsIntegrationService,
-        CheckBoxActionsService,
-        DropdownActionsService,
-        TextInputActionsService,
+        CheckBoxHooksTriggerService,
+        DropdownHooksTriggerService,
+        TextInputHooksTriggerService,
       ],
     })
       .overrideModule(BrowserDynamicTestingModule, {

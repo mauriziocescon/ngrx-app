@@ -18,7 +18,7 @@ export const instanceDetailRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(instanceDetailRoutes)
+    RouterModule.forChild(instanceDetailRoutes),
   ],
   exports: [
     RouterModule,
