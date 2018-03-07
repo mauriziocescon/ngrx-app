@@ -4,6 +4,8 @@ import { EffectsModule } from "@ngrx/effects";
 
 import { SharedModule } from "../shared/shared.module";
 
+import { InstanceListRoutingModule } from "./instance-list-routing.module";
+
 import { EFFECTS } from "./effects";
 import { TOKEN, reducerProvider } from "./reducers";
 import { SERVICES } from "./services";
@@ -22,6 +24,7 @@ import {
     EffectsModule.forFeature([
       ...EFFECTS,
     ]),
+    InstanceListRoutingModule,
   ],
   declarations: [
     ...COMPONENTS,

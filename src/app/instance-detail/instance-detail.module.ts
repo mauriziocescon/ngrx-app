@@ -4,15 +4,12 @@ import { EffectsModule } from "@ngrx/effects";
 
 import { SharedModule } from "../shared/shared.module";
 
+import { InstanceDetailRoutingModule } from "./instance-detail-routing.module";
+
 import { EFFECTS } from "./effects";
 import * as fromInstanceDetail from "./reducers";
 import { TOKEN, reducerProvider } from "./reducers";
-import {
-  SERVICES,
-  InstanceDetailGuard,
-  RulesResolve,
-  BlockActionsIntegrationService,
-} from "./services";
+import { SERVICES, BlockActionsIntegrationService } from "./services";
 
 import { COMPONENTS, UnknownComponent } from "./components";
 import {
@@ -31,6 +28,7 @@ import {
     EffectsModule.forFeature([
       ...EFFECTS,
     ]),
+    InstanceDetailRoutingModule,
   ],
   declarations: [
     ...COMPONENTS,
@@ -70,10 +68,5 @@ export * from "./models";
 export * from "./tokens";
 
 export {
-  InstanceDetailPageComponent,
-
-  InstanceDetailGuard,
-  RulesResolve,
-
   BlockActionsIntegrationService,
 };

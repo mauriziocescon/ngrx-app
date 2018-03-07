@@ -1,6 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 
 import { StoreModule } from "@ngrx/store";
@@ -13,7 +12,6 @@ import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
 
-import { appRoutes } from "./app.routes";
 import { TOKEN, reducerProvider, metaReducers } from "./reducers";
 import { EFFECTS } from "./effects";
 
@@ -28,6 +26,8 @@ import { B3BlocksModule } from "./b3/b3.module";
 
 import { AppContainerComponent } from "./app.container";
 
+import { AppRoutingModule } from "./app-routing.module";
+
 import { environment } from "../environments/environment";
 
 export function createTranslateLoader(http: HttpClient) {
@@ -38,7 +38,6 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule,
 
-    RouterModule.forRoot(appRoutes, {useHash: true}),
     StoreModule.forRoot(TOKEN, {metaReducers}),
     StoreRouterConnectingModule.forRoot({stateKey: "router"}),
     StoreDevtoolsModule.instrument({name: "NgRx-App Store DevTools", logOnly: environment.production}),
@@ -64,6 +63,7 @@ export function createTranslateLoader(http: HttpClient) {
     B1BlocksModule,
     B2BlocksModule,
     B3BlocksModule,
+    AppRoutingModule,
   ],
   declarations: [
     AppContainerComponent
