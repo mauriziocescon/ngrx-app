@@ -57,6 +57,7 @@ export class ListEffects implements OnRunEffects {
           return [
             new SyncBlocksComplete(),
             new Synchronized(),
+            new FetchBlocksComplete(blocks),
           ];
         })
         .catch(err => from([
