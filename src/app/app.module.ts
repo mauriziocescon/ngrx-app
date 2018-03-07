@@ -1,4 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
@@ -37,6 +38,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
 
     StoreModule.forRoot(TOKEN, {metaReducers}),
     StoreRouterConnectingModule.forRoot({stateKey: "router"}),

@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
@@ -21,7 +20,6 @@ import { RouterStateUrl, CustomRouterStateSerializer } from "./utilities/route-u
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     NgbModule,
     TranslateModule,
   ],
@@ -34,7 +32,6 @@ import { RouterStateUrl, CustomRouterStateSerializer } from "./utilities/route-u
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     NgbModule,
     TranslateModule,
     AddComponentDirective,
