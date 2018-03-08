@@ -62,6 +62,10 @@
       "DATE_PICKER_LABEL": "Seleziona data",
       "HEADER": "DatePicker",
       "LOADING": "Caricamento..."
+    },
+    "DOSSIER": {
+      "HEADER": "Dossier",
+      "LOADING": "Caricamento..."
     }
   },
   "CONTAINER": {

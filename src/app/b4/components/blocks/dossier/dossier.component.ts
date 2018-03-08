@@ -15,6 +15,7 @@ export class DossierComponent {
   @Output() valueDidChange: EventEmitter<void>;
 
   constructor(protected logger: NGXLogger) {
+    this.valueDidChange = new EventEmitter<void>();
   }
 
   get isLoading(): boolean {

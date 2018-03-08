@@ -132,6 +132,22 @@ const getDatePicker = function(id) {
   return datePicker;
 };
 
+const getDossier = function(id) {
+
+  let dossier = {
+    id: id,
+    type: "dossier",
+    order: parseInt(id),
+    valid: true,
+    hooks: {
+      dossierBlockDidLoad: "dossierBlockDidLoad",
+      dossierBlockDidChange: "dossierBlockDidChange",
+    },
+  };
+
+  return dossier;
+};
+
 const getUnknownComponent = function(id) {
   return {
     id: id,
@@ -194,5 +210,25 @@ exports.getRandomB2Block = function(id) {
   }
   else {
     return getDatePicker(id);
+  }
+};
+
+exports.getRandomB4Block = function(id) {
+  const choice = Math.random();
+
+  if (choice < 0.05) {
+    return getUnknownComponent(id);
+  }
+  else if (choice < 0.25) {
+    return getCheckBox(id);
+  }
+  else if (choice < 0.50) {
+    return getDropdown(id);
+  }
+  else if (choice < 0.75) {
+    return getTextInput(id);
+  }
+  else {
+    return getDossier(id);
   }
 };

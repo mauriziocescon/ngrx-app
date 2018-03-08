@@ -54,8 +54,15 @@ function main() {
     }
     data.instances.push(instance);
 
+    // module b4
+    instance = {id: "5", module: "b4", instance: "1", step: "1", blocks: []};
+    for (let i = 0; i < numberOfBlocks; i++) {
+      instance.blocks.push(blockCreator.getRandomB4Block(i.toString()));
+    }
+    data.instances.push(instance);
+
     // module b5
-    instance = {id: "5", module: "b5", instance: "1", step: "1", blocks: []};
+    instance = {id: "6", module: "b5", instance: "1", step: "1", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(blockCreator.getRandomBlock(i.toString()));
     }
@@ -65,6 +72,7 @@ function main() {
     data.rulesConfig.push({module: "b1", steps: [{step: "1", rules: "rules1"}, {step: "2", rules: "rules2"}]});
     data.rulesConfig.push({module: "b2", steps: [{step: "1", rules: "rules1"}, {step: "2", rules: "rules2"}]});
     data.rulesConfig.push({module: "b3", steps: [{step: "1", rules: "rules1"}]});
+    data.rulesConfig.push({module: "b4", steps: [{step: "1", rules: "rules1"}]});
 
     utils.saveDb(dbUrl, data, (err) => {
       if (err) {
