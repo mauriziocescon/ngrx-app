@@ -21,7 +21,7 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("DropdownComponent", () => {
+describe("DropdownContainerComponent", () => {
   let component: DropdownContainerComponent;
   let fixture: ComponentFixture<DropdownContainerComponent>;
 

@@ -22,7 +22,7 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("CheckBoxConfirmerComponent", () => {
+describe("CheckBoxConfirmerContainerComponent", () => {
   let component: CheckBoxConfirmerContainerComponent;
   let fixture: ComponentFixture<CheckBoxConfirmerContainerComponent>;
 

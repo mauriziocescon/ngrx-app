@@ -21,7 +21,7 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("TextInputComponent", () => {
+describe("TextInputContainerComponent", () => {
   let component: TextInputContainerComponent;
   let fixture: ComponentFixture<TextInputContainerComponent>;
 

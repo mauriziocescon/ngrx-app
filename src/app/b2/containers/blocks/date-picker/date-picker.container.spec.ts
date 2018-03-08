@@ -22,7 +22,7 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("DatePickerComponent", () => {
+describe("DatePickerContainerComponent", () => {
   let component: DatePickerContainerComponent;
   let fixture: ComponentFixture<DatePickerContainerComponent>;
 
