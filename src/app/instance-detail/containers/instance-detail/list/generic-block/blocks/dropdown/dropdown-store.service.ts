@@ -4,9 +4,9 @@ import { Update } from "@ngrx/entity";
 
 import { Observable } from "rxjs/Observable";
 
-import { DropdownBlock } from "../../../../../../models";
-
 import * as dropdown from "../../../../../../actions/list/blocks/dropdown.actions";
+
+import { DropdownBlock } from "../../../../../../models";
 
 import * as fromInstanceDetail from "../../../../../../reducers";
 

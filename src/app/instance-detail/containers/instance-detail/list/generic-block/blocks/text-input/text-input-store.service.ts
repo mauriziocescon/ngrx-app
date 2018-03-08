@@ -4,9 +4,9 @@ import { Update } from "@ngrx/entity";
 
 import { Observable } from "rxjs/Observable";
 
-import { TextInputBlock } from "../../../../../../models";
-
 import * as textInput from "../../../../../../actions/list/blocks/text-input.actions";
+
+import { TextInputBlock } from "../../../../../../models";
 
 import * as fromInstanceDetail from "../../../../../../reducers";
 

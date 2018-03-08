@@ -4,9 +4,9 @@ import { Update } from "@ngrx/entity";
 
 import { Observable } from "rxjs/Observable";
 
-import { CheckBoxBlock } from "../../../../../../models";
-
 import * as checkBox from "../../../../../../actions/list/blocks/check-box.actions";
+
+import { CheckBoxBlock } from "../../../../../../models";
 
 import * as fromInstanceDetail from "../../../../../../reducers";
 
