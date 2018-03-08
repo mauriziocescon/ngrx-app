@@ -24,6 +24,7 @@ import { InstanceDetailModule } from "./instance-detail/instance-detail.module";
 import { B1BlocksModule } from "./b1/b1.module";
 import { B2BlocksModule } from "./b2/b2.module";
 import { B3BlocksModule } from "./b3/b3.module";
+import { B4BlocksModule } from "./b4/b4.module";
 
 import { AppContainerComponent } from "./app.container";
 
@@ -65,6 +66,7 @@ export function createTranslateLoader(http: HttpClient) {
     B1BlocksModule,
     B2BlocksModule,
     B3BlocksModule,
+    B4BlocksModule,
     AppRoutingModule,
   ],
   declarations: [
