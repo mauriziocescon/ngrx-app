@@ -5,6 +5,7 @@ import {
   CheckBoxConfirmerActionTypes,
   CheckBoxConfirmerActions
 } from "../../../actions/blocks/check-box-confirmer.actions";
+
 import { CheckBoxConfirmerBlock } from "../../../models";
 
 export interface State extends EntityState<CheckBoxConfirmerBlock> {

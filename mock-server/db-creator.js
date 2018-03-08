@@ -54,8 +54,8 @@ function main() {
     }
     data.instances.push(instance);
 
-    // module b4
-    instance = {id: "5", module: "b4", instance: "1", step: "1", blocks: []};
+    // module b5
+    instance = {id: "5", module: "b5", instance: "1", step: "1", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(blockCreator.getRandomBlock(i.toString()));
     }

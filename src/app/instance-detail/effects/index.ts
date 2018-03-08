@@ -10,10 +10,3 @@ export const EFFECTS = [
   DropdownEffect,
   TextInputEffect,
 ];
-
-export {
-  ListEffects,
-  CheckBoxEffect,
-  DropdownEffect,
-  TextInputEffect,
-};
