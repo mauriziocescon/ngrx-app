@@ -8,7 +8,26 @@
           <span blockValidation [valid]="block.valid"></span>
         </div>
         <div class="card-body">
-          <form>
+          <form [formGroup]="dossierForm">
+
+
+            <h5>{{ block.section1.sectionLabel | translate }}</h5>
+            <div class="form-group">
+              <label class="center-block">
+                <span>{{ block.section1.sectionLabel }}</span>
+                <input class="form-control" formControlName="textInput1Section1Control">
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="center-block">
+                <span>{{ block.section1.sectionLabel }}</span>
+                <input class="form-control" formControlName="textInput2Section1Control">
+              </label>
+            </div>
+
+
+            <h5>{{ block.section2.sectionLabel | translate }}</h5>
+
 
           </form>
         </div>
