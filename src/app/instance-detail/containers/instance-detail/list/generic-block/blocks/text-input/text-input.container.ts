@@ -35,7 +35,7 @@ export class TextInputContainerComponent {
           return block.id === this.blockId;
         });
       })
-      .map((block) => {
+      .map((block: TextInputBlock | undefined) => {
         return this.textInputBlock = block;
       });
 

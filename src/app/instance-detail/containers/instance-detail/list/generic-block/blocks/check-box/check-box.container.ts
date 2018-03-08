@@ -35,7 +35,7 @@ export class CheckBoxContainerComponent {
           return block.id === this.blockId;
         });
       })
-      .map(block => {
+      .map((block: CheckBoxBlock | undefined) => {
         return this.checkBoxBlock = block;
       });
 

@@ -38,7 +38,7 @@ export class DatePickerContainerComponent {
           return block.id === this.blockId;
         });
       })
-      .map((block) => {
+      .map((block: DatePickerBlock | undefined) => {
         return this.datePickerBlock = block;
       });
 

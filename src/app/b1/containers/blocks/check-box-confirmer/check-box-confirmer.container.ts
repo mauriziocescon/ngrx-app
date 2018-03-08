@@ -47,7 +47,7 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
           return block.id === this.blockId;
         });
       })
-      .map((block) => {
+      .map((block: CheckBoxConfirmerBlock | undefined) => {
         return this.checkBoxConfirmerBlock = block;
       });
 

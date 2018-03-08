@@ -35,7 +35,7 @@ export class DropdownContainerComponent {
           return block.id === this.blockId;
         });
       })
-      .map((block) => {
+      .map((block: DropdownBlock | undefined) => {
         return this.dropdownBlock = block;
       });
 
