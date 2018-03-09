@@ -22,7 +22,7 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("ListComponent", () => {
+describe("ListContainerComponent", () => {
   let component: ListContainerComponent;
   let fixture: ComponentFixture<ListContainerComponent>;
 
