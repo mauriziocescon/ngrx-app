@@ -4,11 +4,11 @@ import { Update } from "@ngrx/entity";
 
 import { Observable } from "rxjs/Observable";
 
-import * as checkBox from "../../../../../../actions/list/blocks/check-box.actions";
+import * as checkBox from "../../../../../../../actions/list/blocks/check-box.actions";
 
-import { CheckBoxBlock } from "../../../../../../models";
+import { CheckBoxBlock } from "../../../../../../../models";
 
-import * as fromInstanceDetail from "../../../../../../reducers";
+import * as fromInstanceDetail from "../../../../../../../reducers";
 
 @Injectable()
 export class CheckBoxStoreService {

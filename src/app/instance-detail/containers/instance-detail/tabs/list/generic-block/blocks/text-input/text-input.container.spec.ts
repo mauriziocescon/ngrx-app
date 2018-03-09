@@ -7,24 +7,23 @@ import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-transla
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
-import { CoreModule } from "../../../../core/core.module";
-import { SharedModule } from "../../../../shared/shared.module";
+import { CoreModule } from "../../../../../../../../core/core.module";
+import { SharedModule } from "../../../../../../../../shared/shared.module";
 
-import * as fromRoot from "../../../../reducers";
-import * as fromInstanceDetail from "../../../reducers";
+import * as fromRoot from "../../../../../../../reducers";
+import * as fromInstanceDetail from "../../../../../../../reducers";
 
-import { COMPONENTS } from "../../../components";
-import { CONTAINERS, ListContainerComponent } from "../../../containers";
-
-import { BlockListService } from "../../../services";
+import { BlockType } from "../../../../../../../models";
+import { COMPONENTS } from "../../../../../../../components";
+import { CONTAINERS, TextInputContainerComponent } from "../../../../../../../containers";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("ListContainerComponent", () => {
-  let component: ListContainerComponent;
-  let fixture: ComponentFixture<ListContainerComponent>;
+describe("TextInputContainerComponent", () => {
+  let component: TextInputContainerComponent;
+  let fixture: ComponentFixture<TextInputContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -56,7 +55,6 @@ describe("ListContainerComponent", () => {
         NGXLogger,
         fromRoot.reducerProvider,
         fromInstanceDetail.reducerProvider,
-        BlockListService,
       ],
     })
       .overrideModule(BrowserDynamicTestingModule, {
@@ -71,8 +69,9 @@ describe("ListContainerComponent", () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListContainerComponent);
+    fixture = TestBed.createComponent(TextInputContainerComponent);
     component = fixture.componentInstance;
+    component.blockId = "1";
     fixture.detectChanges();
   });
 

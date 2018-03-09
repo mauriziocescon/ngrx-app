@@ -7,15 +7,15 @@ import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-transla
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
-import { CoreModule } from "../../../../../../../core/core.module";
-import { SharedModule } from "../../../../../../../shared/shared.module";
+import { CoreModule } from "../../../../../../../../core/core.module";
+import { SharedModule } from "../../../../../../../../shared/shared.module";
 
 import * as fromRoot from "../../../../../../../reducers";
-import * as fromInstanceDetail from "../../../../../../reducers";
+import * as fromInstanceDetail from "../../../../../../../reducers";
 
-import { BlockType } from "../../../../../../models";
-import { COMPONENTS } from "../../../../../../components";
-import { CONTAINERS, DropdownContainerComponent } from "../../../../../../containers";
+import { BlockType } from "../../../../../../../models";
+import { COMPONENTS } from "../../../../../../../components";
+import { CONTAINERS, DropdownContainerComponent } from "../../../../../../../containers";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");

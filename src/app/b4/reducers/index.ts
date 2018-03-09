@@ -5,10 +5,12 @@ import { DossierBlock } from "../models";
 
 import * as fromRoot from "../../reducers";
 import { fromInstanceDetail, Block } from "../../instance-detail/instance-detail.module";
+import * as fromB4Effects from "./b4-effects.reducer";
 import * as fromEditedBlocks from "./blocks";
 import * as fromDossier from "./blocks/dossier/dossier.reducer";
 
 export interface B4BlocksState {
+  effects: fromB4Effects.State;
   editedBlocks: fromEditedBlocks.State;
 }
 
@@ -22,6 +24,7 @@ export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>
 
 export function getReducers(): ActionReducerMap<B4BlocksState> {
   return {
+    effects: fromB4Effects.reducer,
     editedBlocks: combineReducers(fromEditedBlocks.reducers),
   };
 }

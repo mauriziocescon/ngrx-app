@@ -8,9 +8,9 @@ import "rxjs/add/operator/withLatestFrom";
 import { TranslateService } from "@ngx-translate/core";
 import { NGXLogger } from "ngx-logger";
 
-import { ModalAlert } from "../../../../core/core.module";
+import { ModalAlert } from "../../../../../core/core.module";
 
-import { Block, InstanceParams } from "../../../models";
+import { Block, InstanceParams } from "../../../../models";
 
 import { ListStoreService } from "./list-store.service";
 

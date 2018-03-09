@@ -10,28 +10,21 @@ import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 import { CoreModule } from "../../../../../core/core.module";
 import { SharedModule } from "../../../../../shared/shared.module";
 
-import * as fromRoot from "../../../../../reducers";
+import * as fromRoot from "../../../../reducers";
 import * as fromInstanceDetail from "../../../../reducers";
 
-import {
-  BlockListService,
-  BlockUtilsIntegrationService,
-  CheckBoxHooksTriggerService,
-  DropdownHooksTriggerService,
-  TextInputHooksTriggerService,
-} from "../../../../services";
-
-import { BlockType } from "../../../../models";
 import { COMPONENTS } from "../../../../components";
-import { CONTAINERS, GenericBlockContainerComponent } from "../../../../containers";
+import { CONTAINERS, ListContainerComponent } from "../../../../containers";
+
+import { BlockListService } from "../../../../services";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("GenericBlockContainerComponent", () => {
-  let component: GenericBlockContainerComponent;
-  let fixture: ComponentFixture<GenericBlockContainerComponent>;
+describe("ListContainerComponent", () => {
+  let component: ListContainerComponent;
+  let fixture: ComponentFixture<ListContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -64,10 +57,6 @@ describe("GenericBlockContainerComponent", () => {
         fromRoot.reducerProvider,
         fromInstanceDetail.reducerProvider,
         BlockListService,
-        BlockUtilsIntegrationService,
-        CheckBoxHooksTriggerService,
-        DropdownHooksTriggerService,
-        TextInputHooksTriggerService,
       ],
     })
       .overrideModule(BrowserDynamicTestingModule, {
@@ -82,13 +71,8 @@ describe("GenericBlockContainerComponent", () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GenericBlockContainerComponent);
+    fixture = TestBed.createComponent(ListContainerComponent);
     component = fixture.componentInstance;
-    component.block = {
-      id: "1",
-      type: BlockType.CheckBox,
-      order: 1,
-    };
     fixture.detectChanges();
   });
 

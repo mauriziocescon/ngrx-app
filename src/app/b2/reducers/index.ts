@@ -5,10 +5,12 @@ import { DatePickerBlock } from "../models";
 
 import * as fromRoot from "../../reducers";
 import { fromInstanceDetail, Block } from "../../instance-detail/instance-detail.module";
+import * as fromB2Effects from "./b2-effects.reducer";
 import * as fromEditedBlocks from "./blocks";
 import * as fromDatePicker from "./blocks/date-picker/date-picker.reducer";
 
 export interface B2BlocksState {
+  effects: fromB2Effects.State;
   editedBlocks: fromEditedBlocks.State;
 }
 
@@ -22,6 +24,7 @@ export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>
 
 export function getReducers(): ActionReducerMap<B2BlocksState> {
   return {
+    effects: fromB2Effects.reducer,
     editedBlocks: combineReducers(fromEditedBlocks.reducers),
   };
 }

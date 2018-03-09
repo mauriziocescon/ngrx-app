@@ -7,23 +7,31 @@ import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-transla
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
-import { CoreModule } from "../../../../../../../core/core.module";
-import { SharedModule } from "../../../../../../../shared/shared.module";
+import { CoreModule } from "../../../../../../core/core.module";
+import { SharedModule } from "../../../../../../shared/shared.module";
 
-import * as fromRoot from "../../../../../../../reducers";
-import * as fromInstanceDetail from "../../../../../../reducers";
+import * as fromRoot from "../../../../../reducers";
+import * as fromInstanceDetail from "../../../../../reducers";
 
-import { BlockType } from "../../../../../../models";
-import { COMPONENTS } from "../../../../../../components";
-import { CONTAINERS, TextInputContainerComponent } from "../../../../../../containers";
+import {
+  BlockListService,
+  BlockUtilsIntegrationService,
+  CheckBoxHooksTriggerService,
+  DropdownHooksTriggerService,
+  TextInputHooksTriggerService,
+} from "../../../../../services";
+
+import { BlockType } from "../../../../../models";
+import { COMPONENTS } from "../../../../../components";
+import { CONTAINERS, GenericBlockContainerComponent } from "../../../../../containers";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("TextInputContainerComponent", () => {
-  let component: TextInputContainerComponent;
-  let fixture: ComponentFixture<TextInputContainerComponent>;
+describe("GenericBlockContainerComponent", () => {
+  let component: GenericBlockContainerComponent;
+  let fixture: ComponentFixture<GenericBlockContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -55,6 +63,11 @@ describe("TextInputContainerComponent", () => {
         NGXLogger,
         fromRoot.reducerProvider,
         fromInstanceDetail.reducerProvider,
+        BlockListService,
+        BlockUtilsIntegrationService,
+        CheckBoxHooksTriggerService,
+        DropdownHooksTriggerService,
+        TextInputHooksTriggerService,
       ],
     })
       .overrideModule(BrowserDynamicTestingModule, {
@@ -69,9 +82,13 @@ describe("TextInputContainerComponent", () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextInputContainerComponent);
+    fixture = TestBed.createComponent(GenericBlockContainerComponent);
     component = fixture.componentInstance;
-    component.blockId = "1";
+    component.block = {
+      id: "1",
+      type: BlockType.CheckBox,
+      order: 1,
+    };
     fixture.detectChanges();
   });
 

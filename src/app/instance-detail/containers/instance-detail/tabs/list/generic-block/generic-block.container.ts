@@ -7,11 +7,11 @@ import {
   Input
 } from "@angular/core";
 
-import { AddComponentDirective } from "../../../../../shared/shared.module";
+import { AddComponentDirective } from "../../../../../../shared/shared.module";
 
-import { BlockUtilsIntegrationService } from "../../../../services";
+import { BlockUtilsIntegrationService } from "../../../../../services";
 
-import { Block, BlockComponent } from "../../../../models";
+import { Block, BlockComponent } from "../../../../../models";
 
 @Component({
   selector: "ct-generic-block",

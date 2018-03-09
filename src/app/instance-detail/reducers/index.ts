@@ -4,6 +4,7 @@ import { createSelector, createFeatureSelector, combineReducers, ActionReducerMa
 import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../models";
 
 import * as fromRoot from "../../reducers";
+import * as fromInstanceDetailEffects from "./instance-detail-effects.reducer";
 import * as fromList from "./list/list.reducer";
 import * as fromSync from "./list/sync.reducer";
 import * as fromEditedBlocks from "./list/blocks";
@@ -12,6 +13,7 @@ import * as fromDropdown from "./list/blocks/dropdown/dropdown.reducer";
 import * as fromTextInput from "./list/blocks/text-input/text-input.reducer";
 
 export interface InstanceDetailState {
+  effects: fromInstanceDetailEffects.State;
   blockList: fromList.State;
   serverSync: fromSync.State;
   editedBlocks: fromEditedBlocks.State;
@@ -27,6 +29,7 @@ export const TOKEN = new InjectionToken<ActionReducerMap<InstanceDetailState>>("
 
 export function getReducers(): ActionReducerMap<InstanceDetailState, any> {
   return {
+    effects: fromInstanceDetailEffects.reducer,
     blockList: fromList.reducer,
     serverSync: fromSync.reducer,
     editedBlocks: combineReducers(fromEditedBlocks.reducers),

@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
-import { BlockType, TextInputBlock } from "../../../../../../models";
+import { BlockType, TextInputBlock } from "../../../../../../../models";
 
 import { TextInputStoreService } from "./text-input-store.service";
 

@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
-import { BlockType, DropdownBlock } from "../../../../../../models";
+import { BlockType, DropdownBlock } from "../../../../../../../models";
 
 import { DropdownStoreService } from "./dropdown-store.service";
 

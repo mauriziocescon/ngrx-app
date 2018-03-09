@@ -5,10 +5,12 @@ import { CheckBoxConfirmerBlock } from "../models";
 
 import * as fromRoot from "../../reducers";
 import { fromInstanceDetail, Block } from "../../instance-detail/instance-detail.module";
+import * as fromB1Effects from "./b1-effects.reducer";
 import * as fromEditedBlocks from "./blocks";
 import * as fromCheckBoxConfirmer from "./blocks/check-box-confirmer/check-box-confirmer.reducer";
 
 export interface B1BlocksState {
+  effects: fromB1Effects.State;
   editedBlocks: fromEditedBlocks.State;
 }
 
@@ -22,6 +24,7 @@ export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>
 
 export function getReducers(): ActionReducerMap<B1BlocksState> {
   return {
+    effects: fromB1Effects.reducer,
     editedBlocks: combineReducers(fromEditedBlocks.reducers),
   };
 }

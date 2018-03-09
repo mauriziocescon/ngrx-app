@@ -2,9 +2,9 @@ import { Injectable } from "@angular/core";
 
 import { AppConstantsService } from "../../../../core/core.module";
 
-import { CheckBoxContainerComponent } from "../../../containers/instance-detail/list/generic-block/blocks/check-box/check-box.container";
-import { DropdownContainerComponent } from "../../../containers/instance-detail/list/generic-block/blocks/dropdown/dropdown.container";
-import { TextInputContainerComponent } from "../../../containers/instance-detail/list/generic-block/blocks/text-input/text-input.container";
+import { CheckBoxContainerComponent } from "../../../containers/instance-detail/tabs/list/generic-block/blocks/check-box/check-box.container";
+import { DropdownContainerComponent } from "../../../containers/instance-detail/tabs/list/generic-block/blocks/dropdown/dropdown.container";
+import { TextInputContainerComponent } from "../../../containers/instance-detail/tabs/list/generic-block/blocks/text-input/text-input.container";
 import { UnknownComponent } from "../../../components";
 
 import {
