@@ -29,7 +29,8 @@
     },
     "TABS": {
       "TAB_BLOCKS": "Blocks",
-      "TAB_DOCUMENTS": "Document list"
+      "TAB_DOCUMENTS": "Document list",
+      "TAB_HISTORY": "History"
     },
     "LIST": {
       "LOAD_COMPLETED": "Loading completed",
