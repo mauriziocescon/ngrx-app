@@ -2,10 +2,12 @@ import { InjectionToken } from "@angular/core";
 import { createFeatureSelector, createSelector, ActionReducerMap, combineReducers } from "@ngrx/store";
 
 import * as fromRoot from "../../reducers";
+import * as fromInstanceListEffects from "./instance-list-effects.reducer";
 import * as fromInstanceList from "./instance-list.reducer";
 import * as fromEditedBlocks from "../../b2/reducers/blocks";
 
 export interface InstanceListState {
+  effects: fromInstanceListEffects.State;
   instances: fromInstanceList.State;
 }
 
@@ -19,6 +21,7 @@ export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>
 
 export function getReducers(): ActionReducerMap<InstanceListState, any> {
   return {
+    effects: fromInstanceListEffects.reducer,
     instances: fromInstanceList.reducer,
   };
 }
