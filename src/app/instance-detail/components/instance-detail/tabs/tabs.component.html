@@ -2,7 +2,8 @@
   <ngb-tabset [justify]="justify">
     <ngb-tab>
       <ng-template ngbTabTitle>
-        <b>{{ "COMPONENT.TABS.TAB_BLOCKS" | translate }}</b>
+        <b class="d-none d-md-inline">{{ "COMPONENT.TABS.TAB_BLOCKS" | translate }}</b>
+        <span class="fa fa-edit"></span>
       </ng-template>
       <ng-template ngbTabContent>
         <div class="row">
@@ -15,7 +16,8 @@
     </ngb-tab>
     <ngb-tab>
       <ng-template ngbTabTitle>
-        <b>{{ "COMPONENT.TABS.TAB_DOCUMENTS" | translate }}</b>
+        <b class="d-none d-md-inline">{{ "COMPONENT.TABS.TAB_DOCUMENTS" | translate }}</b>
+        <span class="fa fa-file"></span>
       </ng-template>
       <ng-template ngbTabContent>
         <div>Document List</div>
@@ -23,7 +25,8 @@
     </ngb-tab>
     <ngb-tab>
       <ng-template ngbTabTitle>
-        <b>{{ "COMPONENT.TABS.TAB_HISTORY" | translate }}</b>
+        <b class="d-none d-md-inline">{{ "COMPONENT.TABS.TAB_HISTORY" | translate }}</b>
+        <span class="fa fa-history"></span>
       </ng-template>
       <ng-template ngbTabContent>
         <div>History</div>
