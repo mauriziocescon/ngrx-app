@@ -6,19 +6,19 @@ import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-transla
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
-import { CoreModule } from "../../../../../../core/core.module";
-import { SharedModule } from "../../../../../../shared/shared.module";
+import { CoreModule } from "../../../../../../../core/core.module";
+import { SharedModule } from "../../../../../../../shared/shared.module";
 
-import { BlockType } from "../../../../../models";
-import { DropdownComponent } from "./dropdown.component";
+import { BlockType } from "../../../../../../models";
+import { CheckBoxComponent } from "./check-box.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("DropdownComponent", () => {
-  let component: DropdownComponent;
-  let fixture: ComponentFixture<DropdownComponent>;
+describe("CheckBoxComponent", () => {
+  let component: CheckBoxComponent;
+  let fixture: ComponentFixture<CheckBoxComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -40,7 +40,7 @@ describe("DropdownComponent", () => {
         SharedModule,
       ],
       declarations: [
-        DropdownComponent,
+        CheckBoxComponent,
       ],
       providers: [
         TranslateService,
@@ -51,15 +51,15 @@ describe("DropdownComponent", () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DropdownComponent);
+    fixture = TestBed.createComponent(CheckBoxComponent);
     component = fixture.componentInstance;
     component.block = {
       id: "1",
-      type: BlockType.Dropdown,
+      type: BlockType.CheckBox,
       order: 1,
       label: "",
-      value: "1",
-      choices: ["1", "2"],
+      value: true,
+      description: "",
       required: true,
       disabled: false,
       valid: true,

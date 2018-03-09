@@ -6,19 +6,19 @@ import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-transla
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
-import { CoreModule } from "../../../../../../core/core.module";
-import { SharedModule } from "../../../../../../shared/shared.module";
+import { CoreModule } from "../../../../../../../core/core.module";
+import { SharedModule } from "../../../../../../../shared/shared.module";
 
-import { BlockType } from "../../../../../models";
-import { TextInputComponent } from "./text-input.component";
+import { BlockType } from "../../../../../../models";
+import { DropdownComponent } from "./dropdown.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("TextInputComponent", () => {
-  let component: TextInputComponent;
-  let fixture: ComponentFixture<TextInputComponent>;
+describe("DropdownComponent", () => {
+  let component: DropdownComponent;
+  let fixture: ComponentFixture<DropdownComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -40,7 +40,7 @@ describe("TextInputComponent", () => {
         SharedModule,
       ],
       declarations: [
-        TextInputComponent,
+        DropdownComponent,
       ],
       providers: [
         TranslateService,
@@ -51,17 +51,16 @@ describe("TextInputComponent", () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextInputComponent);
+    fixture = TestBed.createComponent(DropdownComponent);
     component = fixture.componentInstance;
     component.block = {
       id: "1",
-      type: BlockType.TextInput,
+      type: BlockType.Dropdown,
       order: 1,
       label: "",
-      value: "45",
+      value: "1",
+      choices: ["1", "2"],
       required: true,
-      minLength: 0,
-      maxLength: 5,
       disabled: false,
       valid: true,
       hooks: {},

@@ -6,7 +6,7 @@ import "rxjs/add/operator/debounceTime";
 
 import { NGXLogger } from "ngx-logger";
 
-import { CheckBoxBlock } from "../../../../../models";
+import { CheckBoxBlock } from "../../../../../../models";
 
 @Component({
   selector: "cp-check-box",

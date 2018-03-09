@@ -6,19 +6,19 @@ import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-transla
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
-import { CoreModule } from "../../../../core/core.module";
-import { SharedModule } from "../../../../shared/shared.module";
+import { CoreModule } from "../../../../../../../core/core.module";
+import { SharedModule } from "../../../../../../../shared/shared.module";
 
-import { GenericBlockContainerComponent } from "../../../containers";
-import { ListComponent } from "./list.component";
+import { GenericBlockContainerComponent } from "../../../../../../containers";
+import { UnknownComponent } from "./unknown.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("ListComponent", () => {
-  let component: ListComponent;
-  let fixture: ComponentFixture<ListComponent>;
+describe("UnknownComponent", () => {
+  let component: UnknownComponent;
+  let fixture: ComponentFixture<UnknownComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -40,8 +40,8 @@ describe("ListComponent", () => {
         SharedModule,
       ],
       declarations: [
+        UnknownComponent,
         GenericBlockContainerComponent,
-        ListComponent,
       ],
       providers: [
         TranslateService,
@@ -52,7 +52,7 @@ describe("ListComponent", () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListComponent);
+    fixture = TestBed.createComponent(UnknownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

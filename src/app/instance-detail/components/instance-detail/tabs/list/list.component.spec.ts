@@ -6,19 +6,19 @@ import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-transla
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
 
-import { CoreModule } from "../../../../../../core/core.module";
-import { SharedModule } from "../../../../../../shared/shared.module";
+import { CoreModule } from "../../../../../core/core.module";
+import { SharedModule } from "../../../../../shared/shared.module";
 
-import { BlockType } from "../../../../../models";
-import { CheckBoxComponent } from "./check-box.component";
+import { GenericBlockContainerComponent } from "../../../../containers";
+import { ListComponent } from "./list.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "assets/i18n/", ".json");
 }
 
-describe("CheckBoxComponent", () => {
-  let component: CheckBoxComponent;
-  let fixture: ComponentFixture<CheckBoxComponent>;
+describe("ListComponent", () => {
+  let component: ListComponent;
+  let fixture: ComponentFixture<ListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -40,7 +40,8 @@ describe("CheckBoxComponent", () => {
         SharedModule,
       ],
       declarations: [
-        CheckBoxComponent,
+        GenericBlockContainerComponent,
+        ListComponent,
       ],
       providers: [
         TranslateService,
@@ -51,21 +52,8 @@ describe("CheckBoxComponent", () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckBoxComponent);
+    fixture = TestBed.createComponent(ListComponent);
     component = fixture.componentInstance;
-    component.block = {
-      id: "1",
-      type: BlockType.CheckBox,
-      order: 1,
-      label: "",
-      value: true,
-      description: "",
-      required: true,
-      disabled: false,
-      valid: true,
-      hooks: {},
-    };
-    component.loading = false;
     fixture.detectChanges();
   });
 

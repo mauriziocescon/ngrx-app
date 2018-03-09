@@ -6,7 +6,7 @@ import "rxjs/add/operator/debounceTime";
 
 import { NGXLogger } from "ngx-logger";
 
-import { TextInputBlock } from "../../../../../models";
+import { TextInputBlock } from "../../../../../../models";
 
 @Component({
   selector: "cp-text-input",
