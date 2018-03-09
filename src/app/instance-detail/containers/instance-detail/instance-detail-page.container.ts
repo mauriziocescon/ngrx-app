@@ -21,14 +21,18 @@ import { InstanceDetailPageStoreService } from "./instance-detail-page-store.ser
   template: `
     <div class="container-fluid">
       <div class="row">
+        <ct-info 
+          class="col-12"
+          [instanceParams]="routeParams">
+        </ct-info>
         <ct-next-step
           class="col-12 col-sm-4 col-lg-2"
           [instanceParams]="routeParams">
         </ct-next-step>
-        <ct-list
+        <ct-tabs
           class="col-12 col-sm-8 col-lg-10"
           [instanceParams]="routeParams">
-        </ct-list>
+        </ct-tabs>
       </div>
     </div>`,
 })

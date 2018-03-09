@@ -1,0 +1,33 @@
+<div class="container-fluid tabs-component">
+  <ngb-tabset [justify]="justify">
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <b>{{ "COMPONENT.TABS.BLOCKS" | translate }}</b>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <div class="row">
+          <ct-list
+            class="col-12"
+            [instanceParams]="instanceParams">
+          </ct-list>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <b>{{ "COMPONENT.TABS.TAB_DOCUMENTS" | translate }}</b>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <div>Document List</div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+      <ng-template ngbTabTitle>
+        <b>History</b>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <div>History</div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

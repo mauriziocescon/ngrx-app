@@ -14,11 +14,10 @@
       "RETRY": "Retry",
       "SHOW": "Show"
     },
-    "LIST": {
-      "LOAD_COMPLETED": "Loading completed",
-      "LOADING": "Loading...",
-      "NO_RESULT": "Empty",
-      "RETRY": "Retry"
+    "INSTANCE_DETAIL": {
+    },
+    "INFO": {
+      "HEADER": "Info"
     },
     "NEXT_STEP": {
       "CANCEL": "Cancel",
@@ -27,6 +26,16 @@
       "RETRY": "Retry",
       "SYNC": "Syncronized",
       "SYNCING": "Sync..."
+    },
+    "TABS": {
+      "TAB_BLOCKS": "Blocks",
+      "TAB_DOCUMENTS": "Document list"
+    },
+    "LIST": {
+      "LOAD_COMPLETED": "Loading completed",
+      "LOADING": "Loading...",
+      "NO_RESULT": "Empty",
+      "RETRY": "Retry"
     },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "I have checked all documents",
@@ -77,11 +86,11 @@
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Alert"
     },
-    "LIST": {
+    "NEXT_STEP": {
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Alert"
     },
-    "NEXT_STEP": {
+    "LIST": {
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Alert"
     },

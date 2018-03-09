@@ -1,4 +1,7 @@
+import { InfoComponent } from "./instance-detail/info/info.component";
 import { NextStepComponent } from "./instance-detail/next-step/next-step.component";
+import { TabsComponent } from "./instance-detail/tabs/tabs.component";
+
 import { ListComponent } from "./instance-detail/list/list.component";
 
 import { UnknownComponent } from "./instance-detail/list/blocks/unknown/unknown.component";
@@ -7,8 +10,12 @@ import { DropdownComponent } from "./instance-detail/list/blocks/dropdown/dropdo
 import { TextInputComponent } from "./instance-detail/list/blocks/text-input/text-input.component";
 
 export const COMPONENTS = [
+  InfoComponent,
   NextStepComponent,
+  TabsComponent,
+
   ListComponent,
+
   UnknownComponent,
   CheckBoxComponent,
   DropdownComponent,
@@ -18,6 +25,7 @@ export const COMPONENTS = [
 export {
   NextStepComponent,
   ListComponent,
+
   UnknownComponent,
   CheckBoxComponent,
   DropdownComponent,

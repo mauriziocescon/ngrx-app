@@ -1,6 +1,9 @@
 import { InstanceDetailPageComponent } from "./instance-detail/instance-detail-page.container";
 
-import { NextStepContainerComponent } from "./instance-detail/next-step/next-step.container"
+import { InfoContainerComponent } from "./instance-detail/info/info.container";
+import { NextStepContainerComponent } from "./instance-detail/next-step/next-step.container";
+import { TabsContainerComponent } from "./instance-detail/tabs/tabs.container";
+
 import { ListContainerComponent } from "./instance-detail/list/list.container";
 
 import { GenericBlockContainerComponent } from "./instance-detail/list/generic-block/generic-block.container";
@@ -11,8 +14,13 @@ import { TextInputContainerComponent } from "./instance-detail/list/generic-bloc
 
 export const CONTAINERS = [
   InstanceDetailPageComponent,
+
+  InfoContainerComponent,
   NextStepContainerComponent,
+  TabsContainerComponent,
+
   ListContainerComponent,
+
   GenericBlockContainerComponent,
   CheckBoxContainerComponent,
   DropdownContainerComponent,
@@ -21,8 +29,13 @@ export const CONTAINERS = [
 
 export {
   InstanceDetailPageComponent,
+
+  InfoContainerComponent,
   NextStepContainerComponent,
+  TabsContainerComponent,
+
   ListContainerComponent,
+
   GenericBlockContainerComponent,
   CheckBoxContainerComponent,
   DropdownContainerComponent,

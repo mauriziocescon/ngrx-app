@@ -14,11 +14,10 @@
       "RETRY": "Riprova",
       "SHOW": "Visualizza"
     },
-    "LIST": {
-      "LOAD_COMPLETED": "Caricamento completato",
-      "LOADING": "Caricamento...",
-      "NO_RESULT": "Vuoto",
-      "RETRY": "Riprova"
+    "INSTANCE_DETAIL": {
+    },
+    "INFO": {
+      "HEADER": "Info"
     },
     "NEXT_STEP": {
       "CANCEL": "Annulla",
@@ -27,6 +26,16 @@
       "RETRY": "Riprova",
       "SYNC": "Aggiornato",
       "SYNCING": "Sync..."
+    },
+    "TABS": {
+      "TAB_BLOCKS": "Blocchi",
+      "TAB_DOCUMENTS": "Documenti"
+    },
+    "LIST": {
+      "LOAD_COMPLETED": "Caricamento completato",
+      "LOADING": "Caricamento...",
+      "NO_RESULT": "Vuoto",
+      "RETRY": "Riprova"
     },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "Ho visionato tutti i documenti",
@@ -77,11 +86,13 @@
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Avviso"
     },
-    "LIST": {
+    "INFO": {
+    },
+    "NEXT_STEP": {
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Avviso"
     },
-    "NEXT_STEP": {
+    "LIST": {
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Avviso"
     },
