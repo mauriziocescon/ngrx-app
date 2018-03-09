@@ -71,6 +71,7 @@ export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blockAction
   const textInputBlockIndex = firstTextInputBlock ? firstTextInputBlock.id : undefined;
   if (checkBoxBlock.value === true && textInputBlockIndex) {
     blockActions.textInput.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, textInputBlockIndex);
+    blockActions.textInput.setRequiredForBlockId(true, textInputBlockIndex);
     blockActions.textInput.setMaxLengthForBlockId(20, textInputBlockIndex);
   }
 
