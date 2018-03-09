@@ -76,27 +76,29 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    const controlValue = {
-      value: this.block.value,
-      disabled: this.block.disabled
-    };
-    const options = [
+    this.textInputForm = this.formBuilder.group({
+      textInput: this.textInputControl = new FormControl(),
+    });
+    this.setupFormControllers();
+
+    this.subscribeToTextInputControlValueChanges();
+  }
+
+  protected setupFormControllers(): void {
+    const validators = [
       ...this.insertIf(this.block.required, Validators.required),
       ...this.insertIf(this.block.minLength !== undefined && this.block.minLength >= 0, Validators.minLength(this.block.minLength as number)),
       ...this.insertIf(this.block.maxLength !== undefined && this.block.maxLength >= 0, Validators.maxLength(this.block.maxLength as number)),
     ];
-
-    this.textInputForm = this.formBuilder.group({
-      textInput: this.textInputControl = new FormControl(controlValue, options),
-    });
-
-    this.subscribeToTextInputControlValueChanges();
+    this.textInputControl.setValue(this.block.value);
+    this.setDisableEnable(this.block.disabled, this.textInputControl);
+    this.textInputControl.setValidators(validators);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.block.isFirstChange()) {
       this.unsubscribeToTextInputControlValueChanges();
-      this.textInputControl.setValue(changes.block.currentValue.value);
+      this.setupFormControllers();
       this.subscribeToTextInputControlValueChanges();
     }
   }
@@ -121,6 +123,14 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
 
   resetTextInput(): void {
     this.textInputControl.setValue("");
+  }
+
+  protected setDisableEnable(condition: boolean, control: FormControl): void {
+    if (condition) {
+      control.disable();
+    } else {
+      control.enable();
+    }
   }
 
   protected insertIf(condition: boolean, element: any): any[] {

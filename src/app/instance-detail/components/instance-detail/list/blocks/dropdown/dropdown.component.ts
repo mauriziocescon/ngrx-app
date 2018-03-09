@@ -33,25 +33,27 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    const controlValue = {
-      value: this.block.value,
-      disabled: this.block.disabled
-    };
-    const options = [
-      ...this.insertIf(this.block.required, Validators.required),
-    ];
-
     this.dropdownForm = this.formBuilder.group({
-      selectedValue: this.dropdownControl = new FormControl(controlValue, options),
+      selectedValue: this.dropdownControl = new FormControl(),
     });
+    this.setupFormControllers();
 
     this.subscribeToDropdownControlValueChanges();
+  }
+
+  protected setupFormControllers(): void {
+    const validators = [
+      ...this.insertIf(this.block.required, Validators.required),
+    ];
+    this.dropdownControl.setValue(this.block.value);
+    this.setDisableEnable(this.block.disabled, this.dropdownControl);
+    this.dropdownControl.setValidators(validators);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.block.isFirstChange()) {
       this.unsubscribeToDropdownControlValueChanges();
-      this.dropdownControl.setValue(changes.block.currentValue.value);
+      this.setupFormControllers();
       this.subscribeToDropdownControlValueChanges();
     }
   }
@@ -72,6 +74,14 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
         (e) => {
           this.logger.error(e.toString());
         });
+  }
+
+  protected setDisableEnable(condition: boolean, control: FormControl): void {
+    if (condition) {
+      control.disable();
+    } else {
+      control.enable();
+    }
   }
 
   protected insertIf(condition: boolean, element: any): any[] {

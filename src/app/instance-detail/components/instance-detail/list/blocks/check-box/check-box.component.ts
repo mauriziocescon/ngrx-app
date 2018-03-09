@@ -33,25 +33,27 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    const controlValue = {
-      value: this.block.value,
-      disabled: this.block.disabled
-    };
-    const options = [
-      ...this.insertIf(this.block.required, Validators.required),
-    ];
-
     this.checkBoxForm = this.formBuilder.group({
-      checkBox: this.checkBoxControl = new FormControl(controlValue, options),
+      checkBox: this.checkBoxControl = new FormControl(),
     });
+    this.setupFormControllers();
 
     this.subscribeToCheckBoxControlValueChanges();
+  }
+
+  protected setupFormControllers(): void {
+    const validators = [
+      ...this.insertIf(this.block.required, Validators.required),
+    ];
+    this.checkBoxControl.setValue(this.block.value);
+    this.setDisableEnable(this.block.disabled, this.checkBoxControl);
+    this.checkBoxControl.setValidators(validators);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.block.isFirstChange()) {
       this.unsubscribeToCheckBoxValueChanges();
-      this.checkBoxControl.setValue(changes.block.currentValue.value);
+      this.setupFormControllers();
       this.subscribeToCheckBoxControlValueChanges();
     }
   }
@@ -72,6 +74,14 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
         (e) => {
           this.logger.error(e.toString());
         });
+  }
+
+  protected setDisableEnable(condition: boolean, control: FormControl): void {
+    if (condition) {
+      control.disable();
+    } else {
+      control.enable();
+    }
   }
 
   protected insertIf(condition: boolean, element: any): any[] {

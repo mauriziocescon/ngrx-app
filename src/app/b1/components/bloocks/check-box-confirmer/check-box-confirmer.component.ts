@@ -33,25 +33,27 @@ export class CheckBoxConfirmerComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   ngOnInit(): void {
-    const controlValue = {
-      value: this.block.value,
-      disabled: this.block.disabled
-    };
-    const options = [
-      ...this.insertIf(this.block.required, Validators.required),
-    ];
-
     this.checkBoxConfirmerForm = this.formBuilder.group({
-      checkBoxConfirmer: this.checkBoxConfirmerControl = new FormControl(controlValue, options),
+      checkBoxConfirmer: this.checkBoxConfirmerControl = new FormControl(),
     });
+    this.setupFormControllers();
 
     this.subscribeToCheckBoxConfirmerControlValueChanges();
+  }
+
+  protected setupFormControllers(): void {
+    const validators = [
+      ...this.insertIf(this.block.required, Validators.required),
+    ];
+    this.checkBoxConfirmerControl.setValue(this.block.value);
+    this.setDisableEnable(this.block.disabled, this.checkBoxConfirmerControl);
+    this.checkBoxConfirmerControl.setValidators(validators);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.block.isFirstChange()) {
       this.unsubscribeToCheckBoxConfirmerValueChanges();
-      this.checkBoxConfirmerControl.setValue(changes.block.currentValue.value);
+      this.setupFormControllers();
       this.subscribeToCheckBoxConfirmerControlValueChanges();
     }
   }
@@ -72,6 +74,14 @@ export class CheckBoxConfirmerComponent implements OnInit, OnChanges, OnDestroy 
         (e) => {
           this.logger.error(e.toString());
         });
+  }
+
+  protected setDisableEnable(condition: boolean, control: FormControl): void {
+    if (condition) {
+      control.disable();
+    } else {
+      control.enable();
+    }
   }
 
   protected insertIf(condition: boolean, element: any): any[] {

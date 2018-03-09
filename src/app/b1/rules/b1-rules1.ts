@@ -66,9 +66,19 @@ export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blockAction
     blockActions.checkBox.setValidityForBlockId(valid, checkBoxBlock.id);
   }
 
-  const textInputBlockIndex = utilities.arrayOfTextInputBlocksFromBlocksObject(blocks)[0].id;
+  // change first textInput params
+  const firstTextInputBlock = utilities.arrayOfTextInputBlocksFromBlocksObject(blocks)[0];
+  const textInputBlockIndex = firstTextInputBlock ? firstTextInputBlock.id : undefined;
   if (checkBoxBlock.value === true && textInputBlockIndex) {
     blockActions.textInput.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, textInputBlockIndex);
+    blockActions.textInput.setMaxLengthForBlockId(20, textInputBlockIndex);
+  }
+
+  // change first dropdown params
+  const firstDropdownBlock = utilities.arrayOfDropdownBlocksFromBlocksObject(blocks)[0];
+  const dropdownBlockIndex = firstDropdownBlock ? firstDropdownBlock.id : undefined;
+  if (dropdownBlockIndex !== undefined) {
+    blockActions.dropdown.setDisabledForBlockId(checkBoxBlock.value === false, dropdownBlockIndex);
   }
 };
 
