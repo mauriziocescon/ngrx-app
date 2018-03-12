@@ -1,8 +1,8 @@
 import { Block } from "../../../instance-detail/instance-detail.module";
 
 export interface DossierBlock extends Block {
-  section1: DossierSection1Block;
-  section2: DossierSection2Block;
+  section1?: DossierSection1Block;
+  section2?: DossierSection2Block;
   valid: boolean;
   hooks: DossierBlockHooks;
 }
