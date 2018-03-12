@@ -138,6 +138,28 @@ const getDossier = function(id) {
     id: id,
     type: "dossier",
     order: parseInt(id),
+    section1: {
+      sectionLabel: "",
+
+      label1: "",
+      value1: "",
+      required1: true,
+
+      label2: "",
+      value2: "",
+      required2: true,
+
+      label3: "",
+      value3: true,
+      required3: true
+    },
+    section2: {
+      sectionLabel: "",
+
+      label1: "",
+      value1: "",
+      required1: true
+    },
     valid: true,
     hooks: {
       dossierBlockDidLoad: "dossierBlockDidLoad",

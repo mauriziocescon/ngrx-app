@@ -17,7 +17,7 @@ import { DossierStoreService } from "./dossier-store.service";
     <cp-dossier
       [block]="block$ | async"
       [loading]="loading$ | async"
-      (valueDidChange)="valueDidChange()">
+      (valuesDidChange)="valuesDidChange($event)">
     </cp-dossier>`,
 })
 export class DossierContainerComponent {
@@ -45,11 +45,11 @@ export class DossierContainerComponent {
       });
   }
 
-  valueDidChange(): void {
-    this.dispatchValueDidChangeAction();
+  valuesDidChange(values: { value1Section1?: string, value2Section1?: string, value3Section1?: boolean, value1Section2?: string }): void {
+    this.dispatchValueDidChangeAction(values);
   }
 
-  protected dispatchValueDidChangeAction(): void {
+  protected dispatchValueDidChangeAction(values: { value1Section1?: string, value2Section1?: string, value3Section1?: boolean, value1Section2?: string }): void {
     if (this.dossierBlock) {
       const block = {
         block: {
@@ -58,9 +58,28 @@ export class DossierContainerComponent {
             id: this.blockId,
             type: B4BlockType.Dossier,
             order: this.dossierBlock.order,
+            section1: {
+              sectionLabel: this.dossierBlock.section1.sectionLabel,
 
-            // ...
+              label1: this.dossierBlock.section1.label1,
+              value1: values.value1Section1 ? values.value1Section1 : this.dossierBlock.section1.value1,
+              required1: this.dossierBlock.section1.required1,
 
+              label2: this.dossierBlock.section1.label2,
+              value2: values.value2Section1 ? values.value2Section1 : this.dossierBlock.section1.value2,
+              required2: this.dossierBlock.section1.required2,
+
+              label3: this.dossierBlock.section1.label3,
+              value3: values.value3Section1 ? values.value3Section1 : this.dossierBlock.section1.value3,
+              required3: this.dossierBlock.section1.required3,
+            },
+            section2: {
+              sectionLabel: this.dossierBlock.section2.sectionLabel,
+
+              label1: this.dossierBlock.section2.label1,
+              value1: values.value1Section2 ? values.value1Section2 : this.dossierBlock.section2.value1,
+              required1: this.dossierBlock.section2.required1,
+            },
             hooks: {
               ...this.dossierBlock.hooks,
             },

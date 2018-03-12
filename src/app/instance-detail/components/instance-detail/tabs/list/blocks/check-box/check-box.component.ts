@@ -68,7 +68,7 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
     this.checkBoxControlSubscription = this.checkBoxControl
       .valueChanges
       .debounceTime(500)
-      .subscribe((value: any) => {
+      .subscribe((value: boolean) => {
           this.valueDidChange.emit(value);
         },
         (e) => {

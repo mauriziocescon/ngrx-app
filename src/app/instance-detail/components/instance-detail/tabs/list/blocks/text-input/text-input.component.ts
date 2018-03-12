@@ -113,7 +113,7 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
     this.textInputControlSubscription = this.textInputControl
       .valueChanges
       .debounceTime(500)
-      .subscribe((value: any) => {
+      .subscribe((value: string) => {
           this.valueDidChange.emit(value);
         },
         (e) => {

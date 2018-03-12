@@ -68,7 +68,7 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
     this.dropdownControlSubscription = this.dropdownControl
       .valueChanges
       .debounceTime(500)
-      .subscribe((value: any) => {
+      .subscribe((value: string) => {
           this.valueDidChange.emit(value);
         },
         (e) => {

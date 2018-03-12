@@ -68,7 +68,7 @@ export class CheckBoxConfirmerComponent implements OnInit, OnChanges, OnDestroy 
     this.checkBoxConfirmerControlSubscription = this.checkBoxConfirmerControl
       .valueChanges
       .debounceTime(500)
-      .subscribe((value: any) => {
+      .subscribe((value: boolean) => {
           this.valueDidChange.emit(value);
         },
         (e) => {
