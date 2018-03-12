@@ -13,14 +13,17 @@ export interface DossierSection1Block {
   label1: string;
   value1?: string;
   required1: boolean;
+  disabled1: boolean;
 
   label2: string;
   value2?: string;
   required2: boolean;
+  disabled2: boolean;
 
   label3: string;
   value3?: boolean;
   required3: boolean;
+  disabled3: boolean;
 }
 
 export interface DossierSection2Block {
@@ -29,6 +32,7 @@ export interface DossierSection2Block {
   label1: string;
   value1: string;
   required1: boolean;
+  disabled1: boolean;
 }
 
 interface DossierBlockHooks {

@@ -61,21 +61,21 @@ export class DossierComponent implements OnInit, OnChanges, OnDestroy {
       ...this.insertIf(this.block.section1.required1, Validators.required),
     ];
     this.textInput1Section1Control.setValue(this.block.section1.value1);
-    this.setDisableEnable(this.block.section1.required1, this.textInput1Section1Control);
+    this.setDisableEnable(this.block.section1.disabled1, this.textInput1Section1Control);
     this.textInput1Section1Control.setValidators(textInput1Section1Validators);
 
     const textInput2Section1Validators = [
       ...this.insertIf(this.block.section1.required2, Validators.required),
     ];
     this.textInput2Section1Control.setValue(this.block.section1.value2);
-    this.setDisableEnable(this.block.section1.required2, this.textInput2Section1Control);
+    this.setDisableEnable(this.block.section1.disabled2, this.textInput2Section1Control);
     this.textInput2Section1Control.setValidators(textInput2Section1Validators);
 
     const checkBox1Section1Validators = [
       ...this.insertIf(this.block.section1.required3, Validators.required),
     ];
     this.checkBox1Section1Control.setValue(this.block.section1.value3);
-    this.setDisableEnable(this.block.section1.required3, this.checkBox1Section1Control);
+    this.setDisableEnable(this.block.section1.disabled3, this.checkBox1Section1Control);
     this.checkBox1Section1Control.setValidators(checkBox1Section1Validators);
 
     // section 2
@@ -83,7 +83,7 @@ export class DossierComponent implements OnInit, OnChanges, OnDestroy {
       ...this.insertIf(this.block.section2.required1, Validators.required),
     ];
     this.textInput1Section2Control.setValue(this.block.section2.value1);
-    this.setDisableEnable(this.block.section2.required1, this.textInput1Section2Control);
+    this.setDisableEnable(this.block.section2.disabled1, this.textInput1Section2Control);
     this.textInput1Section2Control.setValidators(textInput1Section2Validators);
   }
 

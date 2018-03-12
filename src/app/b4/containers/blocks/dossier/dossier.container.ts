@@ -64,14 +64,17 @@ export class DossierContainerComponent {
               label1: this.dossierBlock.section1.label1,
               value1: values.value1Section1 ? values.value1Section1 : this.dossierBlock.section1.value1,
               required1: this.dossierBlock.section1.required1,
+              disabled1: this.dossierBlock.section1.disabled1,
 
               label2: this.dossierBlock.section1.label2,
               value2: values.value2Section1 ? values.value2Section1 : this.dossierBlock.section1.value2,
               required2: this.dossierBlock.section1.required2,
+              disabled2: this.dossierBlock.section1.disabled2,
 
               label3: this.dossierBlock.section1.label3,
               value3: values.value3Section1 ? values.value3Section1 : this.dossierBlock.section1.value3,
               required3: this.dossierBlock.section1.required3,
+              disabled3: this.dossierBlock.section1.disabled3,
             },
             section2: {
               sectionLabel: this.dossierBlock.section2.sectionLabel,
@@ -79,6 +82,7 @@ export class DossierContainerComponent {
               label1: this.dossierBlock.section2.label1,
               value1: values.value1Section2 ? values.value1Section2 : this.dossierBlock.section2.value1,
               required1: this.dossierBlock.section2.required1,
+              disabled1: this.dossierBlock.section2.disabled1,
             },
             hooks: {
               ...this.dossierBlock.hooks,

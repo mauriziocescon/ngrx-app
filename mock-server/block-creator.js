@@ -11,8 +11,8 @@ const getCheckBox = function(id) {
     label: "COMPONENT.CHECK_BOX.CHECK_BOX_LABEL",
     value: value,
     description: "COMPONENT.CHECK_BOX.CHECK_BOX_DESC",
-    disabled: false,
     required: required,
+    disabled: false,
     valid: required ? !!value : true,
     hooks: {
       checkBoxBlockDidLoad: "checkBoxBlockDidLoad",
@@ -34,8 +34,8 @@ const getDropdown = function(id) {
     label: "COMPONENT.DROPDOWN.DROPDOWN_LABEL",
     value: value,
     choices: ["1", "2", "3"],
-    disabled: false,
     required: required,
+    disabled: false,
     valid: required ? !!value : true,
     hooks: {
       dropdownBlockDidLoad: "dropdownBlockDidLoad",
@@ -58,10 +58,10 @@ const getTextInput = function(id) {
     order: parseInt(id),
     label: "COMPONENT.TEXT_INPUT.TEXT_INPUT_LABEL",
     value: value,
-    disabled: false,
     required: required,
     minLength: minLength,
     maxLength: maxLength,
+    disabled: false,
     valid: true,
     hooks: {
       textInputBlockDidLoad: "textInputBlockDidLoad",
@@ -98,8 +98,8 @@ const getCheckBoxConfirmer = function(id) {
     label: "COMPONENT.CHECK_BOX_CONFIRMER.CHECK_BOX_CONFIRMER_LABEL",
     value: value,
     description: "COMPONENT.CHECK_BOX_CONFIRMER.CHECK_BOX_CONFIRMER_DESC",
-    disabled: false,
     required: required,
+    disabled: false,
     valid: required ? !!value : true,
     hooks: {
       checkBoxConfirmerBlockDidLoad: "checkBoxConfirmerBlockDidLoad",
@@ -120,8 +120,8 @@ const getDatePicker = function(id) {
     order: parseInt(id),
     label: "COMPONENT.DATE_PICKER.DATE_PICKER_LABEL",
     value: value,
-    disabled: false,
     required: required,
+    disabled: false,
     valid: required ? !!value : true,
     hooks: {
       datePickerBlockDidLoad: "datePickerBlockDidLoad",
@@ -148,21 +148,25 @@ const getDossier = function(id) {
       label1: "COMPONENT.DOSSIER.SECTION1_VALUE1_LABEL",
       value1: "",
       required1: section1Required1,
+      disabled1: false,
 
       label2: "COMPONENT.DOSSIER.SECTION1_VALUE2_LABEL",
       value2: "",
       required2: section1Required2,
+      disabled2: false,
 
       label3: "COMPONENT.DOSSIER.SECTION1_VALUE3_LABEL",
       value3: true,
-      required3: section1Required3
+      required3: section1Required3,
+      disabled3: false,
     },
     section2: {
       sectionLabel: "COMPONENT.DOSSIER.SECTION2_LABEL",
 
       label1: "COMPONENT.DOSSIER.SECTION2_VALUE1_LABEL",
       value1: "",
-      required1: section2Required1
+      required1: section2Required1,
+      disabled1: false,
     },
     valid: true,
     hooks: {
