@@ -63,6 +63,16 @@ export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blockAction
   if (valid !== checkBoxBlock.valid) {
     blockActions.checkBox.setValidityForBlockId(valid, checkBoxBlock.id);
   }
+
+  // change first dossier params
+  const firstDossierBlock = utilities.arrayOfDossierBlocksFromBlocksObject(blocks)[0];
+  const dossierBlockIndex = firstDossierBlock ? firstDossierBlock.id : undefined;
+  if (dossierBlockIndex !== undefined) {
+    blockActions.dossier.changeLoading(true, dossierBlockIndex);
+    setTimeout(() => {
+      blockActions.dossier.changeLoading(false, dossierBlockIndex);
+    }, 2000);
+  }
 };
 
 export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blockActions: B4BlockActions) => {
