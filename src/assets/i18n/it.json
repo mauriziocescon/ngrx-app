@@ -75,7 +75,13 @@
     },
     "DOSSIER": {
       "HEADER": "Dossier",
-      "LOADING": "Caricamento..."
+      "LOADING": "Caricamento...",
+      "SECTION1_LABEL": "Sezione 1",
+      "SECTION1_VALUE1_LABEL": "Sezione 1, label 1",
+      "SECTION1_VALUE2_LABEL": "Sezione 1, label 2",
+      "SECTION1_VALUE3_LABEL": "Sezione 1, label 3",
+      "SECTION2_LABEL": "Sezione 2",
+      "SECTION2_VALUE1_LABEL": "Sezione 2, label 1"
     }
   },
   "CONTAINER": {

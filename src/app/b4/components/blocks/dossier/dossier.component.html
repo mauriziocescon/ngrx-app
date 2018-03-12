@@ -14,18 +14,18 @@
             </div>
             <div class="form-group">
               <label class="center-block">
-                <span>{{ block.section1.label1 }}</span>
+                <span>{{ block.section1.label1 | translate }}</span>
                 <input class="form-control" formControlName="textInput1Section1">
               </label>
               <label class="center-block">
-                <span>{{ block.section1.label2 }}</span>
+                <span>{{ block.section1.label2 | translate }}</span>
                 <input class="form-control" formControlName="textInput2Section1">
               </label>
 
               <div class="checkbox">
                 <label class="center-block">
                   <input type="checkbox" formControlName="checkBox1Section1">
-                  <span>{{ block.section1.label3 }}</span>
+                  <span>{{ block.section1.label3 | translate }}</span>
                 </label>
               </div>
             </div>
@@ -34,8 +34,8 @@
               <h5>{{ block.section2.sectionLabel | translate }}</h5>
             </div>
             <div class="form-group">
-              <label class="center-block" style="width: 25%;">
-                <span>{{ block.section2.label1 }}</span>
+              <label class="center-block">
+                <span>{{ block.section2.label1 | translate }}</span>
                 <input class="form-control" formControlName="textInput1Section2">
               </label>
             </div>
