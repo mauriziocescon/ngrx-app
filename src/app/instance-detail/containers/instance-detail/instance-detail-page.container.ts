@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/map";
 
 import { InstanceParams } from "../../models";
 
