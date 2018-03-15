@@ -6,7 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 
-import { AddComponentDirective } from "./directives/add-container.directive";
+import { AddComponentDirective } from "./directives/add-component.directive";
 import { ScrollToTopDirective } from "./directives/scroll-to-top.directive";
 import { BlockValidationDirective } from "./directives/validation.directive";
 
