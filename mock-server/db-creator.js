@@ -1,4 +1,4 @@
-const blockCreator = require("./block-creator");
+const blockCreator = require("./data-creator");
 const utils = require("./utils");
 
 const dbUrl = "./mock-server/db.json";
