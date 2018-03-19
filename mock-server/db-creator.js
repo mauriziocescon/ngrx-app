@@ -1,4 +1,4 @@
-const blockCreator = require("./data-creator");
+const dataCreator = require("./data-creator");
 const utils = require("./utils");
 
 const dbUrl = "./mock-server/db.json";
@@ -24,47 +24,47 @@ function main() {
     // module b1
     instance = {id: "0", module: "b1", instance: "1", step: "1", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(blockCreator.getRandomB1Block(i.toString()));
+      instance.blocks.push(dataCreator.getRandomB1Block(i.toString()));
     }
     data.instances.push(instance);
 
     instance = {id: "1", module: "b1", instance: "1", step: "2", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(blockCreator.getRandomB1Block(i.toString()));
+      instance.blocks.push(dataCreator.getRandomB1Block(i.toString()));
     }
     data.instances.push(instance);
 
     // module b2
     instance = {id: "2", module: "b2", instance: "1", step: "1", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(blockCreator.getRandomB2Block(i.toString()));
+      instance.blocks.push(dataCreator.getRandomB2Block(i.toString()));
     }
     data.instances.push(instance);
 
     instance = {id: "3", module: "b2", instance: "1", step: "2", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(blockCreator.getRandomB2Block(i.toString()));
+      instance.blocks.push(dataCreator.getRandomB2Block(i.toString()));
     }
     data.instances.push(instance);
 
     // module b3
     instance = {id: "4", module: "b3", instance: "1", step: "1", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(blockCreator.getRandomBlock(i.toString()));
+      instance.blocks.push(dataCreator.getRandomBlock(i.toString()));
     }
     data.instances.push(instance);
 
     // module b4
     instance = {id: "5", module: "b4", instance: "1", step: "1", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(blockCreator.getRandomB4Block(i.toString()));
+      instance.blocks.push(dataCreator.getRandomB4Block(i.toString()));
     }
     data.instances.push(instance);
 
     // module b5
     instance = {id: "6", module: "b5", instance: "1", step: "1", blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(blockCreator.getRandomBlock(i.toString()));
+      instance.blocks.push(dataCreator.getRandomBlock(i.toString()));
     }
     data.instances.push(instance);
 
