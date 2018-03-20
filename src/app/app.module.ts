@@ -43,7 +43,7 @@ export function createTranslateLoader(http: HttpClient) {
 
     StoreModule.forRoot(TOKEN, {metaReducers}),
     StoreRouterConnectingModule.forRoot({stateKey: "router"}),
-    StoreDevtoolsModule.instrument({name: "NgRx-App Store DevTools", logOnly: environment.production}),
+    StoreDevtoolsModule.instrument({name: "NgRx-App DevTools", logOnly: environment.production}),
     EffectsModule.forRoot(EFFECTS),
 
     NgbModule.forRoot(),
