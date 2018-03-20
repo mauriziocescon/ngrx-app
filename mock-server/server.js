@@ -7,11 +7,9 @@ const middlewares = jsonServer.defaults({
   static: "dist",
 });
 
-// middlewares
 const delayMiddleware = require("./middlewares/delay");
 const errosMiddleware = require("./middlewares/errors");
 
-// controllers
 const blocks = require("./controllers/blocks");
 const instances = require("./controllers/instances");
 const rules = require("./controllers/rules");
@@ -20,13 +18,9 @@ const rules = require("./controllers/rules");
 // process.env.PORT lets the port be set by Heroku
 const port = process.env.PORT || 5000;
 
-// Add middlewares
+// Middlewares
 app.use(middlewares);
-
-// Simulate server side delay
 app.use(delayMiddleware.delay);
-
-// Simulate server side errors
 app.use(errosMiddleware.error);
 
 // To handle POST, PUT and PATCH you need to use a body-parser

@@ -1,3 +1,4 @@
+// Simulate server side delay
 exports.delay = (req, res, next) => {
   const randomOutcome = Math.random();
   if (randomOutcome < 0.01) {
