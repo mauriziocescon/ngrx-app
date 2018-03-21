@@ -1,4 +1,4 @@
-const dataCreator = require("./data-creator");
+const dataCreator = require("./data-creators");
 const utils = require("./db-utils");
 const dbUrl = require("./constants").dbUrl;
 
