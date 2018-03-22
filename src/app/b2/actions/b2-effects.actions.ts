@@ -1,8 +1,8 @@
-import { Action } from "@ngrx/store";
+import { Action } from '@ngrx/store';
 
 export enum B2EffectsActionTypes {
-  START_EFFECTS = "[B2] Start effects",
-  STOP_EFFECTS = "[B2] Stop effects",
+  START_EFFECTS = '[B2] Start effects',
+  STOP_EFFECTS = '[B2] Stop effects',
 }
 
 export class StartEffects implements Action {

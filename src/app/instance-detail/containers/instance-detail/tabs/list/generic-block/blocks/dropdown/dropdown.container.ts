@@ -1,14 +1,14 @@
-import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
-import { BlockType, DropdownBlock } from "../../../../../../../models";
+import { BlockType, DropdownBlock } from '../../../../../../../models';
 
-import { DropdownStoreService } from "./dropdown-store.service";
+import { DropdownStoreService } from './dropdown-store.service';
 
 @Component({
-  selector: "ct-dropdown",
+  selector: 'ct-dropdown',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     DropdownStoreService,

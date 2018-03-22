@@ -1,4 +1,4 @@
-import { BlockType } from "./block-types";
+import { BlockType } from './block-types';
 
 export interface Block {
   id: string;

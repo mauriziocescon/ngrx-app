@@ -1,8 +1,8 @@
-import { ActionReducerMap } from "@ngrx/store";
+import { ActionReducerMap } from '@ngrx/store';
 
-import * as fromCheckBox from "./check-box/check-box.reducer";
-import * as fromDropdown from "./dropdown/dropdown.reducer";
-import * as fromTextInput from "./text-input/text-input.reducer";
+import * as fromCheckBox from './check-box/check-box.reducer';
+import * as fromDropdown from './dropdown/dropdown.reducer';
+import * as fromTextInput from './text-input/text-input.reducer';
 
 export interface State {
   checkBox: fromCheckBox.State;

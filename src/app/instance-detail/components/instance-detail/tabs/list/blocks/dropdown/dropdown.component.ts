@@ -1,17 +1,17 @@
-import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
-import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
+import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { Subscription } from "rxjs/Subscription";
-import "rxjs/add/operator/debounceTime";
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/debounceTime';
 
-import { NGXLogger } from "ngx-logger";
+import { NGXLogger } from 'ngx-logger';
 
-import { DropdownBlock } from "../../../../../../models";
+import { DropdownBlock } from '../../../../../../models';
 
 @Component({
-  selector: "cp-dropdown",
-  templateUrl: "./dropdown.component.html",
-  styleUrls: ["./dropdown.component.scss"]
+  selector: 'cp-dropdown',
+  templateUrl: './dropdown.component.html',
+  styleUrls: ['./dropdown.component.scss'],
 })
 export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: DropdownBlock;

@@ -1,4 +1,4 @@
-import { ModalsEffects } from "./modals.effects";
+import { ModalsEffects } from './modals.effects';
 
 export const EFFECTS = [
   ModalsEffects,

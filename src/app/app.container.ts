@@ -1,7 +1,7 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: "app-root",
+  selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="app-component">
@@ -11,7 +11,7 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
       </div>
     </div>
   `,
-  styleUrls: ["./app.container.scss"],
+  styleUrls: ['./app.container.scss'],
 })
 export class AppContainerComponent {
 }

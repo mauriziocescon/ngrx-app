@@ -1,5 +1,5 @@
-import { InstanceListActionTypes, InstanceListActions } from "../actions/instance-list.actions";
-import { Instance } from "../models";
+import { InstanceListActionTypes, InstanceListActions } from '../actions/instance-list.actions';
+import { Instance } from '../models';
 
 export interface State {
   fetchedInstances: Instance[] | undefined;

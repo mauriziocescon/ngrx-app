@@ -1,14 +1,14 @@
-import { Inject, Injectable } from "@angular/core";
+import { Inject, Injectable } from '@angular/core';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
-import { AppConstantsService } from "../../../core/core.module";
+import { AppConstantsService } from '../../../core/core.module';
 
-import { Block } from "../../models";
+import { Block } from '../../models';
 
-import { INSTANCE_DETAIL_STORE_TOKEN, IInstanceDetailStore } from "../../tokens";
+import { INSTANCE_DETAIL_STORE_TOKEN, IInstanceDetailStore } from '../../tokens';
 
-import { InstanceParamsService } from "../instance-detail/instance-params.service";
+import { InstanceParamsService } from '../instance-detail/instance-params.service';
 
 @Injectable()
 export class InstanceDetailIntegrationStoreService {

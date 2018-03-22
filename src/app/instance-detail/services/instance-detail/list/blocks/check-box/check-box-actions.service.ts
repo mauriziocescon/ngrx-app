@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import * as checkBox from "../../../../../actions/list/blocks/check-box.actions";
+import * as checkBox from '../../../../../actions/list/blocks/check-box.actions';
 
-import { BlockType, CheckBoxBlock, CheckBoxActions } from "../../../../../models";
+import { BlockType, CheckBoxBlock, CheckBoxActions } from '../../../../../models';
 
-import * as fromInstanceDetail from "../../../../../reducers";
+import * as fromInstanceDetail from '../../../../../reducers';
 
 @Injectable()
 export class CheckBoxActionsService {
@@ -35,7 +35,7 @@ export class CheckBoxActionsService {
   }
 
   protected dispatchUpdate(block: Update<CheckBoxBlock>): void {
-    const newBlock = {block: block, triggerHooks: false};
+    const newBlock = { block: block, triggerHooks: false };
     this.store$.dispatch(new checkBox.UpdateBlock(newBlock));
   }
 
@@ -76,7 +76,7 @@ export class CheckBoxActionsService {
   }
 
   setRequiredForBlockId(required: boolean, blockId: string): void {
-    const newBlock: Update<CheckBoxBlock>= {
+    const newBlock: Update<CheckBoxBlock> = {
       id: blockId,
       changes: {
         id: blockId,

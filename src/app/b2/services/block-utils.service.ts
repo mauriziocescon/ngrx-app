@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { Block, IBlockUtils } from "../../instance-detail/instance-detail.module";
+import { Block, IBlockUtils } from '../../instance-detail/instance-detail.module';
 
-import { module } from "../constants";
+import { module } from '../constants';
 
-import { DatePickerContainerComponent } from "../containers";
+import { DatePickerContainerComponent } from '../containers';
 
-import { B2BlockType, DatePickerBlock } from "../models";
+import { B2BlockType, DatePickerBlock } from '../models';
 
-import { B2DatePickerHooksTriggerService } from "./blocks/date-picker/date-picker-hooks-trigger.service";
+import { B2DatePickerHooksTriggerService } from './blocks/date-picker/date-picker-hooks-trigger.service';
 
 @Injectable()
 export class B2BlockUtilsService implements IBlockUtils {

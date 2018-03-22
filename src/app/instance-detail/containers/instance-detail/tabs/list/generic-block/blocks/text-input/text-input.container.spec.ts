@@ -1,27 +1,27 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
-import { StoreModule, Store, combineReducers } from "@ngrx/store";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { StoreModule, Store, combineReducers } from '@ngrx/store';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from "../../../../../../../../core/core.module";
-import { SharedModule } from "../../../../../../../../shared/shared.module";
+import { CoreModule } from '../../../../../../../../core/core.module';
+import { SharedModule } from '../../../../../../../../shared/shared.module';
 
-import * as fromRoot from "../../../../../../../reducers";
-import * as fromInstanceDetail from "../../../../../../../reducers";
+import * as fromRoot from '../../../../../../../reducers';
+import * as fromInstanceDetail from '../../../../../../../reducers';
 
-import { BlockType } from "../../../../../../../models";
-import { COMPONENTS } from "../../../../../../../components";
-import { CONTAINERS, TextInputContainerComponent } from "../../../../../../../containers";
+import { BlockType } from '../../../../../../../models';
+import { COMPONENTS } from '../../../../../../../components';
+import { CONTAINERS, TextInputContainerComponent } from '../../../../../../../containers';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, "assets/i18n/", ".json");
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe("TextInputContainerComponent", () => {
+describe('TextInputContainerComponent', () => {
   let component: TextInputContainerComponent;
   let fixture: ComponentFixture<TextInputContainerComponent>;
 
@@ -37,12 +37,12 @@ describe("TextInputContainerComponent", () => {
           },
         }),
         LoggerModule.forRoot({
-          serverLoggingUrl: "",
+          serverLoggingUrl: '',
           level: NgxLoggerLevel.OFF,
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
         StoreModule.forRoot(fromRoot.TOKEN),
-        StoreModule.forFeature("instanceDetail", fromInstanceDetail.TOKEN),
+        StoreModule.forFeature('instanceDetail', fromInstanceDetail.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
       ],
@@ -62,8 +62,8 @@ describe("TextInputContainerComponent", () => {
         set: {
           entryComponents: [
             ...CONTAINERS,
-          ]
-        }
+          ],
+        },
       })
       .compileComponents();
   }));
@@ -71,11 +71,11 @@ describe("TextInputContainerComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextInputContainerComponent);
     component = fixture.componentInstance;
-    component.blockId = "1";
+    component.blockId = '1';
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,11 +1,11 @@
-import { Component, Output, Input, EventEmitter } from "@angular/core";
+import { Component, Output, Input, EventEmitter } from '@angular/core';
 
-import { Instance } from "../../models";
+import { Instance } from '../../models';
 
 @Component({
-  selector: "cp-instance-list",
-  templateUrl: "./instance-list.component.html",
-  styleUrls: ["./instance-list.component.scss"]
+  selector: 'cp-instance-list',
+  templateUrl: './instance-list.component.html',
+  styleUrls: ['./instance-list.component.scss'],
 })
 export class InstanceListComponent {
   @Input() instances: Instance[];

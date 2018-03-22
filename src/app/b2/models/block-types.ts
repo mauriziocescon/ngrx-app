@@ -1,5 +1,5 @@
-import { BlockType } from "../../instance-detail/instance-detail.module";
+import { BlockType } from '../../instance-detail/instance-detail.module';
 
 export class B2BlockType extends BlockType {
-  static DatePicker = "date-picker";
+  static DatePicker = 'date-picker';
 }

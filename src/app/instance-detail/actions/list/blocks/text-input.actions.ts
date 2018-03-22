@@ -1,13 +1,13 @@
-import { Action } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Action } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import { TextInputBlock } from "../../../models";
+import { TextInputBlock } from '../../../models';
 
 export enum TextInputActionTypes {
-  LOADING = "[TextInput] Loading",
-  ADD_BLOCKS = "[TextInput] Add blocks",
-  UPDATE_BLOCK = "[TextInput] Update block",
-  CLEAR_BLOCKS = "[TextInput] Clear blocks",
+  LOADING = '[TextInput] Loading',
+  ADD_BLOCKS = '[TextInput] Add blocks',
+  UPDATE_BLOCK = '[TextInput] Update block',
+  CLEAR_BLOCKS = '[TextInput] Clear blocks',
 }
 
 export class Loading implements Action {

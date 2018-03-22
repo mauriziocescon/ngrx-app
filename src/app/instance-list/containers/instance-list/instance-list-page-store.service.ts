@@ -1,16 +1,16 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
-import { ModalAlert, modalAlertsActions } from "../../../core/core.module";
+import { ModalAlert, modalAlertsActions } from '../../../core/core.module';
 
-import * as instanceListEffects from "../../actions/instance-list-effects.actions";
-import * as instanceList from "../../actions/instance-list.actions";
+import * as instanceListEffects from '../../actions/instance-list-effects.actions';
+import * as instanceList from '../../actions/instance-list.actions';
 
-import { Instance } from "../../models";
+import { Instance } from '../../models';
 
-import * as fromInstanceList from "../../reducers";
+import * as fromInstanceList from '../../reducers';
 
 @Injectable()
 export class InstanceListStoreService {
@@ -35,7 +35,7 @@ export class InstanceListStoreService {
   }
 
   dispatchShowModalAlert(modalAlert: ModalAlert): void {
-    this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
+    this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
   }
 
   dispatchStartEffects(): void {

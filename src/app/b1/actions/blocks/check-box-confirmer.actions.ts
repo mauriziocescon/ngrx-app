@@ -1,13 +1,13 @@
-import { Action } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Action } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import { CheckBoxConfirmerBlock } from "../../models";
+import { CheckBoxConfirmerBlock } from '../../models';
 
 export enum CheckBoxConfirmerActionTypes {
-  LOADING = "[CheckBoxConfirmerBlock] Loading",
-  ADD_BLOCKS = "[CheckBoxConfirmerBlock] Add blocks",
-  UPDATE_BLOCK = "[CheckBoxConfirmerBlock] Update block",
-  CLEAR_BLOCKS = "[CheckBoxConfirmerBlock] Clear blocks",
+  LOADING = '[CheckBoxConfirmerBlock] Loading',
+  ADD_BLOCKS = '[CheckBoxConfirmerBlock] Add blocks',
+  UPDATE_BLOCK = '[CheckBoxConfirmerBlock] Update block',
+  CLEAR_BLOCKS = '[CheckBoxConfirmerBlock] Clear blocks',
 }
 
 export class Loading implements Action {

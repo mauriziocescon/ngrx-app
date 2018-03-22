@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { AppConstantsService } from "./app-constants.service";
+import { AppConstantsService } from './app-constants.service';
 
 @Injectable()
 export class UtilitiesService {

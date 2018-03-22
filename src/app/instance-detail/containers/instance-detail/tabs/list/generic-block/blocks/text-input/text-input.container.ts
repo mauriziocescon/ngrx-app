@@ -1,14 +1,14 @@
-import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
-import { BlockType, TextInputBlock } from "../../../../../../../models";
+import { BlockType, TextInputBlock } from '../../../../../../../models';
 
-import { TextInputStoreService } from "./text-input-store.service";
+import { TextInputStoreService } from './text-input-store.service';
 
 @Component({
-  selector: "ct-text-input",
+  selector: 'ct-text-input',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     TextInputStoreService,

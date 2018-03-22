@@ -1,26 +1,30 @@
-import { Injectable } from "@angular/core";
-import { Action } from "@ngrx/store";
-import { Effect, Actions, OnRunEffects, EffectNotification } from "@ngrx/effects";
+import { Injectable } from '@angular/core';
+import { Action } from '@ngrx/store';
+import { Effect, Actions, OnRunEffects, EffectNotification } from '@ngrx/effects';
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/exhaustMap";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/takeUntil";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/exhaustMap';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/takeUntil';
 
-import { InstanceDetailEffectsActionTypes, StartEffects, StopEffects } from "../../../actions/instance-detail-effects.actions";
-import { ListActionTypes, FetchBlocksComplete } from "../../../actions/list/list.actions";
-import { SyncRequired } from "../../../actions/list/sync.actions";
+import {
+  InstanceDetailEffectsActionTypes,
+  StartEffects,
+  StopEffects,
+} from '../../../actions/instance-detail-effects.actions';
+import { ListActionTypes, FetchBlocksComplete } from '../../../actions/list/list.actions';
+import { SyncRequired } from '../../../actions/list/sync.actions';
 import {
   DropdownActionTypes,
   AddBlocks,
   UpdateBlock,
   ClearBlocks,
-} from "../../../actions/list/blocks/dropdown.actions";
+} from '../../../actions/list/blocks/dropdown.actions';
 
-import { Block, BlockType } from "../../../models";
+import { Block, BlockType } from '../../../models';
 
-import { DropdownHooksTriggerService } from "../../../services";
+import { DropdownHooksTriggerService } from '../../../services';
 
 @Injectable()
 export class DropdownEffect implements OnRunEffects {
@@ -38,7 +42,7 @@ export class DropdownEffect implements OnRunEffects {
           return block.type === BlockType.Dropdown;
         })
         .map((block: Block) => {
-          return {id: block.id, changes: {...block}};
+          return { id: block.id, changes: { ...block } };
         });
       return new AddBlocks(dropdownBoxBlocks);
     });

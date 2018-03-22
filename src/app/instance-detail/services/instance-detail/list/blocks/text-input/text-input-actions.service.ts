@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import * as textInput from "../../../../../actions/list/blocks/text-input.actions";
+import * as textInput from '../../../../../actions/list/blocks/text-input.actions';
 
-import { BlockType, TextInputBlock, TextInputActions } from "../../../../../models";
+import { BlockType, TextInputBlock, TextInputActions } from '../../../../../models';
 
-import * as fromInstanceDetail from "../../../../../reducers";
+import * as fromInstanceDetail from '../../../../../reducers';
 
 @Injectable()
 export class TextInputActionsService {
@@ -36,7 +36,7 @@ export class TextInputActionsService {
   }
 
   protected dispatchUpdate(block: Update<TextInputBlock>): void {
-    const newBlock = {block: block, triggerHooks: false};
+    const newBlock = { block: block, triggerHooks: false };
     this.store$.dispatch(new textInput.UpdateBlock(newBlock));
   }
 

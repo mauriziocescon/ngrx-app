@@ -1,17 +1,17 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
-import { StoreModule, Store, combineReducers } from "@ngrx/store";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { StoreModule, Store, combineReducers } from '@ngrx/store';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from "../../../../../../core/core.module";
-import { SharedModule } from "../../../../../../shared/shared.module";
+import { CoreModule } from '../../../../../../core/core.module';
+import { SharedModule } from '../../../../../../shared/shared.module';
 
-import * as fromRoot from "../../../../../reducers";
-import * as fromInstanceDetail from "../../../../../reducers";
+import * as fromRoot from '../../../../../reducers';
+import * as fromInstanceDetail from '../../../../../reducers';
 
 import {
   BlockListService,
@@ -19,17 +19,17 @@ import {
   CheckBoxHooksTriggerService,
   DropdownHooksTriggerService,
   TextInputHooksTriggerService,
-} from "../../../../../services";
+} from '../../../../../services';
 
-import { BlockType } from "../../../../../models";
-import { COMPONENTS } from "../../../../../components";
-import { CONTAINERS, GenericBlockContainerComponent } from "../../../../../containers";
+import { BlockType } from '../../../../../models';
+import { COMPONENTS } from '../../../../../components';
+import { CONTAINERS, GenericBlockContainerComponent } from '../../../../../containers';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, "assets/i18n/", ".json");
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe("GenericBlockContainerComponent", () => {
+describe('GenericBlockContainerComponent', () => {
   let component: GenericBlockContainerComponent;
   let fixture: ComponentFixture<GenericBlockContainerComponent>;
 
@@ -45,12 +45,12 @@ describe("GenericBlockContainerComponent", () => {
           },
         }),
         LoggerModule.forRoot({
-          serverLoggingUrl: "",
+          serverLoggingUrl: '',
           level: NgxLoggerLevel.OFF,
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
         StoreModule.forRoot(fromRoot.TOKEN),
-        StoreModule.forFeature("instanceDetail", fromInstanceDetail.TOKEN),
+        StoreModule.forFeature('instanceDetail', fromInstanceDetail.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
       ],
@@ -75,8 +75,8 @@ describe("GenericBlockContainerComponent", () => {
         set: {
           entryComponents: [
             ...CONTAINERS,
-          ]
-        }
+          ],
+        },
       })
       .compileComponents();
   }));
@@ -85,14 +85,14 @@ describe("GenericBlockContainerComponent", () => {
     fixture = TestBed.createComponent(GenericBlockContainerComponent);
     component = fixture.componentInstance;
     component.block = {
-      id: "1",
+      id: '1',
       type: BlockType.CheckBox,
       order: 1,
     };
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

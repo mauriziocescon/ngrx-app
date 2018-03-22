@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import * as Constants from "./app-constants.model";
+import * as Constants from './app-constants.model';
 
 /**
  * Get application constants

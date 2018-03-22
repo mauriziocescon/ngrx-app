@@ -1,17 +1,17 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
-import { ModalConfirmer, ModalConfirmerResultType, modalConfirmersActions } from "../../../../core/core.module";
+import { ModalConfirmer, ModalConfirmerResultType, modalConfirmersActions } from '../../../../core/core.module';
 
-import * as checkBoxConfirmer from "../../../actions/blocks/check-box-confirmer.actions";
+import * as checkBoxConfirmer from '../../../actions/blocks/check-box-confirmer.actions';
 
-import { CheckBoxConfirmerBlock } from "../../../models";
+import { CheckBoxConfirmerBlock } from '../../../models';
 
-import * as fromRoot from "../../../../reducers";
-import * as fromB1Blocks from "../../../reducers";
+import * as fromRoot from '../../../../reducers';
+import * as fromB1Blocks from '../../../reducers';
 
 @Injectable()
 export class CheckBoxConfirmerStoreService {
@@ -32,7 +32,7 @@ export class CheckBoxConfirmerStoreService {
   }
 
   dispatchShowModalConfirmer(modalConfirmer: ModalConfirmer): void {
-    this.store$.dispatch(new modalConfirmersActions.ShowModalConfirmer({modal: modalConfirmer}));
+    this.store$.dispatch(new modalConfirmersActions.ShowModalConfirmer({ modal: modalConfirmer }));
   }
 
   dispatchCleanModalConfirmer(payload: { id: string }): void {

@@ -1,13 +1,13 @@
-import { Action } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Action } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import { DatePickerBlock } from "../../models";
+import { DatePickerBlock } from '../../models';
 
 export enum DatePickerActionTypes {
-  LOADING = "[DatePickerBlock] Loading",
-  ADD_BLOCKS = "[DatePickerBlock] Add blocks",
-  UPDATE_BLOCK = "[DatePickerBlock] Update block",
-  CLEAR_BLOCKS = "[DatePickerBlock] Clear blocks",
+  LOADING = '[DatePickerBlock] Loading',
+  ADD_BLOCKS = '[DatePickerBlock] Add blocks',
+  UPDATE_BLOCK = '[DatePickerBlock] Update block',
+  CLEAR_BLOCKS = '[DatePickerBlock] Clear blocks',
 }
 
 export class Loading implements Action {

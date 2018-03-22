@@ -1,13 +1,13 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { environment } from "../environments/environment";
+import { environment } from '../environments/environment';
 
 export const appRoutes: Routes = [
   {
-    path: "",
-    redirectTo: "/instance-list",
-    pathMatch: "full",
+    path: '',
+    redirectTo: '/instance-list',
+    pathMatch: 'full',
   },
 ];
 

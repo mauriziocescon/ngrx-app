@@ -1,16 +1,16 @@
-import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateService } from '@ngx-translate/core';
 
-import { B2BlockType, DatePickerBlock } from "../../../models";
+import { B2BlockType, DatePickerBlock } from '../../../models';
 
-import { DatePickerStoreService } from "./date-picker-store";
+import { DatePickerStoreService } from './date-picker-store';
 
 @Component({
-  selector: "ct-date-picker",
+  selector: 'ct-date-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     DatePickerStoreService,

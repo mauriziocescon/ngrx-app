@@ -1,13 +1,13 @@
-import { Action } from "@ngrx/store";
+import { Action } from '@ngrx/store';
 
-import { ModalConfirmer } from "../models";
+import { ModalConfirmer } from '../models';
 
 export enum ModalConfirmerActionTypes {
-  SHOW_MODAL_CONFIRMER = "[Modal Confirmer] Show modal",
-  DISMISS_MODAL_CONFIRMER_WITH_POSITIVE_RESULT = "[Modal Confirmer] Dismiss modal with positive result",
-  DISMISS_MODAL_CONFIRMER_WITH_NEGATIVE_RESULT = "[Modal Confirmer] Dismiss modal with negative result",
-  DISMISS_MODAL_CONFIRMER = "[Modal Confirmer] Dismiss modal",
-  CLEAN_MODAL_CONFIRMER_RESULT = "[Modal Confirmer] Clean result",
+  SHOW_MODAL_CONFIRMER = '[Modal Confirmer] Show modal',
+  DISMISS_MODAL_CONFIRMER_WITH_POSITIVE_RESULT = '[Modal Confirmer] Dismiss modal with positive result',
+  DISMISS_MODAL_CONFIRMER_WITH_NEGATIVE_RESULT = '[Modal Confirmer] Dismiss modal with negative result',
+  DISMISS_MODAL_CONFIRMER = '[Modal Confirmer] Dismiss modal',
+  CLEAN_MODAL_CONFIRMER_RESULT = '[Modal Confirmer] Clean result',
 }
 
 export class ShowModalConfirmer implements Action {

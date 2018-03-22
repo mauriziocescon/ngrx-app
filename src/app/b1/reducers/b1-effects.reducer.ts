@@ -1,4 +1,4 @@
-import { B1EffectsActionTypes, B1EffectsActions } from "../actions/b1-effects.actions";
+import { B1EffectsActionTypes, B1EffectsActions } from '../actions/b1-effects.actions';
 
 export interface State {
   active: boolean;

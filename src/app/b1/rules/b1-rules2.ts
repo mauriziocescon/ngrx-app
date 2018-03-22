@@ -2,14 +2,14 @@ import {
   CheckBoxBlock,
   DropdownBlock,
   TextInputBlock,
-} from "../../instance-detail/instance-detail.module";
+} from '../../instance-detail/instance-detail.module';
 
 import {
   B1BlockActions,
   CheckBoxConfirmerBlock,
-} from "../models";
+} from '../models';
 
-import * as validators from "./validations";
+import * as validators from './validations';
 
 // variables
 // --------------

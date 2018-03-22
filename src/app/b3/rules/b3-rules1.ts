@@ -3,10 +3,10 @@ import {
   CheckBoxBlock,
   DropdownBlock,
   TextInputBlock,
-} from "../../instance-detail/instance-detail.module";
+} from '../../instance-detail/instance-detail.module';
 
-import * as utilities from "./utils/utilities";
-import * as validators from "./validations";
+import * as utilities from './utils/utilities';
+import * as validators from './validations';
 
 // variables
 // --------------

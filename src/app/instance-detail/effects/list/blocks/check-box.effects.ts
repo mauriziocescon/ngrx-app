@@ -1,26 +1,30 @@
-import { Injectable } from "@angular/core";
-import { Action } from "@ngrx/store";
-import { Effect, Actions, OnRunEffects, EffectNotification } from "@ngrx/effects";
+import { Injectable } from '@angular/core';
+import { Action } from '@ngrx/store';
+import { Effect, Actions, OnRunEffects, EffectNotification } from '@ngrx/effects';
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/exhaustMap";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/takeUntil";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/exhaustMap';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/takeUntil';
 
-import { InstanceDetailEffectsActionTypes, StartEffects, StopEffects } from "../../../actions/instance-detail-effects.actions";
-import { ListActionTypes, FetchBlocksComplete } from "../../../actions/list/list.actions";
-import { SyncRequired } from "../../../actions/list/sync.actions";
+import {
+  InstanceDetailEffectsActionTypes,
+  StartEffects,
+  StopEffects,
+} from '../../../actions/instance-detail-effects.actions';
+import { ListActionTypes, FetchBlocksComplete } from '../../../actions/list/list.actions';
+import { SyncRequired } from '../../../actions/list/sync.actions';
 import {
   CheckBoxActionTypes,
   AddBlocks,
   UpdateBlock,
   ClearBlocks,
-} from "../../../actions/list/blocks/check-box.actions";
+} from '../../../actions/list/blocks/check-box.actions';
 
-import { Block, BlockType } from "../../../models";
+import { Block, BlockType } from '../../../models';
 
-import { CheckBoxHooksTriggerService } from "../../../services";
+import { CheckBoxHooksTriggerService } from '../../../services';
 
 @Injectable()
 export class CheckBoxEffect implements OnRunEffects {
@@ -38,7 +42,7 @@ export class CheckBoxEffect implements OnRunEffects {
           return block.type === BlockType.CheckBox;
         })
         .map((block: Block) => {
-          return {id: block.id, changes: {...block}};
+          return { id: block.id, changes: { ...block } };
         });
       return new AddBlocks(checkBoxBlocks);
     });

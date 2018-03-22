@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { IBlockHooks } from "../../instance-detail/instance-detail.module";
+import { IBlockHooks } from '../../instance-detail/instance-detail.module';
 
-import { module } from "../constants";
+import { module } from '../constants';
 
-import * as setOfRules from "../rules";
+import * as setOfRules from '../rules';
 
 @Injectable()
 export class B3BlockHooksService implements IBlockHooks {

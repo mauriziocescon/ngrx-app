@@ -1,31 +1,31 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
-import { APP_BASE_HREF } from "@angular/common";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { APP_BASE_HREF } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { StoreModule, Store, combineReducers } from "@ngrx/store";
-import * as fromRoot from "../../../reducers";
+import { StoreModule, Store, combineReducers } from '@ngrx/store';
+import * as fromRoot from '../../../reducers';
 
-import { SharedModule } from "../../../shared/shared.module";
+import { SharedModule } from '../../../shared/shared.module';
 
-import { AppConstantsService } from "../../services/app-constants.service";
-import { AppLanguageService } from "../../services/app-language.service";
-import { LocalStorageService } from "../../services/local-storage.service";
+import { AppConstantsService } from '../../services/app-constants.service';
+import { AppLanguageService } from '../../services/app-language.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
-import { COMPONENTS } from "../../components";
-import { CONTAINERS, NavigationBarContainerComponent } from "../../containers";
+import { COMPONENTS } from '../../components';
+import { CONTAINERS, NavigationBarContainerComponent } from '../../containers';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, "assets/i18n/", ".json");
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe("NavigationBarContainerComponent", () => {
+describe('NavigationBarContainerComponent', () => {
   let component: NavigationBarContainerComponent;
   let fixture: ComponentFixture<NavigationBarContainerComponent>;
 
@@ -42,7 +42,7 @@ describe("NavigationBarContainerComponent", () => {
           },
         }),
         LoggerModule.forRoot({
-          serverLoggingUrl: "",
+          serverLoggingUrl: '',
           level: NgxLoggerLevel.OFF,
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
@@ -54,7 +54,7 @@ describe("NavigationBarContainerComponent", () => {
         ...CONTAINERS,
       ],
       providers: [
-        {provide: APP_BASE_HREF, useValue: "/"},
+        { provide: APP_BASE_HREF, useValue: '/' },
         TranslateService,
         NGXLogger,
         fromRoot.reducerProvider,
@@ -72,7 +72,7 @@ describe("NavigationBarContainerComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,7 +1,7 @@
-const db = require("../db/db.json");
-const utils = require("../db/db-utils");
-const blocksValidation = require("../utils/blocks-validation");
-const dbUrl = require("../db/constants").dbUrl;
+const db = require('../db/db.json');
+const utils = require('../db/db-utils');
+const blocksValidation = require('../utils/blocks-validation');
+const dbUrl = require('../db/constants').dbUrl;
 
 exports.getBlocks = (req, res) => {
   const instances = db.instances;
@@ -14,7 +14,7 @@ exports.getBlocks = (req, res) => {
     return res.status(200).jsonp(instance.blocks);
   } else {
     return res.status(400).jsonp({
-      error: "Bad Request",
+      error: 'Bad Request',
     });
   }
 };
@@ -32,7 +32,7 @@ exports.saveBlocks = (req, res) => {
     });
 
     // hard coded validation
-    if (instance.id === "6") {
+    if (instance.id === '6') {
       instance.blocks = blocksValidation.validate(instance.blocks);
     }
 
@@ -46,7 +46,7 @@ exports.saveBlocks = (req, res) => {
     });
   } else {
     return res.status(400).jsonp({
-      error: "Bad Request",
+      error: 'Bad Request',
     });
   }
 };

@@ -1,13 +1,13 @@
-import { Action } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Action } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import { DossierBlock } from "../../models";
+import { DossierBlock } from '../../models';
 
 export enum DossierActionTypes {
-  LOADING = "[DossierBlock] Loading",
-  ADD_BLOCKS = "[DossierBlock] Add blocks",
-  UPDATE_BLOCK = "[DossierBlock] Update block",
-  CLEAR_BLOCKS = "[DossierBlock] Clear blocks",
+  LOADING = '[DossierBlock] Loading',
+  ADD_BLOCKS = '[DossierBlock] Add blocks',
+  UPDATE_BLOCK = '[DossierBlock] Update block',
+  CLEAR_BLOCKS = '[DossierBlock] Clear blocks',
 }
 
 export class Loading implements Action {

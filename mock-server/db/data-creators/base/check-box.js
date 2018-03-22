@@ -1,4 +1,4 @@
-const faker = require("faker");
+const faker = require('faker');
 
 exports.getCheckBox = (id) => {
   const value = faker.random.boolean() ? true : undefined;
@@ -6,17 +6,17 @@ exports.getCheckBox = (id) => {
 
   let checkBox = {
     id: id,
-    type: "check-box",
+    type: 'check-box',
     order: parseInt(id),
-    label: "COMPONENT.CHECK_BOX.CHECK_BOX_LABEL",
+    label: 'COMPONENT.CHECK_BOX.CHECK_BOX_LABEL',
     value: value,
-    description: "COMPONENT.CHECK_BOX.CHECK_BOX_DESC",
+    description: 'COMPONENT.CHECK_BOX.CHECK_BOX_DESC',
     required: required,
     disabled: false,
     valid: required ? !!value : true,
     hooks: {
-      checkBoxBlockDidLoad: "checkBoxBlockDidLoad",
-      checkBoxBlockDidChange: "checkBoxBlockDidChange",
+      checkBoxBlockDidLoad: 'checkBoxBlockDidLoad',
+      checkBoxBlockDidChange: 'checkBoxBlockDidChange',
     },
   };
 

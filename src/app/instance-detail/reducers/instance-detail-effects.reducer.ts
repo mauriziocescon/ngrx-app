@@ -1,4 +1,7 @@
-import { InstanceDetailEffectsActionTypes, InstanceDetailEffectsActions } from "../actions/instance-detail-effects.actions";
+import {
+  InstanceDetailEffectsActionTypes,
+  InstanceDetailEffectsActions,
+} from '../actions/instance-detail-effects.actions';
 
 export interface State {
   active: boolean;

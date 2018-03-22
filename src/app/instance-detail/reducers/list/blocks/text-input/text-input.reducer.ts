@@ -1,9 +1,9 @@
-import { createSelector } from "@ngrx/store";
-import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
+import { createSelector } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { TextInputActionTypes, TextInputActions } from "../../../../actions/list/blocks/text-input.actions";
+import { TextInputActionTypes, TextInputActions } from '../../../../actions/list/blocks/text-input.actions';
 
-import { TextInputBlock } from "../../../../models";
+import { TextInputBlock } from '../../../../models';
 
 export interface State extends EntityState<TextInputBlock> {
   textInputBlocksLoading: { [id: string]: boolean };
@@ -23,7 +23,7 @@ export const initialState: State = adapter.getInitialState({
 export function reducer(state = initialState, action: TextInputActions): State {
   switch (action.type) {
     case TextInputActionTypes.LOADING: {
-      const newBlocksLoading = {...state.textInputBlocksLoading};
+      const newBlocksLoading = { ...state.textInputBlocksLoading };
       newBlocksLoading[action.payload.id] = action.payload.loading;
       return {
         ...state,
@@ -41,7 +41,7 @@ export function reducer(state = initialState, action: TextInputActions): State {
       return adapter.updateOne(action.payload.block, state);
     }
     case TextInputActionTypes.CLEAR_BLOCKS: {
-      return adapter.removeAll({...state, textInputBlocksLoading: {}});
+      return adapter.removeAll({ ...state, textInputBlocksLoading: {} });
     }
     default: {
       return state;
@@ -64,7 +64,7 @@ export const getTextInputBlocksValidityState = createSelector(
     return ids.findIndex((id: string) => {
       return blocksEntities[id].valid === false;
     }) === -1;
-  }
+  },
 );
 
 export const getTextInputBlocksLoadingState = (state: State) => state.textInputBlocksLoading;

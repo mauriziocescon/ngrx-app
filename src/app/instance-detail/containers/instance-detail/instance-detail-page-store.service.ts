@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
-import * as list from "../../actions/list/list.actions";
+import * as list from '../../actions/list/list.actions';
 
-import * as fromInstanceDetail from "../../reducers";
+import * as fromInstanceDetail from '../../reducers';
 
 @Injectable()
 export class InstanceDetailPageStoreService {

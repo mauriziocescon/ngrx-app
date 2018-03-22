@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import * as datePicker from "../../../actions/blocks/date-picker.actions";
+import * as datePicker from '../../../actions/blocks/date-picker.actions';
 
-import { B2BlockType, DatePickerBlock, DatePickerActions } from "../../../models";
+import { B2BlockType, DatePickerBlock, DatePickerActions } from '../../../models';
 
-import * as fromB2Blocks from "../../../reducers";
+import * as fromB2Blocks from '../../../reducers';
 
 @Injectable()
 export class B2DatePickerActionsService {
@@ -34,7 +34,7 @@ export class B2DatePickerActionsService {
   }
 
   protected dispatchUpdate(block: Update<DatePickerBlock>): void {
-    const newBlock = {block: block, triggerHooks: false};
+    const newBlock = { block: block, triggerHooks: false };
     this.store$.dispatch(new datePicker.UpdateBlock(newBlock));
   }
 

@@ -1,16 +1,16 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
-import { ModalAlert, modalAlertsActions } from "../../../../core/core.module";
+import { ModalAlert, modalAlertsActions } from '../../../../core/core.module';
 
-import * as list from "../../../actions/list/list.actions";
-import * as sync from "../../../actions/list/sync.actions";
+import * as list from '../../../actions/list/list.actions';
+import * as sync from '../../../actions/list/sync.actions';
 
-import { Block } from "../../../models";
+import { Block } from '../../../models';
 
-import * as fromInstanceDetail from "../../../reducers";
+import * as fromInstanceDetail from '../../../reducers';
 
 @Injectable()
 export class NextStepStoreService {
@@ -31,7 +31,7 @@ export class NextStepStoreService {
   }
 
   dispatchShowModalAlert(modalAlert: ModalAlert): void {
-    this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
+    this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
   }
 
   dispatchSyncBlocks(payload: { module: string, instance: string, step: string, blocks: Block[] }): void {

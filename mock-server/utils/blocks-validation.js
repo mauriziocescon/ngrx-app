@@ -1,12 +1,12 @@
-const isCheckBoxBlockValid = function (checkBoxBlock) {
+const isCheckBoxBlockValid = function(checkBoxBlock) {
   return checkBoxBlock.required ? !!checkBoxBlock.value : true;
 };
 
-const isDropdownBlockValid = function (dropdownBlock) {
+const isDropdownBlockValid = function(dropdownBlock) {
   return dropdownBlock.required ? !!dropdownBlock.value : true;
 };
 
-const isTextInputBlockValid = function (textInputBlock) {
+const isTextInputBlockValid = function(textInputBlock) {
   if (textInputBlock.required && (!textInputBlock.value || !textInputBlock.value.length)) {
     return false;
   }
@@ -19,18 +19,18 @@ const isTextInputBlockValid = function (textInputBlock) {
   return true;
 };
 
-exports.validate = function (blocks) {
+exports.validate = function(blocks) {
   blocks.forEach((block) => {
     switch (block.type) {
-      case "check-box": {
+      case 'check-box': {
         block.valid = isCheckBoxBlockValid(block);
         break;
       }
-      case "dropdown": {
+      case 'dropdown': {
         block.valid = isDropdownBlockValid(block);
         break;
       }
-      case "text-input": {
+      case 'text-input': {
         block.valid = isTextInputBlockValid(block);
         break;
       }

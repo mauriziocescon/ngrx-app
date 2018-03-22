@@ -1,7 +1,7 @@
-import { Directive, ViewContainerRef } from "@angular/core";
+import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: "[add-component]",
+  selector: '[add-component]',
 })
 export class AddComponentDirective {
   constructor(public viewContainerRef: ViewContainerRef) {

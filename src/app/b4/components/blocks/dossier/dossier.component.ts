@@ -1,16 +1,16 @@
-import { Component, Input, Output, EventEmitter, OnInit, SimpleChanges, OnChanges, OnDestroy } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Component, Input, Output, EventEmitter, OnInit, SimpleChanges, OnChanges, OnDestroy } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Subscription } from "rxjs/Subscription";
+import { Subscription } from 'rxjs/Subscription';
 
-import { NGXLogger } from "ngx-logger";
+import { NGXLogger } from 'ngx-logger';
 
-import { DossierBlock } from "../../../models";
+import { DossierBlock } from '../../../models';
 
 @Component({
-  selector: "cp-dossier",
-  templateUrl: "./dossier.component.html",
-  styleUrls: ["./dossier.component.scss"]
+  selector: 'cp-dossier',
+  templateUrl: './dossier.component.html',
+  styleUrls: ['./dossier.component.scss'],
 })
 export class DossierComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: DossierBlock;
@@ -106,7 +106,7 @@ export class DossierComponent implements OnInit, OnChanges, OnDestroy {
       .valueChanges
       .debounceTime(500)
       .subscribe((value: string) => {
-          this.valuesDidChange.emit({value1Section1: value});
+          this.valuesDidChange.emit({ value1Section1: value });
         },
         (e) => {
           this.logger.error(e.toString());
@@ -116,7 +116,7 @@ export class DossierComponent implements OnInit, OnChanges, OnDestroy {
       .valueChanges
       .debounceTime(500)
       .subscribe((value: string) => {
-          this.valuesDidChange.emit({value2Section1: value});
+          this.valuesDidChange.emit({ value2Section1: value });
         },
         (e) => {
           this.logger.error(e.toString());
@@ -126,7 +126,7 @@ export class DossierComponent implements OnInit, OnChanges, OnDestroy {
       .valueChanges
       .debounceTime(500)
       .subscribe((value: boolean) => {
-          this.valuesDidChange.emit({value3Section1: value});
+          this.valuesDidChange.emit({ value3Section1: value });
         },
         (e) => {
           this.logger.error(e.toString());
@@ -136,7 +136,7 @@ export class DossierComponent implements OnInit, OnChanges, OnDestroy {
       .valueChanges
       .debounceTime(500)
       .subscribe((value: string) => {
-          this.valuesDidChange.emit({value1Section2: value});
+          this.valuesDidChange.emit({ value1Section2: value });
         },
         (e) => {
           this.logger.error(e.toString());

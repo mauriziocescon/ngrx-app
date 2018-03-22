@@ -1,22 +1,22 @@
-import { Component, ChangeDetectionStrategy, Input, OnDestroy } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input, OnDestroy } from '@angular/core';
 
-import { Observable } from "rxjs/Observable";
-import { Subscription } from "rxjs/Subscription";
-import "rxjs/add/operator/map";
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/map';
 
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateService } from '@ngx-translate/core';
 
 import {
   ModalConfirmer,
   ModalConfirmerResultType,
-} from "../../../../core/core.module";
+} from '../../../../core/core.module';
 
-import { B1BlockType, CheckBoxConfirmerBlock } from "../../../models";
+import { B1BlockType, CheckBoxConfirmerBlock } from '../../../models';
 
-import { CheckBoxConfirmerStoreService } from "./check-box-confirmer-store.service";
+import { CheckBoxConfirmerStoreService } from './check-box-confirmer-store.service';
 
 @Component({
-  selector: "ct-check-box-confirmer",
+  selector: 'ct-check-box-confirmer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     CheckBoxConfirmerStoreService,
@@ -96,18 +96,18 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
     this.subscribeToModalConfirmerResult();
 
     this.translate.get([
-      "CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE",
-      "CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON",
-      "CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE",
-      "CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON",
+      'CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE',
+      'CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON',
+      'CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE',
+      'CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON',
     ])
       .subscribe((translations: any) => {
         const modalConfirmer: ModalConfirmer = {
           id: this.blockId,
-          title: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE"],
-          message: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE"],
-          yesButtonLabel: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON"],
-          noButtonLabel: translations["CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON"],
+          title: translations['CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE'],
+          message: translations['CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE'],
+          yesButtonLabel: translations['CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON'],
+          noButtonLabel: translations['CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON'],
         };
         this.checkBoxConfirmerStore.dispatchShowModalConfirmer(modalConfirmer);
       });
@@ -117,11 +117,11 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
     this.unsubscribeToModalConfirmerResult();
 
     this.modalConfirmerResultSubscription = this.modalConfirmerResults$
-      .subscribe((modalConfirmerResult: { [id: string]: ModalConfirmerResultType | undefined}) => {
+      .subscribe((modalConfirmerResult: { [id: string]: ModalConfirmerResultType | undefined }) => {
         const result = modalConfirmerResult[this.blockId];
 
         if (result) {
-          this.checkBoxConfirmerStore.dispatchCleanModalConfirmer({id: this.blockId});
+          this.checkBoxConfirmerStore.dispatchCleanModalConfirmer({ id: this.blockId });
           this.unsubscribeToModalConfirmerResult();
 
           if (result === ModalConfirmerResultType.Positive) {

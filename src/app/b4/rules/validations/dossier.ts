@@ -1,4 +1,4 @@
-import { DossierBlock } from "../../models";
+import { DossierBlock } from '../../models';
 
 export const isValid = (dossierBlock: DossierBlock) => {
   if (dossierBlock.section1.required1 === true && (dossierBlock.section1.value1 === undefined || dossierBlock.section1.value1.length === 0)) {

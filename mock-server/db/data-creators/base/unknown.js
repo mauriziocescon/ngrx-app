@@ -1,9 +1,9 @@
-const faker = require("faker");
+const faker = require('faker');
 
 exports.getUnknownComponent = (id) => {
   return {
     id: id,
-    type: "unknown",
+    type: 'unknown',
     order: parseInt(id),
   };
 };

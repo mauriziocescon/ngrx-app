@@ -1,11 +1,11 @@
-import { LanguageActions, LanguageActionTypes } from "../actions/language.actions";
+import { LanguageActions, LanguageActionTypes } from '../actions/language.actions';
 
 export interface State {
   selectedLanguage: string;
 }
 
 export const initialState: State = {
-  selectedLanguage: "en",
+  selectedLanguage: 'en',
 };
 
 export function reducer(state = initialState, action: LanguageActions): State {

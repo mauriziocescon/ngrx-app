@@ -1,11 +1,11 @@
-import { Action } from "@ngrx/store";
+import { Action } from '@ngrx/store';
 
-import { Instance } from "../models";
+import { Instance } from '../models';
 
 export enum InstanceListActionTypes {
-  FETCH_INSTANCES = "[InstanceList] Fetch instances",
-  FETCH_INSTANCES_COMPLETE = "[InstanceList] Fetch instances complete",
-  FETCH_INSTANCES_ERROR = "[InstanceList] Fetch instances error",
+  FETCH_INSTANCES = '[InstanceList] Fetch instances',
+  FETCH_INSTANCES_COMPLETE = '[InstanceList] Fetch instances complete',
+  FETCH_INSTANCES_ERROR = '[InstanceList] Fetch instances error',
 }
 
 export class FetchInstances implements Action {

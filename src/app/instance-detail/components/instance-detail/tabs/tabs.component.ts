@@ -1,11 +1,11 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
-import { InstanceParams } from "../../../models";
+import { InstanceParams } from '../../../models';
 
 @Component({
-  selector: "cp-tabs",
-  templateUrl: "./tabs.component.html",
-  styleUrls: ["./tabs.component.scss"],
+  selector: 'cp-tabs',
+  templateUrl: './tabs.component.html',
+  styleUrls: ['./tabs.component.scss'],
 })
 export class TabsComponent {
   @Input() instanceParams: InstanceParams;
@@ -13,6 +13,6 @@ export class TabsComponent {
   justify: string;
 
   constructor() {
-    this.justify = "justified";
+    this.justify = 'justified';
   }
 }

@@ -1,14 +1,14 @@
-import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } from "@angular/core";
+import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
 
 @Directive({
-  selector: "[blockValidation]"
+  selector: '[blockValidation]',
 })
 export class BlockValidationDirective implements OnChanges {
   @Input() valid: boolean;
 
   constructor(private el: ElementRef,
               private renderer: Renderer2) {
-    this.renderer.addClass(this.el.nativeElement, "fa");
+    this.renderer.addClass(this.el.nativeElement, 'fa');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -22,20 +22,20 @@ export class BlockValidationDirective implements OnChanges {
   }
 
   protected addValidSymbol(): void {
-    this.renderer.setStyle(this.el.nativeElement, "color", "green");
-    this.renderer.addClass(this.el.nativeElement, "fa-thumbs-up");
+    this.renderer.setStyle(this.el.nativeElement, 'color', 'green');
+    this.renderer.addClass(this.el.nativeElement, 'fa-thumbs-up');
   }
 
   protected removeValidSymbol(): void {
-    this.renderer.removeClass(this.el.nativeElement, "fa-thumbs-up");
+    this.renderer.removeClass(this.el.nativeElement, 'fa-thumbs-up');
   }
 
   protected addInvalidSymbol(): void {
-    this.renderer.setStyle(this.el.nativeElement, "color", "red");
-    this.renderer.addClass(this.el.nativeElement, "fa-thumbs-down");
+    this.renderer.setStyle(this.el.nativeElement, 'color', 'red');
+    this.renderer.addClass(this.el.nativeElement, 'fa-thumbs-down');
   }
 
   protected removeInvalidSymbol(): void {
-    this.renderer.removeClass(this.el.nativeElement, "fa-thumbs-down");
+    this.renderer.removeClass(this.el.nativeElement, 'fa-thumbs-down');
   }
 }

@@ -1,26 +1,26 @@
-import { NgModule } from "@angular/core";
-import { StoreModule } from "@ngrx/store";
-import { EffectsModule } from "@ngrx/effects";
+import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
-import { SharedModule } from "../shared/shared.module";
+import { SharedModule } from '../shared/shared.module';
 
-import { InstanceListRoutingModule } from "./instance-list-routing.module";
+import { InstanceListRoutingModule } from './instance-list-routing.module';
 
-import { EFFECTS } from "./effects";
-import { TOKEN, reducerProvider } from "./reducers";
-import { SERVICES } from "./services";
+import { EFFECTS } from './effects';
+import { TOKEN, reducerProvider } from './reducers';
+import { SERVICES } from './services';
 
-import { COMPONENTS } from "./components";
+import { COMPONENTS } from './components';
 import {
   CONTAINERS,
   InstanceListPageComponent,
-} from "./containers";
+} from './containers';
 
 @NgModule({
   imports: [
     SharedModule,
 
-    StoreModule.forFeature("instanceList", TOKEN),
+    StoreModule.forFeature('instanceList', TOKEN),
     EffectsModule.forFeature([
       ...EFFECTS,
     ]),
@@ -30,8 +30,7 @@ import {
     ...COMPONENTS,
     ...CONTAINERS,
   ],
-  entryComponents: [
-  ],
+  entryComponents: [],
   providers: [
     reducerProvider,
     ...SERVICES,
@@ -40,7 +39,7 @@ import {
 export class InstanceListModule {
 }
 
-export * from "./models";
+export * from './models';
 
 export {
   InstanceListPageComponent,

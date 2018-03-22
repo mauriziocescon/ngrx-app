@@ -1,9 +1,9 @@
-import { createSelector } from "@ngrx/store";
-import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
+import { createSelector } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { CheckBoxActionTypes, CheckBoxActions } from "../../../../actions/list/blocks/check-box.actions";
+import { CheckBoxActionTypes, CheckBoxActions } from '../../../../actions/list/blocks/check-box.actions';
 
-import { CheckBoxBlock } from "../../../../models";
+import { CheckBoxBlock } from '../../../../models';
 
 export interface State extends EntityState<CheckBoxBlock> {
   checkBoxBlocksLoading: { [id: string]: boolean };
@@ -23,7 +23,7 @@ export const initialState: State = adapter.getInitialState({
 export function reducer(state = initialState, action: CheckBoxActions): State {
   switch (action.type) {
     case CheckBoxActionTypes.LOADING: {
-      const newBlocksLoading = {...state.checkBoxBlocksLoading};
+      const newBlocksLoading = { ...state.checkBoxBlocksLoading };
       newBlocksLoading[action.payload.id] = action.payload.loading;
       return {
         ...state,
@@ -41,7 +41,7 @@ export function reducer(state = initialState, action: CheckBoxActions): State {
       return adapter.updateOne(action.payload.block, state);
     }
     case CheckBoxActionTypes.CLEAR_BLOCKS: {
-      return adapter.removeAll({...state, checkBoxBlocksLoading: {}});
+      return adapter.removeAll({ ...state, checkBoxBlocksLoading: {} });
     }
     default: {
       return state;
@@ -64,7 +64,7 @@ export const getCheckBoxBlocksValidityState = createSelector(
     return ids.findIndex((id: string) => {
       return blocksEntities[id].valid === false;
     }) === -1;
-  }
+  },
 );
 
 export const getCheckBoxBlocksLoadingState = (state: State) => state.checkBoxBlocksLoading;

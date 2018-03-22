@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { Block, IBlockUtils } from "../../instance-detail/instance-detail.module";
+import { Block, IBlockUtils } from '../../instance-detail/instance-detail.module';
 
-import { module } from "../constants";
+import { module } from '../constants';
 
-import { CheckBoxConfirmerContainerComponent } from "../containers";
+import { CheckBoxConfirmerContainerComponent } from '../containers';
 
-import { B1BlockType, CheckBoxConfirmerBlock } from "../models";
+import { B1BlockType, CheckBoxConfirmerBlock } from '../models';
 
-import { B1CheckBoxConfirmerHooksTriggerService } from "./blocks/check-box-confirmer/check-box-confirmer-hooks-trigger.service";
+import { B1CheckBoxConfirmerHooksTriggerService } from './blocks/check-box-confirmer/check-box-confirmer-hooks-trigger.service';
 
 @Injectable()
 export class B1BlockUtilsService implements IBlockUtils {

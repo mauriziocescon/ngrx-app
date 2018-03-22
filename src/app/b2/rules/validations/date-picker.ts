@@ -1,4 +1,4 @@
-import { DatePickerBlock } from "../../models";
+import { DatePickerBlock } from '../../models';
 
 export const isValid = (datePickerBlock: DatePickerBlock) => {
   const unixTimeZero = datePickerBlock.value !== undefined ? Date.parse(datePickerBlock.value) : NaN;

@@ -1,4 +1,4 @@
-import { TextInputBlock } from "../../../instance-detail/instance-detail.module";
+import { TextInputBlock } from '../../../instance-detail/instance-detail.module';
 
 export const isValid = (textInputBlock: TextInputBlock) => {
 

@@ -1,11 +1,11 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
-import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: "modal-alert",
-  templateUrl: "./modal-alert.component.html",
-  styleUrls: ["./modal-alert.component.scss"],
+  selector: 'modal-alert',
+  templateUrl: './modal-alert.component.html',
+  styleUrls: ['./modal-alert.component.scss'],
 })
 export class ModalAlertComponent {
   @Input() title: string;
@@ -16,10 +16,10 @@ export class ModalAlertComponent {
   }
 
   close(): void {
-    this.activeModal.close("Close click");
+    this.activeModal.close('Close click');
   }
 
   dismiss(): void {
-    this.activeModal.dismiss("Close click");
+    this.activeModal.dismiss('Close click');
   }
 }

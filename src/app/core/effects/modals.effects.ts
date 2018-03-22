@@ -1,17 +1,17 @@
-import { Injectable } from "@angular/core";
-import { Action } from "@ngrx/store";
-import { Effect, Actions } from "@ngrx/effects";
+import { Injectable } from '@angular/core';
+import { Action } from '@ngrx/store';
+import { Effect, Actions } from '@ngrx/effects';
 
-import { Observable } from "rxjs/Observable";
-import { fromPromise } from "rxjs/observable/fromPromise";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/switchMap";
+import { Observable } from 'rxjs/Observable';
+import { fromPromise } from 'rxjs/observable/fromPromise';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
 
-import { UIUtilitiesService } from "../services/ui-utilities.service";
+import { UIUtilitiesService } from '../services/ui-utilities.service';
 
-import { ModalAlertActionTypes, ShowModalAlert } from "../actions/modal-alert.actions";
-import { ModalConfirmerActionTypes, ShowModalConfirmer } from "../actions/modal-confirmer.actions";
-import { ModalAlert, ModalConfirmer } from "../models";
+import { ModalAlertActionTypes, ShowModalAlert } from '../actions/modal-alert.actions';
+import { ModalConfirmerActionTypes, ShowModalConfirmer } from '../actions/modal-confirmer.actions';
+import { ModalAlert, ModalConfirmer } from '../models';
 
 @Injectable()
 export class ModalsEffects {

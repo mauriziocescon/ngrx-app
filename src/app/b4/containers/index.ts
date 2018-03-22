@@ -1,4 +1,4 @@
-import { DossierContainerComponent } from "./blocks/dossier/dossier.container";
+import { DossierContainerComponent } from './blocks/dossier/dossier.container';
 
 export const CONTAINERS = [
   DossierContainerComponent,

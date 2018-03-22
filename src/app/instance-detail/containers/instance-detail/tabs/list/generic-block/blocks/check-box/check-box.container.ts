@@ -1,14 +1,14 @@
-import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
-import { BlockType, CheckBoxBlock } from "../../../../../../../models";
+import { BlockType, CheckBoxBlock } from '../../../../../../../models';
 
-import { CheckBoxStoreService } from "./check-box-store.service";
+import { CheckBoxStoreService } from './check-box-store.service';
 
 @Component({
-  selector: "ct-check-box",
+  selector: 'ct-check-box',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     CheckBoxStoreService,

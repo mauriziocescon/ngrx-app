@@ -1,5 +1,5 @@
-import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../../instance-detail/instance-detail.module";
-import { DatePickerBlock, B2BlockType } from "../../models";
+import { CheckBoxBlock, DropdownBlock, TextInputBlock } from '../../../instance-detail/instance-detail.module';
+import { DatePickerBlock, B2BlockType } from '../../models';
 
 export const arrayOfBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | DatePickerBlock }) => {
   const keys = Object.keys(blocks);

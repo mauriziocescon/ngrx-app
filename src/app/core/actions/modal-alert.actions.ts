@@ -1,10 +1,10 @@
-import { Action } from "@ngrx/store";
+import { Action } from '@ngrx/store';
 
-import { ModalAlert } from "../models";
+import { ModalAlert } from '../models';
 
 export enum ModalAlertActionTypes {
-  SHOW_MODAL_ALERT = "[Modal Alert] Show modal",
-  DISMISS_MODAL_ALERT = "[Modal Alert] Dismiss modal",
+  SHOW_MODAL_ALERT = '[Modal Alert] Show modal',
+  DISMISS_MODAL_ALERT = '[Modal Alert] Dismiss modal',
 }
 
 export class ShowModalAlert implements Action {

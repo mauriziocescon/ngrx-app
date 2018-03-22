@@ -1,31 +1,31 @@
-import { Injectable } from "@angular/core";
-import { Action } from "@ngrx/store";
-import { Effect, Actions, OnRunEffects, EffectNotification } from "@ngrx/effects";
+import { Injectable } from '@angular/core';
+import { Action } from '@ngrx/store';
+import { Effect, Actions, OnRunEffects, EffectNotification } from '@ngrx/effects';
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/exhaustMap";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/takeUntil";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/exhaustMap';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/takeUntil';
 
 import {
   Block,
   FetchBlocksComplete,
   ListActionTypes,
   SyncRequired,
-} from "../../../instance-detail/instance-detail.module";
+} from '../../../instance-detail/instance-detail.module';
 
-import { B4EffectsActionTypes, StartEffects, StopEffects } from "../../actions/b4-effects.actions";
+import { B4EffectsActionTypes, StartEffects, StopEffects } from '../../actions/b4-effects.actions';
 import {
   DossierActionTypes,
   AddBlocks,
   UpdateBlock,
-  ClearBlocks
-} from "../../actions/blocks/dossier.actions";
+  ClearBlocks,
+} from '../../actions/blocks/dossier.actions';
 
-import { B4BlockType } from "../../models";
+import { B4BlockType } from '../../models';
 
-import { B4DossierHooksTriggerService } from "../../services";
+import { B4DossierHooksTriggerService } from '../../services';
 
 @Injectable()
 export class DossierEffects implements OnRunEffects {
@@ -43,7 +43,7 @@ export class DossierEffects implements OnRunEffects {
           return block.type === B4BlockType.Dossier;
         })
         .map((block: Block) => {
-          return {id: block.id, changes: {...block}};
+          return { id: block.id, changes: { ...block } };
         });
       return new AddBlocks(dossierBoxBlocks);
     });

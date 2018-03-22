@@ -1,4 +1,4 @@
-import { Instance } from "./instance.model";
+import { Instance } from './instance.model';
 
 export {
   Instance,

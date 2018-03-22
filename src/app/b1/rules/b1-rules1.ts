@@ -2,15 +2,15 @@ import {
   CheckBoxBlock,
   DropdownBlock,
   TextInputBlock,
-} from "../../instance-detail/instance-detail.module";
+} from '../../instance-detail/instance-detail.module';
 
 import {
   B1BlockActions,
   CheckBoxConfirmerBlock,
-} from "../models";
+} from '../models';
 
-import * as utilities from "./utils/utilities";
-import * as validators from "./validations";
+import * as utilities from './utils/utilities';
+import * as validators from './validations';
 
 // variables
 // --------------
@@ -39,7 +39,7 @@ export const dropdownBlockDidLoad = (dropdownBlock: DropdownBlock, blockActions:
 export const textInputBlockDidLoad = (textInputBlock: TextInputBlock, blockActions: B1BlockActions) => {
   blocks[textInputBlock.id] = textInputBlock;
 
-  blockActions.textInput.setValueForBlockId("Reset initial value during TextInput load event", textInputBlock.id);
+  blockActions.textInput.setValueForBlockId('Reset initial value during TextInput load event', textInputBlock.id);
 
   const valid = validators.textInputBlockValidator(textInputBlock);
   if (valid !== textInputBlock.valid) {
@@ -93,7 +93,7 @@ export const dropdownBlockDidChange = (dropdownBlock: DropdownBlock, blockAction
 
   blockActions.dropdown.changeLoading(true, dropdownBlock.id);
   setTimeout(() => {
-    const newChoices = ["1", "2", "3", "4", "5"];
+    const newChoices = ['1', '2', '3', '4', '5'];
     blockActions.dropdown.setChoicesForBlockId(newChoices, dropdownBlock.id);
     blockActions.dropdown.changeLoading(false, dropdownBlock.id);
   }, 3000);
@@ -126,6 +126,6 @@ export const customCheckBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, block
   }
 
   if (checkBoxBlock.value === true) {
-    alert("Hello world!");
+    alert('Hello world!');
   }
 };

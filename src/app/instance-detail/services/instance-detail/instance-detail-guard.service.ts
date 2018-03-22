@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   CanDeactivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-} from "@angular/router";
+} from '@angular/router';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
-import { InstanceDetailPageComponent } from "../../containers";
+import { InstanceDetailPageComponent } from '../../containers';
 
 @Injectable()
 export class InstanceDetailGuard implements CanDeactivate<InstanceDetailPageComponent> {

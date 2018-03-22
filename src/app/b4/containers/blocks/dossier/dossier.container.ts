@@ -1,14 +1,14 @@
-import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
-import { B4BlockType, DossierBlock } from "../../../models";
+import { B4BlockType, DossierBlock } from '../../../models';
 
-import { DossierStoreService } from "./dossier-store.service";
+import { DossierStoreService } from './dossier-store.service';
 
 @Component({
-  selector: "ct-dossier",
+  selector: 'ct-dossier',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     DossierStoreService,

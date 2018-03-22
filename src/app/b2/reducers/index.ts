@@ -1,13 +1,13 @@
-import { InjectionToken } from "@angular/core";
-import { createSelector, createFeatureSelector, combineReducers, ActionReducerMap } from "@ngrx/store";
+import { InjectionToken } from '@angular/core';
+import { createSelector, createFeatureSelector, combineReducers, ActionReducerMap } from '@ngrx/store';
 
-import { DatePickerBlock } from "../models";
+import { DatePickerBlock } from '../models';
 
-import * as fromRoot from "../../reducers";
-import { fromInstanceDetail, Block } from "../../instance-detail/instance-detail.module";
-import * as fromB2Effects from "./b2-effects.reducer";
-import * as fromEditedBlocks from "./blocks";
-import * as fromDatePicker from "./blocks/date-picker/date-picker.reducer";
+import * as fromRoot from '../../reducers';
+import { fromInstanceDetail, Block } from '../../instance-detail/instance-detail.module';
+import * as fromB2Effects from './b2-effects.reducer';
+import * as fromEditedBlocks from './blocks';
+import * as fromDatePicker from './blocks/date-picker/date-picker.reducer';
 
 export interface B2BlocksState {
   effects: fromB2Effects.State;
@@ -20,7 +20,7 @@ export interface State extends fromRoot.State {
 
 // -----------------
 // ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>("B2EditedBlocksReducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>('B2EditedBlocksReducers');
 
 export function getReducers(): ActionReducerMap<B2BlocksState> {
   return {
@@ -30,12 +30,12 @@ export function getReducers(): ActionReducerMap<B2BlocksState> {
 }
 
 export const reducerProvider = [
-  {provide: TOKEN, useFactory: getReducers}
+  { provide: TOKEN, useFactory: getReducers },
 ];
 
 // -----------------
 // --- feature selector
-export const getB2BlocksState = createFeatureSelector<B2BlocksState>("b2Blocks");
+export const getB2BlocksState = createFeatureSelector<B2BlocksState>('b2Blocks');
 
 // -----------------
 // ----- edited blocks
@@ -70,5 +70,5 @@ export const getAllEditedBlocksValidityState = createSelector(
   getDatePickerBlocksValidityState,
   (validity: boolean, datePickerValidity: boolean) => {
     return validity && datePickerValidity;
-  }
+  },
 );

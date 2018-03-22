@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { AppConstantsService } from "../../../../core/core.module";
+import { AppConstantsService } from '../../../../core/core.module';
 
-import { CheckBoxContainerComponent } from "../../../containers/instance-detail/tabs/list/generic-block/blocks/check-box/check-box.container";
-import { DropdownContainerComponent } from "../../../containers/instance-detail/tabs/list/generic-block/blocks/dropdown/dropdown.container";
-import { TextInputContainerComponent } from "../../../containers/instance-detail/tabs/list/generic-block/blocks/text-input/text-input.container";
-import { UnknownComponent } from "../../../components";
+import { CheckBoxContainerComponent } from '../../../containers/instance-detail/tabs/list/generic-block/blocks/check-box/check-box.container';
+import { DropdownContainerComponent } from '../../../containers/instance-detail/tabs/list/generic-block/blocks/dropdown/dropdown.container';
+import { TextInputContainerComponent } from '../../../containers/instance-detail/tabs/list/generic-block/blocks/text-input/text-input.container';
+import { UnknownComponent } from '../../../components';
 
 import {
   Block,
@@ -13,13 +13,13 @@ import {
   CheckBoxBlock,
   DropdownBlock,
   TextInputBlock,
-} from "../../../models";
+} from '../../../models';
 
-import { IBlockUtils } from "../../../tokens";
+import { IBlockUtils } from '../../../tokens';
 
-import { CheckBoxHooksTriggerService } from "./blocks/check-box/check-box-hooks-trigger.service";
-import { DropdownHooksTriggerService } from "./blocks/dropdown/dropdown-hooks-trigger.service";
-import { TextInputHooksTriggerService } from "./blocks/text-input/text-input-hooks-trigger.service";
+import { CheckBoxHooksTriggerService } from './blocks/check-box/check-box-hooks-trigger.service';
+import { DropdownHooksTriggerService } from './blocks/dropdown/dropdown-hooks-trigger.service';
+import { TextInputHooksTriggerService } from './blocks/text-input/text-input-hooks-trigger.service';
 
 @Injectable()
 export class BlockUtilsService implements IBlockUtils {

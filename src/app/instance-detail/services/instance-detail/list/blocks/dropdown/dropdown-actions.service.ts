@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import * as dropdown from "../../../../../actions/list/blocks/dropdown.actions";
+import * as dropdown from '../../../../../actions/list/blocks/dropdown.actions';
 
-import { BlockType, DropdownBlock, DropdownActions } from "../../../../../models";
+import { BlockType, DropdownBlock, DropdownActions } from '../../../../../models';
 
-import * as fromInstanceDetail from "../../../../../reducers";
+import * as fromInstanceDetail from '../../../../../reducers';
 
 @Injectable()
 export class DropdownActionsService {
@@ -35,7 +35,7 @@ export class DropdownActionsService {
   }
 
   protected dispatchUpdate(block: Update<DropdownBlock>): void {
-    const newBlock = {block: block, triggerHooks: false};
+    const newBlock = { block: block, triggerHooks: false };
     this.store$.dispatch(new dropdown.UpdateBlock(newBlock));
   }
 

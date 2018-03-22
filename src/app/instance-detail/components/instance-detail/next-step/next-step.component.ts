@@ -1,9 +1,9 @@
-import { Component, Output, Input, EventEmitter } from "@angular/core";
+import { Component, Output, Input, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: "cp-next-step",
-  templateUrl: "./next-step.component.html",
-  styleUrls: ["./next-step.component.scss"],
+  selector: 'cp-next-step',
+  templateUrl: './next-step.component.html',
+  styleUrls: ['./next-step.component.scss'],
 })
 export class NextStepComponent {
   @Input() formValidity: boolean;
@@ -16,7 +16,7 @@ export class NextStepComponent {
   constructor() {
     this.nextStep = new EventEmitter();
     this.reset = new EventEmitter();
-    this.retrySync = new EventEmitter()
+    this.retrySync = new EventEmitter();
   }
 
   get isSynchronized(): boolean {

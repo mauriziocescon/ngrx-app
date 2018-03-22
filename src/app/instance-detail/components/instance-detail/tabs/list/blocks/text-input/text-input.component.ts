@@ -1,17 +1,17 @@
-import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
-import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
+import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { Subscription } from "rxjs/Subscription";
-import "rxjs/add/operator/debounceTime";
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/debounceTime';
 
-import { NGXLogger } from "ngx-logger";
+import { NGXLogger } from 'ngx-logger';
 
-import { TextInputBlock } from "../../../../../../models";
+import { TextInputBlock } from '../../../../../../models';
 
 @Component({
-  selector: "cp-text-input",
-  templateUrl: "./text-input.component.html",
-  styleUrls: ["./text-input.component.scss"]
+  selector: 'cp-text-input',
+  templateUrl: './text-input.component.html',
+  styleUrls: ['./text-input.component.scss'],
 })
 export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: TextInputBlock;
@@ -39,17 +39,17 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
   get inputGroupMessage(): string {
     if (this.block) {
       if (this.block.minLength !== undefined && this.block.minLength >= 0 && this.block.maxLength !== undefined && this.block.maxLength >= 0) {
-        return "COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MIN_MAX_LENGTH";
+        return 'COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MIN_MAX_LENGTH';
       } else if (this.block.minLength !== undefined && this.block.minLength >= 0) {
-        return "COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MIN_LENGTH";
+        return 'COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MIN_LENGTH';
       } else if (this.block.maxLength !== undefined && this.block.maxLength >= 0) {
-        return "COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MAX_LENGTH";
+        return 'COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MAX_LENGTH';
       } else {
         return ``;
       }
     }
 
-    return "";
+    return '';
   }
 
   get inputGroupParams(): any {
@@ -122,7 +122,7 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   resetTextInput(): void {
-    this.textInputControl.setValue("");
+    this.textInputControl.setValue('');
   }
 
   protected setDisableEnable(condition: boolean, control: FormControl): void {

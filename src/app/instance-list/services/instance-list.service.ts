@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { ErrorObservable } from "rxjs/observable/ErrorObservable";
-import { Observable } from "rxjs/Observable";
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { Observable } from 'rxjs/Observable';
 
-import { AppConstantsService } from "../../core/core.module";
+import { AppConstantsService } from '../../core/core.module';
 
-import { Instance } from "../models";
+import { Instance } from '../models';
 
 @Injectable()
 export class InstanceListService {
@@ -28,7 +28,7 @@ export class InstanceListService {
       return new ErrorObservable(err.error.message);
     } else {
       // The backend returned an unsuccessful response code.
-      return new ErrorObservable(`Code ${err.status}, body: ${err.message}` || "Server error");
+      return new ErrorObservable(`Code ${err.status}, body: ${err.message}` || 'Server error');
     }
   }
 }

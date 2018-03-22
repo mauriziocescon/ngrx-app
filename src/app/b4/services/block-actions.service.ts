@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { IBlockActions } from "../../instance-detail/instance-detail.module";
+import { IBlockActions } from '../../instance-detail/instance-detail.module';
 
-import { module } from "../constants";
+import { module } from '../constants';
 
-import { B4DossierActionsService } from "./blocks/dossier/dossier-actions.service";
+import { B4DossierActionsService } from './blocks/dossier/dossier-actions.service';
 
 @Injectable()
 export class B4BlockActionsService implements IBlockActions {

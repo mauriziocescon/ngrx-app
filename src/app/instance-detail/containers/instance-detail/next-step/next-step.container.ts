@@ -1,23 +1,23 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnChanges, OnDestroy, Input, SimpleChanges } from "@angular/core";
+import { Component, ChangeDetectionStrategy, OnInit, OnChanges, OnDestroy, Input, SimpleChanges } from '@angular/core';
 
-import { Observable } from "rxjs/Observable";
-import { Subscription } from "rxjs/Subscription";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/withLatestFrom";
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/withLatestFrom';
 
-import { TranslateService } from "@ngx-translate/core";
-import { NGXLogger } from "ngx-logger";
+import { TranslateService } from '@ngx-translate/core';
+import { NGXLogger } from 'ngx-logger';
 
-import { ModalAlert } from "../../../../core/core.module";
+import { ModalAlert } from '../../../../core/core.module';
 
-import { Block, InstanceParams } from "../../../models";
+import { Block, InstanceParams } from '../../../models';
 
-import { InstanceDetailIntegrationStoreService } from "../../../services";
+import { InstanceDetailIntegrationStoreService } from '../../../services';
 
-import { NextStepStoreService } from "./next-step-store.service";
+import { NextStepStoreService } from './next-step-store.service';
 
 @Component({
-  selector: "ct-next-step",
+  selector: 'ct-next-step',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     NextStepStoreService,
@@ -86,15 +86,15 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
       .subscribe((err) => {
         if (err) {
           this.translate.get([
-            "CONTAINER.NEXT_STEP.ALERT_BUTTON",
-            "CONTAINER.NEXT_STEP.ALERT_TITLE",
+            'CONTAINER.NEXT_STEP.ALERT_BUTTON',
+            'CONTAINER.NEXT_STEP.ALERT_TITLE',
           ])
             .subscribe((translations: any) => {
               const modalAlert: ModalAlert = {
                 id: this.mAlertSyncErrorId,
-                title: translations["CONTAINER.NEXT_STEP.ALERT_TITLE"],
+                title: translations['CONTAINER.NEXT_STEP.ALERT_TITLE'],
                 message: err,
-                buttonLabel: translations["CONTAINER.NEXT_STEP.ALERT_BUTTON"],
+                buttonLabel: translations['CONTAINER.NEXT_STEP.ALERT_BUTTON'],
               };
               this.nextStepStore.dispatchShowModalAlert(modalAlert);
             });

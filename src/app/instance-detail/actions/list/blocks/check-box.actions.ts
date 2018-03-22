@@ -1,13 +1,13 @@
-import { Action } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Action } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import { CheckBoxBlock } from "../../../models";
+import { CheckBoxBlock } from '../../../models';
 
 export enum CheckBoxActionTypes {
-  LOADING = "[CheckBox] Loading",
-  ADD_BLOCKS = "[CheckBox] Add blocks",
-  UPDATE_BLOCK = "[CheckBox] Update block",
-  CLEAR_BLOCKS = "[CheckBox] Clear blocks",
+  LOADING = '[CheckBox] Loading',
+  ADD_BLOCKS = '[CheckBox] Add blocks',
+  UPDATE_BLOCK = '[CheckBox] Update block',
+  CLEAR_BLOCKS = '[CheckBox] Clear blocks',
 }
 
 export class Loading implements Action {

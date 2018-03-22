@@ -1,14 +1,14 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
-import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
-import { NGXLogger } from "ngx-logger";
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NGXLogger } from 'ngx-logger';
 
-import { DatePickerBlock } from "../../../models";
+import { DatePickerBlock } from '../../../models';
 
 @Component({
-  selector: "cp-date-picker",
-  templateUrl: "./date-picker.component.html",
-  styleUrls: ["./date-picker.component.scss"]
+  selector: 'cp-date-picker',
+  templateUrl: './date-picker.component.html',
+  styleUrls: ['./date-picker.component.scss'],
 })
 export class DatePickerComponent implements OnInit, OnChanges {
   @Input() block: DatePickerBlock;
@@ -42,7 +42,7 @@ export class DatePickerComponent implements OnInit, OnChanges {
   }
 
   protected fromModel(date: Date): NgbDateStruct {
-    return {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()};
+    return { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
   }
 
   protected toModel(date: NgbDateStruct): Date {

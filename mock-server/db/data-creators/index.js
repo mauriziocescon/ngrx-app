@@ -1,11 +1,11 @@
-const unknown = require("./base/unknown");
-const checkBox = require("./base/check-box");
-const dropdown = require("./base/dropdown");
-const textInput = require("./base/text-input");
+const unknown = require('./base/unknown');
+const checkBox = require('./base/check-box');
+const dropdown = require('./base/dropdown');
+const textInput = require('./base/text-input');
 
-const checkBoxConfirmer = require("./b1/check-box-confirmer");
-const datePicker = require("./b2/date-picker");
-const dossier = require("./b4/dossier");
+const checkBoxConfirmer = require('./b1/check-box-confirmer');
+const datePicker = require('./b2/date-picker');
+const dossier = require('./b4/dossier');
 
 exports.getRandomBlock = function(id) {
   const choice = Math.random();

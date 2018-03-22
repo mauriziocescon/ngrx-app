@@ -1,21 +1,21 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from "../../../../core/core.module";
-import { SharedModule } from "../../../../shared/shared.module";
+import { CoreModule } from '../../../../core/core.module';
+import { SharedModule } from '../../../../shared/shared.module';
 
-import { TabsComponent } from "./tabs.component";
+import { TabsComponent } from './tabs.component';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, "assets/i18n/", ".json");
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe("TabsComponent", () => {
+describe('TabsComponent', () => {
   let component: TabsComponent;
   let fixture: ComponentFixture<TabsComponent>;
 
@@ -31,7 +31,7 @@ describe("TabsComponent", () => {
           },
         }),
         LoggerModule.forRoot({
-          serverLoggingUrl: "",
+          serverLoggingUrl: '',
           level: NgxLoggerLevel.OFF,
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
@@ -55,7 +55,7 @@ describe("TabsComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,4 +1,4 @@
-const db = require("../db/db.json");
+const db = require('../db/db.json');
 
 exports.getInstances = (req, res) => {
   const instances = db.instances;

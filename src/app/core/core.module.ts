@@ -1,27 +1,27 @@
-import { NgModule, Optional, SkipSelf, ModuleWithProviders, LOCALE_ID } from "@angular/core";
-import { CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from "@angular/common";
+import { NgModule, Optional, SkipSelf, ModuleWithProviders, LOCALE_ID } from '@angular/core';
+import { CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from '@angular/common';
 
-import { SharedModule } from "../shared/shared.module";
+import { SharedModule } from '../shared/shared.module';
 
-import * as languageActions from "./actions/language.actions";
-import * as modalAlertsActions from "./actions/modal-alert.actions";
-import * as modalConfirmersActions from "./actions/modal-confirmer.actions";
+import * as languageActions from './actions/language.actions';
+import * as modalAlertsActions from './actions/modal-alert.actions';
+import * as modalConfirmersActions from './actions/modal-confirmer.actions';
 
 import {
   ModalAlertComponent,
   ModalConfirmerComponent,
   COMPONENTS,
-} from "./components";
+} from './components';
 import {
   NavigationBarContainerComponent,
-  CONTAINERS
-} from "./containers";
+  CONTAINERS,
+} from './containers';
 
-import { AppConstantsService } from "./services/app-constants.service";
-import { AppLanguageService } from "./services/app-language.service";
-import { LocalStorageService } from "./services/local-storage.service";
-import { UIUtilitiesService } from "./services/ui-utilities.service";
-import { UtilitiesService } from "./services/utilities.service";
+import { AppConstantsService } from './services/app-constants.service';
+import { AppLanguageService } from './services/app-language.service';
+import { LocalStorageService } from './services/local-storage.service';
+import { UIUtilitiesService } from './services/ui-utilities.service';
+import { UtilitiesService } from './services/utilities.service';
 
 export function createLanguageIdLoader(appLanguage: AppLanguageService) {
   return appLanguage.getLanguageId();
@@ -40,7 +40,7 @@ export function createLanguageIdLoader(appLanguage: AppLanguageService) {
     ModalConfirmerComponent,
   ],
   exports: [
-    NavigationBarContainerComponent
+    NavigationBarContainerComponent,
   ],
 })
 export class CoreModule {
@@ -48,7 +48,7 @@ export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
       throw new Error(
-        "CoreModule is already loaded. Import it in the AppModule only");
+        'CoreModule is already loaded. Import it in the AppModule only');
     }
   }
 
@@ -69,9 +69,9 @@ export class CoreModule {
         {
           provide: LOCALE_ID,
           useFactory: (createLanguageIdLoader),
-          deps: [AppLanguageService]
+          deps: [AppLanguageService],
         },
-      ]
+      ],
     };
   }
 }
@@ -79,12 +79,12 @@ export class CoreModule {
 export {
   languageActions,
   modalAlertsActions,
-  modalConfirmersActions
+  modalConfirmersActions,
 };
 
-export { EFFECTS as CORE_EFFECTS} from "./effects";
+export { EFFECTS as CORE_EFFECTS } from './effects';
 
-export * from "./models";
+export * from './models';
 
 export {
   AppConstantsService,

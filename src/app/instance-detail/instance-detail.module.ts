@@ -1,30 +1,30 @@
-import { NgModule } from "@angular/core";
-import { StoreModule } from "@ngrx/store";
-import { EffectsModule } from "@ngrx/effects";
+import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
-import { SharedModule } from "../shared/shared.module";
+import { SharedModule } from '../shared/shared.module';
 
-import { InstanceDetailRoutingModule } from "./instance-detail-routing.module";
+import { InstanceDetailRoutingModule } from './instance-detail-routing.module';
 
-import { EFFECTS } from "./effects";
-import * as fromInstanceDetail from "./reducers";
-import { TOKEN, reducerProvider } from "./reducers";
-import { SERVICES, BlockActionsIntegrationService } from "./services";
+import { EFFECTS } from './effects';
+import * as fromInstanceDetail from './reducers';
+import { TOKEN, reducerProvider } from './reducers';
+import { SERVICES, BlockActionsIntegrationService } from './services';
 
-import { COMPONENTS, UnknownComponent } from "./components";
+import { COMPONENTS, UnknownComponent } from './components';
 import {
   CONTAINERS,
   InstanceDetailPageComponent,
   CheckBoxContainerComponent,
   DropdownContainerComponent,
   TextInputContainerComponent,
-} from "./containers";
+} from './containers';
 
 @NgModule({
   imports: [
     SharedModule,
 
-    StoreModule.forFeature("instanceDetail", TOKEN),
+    StoreModule.forFeature('instanceDetail', TOKEN),
     EffectsModule.forFeature([
       ...EFFECTS,
     ]),
@@ -54,18 +54,18 @@ export class InstanceDetailModule {
 export {
   FetchBlocksComplete,
   ListActionTypes,
-} from "./actions/list/list.actions";
+} from './actions/list/list.actions';
 
 export {
   SyncRequired,
   SyncActionTypes,
-} from "./actions/list/sync.actions";
+} from './actions/list/sync.actions';
 
 export { fromInstanceDetail };
 
-export * from "./models";
+export * from './models';
 
-export * from "./tokens";
+export * from './tokens';
 
 export {
   BlockActionsIntegrationService,

@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
-import { registerLocaleData } from "@angular/common";
-import { Store } from "@ngrx/store";
+import { Injectable } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import { Store } from '@ngrx/store';
 
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateService } from '@ngx-translate/core';
 
-import * as fromCore from "../reducers";
-import * as language from "../actions/language.actions";
+import * as fromCore from '../reducers';
+import * as language from '../actions/language.actions';
 
-import { AppConstantsService } from "./app-constants.service";
-import { LocalStorageService } from "./local-storage.service";
+import { AppConstantsService } from './app-constants.service';
+import { LocalStorageService } from './local-storage.service';
 
-import localeDe from "@angular/common/locales/de";
-import localeEn from "@angular/common/locales/en";
-import localeIt from "@angular/common/locales/it";
+import localeDe from '@angular/common/locales/de';
+import localeEn from '@angular/common/locales/en';
+import localeIt from '@angular/common/locales/it';
 
 @Injectable()
 export class AppLanguageService {

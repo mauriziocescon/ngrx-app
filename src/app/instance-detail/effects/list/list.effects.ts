@@ -1,18 +1,22 @@
-import { Injectable } from "@angular/core";
-import { Action } from "@ngrx/store";
-import { Effect, Actions, EffectNotification, OnRunEffects } from "@ngrx/effects";
+import { Injectable } from '@angular/core';
+import { Action } from '@ngrx/store';
+import { Effect, Actions, EffectNotification, OnRunEffects } from '@ngrx/effects';
 
-import { Observable } from "rxjs/Observable";
-import { of } from "rxjs/observable/of";
-import { from } from "rxjs/observable/from";
-import "rxjs/add/operator/catch";
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/exhaustMap";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/takeUntil";
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { from } from 'rxjs/observable/from';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/exhaustMap';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/takeUntil';
 
-import { InstanceDetailEffectsActionTypes, StartEffects, StopEffects } from "../../actions/instance-detail-effects.actions";
+import {
+  InstanceDetailEffectsActionTypes,
+  StartEffects,
+  StopEffects,
+} from '../../actions/instance-detail-effects.actions';
 import {
   ListActionTypes,
   FetchBlocks,
@@ -21,12 +25,12 @@ import {
   SyncBlocks,
   SyncBlocksComplete,
   SyncBlocksError,
-} from "../../actions/list/list.actions";
-import { Synchronized } from "../../actions/list/sync.actions";
+} from '../../actions/list/list.actions';
+import { Synchronized } from '../../actions/list/sync.actions';
 
-import { Block } from "../../models";
+import { Block } from '../../models';
 
-import { BlockListService } from "../../services";
+import { BlockListService } from '../../services';
 
 @Injectable()
 export class ListEffects implements OnRunEffects {

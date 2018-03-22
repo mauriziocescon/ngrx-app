@@ -1,4 +1,4 @@
-const db = require("../db/db.json");
+const db = require('../db/db.json');
 
 exports.getRulesConfig = (req, res) => {
   const rulesConfig = db.rulesConfig;
@@ -14,9 +14,9 @@ exports.getRulesConfig = (req, res) => {
       return res.status(200).jsonp(module.steps[index].rules);
     } else {
       return res.status(400).jsonp({
-        error: "Bad Request",
+        error: 'Bad Request',
       });
     }
   }
-  return res.status(200).jsonp("not_found");
+  return res.status(200).jsonp('not_found');
 };

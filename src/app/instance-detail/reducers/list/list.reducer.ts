@@ -1,5 +1,5 @@
-import { ListActionTypes, ListActions } from "../../actions/list/list.actions";
-import { Block } from "../../models";
+import { ListActionTypes, ListActions } from '../../actions/list/list.actions';
+import { Block } from '../../models';
 
 export interface State {
   fetchedBlocks: Block[] | undefined;

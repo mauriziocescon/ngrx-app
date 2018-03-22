@@ -1,10 +1,10 @@
-import { InjectionToken } from "@angular/core";
-import { createFeatureSelector, createSelector, ActionReducerMap, combineReducers } from "@ngrx/store";
+import { InjectionToken } from '@angular/core';
+import { createFeatureSelector, createSelector, ActionReducerMap, combineReducers } from '@ngrx/store';
 
-import * as fromRoot from "../../reducers";
-import * as fromInstanceListEffects from "./instance-list-effects.reducer";
-import * as fromInstanceList from "./instance-list.reducer";
-import * as fromEditedBlocks from "../../b2/reducers/blocks";
+import * as fromRoot from '../../reducers';
+import * as fromInstanceListEffects from './instance-list-effects.reducer';
+import * as fromInstanceList from './instance-list.reducer';
+import * as fromEditedBlocks from '../../b2/reducers/blocks';
 
 export interface InstanceListState {
   effects: fromInstanceListEffects.State;
@@ -17,7 +17,7 @@ export interface State extends fromRoot.State {
 
 // -----------------
 // ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>("InstanceListReducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>('InstanceListReducers');
 
 export function getReducers(): ActionReducerMap<InstanceListState, any> {
   return {
@@ -27,12 +27,12 @@ export function getReducers(): ActionReducerMap<InstanceListState, any> {
 }
 
 export const reducerProvider = [
-  {provide: TOKEN, useFactory: getReducers}
+  { provide: TOKEN, useFactory: getReducers },
 ];
 
 // -----------------
 // --- feature selector
-export const getInstanceListState = createFeatureSelector<InstanceListState>("instanceList");
+export const getInstanceListState = createFeatureSelector<InstanceListState>('instanceList');
 
 // -----------------
 // ------- instances

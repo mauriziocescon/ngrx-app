@@ -1,15 +1,15 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { Router } from "@angular/router";
-import { Store } from "@ngrx/store";
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
-import * as fromCore from "../../reducers";
+import * as fromCore from '../../reducers';
 
-import { AppLanguageService } from "../../services/app-language.service";
+import { AppLanguageService } from '../../services/app-language.service';
 
 @Component({
-  selector: "ct-navigation-bar",
+  selector: 'ct-navigation-bar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-navigation-bar

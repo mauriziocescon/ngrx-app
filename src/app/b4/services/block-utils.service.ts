@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { Block, IBlockUtils } from "../../instance-detail/instance-detail.module";
+import { Block, IBlockUtils } from '../../instance-detail/instance-detail.module';
 
-import { module } from "../constants";
+import { module } from '../constants';
 
-import { DossierContainerComponent } from "../containers";
+import { DossierContainerComponent } from '../containers';
 
-import { B4BlockType, DossierBlock } from "../models";
+import { B4BlockType, DossierBlock } from '../models';
 
-import { B4DossierHooksTriggerService } from "./blocks/dossier/dossier-hooks-trigger.service";
+import { B4DossierHooksTriggerService } from './blocks/dossier/dossier-hooks-trigger.service';
 
 @Injectable()
 export class B4BlockUtilsService implements IBlockUtils {

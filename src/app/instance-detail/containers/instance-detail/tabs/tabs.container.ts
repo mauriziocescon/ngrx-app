@@ -1,9 +1,9 @@
-import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { InstanceParams } from "../../../models";
+import { InstanceParams } from '../../../models';
 
 @Component({
-  selector: "ct-tabs",
+  selector: 'ct-tabs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-tabs

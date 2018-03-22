@@ -1,4 +1,4 @@
-const faker = require("faker");
+const faker = require('faker');
 
 exports.getCheckBoxConfirmer = (id) => {
   const value = faker.random.boolean() ? true : undefined;
@@ -6,17 +6,17 @@ exports.getCheckBoxConfirmer = (id) => {
 
   let checkBoxConfirmer = {
     id: id,
-    type: "check-box-confirmer",
+    type: 'check-box-confirmer',
     order: parseInt(id),
-    label: "COMPONENT.CHECK_BOX_CONFIRMER.CHECK_BOX_CONFIRMER_LABEL",
+    label: 'COMPONENT.CHECK_BOX_CONFIRMER.CHECK_BOX_CONFIRMER_LABEL',
     value: value,
-    description: "COMPONENT.CHECK_BOX_CONFIRMER.CHECK_BOX_CONFIRMER_DESC",
+    description: 'COMPONENT.CHECK_BOX_CONFIRMER.CHECK_BOX_CONFIRMER_DESC',
     required: required,
     disabled: false,
     valid: required ? !!value : true,
     hooks: {
-      checkBoxConfirmerBlockDidLoad: "checkBoxConfirmerBlockDidLoad",
-      checkBoxConfirmerBlockDidChange: "checkBoxConfirmerBlockDidChange",
+      checkBoxConfirmerBlockDidLoad: 'checkBoxConfirmerBlockDidLoad',
+      checkBoxConfirmerBlockDidChange: 'checkBoxConfirmerBlockDidChange',
     },
   };
 

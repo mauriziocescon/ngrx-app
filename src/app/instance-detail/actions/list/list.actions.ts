@@ -1,15 +1,15 @@
-import { Action } from "@ngrx/store";
+import { Action } from '@ngrx/store';
 
-import { Block } from "../../models";
+import { Block } from '../../models';
 
 export enum ListActionTypes {
-  FETCH_BLOCKS = "[List] Fetch blocks",
-  FETCH_BLOCKS_COMPLETE = "[List] Fetch blocks complete",
-  FETCH_BLOCKS_ERROR = "[List] Fetch blocks error",
-  SYNC_BLOCKS = "[List] Sync blocks",
-  SYNC_BLOCKS_COMPLETE = "[List] Sync blocks complete",
-  SYNC_BLOCKS_ERROR = "[List] Sync blocks error",
-  CLEAR_BLOCKS = "[List] Clear blocks",
+  FETCH_BLOCKS = '[List] Fetch blocks',
+  FETCH_BLOCKS_COMPLETE = '[List] Fetch blocks complete',
+  FETCH_BLOCKS_ERROR = '[List] Fetch blocks error',
+  SYNC_BLOCKS = '[List] Sync blocks',
+  SYNC_BLOCKS_COMPLETE = '[List] Sync blocks complete',
+  SYNC_BLOCKS_ERROR = '[List] Sync blocks error',
+  CLEAR_BLOCKS = '[List] Clear blocks',
 }
 
 export class FetchBlocks implements Action {

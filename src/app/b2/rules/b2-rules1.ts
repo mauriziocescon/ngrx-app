@@ -2,15 +2,15 @@ import {
   CheckBoxBlock,
   DropdownBlock,
   TextInputBlock,
-} from "../../instance-detail/instance-detail.module";
+} from '../../instance-detail/instance-detail.module';
 
 import {
   B2BlockActions,
   DatePickerBlock,
-} from "../models";
+} from '../models';
 
-import * as utilities from "./utils/utilities";
-import * as validators from "./validations";
+import * as utilities from './utils/utilities';
+import * as validators from './validations';
 
 // variables
 // --------------

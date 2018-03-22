@@ -1,17 +1,17 @@
-import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
-import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
+import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { Subscription } from "rxjs/Subscription";
-import "rxjs/add/operator/debounceTime";
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/debounceTime';
 
-import { NGXLogger } from "ngx-logger";
+import { NGXLogger } from 'ngx-logger';
 
-import { CheckBoxBlock } from "../../../../../../models";
+import { CheckBoxBlock } from '../../../../../../models';
 
 @Component({
-  selector: "cp-check-box",
-  templateUrl: "./check-box.component.html",
-  styleUrls: ["./check-box.component.scss"]
+  selector: 'cp-check-box',
+  templateUrl: './check-box.component.html',
+  styleUrls: ['./check-box.component.scss'],
 })
 export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: CheckBoxBlock;

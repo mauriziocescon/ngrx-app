@@ -1,4 +1,4 @@
-const faker = require("faker");
+const faker = require('faker');
 
 exports.getDatePicker = (id) => {
   const value = faker.date.future().toISOString();
@@ -6,16 +6,16 @@ exports.getDatePicker = (id) => {
 
   let datePicker = {
     id: id,
-    type: "date-picker",
+    type: 'date-picker',
     order: parseInt(id),
-    label: "COMPONENT.DATE_PICKER.DATE_PICKER_LABEL",
+    label: 'COMPONENT.DATE_PICKER.DATE_PICKER_LABEL',
     value: value,
     required: required,
     disabled: false,
     valid: required ? !!value : true,
     hooks: {
-      datePickerBlockDidLoad: "datePickerBlockDidLoad",
-      datePickerBlockDidChange: "datePickerBlockDidChange",
+      datePickerBlockDidLoad: 'datePickerBlockDidLoad',
+      datePickerBlockDidChange: 'datePickerBlockDidChange',
     },
   };
 

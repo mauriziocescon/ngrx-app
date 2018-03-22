@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { ErrorObservable } from "rxjs/observable/ErrorObservable";
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/catch";
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
-import { AppConstantsService } from "../../../../core/core.module";
+import { AppConstantsService } from '../../../../core/core.module';
 
-import { Block } from "../../../models";
+import { Block } from '../../../models';
 
 @Injectable()
 export class BlockListService {
@@ -54,7 +54,7 @@ export class BlockListService {
       return new ErrorObservable(err.error.message);
     } else {
       // The backend returned an unsuccessful response code.
-      return new ErrorObservable(`Code ${err.status}, body: ${err.message}` || "Server error");
+      return new ErrorObservable(`Code ${err.status}, body: ${err.message}` || 'Server error');
     }
   }
 }

@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { IBlockHooks } from "../../instance-detail/instance-detail.module";
+import { IBlockHooks } from '../../instance-detail/instance-detail.module';
 
-import { module } from "../constants";
+import { module } from '../constants';
 
-import { B2BlockHooks } from "../models";
+import { B2BlockHooks } from '../models';
 
-import * as setOfRules from "../rules";
+import * as setOfRules from '../rules';
 
-import { B2DatePickerHooksTriggerService } from "./blocks/date-picker/date-picker-hooks-trigger.service";
+import { B2DatePickerHooksTriggerService } from './blocks/date-picker/date-picker-hooks-trigger.service';
 
 @Injectable()
 export class B2BlockHooksService implements IBlockHooks {

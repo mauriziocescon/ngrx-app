@@ -1,11 +1,11 @@
-import { Component, Output, Input, EventEmitter } from "@angular/core";
+import { Component, Output, Input, EventEmitter } from '@angular/core';
 
-import { Block } from "../../../../models";
+import { Block } from '../../../../models';
 
 @Component({
-  selector: "cp-list",
-  templateUrl: "./list.component.html",
-  styleUrls: ["./list.component.scss"],
+  selector: 'cp-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss'],
 })
 export class ListComponent {
   @Input() blocks: Block[];

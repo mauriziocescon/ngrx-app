@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { IBlockHooks } from "../../instance-detail/instance-detail.module";
+import { IBlockHooks } from '../../instance-detail/instance-detail.module';
 
-import { module } from "../constants";
+import { module } from '../constants';
 
-import { B1BlockHooks } from "../models";
+import { B1BlockHooks } from '../models';
 
-import * as setOfRules from "../rules";
+import * as setOfRules from '../rules';
 
-import { B1CheckBoxConfirmerHooksTriggerService } from "./blocks/check-box-confirmer/check-box-confirmer-hooks-trigger.service";
+import { B1CheckBoxConfirmerHooksTriggerService } from './blocks/check-box-confirmer/check-box-confirmer-hooks-trigger.service';
 
 @Injectable()
 export class B1BlockHooksService implements IBlockHooks {

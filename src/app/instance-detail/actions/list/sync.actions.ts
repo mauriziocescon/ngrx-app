@@ -1,8 +1,8 @@
-import { Action } from "@ngrx/store";
+import { Action } from '@ngrx/store';
 
 export enum SyncActionTypes {
-  SYNC_REQUIRED = "[Sync] Required to synchronize",
-  SYNCHRONIZED = "[Sync] Synchronized",
+  SYNC_REQUIRED = '[Sync] Required to synchronize',
+  SYNCHRONIZED = '[Sync] Synchronized',
 }
 
 export class SyncRequired implements Action {

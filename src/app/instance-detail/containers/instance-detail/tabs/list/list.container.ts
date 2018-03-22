@@ -1,21 +1,21 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnChanges, OnDestroy, Input, SimpleChanges } from "@angular/core";
+import { Component, ChangeDetectionStrategy, OnInit, OnChanges, OnDestroy, Input, SimpleChanges } from '@angular/core';
 
-import { Observable } from "rxjs/Observable";
-import { Subscription } from "rxjs/Subscription";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/withLatestFrom";
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/withLatestFrom';
 
-import { TranslateService } from "@ngx-translate/core";
-import { NGXLogger } from "ngx-logger";
+import { TranslateService } from '@ngx-translate/core';
+import { NGXLogger } from 'ngx-logger';
 
-import { ModalAlert } from "../../../../../core/core.module";
+import { ModalAlert } from '../../../../../core/core.module';
 
-import { Block, InstanceParams } from "../../../../models";
+import { Block, InstanceParams } from '../../../../models';
 
-import { ListStoreService } from "./list-store.service";
+import { ListStoreService } from './list-store.service';
 
 @Component({
-  selector: "ct-list",
+  selector: 'ct-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     ListStoreService,
@@ -46,7 +46,7 @@ export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
     this.fetchLoading$ = this.listStore.getFetchLoading();
     this.fetchError$ = this.listStore.getFetchError();
 
-    this.mAlertFetchErrorId = "1";
+    this.mAlertFetchErrorId = '1';
   }
 
   ngOnInit(): void {
@@ -65,15 +65,15 @@ export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
       .subscribe((err) => {
         if (err) {
           this.translate.get([
-            "CONTAINER.LIST.ALERT_BUTTON",
-            "CONTAINER.LIST.ALERT_TITLE",
+            'CONTAINER.LIST.ALERT_BUTTON',
+            'CONTAINER.LIST.ALERT_TITLE',
           ])
             .subscribe((translations: any) => {
               const modalAlert: ModalAlert = {
                 id: this.mAlertFetchErrorId,
-                title: translations["CONTAINER.LIST.ALERT_TITLE"],
+                title: translations['CONTAINER.LIST.ALERT_TITLE'],
                 message: err,
-                buttonLabel: translations["CONTAINER.LIST.ALERT_BUTTON"],
+                buttonLabel: translations['CONTAINER.LIST.ALERT_BUTTON'],
               };
               this.listStore.dispatchShowModalAlert(modalAlert);
             });

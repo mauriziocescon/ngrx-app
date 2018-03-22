@@ -1,31 +1,31 @@
-import { Injectable } from "@angular/core";
-import { Action } from "@ngrx/store";
-import { Effect, Actions, OnRunEffects, EffectNotification } from "@ngrx/effects";
+import { Injectable } from '@angular/core';
+import { Action } from '@ngrx/store';
+import { Effect, Actions, OnRunEffects, EffectNotification } from '@ngrx/effects';
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/exhaustMap";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/takeUntil";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/exhaustMap';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/takeUntil';
 
 import {
   Block,
   FetchBlocksComplete,
   ListActionTypes,
   SyncRequired,
-} from "../../../instance-detail/instance-detail.module";
+} from '../../../instance-detail/instance-detail.module';
 
-import { B1EffectsActionTypes, StartEffects, StopEffects } from "../../actions/b1-effects.actions";
+import { B1EffectsActionTypes, StartEffects, StopEffects } from '../../actions/b1-effects.actions';
 import {
   CheckBoxConfirmerActionTypes,
   AddBlocks,
   UpdateBlock,
-  ClearBlocks
-} from "../../actions/blocks/check-box-confirmer.actions";
+  ClearBlocks,
+} from '../../actions/blocks/check-box-confirmer.actions';
 
-import { B1BlockType } from "../../models";
+import { B1BlockType } from '../../models';
 
-import { B1CheckBoxConfirmerHooksTriggerService } from "../../services";
+import { B1CheckBoxConfirmerHooksTriggerService } from '../../services';
 
 @Injectable()
 export class CheckBoxConfirmerEffects implements OnRunEffects {
@@ -43,7 +43,7 @@ export class CheckBoxConfirmerEffects implements OnRunEffects {
           return block.type === B1BlockType.CheckBoxConfirmer;
         })
         .map((block: Block) => {
-          return {id: block.id, changes: {...block}};
+          return { id: block.id, changes: { ...block } };
         });
       return new AddBlocks(checkBoxConfirmerBoxBlocks);
     });

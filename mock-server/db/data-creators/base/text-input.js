@@ -1,4 +1,4 @@
-const faker = require("faker");
+const faker = require('faker');
 
 exports.getTextInput = (id) => {
   const value = faker.random.boolean() ? faker.lorem.words(faker.random.number(5)) : undefined;
@@ -8,9 +8,9 @@ exports.getTextInput = (id) => {
 
   let textInput = {
     id: id,
-    type: "text-input",
+    type: 'text-input',
     order: parseInt(id),
-    label: "COMPONENT.TEXT_INPUT.TEXT_INPUT_LABEL",
+    label: 'COMPONENT.TEXT_INPUT.TEXT_INPUT_LABEL',
     value: value,
     required: required,
     minLength: minLength,
@@ -18,8 +18,8 @@ exports.getTextInput = (id) => {
     disabled: false,
     valid: true,
     hooks: {
-      textInputBlockDidLoad: "textInputBlockDidLoad",
-      textInputBlockDidChange: "textInputBlockDidChange",
+      textInputBlockDidLoad: 'textInputBlockDidLoad',
+      textInputBlockDidChange: 'textInputBlockDidChange',
     },
   };
 

@@ -1,4 +1,4 @@
-import { InstanceListComponent } from "./instance-list/instance-list.component";
+import { InstanceListComponent } from './instance-list/instance-list.component';
 
 export const COMPONENTS = [
   InstanceListComponent,

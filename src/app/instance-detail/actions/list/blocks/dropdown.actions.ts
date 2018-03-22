@@ -1,13 +1,13 @@
-import { Action } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Action } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import { DropdownBlock } from "../../../models";
+import { DropdownBlock } from '../../../models';
 
 export enum DropdownActionTypes {
-  LOADING = "[Dropdown] Loading",
-  ADD_BLOCKS = "[Dropdown] Add blocks",
-  UPDATE_BLOCK = "[Dropdown] Update block",
-  CLEAR_BLOCKS = "[Dropdown] Clear blocks",
+  LOADING = '[Dropdown] Loading',
+  ADD_BLOCKS = '[Dropdown] Add blocks',
+  UPDATE_BLOCK = '[Dropdown] Update block',
+  CLEAR_BLOCKS = '[Dropdown] Clear blocks',
 }
 
 export class Loading implements Action {

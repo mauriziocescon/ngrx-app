@@ -1,22 +1,22 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from "../../../../../../../core/core.module";
-import { SharedModule } from "../../../../../../../shared/shared.module";
+import { CoreModule } from '../../../../../../../core/core.module';
+import { SharedModule } from '../../../../../../../shared/shared.module';
 
-import { BlockType } from "../../../../../../models";
-import { TextInputComponent } from "./text-input.component";
+import { BlockType } from '../../../../../../models';
+import { TextInputComponent } from './text-input.component';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, "assets/i18n/", ".json");
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe("TextInputComponent", () => {
+describe('TextInputComponent', () => {
   let component: TextInputComponent;
   let fixture: ComponentFixture<TextInputComponent>;
 
@@ -32,7 +32,7 @@ describe("TextInputComponent", () => {
           },
         }),
         LoggerModule.forRoot({
-          serverLoggingUrl: "",
+          serverLoggingUrl: '',
           level: NgxLoggerLevel.OFF,
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
@@ -54,11 +54,11 @@ describe("TextInputComponent", () => {
     fixture = TestBed.createComponent(TextInputComponent);
     component = fixture.componentInstance;
     component.block = {
-      id: "1",
+      id: '1',
       type: BlockType.TextInput,
       order: 1,
-      label: "",
-      value: "45",
+      label: '',
+      value: '45',
       required: true,
       minLength: 0,
       maxLength: 5,
@@ -70,7 +70,7 @@ describe("TextInputComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

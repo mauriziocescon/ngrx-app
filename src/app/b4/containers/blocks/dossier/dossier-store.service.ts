@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
-import * as dossier from "../../../actions/blocks/dossier.actions";
+import * as dossier from '../../../actions/blocks/dossier.actions';
 
-import { DossierBlock } from "../../../models";
+import { DossierBlock } from '../../../models';
 
-import * as fromB4Blocks from "../../../reducers";
+import * as fromB4Blocks from '../../../reducers';
 
 @Injectable()
 export class DossierStoreService {

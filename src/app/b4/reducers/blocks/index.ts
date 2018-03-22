@@ -1,6 +1,6 @@
-import { ActionReducerMap } from "@ngrx/store";
+import { ActionReducerMap } from '@ngrx/store';
 
-import * as fromDossier from "./dossier/dossier.reducer";
+import * as fromDossier from './dossier/dossier.reducer';
 
 export interface State {
   dossier: fromDossier.State;

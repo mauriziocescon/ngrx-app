@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
-import * as textInput from "../../../../../../../actions/list/blocks/text-input.actions";
+import * as textInput from '../../../../../../../actions/list/blocks/text-input.actions';
 
-import { TextInputBlock } from "../../../../../../../models";
+import { TextInputBlock } from '../../../../../../../models';
 
-import * as fromInstanceDetail from "../../../../../../../reducers";
+import * as fromInstanceDetail from '../../../../../../../reducers';
 
 @Injectable()
 export class TextInputStoreService {

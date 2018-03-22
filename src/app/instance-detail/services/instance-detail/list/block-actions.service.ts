@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { AppConstantsService } from "../../../../core/core.module";
+import { AppConstantsService } from '../../../../core/core.module';
 
-import { BlockActions } from "../../../models";
+import { BlockActions } from '../../../models';
 
-import { IBlockActions } from "../../../tokens";
+import { IBlockActions } from '../../../tokens';
 
-import { CheckBoxActionsService } from "./blocks/check-box/check-box-actions.service";
-import { DropdownActionsService } from "./blocks/dropdown/dropdown-actions.service";
-import { TextInputActionsService } from "./blocks/text-input/text-input-actions.service";
+import { CheckBoxActionsService } from './blocks/check-box/check-box-actions.service';
+import { DropdownActionsService } from './blocks/dropdown/dropdown-actions.service';
+import { TextInputActionsService } from './blocks/text-input/text-input-actions.service';
 
 @Injectable()
 export class BlockActionsService implements IBlockActions {

@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { InstanceParams } from "../../models";
+import { InstanceParams } from '../../models';
 
 @Injectable()
 export class InstanceParamsService {
@@ -15,6 +15,6 @@ export class InstanceParamsService {
   getInstanceParams(): InstanceParams {
     return {
       ...this.instanceParams,
-    }
+    };
   }
 }

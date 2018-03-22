@@ -1,31 +1,31 @@
-import { Injectable } from "@angular/core";
-import { Action } from "@ngrx/store";
-import { Effect, Actions, OnRunEffects, EffectNotification } from "@ngrx/effects";
+import { Injectable } from '@angular/core';
+import { Action } from '@ngrx/store';
+import { Effect, Actions, OnRunEffects, EffectNotification } from '@ngrx/effects';
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/exhaustMap";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/takeUntil";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/exhaustMap';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/takeUntil';
 
 import {
   Block,
   FetchBlocksComplete,
   ListActionTypes,
   SyncRequired,
-} from "../../../instance-detail/instance-detail.module";
+} from '../../../instance-detail/instance-detail.module';
 
-import { B2EffectsActionTypes, StartEffects, StopEffects } from "../../actions/b2-effects.actions";
+import { B2EffectsActionTypes, StartEffects, StopEffects } from '../../actions/b2-effects.actions';
 import {
   DatePickerActionTypes,
   AddBlocks,
   UpdateBlock,
   ClearBlocks,
-} from "../../actions/blocks/date-picker.actions";
+} from '../../actions/blocks/date-picker.actions';
 
-import { B2BlockType } from "../../models";
+import { B2BlockType } from '../../models';
 
-import { B2DatePickerHooksTriggerService } from "../../services";
+import { B2DatePickerHooksTriggerService } from '../../services';
 
 @Injectable()
 export class DatePickerEffects implements OnRunEffects {
@@ -43,7 +43,7 @@ export class DatePickerEffects implements OnRunEffects {
           return block.type === B2BlockType.DatePicker;
         })
         .map((block: Block) => {
-          return {id: block.id, changes: {...block}};
+          return { id: block.id, changes: { ...block } };
         });
       return new AddBlocks(datePickerBoxBlocks);
     });

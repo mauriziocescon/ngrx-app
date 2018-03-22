@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { AppConstantsService } from "../../../../core/core.module";
+import { AppConstantsService } from '../../../../core/core.module';
 
-import { BlockHooks } from "../../../models";
+import { BlockHooks } from '../../../models';
 
-import { IBlockHooks } from "../../../tokens";
+import { IBlockHooks } from '../../../tokens';
 
-import { TextInputHooksTriggerService } from "./blocks/text-input/text-input-hooks-trigger.service";
-import { CheckBoxHooksTriggerService } from "./blocks/check-box/check-box-hooks-trigger.service";
-import { DropdownHooksTriggerService } from "./blocks/dropdown/dropdown-hooks-trigger.service";
+import { TextInputHooksTriggerService } from './blocks/text-input/text-input-hooks-trigger.service';
+import { CheckBoxHooksTriggerService } from './blocks/check-box/check-box-hooks-trigger.service';
+import { DropdownHooksTriggerService } from './blocks/dropdown/dropdown-hooks-trigger.service';
 
 @Injectable()
 export class BlockHooksService implements IBlockHooks {

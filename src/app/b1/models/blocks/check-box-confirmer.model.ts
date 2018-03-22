@@ -1,4 +1,4 @@
-import { Block } from "../../../instance-detail/instance-detail.module";
+import { Block } from '../../../instance-detail/instance-detail.module';
 
 export interface CheckBoxConfirmerBlock extends Block {
   label: string;

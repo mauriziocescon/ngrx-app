@@ -1,4 +1,4 @@
-import { InstanceListEffects } from "./instance-list.effects";
+import { InstanceListEffects } from './instance-list.effects';
 
 export const EFFECTS = [
   InstanceListEffects,

@@ -1,20 +1,20 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from "@angular/core";
+import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
-import { InstanceParams } from "../../models";
+import { InstanceParams } from '../../models';
 
-import { InstanceParamsService } from "../../services";
+import { InstanceParamsService } from '../../services';
 import {
   InstanceDetailIntegrationStoreService,
   BlockHooksIntegrationService,
-} from "../../services";
+} from '../../services';
 
-import { InstanceDetailPageStoreService } from "./instance-detail-page-store.service";
+import { InstanceDetailPageStoreService } from './instance-detail-page-store.service';
 
 @Component({
-  selector: "ct-instance-detail",
+  selector: 'ct-instance-detail',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     InstanceDetailPageStoreService,

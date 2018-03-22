@@ -1,7 +1,7 @@
-import { Action } from "@ngrx/store";
+import { Action } from '@ngrx/store';
 
 export enum LanguageActionTypes {
-  SET_LANGUAGE = "[Language] Set language",
+  SET_LANGUAGE = '[Language] Set language',
 }
 
 export class SetLanguage implements Action {

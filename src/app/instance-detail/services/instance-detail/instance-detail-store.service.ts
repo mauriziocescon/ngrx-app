@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
-import { AppConstantsService } from "../../../core/core.module";
+import { AppConstantsService } from '../../../core/core.module';
 
-import * as instanceDetailEffects from "../../actions/instance-detail-effects.actions";
-import * as list from "../../actions/list/list.actions";
+import * as instanceDetailEffects from '../../actions/instance-detail-effects.actions';
+import * as list from '../../actions/list/list.actions';
 
-import { Block } from "../../models";
+import { Block } from '../../models';
 
-import * as fromInstanceDetail from "../../reducers";
+import * as fromInstanceDetail from '../../reducers';
 
-import { IInstanceDetailStore } from "../../tokens";
+import { IInstanceDetailStore } from '../../tokens';
 
 @Injectable()
 export class InstanceDetailStoreService implements IInstanceDetailStore {

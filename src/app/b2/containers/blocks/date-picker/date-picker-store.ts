@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
-import * as datePicker from "../../../actions/blocks/date-picker.actions";
+import * as datePicker from '../../../actions/blocks/date-picker.actions';
 
-import { DatePickerBlock } from "../../../models";
+import { DatePickerBlock } from '../../../models';
 
-import * as fromB2Blocks from "../../../reducers";
+import * as fromB2Blocks from '../../../reducers';
 
 @Injectable()
 export class DatePickerStoreService {

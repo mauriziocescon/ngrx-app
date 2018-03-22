@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
-import { Update } from "@ngrx/entity";
+import { Injectable } from '@angular/core';
+import { Update } from '@ngrx/entity';
 
-import { Observable } from "rxjs/Observable";
-import { Subject } from "rxjs/Subject";
-import { Subscription } from "rxjs/Subscription";
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 
-import { NGXLogger } from "ngx-logger";
+import { NGXLogger } from 'ngx-logger';
 
-import { BlockActionsIntegrationService } from "../../../../instance-detail/instance-detail.module";
+import { BlockActionsIntegrationService } from '../../../../instance-detail/instance-detail.module';
 
 import {
   B1BlockHooks,
   CheckBoxConfirmerBlock,
-} from "../../../models";
+} from '../../../models';
 
 @Injectable()
 export class B1CheckBoxConfirmerHooksTriggerService {
@@ -59,7 +59,7 @@ export class B1CheckBoxConfirmerHooksTriggerService {
   }
 
   blockDidChange(block: Update<CheckBoxConfirmerBlock>): void {
-    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as CheckBoxConfirmerBlock;
+    const newBlock = { ...block.changes, hooks: { ...block.changes.hooks } } as CheckBoxConfirmerBlock;
     this.blockChangesSubject$.next(newBlock);
   }
 

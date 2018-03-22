@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import * as dossier from "../../../actions/blocks/dossier.actions";
+import * as dossier from '../../../actions/blocks/dossier.actions';
 
-import { B4BlockType, DossierBlock, DossierActions } from "../../../models";
+import { B4BlockType, DossierBlock, DossierActions } from '../../../models';
 
-import * as fromB4Blocks from "../../../reducers";
+import * as fromB4Blocks from '../../../reducers';
 
 @Injectable()
 export class B4DossierActionsService {
@@ -30,7 +30,7 @@ export class B4DossierActionsService {
   }
 
   protected dispatchUpdate(block: Update<DossierBlock>): void {
-    const newBlock = {block: block, triggerHooks: false};
+    const newBlock = { block: block, triggerHooks: false };
     this.store$.dispatch(new dossier.UpdateBlock(newBlock));
   }
 

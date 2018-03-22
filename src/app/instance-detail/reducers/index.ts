@@ -1,16 +1,16 @@
-import { InjectionToken } from "@angular/core";
-import { createSelector, createFeatureSelector, combineReducers, ActionReducerMap } from "@ngrx/store";
+import { InjectionToken } from '@angular/core';
+import { createSelector, createFeatureSelector, combineReducers, ActionReducerMap } from '@ngrx/store';
 
-import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../models";
+import { CheckBoxBlock, DropdownBlock, TextInputBlock } from '../models';
 
-import * as fromRoot from "../../reducers";
-import * as fromInstanceDetailEffects from "./instance-detail-effects.reducer";
-import * as fromList from "./list/list.reducer";
-import * as fromSync from "./list/sync.reducer";
-import * as fromEditedBlocks from "./list/blocks";
-import * as fromCheckBox from "./list/blocks/check-box/check-box.reducer";
-import * as fromDropdown from "./list/blocks/dropdown/dropdown.reducer";
-import * as fromTextInput from "./list/blocks/text-input/text-input.reducer";
+import * as fromRoot from '../../reducers';
+import * as fromInstanceDetailEffects from './instance-detail-effects.reducer';
+import * as fromList from './list/list.reducer';
+import * as fromSync from './list/sync.reducer';
+import * as fromEditedBlocks from './list/blocks';
+import * as fromCheckBox from './list/blocks/check-box/check-box.reducer';
+import * as fromDropdown from './list/blocks/dropdown/dropdown.reducer';
+import * as fromTextInput from './list/blocks/text-input/text-input.reducer';
 
 export interface InstanceDetailState {
   effects: fromInstanceDetailEffects.State;
@@ -25,7 +25,7 @@ export interface State extends fromRoot.State {
 
 // -----------------
 // ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<InstanceDetailState>>("InstanceDetailReducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<InstanceDetailState>>('InstanceDetailReducers');
 
 export function getReducers(): ActionReducerMap<InstanceDetailState, any> {
   return {
@@ -37,12 +37,12 @@ export function getReducers(): ActionReducerMap<InstanceDetailState, any> {
 }
 
 export const reducerProvider = [
-  {provide: TOKEN, useFactory: getReducers}
+  { provide: TOKEN, useFactory: getReducers },
 ];
 
 // -----------------
 // --- feature selector
-export const getInstanceDetailState = createFeatureSelector<InstanceDetailState>("instanceDetail");
+export const getInstanceDetailState = createFeatureSelector<InstanceDetailState>('instanceDetail');
 
 // -----------------
 // ----- block list
@@ -136,5 +136,5 @@ export const getAllEditedBlocksValidityState = createSelector(
   getTextInputBlocksValidityState,
   (syncRequired: boolean, checkBoxValidity: boolean, dropdownValidity: boolean, textInputValidity: boolean) => {
     return !syncRequired && checkBoxValidity && dropdownValidity && textInputValidity;
-  }
+  },
 );

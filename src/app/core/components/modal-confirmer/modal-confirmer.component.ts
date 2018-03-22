@@ -1,11 +1,11 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
-import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: "modal-confirmer",
-  templateUrl: "./modal-confirmer.component.html",
-  styleUrls: ["./modal-confirmer.component.scss"],
+  selector: 'modal-confirmer',
+  templateUrl: './modal-confirmer.component.html',
+  styleUrls: ['./modal-confirmer.component.scss'],
 })
 export class ModalConfirmerComponent {
   @Input() title: string;
@@ -25,6 +25,6 @@ export class ModalConfirmerComponent {
   }
 
   dismiss(): void {
-    this.activeModal.dismiss("Close click");
+    this.activeModal.dismiss('Close click');
   }
 }

@@ -1,13 +1,13 @@
-import { InjectionToken } from "@angular/core";
-import { createSelector, createFeatureSelector, combineReducers, ActionReducerMap } from "@ngrx/store";
+import { InjectionToken } from '@angular/core';
+import { createSelector, createFeatureSelector, combineReducers, ActionReducerMap } from '@ngrx/store';
 
-import { DossierBlock } from "../models";
+import { DossierBlock } from '../models';
 
-import * as fromRoot from "../../reducers";
-import { fromInstanceDetail, Block } from "../../instance-detail/instance-detail.module";
-import * as fromB4Effects from "./b4-effects.reducer";
-import * as fromEditedBlocks from "./blocks";
-import * as fromDossier from "./blocks/dossier/dossier.reducer";
+import * as fromRoot from '../../reducers';
+import { fromInstanceDetail, Block } from '../../instance-detail/instance-detail.module';
+import * as fromB4Effects from './b4-effects.reducer';
+import * as fromEditedBlocks from './blocks';
+import * as fromDossier from './blocks/dossier/dossier.reducer';
 
 export interface B4BlocksState {
   effects: fromB4Effects.State;
@@ -20,7 +20,7 @@ export interface State extends fromRoot.State {
 
 // -----------------
 // ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>("B4EditedBlocksReducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>('B4EditedBlocksReducers');
 
 export function getReducers(): ActionReducerMap<B4BlocksState> {
   return {
@@ -30,12 +30,12 @@ export function getReducers(): ActionReducerMap<B4BlocksState> {
 }
 
 export const reducerProvider = [
-  {provide: TOKEN, useFactory: getReducers}
+  { provide: TOKEN, useFactory: getReducers },
 ];
 
 // -----------------
 // --- feature selector
-export const getB4BlocksState = createFeatureSelector<B4BlocksState>("b4Blocks");
+export const getB4BlocksState = createFeatureSelector<B4BlocksState>('b4Blocks');
 
 // -----------------
 // ----- edited blocks
@@ -70,5 +70,5 @@ export const getAllEditedBlocksValidityState = createSelector(
   getDossierBlocksValidityState,
   (validity: boolean, dossierValidity: boolean) => {
     return validity && dossierValidity;
-  }
+  },
 );

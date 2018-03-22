@@ -1,13 +1,13 @@
-import { InjectionToken } from "@angular/core";
-import { createSelector, createFeatureSelector, combineReducers, ActionReducerMap } from "@ngrx/store";
+import { InjectionToken } from '@angular/core';
+import { createSelector, createFeatureSelector, combineReducers, ActionReducerMap } from '@ngrx/store';
 
-import { CheckBoxConfirmerBlock } from "../models";
+import { CheckBoxConfirmerBlock } from '../models';
 
-import * as fromRoot from "../../reducers";
-import { fromInstanceDetail, Block } from "../../instance-detail/instance-detail.module";
-import * as fromB1Effects from "./b1-effects.reducer";
-import * as fromEditedBlocks from "./blocks";
-import * as fromCheckBoxConfirmer from "./blocks/check-box-confirmer/check-box-confirmer.reducer";
+import * as fromRoot from '../../reducers';
+import { fromInstanceDetail, Block } from '../../instance-detail/instance-detail.module';
+import * as fromB1Effects from './b1-effects.reducer';
+import * as fromEditedBlocks from './blocks';
+import * as fromCheckBoxConfirmer from './blocks/check-box-confirmer/check-box-confirmer.reducer';
 
 export interface B1BlocksState {
   effects: fromB1Effects.State;
@@ -20,7 +20,7 @@ export interface State extends fromRoot.State {
 
 // -----------------
 // ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>("B1EditedBlocksReducers");
+export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>('B1EditedBlocksReducers');
 
 export function getReducers(): ActionReducerMap<B1BlocksState> {
   return {
@@ -30,12 +30,12 @@ export function getReducers(): ActionReducerMap<B1BlocksState> {
 }
 
 export const reducerProvider = [
-  {provide: TOKEN, useFactory: getReducers}
+  { provide: TOKEN, useFactory: getReducers },
 ];
 
 // -----------------
 // --- feature selector
-export const getB1BlocksState = createFeatureSelector<B1BlocksState>("b1Blocks");
+export const getB1BlocksState = createFeatureSelector<B1BlocksState>('b1Blocks');
 
 // -----------------
 // ----- edited blocks
@@ -70,5 +70,5 @@ export const getAllEditedBlocksValidityState = createSelector(
   getCheckBoxConfirmerBlocksValidityState,
   (validity: boolean, checkBoxConfirmerValidity: boolean) => {
     return validity && checkBoxConfirmerValidity;
-  }
+  },
 );

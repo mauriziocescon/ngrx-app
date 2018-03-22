@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
-import { Update } from "@ngrx/entity";
+import { Injectable } from '@angular/core';
+import { Update } from '@ngrx/entity';
 
-import { Observable } from "rxjs/Observable";
-import { Subject } from "rxjs/Subject";
-import { Subscription } from "rxjs/Subscription";
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 
-import { NGXLogger } from "ngx-logger";
+import { NGXLogger } from 'ngx-logger';
 
 import {
   BlockHooks,
   DropdownBlock,
-} from "../../../../../models";
+} from '../../../../../models';
 
-import { BlockActionsIntegrationService } from "../../../../integration";
+import { BlockActionsIntegrationService } from '../../../../integration';
 
 @Injectable()
 export class DropdownHooksTriggerService {
@@ -59,7 +59,7 @@ export class DropdownHooksTriggerService {
   }
 
   blockDidChange(block: Update<DropdownBlock>): void {
-    const newBlock = {...block.changes, hooks: {...block.changes.hooks}} as DropdownBlock;
+    const newBlock = { ...block.changes, hooks: { ...block.changes.hooks } } as DropdownBlock;
     this.blockChangesSubject$.next(newBlock);
   }
 

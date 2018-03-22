@@ -1,5 +1,5 @@
-import { CheckBoxBlock, DropdownBlock, TextInputBlock } from "../../../instance-detail/instance-detail.module";
-import { CheckBoxConfirmerBlock, B1BlockType } from "../../models";
+import { CheckBoxBlock, DropdownBlock, TextInputBlock } from '../../../instance-detail/instance-detail.module';
+import { CheckBoxConfirmerBlock, B1BlockType } from '../../models';
 
 export const arrayOfBlocksFromBlocksObject = (blocks: { [id: string]: CheckBoxBlock | DropdownBlock | TextInputBlock | CheckBoxConfirmerBlock }) => {
   const keys = Object.keys(blocks);

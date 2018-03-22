@@ -1,7 +1,7 @@
-import { CORE_EFFECTS} from "../core/core.module";
+import { CORE_EFFECTS } from '../core/core.module';
 
 const EFFECTS = [
-    ...CORE_EFFECTS,
+  ...CORE_EFFECTS,
 ];
 
 export {

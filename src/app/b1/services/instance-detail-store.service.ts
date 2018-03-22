@@ -1,15 +1,15 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
-import { Block, IInstanceDetailStore } from "../../instance-detail/instance-detail.module";
+import { Block, IInstanceDetailStore } from '../../instance-detail/instance-detail.module';
 
-import * as b1Effects from "../actions/b1-effects.actions";
+import * as b1Effects from '../actions/b1-effects.actions';
 
-import { module } from "../constants";
+import { module } from '../constants';
 
-import * as fromB1 from "../reducers";
+import * as fromB1 from '../reducers';
 
 @Injectable()
 export class B1InstanceDetailStoreService implements IInstanceDetailStore {

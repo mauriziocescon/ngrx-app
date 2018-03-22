@@ -1,12 +1,12 @@
-import { Inject, Injectable } from "@angular/core";
+import { Inject, Injectable } from '@angular/core';
 
-import { AppConstantsService } from "../../../core/core.module";
+import { AppConstantsService } from '../../../core/core.module';
 
-import { Block } from "../../models";
+import { Block } from '../../models';
 
-import { BLOCK_UTILS_TOKEN, IBlockUtils } from "../../tokens";
+import { BLOCK_UTILS_TOKEN, IBlockUtils } from '../../tokens';
 
-import { InstanceParamsService } from "../instance-detail/instance-params.service";
+import { InstanceParamsService } from '../instance-detail/instance-params.service';
 
 @Injectable()
 export class BlockUtilsIntegrationService {

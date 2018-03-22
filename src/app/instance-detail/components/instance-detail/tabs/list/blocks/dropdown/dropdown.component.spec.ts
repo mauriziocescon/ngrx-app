@@ -1,22 +1,22 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { LoggerModule, NGXLogger, NgxLoggerLevel } from "ngx-logger";
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from "../../../../../../../core/core.module";
-import { SharedModule } from "../../../../../../../shared/shared.module";
+import { CoreModule } from '../../../../../../../core/core.module';
+import { SharedModule } from '../../../../../../../shared/shared.module';
 
-import { BlockType } from "../../../../../../models";
-import { DropdownComponent } from "./dropdown.component";
+import { BlockType } from '../../../../../../models';
+import { DropdownComponent } from './dropdown.component';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, "assets/i18n/", ".json");
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe("DropdownComponent", () => {
+describe('DropdownComponent', () => {
   let component: DropdownComponent;
   let fixture: ComponentFixture<DropdownComponent>;
 
@@ -32,7 +32,7 @@ describe("DropdownComponent", () => {
           },
         }),
         LoggerModule.forRoot({
-          serverLoggingUrl: "",
+          serverLoggingUrl: '',
           level: NgxLoggerLevel.OFF,
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
@@ -54,12 +54,12 @@ describe("DropdownComponent", () => {
     fixture = TestBed.createComponent(DropdownComponent);
     component = fixture.componentInstance;
     component.block = {
-      id: "1",
+      id: '1',
       type: BlockType.Dropdown,
       order: 1,
-      label: "",
-      value: "1",
-      choices: ["1", "2"],
+      label: '',
+      value: '1',
+      choices: ['1', '2'],
       required: true,
       disabled: false,
       valid: true,
@@ -69,7 +69,7 @@ describe("DropdownComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

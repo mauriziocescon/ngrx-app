@@ -1,19 +1,19 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from "@angular/router";
-import { Store } from "@ngrx/store";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/catch";
-import "rxjs/add/operator/switchMap";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/switchMap';
 
-import { TranslateService } from "@ngx-translate/core";
-import { NGXLogger } from "ngx-logger";
+import { TranslateService } from '@ngx-translate/core';
+import { NGXLogger } from 'ngx-logger';
 
-import { AppConstantsService, ModalAlert, modalAlertsActions } from "../../../core/core.module";
+import { AppConstantsService, ModalAlert, modalAlertsActions } from '../../../core/core.module';
 
-import { InstanceParamsService } from "./instance-params.service";
-import { BlockHooksIntegrationService } from "../integration";
+import { InstanceParamsService } from './instance-params.service';
+import { BlockHooksIntegrationService } from '../integration';
 
 @Injectable()
 export class RulesResolve implements Resolve<string> {
@@ -27,14 +27,14 @@ export class RulesResolve implements Resolve<string> {
               protected appConstants: AppConstantsService,
               protected instanceParams: InstanceParamsService,
               protected blockHooks: BlockHooksIntegrationService) {
-    this.alertId = "1";
+    this.alertId = '1';
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<string> | string {
-    if (route.paramMap.has("module") && route.paramMap.has("instance") && route.paramMap.has("step")) {
-      const module = route.paramMap.get("module") as string;
-      const instance = route.paramMap.get("instance") as string;
-      const step = route.paramMap.get("step") as string;
+    if (route.paramMap.has('module') && route.paramMap.has('instance') && route.paramMap.has('step')) {
+      const module = route.paramMap.get('module') as string;
+      const instance = route.paramMap.get('instance') as string;
+      const step = route.paramMap.get('step') as string;
       const params = {
         module: module,
         instance: instance,
@@ -43,7 +43,7 @@ export class RulesResolve implements Resolve<string> {
       this.instanceParams.setInstanceParams(params);
       return this.fetchRulesConfig(module, step);
     }
-    return "";
+    return '';
   }
 
   fetchRulesConfig(module: string, step: string): Observable<string> {
@@ -61,20 +61,20 @@ export class RulesResolve implements Resolve<string> {
       })
       .catch((err: HttpErrorResponse) => {
         this.translate.get([
-          "CONTAINER.INSTANCE_DETAIL.ALERT_BUTTON",
-          "CONTAINER.INSTANCE_DETAIL.ALERT_TITLE",
+          'CONTAINER.INSTANCE_DETAIL.ALERT_BUTTON',
+          'CONTAINER.INSTANCE_DETAIL.ALERT_TITLE',
         ])
           .subscribe((translations: any) => {
             const modalAlert: ModalAlert = {
               id: this.alertId,
-              title: translations["CONTAINER.INSTANCE_DETAIL.ALERT_TITLE"],
+              title: translations['CONTAINER.INSTANCE_DETAIL.ALERT_TITLE'],
               message: err.message,
-              buttonLabel: translations["CONTAINER.INSTANCE_DETAIL.ALERT_BUTTON"],
+              buttonLabel: translations['CONTAINER.INSTANCE_DETAIL.ALERT_BUTTON'],
             };
-            this.store$.dispatch(new modalAlertsActions.ShowModalAlert({modal: modalAlert}));
+            this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
           });
-        this.router.navigate(["/instance-list"]);
-        return "";
+        this.router.navigate(['/instance-list']);
+        return '';
       });
   }
 }

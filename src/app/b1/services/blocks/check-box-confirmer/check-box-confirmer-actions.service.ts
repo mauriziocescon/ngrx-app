@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { Update } from "@ngrx/entity";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
-import * as checkBoxConfirmer from "../../../actions/blocks/check-box-confirmer.actions";
+import * as checkBoxConfirmer from '../../../actions/blocks/check-box-confirmer.actions';
 
-import { B1BlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerActions } from "../../../models";
+import { B1BlockType, CheckBoxConfirmerBlock, CheckBoxConfirmerActions } from '../../../models';
 
-import * as fromB1Blocks from "../../../reducers";
+import * as fromB1Blocks from '../../../reducers';
 
 @Injectable()
 export class B1CheckBoxConfirmerActionsService {
@@ -35,7 +35,7 @@ export class B1CheckBoxConfirmerActionsService {
   }
 
   protected dispatchUpdate(block: Update<CheckBoxConfirmerBlock>): void {
-    const newBlock = {block: block, triggerHooks: false};
+    const newBlock = { block: block, triggerHooks: false };
     this.store$.dispatch(new checkBoxConfirmer.UpdateBlock(newBlock));
   }
 
