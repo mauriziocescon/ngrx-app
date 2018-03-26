@@ -53,7 +53,6 @@ export class InstanceListComponent {
     const params = {
       textSearch: this.textSearch,
     };
-
     this.paramsDidChange.emit(params);
   }
 
@@ -62,6 +61,9 @@ export class InstanceListComponent {
   }
 
   loadList(): void {
-    this.reloadList.emit();
+    const params = {
+      textSearch: this.textSearch,
+    };
+    this.reloadList.emit(params);
   }
 }
