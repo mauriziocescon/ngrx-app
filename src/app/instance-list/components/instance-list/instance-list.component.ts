@@ -40,7 +40,7 @@ export class InstanceListComponent {
   }
 
   trackByBlock(index: number, instance: Instance): number {
-    return parseInt(instance.id);
+    return parseInt(instance.id, 10);
   }
 
   selectInstance(instance: Instance): void {
