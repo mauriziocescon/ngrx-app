@@ -1,0 +1,11 @@
+<form [formGroup]="searchForm">
+  <div class="input-group">
+    <input type="text" class="form-control" formControlName="textFilter" placeholder="{{ 'COMPONENT.TEXT_FILTER.PLACEHOLDER' | translate }}">
+    <div class="input-group-append" (click)="resetTextFilter()">
+      <span class="input-group-text addon">
+        <span class="fa fa-search" [hidden]="isTextFilterNotEmpty"></span>
+        <span class="fa fa-remove" [hidden]="!isTextFilterNotEmpty"></span>
+      </span>
+    </div>
+  </div>
+</form>

@@ -30,8 +30,8 @@ export class InstanceListStoreService {
     return this.store$.select(fromInstanceList.getFetchErrorState);
   }
 
-  dispatchFetchInstances(): void {
-    this.store$.dispatch(new instanceList.FetchInstances());
+  dispatchFetchInstances(params: { textSearch: string }): void {
+    this.store$.dispatch(new instanceList.FetchInstances(params));
   }
 
   dispatchShowModalAlert(modalAlert: ModalAlert): void {

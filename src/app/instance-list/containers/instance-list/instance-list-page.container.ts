@@ -27,7 +27,8 @@ import { InstanceListStoreService } from './instance-list-page-store.service';
       [instances]="instances$ | async"
       [loading]="loading$ | async"
       [error]="error$ | async"
-      (reloadList)="reloadList()"
+      (paramsDidChange)="paramsDidChange($event)"
+      (reloadList)="reloadList($event)"
       (goTo)="goTo($event)">
     </cp-instance-list>
   `,
@@ -52,12 +53,16 @@ export class InstanceListPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.instanceListStore.dispatchStartEffects();
-    this.reloadList();
+    this.reloadList({ textSearch: '' });
     this.subscribeToFetchErrors();
   }
 
-  reloadList(): void {
-    this.instanceListStore.dispatchFetchInstances();
+  paramsDidChange(params: { textSearch: string }): void {
+    this.instanceListStore.dispatchFetchInstances(params);
+  }
+
+  reloadList(params: { textSearch: string }): void {
+    this.instanceListStore.dispatchFetchInstances(params);
   }
 
   goTo(instance: Instance): void {

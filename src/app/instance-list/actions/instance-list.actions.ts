@@ -10,6 +10,9 @@ export enum InstanceListActionTypes {
 
 export class FetchInstances implements Action {
   readonly type = InstanceListActionTypes.FETCH_INSTANCES;
+
+  constructor(public payload: { textSearch: string }) {
+  }
 }
 
 export class FetchInstancesComplete implements Action {

@@ -2,12 +2,14 @@ import { InstanceListActionTypes, InstanceListActions } from '../actions/instanc
 import { Instance } from '../models';
 
 export interface State {
+  params: { textSearch: string };
   fetchedInstances: Instance[] | undefined;
   fetchLoading: boolean;
   fetchError: string | undefined;
 }
 
 const initialState: State = {
+  params: { textSearch: '' },
   fetchedInstances: [],
   fetchLoading: false,
   fetchError: undefined,

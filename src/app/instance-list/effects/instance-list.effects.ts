@@ -13,6 +13,7 @@ import 'rxjs/add/operator/takeUntil';
 
 import {
   InstanceListActionTypes,
+  FetchInstances,
   FetchInstancesComplete,
   FetchInstancesError,
 } from '../actions/instance-list.actions';
@@ -30,10 +31,11 @@ export class InstanceListEffects implements OnRunEffects {
   }
 
   @Effect() fetchBlocks$: Observable<Action> = this.actions$
-    .ofType(InstanceListActionTypes.FETCH_INSTANCES)
+    .ofType<FetchInstances>(InstanceListActionTypes.FETCH_INSTANCES)
     .debounceTime(400)
-    .switchMap(() => {
-      return this.instanceList.getInstances()
+    .map(action => action.payload)
+    .switchMap((params) => {
+      return this.instanceList.getInstances(params.textSearch)
         .switchMap((instances: Instance[]) => {
           return [new FetchInstancesComplete(instances)];
         })

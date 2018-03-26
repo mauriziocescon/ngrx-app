@@ -1,4 +1,10 @@
 <div class="container-fluid instance-list-component">
+  <div class="row">
+    <div class="col-12">
+      <cp-text-filter (valueDidChange)="textSearchValueDidChange($event)"></cp-text-filter>
+    </div>
+  </div>
+
   <div class="row list-main-content" [hidden]="!showData">
     <div class="col-12 col-sm-6 instance" *ngFor="let instance of dataSource; trackBy: trackByBlock">
       <div class="card">

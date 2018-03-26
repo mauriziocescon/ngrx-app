@@ -11,11 +11,15 @@ export class InstanceListComponent {
   @Input() instances: Instance[];
   @Input() loading: boolean;
   @Input() error: string;
-  @Output() reloadList: EventEmitter<void>;
+  @Output() paramsDidChange: EventEmitter<{ textSearch: string }>;
+  @Output() reloadList: EventEmitter<{ textSearch: string }>;
   @Output() goTo: EventEmitter<Instance>;
 
+  protected textSearch: string;
+
   constructor() {
-    this.reloadList = new EventEmitter<void>();
+    this.paramsDidChange = new EventEmitter<{ textSearch: string }>();
+    this.reloadList = new EventEmitter<{ textSearch: string }>();
     this.goTo = new EventEmitter<Instance>();
   }
 
@@ -41,6 +45,16 @@ export class InstanceListComponent {
 
   trackByBlock(index: number, instance: Instance): number {
     return parseInt(instance.id, 10);
+  }
+
+  textSearchValueDidChange(value: string): void {
+    this.textSearch = value;
+
+    const params = {
+      textSearch: this.textSearch,
+    };
+
+    this.paramsDidChange.emit(params);
   }
 
   selectInstance(instance: Instance): void {

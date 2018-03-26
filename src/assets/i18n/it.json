@@ -5,6 +5,9 @@
       "NAME": "Nome",
       "SELECT_LANGUAGE": "Cambia lingua"
     },
+    "TEXT_FILTER": {
+      "PLACEHOLDER": "Inserisci testo"
+    },
     "INSTANCE_LIST": {
       "INSTANCE_DESCRIPTION": "Istanza: {{ instance }}, Step: {{ step }} ***",
       "INSTANCE_HEADER": "Modulo: {{ module }}",

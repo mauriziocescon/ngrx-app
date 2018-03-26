@@ -4,7 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TranslateModule } from '@ngx-translate/core';
+
+import { COMPONENTS } from './components';
 
 import { AddComponentDirective } from './directives/add-component.directive';
 import { ScrollToTopDirective } from './directives/scroll-to-top.directive';
@@ -21,9 +24,11 @@ import { RouterStateUrl, CustomRouterStateSerializer } from './utilities/route-u
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
+    InfiniteScrollModule,
     TranslateModule,
   ],
   declarations: [
+    ...COMPONENTS,
     AddComponentDirective,
     ScrollToTopDirective,
     BlockValidationDirective,
@@ -33,7 +38,9 @@ import { RouterStateUrl, CustomRouterStateSerializer } from './utilities/route-u
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    InfiniteScrollModule,
     TranslateModule,
+    ...COMPONENTS,
     AddComponentDirective,
     ScrollToTopDirective,
     BlockValidationDirective,

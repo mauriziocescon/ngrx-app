@@ -15,9 +15,10 @@ export class InstanceListService {
               protected appConstants: AppConstantsService) {
   }
 
-  getInstances(): Observable<Instance[]> {
+  getInstances(textSearch: string): Observable<Instance[]> {
+    const params = { textSearch: textSearch || '' };
     return this.http
-      .get<Instance[]>(this.appConstants.Api.instances)
+      .get<Instance[]>(this.appConstants.Api.instances, { params: params })
       .map(data => data)
       .catch((err: HttpErrorResponse) => this.handleError(err));
   }
