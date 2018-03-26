@@ -17,10 +17,10 @@ export class UtilitiesService {
    * @param headers
    */
   parseLinkHeaders(headers: any): any {
-    if (headers && headers('link') && headers('link').length === 0) {
+    if (headers && headers.get('link') && headers.get('link').length === 0) {
       throw new Error('parseLinkHeaders: link must be defined');
     }
 
-    return parseLinkHeader(headers('link'));
+    return parseLinkHeader(headers.get('link'));
   }
 }
