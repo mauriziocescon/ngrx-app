@@ -28,7 +28,7 @@ import { NextStepStoreService } from './next-step-store.service';
       [syncing]="syncRequired$ | async"
       [syncError]="syncError$ | async"
       (nextStep)="nextStep()"
-      (reset)="reset()" 
+      (reset)="reset()"
       (retrySync)="retrySync()">
     </cp-next-step>`,
 })

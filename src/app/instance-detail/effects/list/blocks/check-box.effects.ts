@@ -30,7 +30,7 @@ import { CheckBoxHooksTriggerService } from '../../../services';
 export class CheckBoxEffect implements OnRunEffects {
 
   constructor(protected actions$: Actions,
-              protected checkBoxHooksTrigger: CheckBoxHooksTriggerService,) {
+              protected checkBoxHooksTrigger: CheckBoxHooksTriggerService) {
   }
 
   @Effect() blockAvailable$: Observable<Action> = this.actions$
