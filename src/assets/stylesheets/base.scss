@@ -93,9 +93,3 @@ textarea.ng-invalid-mc-custom-validator-error {
   color: $danger-color;
   border-color: $danger-color;
 }
-
-// angular-loading-bar override style
-#loading-bar .bar {
-  background: $primary-color !important;
-  height: 4px !important;
-}
