@@ -27,7 +27,7 @@ describe('DossierComponent', () => {
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useFactory: createTranslateLoader,
+            useFactory: (createTranslateLoader),
             deps: [HttpClient],
           },
         }),

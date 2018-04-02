@@ -27,7 +27,7 @@ describe('TextInputComponent', () => {
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useFactory: createTranslateLoader,
+            useFactory: (createTranslateLoader),
             deps: [HttpClient],
           },
         }),
