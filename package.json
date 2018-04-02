@@ -6,7 +6,7 @@
   "homepage": "http://www.mauriziocescon.com",
   "private": false,
   "engines": {
-    "node": "=8.10.0",
+    "node": "=8.11.1",
     "npm": "=5.6.0"
   },
   "scripts": {
@@ -55,7 +55,7 @@
     "@angular/platform-browser": "5.2.9",
     "@angular/platform-browser-dynamic": "5.2.9",
     "@angular/router": "5.2.9",
-    "@ng-bootstrap/ng-bootstrap": "1.0.4",
+    "@ng-bootstrap/ng-bootstrap": "1.1.0",
     "@ngrx/effects": "5.2.0",
     "@ngrx/entity": "5.2.0",
     "@ngrx/router-store": "5.2.0",
@@ -75,7 +75,7 @@
     "popper.js": "1.14.1",
     "roboto-fontface": "0.9.0",
     "rxjs": "5.5.8",
-    "zone.js": "0.8.20"
+    "zone.js": "0.8.23"
   },
   "devDependencies": {
     "@angular/cli": "1.7.3",
@@ -100,7 +100,7 @@
     "karma-jasmine": "1.1.1",
     "karma-jasmine-html-reporter": "1.0.0",
     "karma-phantomjs-launcher": "1.0.4",
-    "nodemon": "1.17.2",
+    "nodemon": "1.17.3",
     "protractor": "5.3.0",
     "ts-node": "5.0.1",
     "tslint": "5.9.1",
