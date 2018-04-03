@@ -63,14 +63,17 @@ describe('DossierComponent', () => {
         label1: '',
         value1: '',
         required1: true,
+        disabled1: false,
 
         label2: '',
         value2: '',
         required2: true,
+        disabled2: false,
 
         label3: '',
         value3: true,
         required3: true,
+        disabled3: false,
       },
       section2: {
         sectionLabel: '',
@@ -78,6 +81,7 @@ describe('DossierComponent', () => {
         label1: '',
         value1: '',
         required1: true,
+        disabled1: false,
       },
       valid: true,
       hooks: {},

@@ -9,7 +9,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from '../../core/core.module';
+import { CoreModule } from '../../../core/core.module';
 
 import { TextFilterComponent } from './text-filter.component';
 
