@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
@@ -28,7 +27,6 @@ describe('TextFilterComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        NgbModule.forRoot(),
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

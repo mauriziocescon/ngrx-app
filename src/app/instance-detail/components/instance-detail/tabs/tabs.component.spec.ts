@@ -10,6 +10,8 @@ import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 import { CoreModule } from '../../../../core/core.module';
 import { SharedModule } from '../../../../shared/shared.module';
 
+import { ListContainerComponent } from '../../../containers';
+
 import { TabsComponent } from './tabs.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -41,6 +43,7 @@ describe('TabsComponent', () => {
         SharedModule,
       ],
       declarations: [
+        ListContainerComponent,
         TabsComponent,
       ],
       providers: [

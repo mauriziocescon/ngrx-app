@@ -14,6 +14,7 @@ import * as fromRoot from '../../../../../reducers';
 import * as fromInstanceDetail from '../../../../../reducers';
 
 import {
+  InstanceParamsService,
   BlockListService,
   BlockUtilsIntegrationService,
   CheckBoxHooksTriggerService,
@@ -63,6 +64,7 @@ describe('GenericBlockContainerComponent', () => {
         NGXLogger,
         fromRoot.reducerProvider,
         fromInstanceDetail.reducerProvider,
+        InstanceParamsService,
         BlockListService,
         BlockUtilsIntegrationService,
         CheckBoxHooksTriggerService,
