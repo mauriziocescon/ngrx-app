@@ -22,6 +22,8 @@ import {
   TextInputHooksTriggerService,
 } from '../../../../../services';
 
+import { BlockUtilsService } from '../../../../../services/instance-detail/list/block-utils.service';
+
 import { BlockType } from '../../../../../models';
 import { COMPONENTS } from '../../../../../components';
 import { CONTAINERS, GenericBlockContainerComponent } from '../../../../../containers';
@@ -67,8 +69,7 @@ describe('GenericBlockContainerComponent', () => {
         fromInstanceDetail.reducerProvider,
         InstanceParamsService,
         BlockListService,
-        BlockUtilsIntegrationService,
-        {  provide: BLOCK_UTILS_TOKEN, useValue: { module: '' }, multi: true }, // todo: Provide a test service
+        { provide: BlockUtilsIntegrationService, useValue: BlockUtilsService },
         CheckBoxHooksTriggerService,
         DropdownHooksTriggerService,
         TextInputHooksTriggerService,

@@ -10,6 +10,7 @@ import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 import { CoreModule } from '../../../../core/core.module';
 import { SharedModule } from '../../../../shared/shared.module';
 
+import { ListComponent } from '../../../components';
 import { ListContainerComponent } from '../../../containers';
 
 import { TabsComponent } from './tabs.component';
@@ -43,6 +44,7 @@ describe('TabsComponent', () => {
         SharedModule,
       ],
       declarations: [
+        ListComponent,
         ListContainerComponent,
         TabsComponent,
       ],
