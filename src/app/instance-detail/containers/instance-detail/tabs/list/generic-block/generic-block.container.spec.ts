@@ -25,6 +25,7 @@ import {
 import { BlockType } from '../../../../../models';
 import { COMPONENTS } from '../../../../../components';
 import { CONTAINERS, GenericBlockContainerComponent } from '../../../../../containers';
+import { BLOCK_UTILS_TOKEN } from '../../../../../tokens';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -67,6 +68,7 @@ describe('GenericBlockContainerComponent', () => {
         InstanceParamsService,
         BlockListService,
         BlockUtilsIntegrationService,
+        {  provide: BLOCK_UTILS_TOKEN, useValue: { module: '' }, multi: true }, // todo: Provide a test service
         CheckBoxHooksTriggerService,
         DropdownHooksTriggerService,
         TextInputHooksTriggerService,

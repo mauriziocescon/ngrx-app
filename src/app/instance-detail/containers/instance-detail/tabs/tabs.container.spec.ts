@@ -3,6 +3,7 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { StoreModule, Store, combineReducers } from '@ngrx/store';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
@@ -30,6 +31,7 @@ describe('TabsContainerComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
+        NgbModule.forRoot(),
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
