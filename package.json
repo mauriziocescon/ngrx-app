@@ -83,10 +83,10 @@
     "@angular/language-service": "5.2.10",
     "@types/bootstrap": "4.1.0",
     "@types/faker": "4.1.2",
-    "@types/jasmine": "2.8.6",
+    "@types/jasmine": "2.8.7",
     "@types/jasminewd2": "2.0.3",
     "@types/jquery": "3.3.1",
-    "@types/node": "10.0.3",
+    "@types/node": "10.0.4",
     "@types/parse-link-header": "1.0.0",
     "codelyzer": "4.3.0",
     "faker": "4.1.0",
@@ -100,10 +100,10 @@
     "karma-jasmine": "1.1.2",
     "karma-jasmine-html-reporter": "1.0.0",
     "karma-phantomjs-launcher": "1.0.4",
-    "nodemon": "1.17.3",
+    "nodemon": "1.17.4",
     "protractor": "5.3.1",
-    "ts-node": "6.0.2",
-    "tslint": "5.9.1",
+    "ts-node": "6.0.3",
+    "tslint": "5.10.0",
     "typescript": "2.6.2"
   }
 }
