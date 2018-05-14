@@ -11,9 +11,12 @@ export class NavigationBarComponent {
   @Output() languageDidChange: EventEmitter<string>;
   @Output() navigationDidChange: EventEmitter<{ path: string }>;
 
+  isCollapsed: boolean;
+
   constructor() {
     this.languageDidChange = new EventEmitter<string>();
     this.navigationDidChange = new EventEmitter<{ path: string }>();
+    this.isCollapsed = true;
   }
 
   selectLanguage(language: string): void {
