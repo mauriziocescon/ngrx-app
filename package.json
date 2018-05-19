@@ -6,7 +6,7 @@
   "homepage": "http://www.mauriziocescon.com",
   "private": false,
   "engines": {
-    "node": "=8.11.1",
+    "node": "=8.11.2",
     "npm": "=5.6.0"
   },
   "scripts": {
@@ -67,7 +67,7 @@
     "core-js": "2.5.6",
     "font-awesome": "4.7.0",
     "intl": "1.2.5",
-    "ngrx-store-freeze": "0.2.2",
+    "ngrx-store-freeze": "0.2.3",
     "ngx-infinite-scroll": "0.8.4",
     "ngx-logger": "2.2.4",
     "parse-link-header": "1.0.1",
@@ -82,7 +82,7 @@
     "@types/faker": "4.1.2",
     "@types/jasmine": "2.8.7",
     "@types/jasminewd2": "2.0.3",
-    "@types/node": "10.0.8",
+    "@types/node": "10.1.2",
     "@types/parse-link-header": "1.0.0",
     "codelyzer": "4.3.0",
     "faker": "4.1.0",
@@ -92,7 +92,7 @@
     "karma": "2.0.2",
     "karma-chrome-launcher": "2.2.0",
     "karma-cli": "1.0.1",
-    "karma-coverage-istanbul-reporter": "1.4.2",
+    "karma-coverage-istanbul-reporter": "2.0.0",
     "karma-jasmine": "1.1.2",
     "karma-jasmine-html-reporter": "1.1.0",
     "karma-phantomjs-launcher": "1.0.4",
