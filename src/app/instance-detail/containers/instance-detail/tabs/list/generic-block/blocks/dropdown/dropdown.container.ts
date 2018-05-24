@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { BlockType, DropdownBlock } from '../../../../../../../models';
+import { BlockComponent, BlockType, DropdownBlock } from '../../../../../../../models';
 
 import { DropdownStoreService } from './dropdown-store.service';
 
@@ -20,7 +20,7 @@ import { DropdownStoreService } from './dropdown-store.service';
       (valueDidChange)="valueDidChange($event)">
     </cp-dropdown>`,
 })
-export class DropdownContainerComponent {
+export class DropdownContainerComponent implements BlockComponent {
   @Input() readonly blockId: string;
 
   block$: Observable<DropdownBlock | undefined>;

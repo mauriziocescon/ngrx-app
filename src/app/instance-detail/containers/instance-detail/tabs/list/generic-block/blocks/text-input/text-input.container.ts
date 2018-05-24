@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { BlockType, TextInputBlock } from '../../../../../../../models';
+import { BlockComponent, BlockType, TextInputBlock } from '../../../../../../../models';
 
 import { TextInputStoreService } from './text-input-store.service';
 
@@ -20,7 +20,7 @@ import { TextInputStoreService } from './text-input-store.service';
       (valueDidChange)="valueDidChange($event)">
     </cp-text-input>`,
 })
-export class TextInputContainerComponent {
+export class TextInputContainerComponent implements BlockComponent {
   @Input() readonly blockId: string;
 
   block$: Observable<TextInputBlock | undefined>;

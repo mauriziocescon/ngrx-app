@@ -3,6 +3,8 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { BlockComponent } from '../../../../instance-detail/instance-detail.module';
+
 import { B4BlockType, DossierBlock } from '../../../models';
 
 import { DossierStoreService } from './dossier-store.service';
@@ -20,7 +22,7 @@ import { DossierStoreService } from './dossier-store.service';
       (valuesDidChange)="valuesDidChange($event)">
     </cp-dossier>`,
 })
-export class DossierContainerComponent {
+export class DossierContainerComponent implements BlockComponent {
   @Input() readonly blockId: string;
 
   block$: Observable<DossierBlock | undefined>;

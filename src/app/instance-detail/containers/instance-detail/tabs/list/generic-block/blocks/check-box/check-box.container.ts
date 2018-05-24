@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { BlockType, CheckBoxBlock } from '../../../../../../../models';
+import { BlockComponent, BlockType, CheckBoxBlock } from '../../../../../../../models';
 
 import { CheckBoxStoreService } from './check-box-store.service';
 
@@ -20,7 +20,7 @@ import { CheckBoxStoreService } from './check-box-store.service';
       (valueDidChange)="valueDidChange($event)">
     </cp-check-box>`,
 })
-export class CheckBoxContainerComponent {
+export class CheckBoxContainerComponent implements BlockComponent {
   @Input() readonly blockId: string;
 
   block$: Observable<CheckBoxBlock | undefined>;

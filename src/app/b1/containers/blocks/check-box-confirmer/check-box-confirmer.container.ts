@@ -11,6 +11,8 @@ import {
   ModalConfirmerResultType,
 } from '../../../../core/core.module';
 
+import { BlockComponent } from '../../../../instance-detail/instance-detail.module';
+
 import { B1BlockType, CheckBoxConfirmerBlock } from '../../../models';
 
 import { CheckBoxConfirmerStoreService } from './check-box-confirmer-store.service';
@@ -28,7 +30,7 @@ import { CheckBoxConfirmerStoreService } from './check-box-confirmer-store.servi
       (valueDidChange)="valueDidChange($event)">
     </cp-check-box-confirmer>`,
 })
-export class CheckBoxConfirmerContainerComponent implements OnDestroy {
+export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnDestroy {
   @Input() readonly blockId: string;
 
   block$: Observable<CheckBoxConfirmerBlock | undefined>;

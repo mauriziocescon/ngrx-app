@@ -5,6 +5,8 @@ import 'rxjs/add/operator/map';
 
 import { TranslateService } from '@ngx-translate/core';
 
+import { BlockComponent } from '../../../../instance-detail/instance-detail.module';
+
 import { B2BlockType, DatePickerBlock } from '../../../models';
 
 import { DatePickerStoreService } from './date-picker-store';
@@ -22,7 +24,7 @@ import { DatePickerStoreService } from './date-picker-store';
       (valueDidChange)="valueDidChange($event)">
     </cp-date-picker>`,
 })
-export class DatePickerContainerComponent {
+export class DatePickerContainerComponent implements BlockComponent {
   @Input() readonly blockId: string;
 
   block$: Observable<DatePickerBlock | undefined>;
