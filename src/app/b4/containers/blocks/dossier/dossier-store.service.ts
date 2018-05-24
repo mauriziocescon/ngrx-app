@@ -20,6 +20,10 @@ export class DossierStoreService {
     return this.store$.select(fromB4Blocks.getAllDossier);
   }
 
+  getDossierEntities(): Observable<{ [id: string]: DossierBlock }> {
+    return this.store$.select(fromB4Blocks.getDossierEntities);
+  }
+
   getDossierBlocksLoading(): Observable<{ [id: string]: boolean }> {
     return this.store$.select(fromB4Blocks.getDossierBlocksLoadingState);
   }

@@ -21,7 +21,7 @@ import { DossierStoreService } from './dossier-store.service';
     </cp-dossier>`,
 })
 export class DossierContainerComponent {
-  @Input() blockId: string;
+  @Input() readonly blockId: string;
 
   block$: Observable<DossierBlock | undefined>;
   dossierBlock: DossierBlock | undefined;
@@ -29,14 +29,9 @@ export class DossierContainerComponent {
   loading$: Observable<boolean>;
 
   constructor(protected dossierStore: DossierStoreService) {
-    this.block$ = this.dossierStore.getAllDossier()
-      .map((blocks: DossierBlock[]) => {
-        return blocks.find((block: DossierBlock) => {
-          return block.id === this.blockId;
-        });
-      })
-      .map((block: DossierBlock | undefined) => {
-        return this.dossierBlock = block;
+    this.block$ = this.dossierStore.getDossierEntities()
+      .map((entities: { [id: string]: DossierBlock }) => {
+        return this.dossierBlock = entities[this.blockId];
       });
 
     this.loading$ = this.dossierStore.getDossierBlocksLoading()

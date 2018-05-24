@@ -23,6 +23,10 @@ export class CheckBoxConfirmerStoreService {
     return this.store$.select(fromB1Blocks.getAllCheckBoxConfirmer);
   }
 
+  getCheckBoxConfirmerEntities(): Observable<{ [id: string]: CheckBoxConfirmerBlock }> {
+    return this.store$.select(fromB1Blocks.getCheckBoxConfirmerEntities);
+  }
+
   getCheckBoxConfirmerBlocksLoading(): Observable<{ [id: string]: boolean }> {
     return this.store$.select(fromB1Blocks.getCheckBoxConfirmerBlocksLoadingState);
   }

@@ -20,6 +20,10 @@ export class TextInputStoreService {
     return this.store$.select(fromInstanceDetail.getAllTextInput);
   }
 
+  getTextInputEntities(): Observable<{ [id: string]: TextInputBlock }> {
+    return this.store$.select(fromInstanceDetail.getTextInputEntities);
+  }
+
   getTextInputBlocksLoading(): Observable<{ [id: string]: boolean }> {
     return this.store$.select(fromInstanceDetail.getTextInputBlocksLoadingState);
   }

@@ -29,7 +29,7 @@ import { CheckBoxConfirmerStoreService } from './check-box-confirmer-store.servi
     </cp-check-box-confirmer>`,
 })
 export class CheckBoxConfirmerContainerComponent implements OnDestroy {
-  @Input() blockId: string;
+  @Input() readonly blockId: string;
 
   block$: Observable<CheckBoxConfirmerBlock | undefined>;
   checkBoxConfirmerBlock: CheckBoxConfirmerBlock | undefined;
@@ -41,14 +41,9 @@ export class CheckBoxConfirmerContainerComponent implements OnDestroy {
 
   constructor(protected checkBoxConfirmerStore: CheckBoxConfirmerStoreService,
               protected translate: TranslateService) {
-    this.block$ = this.checkBoxConfirmerStore.getAllCheckBoxConfirmer()
-      .map((blocks: CheckBoxConfirmerBlock[]) => {
-        return blocks.find((block: CheckBoxConfirmerBlock) => {
-          return block.id === this.blockId;
-        });
-      })
-      .map((block: CheckBoxConfirmerBlock | undefined) => {
-        return this.checkBoxConfirmerBlock = block;
+    this.block$ = this.checkBoxConfirmerStore.getCheckBoxConfirmerEntities()
+      .map((entities: { [id: string]: CheckBoxConfirmerBlock }) => {
+        return this.checkBoxConfirmerBlock = entities[this.blockId];
       });
 
     this.loading$ = this.checkBoxConfirmerStore.getCheckBoxConfirmerBlocksLoading()

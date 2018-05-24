@@ -21,7 +21,7 @@ import { TextInputStoreService } from './text-input-store.service';
     </cp-text-input>`,
 })
 export class TextInputContainerComponent {
-  @Input() blockId: string;
+  @Input() readonly blockId: string;
 
   block$: Observable<TextInputBlock | undefined>;
   textInputBlock: TextInputBlock | undefined;
@@ -29,14 +29,9 @@ export class TextInputContainerComponent {
   loading$: Observable<boolean>;
 
   constructor(protected textInputStore: TextInputStoreService) {
-    this.block$ = this.textInputStore.getAllTextInput()
-      .map((blocks: TextInputBlock[]) => {
-        return blocks.find((block: TextInputBlock) => {
-          return block.id === this.blockId;
-        });
-      })
-      .map((block: TextInputBlock | undefined) => {
-        return this.textInputBlock = block;
+    this.block$ = this.textInputStore.getTextInputEntities()
+      .map((entities: { [id: string]: TextInputBlock }) => {
+        return this.textInputBlock = entities[this.blockId];
       });
 
     this.loading$ = this.textInputStore.getTextInputBlocksLoading()

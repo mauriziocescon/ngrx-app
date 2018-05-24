@@ -21,7 +21,7 @@ import { DropdownStoreService } from './dropdown-store.service';
     </cp-dropdown>`,
 })
 export class DropdownContainerComponent {
-  @Input() blockId: string;
+  @Input() readonly blockId: string;
 
   block$: Observable<DropdownBlock | undefined>;
   dropdownBlock: DropdownBlock | undefined;
@@ -29,14 +29,9 @@ export class DropdownContainerComponent {
   loading$: Observable<boolean>;
 
   constructor(protected dropdownStore: DropdownStoreService) {
-    this.block$ = this.dropdownStore.getAllDropdown()
-      .map((blocks: DropdownBlock[]) => {
-        return blocks.find((block: DropdownBlock) => {
-          return block.id === this.blockId;
-        });
-      })
-      .map((block: DropdownBlock | undefined) => {
-        return this.dropdownBlock = block;
+    this.block$ = this.dropdownStore.getDropdownEntities()
+      .map((entities: { [id: string]: DropdownBlock }) => {
+        return this.dropdownBlock = entities[this.blockId];
       });
 
     this.loading$ = this.dropdownStore.getDropdownBlocksLoading()

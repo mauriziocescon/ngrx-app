@@ -20,6 +20,10 @@ export class DatePickerStoreService {
     return this.store$.select(fromB2Blocks.getAllDatePicker);
   }
 
+  getDatePickerEntities(): Observable<{ [id: string]: DatePickerBlock }> {
+    return this.store$.select(fromB2Blocks.getDatePickerEntities);
+  }
+
   getDatePickerBlocksLoading(): Observable<{ [id: string]: boolean }> {
     return this.store$.select(fromB2Blocks.getDatePickerBlocksLoadingState);
   }

@@ -20,6 +20,10 @@ export class CheckBoxStoreService {
     return this.store$.select(fromInstanceDetail.getAllCheckBox);
   }
 
+  getCheckBoxEntities(): Observable<{ [id: string]: CheckBoxBlock }> {
+    return this.store$.select(fromInstanceDetail.getCheckBoxEntities);
+  }
+
   getCheckBoxBlocksLoading(): Observable<{ [id: string]: boolean }> {
     return this.store$.select(fromInstanceDetail.getCheckBoxBlocksLoadingState);
   }

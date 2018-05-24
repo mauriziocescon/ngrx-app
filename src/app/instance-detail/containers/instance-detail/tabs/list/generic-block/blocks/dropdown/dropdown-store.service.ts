@@ -20,6 +20,10 @@ export class DropdownStoreService {
     return this.store$.select(fromInstanceDetail.getAllDropdown);
   }
 
+  getDropdownEntities(): Observable<{ [id: string]: DropdownBlock }> {
+    return this.store$.select(fromInstanceDetail.getDropdownEntities);
+  }
+
   getDropdownBlocksLoading(): Observable<{ [id: string]: boolean }> {
     return this.store$.select(fromInstanceDetail.getDropdownBlocksLoadingState);
   }

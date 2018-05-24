@@ -21,7 +21,7 @@ import { CheckBoxStoreService } from './check-box-store.service';
     </cp-check-box>`,
 })
 export class CheckBoxContainerComponent {
-  @Input() blockId: string;
+  @Input() readonly blockId: string;
 
   block$: Observable<CheckBoxBlock | undefined>;
   checkBoxBlock: CheckBoxBlock | undefined;
@@ -29,14 +29,9 @@ export class CheckBoxContainerComponent {
   loading$: Observable<boolean>;
 
   constructor(protected checkBoxStore: CheckBoxStoreService) {
-    this.block$ = this.checkBoxStore.getAllCheckBox()
-      .map((blocks: CheckBoxBlock[]) => {
-        return blocks.find((block: CheckBoxBlock) => {
-          return block.id === this.blockId;
-        });
-      })
-      .map((block: CheckBoxBlock | undefined) => {
-        return this.checkBoxBlock = block;
+    this.block$ = this.checkBoxStore.getCheckBoxEntities()
+      .map((entities: { [id: string]: CheckBoxBlock }) => {
+        return this.checkBoxBlock = entities[this.blockId];
       });
 
     this.loading$ = this.checkBoxStore.getCheckBoxBlocksLoading()

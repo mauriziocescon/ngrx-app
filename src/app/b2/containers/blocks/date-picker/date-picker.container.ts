@@ -23,7 +23,7 @@ import { DatePickerStoreService } from './date-picker-store';
     </cp-date-picker>`,
 })
 export class DatePickerContainerComponent {
-  @Input() blockId: string;
+  @Input() readonly blockId: string;
 
   block$: Observable<DatePickerBlock | undefined>;
   datePickerBlock: DatePickerBlock | undefined;
@@ -32,14 +32,9 @@ export class DatePickerContainerComponent {
 
   constructor(protected datePickerStore: DatePickerStoreService,
               protected translate: TranslateService) {
-    this.block$ = this.datePickerStore.getAllDatePicker()
-      .map((blocks: DatePickerBlock[]) => {
-        return blocks.find((block: DatePickerBlock) => {
-          return block.id === this.blockId;
-        });
-      })
-      .map((block: DatePickerBlock | undefined) => {
-        return this.datePickerBlock = block;
+    this.block$ = this.datePickerStore.getDatePickerEntities()
+      .map((entities: { [id: string]: DatePickerBlock }) => {
+        return this.datePickerBlock = entities[this.blockId];
       });
 
     this.loading$ = this.datePickerStore.getDatePickerBlocksLoading()
