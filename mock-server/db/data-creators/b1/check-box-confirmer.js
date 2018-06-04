@@ -1,13 +1,13 @@
 const faker = require('faker');
 
-exports.getCheckBoxConfirmer = (id) => {
+exports.getCheckBoxConfirmer = (index) => {
   const value = faker.random.boolean() ? true : undefined;
   const required = faker.random.boolean();
 
   let checkBoxConfirmer = {
-    id: id,
+    id: faker.random.uuid(),
     type: 'check-box-confirmer',
-    order: parseInt(id),
+    order: parseInt(index),
     label: 'COMPONENT.CHECK_BOX_CONFIRMER.CHECK_BOX_CONFIRMER_LABEL',
     value: value,
     description: 'COMPONENT.CHECK_BOX_CONFIRMER.CHECK_BOX_CONFIRMER_DESC',

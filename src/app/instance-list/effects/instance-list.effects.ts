@@ -5,7 +5,6 @@ import { Effect, Actions, OnRunEffects, EffectNotification } from '@ngrx/effects
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/exhaustMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
@@ -32,7 +31,6 @@ export class InstanceListEffects implements OnRunEffects {
 
   @Effect() fetchBlocks$: Observable<Action> = this.actions$
     .ofType<FetchInstances>(InstanceListActionTypes.FETCH_INSTANCES)
-    .debounceTime(400)
     .map(action => action.payload)
     .switchMap((params) => {
       return this.instanceList.getInstances(params.textSearch)

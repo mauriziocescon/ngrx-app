@@ -41,7 +41,6 @@ export class ListEffects implements OnRunEffects {
 
   @Effect() fetchBlocks$: Observable<Action> = this.actions$
     .ofType<FetchBlocks>(ListActionTypes.FETCH_BLOCKS)
-    .debounceTime(400)
     .map(action => action.payload)
     .switchMap((params) => {
       return this.blockList.getBlocks(params.module, params.instance, params.step)

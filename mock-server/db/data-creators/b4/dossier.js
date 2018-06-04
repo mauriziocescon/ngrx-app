@@ -1,15 +1,15 @@
 const faker = require('faker');
 
-exports.getDossier = (id) => {
+exports.getDossier = (index) => {
   const section1Required1 = faker.random.boolean();
   const section1Required2 = faker.random.boolean();
   const section1Required3 = faker.random.boolean();
   const section2Required1 = faker.random.boolean();
 
   let dossier = {
-    id: id,
+    id: faker.random.uuid(),
     type: 'dossier',
-    order: parseInt(id),
+    order: parseInt(index),
     section1: {
       sectionLabel: 'COMPONENT.DOSSIER.SECTION1_LABEL',
 

@@ -1,13 +1,13 @@
 const faker = require('faker');
 
-exports.getDropdown = (id) => {
+exports.getDropdown = (index) => {
   const value = faker.random.boolean() ? '1' : undefined;
   const required = faker.random.boolean();
 
   let dropdown = {
-    id: id,
+    id: faker.random.uuid(),
     type: 'dropdown',
-    order: parseInt(id),
+    order: parseInt(index),
     label: 'COMPONENT.DROPDOWN.DROPDOWN_LABEL',
     value: value,
     choices: ['1', '2', '3'],

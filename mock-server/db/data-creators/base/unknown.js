@@ -1,9 +1,9 @@
 const faker = require('faker');
 
-exports.getUnknownComponent = (id) => {
+exports.getUnknownComponent = (index) => {
   return {
-    id: id,
+    id: faker.random.uuid(),
     type: 'unknown',
-    order: parseInt(id),
+    order: parseInt(index),
   };
 };
