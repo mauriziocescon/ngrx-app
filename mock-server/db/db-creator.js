@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const dataCreator = require('./data-creators');
 const utils = require('./db-utils');
 const dbUrl = require('./constants').dbUrl;
@@ -21,47 +23,47 @@ function main() {
     let instance;
 
     // module b1
-    instance = {id: '0', module: 'b1', instance: '1', step: '1', blocks: []};
+    instance = {id: '0', module: 'b1', instance: faker.random.uuid(), step: '1', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomB1Block(i));
     }
     data.instances.push(instance);
 
-    instance = {id: '1', module: 'b1', instance: '1', step: '2', blocks: []};
+    instance = {id: '1', module: 'b1', instance: faker.random.uuid(), step: '2', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomB1Block(i));
     }
     data.instances.push(instance);
 
     // module b2
-    instance = {id: '2', module: 'b2', instance: '1', step: '1', blocks: []};
+    instance = {id: '2', module: 'b2', instance: faker.random.uuid(), step: '1', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomB2Block(i));
     }
     data.instances.push(instance);
 
-    instance = {id: '3', module: 'b2', instance: '1', step: '2', blocks: []};
+    instance = {id: '3', module: 'b2', instance: faker.random.uuid(), step: '2', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomB2Block(i));
     }
     data.instances.push(instance);
 
     // module b3
-    instance = {id: '4', module: 'b3', instance: '1', step: '1', blocks: []};
+    instance = {id: '4', module: 'b3', instance: faker.random.uuid(), step: '1', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
     // module b4
-    instance = {id: '5', module: 'b4', instance: '1', step: '1', blocks: []};
+    instance = {id: '5', module: 'b4', instance: faker.random.uuid(), step: '1', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomB4Block(i));
     }
     data.instances.push(instance);
 
     // module b5
-    instance = {id: '6', module: 'b5', instance: '1', step: '1', blocks: []};
+    instance = {id: '6', module: 'b5', instance: faker.random.uuid(), step: '1', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
