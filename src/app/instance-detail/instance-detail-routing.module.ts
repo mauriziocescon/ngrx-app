@@ -7,7 +7,7 @@ import { InstanceDetailGuard, RulesResolve } from './services';
 
 export const instanceDetailRoutes: Routes = [
   {
-    path: '',
+    path: 'instance-detail/:module/:instance/:step',
     component: InstanceDetailPageComponent,
     resolve: {
       rules: RulesResolve,
