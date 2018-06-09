@@ -18,8 +18,6 @@ import { EFFECTS } from './effects';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule, CustomRouterStateSerializer } from './shared/shared.module';
-import { InstanceListModule } from './instance-list/instance-list.module';
-import { InstanceDetailModule } from './instance-detail/instance-detail.module';
 
 import { B1BlocksModule } from './b1/b1.module';
 import { B2BlocksModule } from './b2/b2.module';
@@ -61,8 +59,6 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     CoreModule.forRoot(),
     SharedModule,
-    InstanceListModule,
-    InstanceDetailModule,
     B1BlocksModule,
     B2BlocksModule,
     B3BlocksModule,
