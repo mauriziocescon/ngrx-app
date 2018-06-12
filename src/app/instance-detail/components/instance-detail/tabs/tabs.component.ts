@@ -13,6 +13,6 @@ export class TabsComponent {
   justify: string;
 
   constructor() {
-    this.justify = 'justified';
+    this.justify = 'center';
   }
 }
