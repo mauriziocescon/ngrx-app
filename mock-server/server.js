@@ -15,7 +15,7 @@ const instances = require('./controllers/instances');
 const rules = require('./controllers/rules');
 
 // set the port of our application
-// process.env.PORT lets the port be set by Heroku
+// process.env.PORT lets the port to be set by Heroku
 const port = process.env.PORT || 5000;
 
 // Middlewares
@@ -24,7 +24,6 @@ app.use(delayMiddleware.delay);
 app.use(errosMiddleware.error);
 
 // To handle POST, PUT and PATCH you need to use a body-parser
-// You can use the one used by JSON Server
 app.use(jsonServer.bodyParser);
 
 app.get('/api/rules-config', rules.getRulesConfig);
@@ -37,7 +36,7 @@ app.use('/api', router);
 
 // Fallback on frontend routes
 app.get('*', (req, res) => {
-  // load the single view file (frontend will handle the page changes on the front-end)
+  // load index.html (frontend will handle page changes)
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
