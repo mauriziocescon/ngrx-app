@@ -16,10 +16,11 @@
     "json-server-watch": "nodemon --ext js --watch ./mock-server ./mock-server/server.js",
     "ng": "ng",
     "serve": "ng serve --aot --open | npm run json-server-watch",
-    "build": "ng build --prod",
+    "build": "ng build --prod --stats-json",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "bundle-analyzer": "webpack-bundle-analyzer ./dist/stats.json"
   },
   "repository": {
     "type": "git",
@@ -100,6 +101,7 @@
     "protractor": "5.3.2",
     "ts-node": "6.0.3",
     "tslint": "5.10.0",
-    "typescript": "2.6.2"
+    "typescript": "2.6.2",
+    "webpack-bundle-analyzer": "2.13.1"
   }
 }
