@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { BlockComponent, BlockType, CheckBoxBlock } from '../../../../../../../models';
 
@@ -30,14 +30,18 @@ export class CheckBoxContainerComponent implements BlockComponent {
 
   constructor(protected checkBoxStore: CheckBoxStoreService) {
     this.block$ = this.checkBoxStore.getCheckBoxEntities()
-      .map((entities: { [id: string]: CheckBoxBlock }) => {
-        return this.checkBoxBlock = entities[this.blockId];
-      });
+      .pipe(
+        map((entities: { [id: string]: CheckBoxBlock }) => {
+          return this.checkBoxBlock = entities[this.blockId];
+        }),
+      );
 
     this.loading$ = this.checkBoxStore.getCheckBoxBlocksLoading()
-      .map((blocksLoading: { [id: string]: boolean }) => {
-        return blocksLoading[this.blockId];
-      });
+      .pipe(
+        map((blocksLoading: { [id: string]: boolean }) => {
+          return blocksLoading[this.blockId];
+        }),
+      );
   }
 
   valueDidChange(value: boolean): void {

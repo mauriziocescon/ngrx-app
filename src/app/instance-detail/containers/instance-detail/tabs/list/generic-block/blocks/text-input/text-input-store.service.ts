@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import * as textInput from '../../../../../../../actions/list/blocks/text-input.actions';
 
@@ -17,15 +17,15 @@ export class TextInputStoreService {
   }
 
   getAllTextInput(): Observable<TextInputBlock[]> {
-    return this.store$.select(fromInstanceDetail.getAllTextInput);
+    return this.store$.pipe(select(fromInstanceDetail.getAllTextInput));
   }
 
   getTextInputEntities(): Observable<{ [id: string]: TextInputBlock }> {
-    return this.store$.select(fromInstanceDetail.getTextInputEntities);
+    return this.store$.pipe(select(fromInstanceDetail.getTextInputEntities));
   }
 
   getTextInputBlocksLoading(): Observable<{ [id: string]: boolean }> {
-    return this.store$.select(fromInstanceDetail.getTextInputBlocksLoadingState);
+    return this.store$.pipe(select(fromInstanceDetail.getTextInputBlocksLoadingState));
   }
 
   dispatchUpdateBlock(block: { block: Update<TextInputBlock>, triggerHooks: boolean }): void {

@@ -71,7 +71,7 @@ describe('TextInputContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextInputContainerComponent);
     component = fixture.componentInstance;
-    component.blockId = '1';
+    // component.blockId = '1';
     fixture.detectChanges();
   });
 

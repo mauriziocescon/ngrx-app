@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { BlockComponent, BlockType, TextInputBlock } from '../../../../../../../models';
 
@@ -30,14 +30,18 @@ export class TextInputContainerComponent implements BlockComponent {
 
   constructor(protected textInputStore: TextInputStoreService) {
     this.block$ = this.textInputStore.getTextInputEntities()
-      .map((entities: { [id: string]: TextInputBlock }) => {
-        return this.textInputBlock = entities[this.blockId];
-      });
+      .pipe(
+        map((entities: { [id: string]: TextInputBlock }) => {
+          return this.textInputBlock = entities[this.blockId];
+        }),
+      );
 
     this.loading$ = this.textInputStore.getTextInputBlocksLoading()
-      .map((blocksLoading: { [id: string]: boolean }) => {
-        return blocksLoading[this.blockId];
-      });
+      .pipe(
+        map((blocksLoading: { [id: string]: boolean }) => {
+          return blocksLoading[this.blockId];
+        }),
+      );
   }
 
   valueDidChange(value: string): void {

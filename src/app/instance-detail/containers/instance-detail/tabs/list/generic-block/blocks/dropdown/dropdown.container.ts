@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { BlockComponent, BlockType, DropdownBlock } from '../../../../../../../models';
 
@@ -30,14 +30,18 @@ export class DropdownContainerComponent implements BlockComponent {
 
   constructor(protected dropdownStore: DropdownStoreService) {
     this.block$ = this.dropdownStore.getDropdownEntities()
-      .map((entities: { [id: string]: DropdownBlock }) => {
-        return this.dropdownBlock = entities[this.blockId];
-      });
+      .pipe(
+        map((entities: { [id: string]: DropdownBlock }) => {
+          return this.dropdownBlock = entities[this.blockId];
+        }),
+      );
 
     this.loading$ = this.dropdownStore.getDropdownBlocksLoading()
-      .map((blocksLoading: { [id: string]: boolean }) => {
-        return blocksLoading[this.blockId];
-      });
+      .pipe(
+        map((blocksLoading: { [id: string]: boolean }) => {
+          return blocksLoading[this.blockId];
+        }),
+      );
   }
 
   valueDidChange(value: string): void {

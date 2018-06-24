@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, OnDestroy, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/debounceTime';
+import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import { NGXLogger } from 'ngx-logger';
 
@@ -41,7 +41,9 @@ export class TextFilterComponent implements OnInit, OnDestroy {
 
     this.searchControlSubscription = this.searchControl
       .valueChanges
-      .debounceTime(1000)
+      .pipe(
+        debounceTime(1000),
+      )
       .subscribe((value: string) => {
           this.valueDidChange.emit(value);
         },

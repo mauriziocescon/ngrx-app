@@ -3,9 +3,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 
 import { TranslateService } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
@@ -55,26 +54,28 @@ export class RulesResolve implements Resolve<string> {
       },
     };
     return this.http.get<string>(url, options)
-      .switchMap((config: string) => {
-        this.blockHooks.setConfig(config);
-        return config;
-      })
-      .catch((err: HttpErrorResponse) => {
-        this.translate.get([
-          'CONTAINER.INSTANCE_DETAIL.ALERT_BUTTON',
-          'CONTAINER.INSTANCE_DETAIL.ALERT_TITLE',
-        ])
-          .subscribe((translations: any) => {
-            const modalAlert: ModalAlert = {
-              id: this.alertId,
-              title: translations['CONTAINER.INSTANCE_DETAIL.ALERT_TITLE'],
-              message: err.message,
-              buttonLabel: translations['CONTAINER.INSTANCE_DETAIL.ALERT_BUTTON'],
-            };
-            this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
-          });
-        this.router.navigate(['/instance-list']);
-        return '';
-      });
+      .pipe(
+        switchMap((config: string) => {
+          this.blockHooks.setConfig(config);
+          return config;
+        }),
+        catchError((err: HttpErrorResponse) => {
+          this.translate.get([
+            'CONTAINER.INSTANCE_DETAIL.ALERT_BUTTON',
+            'CONTAINER.INSTANCE_DETAIL.ALERT_TITLE',
+          ])
+            .subscribe((translations: any) => {
+              const modalAlert: ModalAlert = {
+                id: this.alertId,
+                title: translations['CONTAINER.INSTANCE_DETAIL.ALERT_TITLE'],
+                message: err.message,
+                buttonLabel: translations['CONTAINER.INSTANCE_DETAIL.ALERT_BUTTON'],
+              };
+              this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
+            });
+          this.router.navigate(['/instance-list']);
+          return '';
+        })
+      );
   }
 }

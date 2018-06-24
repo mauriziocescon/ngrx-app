@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { Effect, Actions, OnRunEffects, EffectNotification } from '@ngrx/effects';
+import { Effect, Actions, ofType, OnRunEffects, EffectNotification } from '@ngrx/effects';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/exhaustMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/takeUntil';
+import { Observable } from 'rxjs';
+import {
+  exhaustMap,
+  map,
+  switchMap,
+  takeUntil,
+} from 'rxjs/operators';
 
 import {
   Block,
@@ -23,7 +25,7 @@ import {
   ClearBlocks,
 } from '../../actions/blocks/date-picker.actions';
 
-import { B2BlockType } from '../../models';
+import { B2BlockType, DatePickerBlock } from '../../models';
 
 import { B2DatePickerHooksTriggerService } from '../../services';
 
@@ -35,41 +37,50 @@ export class DatePickerEffects implements OnRunEffects {
   }
 
   @Effect() blockAvailable$: Observable<Action> = this.actions$
-    .ofType<FetchBlocksComplete>(ListActionTypes.FETCH_BLOCKS_COMPLETE)
-    .map(action => action.payload)
-    .map((blocks: Block[]) => {
-      const datePickerBoxBlocks = blocks
-        .filter((block: Block) => {
-          return block.type === B2BlockType.DatePicker;
-        })
-        .map((block: Block) => {
-          return { id: block.id, changes: { ...block } };
-        });
-      return new AddBlocks(datePickerBoxBlocks);
-    });
+    .pipe(
+      ofType<FetchBlocksComplete>(ListActionTypes.FETCH_BLOCKS_COMPLETE),
+      map(action => action.payload),
+      map((blocks: Block[]) => {
+        const datePickerBoxBlocks = blocks
+          .filter((block: Block) => {
+            return block.type === B2BlockType.DatePicker;
+          })
+          .map((block: DatePickerBlock) => {
+            return block;
+          });
+        return new AddBlocks(datePickerBoxBlocks);
+      }),
+    );
 
   @Effect() clearBlocks$: Observable<Action> = this.actions$
-    .ofType<ClearBlocks>(ListActionTypes.CLEAR_BLOCKS)
-    .map(() => {
-      return new ClearBlocks();
-    });
+    .pipe(
+      ofType<ClearBlocks>(ListActionTypes.CLEAR_BLOCKS),
+      map(() => {
+        return new ClearBlocks();
+      }),
+    );
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$
-    .ofType<UpdateBlock>(DatePickerActionTypes.UPDATE_BLOCK)
-    .map(action => action.payload)
-    .switchMap((payload) => {
-      if (payload.triggerHooks) {
-        this.datePickerHooksTrigger.blockDidChange(payload.block);
-      }
-      return [new SyncRequired(Date.now())];
-    });
+    .pipe(
+      ofType<UpdateBlock>(DatePickerActionTypes.UPDATE_BLOCK),
+      map(action => action.payload),
+      switchMap((payload) => {
+        if (payload.triggerHooks) {
+          this.datePickerHooksTrigger.blockDidChange(payload.block);
+        }
+        return [new SyncRequired(Date.now())];
+      }),
+    );
 
   ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>): Observable<EffectNotification> {
     return this.actions$
-      .ofType<StartEffects>(B2EffectsActionTypes.START_EFFECTS)
-      .exhaustMap(() => {
-        return resolvedEffects$.takeUntil(
-          this.actions$.ofType<StopEffects>(B2EffectsActionTypes.STOP_EFFECTS));
-      });
+      .pipe(
+        ofType<StartEffects>(B2EffectsActionTypes.START_EFFECTS),
+        exhaustMap(() =>
+          resolvedEffects$.pipe(
+            takeUntil(this.actions$.pipe(ofType<StopEffects>(B2EffectsActionTypes.STOP_EFFECTS))),
+          ),
+        ),
+      );
   }
 }

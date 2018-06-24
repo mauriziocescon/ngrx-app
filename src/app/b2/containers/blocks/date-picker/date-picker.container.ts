@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -35,14 +35,18 @@ export class DatePickerContainerComponent implements BlockComponent {
   constructor(protected datePickerStore: DatePickerStoreService,
               protected translate: TranslateService) {
     this.block$ = this.datePickerStore.getDatePickerEntities()
-      .map((entities: { [id: string]: DatePickerBlock }) => {
-        return this.datePickerBlock = entities[this.blockId];
-      });
+      .pipe(
+        map((entities: { [id: string]: DatePickerBlock }) => {
+          return this.datePickerBlock = entities[this.blockId];
+        }),
+      );
 
     this.loading$ = this.datePickerStore.getDatePickerBlocksLoading()
-      .map((blocksLoading: { [id: string]: boolean }) => {
-        return blocksLoading[this.blockId];
-      });
+      .pipe(
+        map((blocksLoading: { [id: string]: boolean }) => {
+          return blocksLoading[this.blockId];
+        }),
+      );
   }
 
   valueDidChange(value: string): void {

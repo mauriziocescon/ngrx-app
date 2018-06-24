@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { ModalAlert, modalAlertsActions } from '../../../core/core.module';
 
@@ -19,15 +19,15 @@ export class InstanceListStoreService {
   }
 
   getFetchedInstances(): Observable<Instance[] | undefined> {
-    return this.store$.select(fromInstanceList.getFetchedInstancesState);
+    return this.store$.pipe(select(fromInstanceList.getFetchedInstancesState));
   }
 
   getFetchLoading(): Observable<boolean> {
-    return this.store$.select(fromInstanceList.getFetchLoadingState);
+    return this.store$.pipe(select(fromInstanceList.getFetchLoadingState));
   }
 
   getFetchError(): Observable<string | undefined> {
-    return this.store$.select(fromInstanceList.getFetchErrorState);
+    return this.store$.pipe(select(fromInstanceList.getFetchErrorState));
   }
 
   dispatchFetchInstances(params: { textSearch: string }): void {

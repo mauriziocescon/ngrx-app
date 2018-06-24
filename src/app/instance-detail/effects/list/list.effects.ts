@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { Effect, Actions, EffectNotification, OnRunEffects } from '@ngrx/effects';
+import { Effect, Actions, ofType, EffectNotification, OnRunEffects } from '@ngrx/effects';
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { from } from 'rxjs/observable/from';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/exhaustMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/takeUntil';
+import { Observable, of, from } from 'rxjs';
+import {
+  catchError,
+  debounceTime,
+  exhaustMap,
+  map,
+  switchMap,
+  takeUntil,
+} from 'rxjs/operators';
 
 import {
   InstanceDetailEffectsActionTypes,
@@ -40,41 +40,52 @@ export class ListEffects implements OnRunEffects {
   }
 
   @Effect() fetchBlocks$: Observable<Action> = this.actions$
-    .ofType<FetchBlocks>(ListActionTypes.FETCH_BLOCKS)
-    .map(action => action.payload)
-    .switchMap((params) => {
-      return this.blockList.getBlocks(params.module, params.instance, params.step)
-        .switchMap((blocks: Block[]) => {
-          return [new FetchBlocksComplete(blocks)];
-        })
-        .catch(err => of(new FetchBlocksError(err)));
-    });
+    .pipe(
+      ofType<FetchBlocks>(ListActionTypes.FETCH_BLOCKS),
+      map(action => action.payload),
+      switchMap((params) => {
+        return this.blockList.getBlocks(params.module, params.instance, params.step)
+          .pipe(
+            switchMap((blocks: Block[]) => {
+              return [new FetchBlocksComplete(blocks)];
+            }),
+            catchError(err => of(new FetchBlocksError(err))),
+          );
+      }),
+    );
 
   @Effect() syncBlocks$: Observable<Action> = this.actions$
-    .ofType<SyncBlocks>(ListActionTypes.SYNC_BLOCKS)
-    .debounceTime(3000)
-    .map(action => action.payload)
-    .switchMap((payload) => {
-      return this.blockList.syncBlocks(payload.module, payload.instance, payload.step, payload.blocks)
-        .switchMap((blocks: Block[]) => {
-          return [
-            new SyncBlocksComplete(),
-            new Synchronized(),
-            new FetchBlocksComplete(blocks),
-          ];
-        })
-        .catch(err => from([
-          new SyncBlocksError(err),
-          new Synchronized(),
-        ]));
-    });
+    .pipe(
+      ofType<SyncBlocks>(ListActionTypes.SYNC_BLOCKS),
+      debounceTime(3000),
+      map(action => action.payload),
+      switchMap((payload) => {
+        return this.blockList.syncBlocks(payload.module, payload.instance, payload.step, payload.blocks)
+          .pipe(
+            switchMap((blocks: Block[]) => {
+              return [
+                new SyncBlocksComplete(),
+                new Synchronized(),
+                new FetchBlocksComplete(blocks),
+              ];
+            }),
+            catchError(err => from([
+              new SyncBlocksError(err),
+              new Synchronized(),
+            ])),
+          );
+      }),
+    );
 
   ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>): Observable<EffectNotification> {
     return this.actions$
-      .ofType<StartEffects>(InstanceDetailEffectsActionTypes.START_EFFECTS)
-      .exhaustMap(() => {
-        return resolvedEffects$.takeUntil(
-          this.actions$.ofType<StopEffects>(InstanceDetailEffectsActionTypes.STOP_EFFECTS));
-      });
+      .pipe(
+        ofType<StartEffects>(InstanceDetailEffectsActionTypes.START_EFFECTS),
+        exhaustMap(() =>
+          resolvedEffects$.pipe(
+            takeUntil(this.actions$.pipe(ofType<StopEffects>(InstanceDetailEffectsActionTypes.STOP_EFFECTS))),
+          ),
+        ),
+      );
   }
 }

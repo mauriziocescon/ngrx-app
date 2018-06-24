@@ -5,6 +5,7 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
@@ -34,6 +35,7 @@ describe('NavigationBarContainerComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
+        NgbModule.forRoot(),
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

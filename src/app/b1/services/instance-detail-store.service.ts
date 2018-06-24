@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { Block, IInstanceDetailStore } from '../../instance-detail/instance-detail.module';
 
@@ -28,10 +28,10 @@ export class B1InstanceDetailStoreService implements IInstanceDetailStore {
   }
 
   getAllEditedBlocksSelector(): Observable<Block[]> {
-    return this.store$.select(fromB1.getAllEditedBlocksState);
+    return this.store$.pipe(select(fromB1.getAllEditedBlocksState));
   }
 
   getValiditySelector(): Observable<boolean> {
-    return this.store$.select(fromB1.getAllEditedBlocksValidityState);
+    return this.store$.pipe(select(fromB1.getAllEditedBlocksValidityState));
   }
 }

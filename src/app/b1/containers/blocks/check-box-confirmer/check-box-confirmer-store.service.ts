@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { ModalConfirmer, ModalConfirmerResultType, modalConfirmersActions } from '../../../../core/core.module';
 
@@ -20,19 +20,19 @@ export class CheckBoxConfirmerStoreService {
   }
 
   getAllCheckBoxConfirmer(): Observable<CheckBoxConfirmerBlock[]> {
-    return this.store$.select(fromB1Blocks.getAllCheckBoxConfirmer);
+    return this.store$.pipe(select(fromB1Blocks.getAllCheckBoxConfirmer));
   }
 
   getCheckBoxConfirmerEntities(): Observable<{ [id: string]: CheckBoxConfirmerBlock }> {
-    return this.store$.select(fromB1Blocks.getCheckBoxConfirmerEntities);
+    return this.store$.pipe(select(fromB1Blocks.getCheckBoxConfirmerEntities));
   }
 
   getCheckBoxConfirmerBlocksLoading(): Observable<{ [id: string]: boolean }> {
-    return this.store$.select(fromB1Blocks.getCheckBoxConfirmerBlocksLoadingState);
+    return this.store$.pipe(select(fromB1Blocks.getCheckBoxConfirmerBlocksLoadingState));
   }
 
   getModalConfirmerResults(): Observable<{ [id: string]: ModalConfirmerResultType | undefined }> {
-    return this.store$.select(fromRoot.getModalConfirmerResults);
+    return this.store$.pipe(select(fromRoot.getModalConfirmerResults));
   }
 
   dispatchShowModalConfirmer(modalConfirmer: ModalConfirmer): void {

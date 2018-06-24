@@ -75,6 +75,7 @@ describe('TabsContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TabsContainerComponent);
     component = fixture.componentInstance;
+    component.instanceParams = { module: '', instance: '', step: '' };
     fixture.detectChanges();
   });
 

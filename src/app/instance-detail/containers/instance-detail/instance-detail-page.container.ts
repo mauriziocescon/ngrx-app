@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { InstanceParams } from '../../models';
 
@@ -53,7 +53,9 @@ export class InstanceDetailPageComponent implements OnInit, OnDestroy {
 
   canDeactivate(): Observable<boolean> {
     return this.instanceDetailPageStore.isSynchronizationRequired()
-      .map(requireSync => !requireSync);
+      .pipe(
+        map(requireSync => !requireSync),
+      );
   }
 
   ngOnDestroy(): void {

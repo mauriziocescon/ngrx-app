@@ -11,7 +11,7 @@ describe('angular App', () => {
   it('should display title saying Demo', () => {
     page.navigateTo();
     browser.getTitle().then((title: string) => {
-      expect(title).toEqual('Demo');
+      expect(title).toEqual('NgrxApp');
     });
   });
 });

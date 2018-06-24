@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { AppConstantsService } from '../../../core/core.module';
 
@@ -32,15 +32,15 @@ export class InstanceDetailStoreService implements IInstanceDetailStore {
   }
 
   isSynchronizationRequired(): Observable<boolean> {
-    return this.store$.select(fromInstanceDetail.isSynchronizationRequiredState);
+    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequiredState));
   }
 
   getAllEditedBlocksSelector(): Observable<Block[]> {
-    return this.store$.select(fromInstanceDetail.getAllEditedBlocksState);
+    return this.store$.pipe(select(fromInstanceDetail.getAllEditedBlocksState));
   }
 
   getValiditySelector(): Observable<boolean> {
-    return this.store$.select(fromInstanceDetail.getAllEditedBlocksValidityState);
+    return this.store$.pipe(select(fromInstanceDetail.getAllEditedBlocksValidityState));
   }
 
   dispatchClearBlocks(): void {

@@ -1,8 +1,8 @@
 import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/debounceTime';
+import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import { NGXLogger } from 'ngx-logger';
 
@@ -67,7 +67,9 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
 
     this.dropdownControlSubscription = this.dropdownControl
       .valueChanges
-      .debounceTime(500)
+      .pipe(
+        debounceTime(500),
+      )
       .subscribe((value: string) => {
           this.valueDidChange.emit(value);
         },

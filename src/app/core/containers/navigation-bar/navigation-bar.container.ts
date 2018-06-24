@@ -1,8 +1,8 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import * as fromCore from '../../reducers';
 
@@ -27,7 +27,7 @@ export class NavigationBarContainerComponent {
               protected router: Router,
               protected appLanguage: AppLanguageService) {
     this.languages = this.appLanguage.getSupportedLanguagesList();
-    this.language$ = this.store$.select(fromCore.getLanguageState);
+    this.language$ = this.store$.pipe(select(fromCore.getLanguageState));
   }
 
   selectLanguage(language: string): void {

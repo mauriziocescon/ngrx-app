@@ -20,7 +20,7 @@ export class Loading implements Action {
 export class AddBlocks implements Action {
   readonly type = DatePickerActionTypes.ADD_BLOCKS;
 
-  constructor(public payload: Update<DatePickerBlock>[]) {
+  constructor(public payload: DatePickerBlock[]) {
   }
 }
 

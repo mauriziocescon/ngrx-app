@@ -1,8 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, OnDestroy } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/map';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -44,14 +43,18 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnDe
   constructor(protected checkBoxConfirmerStore: CheckBoxConfirmerStoreService,
               protected translate: TranslateService) {
     this.block$ = this.checkBoxConfirmerStore.getCheckBoxConfirmerEntities()
-      .map((entities: { [id: string]: CheckBoxConfirmerBlock }) => {
-        return this.checkBoxConfirmerBlock = entities[this.blockId];
-      });
+      .pipe(
+        map((entities: { [id: string]: CheckBoxConfirmerBlock }) => {
+          return this.checkBoxConfirmerBlock = entities[this.blockId];
+        }),
+      );
 
     this.loading$ = this.checkBoxConfirmerStore.getCheckBoxConfirmerBlocksLoading()
-      .map((blocksLoading: { [id: string]: boolean }) => {
-        return blocksLoading[this.blockId];
-      });
+      .pipe(
+        map((blocksLoading: { [id: string]: boolean }) => {
+          return blocksLoading[this.blockId];
+        }),
+      );
 
     this.modalConfirmerResults$ = this.checkBoxConfirmerStore.getModalConfirmerResults();
   }

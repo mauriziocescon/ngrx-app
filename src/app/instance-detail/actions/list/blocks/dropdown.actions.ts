@@ -20,7 +20,7 @@ export class Loading implements Action {
 export class AddBlocks implements Action {
   readonly type = DropdownActionTypes.ADD_BLOCKS;
 
-  constructor(public payload: Update<DropdownBlock>[]) {
+  constructor(public payload: DropdownBlock[]) {
   }
 }
 

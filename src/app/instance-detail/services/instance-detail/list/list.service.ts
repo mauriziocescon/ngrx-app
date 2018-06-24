@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import { Observable, throwError } from 'rxjs';
+import {
+  catchError,
+  map,
+} from 'rxjs/operators';
 
 import { AppConstantsService } from '../../../../core/core.module';
 
@@ -28,10 +29,12 @@ export class BlockListService {
 
     return this.http
       .get<Block[]>(this.appConstants.Api.blocks, options)
-      .map(data => data.sort((a: Block, b: Block) => {
-        return a.order - b.order;
-      }))
-      .catch((err: HttpErrorResponse) => this.handleError(err));
+      .pipe(
+        map(data => data.sort((a: Block, b: Block) => {
+          return a.order - b.order;
+        })),
+        catchError((err: HttpErrorResponse) => this.handleError(err)),
+      );
   }
 
   syncBlocks(module: string, instance: string, step: string, blocks: Block[]): Observable<Block[]> {
@@ -44,17 +47,21 @@ export class BlockListService {
 
     return this.http
       .post<Block[]>(this.appConstants.Api.blocks, body)
-      .map(data => data)
-      .catch((err: HttpErrorResponse) => this.handleError(err));
+      .pipe(
+        map(data => data.sort((a: Block, b: Block) => {
+          return a.order - b.order;
+        })),
+        catchError((err: HttpErrorResponse) => this.handleError(err)),
+      );
   }
 
-  protected handleError(err: HttpErrorResponse) {
+  protected handleError(err: HttpErrorResponse): Observable<never> {
     if (err.error instanceof ErrorEvent) {
       // A client-side or network error occurred
-      return new ErrorObservable(err.error.message);
+      return throwError(err.error.message);
     } else {
       // The backend returned an unsuccessful response code.
-      return new ErrorObservable(`Code ${err.status}, body: ${err.message}` || 'Server error');
+      return throwError(`Code ${err.status}, body: ${err.message}` || 'Server error');
     }
   }
 }

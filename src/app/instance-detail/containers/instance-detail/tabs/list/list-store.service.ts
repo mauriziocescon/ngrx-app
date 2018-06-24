@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { ModalAlert, modalAlertsActions } from '../../../../../core/core.module';
 
@@ -18,15 +18,15 @@ export class ListStoreService {
   }
 
   getFetchedBlocks(): Observable<Block[] | undefined> {
-    return this.store$.select(fromInstanceDetail.getFetchedBlocksState);
+    return this.store$.pipe(select(fromInstanceDetail.getFetchedBlocksState));
   }
 
   getFetchLoading(): Observable<boolean> {
-    return this.store$.select(fromInstanceDetail.getFetchLoadingState);
+    return this.store$.pipe(select(fromInstanceDetail.getFetchLoadingState));
   }
 
   getFetchError(): Observable<string | undefined> {
-    return this.store$.select(fromInstanceDetail.getFetchErrorState);
+    return this.store$.pipe(select(fromInstanceDetail.getFetchErrorState));
   }
 
   dispatchShowModalAlert(modalAlert: ModalAlert): void {

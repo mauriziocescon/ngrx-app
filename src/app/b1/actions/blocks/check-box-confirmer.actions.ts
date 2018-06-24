@@ -20,7 +20,7 @@ export class Loading implements Action {
 export class AddBlocks implements Action {
   readonly type = CheckBoxConfirmerActionTypes.ADD_BLOCKS;
 
-  constructor(public payload: Update<CheckBoxConfirmerBlock>[]) {
+  constructor(public payload: CheckBoxConfirmerBlock[]) {
   }
 }
 

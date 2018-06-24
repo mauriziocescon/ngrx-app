@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import * as datePicker from '../../../actions/blocks/date-picker.actions';
 
@@ -17,15 +17,15 @@ export class DatePickerStoreService {
   }
 
   getAllDatePicker(): Observable<DatePickerBlock[]> {
-    return this.store$.select(fromB2Blocks.getAllDatePicker);
+    return this.store$.pipe(select(fromB2Blocks.getAllDatePicker));
   }
 
   getDatePickerEntities(): Observable<{ [id: string]: DatePickerBlock }> {
-    return this.store$.select(fromB2Blocks.getDatePickerEntities);
+    return this.store$.pipe(select(fromB2Blocks.getDatePickerEntities));
   }
 
   getDatePickerBlocksLoading(): Observable<{ [id: string]: boolean }> {
-    return this.store$.select(fromB2Blocks.getDatePickerBlocksLoadingState);
+    return this.store$.pipe(select(fromB2Blocks.getDatePickerBlocksLoadingState));
   }
 
   dispatchUpdateBlock(block: { block: Update<DatePickerBlock>, triggerHooks: boolean }): void {

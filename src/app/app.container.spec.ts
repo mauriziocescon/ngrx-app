@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
@@ -26,6 +27,7 @@ describe('AppContainerComponent', () => {
       imports: [
         HttpClientModule,
         RouterTestingModule,
+        NgbModule.forRoot(),
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

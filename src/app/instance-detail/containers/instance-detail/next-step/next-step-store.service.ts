@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { ModalAlert, modalAlertsActions } from '../../../../core/core.module';
 
@@ -19,15 +19,15 @@ export class NextStepStoreService {
   }
 
   getSyncRequired(): Observable<boolean> {
-    return this.store$.select(fromInstanceDetail.isSynchronizationRequiredState);
+    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequiredState));
   }
 
   getSyncRequiredWithTimestamp(): Observable<{ syncRequired: boolean, timestamp: number | undefined }> {
-    return this.store$.select(fromInstanceDetail.isSynchronizationRequiredWithTimestampState);
+    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequiredWithTimestampState));
   }
 
   getUpdateError(): Observable<string | undefined> {
-    return this.store$.select(fromInstanceDetail.getSyncErrorState);
+    return this.store$.pipe(select(fromInstanceDetail.getSyncErrorState));
   }
 
   dispatchShowModalAlert(modalAlert: ModalAlert): void {
