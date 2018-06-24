@@ -4,7 +4,7 @@ const app = jsonServer.create();
 const dbUrl = require('./db/constants').dbUrl;
 const router = jsonServer.router(dbUrl);
 const middlewares = jsonServer.defaults({
-  static: 'dist',
+  static: './dist/ngrx-app',
 });
 
 const delayMiddleware = require('./middlewares/delay');
