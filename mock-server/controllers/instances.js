@@ -1,8 +1,10 @@
-const db = require('../db/db.json');
+const lowdb = require('../lowdb');
 
 exports.getInstances = (req, res) => {
-  const instances = db.instances;
-  const lightInstances = instances
+  const db = lowdb.getDb();
+  const textSearch = req.query.textSearch;
+
+  const lightInstances = db.get('instances')
     .map((instance) => {
       return {
         id: instance.id,
@@ -12,7 +14,9 @@ exports.getInstances = (req, res) => {
       };
     })
     .filter((instance) => {
-      return req.query.textSearch === '' || JSON.stringify(instance).includes(req.query.textSearch);
-    });
+      return textSearch === '' || JSON.stringify(instance).includes(textSearch);
+    })
+    .value();
+
   return res.status(200).jsonp(lightInstances);
 };
