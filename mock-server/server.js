@@ -16,7 +16,7 @@ const rules = require('./controllers/rules');
 
 // set the port of our application
 // process.env.PORT lets the port to be set by Heroku
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 // Middlewares
 app.use(middlewares);
@@ -37,7 +37,7 @@ app.use('/api', router);
 // Fallback on frontend routes
 app.get('*', (req, res) => {
   // load index.html (frontend will handle page changes)
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
+  res.sendFile(path.join(__dirname, '../dist/ngrx-app/index.html'));
 });
 
 // Start listening
