@@ -55,6 +55,13 @@ function main() {
     }
     data.instances.push(instance);
 
+    // module b4
+    instance = {id: '6', module: 'b4', instance: faker.random.uuid(), step: '1', blocks: []};
+    for (let i = 0; i < numberOfBlocks; i++) {
+      instance.blocks.push(dataCreator.getRandomBlock(i));
+    }
+    data.instances.push(instance);
+
     // rules config
     data.rulesConfig.push({module: 'b1', steps: [{step: '1', rules: 'rules1'}, {step: '2', rules: 'rules2'}]});
     data.rulesConfig.push({module: 'b2', steps: [{step: '1', rules: 'rules1'}, {step: '2', rules: 'rules2'}]});

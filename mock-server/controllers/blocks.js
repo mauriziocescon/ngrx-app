@@ -36,7 +36,9 @@ exports.saveBlocks = (req, res) => {
     });
 
     // todo: refactor
-    // blocks = blocksValidation.validate(blocks);
+    if (foundInstance.id === '6') {
+      blocks = blocksValidation.validate(blocks);
+    }
 
     db.get('instances')
       .find({module: module, instance: instance, step: step})
