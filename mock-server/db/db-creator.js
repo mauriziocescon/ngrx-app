@@ -23,40 +23,40 @@ function main() {
     let instance;
 
     // module b1
-    instance = {id: faker.random.uuid(), module: 'b1', instance: 'ist1', step: '1', blocks: []};
+    instance = {id: faker.random.uuid(), module: 'b1', instance: 'inst-1', step: '1', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomB1Block(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), module: 'b1', instance: 'ist1', step: '2', blocks: []};
+    instance = {id: faker.random.uuid(), module: 'b1', instance: 'inst-1', step: '2', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomB1Block(i));
     }
     data.instances.push(instance);
 
     // module b2
-    instance = {id: faker.random.uuid(), module: 'b2', instance: 'ist1', step: '1', blocks: []};
+    instance = {id: faker.random.uuid(), module: 'b2', instance: 'inst-2', step: '1', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomB2Block(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), module: 'b2', instance: 'ist1', step: '2', blocks: []};
+    instance = {id: faker.random.uuid(), module: 'b2', instance: 'inst-2', step: '2', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomB2Block(i));
     }
     data.instances.push(instance);
 
     // module b3
-    instance = {id: faker.random.uuid(), module: 'b3', instance: 'ist1', step: '1', blocks: []};
+    instance = {id: faker.random.uuid(), module: 'b3', instance: 'inst-3', step: '1', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
     // module b4
-    instance = {id: '6', module: 'b4', instance: 'ist1', step: '1', blocks: []};
+    instance = {id: '6', module: 'b4', instance: 'inst-4', step: '1', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
