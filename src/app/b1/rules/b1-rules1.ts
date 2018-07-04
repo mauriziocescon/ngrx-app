@@ -68,18 +68,18 @@ export const checkBoxBlockDidChange = (checkBoxBlock: CheckBoxBlock, blockAction
 
   // change first textInput params
   const firstTextInputBlock = utilities.arrayOfTextInputBlocksFromBlocksObject(blocks)[0];
-  const textInputBlockIndex = firstTextInputBlock ? firstTextInputBlock.id : undefined;
-  if (checkBoxBlock.value === true && textInputBlockIndex) {
-    blockActions.textInput.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, textInputBlockIndex);
-    blockActions.textInput.setRequiredForBlockId(true, textInputBlockIndex);
-    blockActions.textInput.setMaxLengthForBlockId(20, textInputBlockIndex);
+  const textInputBlockId = firstTextInputBlock ? firstTextInputBlock.id : undefined;
+  if (checkBoxBlock.value === true && textInputBlockId) {
+    blockActions.textInput.setValueForBlockId(`When checkbox is true, reset to ${new Date().getTime()}`, textInputBlockId);
+    blockActions.textInput.setRequiredForBlockId(true, textInputBlockId);
+    blockActions.textInput.setMaxLengthForBlockId(160, textInputBlockId);
   }
 
   // change first dropdown params
   const firstDropdownBlock = utilities.arrayOfDropdownBlocksFromBlocksObject(blocks)[0];
-  const dropdownBlockIndex = firstDropdownBlock ? firstDropdownBlock.id : undefined;
-  if (dropdownBlockIndex !== undefined) {
-    blockActions.dropdown.setDisabledForBlockId(checkBoxBlock.value === false, dropdownBlockIndex);
+  const dropdownBlockId = firstDropdownBlock ? firstDropdownBlock.id : undefined;
+  if (dropdownBlockId !== undefined) {
+    blockActions.dropdown.setDisabledForBlockId(checkBoxBlock.value === false, dropdownBlockId);
   }
 };
 
