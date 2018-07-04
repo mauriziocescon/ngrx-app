@@ -14,7 +14,7 @@ exports.getInstances = (req, res) => {
       };
     })
     .filter((instance) => {
-      return textSearch === '' || JSON.stringify(instance).includes(textSearch);
+      return textSearch === undefined || textSearch === '' || JSON.stringify(instance).includes(textSearch);
     })
     .value();
 

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { AppConstantsService } from '../../core.module';
+import { AppConstantsService } from '../../services/app-constants.service';
 
 @Component({
   selector: 'cp-navigation-bar',
