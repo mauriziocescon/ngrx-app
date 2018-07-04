@@ -10,6 +10,9 @@ export class Api {
 
 export class Application {
   APP_NAME = 'demo';
+  SHOW_JSON_SERVER_API = !environment.production;
+  JSON_SERVER_API_URL = environment.apiUrl;
+
   INSTANCE_DETAIL_MODULE = 'instance_detail_module';
 }
 

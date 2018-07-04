@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
+import { AppConstantsService } from '../../core.module';
+
 @Component({
   selector: 'cp-navigation-bar',
   templateUrl: './navigation-bar.component.html',
@@ -13,10 +15,14 @@ export class NavigationBarComponent {
 
   isCollapsed: boolean;
 
-  constructor() {
+  constructor(protected appConstants: AppConstantsService,) {
     this.languageDidChange = new EventEmitter<string>();
     this.navigationDidChange = new EventEmitter<{ path: string }>();
     this.isCollapsed = true;
+  }
+
+  get canOpenJsonServer(): boolean {
+    return this.appConstants.Application.SHOW_JSON_SERVER_API === true;
   }
 
   selectLanguage(language: string): void {
@@ -25,5 +31,9 @@ export class NavigationBarComponent {
 
   goToInstanceList(): void {
     this.navigationDidChange.emit({ path: '/instance-list' });
+  }
+
+  openJsonServer(): void {
+    window.open(this.appConstants.Application.JSON_SERVER_API_URL);
   }
 }
