@@ -26,13 +26,10 @@ import {
 
 import { Block, BlockType, TextInputBlock } from '../../../models';
 
-import { TextInputHooksTriggerService } from '../../../services';
-
 @Injectable()
 export class TextInputEffect implements OnRunEffects {
 
-  constructor(protected actions$: Actions,
-              protected textInputHooksTrigger: TextInputHooksTriggerService) {
+  constructor(protected actions$: Actions) {
   }
 
   @Effect() blockAvailable$: Observable<Action> = this.actions$
@@ -62,11 +59,7 @@ export class TextInputEffect implements OnRunEffects {
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .pipe(
       ofType<UpdateBlock>(TextInputActionTypes.UPDATE_BLOCK),
-      map(action => action.payload),
-      switchMap((payload) => {
-        if (payload.triggerHooks) {
-          this.textInputHooksTrigger.blockDidChange(payload.block);
-        }
+      switchMap(() => {
         return [new SyncRequired(Date.now())];
       }),
     );

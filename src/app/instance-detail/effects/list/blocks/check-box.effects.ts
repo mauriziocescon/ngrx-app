@@ -26,13 +26,10 @@ import {
 
 import { Block, BlockType, CheckBoxBlock } from '../../../models';
 
-import { CheckBoxHooksTriggerService } from '../../../services';
-
 @Injectable()
 export class CheckBoxEffect implements OnRunEffects {
 
-  constructor(protected actions$: Actions,
-              protected checkBoxHooksTrigger: CheckBoxHooksTriggerService) {
+  constructor(protected actions$: Actions) {
   }
 
   @Effect() blockAvailable$: Observable<Action> = this.actions$
@@ -62,11 +59,7 @@ export class CheckBoxEffect implements OnRunEffects {
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .pipe(
       ofType<UpdateBlock>(CheckBoxActionTypes.UPDATE_BLOCK),
-      map(action => action.payload),
-      switchMap((payload) => {
-        if (payload.triggerHooks) {
-          this.checkBoxHooksTrigger.blockDidChange(payload.block);
-        }
+      switchMap(() => {
         return [new SyncRequired(Date.now())];
       }),
     );

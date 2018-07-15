@@ -63,9 +63,9 @@ function main() {
     data.instances.push(instance);
 
     // rules config
-    data.rulesConfig.push({module: 'b1', steps: [{step: '1', rules: 'rules1'}, {step: '2', rules: 'rules2'}]});
-    data.rulesConfig.push({module: 'b2', steps: [{step: '1', rules: 'rules1'}, {step: '2', rules: 'rules2'}]});
-    data.rulesConfig.push({module: 'b3', steps: [{step: '1', rules: 'rules1'}]});
+    // data.rulesConfig.push({module: 'b1', steps: [{step: '1', rules: 'rules1'}, {step: '2', rules: 'rules2'}]});
+    // data.rulesConfig.push({module: 'b2', steps: [{step: '1', rules: 'rules1'}, {step: '2', rules: 'rules2'}]});
+    // data.rulesConfig.push({module: 'b3', steps: [{step: '1', rules: 'rules1'}]});
 
     utils.saveDb(dbUrl, data, (err) => {
       if (err) {

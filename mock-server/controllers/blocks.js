@@ -35,10 +35,7 @@ exports.saveBlocks = (req, res) => {
       return b1.order - b2.order;
     });
 
-    // todo: refactor
-    if (foundInstance.id === '6') {
-      blocks = blocksValidation.validate(blocks);
-    }
+    blocks = blocksValidation.validate(blocks);
 
     db.get('instances')
       .find({module: module, instance: instance, step: step})

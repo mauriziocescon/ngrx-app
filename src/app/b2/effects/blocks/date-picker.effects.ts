@@ -27,13 +27,10 @@ import {
 
 import { B2BlockType, DatePickerBlock } from '../../models';
 
-import { B2DatePickerHooksTriggerService } from '../../services';
-
 @Injectable()
 export class DatePickerEffects implements OnRunEffects {
 
-  constructor(protected actions$: Actions,
-              protected datePickerHooksTrigger: B2DatePickerHooksTriggerService) {
+  constructor(protected actions$: Actions) {
   }
 
   @Effect() blockAvailable$: Observable<Action> = this.actions$
@@ -63,11 +60,7 @@ export class DatePickerEffects implements OnRunEffects {
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .pipe(
       ofType<UpdateBlock>(DatePickerActionTypes.UPDATE_BLOCK),
-      map(action => action.payload),
-      switchMap((payload) => {
-        if (payload.triggerHooks) {
-          this.datePickerHooksTrigger.blockDidChange(payload.block);
-        }
+      switchMap(() => {
         return [new SyncRequired(Date.now())];
       }),
     );

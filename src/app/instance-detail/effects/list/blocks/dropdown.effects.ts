@@ -26,13 +26,10 @@ import {
 
 import { Block, BlockType, DropdownBlock } from '../../../models';
 
-import { DropdownHooksTriggerService } from '../../../services';
-
 @Injectable()
 export class DropdownEffect implements OnRunEffects {
 
-  constructor(protected actions$: Actions,
-              protected dropdownHooksTrigger: DropdownHooksTriggerService) {
+  constructor(protected actions$: Actions) {
   }
 
   @Effect() blockAvailable$: Observable<Action> = this.actions$
@@ -62,11 +59,7 @@ export class DropdownEffect implements OnRunEffects {
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .pipe(
       ofType<UpdateBlock>(DropdownActionTypes.UPDATE_BLOCK),
-      map(action => action.payload),
-      switchMap((payload) => {
-        if (payload.triggerHooks) {
-          this.dropdownHooksTrigger.blockDidChange(payload.block);
-        }
+      switchMap(() => {
         return [new SyncRequired(Date.now())];
       }),
     );
