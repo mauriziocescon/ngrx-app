@@ -31,7 +31,7 @@ export function reducer(state = initialState, action: TextInputActions): State {
       };
     }
     case TextInputActionTypes.ADD_BLOCKS: {
-      return adapter.addMany(action.payload, state);
+      return adapter.upsertMany(action.payload, state);
     }
     case TextInputActionTypes.UPDATE_BLOCK: {
       const textInputBlock = state.entities[action.payload.block.id];
