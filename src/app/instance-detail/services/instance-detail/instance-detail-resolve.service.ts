@@ -12,7 +12,6 @@ import { NGXLogger } from 'ngx-logger';
 import { AppConstantsService, ModalAlert, modalAlertsActions } from '../../../core/core.module';
 
 import { InstanceParamsService } from './instance-params.service';
-import { BlockHooksIntegrationService } from '../integration';
 
 @Injectable()
 export class RulesResolve implements Resolve<string> {
@@ -24,8 +23,7 @@ export class RulesResolve implements Resolve<string> {
               protected translate: TranslateService,
               protected logger: NGXLogger,
               protected appConstants: AppConstantsService,
-              protected instanceParams: InstanceParamsService,
-              protected blockHooks: BlockHooksIntegrationService) {
+              protected instanceParams: InstanceParamsService) {
     this.alertId = '1';
   }
 
@@ -56,7 +54,6 @@ export class RulesResolve implements Resolve<string> {
     return this.http.get<string>(url, options)
       .pipe(
         switchMap((config: string) => {
-          this.blockHooks.setConfig(config);
           return config;
         }),
         catchError((err: HttpErrorResponse) => {

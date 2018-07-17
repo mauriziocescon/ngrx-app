@@ -8,7 +8,6 @@ import { InstanceParams } from '../../models';
 import { InstanceParamsService } from '../../services';
 import {
   InstanceDetailIntegrationStoreService,
-  BlockHooksIntegrationService,
 } from '../../services';
 
 import { InstanceDetailPageStoreService } from './instance-detail-page-store.service';
@@ -42,8 +41,7 @@ export class InstanceDetailPageComponent implements OnInit, OnDestroy {
 
   constructor(protected instanceDetailPageStore: InstanceDetailPageStoreService,
               protected instanceDetailStore: InstanceDetailIntegrationStoreService,
-              protected instanceParams: InstanceParamsService,
-              protected blockHooks: BlockHooksIntegrationService) {
+              protected instanceParams: InstanceParamsService) {
   }
 
   ngOnInit(): void {
@@ -60,7 +58,6 @@ export class InstanceDetailPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.instanceDetailPageStore.dispatchClearBlocks();
-    this.blockHooks.unsubscribeAll();
     this.instanceDetailStore.dispatchStopEffects();
   }
 }
