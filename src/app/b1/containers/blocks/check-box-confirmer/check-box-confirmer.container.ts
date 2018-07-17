@@ -95,22 +95,14 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnDe
   protected askForConfirmation(): void {
     this.subscribeToModalConfirmerResult();
 
-    this.translate.get([
-      'CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE',
-      'CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON',
-      'CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE',
-      'CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON',
-    ])
-      .subscribe((translations: any) => {
-        const modalConfirmer: ModalConfirmer = {
-          id: this.blockId,
-          title: translations['CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE'],
-          message: translations['CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE'],
-          yesButtonLabel: translations['CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON'],
-          noButtonLabel: translations['CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON'],
-        };
-        this.checkBoxConfirmerStore.dispatchShowModalConfirmer(modalConfirmer);
-      });
+    const modalConfirmer: ModalConfirmer = {
+      id: this.blockId,
+      title: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE'),
+      message: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE'),
+      yesButtonLabel: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON'),
+      noButtonLabel: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON'),
+    };
+    this.checkBoxConfirmerStore.dispatchShowModalConfirmer(modalConfirmer);
   }
 
   protected subscribeToModalConfirmerResult(): void {

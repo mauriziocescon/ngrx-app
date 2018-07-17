@@ -87,19 +87,13 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
     this.modalAlertSyncErrorSubscription = this.syncError$
       .subscribe((err) => {
         if (err) {
-          this.translate.get([
-            'CONTAINER.NEXT_STEP.ALERT_BUTTON',
-            'CONTAINER.NEXT_STEP.ALERT_TITLE',
-          ])
-            .subscribe((translations: any) => {
-              const modalAlert: ModalAlert = {
-                id: this.mAlertSyncErrorId,
-                title: translations['CONTAINER.NEXT_STEP.ALERT_TITLE'],
-                message: err,
-                buttonLabel: translations['CONTAINER.NEXT_STEP.ALERT_BUTTON'],
-              };
-              this.nextStepStore.dispatchShowModalAlert(modalAlert);
-            });
+          const modalAlert: ModalAlert = {
+            id: this.mAlertSyncErrorId,
+            title: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_TITLE'),
+            message: err,
+            buttonLabel: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_BUTTON'),
+          };
+          this.nextStepStore.dispatchShowModalAlert(modalAlert);
         }
       });
   }

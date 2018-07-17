@@ -61,19 +61,13 @@ export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
     this.modalAlertFetchErrorSubscription = this.fetchError$
       .subscribe((err) => {
         if (err) {
-          this.translate.get([
-            'CONTAINER.LIST.ALERT_BUTTON',
-            'CONTAINER.LIST.ALERT_TITLE',
-          ])
-            .subscribe((translations: any) => {
-              const modalAlert: ModalAlert = {
-                id: this.mAlertFetchErrorId,
-                title: translations['CONTAINER.LIST.ALERT_TITLE'],
-                message: err,
-                buttonLabel: translations['CONTAINER.LIST.ALERT_BUTTON'],
-              };
-              this.listStore.dispatchShowModalAlert(modalAlert);
-            });
+          const modalAlert: ModalAlert = {
+            id: this.mAlertFetchErrorId,
+            title: this.translate.instant('CONTAINER.LIST.ALERT_TITLE'),
+            message: err,
+            buttonLabel: this.translate.instant('CONTAINER.LIST.ALERT_BUTTON'),
+          };
+          this.listStore.dispatchShowModalAlert(modalAlert);
         }
       });
   }
