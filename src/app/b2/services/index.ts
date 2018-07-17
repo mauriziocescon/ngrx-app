@@ -5,8 +5,6 @@ import { B2InstanceDetailStoreService } from './instance-detail-store.service';
 
 import { B2DatePickerActionsService } from './blocks/date-picker/date-picker-actions.service';
 
-import { B2DatePickerHooksTriggerService } from './blocks/date-picker/date-picker-hooks-trigger.service';
-
 import {
   BLOCK_ACTIONS_TOKEN,
   BLOCK_HOOKS_TOKEN,
@@ -21,10 +19,4 @@ export const SERVICES = [
   { provide: INSTANCE_DETAIL_STORE_TOKEN, useClass: B2InstanceDetailStoreService, multi: true },
 
   B2DatePickerActionsService,
-
-  B2DatePickerHooksTriggerService,
 ];
-
-export {
-  B2DatePickerHooksTriggerService,
-};

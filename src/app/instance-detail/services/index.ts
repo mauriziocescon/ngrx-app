@@ -12,10 +12,6 @@ import { CheckBoxActionsService } from './instance-detail/list/blocks/check-box/
 import { DropdownActionsService } from './instance-detail/list/blocks/dropdown/dropdown-actions.service';
 import { TextInputActionsService } from './instance-detail/list/blocks/text-input/text-input-actions.service';
 
-import { CheckBoxHooksTriggerService } from './instance-detail/list/blocks/check-box/check-box-hooks-trigger.service';
-import { DropdownHooksTriggerService } from './instance-detail/list/blocks/dropdown/dropdown-hooks-trigger.service';
-import { TextInputHooksTriggerService } from './instance-detail/list/blocks/text-input/text-input-hooks-trigger.service';
-
 import {
   INTEGRATION_SERVICES,
   BlockActionsIntegrationService,
@@ -46,10 +42,6 @@ export const SERVICES = [
   DropdownActionsService,
   TextInputActionsService,
 
-  CheckBoxHooksTriggerService,
-  DropdownHooksTriggerService,
-  TextInputHooksTriggerService,
-
   INTEGRATION_SERVICES,
 ];
 
@@ -59,10 +51,6 @@ export {
   InstanceParamsService,
 
   BlockListService,
-
-  CheckBoxHooksTriggerService,
-  DropdownHooksTriggerService,
-  TextInputHooksTriggerService,
 
   BlockActionsIntegrationService,
   BlockHooksIntegrationService,

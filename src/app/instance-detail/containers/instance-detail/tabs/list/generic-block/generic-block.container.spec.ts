@@ -17,9 +17,6 @@ import {
   InstanceParamsService,
   BlockListService,
   BlockUtilsIntegrationService,
-  CheckBoxHooksTriggerService,
-  DropdownHooksTriggerService,
-  TextInputHooksTriggerService,
 } from '../../../../../services';
 
 import { BlockUtilsService } from '../../../../../services/instance-detail/list/block-utils.service';
@@ -69,9 +66,6 @@ describe('GenericBlockContainerComponent', () => {
         InstanceParamsService,
         BlockListService,
         { provide: BlockUtilsIntegrationService, useValue: BlockUtilsService },
-        CheckBoxHooksTriggerService,
-        DropdownHooksTriggerService,
-        TextInputHooksTriggerService,
       ],
     })
       .overrideModule(BrowserDynamicTestingModule, {

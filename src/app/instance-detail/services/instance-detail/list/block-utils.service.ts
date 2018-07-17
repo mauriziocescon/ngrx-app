@@ -10,25 +10,15 @@ import { UnknownComponent } from '../../../components';
 import {
   Block,
   BlockType,
-  CheckBoxBlock,
-  DropdownBlock,
-  TextInputBlock,
 } from '../../../models';
 
 import { IBlockUtils } from '../../../tokens';
-
-import { CheckBoxHooksTriggerService } from './blocks/check-box/check-box-hooks-trigger.service';
-import { DropdownHooksTriggerService } from './blocks/dropdown/dropdown-hooks-trigger.service';
-import { TextInputHooksTriggerService } from './blocks/text-input/text-input-hooks-trigger.service';
 
 @Injectable()
 export class BlockUtilsService implements IBlockUtils {
   module: string;
 
-  constructor(protected appConstants: AppConstantsService,
-              protected checkBoxHooksTrigger: CheckBoxHooksTriggerService,
-              protected dropdownHooksTrigger: DropdownHooksTriggerService,
-              protected textInputHooksTrigger: TextInputHooksTriggerService) {
+  constructor(protected appConstants: AppConstantsService) {
     this.module = this.appConstants.Application.INSTANCE_DETAIL_MODULE;
   }
 
@@ -52,18 +42,12 @@ export class BlockUtilsService implements IBlockUtils {
   triggerComponentDidLoad(block: Block): boolean {
     switch (block.type) {
       case BlockType.CheckBox: {
-        const checkBoxBlock = block as CheckBoxBlock;
-        this.checkBoxHooksTrigger.blockDidload(checkBoxBlock);
         return true;
       }
       case BlockType.Dropdown: {
-        const dropdownBlock = block as DropdownBlock;
-        this.dropdownHooksTrigger.blockDidload(dropdownBlock);
         return true;
       }
       case BlockType.TextInput: {
-        const textInputBlock = block as TextInputBlock;
-        this.textInputHooksTrigger.blockDidload(textInputBlock);
         return true;
       }
       default: {

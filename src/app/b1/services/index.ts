@@ -5,8 +5,6 @@ import { B1InstanceDetailStoreService } from './instance-detail-store.service';
 
 import { B1CheckBoxConfirmerActionsService } from './blocks/check-box-confirmer/check-box-confirmer-actions.service';
 
-import { B1CheckBoxConfirmerHooksTriggerService } from './blocks/check-box-confirmer/check-box-confirmer-hooks-trigger.service';
-
 import {
   BLOCK_ACTIONS_TOKEN,
   BLOCK_HOOKS_TOKEN,
@@ -21,10 +19,4 @@ export const SERVICES = [
   { provide: INSTANCE_DETAIL_STORE_TOKEN, useClass: B1InstanceDetailStoreService, multi: true },
 
   B1CheckBoxConfirmerActionsService,
-
-  B1CheckBoxConfirmerHooksTriggerService,
 ];
-
-export {
-  B1CheckBoxConfirmerHooksTriggerService,
-};
