@@ -36,12 +36,4 @@ export class BlockUtilsIntegrationService {
     }
     return this.defaultBlockUtils.getComponentForBlock(block);
   }
-
-  triggerComponentDidLoad(block: Block): boolean {
-    if (this.bBlockUtils) {
-      return this.bBlockUtils.triggerComponentDidLoad(block) ||
-        this.defaultBlockUtils.triggerComponentDidLoad(block);
-    }
-    return this.defaultBlockUtils.triggerComponentDidLoad(block);
-  }
 }

@@ -9,7 +9,7 @@ import { InstanceDetailRoutingModule } from './instance-detail-routing.module';
 import { EFFECTS } from './effects';
 import * as fromInstanceDetail from './reducers';
 import { TOKEN, reducerProvider } from './reducers';
-import { SERVICES, BlockActionsIntegrationService } from './services';
+import { SERVICES } from './services';
 
 import { COMPONENTS, UnknownComponent } from './components';
 import {
@@ -66,7 +66,3 @@ export { fromInstanceDetail };
 export * from './models';
 
 export * from './tokens';
-
-export {
-  BlockActionsIntegrationService,
-};

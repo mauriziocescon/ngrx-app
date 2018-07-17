@@ -39,7 +39,6 @@ export class GenericBlockContainerComponent implements AfterViewInit {
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
     componentRef.instance.blockId = this.block.id;
-    this.blockUtils.triggerComponentDidLoad(this.block);
     componentRef.changeDetectorRef.detectChanges();
   }
 

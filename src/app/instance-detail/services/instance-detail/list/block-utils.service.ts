@@ -38,21 +38,4 @@ export class BlockUtilsService implements IBlockUtils {
       }
     }
   }
-
-  triggerComponentDidLoad(block: Block): boolean {
-    switch (block.type) {
-      case BlockType.CheckBox: {
-        return true;
-      }
-      case BlockType.Dropdown: {
-        return true;
-      }
-      case BlockType.TextInput: {
-        return true;
-      }
-      default: {
-        return false;
-      }
-    }
-  }
 }

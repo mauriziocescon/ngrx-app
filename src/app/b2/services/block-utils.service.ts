@@ -26,15 +26,4 @@ export class B2BlockUtilsService implements IBlockUtils {
       }
     }
   }
-
-  triggerComponentDidLoad(block: Block): boolean {
-    switch (block.type) {
-      case B2BlockType.DatePicker: {
-        return true;
-      }
-      default: {
-        return false;
-      }
-    }
-  }
 }

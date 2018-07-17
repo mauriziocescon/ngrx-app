@@ -4,6 +4,4 @@ export interface IBlockUtils {
   module: string;
 
   getComponentForBlock(block: Block): any;
-
-  triggerComponentDidLoad(block: Block): boolean;
 }

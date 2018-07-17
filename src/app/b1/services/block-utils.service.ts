@@ -26,15 +26,4 @@ export class B1BlockUtilsService implements IBlockUtils {
       }
     }
   }
-
-  triggerComponentDidLoad(block: Block): boolean {
-    switch (block.type) {
-      case B1BlockType.CheckBoxConfirmer: {
-        return true;
-      }
-      default: {
-        return false;
-      }
-    }
-  }
 }
