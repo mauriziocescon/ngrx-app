@@ -60,22 +60,16 @@ export class RulesResolve implements Resolve<string> {
           return config;
         }),
         catchError((err: HttpErrorResponse) => {
-          this.translate.get([
-            'CONTAINER.INSTANCE_DETAIL.ALERT_BUTTON',
-            'CONTAINER.INSTANCE_DETAIL.ALERT_TITLE',
-          ])
-            .subscribe((translations: any) => {
-              const modalAlert: ModalAlert = {
-                id: this.alertId,
-                title: translations['CONTAINER.INSTANCE_DETAIL.ALERT_TITLE'],
-                message: err.message,
-                buttonLabel: translations['CONTAINER.INSTANCE_DETAIL.ALERT_BUTTON'],
-              };
-              this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
-            });
+          const modalAlert: ModalAlert = {
+            id: this.alertId,
+            title: this.translate.instant('CONTAINER.INSTANCE_DETAIL.ALERT_TITLE'),
+            message: err.message,
+            buttonLabel: this.translate.instant('CONTAINER.INSTANCE_DETAIL.ALERT_BUTTON'),
+          };
+          this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
           this.router.navigate(['/instance-list']);
           return '';
-        })
+        }),
       );
   }
 }

@@ -72,19 +72,13 @@ export class InstanceListPageComponent implements OnInit, OnDestroy {
     this.modalAlertSubscription = this.error$
       .subscribe((err) => {
         if (err) {
-          this.translate.get([
-            'CONTAINER.INSTANCE_LIST.ALERT_BUTTON',
-            'CONTAINER.INSTANCE_LIST.ALERT_TITLE',
-          ])
-            .subscribe((translations: any) => {
-              const modalAlert: ModalAlert = {
-                id: this.alertId,
-                title: translations['CONTAINER.INSTANCE_LIST.ALERT_TITLE'],
-                message: err,
-                buttonLabel: translations['CONTAINER.INSTANCE_LIST.ALERT_BUTTON'],
-              };
-              this.instanceListStore.dispatchShowModalAlert(modalAlert);
-            });
+          const modalAlert: ModalAlert = {
+            id: this.alertId,
+            title: this.translate.instant('CONTAINER.INSTANCE_LIST.ALERT_TITLE'),
+            message: err,
+            buttonLabel: this.translate.instant('CONTAINER.INSTANCE_LIST.ALERT_BUTTON'),
+          };
+          this.instanceListStore.dispatchShowModalAlert(modalAlert);
         }
       });
   }
