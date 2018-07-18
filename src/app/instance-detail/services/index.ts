@@ -1,4 +1,5 @@
 import { InstanceDetailGuard } from './instance-detail/instance-detail-guard.service';
+import { RulesResolve } from './instance-detail/instance-detail-resolve.service';
 import { InstanceDetailStoreService } from './instance-detail/instance-detail-store.service';
 import { InstanceParamsService } from './instance-detail/instance-params.service';
 
@@ -18,6 +19,7 @@ import {
 
 export const SERVICES = [
   InstanceDetailGuard,
+  RulesResolve,
   { provide: INSTANCE_DETAIL_STORE_TOKEN, useClass: InstanceDetailStoreService, multi: true },
   InstanceParamsService,
 
@@ -29,6 +31,7 @@ export const SERVICES = [
 
 export {
   InstanceDetailGuard,
+  RulesResolve,
   InstanceParamsService,
 
   BlockListService,

@@ -5,7 +5,6 @@ import { environment } from '../../../environments/environment';
 export class Api {
   instances = environment.apiUrl + 'instances';
   blocks = environment.apiUrl + 'blocks';
-  rulesConfig = environment.apiUrl + 'rules-config';
 }
 
 export class Application {
