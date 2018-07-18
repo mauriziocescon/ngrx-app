@@ -7,3 +7,9 @@ export const CONTAINERS = [
   DropdownContainerComponent,
   TextInputContainerComponent,
 ];
+
+export {
+  CheckBoxContainerComponent,
+  DropdownContainerComponent,
+  TextInputContainerComponent,
+};
