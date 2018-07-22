@@ -14,16 +14,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import { TOKEN, reducerProvider, metaReducers } from './reducers';
-import { EFFECTS } from './effects';
+import { EFFECTS } from './core/effects';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule, CustomRouterStateSerializer } from './shared/shared.module';
 import { InstanceListModule } from './instance-list/instance-list.module';
 import { InstanceDetailModule } from './instance-detail/instance-detail.module';
-
-import { B1BlocksModule } from './b1/b1.module';
-import { B2BlocksModule } from './b2/b2.module';
-import { B3BlocksModule } from './b3/b3.module';
 
 import { AppContainerComponent } from './app.container';
 
@@ -62,9 +58,6 @@ export function createTranslateLoader(http: HttpClient) {
     SharedModule,
     InstanceListModule,
     InstanceDetailModule,
-    B1BlocksModule,
-    B2BlocksModule,
-    B3BlocksModule,
     AppRoutingModule,
   ],
   declarations: [

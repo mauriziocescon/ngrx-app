@@ -8,20 +8,20 @@ import * as modalAlertsActions from './actions/modal-alert.actions';
 import * as modalConfirmersActions from './actions/modal-confirmer.actions';
 
 import {
+  COMPONENTS,
   ModalAlertComponent,
   ModalConfirmerComponent,
-  COMPONENTS,
 } from './components';
+
 import {
-  NavigationBarContainerComponent,
   CONTAINERS,
+  NavigationBarContainerComponent,
 } from './containers';
 
-import { AppConstantsService } from './services/app-constants.service';
-import { AppLanguageService } from './services/app-language.service';
-import { LocalStorageService } from './services/local-storage.service';
-import { UIUtilitiesService } from './services/ui-utilities.service';
-import { UtilitiesService } from './services/utilities.service';
+import {
+  SERVICES,
+  AppLanguageService,
+} from './services';
 
 export function createLanguageIdLoader(appLanguage: AppLanguageService) {
   return appLanguage.getLanguageId();
@@ -61,11 +61,7 @@ export class CoreModule {
         DecimalPipe,
         PercentPipe,
 
-        AppConstantsService,
-        AppLanguageService,
-        LocalStorageService,
-        UIUtilitiesService,
-        UtilitiesService,
+        ...SERVICES,
         {
           provide: LOCALE_ID,
           useFactory: (createLanguageIdLoader),
@@ -82,14 +78,6 @@ export {
   modalConfirmersActions,
 };
 
-export { EFFECTS as CORE_EFFECTS } from './effects';
-
 export * from './models';
 
-export {
-  AppConstantsService,
-  AppLanguageService,
-  LocalStorageService,
-  UIUtilitiesService,
-  UtilitiesService,
-};
+export * from './services';

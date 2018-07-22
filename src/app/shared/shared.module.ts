@@ -9,8 +9,10 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { COMPONENTS } from './components';
 
-import { DIRECTIVES } from './directives';
+import { CONTAINERS, GenericBlockContainerComponent } from './containers';
+
 import {
+  DIRECTIVES,
   AddComponentDirective,
   ScrollToTopDirective,
   BlockValidationDirective,
@@ -22,9 +24,12 @@ import {
   BlockComponent,
 } from './models';
 
-import { Enum } from './utilities/enum';
-import { KeyValue } from './utilities/keyvalue';
-import { RouterStateUrl, CustomRouterStateSerializer } from './utilities/route-util';
+import {
+  Enum,
+  KeyValue,
+  RouterStateUrl,
+  CustomRouterStateSerializer,
+} from './utilities';
 
 @NgModule({
   imports: [
@@ -38,8 +43,11 @@ import { RouterStateUrl, CustomRouterStateSerializer } from './utilities/route-u
   ],
   declarations: [
     ...COMPONENTS,
+    ...CONTAINERS,
     ...DIRECTIVES,
   ],
+  entryComponents: [],
+  providers: [],
   exports: [
     CommonModule,
     FormsModule,
@@ -48,21 +56,24 @@ import { RouterStateUrl, CustomRouterStateSerializer } from './utilities/route-u
     InfiniteScrollModule,
     TranslateModule,
     ...COMPONENTS,
+    ...CONTAINERS,
     ...DIRECTIVES,
   ],
 })
 export class SharedModule {
 }
 
-export * from './models';
-
 export {
+  GenericBlockContainerComponent,
+
   AddComponentDirective,
   ScrollToTopDirective,
   BlockValidationDirective,
+
   Block,
   BlockType,
   BlockComponent,
+
   Enum,
   KeyValue,
   RouterStateUrl,
