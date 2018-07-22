@@ -27,7 +27,7 @@ export class AddBlocks implements Action {
 export class UpdateBlock implements Action {
   readonly type = CheckBoxActionTypes.UPDATE_BLOCK;
 
-  constructor(public payload: { block: Update<CheckBoxBlock>, triggerHooks: boolean }) {
+  constructor(public payload: Update<CheckBoxBlock>) {
   }
 }
 

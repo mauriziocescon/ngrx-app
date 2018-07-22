@@ -3,7 +3,9 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BlockComponent, BlockType, TextInputBlock } from '../../models';
+import { BlockComponent, BlockType } from '../../../shared/shared.module';
+
+import { TextInputBlock } from '../../models';
 
 import { TextInputStoreService } from './text-input-store.service';
 
@@ -45,32 +47,26 @@ export class TextInputContainerComponent implements BlockComponent {
   }
 
   valueDidChange(value: string): void {
-    this.dispatchValueDidChangeAction(value);
+    this.updateBlock(value);
   }
 
-  protected dispatchValueDidChangeAction(value: string): void {
+  protected updateBlock(value: string): void {
     if (this.textInputBlock) {
       const block = {
-        block: {
+        id: this.blockId,
+        changes: {
           id: this.blockId,
-          changes: {
-            id: this.blockId,
-            type: BlockType.TextInput,
-            order: this.textInputBlock.order,
-            label: this.textInputBlock.label,
-            value: value,
-            required: this.textInputBlock.required,
-            minLength: this.textInputBlock.minLength,
-            maxLength: this.textInputBlock.maxLength,
-            disabled: this.textInputBlock.disabled,
-            hooks: {
-              ...this.textInputBlock.hooks,
-            },
-          },
+          type: BlockType.TextInput,
+          order: this.textInputBlock.order,
+          label: this.textInputBlock.label,
+          value: value,
+          required: this.textInputBlock.required,
+          minLength: this.textInputBlock.minLength,
+          maxLength: this.textInputBlock.maxLength,
+          disabled: this.textInputBlock.disabled,
         },
-        triggerHooks: true,
       };
-      this.textInputStore.dispatchUpdateBlock(block);
+      this.textInputStore.updateBlock(block);
     }
   }
 }

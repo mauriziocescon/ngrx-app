@@ -3,7 +3,9 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BlockComponent, BlockType, CheckBoxBlock } from '../../models';
+import { BlockComponent, BlockType } from '../../../shared/shared.module';
+
+import { CheckBoxBlock } from '../../models';
 
 import { CheckBoxStoreService } from './check-box-store.service';
 
@@ -45,31 +47,25 @@ export class CheckBoxContainerComponent implements BlockComponent {
   }
 
   valueDidChange(value: boolean): void {
-    this.dispatchValueDidChangeAction(value);
+    this.updateBlock(value);
   }
 
-  protected dispatchValueDidChangeAction(value: boolean): void {
+  protected updateBlock(value: boolean): void {
     if (this.checkBoxBlock) {
       const block = {
-        block: {
+        id: this.blockId,
+        changes: {
           id: this.blockId,
-          changes: {
-            id: this.blockId,
-            type: BlockType.CheckBox,
-            order: this.checkBoxBlock.order,
-            label: this.checkBoxBlock.label,
-            value: value,
-            description: this.checkBoxBlock.description,
-            required: this.checkBoxBlock.required,
-            disabled: this.checkBoxBlock.disabled,
-            hooks: {
-              ...this.checkBoxBlock.hooks,
-            },
-          },
+          type: BlockType.CheckBox,
+          order: this.checkBoxBlock.order,
+          label: this.checkBoxBlock.label,
+          value: value,
+          description: this.checkBoxBlock.description,
+          required: this.checkBoxBlock.required,
+          disabled: this.checkBoxBlock.disabled,
         },
-        triggerHooks: true,
       };
-      this.checkBoxStore.dispatchUpdateBlock(block);
+      this.checkBoxStore.updateBlock(block);
     }
   }
 }

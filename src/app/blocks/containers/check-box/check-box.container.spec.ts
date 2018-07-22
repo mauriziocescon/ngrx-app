@@ -11,9 +11,8 @@ import { CoreModule } from '../../../core/core.module';
 import { SharedModule } from '../../../shared/shared.module';
 
 import * as fromRoot from '../../../reducers';
-import * as fromInstanceDetail from '../../../reducers';
+import * as fromBlocks from '../../../reducers';
 
-import { BlockType } from '../../models';
 import { COMPONENTS } from '../../components';
 import { CONTAINERS, CheckBoxContainerComponent } from '../../containers';
 
@@ -42,7 +41,7 @@ describe('CheckBoxContainerComponent', () => {
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
         StoreModule.forRoot(fromRoot.TOKEN),
-        StoreModule.forFeature('instanceDetail', fromInstanceDetail.TOKEN),
+        StoreModule.forFeature('blocks', fromBlocks.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
       ],
@@ -54,7 +53,7 @@ describe('CheckBoxContainerComponent', () => {
         TranslateService,
         NGXLogger,
         fromRoot.reducerProvider,
-        fromInstanceDetail.reducerProvider,
+        fromBlocks.reducerProvider,
       ],
     })
       .overrideModule(BrowserDynamicTestingModule, {

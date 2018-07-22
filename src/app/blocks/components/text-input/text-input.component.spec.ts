@@ -8,9 +8,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
 import { CoreModule } from '../../../core/core.module';
-import { SharedModule } from '../../../shared/shared.module';
+import { SharedModule, BlockType } from '../../../shared/shared.module';
 
-import { BlockType } from '../../models';
 import { TextInputComponent } from './text-input.component';
 
 export function createTranslateLoader(http: HttpClient) {

@@ -8,27 +8,27 @@ import * as checkBox from '../../actions/check-box.actions';
 
 import { CheckBoxBlock } from '../../models';
 
-import * as fromInstanceDetail from '../../reducers';
+import * as fromBlocks from '../../reducers';
 
 @Injectable()
 export class CheckBoxStoreService {
 
-  constructor(protected store$: Store<fromInstanceDetail.State>) {
+  constructor(protected store$: Store<fromBlocks.State>) {
   }
 
   getAllCheckBox(): Observable<CheckBoxBlock[]> {
-    return this.store$.pipe(select(fromInstanceDetail.getAllCheckBox));
+    return this.store$.pipe(select(fromBlocks.getAllCheckBox));
   }
 
   getCheckBoxEntities(): Observable<{ [id: string]: CheckBoxBlock }> {
-    return this.store$.pipe(select(fromInstanceDetail.getCheckBoxEntities));
+    return this.store$.pipe(select(fromBlocks.getCheckBoxEntities));
   }
 
   getCheckBoxBlocksLoading(): Observable<{ [id: string]: boolean }> {
-    return this.store$.pipe(select(fromInstanceDetail.getCheckBoxBlocksLoadingState));
+    return this.store$.pipe(select(fromBlocks.getCheckBoxBlocksLoadingState));
   }
 
-  dispatchUpdateBlock(block: { block: Update<CheckBoxBlock>, triggerHooks: boolean }): void {
+  updateBlock(block: Update<CheckBoxBlock>): void {
     this.store$.dispatch(new checkBox.UpdateBlock(block));
   }
 }

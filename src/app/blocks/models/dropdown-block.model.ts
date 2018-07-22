@@ -1,4 +1,4 @@
-import { Block } from '../block.model';
+import { Block } from '../../shared/shared.module';
 
 export interface DropdownBlock extends Block {
   label: string;

@@ -3,7 +3,9 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BlockComponent, BlockType, DropdownBlock } from '../../models';
+import { BlockComponent, BlockType } from '../../../shared/shared.module';
+
+import { DropdownBlock } from '../../models';
 
 import { DropdownStoreService } from './dropdown-store.service';
 
@@ -45,31 +47,25 @@ export class DropdownContainerComponent implements BlockComponent {
   }
 
   valueDidChange(value: string): void {
-    this.dispatchValueDidChangeAction(value);
+    this.updateBlock(value);
   }
 
-  protected dispatchValueDidChangeAction(value: string): void {
+  protected updateBlock(value: string): void {
     if (this.dropdownBlock) {
       const block = {
-        block: {
+        id: this.blockId,
+        changes: {
           id: this.blockId,
-          changes: {
-            id: this.blockId,
-            type: BlockType.Dropdown,
-            order: this.dropdownBlock.order,
-            label: this.dropdownBlock.label,
-            value: value,
-            choices: [...this.dropdownBlock.choices],
-            required: this.dropdownBlock.required,
-            disabled: this.dropdownBlock.disabled,
-            hooks: {
-              ...this.dropdownBlock.hooks,
-            },
-          },
+          type: BlockType.Dropdown,
+          order: this.dropdownBlock.order,
+          label: this.dropdownBlock.label,
+          value: value,
+          choices: [...this.dropdownBlock.choices],
+          required: this.dropdownBlock.required,
+          disabled: this.dropdownBlock.disabled,
         },
-        triggerHooks: true,
       };
-      this.dropdownStore.dispatchUpdateBlock(block);
+      this.dropdownStore.updateBlock(block);
     }
   }
 }

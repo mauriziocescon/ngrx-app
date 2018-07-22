@@ -8,27 +8,27 @@ import * as dropdown from '../../actions/dropdown.actions';
 
 import { DropdownBlock } from '../../models';
 
-import * as fromInstanceDetail from '../../reducers';
+import * as fromBlocks from '../../reducers';
 
 @Injectable()
 export class DropdownStoreService {
 
-  constructor(protected store$: Store<fromInstanceDetail.State>) {
+  constructor(protected store$: Store<fromBlocks.State>) {
   }
 
   getAllDropdown(): Observable<DropdownBlock[]> {
-    return this.store$.pipe(select(fromInstanceDetail.getAllDropdown));
+    return this.store$.pipe(select(fromBlocks.getAllDropdown));
   }
 
   getDropdownEntities(): Observable<{ [id: string]: DropdownBlock }> {
-    return this.store$.pipe(select(fromInstanceDetail.getDropdownEntities));
+    return this.store$.pipe(select(fromBlocks.getDropdownEntities));
   }
 
   getDropdownBlocksLoading(): Observable<{ [id: string]: boolean }> {
-    return this.store$.pipe(select(fromInstanceDetail.getDropdownBlocksLoadingState));
+    return this.store$.pipe(select(fromBlocks.getDropdownBlocksLoadingState));
   }
 
-  dispatchUpdateBlock(block: { block: Update<DropdownBlock>, triggerHooks: boolean }): void {
+  updateBlock(block: Update<DropdownBlock>): void {
     this.store$.dispatch(new dropdown.UpdateBlock(block));
   }
 }
