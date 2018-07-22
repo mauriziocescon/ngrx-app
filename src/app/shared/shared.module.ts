@@ -9,7 +9,10 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { COMPONENTS } from './components';
 
-import { CONTAINERS, GenericBlockContainerComponent } from './containers';
+import {
+  CONTAINERS,
+  GenericBlockContainerComponent,
+} from './containers';
 
 import {
   DIRECTIVES,
@@ -23,6 +26,11 @@ import {
   BlockType,
   BlockComponent,
 } from './models';
+
+import {
+  IBlockUtils,
+  BLOCK_UTILS_TOKEN,
+} from './tokens';
 
 import {
   Enum,
@@ -73,6 +81,9 @@ export {
   Block,
   BlockType,
   BlockComponent,
+
+  IBlockUtils,
+  BLOCK_UTILS_TOKEN,
 
   Enum,
   KeyValue,
