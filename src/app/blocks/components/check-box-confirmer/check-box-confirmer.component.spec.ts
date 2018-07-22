@@ -7,10 +7,9 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from '../../../../core/core.module';
-import { SharedModule } from '../../../../shared/shared.module';
+import { CoreModule } from '../../../core/core.module';
+import { SharedModule, BlockType } from '../../../shared/shared.module';
 
-import { B1BlockType } from '../../../models';
 import { CheckBoxConfirmerComponent } from './check-box-confirmer.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -57,7 +56,7 @@ describe('CheckBoxConfirmerComponent', () => {
     component = fixture.componentInstance;
     component.block = {
       id: '1',
-      type: B1BlockType.CheckBoxConfirmer,
+      type: BlockType.CheckBoxConfirmer,
       order: 1,
       label: '',
       value: true,

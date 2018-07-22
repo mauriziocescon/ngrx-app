@@ -25,7 +25,7 @@ export class CheckBoxStoreService {
   }
 
   getCheckBoxBlocksLoading(): Observable<{ [id: string]: boolean }> {
-    return this.store$.pipe(select(fromBlocks.getCheckBoxBlocksLoadingState));
+    return this.store$.pipe(select(fromBlocks.getCheckBoxBlocksLoading));
   }
 
   updateBlock(block: Update<CheckBoxBlock>): void {

@@ -25,7 +25,7 @@ export class TextInputStoreService {
   }
 
   getTextInputBlocksLoading(): Observable<{ [id: string]: boolean }> {
-    return this.store$.pipe(select(fromBlocks.getTextInputBlocksLoadingState));
+    return this.store$.pipe(select(fromBlocks.getTextInputBlocksLoading));
   }
 
   updateBlock(block: Update<TextInputBlock>): void {

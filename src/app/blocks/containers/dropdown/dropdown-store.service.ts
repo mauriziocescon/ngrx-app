@@ -25,7 +25,7 @@ export class DropdownStoreService {
   }
 
   getDropdownBlocksLoading(): Observable<{ [id: string]: boolean }> {
-    return this.store$.pipe(select(fromBlocks.getDropdownBlocksLoadingState));
+    return this.store$.pipe(select(fromBlocks.getDropdownBlocksLoading));
   }
 
   updateBlock(block: Update<DropdownBlock>): void {

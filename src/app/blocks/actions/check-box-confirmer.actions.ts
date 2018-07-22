@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { CheckBoxConfirmerBlock } from '../../models';
+import { CheckBoxConfirmerBlock } from '../models';
 
 export enum CheckBoxConfirmerActionTypes {
   LOADING = '[CheckBoxConfirmerBlock] Loading',
@@ -27,7 +27,7 @@ export class AddBlocks implements Action {
 export class UpdateBlock implements Action {
   readonly type = CheckBoxConfirmerActionTypes.UPDATE_BLOCK;
 
-  constructor(public payload: { block: Update<CheckBoxConfirmerBlock>, triggerHooks: boolean }) {
+  constructor(public payload: Update<CheckBoxConfirmerBlock>) {
   }
 }
 

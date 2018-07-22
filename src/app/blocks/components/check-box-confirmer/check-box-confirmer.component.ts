@@ -6,7 +6,7 @@ import { debounceTime } from 'rxjs/operators';
 
 import { NGXLogger } from 'ngx-logger';
 
-import { CheckBoxConfirmerBlock } from '../../../models';
+import { CheckBoxConfirmerBlock } from '../../models';
 
 @Component({
   selector: 'cp-check-box-confirmer',

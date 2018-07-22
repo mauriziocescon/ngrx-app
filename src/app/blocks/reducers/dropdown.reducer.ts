@@ -1,9 +1,9 @@
 import { createSelector } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { DropdownActionTypes, DropdownActions } from '../../../../actions/list/blocks/dropdown.actions';
+import { DropdownActionTypes, DropdownActions } from '../actions/dropdown.actions';
 
-import { DropdownBlock } from '../../../../models';
+import { DropdownBlock } from '../models';
 
 export interface State extends EntityState<DropdownBlock> {
   dropdownBlocksLoading: { [id: string]: boolean };
@@ -34,11 +34,11 @@ export function reducer(state = initialState, action: DropdownActions): State {
       return adapter.upsertMany(action.payload, state);
     }
     case DropdownActionTypes.UPDATE_BLOCK: {
-      const dropdownBlock = state.entities[action.payload.block.id];
+      const dropdownBlock = state.entities[action.payload.id];
       if (!dropdownBlock) {
         return state;
       }
-      return adapter.updateOne(action.payload.block, state);
+      return adapter.updateOne(action.payload, state);
     }
     case DropdownActionTypes.CLEAR_BLOCKS: {
       return adapter.removeAll({ ...state, dropdownBlocksLoading: {} });
@@ -56,7 +56,7 @@ export const {
   selectTotal: getTotalDropdown,
 } = adapter.getSelectors();
 
-export const getDropdownBlocksValidityState = createSelector(
+export const getDropdownBlocksValidity = createSelector(
   getDropdownIds,
   getDropdownEntities,
   (ids: string[] | number[], blocksEntities: { [id: string]: DropdownBlock }) => {
@@ -67,4 +67,4 @@ export const getDropdownBlocksValidityState = createSelector(
   },
 );
 
-export const getDropdownBlocksLoadingState = (state: State) => state.dropdownBlocksLoading;
+export const getDropdownBlocksLoading = (state: State) => state.dropdownBlocksLoading;
