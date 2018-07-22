@@ -15,7 +15,7 @@ import {
   FetchBlocksComplete,
   ListActionTypes,
   SyncRequired,
-} from '../../../instance-detail/instance-detail.module';
+} from '../../instance-detail/instance-detail.module';
 
 import { B1EffectsActionTypes, StartEffects, StopEffects } from '../../actions/b1-effects.actions';
 import {
