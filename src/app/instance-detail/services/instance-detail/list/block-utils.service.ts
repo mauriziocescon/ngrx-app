@@ -31,6 +31,9 @@ export class BlockUtilsService implements IBlockUtils {
       // case B1BlockType.CheckBoxConfirmer: {
       //   return CheckBoxConfirmerContainerComponent;
       // }
+      // case BlockType.DatePicker: {
+      //   return DatePickerContainerComponent;
+      // }
       case BlockType.Dropdown: {
         return DropdownContainerComponent;
       }

@@ -1,9 +1,9 @@
 import { createSelector } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { DatePickerActionTypes, DatePickerActions } from '../../../actions/blocks/date-picker.actions';
+import { DatePickerActionTypes, DatePickerActions } from '../actions/date-picker.actions';
 
-import { DatePickerBlock } from '../../../models';
+import { DatePickerBlock } from '../models';
 
 export interface State extends EntityState<DatePickerBlock> {
   datePickerBlocksLoading: { [id: string]: boolean };
@@ -34,11 +34,11 @@ export function reducer(state = initialState, action: DatePickerActions): State 
       return adapter.upsertMany(action.payload, state);
     }
     case DatePickerActionTypes.UPDATE_BLOCK: {
-      const datePickerBlock = state.entities[action.payload.block.id];
+      const datePickerBlock = state.entities[action.payload.id];
       if (!datePickerBlock) {
         return state;
       }
-      return adapter.updateOne(action.payload.block, state);
+      return adapter.updateOne(action.payload, state);
     }
     case DatePickerActionTypes.CLEAR_BLOCKS: {
       return adapter.removeAll({ ...state, datePickerBlocksLoading: {} });
@@ -56,7 +56,7 @@ export const {
   selectTotal: getTotalDatePicker,
 } = adapter.getSelectors();
 
-export const getDatePickerBlocksValidityState = createSelector(
+export const getDatePickerBlocksValidity = createSelector(
   getDatePickerIds,
   getDatePickerEntities,
   (ids: string[] | number[], blocksEntities: { [id: string]: DatePickerBlock }) => {
@@ -67,4 +67,4 @@ export const getDatePickerBlocksValidityState = createSelector(
   },
 );
 
-export const getDatePickerBlocksLoadingState = (state: State) => state.datePickerBlocksLoading;
+export const getDatePickerBlocksLoading = (state: State) => state.datePickerBlocksLoading;

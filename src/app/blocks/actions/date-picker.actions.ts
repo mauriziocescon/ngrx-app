@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { DatePickerBlock } from '../../models';
+import { DatePickerBlock } from '../models';
 
 export enum DatePickerActionTypes {
   LOADING = '[DatePickerBlock] Loading',
@@ -27,7 +27,7 @@ export class AddBlocks implements Action {
 export class UpdateBlock implements Action {
   readonly type = DatePickerActionTypes.UPDATE_BLOCK;
 
-  constructor(public payload: { block: Update<DatePickerBlock>, triggerHooks: boolean }) {
+  constructor(public payload: Update<DatePickerBlock>) {
   }
 }
 

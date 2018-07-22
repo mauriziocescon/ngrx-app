@@ -4,12 +4,14 @@ import { createSelector, createFeatureSelector, ActionReducerMap } from '@ngrx/s
 import * as fromRoot from '../../reducers';
 import * as fromCheckBox from './check-box.reducer';
 import * as fromCheckBoxConfirmer from './check-box-confirmer.reducer';
+import * as fromDatePicker from './date-picker.reducer';
 import * as fromDropdown from './dropdown.reducer';
 import * as fromTextInput from './text-input.reducer';
 
 export interface BlocksState {
   checkBox: fromCheckBox.State;
   checkBoxConfirmer: fromCheckBoxConfirmer.State;
+  datePicker: fromDatePicker.State;
   dropdown: fromDropdown.State;
   textInput: fromTextInput.State;
 }
@@ -26,6 +28,7 @@ export function getReducers(): ActionReducerMap<BlocksState, any> {
   return {
     checkBox: fromCheckBox.reducer,
     checkBoxConfirmer: fromCheckBoxConfirmer.reducer,
+    datePicker: fromDatePicker.reducer,
     dropdown: fromDropdown.reducer,
     textInput: fromTextInput.reducer,
   };
@@ -51,7 +54,7 @@ export const getCheckBoxBlocksLoading = createSelector(getCheckBoxState, fromChe
 
 // -----------------
 // ------ check-box-confirmer
-export const getCheckBoxConfirmerState = createSelector(getEditedBlocksState, fromEditedBlocks.getCheckBoxConfirmerState);
+export const getCheckBoxConfirmerState = createSelector(getBlocksState, state => state.checkBoxConfirmer);
 
 export const getCheckBoxConfirmerIds = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerIds);
 export const getCheckBoxConfirmerEntities = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerEntities);
@@ -59,6 +62,17 @@ export const getAllCheckBoxConfirmer = createSelector(getCheckBoxConfirmerState,
 export const getTotalCheckBoxConfirmer = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getTotalCheckBoxConfirmer);
 export const getCheckBoxConfirmerBlocksValidity = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerBlocksValidity);
 export const getCheckBoxConfirmerBlocksLoading = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerBlocksLoading);
+
+// -----------------
+// ------ date-picker
+export const getDatePickerState = createSelector(getBlocksState, state => state.datePicker);
+
+export const getDatePickerIds = createSelector(getDatePickerState, fromDatePicker.getDatePickerIds);
+export const getDatePickerEntities = createSelector(getDatePickerState, fromDatePicker.getDatePickerEntities);
+export const getAllDatePicker = createSelector(getDatePickerState, fromDatePicker.getAllDatePicker);
+export const getTotalDatePicker = createSelector(getDatePickerState, fromDatePicker.getTotalDatePicker);
+export const getDatePickerBlocksValidity = createSelector(getDatePickerState, fromDatePicker.getDatePickerBlocksValidity);
+export const getDatePickerBlocksLoading = createSelector(getDatePickerState, fromDatePicker.getDatePickerBlocksLoading);
 
 // -------- dropdown
 export const getDropdownState = createSelector(getBlocksState, state => state.dropdown);

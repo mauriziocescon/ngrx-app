@@ -5,11 +5,11 @@ import { map } from 'rxjs/operators';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { BlockComponent } from '../../../../instance-detail/instance-detail.module';
+import { BlockComponent, BlockType } from '../../../shared/shared.module';
 
-import { B2BlockType, DatePickerBlock } from '../../../models';
+import { DatePickerBlock } from '../../models';
 
-import { DatePickerStoreService } from './date-picker-store';
+import { DatePickerStoreService } from './date-picker-store.service';
 
 @Component({
   selector: 'ct-date-picker',
@@ -56,25 +56,19 @@ export class DatePickerContainerComponent implements BlockComponent {
   protected dispatchValueDidChangeAction(value: string): void {
     if (this.datePickerBlock) {
       const block = {
-        block: {
+        id: this.blockId,
+        changes: {
           id: this.blockId,
-          changes: {
-            id: this.blockId,
-            type: B2BlockType.DatePicker,
-            order: this.datePickerBlock.order,
-            label: this.datePickerBlock.label,
-            value: value,
-            description: this.datePickerBlock.description,
-            required: this.datePickerBlock.required,
-            disabled: this.datePickerBlock.disabled,
-            hooks: {
-              ...this.datePickerBlock.hooks,
-            },
-          },
+          type: BlockType.DatePicker,
+          order: this.datePickerBlock.order,
+          label: this.datePickerBlock.label,
+          value: value,
+          description: this.datePickerBlock.description,
+          required: this.datePickerBlock.required,
+          disabled: this.datePickerBlock.disabled,
         },
-        triggerHooks: true,
       };
-      this.datePickerStore.dispatchUpdateBlock(block);
+      this.datePickerStore.updateBlock(block);
     }
   }
 }

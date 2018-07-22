@@ -7,10 +7,9 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from '../../../../core/core.module';
-import { SharedModule } from '../../../../shared/shared.module';
+import { CoreModule } from '../../../core/core.module';
+import { SharedModule, BlockType } from '../../../shared/shared.module';
 
-import { B2BlockType } from '../../../models';
 import { DatePickerComponent } from './date-picker.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -57,7 +56,7 @@ describe('DatePickerComponent', () => {
     component = fixture.componentInstance;
     component.block = {
       id: '1',
-      type: B2BlockType.DatePicker,
+      type: BlockType.DatePicker,
       order: 1,
       label: '',
       value: '2018-04-29T18:30:04.237Z',
@@ -65,7 +64,6 @@ describe('DatePickerComponent', () => {
       required: true,
       disabled: false,
       valid: true,
-      hooks: {},
     };
     component.loading = false;
     fixture.detectChanges();
