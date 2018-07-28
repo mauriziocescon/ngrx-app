@@ -4,14 +4,14 @@ import {
   ComponentFactoryResolver,
   AfterViewInit,
   ViewChild,
-  Input,
+  Input, Inject,
 } from '@angular/core';
 
-import { AddComponentDirective } from '../../../../../../shared/shared.module';
+import { AddComponentDirective } from '../../directives';
 
-import { BlockUtilsIntegrationService } from '../../../../../services';
+import { Block, BlockComponent } from '../../models';
 
-import { Block, BlockComponent } from '../../../../../models';
+import { BLOCK_UTILS_TOKEN, IBlockUtils } from '../../tokens';
 
 @Component({
   selector: 'ct-generic-block',
@@ -25,7 +25,7 @@ export class GenericBlockContainerComponent implements AfterViewInit {
   @ViewChild(AddComponentDirective) adComponent: AddComponentDirective;
 
   constructor(protected componentFactoryResolver: ComponentFactoryResolver,
-              protected blockUtils: BlockUtilsIntegrationService) {
+              @Inject(BLOCK_UTILS_TOKEN) protected blockUtils: IBlockUtils) {
   }
 
   ngAfterViewInit(): void {

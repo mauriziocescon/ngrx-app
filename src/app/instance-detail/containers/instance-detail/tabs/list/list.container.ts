@@ -6,15 +6,18 @@ import { TranslateService } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
 
 import { ModalAlert } from '../../../../../core/core.module';
+import { Block, BLOCK_UTILS_TOKEN } from '../../../../../shared/shared.module';
 
-import { Block, InstanceParams } from '../../../../models';
+import { InstanceParams } from '../../../../models';
 
+import { BlockUtilsService } from './block-utils.service';
 import { ListStoreService } from './list-store.service';
 
 @Component({
   selector: 'ct-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
+    { provide: BLOCK_UTILS_TOKEN, useClass: BlockUtilsService },
     ListStoreService,
   ],
   template: `

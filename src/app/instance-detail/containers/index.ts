@@ -6,12 +6,6 @@ import { TabsContainerComponent } from './instance-detail/tabs/tabs.container';
 
 import { ListContainerComponent } from './instance-detail/tabs/list/list.container';
 
-import { GenericBlockContainerComponent } from './instance-detail/tabs/list/generic-block/generic-block.container';
-
-import { CheckBoxContainerComponent } from './instance-detail/tabs/list/generic-block/blocks/check-box/check-box.container';
-import { DropdownContainerComponent } from './instance-detail/tabs/list/generic-block/blocks/dropdown/dropdown.container';
-import { TextInputContainerComponent } from './instance-detail/tabs/list/generic-block/blocks/text-input/text-input.container';
-
 export const CONTAINERS = [
   InstanceDetailPageComponent,
 
@@ -20,11 +14,6 @@ export const CONTAINERS = [
   TabsContainerComponent,
 
   ListContainerComponent,
-
-  GenericBlockContainerComponent,
-  CheckBoxContainerComponent,
-  DropdownContainerComponent,
-  TextInputContainerComponent,
 ];
 
 export {
@@ -35,9 +24,4 @@ export {
   TabsContainerComponent,
 
   ListContainerComponent,
-
-  GenericBlockContainerComponent,
-  CheckBoxContainerComponent,
-  DropdownContainerComponent,
-  TextInputContainerComponent,
 };
