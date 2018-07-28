@@ -3,12 +3,10 @@ const blocksValidation = require('../utils/blocks-validation');
 
 exports.getBlocks = (req, res) => {
   const db = lowdb.getDb();
-  const module = req.query.module;
   const instance = req.query.instance;
-  const step = req.query.step;
 
   const foundInstance = db.get('instances')
-    .find({module: module, instance: instance, step: step})
+    .find({instance: instance})
     .value();
 
   if (foundInstance) {
@@ -22,12 +20,10 @@ exports.getBlocks = (req, res) => {
 
 exports.saveBlocks = (req, res) => {
   const db = lowdb.getDb();
-  const module = req.body.module;
   const instance = req.body.instance;
-  const step = req.body.step;
 
   const foundInstance = db.get('instances')
-    .find({module: module, instance: instance, step: step})
+    .find({instance: instance})
     .value();
 
   if (foundInstance) {
@@ -38,7 +34,7 @@ exports.saveBlocks = (req, res) => {
     blocks = blocksValidation.validate(blocks);
 
     db.get('instances')
-      .find({module: module, instance: instance, step: step})
+      .find({instance: instance})
       .assign({blocks: blocks})
       .write();
 

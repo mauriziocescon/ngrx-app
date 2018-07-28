@@ -23,49 +23,47 @@ function main() {
     let instance;
 
     // module b1
-    instance = {id: faker.random.uuid(), module: 'b1', instance: 'inst-1', step: '1', blocks: []};
+    instance = {id: faker.random.uuid(), instance: 'inst-1', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(dataCreator.getRandomB1Block(i));
+      instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), module: 'b1', instance: 'inst-1', step: '2', blocks: []};
+    instance = {id: faker.random.uuid(), instance: 'inst-2', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(dataCreator.getRandomB1Block(i));
+      instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
     // module b2
-    instance = {id: faker.random.uuid(), module: 'b2', instance: 'inst-2', step: '1', blocks: []};
+    instance = {id: faker.random.uuid(), instance: 'inst-3', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(dataCreator.getRandomB2Block(i));
+      instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), module: 'b2', instance: 'inst-2', step: '2', blocks: []};
+    instance = {id: faker.random.uuid(), instance: 'inst-4', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(dataCreator.getRandomB2Block(i));
+      instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
     // module b3
-    instance = {id: faker.random.uuid(), module: 'b3', instance: 'inst-3', step: '1', blocks: []};
+    instance = {id: faker.random.uuid(), instance: 'inst-5', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
     // module b4
-    instance = {id: '6', module: 'b4', instance: 'inst-4', step: '1', blocks: []};
+    instance = {id: faker.random.uuid(), instance: 'inst-6', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
     // rules config
-    // data.rulesConfig.push({module: 'b1', steps: [{step: '1', rules: 'rules1'}, {step: '2', rules: 'rules2'}]});
-    // data.rulesConfig.push({module: 'b2', steps: [{step: '1', rules: 'rules1'}, {step: '2', rules: 'rules2'}]});
-    // data.rulesConfig.push({module: 'b3', steps: [{step: '1', rules: 'rules1'}]});
+    data.rulesConfig.push({instance: 'inst-1', rules: 'rules1'});
 
     utils.saveDb(dbUrl, data, (err) => {
       if (err) {

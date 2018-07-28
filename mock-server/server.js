@@ -10,7 +10,6 @@ const errosMiddleware = require('./middlewares/errors');
 
 const blocks = require('./controllers/blocks');
 const instances = require('./controllers/instances');
-const rules = require('./controllers/rules');
 
 // set the port of our application
 // process.env.PORT lets the port to be set by Heroku
@@ -24,7 +23,6 @@ app.use(errosMiddleware.error);
 // To handle POST, PUT and PATCH you need to use a body-parser
 app.use(jsonServer.bodyParser);
 
-app.get(`${isProduction ? '/api' : ''}/rules-config`, rules.getRulesConfig);
 app.get(`${isProduction ? '/api' : ''}/instances`, instances.getInstances);
 app.get(`${isProduction ? '/api' : ''}/blocks`, blocks.getBlocks);
 app.post(`${isProduction ? '/api' : ''}/blocks`, blocks.saveBlocks);
