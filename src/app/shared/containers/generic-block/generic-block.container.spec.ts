@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { StoreModule, Store, combineReducers } from '@ngrx/store';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -7,23 +8,14 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from '../../../../../../core/core.module';
-import { SharedModule } from '../../../../../../shared/shared.module';
+import { CoreModule } from '../../../core/core.module';
+import { SharedModule } from '../../../shared/shared.module';
 
-import * as fromRoot from '../../../../../reducers';
-import * as fromInstanceDetail from '../../../../../reducers';
+import * as fromRoot from '../../../reducers';
 
-import {
-  InstanceParamsService,
-  BlockListService,
-  BlockUtilsIntegrationService,
-} from '../../../../../services';
+import { BlockType } from '../../models';
 
-import { BlockUtilsService } from '../../../../../services/instance-detail/list/block-utils.service';
-
-import { BlockType } from '../../../../../models';
-import { COMPONENTS } from '../../../../../components';
-import { CONTAINERS, GenericBlockContainerComponent } from '../../../../../containers';
+import { GenericBlockContainerComponent } from './generic-block.container';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -50,29 +42,23 @@ describe('GenericBlockContainerComponent', () => {
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
         StoreModule.forRoot(fromRoot.TOKEN),
-        StoreModule.forFeature('instanceDetail', fromInstanceDetail.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
       ],
       declarations: [
-        ...COMPONENTS,
-        ...CONTAINERS,
+        GenericBlockContainerComponent,
       ],
       providers: [
         TranslateService,
         NGXLogger,
         fromRoot.reducerProvider,
-        fromInstanceDetail.reducerProvider,
-        InstanceParamsService,
-        BlockListService,
-        { provide: BlockUtilsIntegrationService, useValue: BlockUtilsService },
       ],
     })
       .overrideModule(BrowserDynamicTestingModule, {
         // the usage of overrideModule comes from {@Link https://github.com/angular/angular/issues/10760}
         set: {
           entryComponents: [
-            ...CONTAINERS,
+            GenericBlockContainerComponent,
           ],
         },
       })

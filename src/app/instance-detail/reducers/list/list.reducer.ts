@@ -1,5 +1,6 @@
 import { ListActionTypes, ListActions } from '../../actions/list/list.actions';
-import { Block } from '../../models';
+
+import { Block } from '../../../shared/shared.module';
 
 export interface State {
   fetchedBlocks: Block[] | undefined;

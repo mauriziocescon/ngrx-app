@@ -1,7 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
-import { InstanceParams } from '../../../models';
-
 @Component({
   selector: 'ct-info',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -10,7 +8,7 @@ import { InstanceParams } from '../../../models';
     </cp-info>`,
 })
 export class InfoContainerComponent {
-  @Input() instanceParams: InstanceParams;
+  @Input() instance: string;
 
   constructor() {
   }

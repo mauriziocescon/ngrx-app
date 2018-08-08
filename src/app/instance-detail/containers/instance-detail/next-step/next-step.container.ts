@@ -9,10 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
 
 import { ModalAlert } from '../../../../core/core.module';
-
-import { Block, InstanceParams } from '../../../models';
-
-import { InstanceDetailIntegrationStoreService } from '../../../services';
+import { Block } from '../../../../shared/shared.module';
 
 import { NextStepStoreService } from './next-step-store.service';
 
@@ -33,7 +30,7 @@ import { NextStepStoreService } from './next-step-store.service';
     </cp-next-step>`,
 })
 export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() instanceParams: InstanceParams;
+  @Input() instance: string;
 
   syncRequired$: Observable<boolean>;
   syncRequiredWithTimestamp$: Observable<{ syncRequired: boolean, timestamp: number | undefined }>;
@@ -48,7 +45,6 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   protected modalAlertSyncErrorSubscription: Subscription;
 
   constructor(protected nextStepStore: NextStepStoreService,
-              protected instanceDetailStore: InstanceDetailIntegrationStoreService,
               protected translate: TranslateService,
               protected logger: NGXLogger) {
     this.syncRequired$ = this.nextStepStore.getSyncRequired();

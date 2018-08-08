@@ -65,7 +65,7 @@ export class InstanceListPageComponent implements OnInit, OnDestroy {
   }
 
   goTo(instance: Instance): void {
-    this.router.navigate(['/instance-detail', instance.module, instance.instance, instance.step]);
+    this.router.navigate(['/instance-detail', instance.instance]);
   }
 
   subscribeToFetchErrors(): void {
