@@ -19,16 +19,23 @@ export class CheckBoxConfirmerStoreService {
   constructor(protected store$: Store<fromRoot.State>) {
   }
 
-  getAllCheckBoxConfirmer(): Observable<CheckBoxConfirmerBlock[]> {
-    return this.store$.pipe(select(fromBlocks.getAllCheckBoxConfirmer));
+  addBlock(block: CheckBoxConfirmerBlock): void {
+    const payload = { block: block };
+    this.store$.dispatch(new checkBoxConfirmer.AddBlock(payload));
+  }
+
+  updateBlock(block: Update<CheckBoxConfirmerBlock>): void {
+    const payload = { block: block };
+    this.store$.dispatch(new checkBoxConfirmer.UpdateBlock(payload));
+  }
+
+  clearBlock(blockId: string): void {
+    const payload = { id: blockId };
+    this.store$.dispatch(new checkBoxConfirmer.ClearBlock(payload));
   }
 
   getCheckBoxConfirmerEntities(): Observable<{ [id: string]: CheckBoxConfirmerBlock }> {
     return this.store$.pipe(select(fromBlocks.getCheckBoxConfirmerEntities));
-  }
-
-  getCheckBoxConfirmerBlocksLoading(): Observable<{ [id: string]: boolean }> {
-    return this.store$.pipe(select(fromBlocks.getCheckBoxConfirmerBlocksLoading));
   }
 
   getModalConfirmerResults(): Observable<{ [id: string]: ModalConfirmerResultType | undefined }> {
@@ -41,9 +48,5 @@ export class CheckBoxConfirmerStoreService {
 
   cleanModalConfirmer(payload: { id: string }): void {
     this.store$.dispatch(new modalConfirmersActions.CleanModalConfirmer(payload));
-  }
-
-  updateBlock(block: Update<CheckBoxConfirmerBlock>): void {
-    this.store$.dispatch(new checkBoxConfirmer.UpdateBlock(block));
   }
 }

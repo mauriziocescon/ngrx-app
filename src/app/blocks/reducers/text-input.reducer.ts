@@ -1,4 +1,3 @@
-import { createSelector } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import { TextInputActionTypes, TextInputActions } from '../actions/text-input.actions';
@@ -6,7 +5,6 @@ import { TextInputActionTypes, TextInputActions } from '../actions/text-input.ac
 import { TextInputBlock } from '../models';
 
 export interface State extends EntityState<TextInputBlock> {
-  textInputBlocksLoading: { [id: string]: boolean };
 }
 
 export const adapter: EntityAdapter<TextInputBlock> = createEntityAdapter<TextInputBlock>({
@@ -16,32 +14,18 @@ export const adapter: EntityAdapter<TextInputBlock> = createEntityAdapter<TextIn
   },
 });
 
-export const initialState: State = adapter.getInitialState({
-  textInputBlocksLoading: {},
-});
+export const initialState: State = adapter.getInitialState({});
 
 export function reducer(state = initialState, action: TextInputActions): State {
   switch (action.type) {
-    case TextInputActionTypes.LOADING: {
-      const newBlocksLoading = { ...state.textInputBlocksLoading };
-      newBlocksLoading[action.payload.id] = action.payload.loading;
-      return {
-        ...state,
-        textInputBlocksLoading: newBlocksLoading,
-      };
-    }
-    case TextInputActionTypes.ADD_BLOCKS: {
-      return adapter.upsertMany(action.payload, state);
+    case TextInputActionTypes.ADD_BLOCK: {
+      return adapter.upsertOne(action.payload.block, state);
     }
     case TextInputActionTypes.UPDATE_BLOCK: {
-      const textInputBlock = state.entities[action.payload.id];
-      if (!textInputBlock) {
-        return state;
-      }
-      return adapter.updateOne(action.payload, state);
+      return adapter.updateOne(action.payload.block, state);
     }
-    case TextInputActionTypes.CLEAR_BLOCKS: {
-      return adapter.removeAll({ ...state, textInputBlocksLoading: {} });
+    case TextInputActionTypes.CLEAR_BLOCK: {
+      return adapter.removeOne(action.payload.id, state);
     }
     default: {
       return state;
@@ -55,16 +39,3 @@ export const {
   selectAll: getAllTextInput,
   selectTotal: getTotalTextInput,
 } = adapter.getSelectors();
-
-export const getTextInputBlocksValidity = createSelector(
-  getTextInputIds,
-  getTextInputEntities,
-  (ids: string[] | number[], blocksEntities: { [id: string]: TextInputBlock }) => {
-    ids = ids as string[];
-    return ids.findIndex((id: string) => {
-      return blocksEntities[id].valid === false;
-    }) === -1;
-  },
-);
-
-export const getTextInputBlocksLoading = (state: State) => state.textInputBlocksLoading;

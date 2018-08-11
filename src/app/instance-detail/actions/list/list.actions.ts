@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Block } from '../../models';
+import { Block } from '../../../shared/shared.module';
 
 export enum ListActionTypes {
   FETCH_BLOCKS = '[List] Fetch blocks',

@@ -1,4 +1,3 @@
-import { createSelector } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import { DropdownActionTypes, DropdownActions } from '../actions/dropdown.actions';
@@ -6,7 +5,6 @@ import { DropdownActionTypes, DropdownActions } from '../actions/dropdown.action
 import { DropdownBlock } from '../models';
 
 export interface State extends EntityState<DropdownBlock> {
-  dropdownBlocksLoading: { [id: string]: boolean };
 }
 
 export const adapter: EntityAdapter<DropdownBlock> = createEntityAdapter<DropdownBlock>({
@@ -16,32 +14,18 @@ export const adapter: EntityAdapter<DropdownBlock> = createEntityAdapter<Dropdow
   },
 });
 
-export const initialState: State = adapter.getInitialState({
-  dropdownBlocksLoading: {},
-});
+export const initialState: State = adapter.getInitialState({});
 
 export function reducer(state = initialState, action: DropdownActions): State {
   switch (action.type) {
-    case DropdownActionTypes.LOADING: {
-      const newBlocksLoading = { ...state.dropdownBlocksLoading };
-      newBlocksLoading[action.payload.id] = action.payload.loading;
-      return {
-        ...state,
-        dropdownBlocksLoading: newBlocksLoading,
-      };
-    }
-    case DropdownActionTypes.ADD_BLOCKS: {
-      return adapter.upsertMany(action.payload, state);
+    case DropdownActionTypes.ADD_BLOCK: {
+      return adapter.upsertOne(action.payload.block, state);
     }
     case DropdownActionTypes.UPDATE_BLOCK: {
-      const dropdownBlock = state.entities[action.payload.id];
-      if (!dropdownBlock) {
-        return state;
-      }
-      return adapter.updateOne(action.payload, state);
+      return adapter.updateOne(action.payload.block, state);
     }
-    case DropdownActionTypes.CLEAR_BLOCKS: {
-      return adapter.removeAll({ ...state, dropdownBlocksLoading: {} });
+    case DropdownActionTypes.CLEAR_BLOCK: {
+      return adapter.removeOne(action.payload.id, state);
     }
     default: {
       return state;
@@ -55,16 +39,3 @@ export const {
   selectAll: getAllDropdown,
   selectTotal: getTotalDropdown,
 } = adapter.getSelectors();
-
-export const getDropdownBlocksValidity = createSelector(
-  getDropdownIds,
-  getDropdownEntities,
-  (ids: string[] | number[], blocksEntities: { [id: string]: DropdownBlock }) => {
-    ids = ids as string[];
-    return ids.findIndex((id: string) => {
-      return blocksEntities[id].valid === false;
-    }) === -1;
-  },
-);
-
-export const getDropdownBlocksLoading = (state: State) => state.dropdownBlocksLoading;

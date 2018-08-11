@@ -41,50 +41,35 @@
       "NO_RESULT": "Leer",
       "RETRY": "Erneut versuchen"
     },
+    "UNKNOWN": {
+      "ALERT_MSG": "*** Unknown component ***",
+      "HEADER": "*** Unknown ***"
+    },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "*** I have checked all documents ***",
       "CHECK_BOX_LABEL": "*** Contract ***",
-      "HEADER": "*** CheckBox ***",
-      "LOADING": "Daten werden geladen"
+      "HEADER": "*** CheckBox ***"
+    },
+    "CHECK_BOX_CONFIRMER": {
+      "CHECK_BOX_CONFIRMER_DESC": "*** I have checked all documents ***",
+      "CHECK_BOX_CONFIRMER_LABEL": "*** Contract ***",
+      "HEADER": "*** CheckBox Confirmer ***"
+    },
+    "DATE_PICKER": {
+      "DATE_PICKER_LABEL": "*** Select date ***",
+      "HEADER": "*** DatePicker ***"
     },
     "DROPDOWN": {
       "DROPDOWN_LABEL": "*** Select the position you want ***",
-      "HEADER": "*** Dropdown ***",
-      "LOADING": "Daten werden geladen"
+      "HEADER": "*** Dropdown ***"
     },
     "TEXT_INPUT": {
       "HEADER": "*** TextInput ***",
-      "LOADING": "Daten werden geladen",
       "TEXT_INPUT_LABEL": "*** Type some reasons ***",
       "TEXT_INPUT_MSG_MAX_LENGTH": "*** Length must be <= {{ maxLength }} ***",
       "TEXT_INPUT_MSG_MIN_LENGTH": "*** Length must be >= {{ minLength }} ***",
       "TEXT_INPUT_MSG_MIN_MAX_LENGTH": "*** Length must be beetwen {{ minLength }} and {{ maxLength }} ***",
       "TEXT_INPUT_PLACEHOLDER": "*** Type some text ***"
-    },
-    "UNKNOWN": {
-      "ALERT_MSG": "*** Unknown component ***",
-      "HEADER": "*** Unknown ***"
-    },
-    "CHECK_BOX_CONFIRMER": {
-      "CHECK_BOX_CONFIRMER_DESC": "*** I have checked all documents ***",
-      "CHECK_BOX_CONFIRMER_LABEL": "*** Contract ***",
-      "HEADER": "*** CheckBox Confirmer ***",
-      "LOADING": "Daten werden geladen"
-    },
-    "DATE_PICKER": {
-      "DATE_PICKER_LABEL": "*** Select date ***",
-      "HEADER": "*** DatePicker ***",
-      "LOADING": "*** Loading... ***"
-    },
-    "DOSSIER": {
-      "HEADER": "*** Dossier ***",
-      "LOADING": "*** Loading... ***",
-      "SECTION1_LABEL": "*** Section 1 ***",
-      "SECTION1_VALUE1_LABEL": "*** Section 1, label 1 ***",
-      "SECTION1_VALUE2_LABEL": "*** Section 1, label 2 ***",
-      "SECTION1_VALUE3_LABEL": "*** Section 1, label 3 ***",
-      "SECTION2_LABEL": "*** Section 2 ***",
-      "SECTION2_VALUE1_LABEL": "*** Section 2, label 1 ***"
     }
   },
   "CONTAINER": {

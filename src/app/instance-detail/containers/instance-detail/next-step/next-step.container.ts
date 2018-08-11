@@ -59,8 +59,9 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.formValidity$ = this.instanceDetailStore.getValiditySelector();
-    this.editedBlocks = this.instanceDetailStore.getAllEditedBlocksSelector();
+    // todo: replace
+    // this.formValidity$ = this.instanceDetailStore.getValiditySelector();
+    // this.editedBlocks = this.instanceDetailStore.getAllEditedBlocksSelector();
   }
 
   protected subscribeToSyncing(): void {
@@ -71,7 +72,7 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
       .subscribe(([sync, blocks]) => {
         if (sync.syncRequired === true) {
           const payload = {
-            instance: instance,
+            instance: this.instance,
             blocks: blocks,
           };
           this.nextStepStore.dispatchSyncBlocks(payload);

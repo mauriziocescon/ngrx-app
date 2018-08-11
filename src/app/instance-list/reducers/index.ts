@@ -4,7 +4,6 @@ import { createFeatureSelector, createSelector, ActionReducerMap, combineReducer
 import * as fromRoot from '../../reducers';
 import * as fromInstanceListEffects from './instance-list-effects.reducer';
 import * as fromInstanceList from './instance-list.reducer';
-import * as fromEditedBlocks from '../../b2/reducers/blocks';
 
 export interface InstanceListState {
   effects: fromInstanceListEffects.State;
@@ -17,7 +16,7 @@ export interface State extends fromRoot.State {
 
 // -----------------
 // ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>('InstanceListReducers');
+export const TOKEN = new InjectionToken<ActionReducerMap<fromInstanceList.State>>('InstanceListReducers');
 
 export function getReducers(): ActionReducerMap<InstanceListState, any> {
   return {

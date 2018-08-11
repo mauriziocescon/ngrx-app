@@ -9,7 +9,7 @@ import {
 
 import { AppConstantsService } from '../../core/core.module';
 
-import { Block } from '../models/index';
+import { Block } from '../../shared/shared.module';
 
 @Injectable()
 export class BlockListService {
@@ -35,11 +35,9 @@ export class BlockListService {
       );
   }
 
-  syncBlocks(module: string, instance: string, step: string, blocks: Block[]): Observable<Block[]> {
+  syncBlocks(instance: string, blocks: Block[]): Observable<Block[]> {
     const body = {
-      module: module,
       instance: instance,
-      step: step,
       blocks: blocks,
     };
 

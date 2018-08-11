@@ -16,19 +16,22 @@ export class DatePickerStoreService {
   constructor(protected store$: Store<fromBlocks.State>) {
   }
 
-  getAllDatePicker(): Observable<DatePickerBlock[]> {
-    return this.store$.pipe(select(fromBlocks.getAllDatePicker));
+  addBlock(block: DatePickerBlock): void {
+    const payload = { block: block };
+    this.store$.dispatch(new datePicker.AddBlock(payload));
+  }
+
+  updateBlock(block: Update<DatePickerBlock>): void {
+    const payload = { block: block };
+    this.store$.dispatch(new datePicker.UpdateBlock(payload));
+  }
+
+  clearBlock(blockId: string): void {
+    const payload = { id: blockId };
+    this.store$.dispatch(new datePicker.ClearBlock(payload));
   }
 
   getDatePickerEntities(): Observable<{ [id: string]: DatePickerBlock }> {
     return this.store$.pipe(select(fromBlocks.getDatePickerEntities));
-  }
-
-  getDatePickerBlocksLoading(): Observable<{ [id: string]: boolean }> {
-    return this.store$.pipe(select(fromBlocks.getDatePickerBlocksLoading));
-  }
-
-  updateBlock(block: Update<DatePickerBlock>): void {
-    this.store$.dispatch(new datePicker.UpdateBlock(block));
   }
 }

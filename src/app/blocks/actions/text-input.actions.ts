@@ -4,39 +4,33 @@ import { Update } from '@ngrx/entity';
 import { TextInputBlock } from '../models';
 
 export enum TextInputActionTypes {
-  LOADING = '[TextInput] Loading',
-  ADD_BLOCKS = '[TextInput] Add blocks',
+  ADD_BLOCK = '[TextInput] Add block',
   UPDATE_BLOCK = '[TextInput] Update block',
-  CLEAR_BLOCKS = '[TextInput] Clear blocks',
+  CLEAR_BLOCK = '[TextInput] Clear block',
 }
 
-export class Loading implements Action {
-  readonly type = TextInputActionTypes.LOADING;
+export class AddBlock implements Action {
+  readonly type = TextInputActionTypes.ADD_BLOCK;
 
-  constructor(public payload: { id: string, loading: boolean }) {
-  }
-}
-
-export class AddBlocks implements Action {
-  readonly type = TextInputActionTypes.ADD_BLOCKS;
-
-  constructor(public payload: TextInputBlock[]) {
+  constructor(public payload: { block: TextInputBlock }) {
   }
 }
 
 export class UpdateBlock implements Action {
   readonly type = TextInputActionTypes.UPDATE_BLOCK;
 
-  constructor(public payload: Update<TextInputBlock>) {
+  constructor(public payload: { block: Update<TextInputBlock> }) {
   }
 }
 
-export class ClearBlocks implements Action {
-  readonly type = TextInputActionTypes.CLEAR_BLOCKS;
+export class ClearBlock implements Action {
+  readonly type = TextInputActionTypes.CLEAR_BLOCK;
+
+  constructor(public payload: { id: string }) {
+  }
 }
 
 export type TextInputActions =
-  Loading |
-  AddBlocks |
+  AddBlock |
   UpdateBlock |
-  ClearBlocks;
+  ClearBlock;

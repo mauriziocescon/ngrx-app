@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import {
   ModalConfirmer,
   ModalConfirmerResultType,
 } from '../../../core/core.module';
-import { BlockComponent, BlockType } from '../../../shared/shared.module';
+import { BlockComponent } from '../../../shared/shared.module';
 
 import { CheckBoxConfirmerBlock } from '../../models';
 
@@ -24,42 +24,31 @@ import { CheckBoxConfirmerStoreService } from './check-box-confirmer-store.servi
   template: `
     <cp-check-box-confirmer
       [block]="block$ | async"
-      [loading]="loading$ | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-check-box-confirmer>`,
 })
-export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnDestroy {
-  @Input() readonly blockId: string;
+export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnInit, OnDestroy {
+  @Input() readonly block: CheckBoxConfirmerBlock;
 
   block$: Observable<CheckBoxConfirmerBlock | undefined>;
-  checkBoxConfirmerBlock: CheckBoxConfirmerBlock | undefined;
-
-  loading$: Observable<boolean>;
 
   protected modalConfirmerResults$: Observable<{ [id: string]: ModalConfirmerResultType | undefined }>;
   protected modalConfirmerResultSubscription: Subscription;
 
   constructor(protected checkBoxConfirmerStore: CheckBoxConfirmerStoreService,
               protected translate: TranslateService) {
-    this.block$ = this.checkBoxConfirmerStore.getCheckBoxConfirmerEntities()
-      .pipe(
-        map((entities: { [id: string]: CheckBoxConfirmerBlock }) => {
-          return this.checkBoxConfirmerBlock = entities[this.blockId];
-        }),
-      );
+  }
 
-    this.loading$ = this.checkBoxConfirmerStore.getCheckBoxConfirmerBlocksLoading()
-      .pipe(
-        map((blocksLoading: { [id: string]: boolean }) => {
-          return blocksLoading[this.blockId];
-        }),
-      );
+  ngOnInit(): void {
+    this.checkBoxConfirmerStore.addBlock(this.block);
+    this.setupAsyncObs();
 
     this.modalConfirmerResults$ = this.checkBoxConfirmerStore.getModalConfirmerResults();
   }
 
   ngOnDestroy(): void {
     this.unsubscribeToModalConfirmerResult();
+    this.checkBoxConfirmerStore.clearBlock(this.block.id);
   }
 
   valueDidChange(value: boolean): void {
@@ -71,29 +60,29 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnDe
   }
 
   protected dispatchValueDidChangeAction(value: boolean): void {
-    if (this.checkBoxConfirmerBlock) {
-      const block = {
-        id: this.blockId,
-        changes: {
-          id: this.blockId,
-          type: BlockType.CheckBoxConfirmer,
-          order: this.checkBoxConfirmerBlock.order,
-          label: this.checkBoxConfirmerBlock.label,
-          value: value,
-          description: this.checkBoxConfirmerBlock.description,
-          required: this.checkBoxConfirmerBlock.required,
-          disabled: this.checkBoxConfirmerBlock.disabled,
-        },
-      };
-      this.checkBoxConfirmerStore.updateBlock(block);
-    }
+    const block = {
+      id: this.block.id,
+      changes: {
+        value: value,
+      },
+    };
+    this.checkBoxConfirmerStore.updateBlock(block);
+  }
+
+  protected setupAsyncObs(): void {
+    this.block$ = this.checkBoxConfirmerStore.getCheckBoxConfirmerEntities()
+      .pipe(
+        map((entities: { [id: string]: CheckBoxConfirmerBlock }) => {
+          return entities[this.block.id];
+        }),
+      );
   }
 
   protected askForConfirmation(): void {
     this.subscribeToModalConfirmerResult();
 
     const modalConfirmer: ModalConfirmer = {
-      id: this.blockId,
+      id: this.block.id,
       title: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE'),
       message: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE'),
       yesButtonLabel: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON'),
@@ -107,10 +96,10 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnDe
 
     this.modalConfirmerResultSubscription = this.modalConfirmerResults$
       .subscribe((modalConfirmerResult: { [id: string]: ModalConfirmerResultType | undefined }) => {
-        const result = modalConfirmerResult[this.blockId];
+        const result = modalConfirmerResult[this.block.id];
 
         if (result) {
-          this.checkBoxConfirmerStore.cleanModalConfirmer({ id: this.blockId });
+          this.checkBoxConfirmerStore.cleanModalConfirmer({ id: this.block.id });
           this.unsubscribeToModalConfirmerResult();
 
           if (result === ModalConfirmerResultType.Positive) {

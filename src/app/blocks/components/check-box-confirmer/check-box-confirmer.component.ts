@@ -15,7 +15,6 @@ import { CheckBoxConfirmerBlock } from '../../models';
 })
 export class CheckBoxConfirmerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: CheckBoxConfirmerBlock;
-  @Input() loading: boolean;
   @Output() valueDidChange: EventEmitter<boolean>;
 
   checkBoxConfirmerForm: FormGroup;
@@ -26,10 +25,6 @@ export class CheckBoxConfirmerComponent implements OnInit, OnChanges, OnDestroy 
   constructor(protected formBuilder: FormBuilder,
               protected logger: NGXLogger) {
     this.valueDidChange = new EventEmitter<boolean>();
-  }
-
-  get isLoading(): boolean {
-    return this.loading === true;
   }
 
   ngOnInit(): void {

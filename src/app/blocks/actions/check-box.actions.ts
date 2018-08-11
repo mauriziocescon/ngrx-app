@@ -4,39 +4,33 @@ import { Update } from '@ngrx/entity';
 import { CheckBoxBlock } from '../models';
 
 export enum CheckBoxActionTypes {
-  LOADING = '[CheckBox] Loading',
-  ADD_BLOCKS = '[CheckBox] Add blocks',
+  ADD_BLOCK = '[CheckBox] Add block',
   UPDATE_BLOCK = '[CheckBox] Update block',
-  CLEAR_BLOCKS = '[CheckBox] Clear blocks',
+  CLEAR_BLOCK = '[CheckBox] Clear block',
 }
 
-export class Loading implements Action {
-  readonly type = CheckBoxActionTypes.LOADING;
+export class AddBlock implements Action {
+  readonly type = CheckBoxActionTypes.ADD_BLOCK;
 
-  constructor(public payload: { id: string, loading: boolean }) {
-  }
-}
-
-export class AddBlocks implements Action {
-  readonly type = CheckBoxActionTypes.ADD_BLOCKS;
-
-  constructor(public payload: CheckBoxBlock[]) {
+  constructor(public payload: { block: CheckBoxBlock }) {
   }
 }
 
 export class UpdateBlock implements Action {
   readonly type = CheckBoxActionTypes.UPDATE_BLOCK;
 
-  constructor(public payload: Update<CheckBoxBlock>) {
+  constructor(public payload: { block: Update<CheckBoxBlock> }) {
   }
 }
 
-export class ClearBlocks implements Action {
-  readonly type = CheckBoxActionTypes.CLEAR_BLOCKS;
+export class ClearBlock implements Action {
+  readonly type = CheckBoxActionTypes.CLEAR_BLOCK;
+
+  constructor(public payload: { id: string }) {
+  }
 }
 
 export type CheckBoxActions =
-  Loading |
-  AddBlocks |
+  AddBlock |
   UpdateBlock |
-  ClearBlocks;
+  ClearBlock;

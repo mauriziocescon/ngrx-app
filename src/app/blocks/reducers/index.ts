@@ -49,8 +49,6 @@ export const getCheckBoxIds = createSelector(getCheckBoxState, fromCheckBox.getC
 export const getCheckBoxEntities = createSelector(getCheckBoxState, fromCheckBox.getCheckBoxEntities);
 export const getAllCheckBox = createSelector(getCheckBoxState, fromCheckBox.getAllCheckBox);
 export const getTotalCheckBox = createSelector(getCheckBoxState, fromCheckBox.getTotalCheckBox);
-export const getCheckBoxBlocksValidity = createSelector(getCheckBoxState, fromCheckBox.getCheckBoxBlocksValidity);
-export const getCheckBoxBlocksLoading = createSelector(getCheckBoxState, fromCheckBox.getCheckBoxBlocksLoading);
 
 // -----------------
 // ------ check-box-confirmer
@@ -60,8 +58,6 @@ export const getCheckBoxConfirmerIds = createSelector(getCheckBoxConfirmerState,
 export const getCheckBoxConfirmerEntities = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerEntities);
 export const getAllCheckBoxConfirmer = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getAllCheckBoxConfirmer);
 export const getTotalCheckBoxConfirmer = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getTotalCheckBoxConfirmer);
-export const getCheckBoxConfirmerBlocksValidity = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerBlocksValidity);
-export const getCheckBoxConfirmerBlocksLoading = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerBlocksLoading);
 
 // -----------------
 // ------ date-picker
@@ -71,8 +67,6 @@ export const getDatePickerIds = createSelector(getDatePickerState, fromDatePicke
 export const getDatePickerEntities = createSelector(getDatePickerState, fromDatePicker.getDatePickerEntities);
 export const getAllDatePicker = createSelector(getDatePickerState, fromDatePicker.getAllDatePicker);
 export const getTotalDatePicker = createSelector(getDatePickerState, fromDatePicker.getTotalDatePicker);
-export const getDatePickerBlocksValidity = createSelector(getDatePickerState, fromDatePicker.getDatePickerBlocksValidity);
-export const getDatePickerBlocksLoading = createSelector(getDatePickerState, fromDatePicker.getDatePickerBlocksLoading);
 
 // -------- dropdown
 export const getDropdownState = createSelector(getBlocksState, state => state.dropdown);
@@ -81,8 +75,6 @@ export const getDropdownIds = createSelector(getDropdownState, fromDropdown.getD
 export const getDropdownEntities = createSelector(getDropdownState, fromDropdown.getDropdownEntities);
 export const getAllDropdown = createSelector(getDropdownState, fromDropdown.getAllDropdown);
 export const getTotalDropdown = createSelector(getDropdownState, fromDropdown.getTotalDropdown);
-export const getDropdownBlocksValidity = createSelector(getDropdownState, fromDropdown.getDropdownBlocksValidity);
-export const getDropdownBlocksLoading = createSelector(getDropdownState, fromDropdown.getDropdownBlocksLoading);
 
 // ------ text-input
 export const getTextInputState = createSelector(getBlocksState, state => state.textInput);
@@ -91,5 +83,3 @@ export const getTextInputIds = createSelector(getTextInputState, fromTextInput.g
 export const getTextInputEntities = createSelector(getTextInputState, fromTextInput.getTextInputEntities);
 export const getAllTextInput = createSelector(getTextInputState, fromTextInput.getAllTextInput);
 export const getTotalTextInput = createSelector(getTextInputState, fromTextInput.getTotalTextInput);
-export const getTextInputBlocksValidity = createSelector(getTextInputState, fromTextInput.getTextInputBlocksValidity);
-export const getTextInputBlocksLoading = createSelector(getTextInputState, fromTextInput.getTextInputBlocksLoading);

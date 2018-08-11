@@ -4,39 +4,33 @@ import { Update } from '@ngrx/entity';
 import { CheckBoxConfirmerBlock } from '../models';
 
 export enum CheckBoxConfirmerActionTypes {
-  LOADING = '[CheckBoxConfirmerBlock] Loading',
-  ADD_BLOCKS = '[CheckBoxConfirmerBlock] Add blocks',
-  UPDATE_BLOCK = '[CheckBoxConfirmerBlock] Update block',
-  CLEAR_BLOCKS = '[CheckBoxConfirmerBlock] Clear blocks',
+  ADD_BLOCK = '[CheckBoxConfirmer] Add block',
+  UPDATE_BLOCK = '[CheckBoxConfirmer] Update block',
+  CLEAR_BLOCK = '[CheckBoxConfirmer] Clear block',
 }
 
-export class Loading implements Action {
-  readonly type = CheckBoxConfirmerActionTypes.LOADING;
+export class AddBlock implements Action {
+  readonly type = CheckBoxConfirmerActionTypes.ADD_BLOCK;
 
-  constructor(public payload: { id: string, loading: boolean }) {
-  }
-}
-
-export class AddBlocks implements Action {
-  readonly type = CheckBoxConfirmerActionTypes.ADD_BLOCKS;
-
-  constructor(public payload: CheckBoxConfirmerBlock[]) {
+  constructor(public payload: { block: CheckBoxConfirmerBlock }) {
   }
 }
 
 export class UpdateBlock implements Action {
   readonly type = CheckBoxConfirmerActionTypes.UPDATE_BLOCK;
 
-  constructor(public payload: Update<CheckBoxConfirmerBlock>) {
+  constructor(public payload: { block: Update<CheckBoxConfirmerBlock> }) {
   }
 }
 
-export class ClearBlocks implements Action {
-  readonly type = CheckBoxConfirmerActionTypes.CLEAR_BLOCKS;
+export class ClearBlock implements Action {
+  readonly type = CheckBoxConfirmerActionTypes.CLEAR_BLOCK;
+
+  constructor(public payload: { id: string }) {
+  }
 }
 
 export type CheckBoxConfirmerActions =
-  Loading |
-  AddBlocks |
+  AddBlock |
   UpdateBlock |
-  ClearBlocks;
+  ClearBlock;

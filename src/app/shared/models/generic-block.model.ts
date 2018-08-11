@@ -1,3 +1,5 @@
+import { Block } from './block.model';
+
 export interface BlockComponent {
-  blockId: string;
+  block: Block;
 }

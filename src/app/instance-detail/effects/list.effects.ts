@@ -16,7 +16,7 @@ import {
   InstanceDetailEffectsActionTypes,
   StartEffects,
   StopEffects,
-} from '../../actions/instance-detail-effects.actions';
+} from '../actions/instance-detail-effects.actions';
 import {
   ListActionTypes,
   FetchBlocks,
@@ -25,12 +25,12 @@ import {
   SyncBlocks,
   SyncBlocksComplete,
   SyncBlocksError,
-} from '../../actions/list/list.actions';
-import { Synchronized } from '../../actions/list/sync.actions';
+} from '../actions/list/list.actions';
+import { Synchronized } from '../actions/list/sync.actions';
 
-import { Block } from '../../models';
+import { Block } from '../../shared/shared.module';
 
-import { BlockListService } from '../../services';
+import { BlockListService } from '../services/index';
 
 @Injectable()
 export class ListEffects implements OnRunEffects {

@@ -15,7 +15,6 @@ import { DropdownBlock } from '../../models';
 })
 export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: DropdownBlock;
-  @Input() loading: boolean;
   @Output() valueDidChange: EventEmitter<string>;
 
   dropdownForm: FormGroup;
@@ -26,10 +25,6 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
   constructor(protected formBuilder: FormBuilder,
               protected logger: NGXLogger) {
     this.valueDidChange = new EventEmitter<string>();
-  }
-
-  get isLoading(): boolean {
-    return this.loading === true;
   }
 
   ngOnInit(): void {

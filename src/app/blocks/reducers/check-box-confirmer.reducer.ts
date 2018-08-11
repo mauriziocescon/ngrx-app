@@ -1,4 +1,3 @@
-import { createSelector } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import { CheckBoxConfirmerActionTypes, CheckBoxConfirmerActions } from '../actions/check-box-confirmer.actions';
@@ -6,7 +5,6 @@ import { CheckBoxConfirmerActionTypes, CheckBoxConfirmerActions } from '../actio
 import { CheckBoxConfirmerBlock } from '../models';
 
 export interface State extends EntityState<CheckBoxConfirmerBlock> {
-  checkBoxConfirmerBlocksLoading: { [id: string]: boolean };
 }
 
 export const adapter: EntityAdapter<CheckBoxConfirmerBlock> = createEntityAdapter<CheckBoxConfirmerBlock>({
@@ -16,29 +14,18 @@ export const adapter: EntityAdapter<CheckBoxConfirmerBlock> = createEntityAdapte
   },
 });
 
-export const initialState: State = adapter.getInitialState({
-  checkBoxConfirmerBlocksLoading: {},
-});
+export const initialState: State = adapter.getInitialState({});
 
 export function reducer(state = initialState, action: CheckBoxConfirmerActions): State {
   switch (action.type) {
-    case CheckBoxConfirmerActionTypes.LOADING: {
-      const newBlocksLoading = { ...state.checkBoxConfirmerBlocksLoading };
-      newBlocksLoading[action.payload.id] = action.payload.loading;
-      return { ...state, checkBoxConfirmerBlocksLoading: newBlocksLoading };
-    }
-    case CheckBoxConfirmerActionTypes.ADD_BLOCKS: {
-      return adapter.upsertMany(action.payload, state);
+    case CheckBoxConfirmerActionTypes.ADD_BLOCK: {
+      return adapter.upsertOne(action.payload.block, state);
     }
     case CheckBoxConfirmerActionTypes.UPDATE_BLOCK: {
-      const checkBoxConfirmerBlock = state.entities[action.payload.id];
-      if (!checkBoxConfirmerBlock) {
-        return state;
-      }
-      return adapter.updateOne(action.payload, state);
+      return adapter.updateOne(action.payload.block, state);
     }
-    case CheckBoxConfirmerActionTypes.CLEAR_BLOCKS: {
-      return adapter.removeAll({ ...state, checkBoxConfirmerBlocksLoading: {} });
+    case CheckBoxConfirmerActionTypes.CLEAR_BLOCK: {
+      return adapter.removeOne(action.payload.id, state);
     }
     default: {
       return state;
@@ -52,16 +39,3 @@ export const {
   selectAll: getAllCheckBoxConfirmer,
   selectTotal: getTotalCheckBoxConfirmer,
 } = adapter.getSelectors();
-
-export const getCheckBoxConfirmerBlocksValidity = createSelector(
-  getCheckBoxConfirmerIds,
-  getCheckBoxConfirmerEntities,
-  (ids: string[] | number[], blocksEntities: { [id: string]: CheckBoxConfirmerBlock }) => {
-    ids = ids as string[];
-    return ids.findIndex((id: string) => {
-      return blocksEntities[id].valid === false;
-    }) === -1;
-  },
-);
-
-export const getCheckBoxConfirmerBlocksLoading = (state: State) => state.checkBoxConfirmerBlocksLoading;

@@ -12,17 +12,12 @@ import { DatePickerBlock } from '../../models';
 })
 export class DatePickerComponent implements OnInit, OnChanges {
   @Input() block: DatePickerBlock;
-  @Input() loading: boolean;
   @Output() valueDidChange: EventEmitter<string>;
 
   selectedDate: NgbDateStruct;
 
   constructor(protected logger: NGXLogger) {
     this.valueDidChange = new EventEmitter<string>();
-  }
-
-  get isLoading(): boolean {
-    return this.loading === true;
   }
 
   ngOnInit(): void {

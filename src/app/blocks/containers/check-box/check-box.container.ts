@@ -1,9 +1,9 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BlockComponent, BlockType } from '../../../shared/shared.module';
+import { BlockComponent } from '../../../shared/shared.module';
 
 import { CheckBoxBlock } from '../../models';
 
@@ -18,32 +18,24 @@ import { CheckBoxStoreService } from './check-box-store.service';
   template: `
     <cp-check-box
       [block]="block$ | async"
-      [loading]="loading$ | async"
       (valueDidChange)="valueDidChange($event)">
     </cp-check-box>`,
 })
-export class CheckBoxContainerComponent implements BlockComponent {
-  @Input() readonly blockId: string;
+export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDestroy {
+  @Input() readonly block: CheckBoxBlock;
 
   block$: Observable<CheckBoxBlock | undefined>;
-  checkBoxBlock: CheckBoxBlock | undefined;
-
-  loading$: Observable<boolean>;
 
   constructor(protected checkBoxStore: CheckBoxStoreService) {
-    this.block$ = this.checkBoxStore.getCheckBoxEntities()
-      .pipe(
-        map((entities: { [id: string]: CheckBoxBlock }) => {
-          return this.checkBoxBlock = entities[this.blockId];
-        }),
-      );
+  }
 
-    this.loading$ = this.checkBoxStore.getCheckBoxBlocksLoading()
-      .pipe(
-        map((blocksLoading: { [id: string]: boolean }) => {
-          return blocksLoading[this.blockId];
-        }),
-      );
+  ngOnInit(): void {
+    this.checkBoxStore.addBlock(this.block);
+    this.setupAsyncObs();
+  }
+
+  ngOnDestroy(): void {
+    this.checkBoxStore.clearBlock(this.block.id);
   }
 
   valueDidChange(value: boolean): void {
@@ -51,21 +43,21 @@ export class CheckBoxContainerComponent implements BlockComponent {
   }
 
   protected updateBlock(value: boolean): void {
-    if (this.checkBoxBlock) {
-      const block = {
-        id: this.blockId,
-        changes: {
-          id: this.blockId,
-          type: BlockType.CheckBox,
-          order: this.checkBoxBlock.order,
-          label: this.checkBoxBlock.label,
-          value: value,
-          description: this.checkBoxBlock.description,
-          required: this.checkBoxBlock.required,
-          disabled: this.checkBoxBlock.disabled,
-        },
-      };
-      this.checkBoxStore.updateBlock(block);
-    }
+    const block = {
+      id: this.block.id,
+      changes: {
+        value: value,
+      },
+    };
+    this.checkBoxStore.updateBlock(block);
+  }
+
+  protected setupAsyncObs(): void {
+    this.block$ = this.checkBoxStore.getCheckBoxEntities()
+      .pipe(
+        map((entities: { [id: string]: CheckBoxBlock }) => {
+          return entities[this.block.id];
+        }),
+      );
   }
 }

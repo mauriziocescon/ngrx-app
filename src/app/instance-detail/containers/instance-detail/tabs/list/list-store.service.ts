@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { ModalAlert, modalAlertsActions } from '../../../../../core/core.module';
 
-import { Block } from '../../../../models';
+import { Block } from '../../../../../shared/shared.module';
 
 import * as list from '../../../../actions/list/list.actions';
 

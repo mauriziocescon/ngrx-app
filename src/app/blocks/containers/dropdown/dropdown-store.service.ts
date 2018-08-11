@@ -16,19 +16,22 @@ export class DropdownStoreService {
   constructor(protected store$: Store<fromBlocks.State>) {
   }
 
-  getAllDropdown(): Observable<DropdownBlock[]> {
-    return this.store$.pipe(select(fromBlocks.getAllDropdown));
+  addBlock(block: DropdownBlock): void {
+    const payload = { block: block };
+    this.store$.dispatch(new dropdown.AddBlock(payload));
+  }
+
+  updateBlock(block: Update<DropdownBlock>): void {
+    const payload = { block: block };
+    this.store$.dispatch(new dropdown.UpdateBlock(payload));
+  }
+
+  clearBlock(blockId: string): void {
+    const payload = { id: blockId };
+    this.store$.dispatch(new dropdown.ClearBlock(payload));
   }
 
   getDropdownEntities(): Observable<{ [id: string]: DropdownBlock }> {
     return this.store$.pipe(select(fromBlocks.getDropdownEntities));
-  }
-
-  getDropdownBlocksLoading(): Observable<{ [id: string]: boolean }> {
-    return this.store$.pipe(select(fromBlocks.getDropdownBlocksLoading));
-  }
-
-  updateBlock(block: Update<DropdownBlock>): void {
-    this.store$.dispatch(new dropdown.UpdateBlock(block));
   }
 }

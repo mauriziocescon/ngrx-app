@@ -4,39 +4,33 @@ import { Update } from '@ngrx/entity';
 import { DropdownBlock } from '../models';
 
 export enum DropdownActionTypes {
-  LOADING = '[Dropdown] Loading',
-  ADD_BLOCKS = '[Dropdown] Add blocks',
+  ADD_BLOCK = '[Dropdown] Add block',
   UPDATE_BLOCK = '[Dropdown] Update block',
-  CLEAR_BLOCKS = '[Dropdown] Clear blocks',
+  CLEAR_BLOCK = '[Dropdown] Clear block',
 }
 
-export class Loading implements Action {
-  readonly type = DropdownActionTypes.LOADING;
+export class AddBlock implements Action {
+  readonly type = DropdownActionTypes.ADD_BLOCK;
 
-  constructor(public payload: { id: string, loading: boolean }) {
-  }
-}
-
-export class AddBlocks implements Action {
-  readonly type = DropdownActionTypes.ADD_BLOCKS;
-
-  constructor(public payload: DropdownBlock[]) {
+  constructor(public payload: { block: DropdownBlock }) {
   }
 }
 
 export class UpdateBlock implements Action {
   readonly type = DropdownActionTypes.UPDATE_BLOCK;
 
-  constructor(public payload: Update<DropdownBlock>) {
+  constructor(public payload: { block: Update<DropdownBlock> }) {
   }
 }
 
-export class ClearBlocks implements Action {
-  readonly type = DropdownActionTypes.CLEAR_BLOCKS;
+export class ClearBlock implements Action {
+  readonly type = DropdownActionTypes.CLEAR_BLOCK;
+
+  constructor(public payload: { id: string }) {
+  }
 }
 
 export type DropdownActions =
-  Loading |
-  AddBlocks |
+  AddBlock |
   UpdateBlock |
-  ClearBlocks;
+  ClearBlock;

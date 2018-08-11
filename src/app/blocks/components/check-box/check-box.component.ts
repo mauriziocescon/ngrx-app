@@ -15,7 +15,6 @@ import { CheckBoxBlock } from '../../models';
 })
 export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: CheckBoxBlock;
-  @Input() loading: boolean;
   @Output() valueDidChange: EventEmitter<boolean>;
 
   checkBoxForm: FormGroup;
@@ -26,10 +25,6 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
   constructor(protected formBuilder: FormBuilder,
               protected logger: NGXLogger) {
     this.valueDidChange = new EventEmitter<boolean>();
-  }
-
-  get isLoading(): boolean {
-    return this.loading === true;
   }
 
   ngOnInit(): void {

@@ -41,58 +41,41 @@
       "NO_RESULT": "Vuoto",
       "RETRY": "Riprova"
     },
+    "UNKNOWN": {
+      "ALERT_MSG": "Componente sconosciuto",
+      "HEADER": "Unknown"
+    },
     "CHECK_BOX": {
       "CHECK_BOX_DESC": "Ho visionato tutti i documenti",
       "CHECK_BOX_LABEL": "Contratto",
-      "HEADER": "CheckBox",
-      "LOADING": "Caricamento..."
+      "HEADER": "CheckBox"
+    },
+    "CHECK_BOX_CONFIRMER": {
+      "CHECK_BOX_CONFIRMER_DESC": "Ho visionato tutti i documenti",
+      "CHECK_BOX_CONFIRMER_LABEL": "Contratto",
+      "HEADER": "CheckBox Confirmer"
+    },
+    "DATE_PICKER": {
+      "DATE_PICKER_LABEL": "Seleziona data",
+      "HEADER": "DatePicker"
     },
     "DROPDOWN": {
       "DROPDOWN_LABEL": "Seleziona la posizione che preferisci",
-      "HEADER": "Dropdown",
-      "LOADING": "Caricamento..."
+      "HEADER": "Dropdown"
     },
     "TEXT_INPUT": {
       "HEADER": "TextInput",
-      "LOADING": "Caricamento...",
       "TEXT_INPUT_LABEL": "Inserisci delle motivazioni",
       "TEXT_INPUT_MSG_MAX_LENGTH": "La lunghezza deve essere <= {{ maxLength }}",
       "TEXT_INPUT_MSG_MIN_LENGTH": "La lunghezza deve essere >= {{ minLength }}",
       "TEXT_INPUT_MSG_MIN_MAX_LENGTH": "La lunghezza deve essere compresa tra {{ minLength }} e {{ maxLength }}",
       "TEXT_INPUT_PLACEHOLDER": "Digita del testo"
-    },
-    "UNKNOWN": {
-      "ALERT_MSG": "Componente sconosciuto",
-      "HEADER": "Unknown"
-    },
-    "CHECK_BOX_CONFIRMER": {
-      "CHECK_BOX_CONFIRMER_DESC": "Ho visionato tutti i documenti",
-      "CHECK_BOX_CONFIRMER_LABEL": "Contratto",
-      "HEADER": "CheckBox Confirmer",
-      "LOADING": "Caricamento..."
-    },
-    "DATE_PICKER": {
-      "DATE_PICKER_LABEL": "Seleziona data",
-      "HEADER": "DatePicker",
-      "LOADING": "Caricamento..."
-    },
-    "DOSSIER": {
-      "HEADER": "Dossier",
-      "LOADING": "Caricamento...",
-      "SECTION1_LABEL": "Sezione 1",
-      "SECTION1_VALUE1_LABEL": "Sezione 1, label 1",
-      "SECTION1_VALUE2_LABEL": "Sezione 1, label 2",
-      "SECTION1_VALUE3_LABEL": "Sezione 1, label 3",
-      "SECTION2_LABEL": "Sezione 2",
-      "SECTION2_VALUE1_LABEL": "Sezione 2, label 1"
     }
   },
   "CONTAINER": {
     "INSTANCE_LIST": {
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Avviso"
-    },
-    "INFO": {
     },
     "NEXT_STEP": {
       "ALERT_BUTTON": "Ok",

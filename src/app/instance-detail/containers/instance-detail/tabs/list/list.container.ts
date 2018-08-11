@@ -74,16 +74,11 @@ export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   reloadList(instance?: string): void {
-    const params = this.getInstance(instance);
-    this.listStore.dispatchFetchBlocks(params.instance);
+    this.listStore.dispatchFetchBlocks(this.getInstance(instance));
   }
 
   protected getInstance(instance?: string): string {
-    const inst = instance || this.instance;
-
-    return {
-      instance: inst,
-    };
+    return instance || this.instance;
   }
 
   ngOnDestroy(): void {

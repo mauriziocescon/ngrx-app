@@ -8,7 +8,7 @@ import { ModalAlert, modalAlertsActions } from '../../../../core/core.module';
 import * as list from '../../../actions/list/list.actions';
 import * as sync from '../../../actions/list/sync.actions';
 
-import { Block } from '../../../models';
+import { Block } from '../../../../shared/shared.module';
 
 import * as fromInstanceDetail from '../../../reducers';
 

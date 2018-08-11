@@ -4,39 +4,33 @@ import { Update } from '@ngrx/entity';
 import { DatePickerBlock } from '../models';
 
 export enum DatePickerActionTypes {
-  LOADING = '[DatePickerBlock] Loading',
-  ADD_BLOCKS = '[DatePickerBlock] Add blocks',
-  UPDATE_BLOCK = '[DatePickerBlock] Update block',
-  CLEAR_BLOCKS = '[DatePickerBlock] Clear blocks',
+  ADD_BLOCK = '[DatePicker] Add block',
+  UPDATE_BLOCK = '[DatePicker] Update block',
+  CLEAR_BLOCK = '[DatePicker] Clear block',
 }
 
-export class Loading implements Action {
-  readonly type = DatePickerActionTypes.LOADING;
+export class AddBlock implements Action {
+  readonly type = DatePickerActionTypes.ADD_BLOCK;
 
-  constructor(public payload: { id: string, loading: boolean }) {
-  }
-}
-
-export class AddBlocks implements Action {
-  readonly type = DatePickerActionTypes.ADD_BLOCKS;
-
-  constructor(public payload: DatePickerBlock[]) {
+  constructor(public payload: { block: DatePickerBlock }) {
   }
 }
 
 export class UpdateBlock implements Action {
   readonly type = DatePickerActionTypes.UPDATE_BLOCK;
 
-  constructor(public payload: Update<DatePickerBlock>) {
+  constructor(public payload: { block: Update<DatePickerBlock> }) {
   }
 }
 
-export class ClearBlocks implements Action {
-  readonly type = DatePickerActionTypes.CLEAR_BLOCKS;
+export class ClearBlock implements Action {
+  readonly type = DatePickerActionTypes.CLEAR_BLOCK;
+
+  constructor(public payload: { id: string }) {
+  }
 }
 
 export type DatePickerActions =
-  Loading |
-  AddBlocks |
+  AddBlock |
   UpdateBlock |
-  ClearBlocks;
+  ClearBlock;

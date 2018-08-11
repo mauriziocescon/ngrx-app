@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-unknown',
+  selector: 'cp-unknown',
   templateUrl: './unknown.component.html',
   styleUrls: ['./unknown.component.scss'],
 })

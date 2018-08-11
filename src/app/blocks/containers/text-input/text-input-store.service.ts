@@ -16,19 +16,22 @@ export class TextInputStoreService {
   constructor(protected store$: Store<fromBlocks.State>) {
   }
 
-  getAllTextInput(): Observable<TextInputBlock[]> {
-    return this.store$.pipe(select(fromBlocks.getAllTextInput));
+  addBlock(block: TextInputBlock): void {
+    const payload = { block: block };
+    this.store$.dispatch(new textInput.AddBlock(payload));
+  }
+
+  updateBlock(block: Update<TextInputBlock>): void {
+    const payload = { block: block };
+    this.store$.dispatch(new textInput.UpdateBlock(payload));
+  }
+
+  clearBlock(blockId: string): void {
+    const payload = { id: blockId };
+    this.store$.dispatch(new textInput.ClearBlock(payload));
   }
 
   getTextInputEntities(): Observable<{ [id: string]: TextInputBlock }> {
     return this.store$.pipe(select(fromBlocks.getTextInputEntities));
-  }
-
-  getTextInputBlocksLoading(): Observable<{ [id: string]: boolean }> {
-    return this.store$.pipe(select(fromBlocks.getTextInputBlocksLoading));
-  }
-
-  updateBlock(block: Update<TextInputBlock>): void {
-    this.store$.dispatch(new textInput.UpdateBlock(block));
   }
 }
