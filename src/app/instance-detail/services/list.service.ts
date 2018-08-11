@@ -18,12 +18,10 @@ export class BlockListService {
               protected appConstants: AppConstantsService) {
   }
 
-  getBlocks(module: string, instance: string, step: string): Observable<Block[]> {
+  getBlocks(instance: string): Observable<Block[]> {
     const options = {
       params: {
-        module: module,
         instance: instance,
-        step: step,
       },
     };
 

@@ -15,7 +15,7 @@ export enum ListActionTypes {
 export class FetchBlocks implements Action {
   readonly type = ListActionTypes.FETCH_BLOCKS;
 
-  constructor(public payload: { module: string, instance: string, step: string }) {
+  constructor(public payload: { instance: string }) {
   }
 }
 
@@ -36,7 +36,7 @@ export class FetchBlocksError implements Action {
 export class SyncBlocks implements Action {
   readonly type = ListActionTypes.SYNC_BLOCKS;
 
-  constructor(public payload: { module: string, instance: string, step: string, blocks: Block[] }) {
+  constructor(public payload: { instance: string, blocks: Block[] }) {
   }
 }
 

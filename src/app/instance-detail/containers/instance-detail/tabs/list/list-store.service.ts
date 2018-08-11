@@ -33,8 +33,8 @@ export class ListStoreService {
     this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
   }
 
-  dispatchFetchBlocks(module: string, instance: string, step: string): void {
-    this.store$.dispatch(new list.FetchBlocks({ module: module, instance: instance, step: step }));
+  dispatchFetchBlocks(instance: string): void {
+    this.store$.dispatch(new list.FetchBlocks({ instance: instance }));
   }
 
   dispatchClearBlocks(): void {

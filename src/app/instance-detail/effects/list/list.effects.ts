@@ -44,7 +44,7 @@ export class ListEffects implements OnRunEffects {
       ofType<FetchBlocks>(ListActionTypes.FETCH_BLOCKS),
       map(action => action.payload),
       switchMap((params) => {
-        return this.blockList.getBlocks(params.module, params.instance, params.step)
+        return this.blockList.getBlocks(params.instance)
           .pipe(
             switchMap((blocks: Block[]) => {
               return [new FetchBlocksComplete(blocks)];
@@ -60,7 +60,7 @@ export class ListEffects implements OnRunEffects {
       debounceTime(3000),
       map(action => action.payload),
       switchMap((payload) => {
-        return this.blockList.syncBlocks(payload.module, payload.instance, payload.step, payload.blocks)
+        return this.blockList.syncBlocks(payload.instance, payload.blocks)
           .pipe(
             switchMap((blocks: Block[]) => {
               return [

@@ -5,7 +5,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <cp-tabs
-      [instanceParams]="instanceParams">
+      [instance]="instance">
     </cp-tabs>`,
 })
 export class TabsContainerComponent {

@@ -71,7 +71,7 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
       .subscribe(([sync, blocks]) => {
         if (sync.syncRequired === true) {
           const payload = {
-            ...this.instanceParams,
+            instance: instance,
             blocks: blocks,
           };
           this.nextStepStore.dispatchSyncBlocks(payload);

@@ -44,9 +44,7 @@ export const getFetchedBlocksState = createSelector(getListState, fromList.getFe
 export const getFetchLoadingState = createSelector(getListState, fromList.getFetchLoadingState);
 export const getFetchErrorState = createSelector(getListState, fromList.getFetchErrorState);
 
-export const getModuleForSyncBlocksState = createSelector(getListState, fromList.getModuleForSyncBlocksState);
 export const getInstanceForSyncBlocksState = createSelector(getListState, fromList.getInstanceForSyncBlocksState);
-export const getStepForSyncBlocksState = createSelector(getListState, fromList.getStepForSyncBlocksState);
 
 export const getSyncingBlocksState = createSelector(getListState, fromList.getSyncingBlocksState);
 export const getSyncingLoadingState = createSelector(getListState, fromList.getSyncingLoadingState);

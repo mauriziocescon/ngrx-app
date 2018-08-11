@@ -7,9 +7,7 @@ export interface State {
   fetchLoading: boolean;
   fetchError: string | undefined;
 
-  syncBlocksForModule: string | undefined;
   syncBlocksForInstance: string | undefined;
-  syncBlocksForStep: string | undefined;
   syncingBlocks: Block[] | undefined;
   syncingLoading: boolean;
   syncError: string | undefined;
@@ -20,9 +18,7 @@ const initialState: State = {
   fetchLoading: false,
   fetchError: undefined,
 
-  syncBlocksForModule: undefined,
   syncBlocksForInstance: undefined,
-  syncBlocksForStep: undefined,
   syncingBlocks: undefined,
   syncingLoading: false,
   syncError: undefined,
@@ -57,9 +53,7 @@ export function reducer(state = initialState, action: ListActions): State {
     case ListActionTypes.SYNC_BLOCKS: {
       return {
         ...state,
-        syncBlocksForModule: action.payload.module,
         syncBlocksForInstance: action.payload.instance,
-        syncBlocksForStep: action.payload.step,
         syncingBlocks: action.payload.blocks.map(blocks => blocks),
         syncingLoading: true,
         syncError: undefined,
@@ -68,9 +62,7 @@ export function reducer(state = initialState, action: ListActions): State {
     case ListActionTypes.SYNC_BLOCKS_COMPLETE: {
       return {
         ...state,
-        syncBlocksForModule: undefined,
         syncBlocksForInstance: undefined,
-        syncBlocksForStep: undefined,
         syncingBlocks: undefined,
         syncingLoading: false,
         syncError: undefined,
@@ -101,9 +93,7 @@ export const getFetchedBlocksState = (state: State) => state.fetchedBlocks;
 export const getFetchLoadingState = (state: State) => state.fetchLoading;
 export const getFetchErrorState = (state: State) => state.fetchError;
 
-export const getModuleForSyncBlocksState = (state: State) => state.syncBlocksForModule;
 export const getInstanceForSyncBlocksState = (state: State) => state.syncBlocksForInstance;
-export const getStepForSyncBlocksState = (state: State) => state.syncBlocksForStep;
 export const getSyncingBlocksState = (state: State) => state.syncingBlocks;
 export const getSyncingLoadingState = (state: State) => state.syncingLoading;
 export const getSyncErrorState = (state: State) => state.syncError;

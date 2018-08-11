@@ -34,7 +34,7 @@ export class NextStepStoreService {
     this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
   }
 
-  dispatchSyncBlocks(payload: { module: string, instance: string, step: string, blocks: Block[] }): void {
+  dispatchSyncBlocks(payload: { instance: string, blocks: Block[] }): void {
     this.store$.dispatch(new list.SyncBlocks(payload));
   }
 

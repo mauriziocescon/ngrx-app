@@ -8,8 +8,6 @@ import { NGXLogger } from 'ngx-logger';
 import { ModalAlert } from '../../../../../core/core.module';
 import { Block, BLOCK_UTILS_TOKEN } from '../../../../../shared/shared.module';
 
-import { InstanceParams } from '../../../../models';
-
 import { BlockUtilsService } from './block-utils.service';
 import { ListStoreService } from './list-store.service';
 
@@ -29,7 +27,7 @@ import { ListStoreService } from './list-store.service';
     </cp-list>`,
 })
 export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() instanceParams: InstanceParams;
+  @Input() instance: string;
 
   blocks$: Observable<Block[] | undefined>;
   fetchLoading$: Observable<boolean>;
@@ -54,9 +52,9 @@ export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.instanceParams.module && this.instanceParams.instance && this.instanceParams.step) {
+    if (this.instance) {
       this.listStore.dispatchClearBlocks();
-      this.reloadList(this.instanceParams.module, this.instanceParams.instance, this.instanceParams.step);
+      this.reloadList(this.instance);
     }
   }
 
@@ -75,20 +73,16 @@ export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
       });
   }
 
-  reloadList(module?: string, instance?: string, step?: string): void {
-    const params = this.getInstanceParams(module, instance, step);
-    this.listStore.dispatchFetchBlocks(params.module, params.instance, params.step);
+  reloadList(instance?: string): void {
+    const params = this.getInstance(instance);
+    this.listStore.dispatchFetchBlocks(params.instance);
   }
 
-  protected getInstanceParams(module?: string, instance?: string, step?: string): InstanceParams {
-    const mod = module || this.instanceParams.module;
-    const inst = instance || this.instanceParams.instance;
-    const st = step || this.instanceParams.step;
+  protected getInstance(instance?: string): string {
+    const inst = instance || this.instance;
 
     return {
-      module: mod,
       instance: inst,
-      step: st,
     };
   }
 
