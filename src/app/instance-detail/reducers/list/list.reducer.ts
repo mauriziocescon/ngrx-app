@@ -90,11 +90,11 @@ export function reducer(state = initialState, action: ListActions): State {
   }
 }
 
-export const getFetchedBlocksState = (state: State) => state.fetchedBlocks;
-export const getFetchLoadingState = (state: State) => state.fetchLoading;
-export const getFetchErrorState = (state: State) => state.fetchError;
+export const getFetchedBlocks = (state: State) => state.fetchedBlocks;
+export const getFetchLoading = (state: State) => state.fetchLoading;
+export const getFetchError = (state: State) => state.fetchError;
 
-export const getInstanceForSyncBlocksState = (state: State) => state.syncBlocksForInstance;
-export const getSyncingBlocksState = (state: State) => state.syncingBlocks;
-export const getSyncingLoadingState = (state: State) => state.syncingLoading;
-export const getSyncErrorState = (state: State) => state.syncError;
+export const getInstanceForSyncBlocks = (state: State) => state.syncBlocksForInstance;
+export const getSyncingBlocks = (state: State) => state.syncingBlocks;
+export const getSyncingLoading = (state: State) => state.syncingLoading;
+export const getSyncError = (state: State) => state.syncError;

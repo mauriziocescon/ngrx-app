@@ -16,6 +16,10 @@ export class DropdownStoreService {
   constructor(protected store$: Store<fromBlocks.State>) {
   }
 
+  getDropdownEntities(): Observable<{ [id: string]: DropdownBlock }> {
+    return this.store$.pipe(select(fromBlocks.getDropdownEntities));
+  }
+
   addBlock(block: DropdownBlock): void {
     const payload = { block: block };
     this.store$.dispatch(new dropdown.AddBlock(payload));
@@ -29,9 +33,5 @@ export class DropdownStoreService {
   clearBlock(blockId: string): void {
     const payload = { id: blockId };
     this.store$.dispatch(new dropdown.ClearBlock(payload));
-  }
-
-  getDropdownEntities(): Observable<{ [id: string]: DropdownBlock }> {
-    return this.store$.pipe(select(fromBlocks.getDropdownEntities));
   }
 }

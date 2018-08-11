@@ -47,6 +47,6 @@ export function reducer(state = initialState, action: InstanceListActions): Stat
   }
 }
 
-export const getFetchedInstancesState = (state: State) => state.fetchedInstances;
-export const getFetchLoadingState = (state: State) => state.fetchLoading;
-export const getFetchErrorState = (state: State) => state.fetchError;
+export const getFetchedInstances = (state: State) => state.fetchedInstances;
+export const getFetchLoading = (state: State) => state.fetchLoading;
+export const getFetchError = (state: State) => state.fetchError;

@@ -38,21 +38,21 @@ export const getInstanceDetailState = createFeatureSelector<InstanceDetailState>
 
 // -----------------
 // ----- block list
-export const getListState = createSelector(getInstanceDetailState, state => state.blockList);
+export const getBlockListState = createSelector(getInstanceDetailState, state => state.blockList);
 
-export const getFetchedBlocksState = createSelector(getListState, fromList.getFetchedBlocksState);
-export const getFetchLoadingState = createSelector(getListState, fromList.getFetchLoadingState);
-export const getFetchErrorState = createSelector(getListState, fromList.getFetchErrorState);
+export const getFetchedBlocks = createSelector(getBlockListState, fromList.getFetchedBlocks);
+export const getFetchLoading = createSelector(getBlockListState, fromList.getFetchLoading);
+export const getFetchError = createSelector(getBlockListState, fromList.getFetchError);
 
-export const getInstanceForSyncBlocksState = createSelector(getListState, fromList.getInstanceForSyncBlocksState);
+export const getInstanceForSyncBlocks = createSelector(getBlockListState, fromList.getInstanceForSyncBlocks);
 
-export const getSyncingBlocksState = createSelector(getListState, fromList.getSyncingBlocksState);
-export const getSyncingLoadingState = createSelector(getListState, fromList.getSyncingLoadingState);
-export const getSyncErrorState = createSelector(getListState, fromList.getSyncErrorState);
+export const getSyncingBlocks = createSelector(getBlockListState, fromList.getSyncingBlocks);
+export const getSyncingLoading = createSelector(getBlockListState, fromList.getSyncingLoading);
+export const getSyncError = createSelector(getBlockListState, fromList.getSyncError);
 
 // -----------------
 // ----------- sync
 export const getServerSyncState = createSelector(getInstanceDetailState, state => state.serverSync);
 
-export const isSynchronizationRequiredState = createSelector(getServerSyncState, fromSync.isSynchronizationRequiredState);
-export const isSynchronizationRequiredWithTimestampState = createSelector(getServerSyncState, fromSync.isSynchronizationRequiredWithTimestampState);
+export const isSynchronizationRequired = createSelector(getServerSyncState, fromSync.isSynchronizationRequired);
+export const isSynchronizationRequiredWithTimestamp = createSelector(getServerSyncState, fromSync.isSynchronizationRequiredWithTimestamp);

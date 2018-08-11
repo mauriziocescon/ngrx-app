@@ -18,26 +18,26 @@ export class ListStoreService {
   }
 
   getFetchedBlocks(): Observable<Block[] | undefined> {
-    return this.store$.pipe(select(fromInstanceDetail.getFetchedBlocksState));
+    return this.store$.pipe(select(fromInstanceDetail.getFetchedBlocks));
   }
 
   getFetchLoading(): Observable<boolean> {
-    return this.store$.pipe(select(fromInstanceDetail.getFetchLoadingState));
+    return this.store$.pipe(select(fromInstanceDetail.getFetchLoading));
   }
 
   getFetchError(): Observable<string | undefined> {
-    return this.store$.pipe(select(fromInstanceDetail.getFetchErrorState));
+    return this.store$.pipe(select(fromInstanceDetail.getFetchError));
   }
 
-  dispatchShowModalAlert(modalAlert: ModalAlert): void {
-    this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
-  }
-
-  dispatchFetchBlocks(instance: string): void {
+  fetchBlocks(instance: string): void {
     this.store$.dispatch(new list.FetchBlocks({ instance: instance }));
   }
 
-  dispatchClearBlocks(): void {
+  clearBlocks(): void {
     this.store$.dispatch(new list.ClearBlocks());
+  }
+
+  showModalAlert(modalAlert: ModalAlert): void {
+    this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
   }
 }

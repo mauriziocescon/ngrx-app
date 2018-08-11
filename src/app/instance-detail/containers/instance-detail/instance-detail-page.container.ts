@@ -38,7 +38,7 @@ export class InstanceDetailPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.instanceDetailPageStore.dispatchStartEffects();
+    this.instanceDetailPageStore.startEffects();
     this.instance = this.route.snapshot.paramMap.get('instance');
   }
 
@@ -50,7 +50,7 @@ export class InstanceDetailPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.instanceDetailPageStore.dispatchClearBlocks();
-    this.instanceDetailPageStore.dispatchStopEffects();
+    this.instanceDetailPageStore.clearBlocks();
+    this.instanceDetailPageStore.stopEffects();
   }
 }

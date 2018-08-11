@@ -19,26 +19,26 @@ export class NextStepStoreService {
   }
 
   getSyncRequired(): Observable<boolean> {
-    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequiredState));
+    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequired));
   }
 
   getSyncRequiredWithTimestamp(): Observable<{ syncRequired: boolean, timestamp: number | undefined }> {
-    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequiredWithTimestampState));
+    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequiredWithTimestamp));
   }
 
   getUpdateError(): Observable<string | undefined> {
-    return this.store$.pipe(select(fromInstanceDetail.getSyncErrorState));
+    return this.store$.pipe(select(fromInstanceDetail.getSyncError));
   }
 
-  dispatchShowModalAlert(modalAlert: ModalAlert): void {
-    this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
-  }
-
-  dispatchSyncBlocks(payload: { instance: string, blocks: Block[] }): void {
+  syncBlocks(payload: { instance: string, blocks: Block[] }): void {
     this.store$.dispatch(new list.SyncBlocks(payload));
   }
 
-  dispatchSyncRequired(): void {
+  syncRequired(): void {
     this.store$.dispatch(new sync.SyncRequired(Date.now()));
+  }
+
+  showModalAlert(modalAlert: ModalAlert): void {
+    this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
   }
 }

@@ -37,6 +37,6 @@ export const getInstanceListState = createFeatureSelector<InstanceListState>('in
 // ------- instances
 export const getInstancesState = createSelector(getInstanceListState, state => state.instances);
 
-export const getFetchedInstancesState = createSelector(getInstancesState, fromInstanceList.getFetchedInstancesState);
-export const getFetchLoadingState = createSelector(getInstancesState, fromInstanceList.getFetchLoadingState);
-export const getFetchErrorState = createSelector(getInstancesState, fromInstanceList.getFetchErrorState);
+export const getFetchedInstances = createSelector(getInstancesState, fromInstanceList.getFetchedInstances);
+export const getFetchLoading = createSelector(getInstancesState, fromInstanceList.getFetchLoading);
+export const getFetchError = createSelector(getInstancesState, fromInstanceList.getFetchError);

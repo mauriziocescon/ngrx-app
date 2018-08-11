@@ -19,6 +19,14 @@ export class CheckBoxConfirmerStoreService {
   constructor(protected store$: Store<fromRoot.State>) {
   }
 
+  getCheckBoxConfirmerEntities(): Observable<{ [id: string]: CheckBoxConfirmerBlock }> {
+    return this.store$.pipe(select(fromBlocks.getCheckBoxConfirmerEntities));
+  }
+
+  getModalConfirmerResults(): Observable<{ [id: string]: ModalConfirmerResultType | undefined }> {
+    return this.store$.pipe(select(fromRoot.getModalConfirmerResults));
+  }
+
   addBlock(block: CheckBoxConfirmerBlock): void {
     const payload = { block: block };
     this.store$.dispatch(new checkBoxConfirmer.AddBlock(payload));
@@ -32,14 +40,6 @@ export class CheckBoxConfirmerStoreService {
   clearBlock(blockId: string): void {
     const payload = { id: blockId };
     this.store$.dispatch(new checkBoxConfirmer.ClearBlock(payload));
-  }
-
-  getCheckBoxConfirmerEntities(): Observable<{ [id: string]: CheckBoxConfirmerBlock }> {
-    return this.store$.pipe(select(fromBlocks.getCheckBoxConfirmerEntities));
-  }
-
-  getModalConfirmerResults(): Observable<{ [id: string]: ModalConfirmerResultType | undefined }> {
-    return this.store$.pipe(select(fromRoot.getModalConfirmerResults));
   }
 
   showModalConfirmer(modalConfirmer: ModalConfirmer): void {

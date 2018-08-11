@@ -16,6 +16,10 @@ export class TextInputStoreService {
   constructor(protected store$: Store<fromBlocks.State>) {
   }
 
+  getTextInputEntities(): Observable<{ [id: string]: TextInputBlock }> {
+    return this.store$.pipe(select(fromBlocks.getTextInputEntities));
+  }
+
   addBlock(block: TextInputBlock): void {
     const payload = { block: block };
     this.store$.dispatch(new textInput.AddBlock(payload));
@@ -29,9 +33,5 @@ export class TextInputStoreService {
   clearBlock(blockId: string): void {
     const payload = { id: blockId };
     this.store$.dispatch(new textInput.ClearBlock(payload));
-  }
-
-  getTextInputEntities(): Observable<{ [id: string]: TextInputBlock }> {
-    return this.store$.pipe(select(fromBlocks.getTextInputEntities));
   }
 }

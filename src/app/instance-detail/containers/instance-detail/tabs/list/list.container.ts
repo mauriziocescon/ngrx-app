@@ -53,7 +53,7 @@ export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.instance) {
-      this.listStore.dispatchClearBlocks();
+      this.listStore.clearBlocks();
       this.reloadList(this.instance);
     }
   }
@@ -68,13 +68,13 @@ export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
             message: err,
             buttonLabel: this.translate.instant('CONTAINER.LIST.ALERT_BUTTON'),
           };
-          this.listStore.dispatchShowModalAlert(modalAlert);
+          this.listStore.showModalAlert(modalAlert);
         }
       });
   }
 
   reloadList(instance?: string): void {
-    this.listStore.dispatchFetchBlocks(this.getInstance(instance));
+    this.listStore.fetchBlocks(this.getInstance(instance));
   }
 
   protected getInstance(instance?: string): string {

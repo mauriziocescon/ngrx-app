@@ -32,5 +32,5 @@ export function reducer(state = initialState, action: SyncActions): State {
   }
 }
 
-export const isSynchronizationRequiredState = (state: State) => state.syncRequired;
-export const isSynchronizationRequiredWithTimestampState = (state: State) => state;
+export const isSynchronizationRequired = (state: State) => state.syncRequired;
+export const isSynchronizationRequiredWithTimestamp = (state: State) => state;

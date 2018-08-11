@@ -51,17 +51,17 @@ export class InstanceListPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.instanceListStore.dispatchStartEffects();
+    this.instanceListStore.startEffects();
     this.reloadList({ textSearch: '' });
     this.subscribeToFetchErrors();
   }
 
   paramsDidChange(params: { textSearch: string }): void {
-    this.instanceListStore.dispatchFetchInstances(params);
+    this.instanceListStore.fetchInstances(params);
   }
 
   reloadList(params: { textSearch: string }): void {
-    this.instanceListStore.dispatchFetchInstances(params);
+    this.instanceListStore.fetchInstances(params);
   }
 
   goTo(instance: Instance): void {
@@ -78,14 +78,14 @@ export class InstanceListPageComponent implements OnInit, OnDestroy {
             message: err,
             buttonLabel: this.translate.instant('CONTAINER.INSTANCE_LIST.ALERT_BUTTON'),
           };
-          this.instanceListStore.dispatchShowModalAlert(modalAlert);
+          this.instanceListStore.showModalAlert(modalAlert);
         }
       });
   }
 
   ngOnDestroy(): void {
     this.unsubscribeToModalConfirmerResult();
-    this.instanceListStore.dispatchStopEffects();
+    this.instanceListStore.stopEffects();
   }
 
   protected unsubscribeToModalConfirmerResult(): void {

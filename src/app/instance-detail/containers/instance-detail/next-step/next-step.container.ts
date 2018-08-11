@@ -75,7 +75,7 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
             instance: this.instance,
             blocks: blocks,
           };
-          this.nextStepStore.dispatchSyncBlocks(payload);
+          this.nextStepStore.syncBlocks(payload);
         }
       });
   }
@@ -90,7 +90,7 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
             message: err,
             buttonLabel: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_BUTTON'),
           };
-          this.nextStepStore.dispatchShowModalAlert(modalAlert);
+          this.nextStepStore.showModalAlert(modalAlert);
         }
       });
   }
@@ -106,7 +106,7 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   retrySync(): void {
-    this.nextStepStore.dispatchSyncRequired();
+    this.nextStepStore.syncRequired();
   }
 
   ngOnDestroy(): void {

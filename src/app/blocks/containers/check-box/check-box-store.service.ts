@@ -16,6 +16,10 @@ export class CheckBoxStoreService {
   constructor(protected store$: Store<fromBlocks.State>) {
   }
 
+  getCheckBoxEntities(): Observable<{ [id: string]: CheckBoxBlock }> {
+    return this.store$.pipe(select(fromBlocks.getCheckBoxEntities));
+  }
+
   addBlock(block: CheckBoxBlock): void {
     const payload = { block: block };
     this.store$.dispatch(new checkBox.AddBlock(payload));
@@ -29,9 +33,5 @@ export class CheckBoxStoreService {
   clearBlock(blockId: string): void {
     const payload = { id: blockId };
     this.store$.dispatch(new checkBox.ClearBlock(payload));
-  }
-
-  getCheckBoxEntities(): Observable<{ [id: string]: CheckBoxBlock }> {
-    return this.store$.pipe(select(fromBlocks.getCheckBoxEntities));
   }
 }

@@ -14,19 +14,19 @@ export class InstanceDetailPageStoreService {
   constructor(protected store$: Store<fromInstanceDetail.State>) {
   }
 
-  dispatchStartEffects(): void {
+  isSynchronizationRequired(): Observable<boolean> {
+    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequired));
+  }
+
+  clearBlocks(): void {
+    this.store$.dispatch(new list.ClearBlocks());
+  }
+
+  startEffects(): void {
     this.store$.dispatch(new instanceDetailEffects.StartEffects());
   }
 
-  dispatchStopEffects(): void {
+  stopEffects(): void {
     this.store$.dispatch(new instanceDetailEffects.StopEffects());
-  }
-
-  isSynchronizationRequired(): Observable<boolean> {
-    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequiredState));
-  }
-
-  dispatchClearBlocks(): void {
-    this.store$.dispatch(new list.ClearBlocks());
   }
 }

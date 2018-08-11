@@ -31,4 +31,4 @@ export function reducer(state = initialState, action: InstanceDetailEffectsActio
   }
 }
 
-export const areEffectsRunningState = (state: State) => state.active;
+export const areEffectsRunning = (state: State) => state.active;
