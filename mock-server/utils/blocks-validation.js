@@ -1,12 +1,21 @@
-const isCheckBoxBlockValid = function(checkBoxBlock) {
+const isCheckBoxBlockValid = (checkBoxBlock) => {
   return checkBoxBlock.required ? !!checkBoxBlock.value : true;
 };
 
-const isDropdownBlockValid = function(dropdownBlock) {
+const isCheckBoxConfirmerBlockValid = (checkBoxConfirmer) => {
+  return checkBoxConfirmer.required ? !!checkBoxConfirmer.value : true;
+};
+
+const isDatePickerBlockValid = (datePicker) => {
+  // todo: to be implemented
+  return true;
+};
+
+const isDropdownBlockValid = (dropdownBlock) => {
   return dropdownBlock.required ? !!dropdownBlock.value : true;
 };
 
-const isTextInputBlockValid = function(textInputBlock) {
+const isTextInputBlockValid = (textInputBlock) => {
   if (textInputBlock.required && (!textInputBlock.value || !textInputBlock.value.length)) {
     return false;
   }
@@ -19,11 +28,19 @@ const isTextInputBlockValid = function(textInputBlock) {
   return true;
 };
 
-exports.validate = function(blocks) {
+exports.validate = (blocks) => {
   blocks.forEach((block) => {
     switch (block.type) {
       case 'check-box': {
         block.valid = isCheckBoxBlockValid(block);
+        break;
+      }
+      case 'check-box-confirmer': {
+        block.valid = isCheckBoxConfirmerBlockValid(block);
+        break;
+      }
+      case 'date-picker': {
+        block.valid = isDatePickerBlockValid(block);
         break;
       }
       case 'dropdown': {
@@ -35,7 +52,7 @@ exports.validate = function(blocks) {
         break;
       }
       default: {
-        block.valid = true;
+        block.valid = false;
       }
     }
   });

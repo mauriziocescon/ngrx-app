@@ -42,7 +42,7 @@ export class BlockListService {
     };
 
     return this.http
-      .post<Block[]>(this.appConstants.Api.blocks, body)
+      .put<Block[]>(this.appConstants.Api.blocks, body)
       .pipe(
         map(data => data.sort((a: Block, b: Block) => {
           return a.order - b.order;

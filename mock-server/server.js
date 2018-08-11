@@ -25,7 +25,7 @@ app.use(jsonServer.bodyParser);
 
 app.get(`${isProduction ? '/api' : ''}/instances`, instances.getInstances);
 app.get(`${isProduction ? '/api' : ''}/blocks`, blocks.getBlocks);
-app.post(`${isProduction ? '/api' : ''}/blocks`, blocks.saveBlocks);
+app.put(`${isProduction ? '/api' : ''}/blocks`, blocks.saveBlocks);
 
 // Mount the router based on lowdb.js
 app.use(isProduction ? '/api' : '/', router);

@@ -22,7 +22,6 @@ function main() {
 
     let instance;
 
-    // module b1
     instance = {id: faker.random.uuid(), instance: 'inst-1', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
@@ -35,7 +34,6 @@ function main() {
     }
     data.instances.push(instance);
 
-    // module b2
     instance = {id: faker.random.uuid(), instance: 'inst-3', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
@@ -48,14 +46,12 @@ function main() {
     }
     data.instances.push(instance);
 
-    // module b3
     instance = {id: faker.random.uuid(), instance: 'inst-5', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
-    // module b4
     instance = {id: faker.random.uuid(), instance: 'inst-6', blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
