@@ -81,6 +81,7 @@ export function reducer(state = initialState, action: ListActions): State {
         ...state,
         fetchedBlocks: [],
         fetchLoading: false,
+        fetchError: undefined,
       };
     }
     default: {
