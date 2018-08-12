@@ -65,7 +65,6 @@ describe('DatePickerComponent', () => {
       disabled: false,
       valid: true,
     };
-    component.loading = false;
     fixture.detectChanges();
   });
 
