@@ -17,10 +17,6 @@ exports.getTextInput = (index) => {
     maxLength: maxLength,
     disabled: false,
     valid: true,
-    hooks: {
-      textInputBlockDidLoad: 'textInputBlockDidLoad',
-      textInputBlockDidChange: 'textInputBlockDidChange',
-    },
   };
 
   if (required && (!value || !value.length)) {

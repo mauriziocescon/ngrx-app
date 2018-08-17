@@ -13,10 +13,6 @@ exports.getDatePicker = (index) => {
     required: required,
     disabled: false,
     valid: required ? !!value : true,
-    hooks: {
-      datePickerBlockDidLoad: 'datePickerBlockDidLoad',
-      datePickerBlockDidChange: 'datePickerBlockDidChange',
-    },
   };
 
   return datePicker;

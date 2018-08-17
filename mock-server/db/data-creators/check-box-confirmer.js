@@ -14,10 +14,6 @@ exports.getCheckBoxConfirmer = (index) => {
     required: required,
     disabled: false,
     valid: required ? !!value : true,
-    hooks: {
-      checkBoxConfirmerBlockDidLoad: 'checkBoxConfirmerBlockDidLoad',
-      checkBoxConfirmerBlockDidChange: 'checkBoxConfirmerBlockDidChange',
-    },
   };
 
   return checkBoxConfirmer;

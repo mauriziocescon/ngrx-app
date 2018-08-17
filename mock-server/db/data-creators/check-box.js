@@ -14,10 +14,6 @@ exports.getCheckBox = (index) => {
     required: required,
     disabled: false,
     valid: required ? !!value : true,
-    hooks: {
-      checkBoxBlockDidLoad: 'checkBoxBlockDidLoad',
-      checkBoxBlockDidChange: 'checkBoxBlockDidChange',
-    },
   };
 
   return checkBox;

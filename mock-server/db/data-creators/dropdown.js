@@ -14,10 +14,6 @@ exports.getDropdown = (index) => {
     required: required,
     disabled: false,
     valid: required ? !!value : true,
-    hooks: {
-      dropdownBlockDidLoad: 'dropdownBlockDidLoad',
-      dropdownBlockDidChange: 'dropdownBlockDidChange',
-    },
   };
 
   return dropdown;
