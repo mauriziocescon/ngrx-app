@@ -1,5 +1,14 @@
 import { InjectionToken } from '@angular/core';
 import { createSelector, createFeatureSelector, ActionReducerMap } from '@ngrx/store';
+import { Dictionary } from '@ngrx/entity';
+
+import {
+  CheckBoxBlock,
+  CheckBoxConfirmerBlock,
+  DatePickerBlock,
+  DropdownBlock,
+  TextInputBlock,
+} from '../models';
 
 import * as fromRoot from '../../reducers';
 import * as fromCheckBox from './check-box.reducer';
@@ -50,6 +59,15 @@ export const getCheckBoxEntities = createSelector(getCheckBoxState, fromCheckBox
 export const getAllCheckBox = createSelector(getCheckBoxState, fromCheckBox.getAllCheckBox);
 export const getTotalCheckBox = createSelector(getCheckBoxState, fromCheckBox.getTotalCheckBox);
 
+export const getCheckBoxEntityById = () => {
+  return createSelector(
+    getCheckBoxEntities,
+    (entities: Dictionary<CheckBoxBlock>, props: { id: string }) => {
+      return entities[props.id];
+    },
+  );
+};
+
 // -----------------
 // ------ check-box-confirmer
 export const getCheckBoxConfirmerState = createSelector(getBlocksState, state => state.checkBoxConfirmer);
@@ -58,6 +76,15 @@ export const getCheckBoxConfirmerIds = createSelector(getCheckBoxConfirmerState,
 export const getCheckBoxConfirmerEntities = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getCheckBoxConfirmerEntities);
 export const getAllCheckBoxConfirmer = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getAllCheckBoxConfirmer);
 export const getTotalCheckBoxConfirmer = createSelector(getCheckBoxConfirmerState, fromCheckBoxConfirmer.getTotalCheckBoxConfirmer);
+
+export const getCheckBoxConfirmerEntityById = () => {
+  return createSelector(
+    getCheckBoxConfirmerEntities,
+    (entities: Dictionary<CheckBoxConfirmerBlock>, props: { id: string }) => {
+      return entities[props.id];
+    },
+  );
+};
 
 // -----------------
 // ------ date-picker
@@ -68,6 +95,15 @@ export const getDatePickerEntities = createSelector(getDatePickerState, fromDate
 export const getAllDatePicker = createSelector(getDatePickerState, fromDatePicker.getAllDatePicker);
 export const getTotalDatePicker = createSelector(getDatePickerState, fromDatePicker.getTotalDatePicker);
 
+export const getDatePickerEntityById = () => {
+  return createSelector(
+    getDatePickerEntities,
+    (entities: Dictionary<DatePickerBlock>, props: { id: string }) => {
+      return entities[props.id];
+    },
+  );
+};
+
 // -------- dropdown
 export const getDropdownState = createSelector(getBlocksState, state => state.dropdown);
 
@@ -76,6 +112,15 @@ export const getDropdownEntities = createSelector(getDropdownState, fromDropdown
 export const getAllDropdown = createSelector(getDropdownState, fromDropdown.getAllDropdown);
 export const getTotalDropdown = createSelector(getDropdownState, fromDropdown.getTotalDropdown);
 
+export const getDropdownEntityById = () => {
+  return createSelector(
+    getDropdownEntities,
+    (entities: Dictionary<DropdownBlock>, props: { id: string }) => {
+      return entities[props.id];
+    },
+  );
+};
+
 // ------ text-input
 export const getTextInputState = createSelector(getBlocksState, state => state.textInput);
 
@@ -83,3 +128,12 @@ export const getTextInputIds = createSelector(getTextInputState, fromTextInput.g
 export const getTextInputEntities = createSelector(getTextInputState, fromTextInput.getTextInputEntities);
 export const getAllTextInput = createSelector(getTextInputState, fromTextInput.getAllTextInput);
 export const getTotalTextInput = createSelector(getTextInputState, fromTextInput.getTotalTextInput);
+
+export const getTextInputEntityById = () => {
+  return createSelector(
+    getTextInputEntities,
+    (entities: Dictionary<TextInputBlock>, props: { id: string }) => {
+      return entities[props.id];
+    },
+  );
+};

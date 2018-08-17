@@ -65,19 +65,19 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   protected subscribeToSyncing(): void {
-    this.syncRequiredWithTimestampSubscription = this.syncRequiredWithTimestamp$
-      .pipe(
-        withLatestFrom(this.editedBlocks),
-      )
-      .subscribe(([sync, blocks]) => {
-        if (sync.syncRequired === true) {
-          const payload = {
-            instance: this.instance,
-            blocks: blocks,
-          };
-          this.nextStepStore.syncBlocks(payload);
-        }
-      });
+    // this.syncRequiredWithTimestampSubscription = this.syncRequiredWithTimestamp$
+    //   .pipe(
+    //     withLatestFrom(this.editedBlocks),
+    //   )
+    //   .subscribe(([sync, blocks]) => {
+    //     if (sync.syncRequired === true) {
+    //       const payload = {
+    //         instance: this.instance,
+    //         blocks: blocks,
+    //       };
+    //       this.nextStepStore.syncBlocks(payload);
+    //     }
+    //   });
   }
 
   protected subscribeToSynchErrors(): void {

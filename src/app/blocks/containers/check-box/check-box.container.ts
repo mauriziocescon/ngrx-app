@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { BlockComponent } from '../../../shared/shared.module';
 
@@ -53,11 +52,6 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.checkBoxStore.getCheckBoxEntities()
-      .pipe(
-        map((entities: { [id: string]: CheckBoxBlock }) => {
-          return entities[this.block.id];
-        }),
-      );
+    this.block$ = this.checkBoxStore.getCheckBoxById(this.block.id);
   }
 }

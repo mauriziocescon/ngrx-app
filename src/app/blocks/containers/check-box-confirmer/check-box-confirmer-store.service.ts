@@ -19,8 +19,8 @@ export class CheckBoxConfirmerStoreService {
   constructor(protected store$: Store<fromRoot.State>) {
   }
 
-  getCheckBoxConfirmerEntities(): Observable<{ [id: string]: CheckBoxConfirmerBlock }> {
-    return this.store$.pipe(select(fromBlocks.getCheckBoxConfirmerEntities));
+  getCheckBoxConfirmerById(id: string): Observable<CheckBoxConfirmerBlock> {
+    return this.store$.pipe(select(fromBlocks.getCheckBoxConfirmerEntityById(), { id: id }));
   }
 
   getModalConfirmerResults(): Observable<{ [id: string]: ModalConfirmerResultType | undefined }> {

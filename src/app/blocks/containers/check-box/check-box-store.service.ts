@@ -16,8 +16,8 @@ export class CheckBoxStoreService {
   constructor(protected store$: Store<fromBlocks.State>) {
   }
 
-  getCheckBoxEntities(): Observable<{ [id: string]: CheckBoxBlock }> {
-    return this.store$.pipe(select(fromBlocks.getCheckBoxEntities));
+  getCheckBoxById(id: string): Observable<CheckBoxBlock> {
+    return this.store$.pipe(select(fromBlocks.getCheckBoxEntityById(), { id: id }));
   }
 
   addBlock(block: CheckBoxBlock): void {

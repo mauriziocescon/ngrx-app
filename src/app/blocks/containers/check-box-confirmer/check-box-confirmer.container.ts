@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -70,12 +69,7 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.checkBoxConfirmerStore.getCheckBoxConfirmerEntities()
-      .pipe(
-        map((entities: { [id: string]: CheckBoxConfirmerBlock }) => {
-          return entities[this.block.id];
-        }),
-      );
+    this.block$ = this.checkBoxConfirmerStore.getCheckBoxConfirmerById(this.block.id);
   }
 
   protected askForConfirmation(): void {

@@ -16,8 +16,8 @@ export class DatePickerStoreService {
   constructor(protected store$: Store<fromBlocks.State>) {
   }
 
-  getDatePickerEntities(): Observable<{ [id: string]: DatePickerBlock }> {
-    return this.store$.pipe(select(fromBlocks.getDatePickerEntities));
+  getDatePickerById(id: string): Observable<DatePickerBlock> {
+    return this.store$.pipe(select(fromBlocks.getDatePickerEntityById(), { id: id }));
   }
 
   addBlock(block: DatePickerBlock): void {

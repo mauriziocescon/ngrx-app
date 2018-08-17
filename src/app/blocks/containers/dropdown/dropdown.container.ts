@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { BlockComponent } from '../../../shared/shared.module';
 
@@ -53,11 +52,6 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.dropdownStore.getDropdownEntities()
-      .pipe(
-        map((entities: { [id: string]: DropdownBlock }) => {
-          return entities[this.block.id];
-        }),
-      );
+    this.block$ = this.dropdownStore.getDropdownById(this.block.id);
   }
 }

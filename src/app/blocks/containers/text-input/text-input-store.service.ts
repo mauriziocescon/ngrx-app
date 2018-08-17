@@ -16,8 +16,8 @@ export class TextInputStoreService {
   constructor(protected store$: Store<fromBlocks.State>) {
   }
 
-  getTextInputEntities(): Observable<{ [id: string]: TextInputBlock }> {
-    return this.store$.pipe(select(fromBlocks.getTextInputEntities));
+  getTextInputById(id: string): Observable<TextInputBlock> {
+    return this.store$.pipe(select(fromBlocks.getTextInputEntityById(), { id: id }));
   }
 
   addBlock(block: TextInputBlock): void {

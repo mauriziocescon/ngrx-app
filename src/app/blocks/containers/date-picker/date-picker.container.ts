@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -56,11 +55,6 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.datePickerStore.getDatePickerEntities()
-      .pipe(
-        map((entities: { [id: string]: DatePickerBlock }) => {
-          return entities[this.block.id];
-        }),
-      );
+    this.block$ = this.datePickerStore.getDatePickerById(this.block.id);
   }
 }

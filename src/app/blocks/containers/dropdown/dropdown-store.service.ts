@@ -16,8 +16,8 @@ export class DropdownStoreService {
   constructor(protected store$: Store<fromBlocks.State>) {
   }
 
-  getDropdownEntities(): Observable<{ [id: string]: DropdownBlock }> {
-    return this.store$.pipe(select(fromBlocks.getDropdownEntities));
+  getDropdownById(id: string): Observable<DropdownBlock> {
+    return this.store$.pipe(select(fromBlocks.getDropdownEntityById(), { id: id }));
   }
 
   addBlock(block: DropdownBlock): void {
