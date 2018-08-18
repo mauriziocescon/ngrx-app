@@ -8,7 +8,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
 import { CoreModule } from '../../../../core/core.module';
-import { SharedModule } from '../../../../shared/shared.module';
+import { BlockType, SharedModule } from '../../../../shared/shared.module';
 
 import * as fromRoot from '../../../../reducers';
 import * as fromBlocks from '../../../reducers';
@@ -70,7 +70,17 @@ describe('CheckBoxConfirmerContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckBoxConfirmerContainerComponent);
     component = fixture.componentInstance;
-    // component.blockId = '1';
+    component.block = {
+      id: '1',
+      type: BlockType.CheckBoxConfirmer,
+      order: 1,
+      label: '',
+      value: true,
+      description: '',
+      required: true,
+      disabled: false,
+      valid: true,
+    };
     fixture.detectChanges();
   });
 

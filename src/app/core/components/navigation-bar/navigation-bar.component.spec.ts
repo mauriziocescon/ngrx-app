@@ -8,6 +8,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { SharedModule } from '../../../shared/shared.module';
 
+import { AppConstantsService } from '../../services';
+
 import { NavigationBarComponent } from './navigation-bar.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -37,6 +39,7 @@ describe('NavigationBarContainerComponent', () => {
       ],
       providers: [
         TranslateService,
+        AppConstantsService,
       ],
     })
       .compileComponents();

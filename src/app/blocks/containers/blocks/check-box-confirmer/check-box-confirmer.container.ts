@@ -27,7 +27,7 @@ import { CheckBoxConfirmerStoreService } from './check-box-confirmer-store.servi
     </cp-check-box-confirmer>`,
 })
 export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnInit, OnDestroy {
-  @Input() readonly block: CheckBoxConfirmerBlock;
+  @Input() block: CheckBoxConfirmerBlock;
 
   block$: Observable<CheckBoxConfirmerBlock | undefined>;
 

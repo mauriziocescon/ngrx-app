@@ -9,13 +9,11 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
 import { CoreModule } from '../../../core/core.module';
-import { SharedModule } from '../../../shared/shared.module';
+import { SharedModule, GenericBlockContainerComponent } from '../../../shared/shared.module';
 
 import * as fromRoot from '../../../reducers';
 
 import { BlockType } from '../../models';
-
-import { GenericBlockContainerComponent } from './generic-block.container';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -44,9 +42,6 @@ describe('GenericBlockContainerComponent', () => {
         StoreModule.forRoot(fromRoot.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
-      ],
-      declarations: [
-        GenericBlockContainerComponent,
       ],
       providers: [
         TranslateService,

@@ -21,7 +21,7 @@ import { DropdownStoreService } from './dropdown-store.service';
     </cp-dropdown>`,
 })
 export class DropdownContainerComponent implements BlockComponent, OnInit, OnDestroy {
-  @Input() readonly block: DropdownBlock;
+  @Input() block: DropdownBlock;
 
   block$: Observable<DropdownBlock | undefined>;
 

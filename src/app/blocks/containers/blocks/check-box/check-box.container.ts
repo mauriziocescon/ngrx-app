@@ -21,7 +21,7 @@ import { CheckBoxStoreService } from './check-box-store.service';
     </cp-check-box>`,
 })
 export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDestroy {
-  @Input() readonly block: CheckBoxBlock;
+  @Input() block: CheckBoxBlock;
 
   block$: Observable<CheckBoxBlock | undefined>;
 

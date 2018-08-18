@@ -15,12 +15,14 @@ import * as fromRoot from '../../../reducers';
 
 import { SharedModule } from '../../../shared/shared.module';
 
-import { AppConstantsService } from '../../services/app-constants.service';
-import { AppLanguageService } from '../../services/app-language.service';
-import { LocalStorageService } from '../../services/local-storage.service';
-
 import { COMPONENTS } from '../../components';
 import { CONTAINERS, NavigationBarContainerComponent } from '../../containers';
+
+import {
+  AppConstantsService,
+  AppLanguageService,
+  LocalStorageService,
+} from '../../services';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');

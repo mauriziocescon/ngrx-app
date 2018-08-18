@@ -23,7 +23,7 @@ import { DatePickerStoreService } from './date-picker-store.service';
     </cp-date-picker>`,
 })
 export class DatePickerContainerComponent implements BlockComponent, OnInit, OnDestroy {
-  @Input() readonly block: DatePickerBlock;
+  @Input() block: DatePickerBlock;
 
   block$: Observable<DatePickerBlock | undefined>;
 

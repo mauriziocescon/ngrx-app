@@ -7,7 +7,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { COMPONENTS } from './components';
+import {
+  COMPONENTS,
+  TextFilterComponent,
+} from './components';
 
 import {
   CONTAINERS,
@@ -72,6 +75,8 @@ export class SharedModule {
 }
 
 export {
+  TextFilterComponent,
+
   GenericBlockContainerComponent,
 
   AddComponentDirective,

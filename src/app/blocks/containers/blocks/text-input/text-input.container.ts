@@ -21,7 +21,7 @@ import { TextInputStoreService } from './text-input-store.service';
     </cp-text-input>`,
 })
 export class TextInputContainerComponent implements BlockComponent, OnInit, OnDestroy {
-  @Input() readonly block: TextInputBlock;
+  @Input() block: TextInputBlock;
 
   block$: Observable<TextInputBlock | undefined>;
 

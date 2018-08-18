@@ -10,7 +10,6 @@ import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 import { CoreModule } from '../../../../../core/core.module';
 import { SharedModule } from '../../../../../shared/shared.module';
 
-import { GenericBlockContainerComponent } from '../../../../containers';
 import { ListComponent } from './list.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -42,7 +41,6 @@ describe('ListComponent', () => {
         SharedModule,
       ],
       declarations: [
-        GenericBlockContainerComponent,
         ListComponent,
       ],
       providers: [
@@ -56,6 +54,9 @@ describe('ListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListComponent);
     component = fixture.componentInstance;
+    component.blocks = [];
+    component.loading = false;
+    component.fetchError = undefined;
     fixture.detectChanges();
   });
 
