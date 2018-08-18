@@ -6,7 +6,7 @@ import { debounceTime } from 'rxjs/operators';
 
 import { NGXLogger } from 'ngx-logger';
 
-import { DropdownBlock } from '../../models';
+import { DropdownBlock } from '../../../models';
 
 @Component({
   selector: 'cp-dropdown',

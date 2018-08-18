@@ -8,23 +8,23 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
 import { CoreModule } from '../../../core/core.module';
-import { SharedModule } from '../../../shared/shared.module';
+import { SharedModule, BlockType } from '../../../shared/shared.module';
 
-import { UnknownComponent } from './unknown.component';
+import { DatePickerComponent } from './date-picker.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe('UnknownComponent', () => {
-  let component: UnknownComponent;
-  let fixture: ComponentFixture<UnknownComponent>;
+describe('DatePickerComponent', () => {
+  let component: DatePickerComponent;
+  let fixture: ComponentFixture<DatePickerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        NgbModule.forRoot(),
+        NgbModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -41,7 +41,7 @@ describe('UnknownComponent', () => {
         SharedModule,
       ],
       declarations: [
-        UnknownComponent,
+        DatePickerComponent,
       ],
       providers: [
         TranslateService,
@@ -52,8 +52,19 @@ describe('UnknownComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UnknownComponent);
+    fixture = TestBed.createComponent(DatePickerComponent);
     component = fixture.componentInstance;
+    component.block = {
+      id: '1',
+      type: BlockType.DatePicker,
+      order: 1,
+      label: '',
+      value: '2018-04-29T18:30:04.237Z',
+      description: '',
+      required: true,
+      disabled: false,
+      valid: true,
+    };
     fixture.detectChanges();
   });
 

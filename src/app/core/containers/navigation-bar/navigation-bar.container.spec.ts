@@ -35,7 +35,7 @@ describe('NavigationBarContainerComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
-        NgbModule.forRoot(),
+        NgbModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

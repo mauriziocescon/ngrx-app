@@ -6,21 +6,21 @@ import { debounceTime } from 'rxjs/operators';
 
 import { NGXLogger } from 'ngx-logger';
 
-import { CheckBoxBlock } from '../../models';
+import { CheckBoxConfirmerBlock } from '../../../models';
 
 @Component({
-  selector: 'cp-check-box',
-  templateUrl: './check-box.component.html',
-  styleUrls: ['./check-box.component.scss'],
+  selector: 'cp-check-box-confirmer',
+  templateUrl: './check-box-confirmer.component.html',
+  styleUrls: ['./check-box-confirmer.component.scss'],
 })
-export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() block: CheckBoxBlock;
+export class CheckBoxConfirmerComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() block: CheckBoxConfirmerBlock;
   @Output() valueDidChange: EventEmitter<boolean>;
 
-  checkBoxForm: FormGroup;
-  protected checkBoxControl: FormControl;
+  checkBoxConfirmerForm: FormGroup;
+  protected checkBoxConfirmerControl: FormControl;
 
-  protected checkBoxControlSubscription: Subscription;
+  protected checkBoxConfirmerControlSubscription: Subscription;
 
   constructor(protected formBuilder: FormBuilder,
               protected logger: NGXLogger) {
@@ -28,39 +28,39 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.checkBoxForm = this.formBuilder.group({
-      checkBox: this.checkBoxControl = new FormControl(),
+    this.checkBoxConfirmerForm = this.formBuilder.group({
+      checkBoxConfirmer: this.checkBoxConfirmerControl = new FormControl(),
     });
     this.setupFormControllers();
 
-    this.subscribeToCheckBoxControlValueChanges();
+    this.subscribeToCheckBoxConfirmerControlValueChanges();
   }
 
   protected setupFormControllers(): void {
     const validators = [
       ...this.insertIf(this.block.required, Validators.required),
     ];
-    this.checkBoxControl.setValue(this.block.value);
-    this.setDisableEnable(this.block.disabled, this.checkBoxControl);
-    this.checkBoxControl.setValidators(validators);
+    this.checkBoxConfirmerControl.setValue(this.block.value);
+    this.setDisableEnable(this.block.disabled, this.checkBoxConfirmerControl);
+    this.checkBoxConfirmerControl.setValidators(validators);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.block.isFirstChange()) {
-      this.unsubscribeToCheckBoxValueChanges();
+      this.unsubscribeToCheckBoxConfirmerValueChanges();
       this.setupFormControllers();
-      this.subscribeToCheckBoxControlValueChanges();
+      this.subscribeToCheckBoxConfirmerControlValueChanges();
     }
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeToCheckBoxValueChanges();
+    this.unsubscribeToCheckBoxConfirmerValueChanges();
   }
 
-  protected subscribeToCheckBoxControlValueChanges(): void {
-    this.unsubscribeToCheckBoxValueChanges();
+  protected subscribeToCheckBoxConfirmerControlValueChanges(): void {
+    this.unsubscribeToCheckBoxConfirmerValueChanges();
 
-    this.checkBoxControlSubscription = this.checkBoxControl
+    this.checkBoxConfirmerControlSubscription = this.checkBoxConfirmerControl
       .valueChanges
       .pipe(
         debounceTime(500),
@@ -85,9 +85,9 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
     return condition ? [element] : [];
   }
 
-  protected unsubscribeToCheckBoxValueChanges(): void {
-    if (this.checkBoxControlSubscription) {
-      this.checkBoxControlSubscription.unsubscribe();
+  protected unsubscribeToCheckBoxConfirmerValueChanges(): void {
+    if (this.checkBoxConfirmerControlSubscription) {
+      this.checkBoxConfirmerControlSubscription.unsubscribe();
     }
   }
 }

@@ -8,23 +8,23 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
 import { CoreModule } from '../../../core/core.module';
-import { SharedModule, BlockType } from '../../../shared/shared.module';
+import { SharedModule } from '../../../shared/shared.module';
 
-import { TextInputComponent } from './text-input.component';
+import { UnknownComponent } from './unknown.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe('TextInputComponent', () => {
-  let component: TextInputComponent;
-  let fixture: ComponentFixture<TextInputComponent>;
+describe('UnknownComponent', () => {
+  let component: UnknownComponent;
+  let fixture: ComponentFixture<UnknownComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        NgbModule.forRoot(),
+        NgbModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -41,7 +41,7 @@ describe('TextInputComponent', () => {
         SharedModule,
       ],
       declarations: [
-        TextInputComponent,
+        UnknownComponent,
       ],
       providers: [
         TranslateService,
@@ -52,20 +52,8 @@ describe('TextInputComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextInputComponent);
+    fixture = TestBed.createComponent(UnknownComponent);
     component = fixture.componentInstance;
-    component.block = {
-      id: '1',
-      type: BlockType.TextInput,
-      order: 1,
-      label: '',
-      value: '45',
-      required: true,
-      minLength: 0,
-      maxLength: 5,
-      disabled: false,
-      valid: true,
-    };
     fixture.detectChanges();
   });
 

@@ -3,7 +3,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChange
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { NGXLogger } from 'ngx-logger';
 
-import { DatePickerBlock } from '../../models';
+import { DatePickerBlock } from '../../../models';
 
 @Component({
   selector: 'cp-date-picker',

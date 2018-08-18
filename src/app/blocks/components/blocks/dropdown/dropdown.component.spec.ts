@@ -7,24 +7,24 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from '../../../core/core.module';
-import { SharedModule, BlockType } from '../../../shared/shared.module';
+import { CoreModule } from '../../../../core/core.module';
+import { SharedModule, BlockType } from '../../../../shared/shared.module';
 
-import { CheckBoxConfirmerComponent } from './check-box-confirmer.component';
+import { DropdownComponent } from './dropdown.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe('CheckBoxConfirmerComponent', () => {
-  let component: CheckBoxConfirmerComponent;
-  let fixture: ComponentFixture<CheckBoxConfirmerComponent>;
+describe('DropdownComponent', () => {
+  let component: DropdownComponent;
+  let fixture: ComponentFixture<DropdownComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        NgbModule.forRoot(),
+        NgbModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -41,7 +41,7 @@ describe('CheckBoxConfirmerComponent', () => {
         SharedModule,
       ],
       declarations: [
-        CheckBoxConfirmerComponent,
+        DropdownComponent,
       ],
       providers: [
         TranslateService,
@@ -52,15 +52,15 @@ describe('CheckBoxConfirmerComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckBoxConfirmerComponent);
+    fixture = TestBed.createComponent(DropdownComponent);
     component = fixture.componentInstance;
     component.block = {
       id: '1',
-      type: BlockType.CheckBoxConfirmer,
+      type: BlockType.Dropdown,
       order: 1,
       label: '',
-      value: true,
-      description: '',
+      value: '1',
+      choices: ['1', '2'],
       required: true,
       disabled: false,
       valid: true,

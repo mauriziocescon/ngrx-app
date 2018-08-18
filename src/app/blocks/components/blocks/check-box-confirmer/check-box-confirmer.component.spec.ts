@@ -7,24 +7,24 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from '../../../core/core.module';
-import { SharedModule, BlockType } from '../../../shared/shared.module';
+import { CoreModule } from '../../../../core/core.module';
+import { SharedModule, BlockType } from '../../../../shared/shared.module';
 
-import { DatePickerComponent } from './date-picker.component';
+import { CheckBoxConfirmerComponent } from './check-box-confirmer.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe('DatePickerComponent', () => {
-  let component: DatePickerComponent;
-  let fixture: ComponentFixture<DatePickerComponent>;
+describe('CheckBoxConfirmerComponent', () => {
+  let component: CheckBoxConfirmerComponent;
+  let fixture: ComponentFixture<CheckBoxConfirmerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        NgbModule.forRoot(),
+        NgbModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -41,7 +41,7 @@ describe('DatePickerComponent', () => {
         SharedModule,
       ],
       declarations: [
-        DatePickerComponent,
+        CheckBoxConfirmerComponent,
       ],
       providers: [
         TranslateService,
@@ -52,14 +52,14 @@ describe('DatePickerComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DatePickerComponent);
+    fixture = TestBed.createComponent(CheckBoxConfirmerComponent);
     component = fixture.componentInstance;
     component.block = {
       id: '1',
-      type: BlockType.DatePicker,
+      type: BlockType.CheckBoxConfirmer,
       order: 1,
       label: '',
-      value: '2018-04-29T18:30:04.237Z',
+      value: true,
       description: '',
       required: true,
       disabled: false,

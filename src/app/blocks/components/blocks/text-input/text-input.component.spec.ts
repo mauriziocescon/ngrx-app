@@ -10,21 +10,21 @@ import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 import { CoreModule } from '../../../core/core.module';
 import { SharedModule, BlockType } from '../../../shared/shared.module';
 
-import { CheckBoxComponent } from './check-box.component';
+import { TextInputComponent } from './text-input.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe('CheckBoxComponent', () => {
-  let component: CheckBoxComponent;
-  let fixture: ComponentFixture<CheckBoxComponent>;
+describe('TextInputComponent', () => {
+  let component: TextInputComponent;
+  let fixture: ComponentFixture<TextInputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        NgbModule.forRoot(),
+        NgbModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -41,7 +41,7 @@ describe('CheckBoxComponent', () => {
         SharedModule,
       ],
       declarations: [
-        CheckBoxComponent,
+        TextInputComponent,
       ],
       providers: [
         TranslateService,
@@ -52,16 +52,17 @@ describe('CheckBoxComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckBoxComponent);
+    fixture = TestBed.createComponent(TextInputComponent);
     component = fixture.componentInstance;
     component.block = {
       id: '1',
-      type: BlockType.CheckBox,
+      type: BlockType.TextInput,
       order: 1,
       label: '',
-      value: true,
-      description: '',
+      value: '45',
       required: true,
+      minLength: 0,
+      maxLength: 5,
       disabled: false,
       valid: true,
     };

@@ -41,7 +41,7 @@ export function createTranslateLoader(http: HttpClient) {
     StoreDevtoolsModule.instrument({ name: 'NgRx-App DevTools', logOnly: environment.production }),
     EffectsModule.forRoot(EFFECTS),
 
-    NgbModule.forRoot(),
+    NgbModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
