@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { CheckBoxConfirmerBlock } from '../models';
+import { CheckBoxConfirmerBlock } from '../../models';
 
 export enum CheckBoxConfirmerActionTypes {
   ADD_BLOCK = '[CheckBoxConfirmer] Add block',

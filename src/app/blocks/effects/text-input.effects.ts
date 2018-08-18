@@ -18,7 +18,7 @@ import { SyncRequired } from '../../instance-detail/actions/list/sync.actions';
 import {
   TextInputActionTypes,
   UpdateBlock,
-} from '../actions/text-input.actions';
+} from '../actions/blocks/text-input.actions';
 
 @Injectable()
 export class TextInputEffect implements OnRunEffects {

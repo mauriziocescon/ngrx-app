@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { CheckBoxBlock } from '../models';
+import { CheckBoxBlock } from '../../models';
 
 export enum CheckBoxActionTypes {
   ADD_BLOCK = '[CheckBox] Add block',

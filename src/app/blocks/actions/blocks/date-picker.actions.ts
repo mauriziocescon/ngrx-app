@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { DatePickerBlock } from '../models';
+import { DatePickerBlock } from '../../models';
 
 export enum DatePickerActionTypes {
   ADD_BLOCK = '[DatePicker] Add block',

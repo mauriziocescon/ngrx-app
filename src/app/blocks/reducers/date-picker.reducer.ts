@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { DatePickerActionTypes, DatePickerActions } from '../actions/date-picker.actions';
+import { DatePickerActionTypes, DatePickerActions } from '../actions/blocks/date-picker.actions';
 
 import { DatePickerBlock } from '../models';
 

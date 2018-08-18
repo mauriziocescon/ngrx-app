@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { CheckBoxConfirmerActionTypes, CheckBoxConfirmerActions } from '../actions/check-box-confirmer.actions';
+import { CheckBoxConfirmerActionTypes, CheckBoxConfirmerActions } from '../actions/blocks/check-box-confirmer.actions';
 
 import { CheckBoxConfirmerBlock } from '../models';
 

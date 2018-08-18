@@ -18,7 +18,7 @@ import { SyncRequired } from '../../instance-detail/actions/list/sync.actions';
 import {
   DatePickerActionTypes,
   UpdateBlock,
-} from '../actions/date-picker.actions';
+} from '../actions/blocks/date-picker.actions';
 
 @Injectable()
 export class DatePickerEffects implements OnRunEffects {

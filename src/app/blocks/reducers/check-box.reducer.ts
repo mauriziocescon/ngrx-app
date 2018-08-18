@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { CheckBoxActionTypes, CheckBoxActions } from '../actions/check-box.actions';
+import { CheckBoxActionTypes, CheckBoxActions } from '../actions/blocks/check-box.actions';
 
 import { CheckBoxBlock } from '../models';
 

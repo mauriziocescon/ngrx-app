@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { DropdownActionTypes, DropdownActions } from '../actions/dropdown.actions';
+import { DropdownActionTypes, DropdownActions } from '../actions/blocks/dropdown.actions';
 
 import { DropdownBlock } from '../models';
 

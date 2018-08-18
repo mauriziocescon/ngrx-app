@@ -18,7 +18,7 @@ import { SyncRequired } from '../../instance-detail/actions/list/sync.actions';
 import {
   DropdownActionTypes,
   UpdateBlock,
-} from '../actions/dropdown.actions';
+} from '../actions/blocks/dropdown.actions';
 
 @Injectable()
 export class DropdownEffect implements OnRunEffects {

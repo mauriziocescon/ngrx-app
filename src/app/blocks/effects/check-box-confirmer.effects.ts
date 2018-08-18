@@ -18,7 +18,7 @@ import { SyncRequired } from '../../instance-detail/actions/list/sync.actions';
 import {
   CheckBoxConfirmerActionTypes,
   UpdateBlock,
-} from '../actions/check-box-confirmer.actions';
+} from '../actions/blocks/check-box-confirmer.actions';
 
 @Injectable()
 export class CheckBoxConfirmerEffects implements OnRunEffects {

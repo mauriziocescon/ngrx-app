@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 import { ModalConfirmer, ModalConfirmerResultType, modalConfirmersActions } from '../../../core/core.module';
 
-import * as checkBoxConfirmer from '../../actions/check-box-confirmer.actions';
+import * as checkBoxConfirmer from '../../actions/blocks/check-box-confirmer.actions';
 
 import { CheckBoxConfirmerBlock } from '../../models';
 

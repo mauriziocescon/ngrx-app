@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { TextInputActionTypes, TextInputActions } from '../actions/text-input.actions';
+import { TextInputActionTypes, TextInputActions } from '../actions/blocks/text-input.actions';
 
 import { TextInputBlock } from '../models';
 
