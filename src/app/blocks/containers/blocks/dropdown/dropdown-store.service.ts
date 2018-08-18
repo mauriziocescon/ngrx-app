@@ -4,11 +4,11 @@ import { Update } from '@ngrx/entity';
 
 import { Observable } from 'rxjs';
 
-import * as dropdown from '../../actions/blocks/dropdown.actions';
+import * as dropdown from '../../../actions/blocks/dropdown.actions';
 
-import { DropdownBlock } from '../../models';
+import { DropdownBlock } from '../../../models';
 
-import * as fromBlocks from '../../reducers';
+import * as fromBlocks from '../../../reducers';
 
 @Injectable()
 export class DropdownStoreService {

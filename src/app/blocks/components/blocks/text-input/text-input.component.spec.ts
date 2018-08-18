@@ -7,8 +7,8 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from '../../../core/core.module';
-import { SharedModule, BlockType } from '../../../shared/shared.module';
+import { CoreModule } from '../../../../core/core.module';
+import { SharedModule, BlockType } from '../../../../shared/shared.module';
 
 import { TextInputComponent } from './text-input.component';
 

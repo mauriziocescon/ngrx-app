@@ -4,11 +4,11 @@ import { Update } from '@ngrx/entity';
 
 import { Observable } from 'rxjs';
 
-import * as datePicker from '../../actions/blocks/date-picker.actions';
+import * as datePicker from '../../../actions/blocks/date-picker.actions';
 
-import { DatePickerBlock } from '../../models';
+import { DatePickerBlock } from '../../../models';
 
-import * as fromBlocks from '../../reducers';
+import * as fromBlocks from '../../../reducers';
 
 @Injectable()
 export class DatePickerStoreService {

@@ -3,31 +3,33 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { StoreModule, Store, combineReducers } from '@ngrx/store';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from '../../../core/core.module';
-import { SharedModule } from '../../../shared/shared.module';
+import { CoreModule } from '../../../../core/core.module';
+import { SharedModule } from '../../../../shared/shared.module';
 
-import * as fromRoot from '../../../reducers';
+import * as fromRoot from '../../../../reducers';
 import * as fromBlocks from '../../../reducers';
 
-import { COMPONENTS } from '../../components';
-import { CONTAINERS, CheckBoxContainerComponent } from '../../containers';
+import { COMPONENTS } from '../../../components';
+import { CONTAINERS, DatePickerContainerComponent } from '../../../containers';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe('CheckBoxContainerComponent', () => {
-  let component: CheckBoxContainerComponent;
-  let fixture: ComponentFixture<CheckBoxContainerComponent>;
+describe('DatePickerContainerComponent', () => {
+  let component: DatePickerContainerComponent;
+  let fixture: ComponentFixture<DatePickerContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
+        NgbModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -68,7 +70,7 @@ describe('CheckBoxContainerComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckBoxContainerComponent);
+    fixture = TestBed.createComponent(DatePickerContainerComponent);
     component = fixture.componentInstance;
     // component.blockId = '1';
     fixture.detectChanges();

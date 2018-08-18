@@ -1,8 +1,8 @@
-import { CheckBoxContainerComponent } from './check-box/check-box.container';
-import { CheckBoxConfirmerContainerComponent } from './check-box-confirmer/check-box-confirmer.container';
-import { DatePickerContainerComponent } from './date-picker/date-picker.container';
-import { DropdownContainerComponent } from './dropdown/dropdown.container';
-import { TextInputContainerComponent } from './text-input/text-input.container';
+import { CheckBoxContainerComponent } from './blocks/check-box/check-box.container';
+import { CheckBoxConfirmerContainerComponent } from './blocks/check-box-confirmer/check-box-confirmer.container';
+import { DatePickerContainerComponent } from './blocks/date-picker/date-picker.container';
+import { DropdownContainerComponent } from './blocks/dropdown/dropdown.container';
+import { TextInputContainerComponent } from './blocks/text-input/text-input.container';
 
 export const CONTAINERS = [
   CheckBoxContainerComponent,

@@ -2,9 +2,9 @@ import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@a
 
 import { Observable } from 'rxjs';
 
-import { BlockComponent } from '../../../shared/shared.module';
+import { BlockComponent } from '../../../../shared/shared.module';
 
-import { TextInputBlock } from '../../models';
+import { TextInputBlock } from '../../../models';
 
 import { TextInputStoreService } from './text-input-store.service';
 

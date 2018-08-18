@@ -7,10 +7,10 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   ModalConfirmer,
   ModalConfirmerResultType,
-} from '../../../core/core.module';
-import { BlockComponent } from '../../../shared/shared.module';
+} from '../../../../core/core.module';
+import { BlockComponent } from '../../../../shared/shared.module';
 
-import { CheckBoxConfirmerBlock } from '../../models';
+import { CheckBoxConfirmerBlock } from '../../../models';
 
 import { CheckBoxConfirmerStoreService } from './check-box-confirmer-store.service';
 

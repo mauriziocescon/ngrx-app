@@ -4,11 +4,11 @@ import { Update } from '@ngrx/entity';
 
 import { Observable } from 'rxjs';
 
-import * as checkBox from '../../actions/blocks/check-box.actions';
+import * as checkBox from '../../../actions/blocks/check-box.actions';
 
-import { CheckBoxBlock } from '../../models';
+import { CheckBoxBlock } from '../../../models';
 
-import * as fromBlocks from '../../reducers';
+import * as fromBlocks from '../../../reducers';
 
 @Injectable()
 export class CheckBoxStoreService {

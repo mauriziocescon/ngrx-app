@@ -30,7 +30,7 @@ import { Synchronized } from '../actions/list/sync.actions';
 
 import { Block } from '../../shared/shared.module';
 
-import { BlockListService } from '../services/index';
+import { BlockListService } from '../services';
 
 @Injectable()
 export class ListEffects implements OnRunEffects {

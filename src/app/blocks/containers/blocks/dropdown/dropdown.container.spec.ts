@@ -7,22 +7,22 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from '../../../core/core.module';
-import { SharedModule } from '../../../shared/shared.module';
+import { CoreModule } from '../../../../core/core.module';
+import { SharedModule } from '../../../../shared/shared.module';
 
-import * as fromRoot from '../../../reducers';
+import * as fromRoot from '../../../../reducers';
 import * as fromBlocks from '../../../reducers';
 
-import { COMPONENTS } from '../../components';
-import { CONTAINERS, TextInputContainerComponent } from '../../containers';
+import { COMPONENTS } from '../../../components';
+import { CONTAINERS, DropdownContainerComponent } from '../../../containers';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe('TextInputContainerComponent', () => {
-  let component: TextInputContainerComponent;
-  let fixture: ComponentFixture<TextInputContainerComponent>;
+describe('DropdownContainerComponent', () => {
+  let component: DropdownContainerComponent;
+  let fixture: ComponentFixture<DropdownContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -68,7 +68,7 @@ describe('TextInputContainerComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextInputContainerComponent);
+    fixture = TestBed.createComponent(DropdownContainerComponent);
     component = fixture.componentInstance;
     // component.blockId = '1';
     fixture.detectChanges();

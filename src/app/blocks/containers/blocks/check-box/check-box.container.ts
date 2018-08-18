@@ -2,9 +2,9 @@ import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@a
 
 import { Observable } from 'rxjs';
 
-import { BlockComponent } from '../../../shared/shared.module';
+import { BlockComponent } from '../../../../shared/shared.module';
 
-import { CheckBoxBlock } from '../../models';
+import { CheckBoxBlock } from '../../../models';
 
 import { CheckBoxStoreService } from './check-box-store.service';
 

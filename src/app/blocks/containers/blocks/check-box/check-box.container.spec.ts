@@ -7,22 +7,22 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from '../../../core/core.module';
-import { SharedModule } from '../../../shared/shared.module';
+import { CoreModule } from '../../../../core/core.module';
+import { SharedModule } from '../../../../shared/shared.module';
 
-import * as fromRoot from '../../../reducers';
+import * as fromRoot from '../../../../reducers';
 import * as fromBlocks from '../../../reducers';
 
-import { COMPONENTS } from '../../components';
-import { CONTAINERS, CheckBoxConfirmerContainerComponent } from '../../containers';
+import { COMPONENTS } from '../../../components';
+import { CONTAINERS, CheckBoxContainerComponent } from '../../../containers';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe('CheckBoxConfirmerContainerComponent', () => {
-  let component: CheckBoxConfirmerContainerComponent;
-  let fixture: ComponentFixture<CheckBoxConfirmerContainerComponent>;
+describe('CheckBoxContainerComponent', () => {
+  let component: CheckBoxContainerComponent;
+  let fixture: ComponentFixture<CheckBoxContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -68,7 +68,7 @@ describe('CheckBoxConfirmerContainerComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckBoxConfirmerContainerComponent);
+    fixture = TestBed.createComponent(CheckBoxContainerComponent);
     component = fixture.componentInstance;
     // component.blockId = '1';
     fixture.detectChanges();

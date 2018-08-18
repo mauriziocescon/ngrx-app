@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { BlockComponent } from '../../../shared/shared.module';
+import { BlockComponent } from '../../../../shared/shared.module';
 
-import { DatePickerBlock } from '../../models';
+import { DatePickerBlock } from '../../../models';
 
 import { DatePickerStoreService } from './date-picker-store.service';
 

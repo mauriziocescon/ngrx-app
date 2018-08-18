@@ -4,14 +4,14 @@ import { Update } from '@ngrx/entity';
 
 import { Observable } from 'rxjs';
 
-import { ModalConfirmer, ModalConfirmerResultType, modalConfirmersActions } from '../../../core/core.module';
+import { ModalConfirmer, ModalConfirmerResultType, modalConfirmersActions } from '../../../../core/core.module';
 
-import * as checkBoxConfirmer from '../../actions/blocks/check-box-confirmer.actions';
+import * as checkBoxConfirmer from '../../../actions/blocks/check-box-confirmer.actions';
 
-import { CheckBoxConfirmerBlock } from '../../models';
+import { CheckBoxConfirmerBlock } from '../../../models';
 
-import * as fromRoot from '../../../reducers';
-import * as fromBlocks from '../../reducers';
+import * as fromRoot from '../../../../reducers';
+import * as fromBlocks from '../../../reducers';
 
 @Injectable()
 export class CheckBoxConfirmerStoreService {

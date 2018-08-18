@@ -3,33 +3,31 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { StoreModule, Store, combineReducers } from '@ngrx/store';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from '../../../core/core.module';
-import { SharedModule } from '../../../shared/shared.module';
+import { CoreModule } from '../../../../core/core.module';
+import { SharedModule } from '../../../../shared/shared.module';
 
-import * as fromRoot from '../../../reducers';
+import * as fromRoot from '../../../../reducers';
 import * as fromBlocks from '../../../reducers';
 
-import { COMPONENTS } from '../../components';
-import { CONTAINERS, DatePickerContainerComponent } from '../../containers';
+import { COMPONENTS } from '../../../components';
+import { CONTAINERS, TextInputContainerComponent } from '../../../containers';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe('DatePickerContainerComponent', () => {
-  let component: DatePickerContainerComponent;
-  let fixture: ComponentFixture<DatePickerContainerComponent>;
+describe('TextInputContainerComponent', () => {
+  let component: TextInputContainerComponent;
+  let fixture: ComponentFixture<TextInputContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        NgbModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -70,7 +68,7 @@ describe('DatePickerContainerComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DatePickerContainerComponent);
+    fixture = TestBed.createComponent(TextInputContainerComponent);
     component = fixture.componentInstance;
     // component.blockId = '1';
     fixture.detectChanges();
