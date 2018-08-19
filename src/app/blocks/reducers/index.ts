@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { createSelector, createFeatureSelector, ActionReducerMap } from '@ngrx/store';
+import { createFeatureSelector, createSelector, ActionReducerMap } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
 
 import {
@@ -11,6 +11,8 @@ import {
 } from '../models';
 
 import * as fromRoot from '../../reducers';
+import * as fromBlockList from './block-list.reducer';
+import * as fromSync from './sync.reducer';
 import * as fromCheckBox from './blocks/check-box.reducer';
 import * as fromCheckBoxConfirmer from './blocks/check-box-confirmer.reducer';
 import * as fromDatePicker from './blocks/date-picker.reducer';
@@ -18,6 +20,9 @@ import * as fromDropdown from './blocks/dropdown.reducer';
 import * as fromTextInput from './blocks/text-input.reducer';
 
 export interface BlocksState {
+  blockList: fromBlockList.State;
+  serverSync: fromSync.State;
+
   checkBox: fromCheckBox.State;
   checkBoxConfirmer: fromCheckBoxConfirmer.State;
   datePicker: fromDatePicker.State;
@@ -35,6 +40,9 @@ export const TOKEN = new InjectionToken<ActionReducerMap<BlocksState>>('BlocksRe
 
 export function getReducers(): ActionReducerMap<BlocksState, any> {
   return {
+    blockList: fromBlockList.reducer,
+    serverSync: fromSync.reducer,
+
     checkBox: fromCheckBox.reducer,
     checkBoxConfirmer: fromCheckBoxConfirmer.reducer,
     datePicker: fromDatePicker.reducer,
@@ -51,6 +59,25 @@ export const reducerProvider = [
 // --- feature selector
 export const getBlocksState = createFeatureSelector<BlocksState>('blocks');
 
+// -----------------
+// ----- block list
+export const getBlockListState = createSelector(getBlocksState, state => state.blockList);
+
+export const getFetchedBlocks = createSelector(getBlockListState, fromBlockList.getFetchedBlocks);
+export const getFetchLoading = createSelector(getBlockListState, fromBlockList.getFetchLoading);
+export const getFetchError = createSelector(getBlockListState, fromBlockList.getFetchError);
+
+export const getSyncingBlocks = createSelector(getBlockListState, fromBlockList.getSyncingBlocks);
+export const getSyncLoading = createSelector(getBlockListState, fromBlockList.getSyncLoading);
+export const getSyncError = createSelector(getBlockListState, fromBlockList.getSyncError);
+
+// -----------------
+// ----------- sync
+export const getServerSyncState = createSelector(getBlocksState, state => state.serverSync);
+
+export const isSyncRequired = createSelector(getServerSyncState, fromSync.isSyncRequired);
+
+// -----------------
 // ------- check-box
 export const getCheckBoxState = createSelector(getBlocksState, state => state.checkBox);
 
@@ -104,6 +131,7 @@ export const getDatePickerEntityById = () => {
   );
 };
 
+// -----------------
 // -------- dropdown
 export const getDropdownState = createSelector(getBlocksState, state => state.dropdown);
 
@@ -121,6 +149,7 @@ export const getDropdownEntityById = () => {
   );
 };
 
+// -----------------
 // ------ text-input
 export const getTextInputState = createSelector(getBlocksState, state => state.textInput);
 

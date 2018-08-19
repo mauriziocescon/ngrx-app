@@ -18,14 +18,14 @@ export class FetchInstances implements Action {
 export class FetchInstancesComplete implements Action {
   readonly type = InstanceListActionTypes.FETCH_INSTANCES_COMPLETE;
 
-  constructor(public payload: Instance[]) {
+  constructor(public payload: { instances: Instance[] }) {
   }
 }
 
 export class FetchInstancesError implements Action {
   readonly type = InstanceListActionTypes.FETCH_INSTANCES_ERROR;
 
-  constructor(public payload: any) {
+  constructor(public payload: { error: string }) {
   }
 }
 

@@ -28,7 +28,7 @@ export function reducer(state = initialState, action: InstanceListActions): Stat
     case InstanceListActionTypes.FETCH_INSTANCES_COMPLETE: {
       return {
         ...state,
-        fetchedInstances: action.payload.map(blocks => blocks),
+        fetchedInstances: action.payload.instances.map(instance => instance),
         fetchLoading: false,
         fetchError: undefined,
       };
@@ -38,7 +38,7 @@ export function reducer(state = initialState, action: InstanceListActions): Stat
         ...state,
         fetchedInstances: undefined,
         fetchLoading: false,
-        fetchError: action.payload,
+        fetchError: action.payload.error,
       };
     }
     default: {

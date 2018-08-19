@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { createFeatureSelector, createSelector, ActionReducerMap, combineReducers } from '@ngrx/store';
+import { createFeatureSelector, createSelector, ActionReducerMap } from '@ngrx/store';
 
 import * as fromRoot from '../../reducers';
 import * as fromInstanceListEffects from './instance-list-effects.reducer';

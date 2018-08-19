@@ -1,5 +1,1 @@
-import { ListEffects } from './list.effects';
-
-export const EFFECTS = [
-  ListEffects,
-];
+export const EFFECTS = [];

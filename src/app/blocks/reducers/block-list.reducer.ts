@@ -1,15 +1,14 @@
-import { ListActionTypes, ListActions } from '../../actions/list/list.actions';
+import { BlockListActionTypes, BlockListActions } from '../actions/block-list.actions';
 
-import { Block } from '../../../shared/shared.module';
+import { Block } from '../../shared/shared.module';
 
 export interface State {
   fetchedBlocks: Block[] | undefined;
   fetchLoading: boolean;
   fetchError: string | undefined;
 
-  syncBlocksForInstance: string | undefined;
   syncingBlocks: Block[] | undefined;
-  syncingLoading: boolean;
+  syncLoading: boolean;
   syncError: string | undefined;
 }
 
@@ -18,15 +17,14 @@ const initialState: State = {
   fetchLoading: false,
   fetchError: undefined,
 
-  syncBlocksForInstance: undefined,
   syncingBlocks: undefined,
-  syncingLoading: false,
+  syncLoading: false,
   syncError: undefined,
 };
 
-export function reducer(state = initialState, action: ListActions): State {
+export function reducer(state = initialState, action: BlockListActions): State {
   switch (action.type) {
-    case ListActionTypes.FETCH_BLOCKS: {
+    case BlockListActionTypes.FETCH_BLOCKS: {
       return {
         ...state,
         fetchedBlocks: undefined,
@@ -34,49 +32,47 @@ export function reducer(state = initialState, action: ListActions): State {
         fetchError: undefined,
       };
     }
-    case ListActionTypes.FETCH_BLOCKS_COMPLETE: {
+    case BlockListActionTypes.FETCH_BLOCKS_COMPLETE: {
       return {
         ...state,
-        fetchedBlocks: action.payload.map(blocks => blocks),
+        fetchedBlocks: action.payload.blocks.map(block => block),
         fetchLoading: false,
         fetchError: undefined,
       };
     }
-    case ListActionTypes.FETCH_BLOCKS_ERROR: {
+    case BlockListActionTypes.FETCH_BLOCKS_ERROR: {
       return {
         ...state,
         fetchedBlocks: undefined,
         fetchLoading: false,
-        fetchError: action.payload,
+        fetchError: action.payload.error,
       };
     }
-    case ListActionTypes.SYNC_BLOCKS: {
+    case BlockListActionTypes.SYNC_BLOCKS: {
       return {
         ...state,
-        syncBlocksForInstance: action.payload.instance,
-        syncingBlocks: action.payload.blocks.map(blocks => blocks),
-        syncingLoading: true,
+        syncingBlocks: action.payload.blocks.map(block => block),
+        syncLoading: true,
         syncError: undefined,
       };
     }
-    case ListActionTypes.SYNC_BLOCKS_COMPLETE: {
+    case BlockListActionTypes.SYNC_BLOCKS_COMPLETE: {
       return {
         ...state,
-        syncBlocksForInstance: undefined,
         syncingBlocks: undefined,
-        syncingLoading: false,
+        syncLoading: false,
         syncError: undefined,
       };
     }
-    case ListActionTypes.SYNC_BLOCKS_ERROR: {
+    case BlockListActionTypes.SYNC_BLOCKS_ERROR: {
       return {
         ...state,
         syncingBlocks: undefined,
-        syncingLoading: false,
-        syncError: action.payload,
+        syncLoading: false,
+        syncError: action.payload.error,
       };
     }
-    case ListActionTypes.CLEAR_BLOCKS: {
+    case BlockListActionTypes.CLEAR_BLOCKS: {
       return {
         ...state,
         fetchedBlocks: [],
@@ -94,7 +90,6 @@ export const getFetchedBlocks = (state: State) => state.fetchedBlocks;
 export const getFetchLoading = (state: State) => state.fetchLoading;
 export const getFetchError = (state: State) => state.fetchError;
 
-export const getInstanceForSyncBlocks = (state: State) => state.syncBlocksForInstance;
 export const getSyncingBlocks = (state: State) => state.syncingBlocks;
-export const getSyncingLoading = (state: State) => state.syncingLoading;
+export const getSyncLoading = (state: State) => state.syncLoading;
 export const getSyncError = (state: State) => state.syncError;
