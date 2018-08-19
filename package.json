@@ -6,7 +6,7 @@
   "homepage": "http://www.mauriziocescon.com",
   "private": false,
   "engines": {
-    "node": "=8.11.3",
+    "node": "=8.11.4",
     "npm": "=5.6.0"
   },
   "scripts": {
