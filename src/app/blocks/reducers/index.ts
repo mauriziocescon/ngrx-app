@@ -11,11 +11,11 @@ import {
 } from '../models';
 
 import * as fromRoot from '../../reducers';
-import * as fromCheckBox from './check-box.reducer';
-import * as fromCheckBoxConfirmer from './check-box-confirmer.reducer';
-import * as fromDatePicker from './date-picker.reducer';
-import * as fromDropdown from './dropdown.reducer';
-import * as fromTextInput from './text-input.reducer';
+import * as fromCheckBox from './blocks/check-box.reducer';
+import * as fromCheckBoxConfirmer from './blocks/check-box-confirmer.reducer';
+import * as fromDatePicker from './blocks/date-picker.reducer';
+import * as fromDropdown from './blocks/dropdown.reducer';
+import * as fromTextInput from './blocks/text-input.reducer';
 
 export interface BlocksState {
   checkBox: fromCheckBox.State;
