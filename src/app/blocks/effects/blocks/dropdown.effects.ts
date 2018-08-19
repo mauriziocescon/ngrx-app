@@ -13,12 +13,12 @@ import {
   InstanceDetailEffectsActionTypes,
   StartEffects,
   StopEffects,
-} from '../../instance-detail/actions/instance-detail-effects.actions';
-import { SyncRequired } from '../../instance-detail/actions/list/sync.actions';
+} from '../../../instance-detail/actions/instance-detail-effects.actions';
+import { SyncRequired } from '../../../instance-detail/actions/list/sync.actions';
 import {
   DropdownActionTypes,
   UpdateBlock,
-} from '../actions/blocks/dropdown.actions';
+} from '../../actions/blocks/dropdown.actions';
 
 @Injectable()
 export class DropdownEffect implements OnRunEffects {

@@ -13,22 +13,22 @@ import {
   InstanceDetailEffectsActionTypes,
   StartEffects,
   StopEffects,
-} from '../../instance-detail/actions/instance-detail-effects.actions';
-import { SyncRequired } from '../../instance-detail/actions/list/sync.actions';
+} from '../../../instance-detail/actions/instance-detail-effects.actions';
+import { SyncRequired } from '../../../instance-detail/actions/list/sync.actions';
 import {
-  CheckBoxConfirmerActionTypes,
+  CheckBoxActionTypes,
   UpdateBlock,
-} from '../actions/blocks/check-box-confirmer.actions';
+} from '../../actions/blocks/check-box.actions';
 
 @Injectable()
-export class CheckBoxConfirmerEffects implements OnRunEffects {
+export class CheckBoxEffect implements OnRunEffects {
 
   constructor(protected actions$: Actions) {
   }
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .pipe(
-      ofType<UpdateBlock>(CheckBoxConfirmerActionTypes.UPDATE_BLOCK),
+      ofType<UpdateBlock>(CheckBoxActionTypes.UPDATE_BLOCK),
       switchMap(() => {
         return [new SyncRequired(Date.now())];
       }),

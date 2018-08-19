@@ -1,8 +1,8 @@
-import { CheckBoxEffect } from './check-box.effects';
-import { CheckBoxConfirmerEffects } from './check-box-confirmer.effects';
-import { DatePickerEffects } from './date-picker.effects';
-import { DropdownEffect } from './dropdown.effects';
-import { TextInputEffect } from './text-input.effects';
+import { CheckBoxEffect } from './blocks/check-box.effects';
+import { CheckBoxConfirmerEffects } from './blocks/check-box-confirmer.effects';
+import { DatePickerEffects } from './blocks/date-picker.effects';
+import { DropdownEffect } from './blocks/dropdown.effects';
+import { TextInputEffect } from './blocks/text-input.effects';
 
 export const EFFECTS = [
   CheckBoxEffect,

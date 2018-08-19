@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { Effect, Actions, ofType, OnRunEffects, EffectNotification } from '@ngrx/effects';
+import { Effect, Actions, ofType, EffectNotification, OnRunEffects } from '@ngrx/effects';
 
 import { Observable } from 'rxjs';
 import {
@@ -13,22 +13,22 @@ import {
   InstanceDetailEffectsActionTypes,
   StartEffects,
   StopEffects,
-} from '../../instance-detail/actions/instance-detail-effects.actions';
-import { SyncRequired } from '../../instance-detail/actions/list/sync.actions';
+} from '../../../instance-detail/actions/instance-detail-effects.actions';
+import { SyncRequired } from '../../../instance-detail/actions/list/sync.actions';
 import {
-  DatePickerActionTypes,
+  TextInputActionTypes,
   UpdateBlock,
-} from '../actions/blocks/date-picker.actions';
+} from '../../actions/blocks/text-input.actions';
 
 @Injectable()
-export class DatePickerEffects implements OnRunEffects {
+export class TextInputEffect implements OnRunEffects {
 
   constructor(protected actions$: Actions) {
   }
 
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .pipe(
-      ofType<UpdateBlock>(DatePickerActionTypes.UPDATE_BLOCK),
+      ofType<UpdateBlock>(TextInputActionTypes.UPDATE_BLOCK),
       switchMap(() => {
         return [new SyncRequired(Date.now())];
       }),
