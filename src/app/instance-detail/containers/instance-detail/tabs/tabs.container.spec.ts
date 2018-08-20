@@ -17,8 +17,6 @@ import * as fromInstanceDetail from '../../../reducers';
 import { COMPONENTS } from '../../../components';
 import { CONTAINERS, TabsContainerComponent } from '../../../containers';
 
-import { BlockListService } from '../../../services';
-
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -58,7 +56,6 @@ describe('TabsContainerComponent', () => {
         NGXLogger,
         fromRoot.reducerProvider,
         fromInstanceDetail.reducerProvider,
-        BlockListService,
       ],
     })
       .overrideModule(BrowserDynamicTestingModule, {
