@@ -70,6 +70,7 @@ describe('InfoContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(InfoContainerComponent);
     component = fixture.componentInstance;
+    component.instance = '';
     fixture.detectChanges();
   });
 

@@ -54,6 +54,7 @@ describe('TabsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TabsComponent);
     component = fixture.componentInstance;
+    component.instance = '';
     fixture.detectChanges();
   });
 

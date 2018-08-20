@@ -70,6 +70,7 @@ describe('NextStepContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NextStepContainerComponent);
     component = fixture.componentInstance;
+    component.instance = '';
     fixture.detectChanges();
   });
 
