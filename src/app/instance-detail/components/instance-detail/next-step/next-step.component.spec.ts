@@ -16,7 +16,7 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe('ListComponent', () => {
+describe('NextStepComponent', () => {
   let component: NextStepComponent;
   let fixture: ComponentFixture<NextStepComponent>;
 
