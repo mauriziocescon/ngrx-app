@@ -15,6 +15,8 @@ import * as fromRoot from '../../../reducers';
 
 import { BlockType } from '../../models';
 
+import { BLOCK_UTILS_TOKEN } from '../../tokens';
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -47,6 +49,7 @@ describe('GenericBlockContainerComponent', () => {
         TranslateService,
         NGXLogger,
         fromRoot.reducerProvider,
+        { provide: BLOCK_UTILS_TOKEN, useClass: {} },
       ],
     })
       .overrideModule(BrowserDynamicTestingModule, {

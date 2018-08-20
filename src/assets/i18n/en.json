@@ -35,7 +35,7 @@
       "TAB_DOCUMENTS": "Document list",
       "TAB_HISTORY": "History"
     },
-    "LIST": {
+    "BLOCK_LIST": {
       "LOAD_COMPLETED": "Loading completed",
       "LOADING": "Loading...",
       "NO_RESULT": "Empty",
@@ -81,7 +81,7 @@
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Alert"
     },
-    "LIST": {
+    "BLOCK_LIST": {
       "ALERT_BUTTON": "Ok",
       "ALERT_TITLE": "Alert"
     },
