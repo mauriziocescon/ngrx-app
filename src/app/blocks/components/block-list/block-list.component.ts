@@ -1,13 +1,13 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 
-import { Block } from '../../../../../shared/shared.module';
+import { Block } from '../../../shared/shared.module';
 
 @Component({
-  selector: 'cp-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
+  selector: 'cp-block-list',
+  templateUrl: './block-list.component.html',
+  styleUrls: ['./block-list.component.scss'],
 })
-export class ListComponent {
+export class BlockListComponent {
   @Input() blocks: Block[];
   @Input() loading: boolean;
   @Input() fetchError: string;

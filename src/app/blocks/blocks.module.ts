@@ -45,12 +45,3 @@ import { SERVICES } from './services';
 })
 export class BlocksModule {
 }
-
-export {
-  UnknownComponent,
-  CheckBoxContainerComponent,
-  CheckBoxConfirmerContainerComponent,
-  DatePickerContainerComponent,
-  DropdownContainerComponent,
-  TextInputContainerComponent,
-};

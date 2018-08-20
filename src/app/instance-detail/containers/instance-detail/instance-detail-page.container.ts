@@ -43,14 +43,13 @@ export class InstanceDetailPageComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate(): Observable<boolean> {
-    return this.instanceDetailPageStore.isSynchronizationRequired()
+    return this.instanceDetailPageStore.isSyncRequired()
       .pipe(
         map(requireSync => !requireSync),
       );
   }
 
   ngOnDestroy(): void {
-    this.instanceDetailPageStore.clearBlocks();
     this.instanceDetailPageStore.stopEffects();
   }
 }

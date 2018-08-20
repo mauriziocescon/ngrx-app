@@ -2,36 +2,35 @@ import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ModalAlert, modalAlertsActions } from '../../../../core/core.module';
-
-import * as list from '../../../actions/list/list.actions';
-import * as sync from '../../../actions/list/sync.actions';
-
 import { Block } from '../../../../shared/shared.module';
 
-import * as fromInstanceDetail from '../../../reducers';
+import * as blockList from '../../../../blocks/actions/block-list.actions';
+import * as sync from '../../../../blocks/actions/sync.actions';
+
+import * as fromBlocks from '../../../../blocks/reducers';
 
 @Injectable()
 export class NextStepStoreService {
 
-  constructor(protected store$: Store<fromInstanceDetail.State>) {
+  constructor(protected store$: Store<fromBlocks.State>) {
   }
 
   getSyncRequired(): Observable<boolean> {
-    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequired));
-  }
-
-  getSyncRequiredWithTimestamp(): Observable<{ syncRequired: boolean, timestamp: number | undefined }> {
-    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequiredWithTimestamp));
+    return this.store$.pipe(
+      select(fromBlocks.isSyncRequired),
+      map(data => data.syncRequired),
+    );
   }
 
   getUpdateError(): Observable<string | undefined> {
-    return this.store$.pipe(select(fromInstanceDetail.getSyncError));
+    return this.store$.pipe(select(fromBlocks.getSyncError));
   }
 
   syncBlocks(payload: { instance: string, blocks: Block[] }): void {
-    this.store$.dispatch(new list.SyncBlocks(payload));
+    this.store$.dispatch(new blockList.SyncBlocks(payload));
   }
 
   syncRequired(): void {

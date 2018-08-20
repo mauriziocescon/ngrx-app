@@ -1,35 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { StoreModule, Store, combineReducers } from '@ngrx/store';
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
-import { CoreModule } from '../../../../../core/core.module';
-import { SharedModule } from '../../../../../shared/shared.module';
+import { CoreModule } from '../../../core/core.module';
+import { SharedModule } from '../../../shared/shared.module';
 
-import * as fromRoot from '../../../../reducers';
-import * as fromInstanceDetail from '../../../../reducers';
-
-import { COMPONENTS } from '../../../../components';
-import { CONTAINERS, ListContainerComponent } from '../../../../containers';
-
-import { BlockListService } from '../../../../services';
+import { BlockListComponent } from './block-list.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe('ListContainerComponent', () => {
-  let component: ListContainerComponent;
-  let fixture: ComponentFixture<ListContainerComponent>;
+describe('BlockListComponent', () => {
+  let component: BlockListComponent;
+  let fixture: ComponentFixture<BlockListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
+        NgbModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -42,37 +37,26 @@ describe('ListContainerComponent', () => {
           level: NgxLoggerLevel.OFF,
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
-        StoreModule.forRoot(fromRoot.TOKEN),
-        StoreModule.forFeature('instanceDetail', fromInstanceDetail.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
       ],
       declarations: [
-        ...COMPONENTS,
-        ...CONTAINERS,
+        BlockListComponent,
       ],
       providers: [
         TranslateService,
         NGXLogger,
-        fromRoot.reducerProvider,
-        fromInstanceDetail.reducerProvider,
-        BlockListService,
       ],
     })
-      .overrideModule(BrowserDynamicTestingModule, {
-        // the usage of overrideModule comes from {@Link https://github.com/angular/angular/issues/10760}
-        set: {
-          entryComponents: [
-            ...CONTAINERS,
-          ],
-        },
-      })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListContainerComponent);
+    fixture = TestBed.createComponent(BlockListComponent);
     component = fixture.componentInstance;
+    component.blocks = [];
+    component.loading = false;
+    component.fetchError = undefined;
     fixture.detectChanges();
   });
 

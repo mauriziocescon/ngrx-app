@@ -4,15 +4,19 @@ import {
   Block,
   BlockType,
   IBlockUtils,
-} from '../../../../../shared/shared.module';
+} from '../../../shared/shared.module';
+
 import {
   UnknownComponent,
+} from '../../components';
+
+import {
   CheckBoxContainerComponent,
   CheckBoxConfirmerContainerComponent,
   DatePickerContainerComponent,
   DropdownContainerComponent,
   TextInputContainerComponent,
-} from '../../../../../blocks/blocks.module';
+} from '../../containers';
 
 @Injectable()
 export class BlockUtilsService implements IBlockUtils {

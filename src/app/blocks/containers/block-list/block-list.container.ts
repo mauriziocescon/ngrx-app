@@ -5,28 +5,28 @@ import { Observable, Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
 
-import { ModalAlert } from '../../../../../core/core.module';
-import { Block, BLOCK_UTILS_TOKEN } from '../../../../../shared/shared.module';
+import { ModalAlert } from '../../../core/core.module';
+import { Block, BLOCK_UTILS_TOKEN } from '../../../shared/shared.module';
 
 import { BlockUtilsService } from './block-utils.service';
-import { ListStoreService } from './list-store.service';
+import { BlockListStoreService } from './block-list-store.service';
 
 @Component({
-  selector: 'ct-list',
+  selector: 'ct-block-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     { provide: BLOCK_UTILS_TOKEN, useClass: BlockUtilsService },
-    ListStoreService,
+    BlockListStoreService,
   ],
   template: `
-    <cp-list
+    <cp-block-list
       [blocks]="blocks$ | async"
       [loading]="fetchLoading$ | async"
       [fetchError]="fetchError$ | async"
       (reloadList)="reloadList()">
-    </cp-list>`,
+    </cp-block-list>`,
 })
-export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
+export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() instance: string;
 
   blocks$: Observable<Block[] | undefined>;
@@ -39,10 +39,10 @@ export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(protected translate: TranslateService,
               protected logger: NGXLogger,
-              protected listStore: ListStoreService) {
-    this.blocks$ = this.listStore.getFetchedBlocks();
-    this.fetchLoading$ = this.listStore.getFetchLoading();
-    this.fetchError$ = this.listStore.getFetchError();
+              protected blockListStore: BlockListStoreService) {
+    this.blocks$ = this.blockListStore.getFetchedBlocks();
+    this.fetchLoading$ = this.blockListStore.getFetchLoading();
+    this.fetchError$ = this.blockListStore.getFetchError();
 
     this.mAlertFetchErrorId = '1';
   }
@@ -53,36 +53,37 @@ export class ListContainerComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.instance) {
-      this.listStore.clearBlocks();
+      this.blockListStore.clearBlocks();
       this.reloadList(this.instance);
     }
   }
 
-  subscribeToFetchErrors(): void {
-    this.modalAlertFetchErrorSubscription = this.fetchError$
-      .subscribe((err) => {
-        if (err) {
-          const modalAlert: ModalAlert = {
-            id: this.mAlertFetchErrorId,
-            title: this.translate.instant('CONTAINER.LIST.ALERT_TITLE'),
-            message: err,
-            buttonLabel: this.translate.instant('CONTAINER.LIST.ALERT_BUTTON'),
-          };
-          this.listStore.showModalAlert(modalAlert);
-        }
-      });
+  ngOnDestroy(): void {
+    this.unsubscribeAll();
+    this.blockListStore.clearBlocks();
   }
 
   reloadList(instance?: string): void {
-    this.listStore.fetchBlocks(this.getInstance(instance));
+    this.blockListStore.fetchBlocks(this.getInstance(instance));
   }
 
   protected getInstance(instance?: string): string {
     return instance || this.instance;
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribeAll();
+  protected subscribeToFetchErrors(): void {
+    this.modalAlertFetchErrorSubscription = this.fetchError$
+      .subscribe((err) => {
+        if (err) {
+          const modalAlert: ModalAlert = {
+            id: this.mAlertFetchErrorId,
+            title: this.translate.instant('CONTAINER.BLOCK_LIST.ALERT_TITLE'),
+            message: err,
+            buttonLabel: this.translate.instant('CONTAINER.BLOCK_LIST.ALERT_BUTTON'),
+          };
+          this.blockListStore.showModalAlert(modalAlert);
+        }
+      });
   }
 
   protected unsubscribeAll(): void {

@@ -33,7 +33,6 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   @Input() instance: string;
 
   syncRequired$: Observable<boolean>;
-  syncRequiredWithTimestamp$: Observable<{ syncRequired: boolean, timestamp: number | undefined }>;
   syncError$: Observable<string | undefined>;
 
   formValidity$: Observable<boolean>;
@@ -41,14 +40,12 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
 
   protected mAlertSyncErrorId: string;
 
-  protected syncRequiredWithTimestampSubscription: Subscription;
   protected modalAlertSyncErrorSubscription: Subscription;
 
   constructor(protected nextStepStore: NextStepStoreService,
               protected translate: TranslateService,
               protected logger: NGXLogger) {
     this.syncRequired$ = this.nextStepStore.getSyncRequired();
-    this.syncRequiredWithTimestamp$ = this.nextStepStore.getSyncRequiredWithTimestamp();
 
     this.syncError$ = this.nextStepStore.getUpdateError();
   }
@@ -114,9 +111,6 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   protected unsubscribeAll(): void {
-    if (this.syncRequiredWithTimestampSubscription) {
-      this.syncRequiredWithTimestampSubscription.unsubscribe();
-    }
     if (this.modalAlertSyncErrorSubscription) {
       this.modalAlertSyncErrorSubscription.unsubscribe();
     }

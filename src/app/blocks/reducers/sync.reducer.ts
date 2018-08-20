@@ -32,4 +32,4 @@ export function reducer(state = initialState, action: SyncActions): State {
   }
 }
 
-export const isSyncRequired = (state: State) => state.syncRequired;
+export const isSyncRequired = (state: State) => state;
