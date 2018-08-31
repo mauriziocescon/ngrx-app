@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { BlockComponent } from '../../../../shared/shared.module';
 
@@ -22,18 +22,23 @@ import { CheckBoxStoreService } from './check-box-store.service';
 })
 export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDestroy {
   @Input() block: CheckBoxBlock;
+  @Output() blockDidChange: EventEmitter<CheckBoxBlock>;
 
   block$: Observable<CheckBoxBlock | undefined>;
+  blockSubscription: Subscription;
 
   constructor(protected checkBoxStore: CheckBoxStoreService) {
+    this.blockDidChange = new EventEmitter();
   }
 
   ngOnInit(): void {
     this.checkBoxStore.addBlock(this.block);
     this.setupAsyncObs();
+    this.subscribeAllObs();
   }
 
   ngOnDestroy(): void {
+    this.unsubscribeAllObs();
     this.checkBoxStore.clearBlock(this.block.id);
   }
 
@@ -53,5 +58,18 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
 
   protected setupAsyncObs(): void {
     this.block$ = this.checkBoxStore.getCheckBoxById(this.block.id);
+  }
+
+  protected subscribeAllObs(): void {
+    this.blockSubscription = this.block$
+      .subscribe(block => {
+        this.blockDidChange.emit(block);
+      });
+  }
+
+  protected unsubscribeAllObs(): void {
+    if (this.blockSubscription) {
+      this.blockSubscription.unsubscribe();
+    }
   }
 }

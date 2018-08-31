@@ -23,7 +23,8 @@ import { BlockListStoreService } from './block-list-store.service';
       [blocks]="blocks$ | async"
       [loading]="fetchLoading$ | async"
       [fetchError]="fetchError$ | async"
-      (reloadList)="reloadList()">
+      (reloadList)="reloadList()"
+      (blockDidChange)="blockDidChange($event)">
     </cp-block-list>`,
 })
 export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy {
@@ -32,6 +33,8 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   blocks$: Observable<Block[] | undefined>;
   fetchLoading$: Observable<boolean>;
   fetchError$: Observable<string | undefined>;
+
+  protected blocksToSync: Block[];
 
   protected mAlertFetchErrorId: string;
 
@@ -62,6 +65,24 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
 
   reloadList(instance?: string): void {
     this.blockListStore.fetchBlocks(this.getInstance(instance));
+  }
+
+  blockDidChange(block: Block): void {
+    // notification that a particular block has changed
+    alert(JSON.stringify(block, null, 2));
+
+    // 1- group all blocks
+    // 2- call sync
+    // 3- update the store
+    // 4- update ui
+
+    const index = this.blocksToSync.findIndex(b => b.id === block.id);
+
+    if (index > 0) {
+      this.blocksToSync[index] = block;
+    } else {
+      this.blocksToSync.push(block);
+    }
   }
 
   protected setupAsyncObs(): void {

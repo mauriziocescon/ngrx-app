@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { BlockComponent } from '../../../../shared/shared.module';
 
@@ -22,18 +22,23 @@ import { DropdownStoreService } from './dropdown-store.service';
 })
 export class DropdownContainerComponent implements BlockComponent, OnInit, OnDestroy {
   @Input() block: DropdownBlock;
+  @Output() blockDidChange: EventEmitter<DropdownBlock>;
 
   block$: Observable<DropdownBlock | undefined>;
+  blockSubscription: Subscription;
 
   constructor(protected dropdownStore: DropdownStoreService) {
+    this.blockDidChange = new EventEmitter();
   }
 
   ngOnInit(): void {
     this.dropdownStore.addBlock(this.block);
     this.setupAsyncObs();
+    this.subscribeAllObs();
   }
 
   ngOnDestroy(): void {
+    this.unsubscribeAllObs();
     this.dropdownStore.clearBlock(this.block.id);
   }
 
@@ -53,5 +58,18 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
 
   protected setupAsyncObs(): void {
     this.block$ = this.dropdownStore.getDropdownById(this.block.id);
+  }
+
+  protected subscribeAllObs(): void {
+    this.blockSubscription = this.block$
+      .subscribe(block => {
+        this.blockDidChange.emit(block);
+      });
+  }
+
+  protected unsubscribeAllObs(): void {
+    if (this.blockSubscription) {
+      this.blockSubscription.unsubscribe();
+    }
   }
 }

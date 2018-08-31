@@ -12,10 +12,12 @@ export class BlockListComponent {
   @Input() loading: boolean;
   @Input() fetchError: string;
   @Output() reloadList: EventEmitter<void>;
+  @Output() blockDidChange: EventEmitter<Block>;
 
   constructor() {
     this.loading = false;
     this.reloadList = new EventEmitter();
+    this.blockDidChange = new EventEmitter();
   }
 
   get isLoadingData(): boolean {
@@ -44,5 +46,9 @@ export class BlockListComponent {
 
   loadList(): void {
     this.reloadList.emit();
+  }
+
+  triggerChange(block: Block): void {
+    this.blockDidChange.emit(block);
   }
 }

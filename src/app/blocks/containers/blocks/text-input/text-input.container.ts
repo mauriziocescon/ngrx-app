@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { BlockComponent } from '../../../../shared/shared.module';
 
@@ -22,18 +22,23 @@ import { TextInputStoreService } from './text-input-store.service';
 })
 export class TextInputContainerComponent implements BlockComponent, OnInit, OnDestroy {
   @Input() block: TextInputBlock;
+  @Output() blockDidChange: EventEmitter<TextInputBlock>;
 
   block$: Observable<TextInputBlock | undefined>;
+  blockSubscription: Subscription;
 
   constructor(protected textInputStore: TextInputStoreService) {
+    this.blockDidChange = new EventEmitter();
   }
 
   ngOnInit(): void {
     this.textInputStore.addBlock(this.block);
     this.setupAsyncObs();
+    this.subscribeAllObs();
   }
 
   ngOnDestroy(): void {
+    this.unsubscribeAllObs();
     this.textInputStore.clearBlock(this.block.id);
   }
 
@@ -53,5 +58,18 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
 
   protected setupAsyncObs(): void {
     this.block$ = this.textInputStore.getTextInputById(this.block.id);
+  }
+
+  protected subscribeAllObs(): void {
+    this.blockSubscription = this.block$
+      .subscribe(block => {
+        this.blockDidChange.emit(block);
+      });
+  }
+
+  protected unsubscribeAllObs(): void {
+    if (this.blockSubscription) {
+      this.blockSubscription.unsubscribe();
+    }
   }
 }

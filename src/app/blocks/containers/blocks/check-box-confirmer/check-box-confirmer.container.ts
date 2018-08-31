@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
 
@@ -28,25 +28,27 @@ import { CheckBoxConfirmerStoreService } from './check-box-confirmer-store.servi
 })
 export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnInit, OnDestroy {
   @Input() block: CheckBoxConfirmerBlock;
+  @Output() blockDidChange: EventEmitter<CheckBoxConfirmerBlock>;
 
   block$: Observable<CheckBoxConfirmerBlock | undefined>;
+  blockSubscription: Subscription;
 
   protected modalConfirmerResults$: Observable<{ [id: string]: ModalConfirmerResultType | undefined }>;
   protected modalConfirmerResultSubscription: Subscription;
 
   constructor(protected checkBoxConfirmerStore: CheckBoxConfirmerStoreService,
               protected translate: TranslateService) {
+    this.blockDidChange = new EventEmitter();
   }
 
   ngOnInit(): void {
     this.checkBoxConfirmerStore.addBlock(this.block);
     this.setupAsyncObs();
-
-    this.modalConfirmerResults$ = this.checkBoxConfirmerStore.getModalConfirmerResults();
+    this.subscribeAllObs();
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeToModalConfirmerResult();
+    this.unsubscribeAllObs();
     this.checkBoxConfirmerStore.clearBlock(this.block.id);
   }
 
@@ -70,6 +72,7 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
 
   protected setupAsyncObs(): void {
     this.block$ = this.checkBoxConfirmerStore.getCheckBoxConfirmerById(this.block.id);
+    this.modalConfirmerResults$ = this.checkBoxConfirmerStore.getModalConfirmerResults();
   }
 
   protected askForConfirmation(): void {
@@ -108,6 +111,21 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
   protected unsubscribeToModalConfirmerResult(): void {
     if (this.modalConfirmerResultSubscription) {
       this.modalConfirmerResultSubscription.unsubscribe();
+    }
+  }
+
+  protected subscribeAllObs(): void {
+    this.blockSubscription = this.block$
+      .subscribe(block => {
+        this.blockDidChange.emit(block);
+      });
+  }
+
+  protected unsubscribeAllObs(): void {
+    this.unsubscribeToModalConfirmerResult();
+
+    if (this.blockSubscription) {
+      this.blockSubscription.unsubscribe();
     }
   }
 }

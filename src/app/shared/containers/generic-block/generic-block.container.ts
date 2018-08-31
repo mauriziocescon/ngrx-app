@@ -1,10 +1,13 @@
 import {
+  Inject,
   Component,
   ChangeDetectionStrategy,
   ComponentFactoryResolver,
   AfterViewInit,
   ViewChild,
-  Input, Inject,
+  Input,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 
 import { AddComponentDirective } from '../../directives';
@@ -22,10 +25,12 @@ import { BLOCK_UTILS_TOKEN, IBlockUtils } from '../../tokens';
 })
 export class GenericBlockContainerComponent implements AfterViewInit {
   @Input() block: Block;
+  @Output() blockDidChange: EventEmitter<Block>;
   @ViewChild(AddComponentDirective) adComponent: AddComponentDirective;
 
   constructor(protected componentFactoryResolver: ComponentFactoryResolver,
               @Inject(BLOCK_UTILS_TOKEN) protected blockUtils: IBlockUtils) {
+    this.blockDidChange = new EventEmitter();
   }
 
   ngAfterViewInit(): void {
@@ -39,6 +44,7 @@ export class GenericBlockContainerComponent implements AfterViewInit {
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
     componentRef.instance.block = this.block;
+    componentRef.instance.blockDidChange.subscribe(block => this.blockDidChange.emit(block));
     componentRef.changeDetectorRef.detectChanges();
   }
 

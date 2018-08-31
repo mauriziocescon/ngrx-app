@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -24,19 +24,24 @@ import { DatePickerStoreService } from './date-picker-store.service';
 })
 export class DatePickerContainerComponent implements BlockComponent, OnInit, OnDestroy {
   @Input() block: DatePickerBlock;
+  @Output() blockDidChange: EventEmitter<DatePickerBlock>;
 
   block$: Observable<DatePickerBlock | undefined>;
+  blockSubscription: Subscription;
 
   constructor(protected datePickerStore: DatePickerStoreService,
               protected translate: TranslateService) {
+    this.blockDidChange = new EventEmitter();
   }
 
   ngOnInit(): void {
     this.datePickerStore.addBlock(this.block);
     this.setupAsyncObs();
+    this.subscribeAllObs();
   }
 
   ngOnDestroy(): void {
+    this.unsubscribeAllObs();
     this.datePickerStore.clearBlock(this.block.id);
   }
 
@@ -56,5 +61,18 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
 
   protected setupAsyncObs(): void {
     this.block$ = this.datePickerStore.getDatePickerById(this.block.id);
+  }
+
+  protected subscribeAllObs(): void {
+    this.blockSubscription = this.block$
+      .subscribe(block => {
+        this.blockDidChange.emit(block);
+      });
+  }
+
+  protected unsubscribeAllObs(): void {
+    if (this.blockSubscription) {
+      this.blockSubscription.unsubscribe();
+    }
   }
 }
