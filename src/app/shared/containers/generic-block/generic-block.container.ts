@@ -3,12 +3,15 @@ import {
   Component,
   ChangeDetectionStrategy,
   ComponentFactoryResolver,
+  OnDestroy,
   AfterViewInit,
   ViewChild,
   Input,
   Output,
   EventEmitter,
 } from '@angular/core';
+
+import { Subscription } from 'rxjs';
 
 import { AddComponentDirective } from '../../directives';
 
@@ -23,10 +26,12 @@ import { BLOCK_UTILS_TOKEN, IBlockUtils } from '../../tokens';
     <ng-template add-component></ng-template>
   `,
 })
-export class GenericBlockContainerComponent implements AfterViewInit {
+export class GenericBlockContainerComponent implements OnDestroy, AfterViewInit {
   @Input() block: Block;
   @Output() blockDidChange: EventEmitter<Block>;
   @ViewChild(AddComponentDirective) adComponent: AddComponentDirective;
+
+  protected blockDidChangeSubscription: Subscription;
 
   constructor(protected componentFactoryResolver: ComponentFactoryResolver,
               @Inject(BLOCK_UTILS_TOKEN) protected blockUtils: IBlockUtils) {
@@ -37,6 +42,12 @@ export class GenericBlockContainerComponent implements AfterViewInit {
     this.loadComponent();
   }
 
+  ngOnDestroy(): void {
+    if (this.blockDidChangeSubscription) {
+      this.blockDidChangeSubscription.unsubscribe();
+    }
+  }
+
   protected loadComponent(): void {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory<BlockComponent>(this.getComponent(this.block));
     const viewContainerRef = this.adComponent.viewContainerRef;
@@ -44,7 +55,7 @@ export class GenericBlockContainerComponent implements AfterViewInit {
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
     componentRef.instance.block = this.block;
-    componentRef.instance.blockDidChange.subscribe(block => this.blockDidChange.emit(block));
+    this.blockDidChangeSubscription = componentRef.instance.blockDidChange.subscribe(block => this.blockDidChange.emit(block));
     componentRef.changeDetectorRef.detectChanges();
   }
 

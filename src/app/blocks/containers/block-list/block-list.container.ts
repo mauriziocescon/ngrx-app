@@ -70,8 +70,6 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
 
   blockDidChange(block: Block): void {
     // notification that a particular block has changed
-    alert(JSON.stringify(block, null, 2));
-
     // 1- group all blocks
     // 2- call sync
     // 3- update the store
@@ -79,11 +77,13 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
 
     const index = this.blocksToSync.findIndex(b => b.id === block.id);
 
-    if (index > 0) {
-      this.blocksToSync[index] = block;
-    } else {
+    if (index < 0) {
       this.blocksToSync.push(block);
+    } else {
+      this.blocksToSync[index] = block;
     }
+
+    this.blockListStore.syncBlocks(this.instance, this.blocksToSync);
   }
 
   protected setupAsyncObs(): void {

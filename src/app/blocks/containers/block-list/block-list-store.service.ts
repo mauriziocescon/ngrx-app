@@ -33,6 +33,10 @@ export class BlockListStoreService {
     this.store$.dispatch(new blockList.FetchBlocks({ instance }));
   }
 
+  syncBlocks(instance: string, blocks: Block[]): void {
+    this.store$.dispatch(new blockList.SyncBlocks({ instance, blocks }));
+  }
+
   clearBlocks(): void {
     this.store$.dispatch(new blockList.ClearBlocks());
   }
