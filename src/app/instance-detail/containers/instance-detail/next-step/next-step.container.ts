@@ -51,14 +51,37 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   ngOnInit(): void {
-    this.subscribeToSyncing();
-    this.subscribeToSynchErrors();
+    this.subscribeAll();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     // todo: replace
     // this.formValidity$ = this.instanceDetailStore.getValiditySelector();
     // this.editedBlocks = this.instanceDetailStore.getAllEditedBlocksSelector();
+  }
+
+
+  nextStep(): void {
+    // dispatch action to move forward
+    alert(`NextStepContainerComponent: save`);
+  }
+
+  reset(): void {
+    // dispatch action to reset the store
+    alert(`NextStepContainerComponent: reset`);
+  }
+
+  retrySync(): void {
+    this.nextStepStore.syncRequired();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeAll();
+  }
+
+  protected subscribeAll(): void {
+    this.subscribeToSyncing();
+    this.subscribeToSynchErrors();
   }
 
   protected subscribeToSyncing(): void {
@@ -90,24 +113,6 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
           this.nextStepStore.showModalAlert(modalAlert);
         }
       });
-  }
-
-  nextStep(): void {
-    // dispatch action to move forward
-    alert(`NextStepContainerComponent: save`);
-  }
-
-  reset(): void {
-    // dispatch action to reset the store
-    alert(`NextStepContainerComponent: reset`);
-  }
-
-  retrySync(): void {
-    this.nextStepStore.syncRequired();
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribeAll();
   }
 
   protected unsubscribeAll(): void {

@@ -48,7 +48,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   }
 
   ngOnInit(): void {
-    this.subscribeToFetchErrors();
+    this.subscribeAll();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -69,6 +69,10 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
 
   protected getInstance(instance?: string): string {
     return instance || this.instance;
+  }
+
+  protected subscribeAll(): void {
+    this.subscribeToFetchErrors();
   }
 
   protected subscribeToFetchErrors(): void {
