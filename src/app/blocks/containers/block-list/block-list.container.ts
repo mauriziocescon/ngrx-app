@@ -44,6 +44,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
               protected logger: NGXLogger,
               protected blockListStore: BlockListStoreService) {
     this.mAlertFetchErrorId = '1';
+    this.blocksToSync = [];
   }
 
   ngOnInit(): void {
