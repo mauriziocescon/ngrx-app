@@ -40,14 +40,11 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   constructor(protected translate: TranslateService,
               protected logger: NGXLogger,
               protected blockListStore: BlockListStoreService) {
-    this.blocks$ = this.blockListStore.getFetchedBlocks();
-    this.fetchLoading$ = this.blockListStore.getFetchLoading();
-    this.fetchError$ = this.blockListStore.getFetchError();
-
     this.mAlertFetchErrorId = '1';
   }
 
   ngOnInit(): void {
+    this.setupAsyncObs();
     this.subscribeAll();
   }
 
@@ -65,6 +62,12 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
 
   reloadList(instance?: string): void {
     this.blockListStore.fetchBlocks(this.getInstance(instance));
+  }
+
+  protected setupAsyncObs(): void {
+    this.blocks$ = this.blockListStore.getFetchedBlocks();
+    this.fetchLoading$ = this.blockListStore.getFetchLoading();
+    this.fetchError$ = this.blockListStore.getFetchError();
   }
 
   protected getInstance(instance?: string): string {

@@ -45,12 +45,10 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   constructor(protected nextStepStore: NextStepStoreService,
               protected translate: TranslateService,
               protected logger: NGXLogger) {
-    this.syncRequired$ = this.nextStepStore.getSyncRequired();
-
-    this.syncError$ = this.nextStepStore.getUpdateError();
   }
 
   ngOnInit(): void {
+    this.setupAsyncObs();
     this.subscribeAll();
   }
 
@@ -77,6 +75,12 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
 
   ngOnDestroy(): void {
     this.unsubscribeAll();
+  }
+
+  protected setupAsyncObs(): void {
+    this.syncRequired$ = this.nextStepStore.getSyncRequired();
+
+    this.syncError$ = this.nextStepStore.getUpdateError();
   }
 
   protected subscribeAll(): void {
