@@ -75,11 +75,17 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
     // 3- update the store
     // 4- update ui
 
-    this.blocksToSync = this.blocksToSync.reduce((blocks: Block[], b: Block) => {
-      const foundBlock = b.id === block.id;
-      blocks.push(foundBlock ? block : b);
-      return blocks;
-    }, []);
+    const foundBlock = this.blocksToSync.find(b => b.id === block.id);
+
+    if (!foundBlock) {
+      this.blocksToSync.push(block);
+    } else {
+      this.blocksToSync = this.blocksToSync.reduce((blocks: Block[], b: Block) => {
+        const foundBlock = b.id === block.id;
+        blocks.push(foundBlock ? block : b);
+        return blocks;
+      }, []);
+    }
     
     this.blockListStore.syncBlocks(this.instance, this.blocksToSync);
   }
