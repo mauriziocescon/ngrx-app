@@ -12,7 +12,7 @@
           {{ "COMPONENT.INSTANCE_LIST.INSTANCE_HEADER" | translate: {module: instance.module} }}
         </h5>
         <div class="card-body">
-          <p class="card-text">{{ "COMPONENT.INSTANCE_LIST.INSTANCE_DESCRIPTION" | translate: {instance: instance.instance, step: instance.step } }}</p>
+          <p class="card-text">{{ "COMPONENT.INSTANCE_LIST.INSTANCE_DESCRIPTION" | translate: {instance: instance.instance } }}</p>
           <button class="btn btn-primary" (click)="selectInstance(instance)">{{ "COMPONENT.INSTANCE_LIST.SHOW" | translate }}</button>
         </div>
       </div>

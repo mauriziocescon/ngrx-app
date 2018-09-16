@@ -28,4 +28,4 @@ export function reducer(state = initialState, action: InstanceListEffectsActions
   }
 }
 
-export const areEffectsRunningState = (state: State) => state.active;
+export const areEffectsRunning = (state: State) => state.active;

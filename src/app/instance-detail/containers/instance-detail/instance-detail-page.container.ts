@@ -1,15 +1,8 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { InstanceParams } from '../../models';
-
-import { InstanceParamsService } from '../../services';
-import {
-  InstanceDetailIntegrationStoreService,
-  BlockHooksIntegrationService,
-} from '../../services';
 
 import { InstanceDetailPageStoreService } from './instance-detail-page-store.service';
 
@@ -24,43 +17,39 @@ import { InstanceDetailPageStoreService } from './instance-detail-page-store.ser
       <div class="row">
         <ct-info
           class="col-12"
-          [instanceParams]="routeParams">
+          [instance]="instance">
         </ct-info>
         <ct-next-step
           class="col-12 col-sm-4 col-lg-2"
-          [instanceParams]="routeParams">
+          [instance]="instance">
         </ct-next-step>
         <ct-tabs
           class="col-12 col-sm-8 col-lg-10"
-          [instanceParams]="routeParams">
+          [instance]="instance">
         </ct-tabs>
       </div>
     </div>`,
 })
 export class InstanceDetailPageComponent implements OnInit, OnDestroy {
-  routeParams: InstanceParams;
+  instance: string;
 
-  constructor(protected instanceDetailPageStore: InstanceDetailPageStoreService,
-              protected instanceDetailStore: InstanceDetailIntegrationStoreService,
-              protected instanceParams: InstanceParamsService,
-              protected blockHooks: BlockHooksIntegrationService) {
+  constructor(protected route: ActivatedRoute,
+              protected instanceDetailPageStore: InstanceDetailPageStoreService) {
   }
 
   ngOnInit(): void {
-    this.instanceDetailStore.dispatchStartEffects();
-    this.routeParams = this.instanceParams.getInstanceParams();
+    this.instanceDetailPageStore.startEffects();
+    this.instance = this.route.snapshot.paramMap.get('instance');
   }
 
   canDeactivate(): Observable<boolean> {
-    return this.instanceDetailPageStore.isSynchronizationRequired()
+    return this.instanceDetailPageStore.isSyncRequired()
       .pipe(
         map(requireSync => !requireSync),
       );
   }
 
   ngOnDestroy(): void {
-    this.instanceDetailPageStore.dispatchClearBlocks();
-    this.blockHooks.unsubscribeAll();
-    this.instanceDetailStore.dispatchStopEffects();
+    this.instanceDetailPageStore.stopEffects();
   }
 }

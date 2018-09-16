@@ -3,15 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { InstanceDetailPageComponent } from './containers';
 
-import { InstanceDetailGuard, RulesResolve } from './services';
+import { InstanceDetailGuard } from './services';
 
 export const instanceDetailRoutes: Routes = [
   {
-    path: 'instance-detail/:module/:instance/:step',
+    path: 'instance-detail/:instance',
     component: InstanceDetailPageComponent,
-    resolve: {
-      rules: RulesResolve,
-    },
     canDeactivate: [InstanceDetailGuard],
   },
 ];

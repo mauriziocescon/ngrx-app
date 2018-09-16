@@ -19,30 +19,30 @@ export class InstanceListStoreService {
   }
 
   getFetchedInstances(): Observable<Instance[] | undefined> {
-    return this.store$.pipe(select(fromInstanceList.getFetchedInstancesState));
+    return this.store$.pipe(select(fromInstanceList.getFetchedInstances));
   }
 
   getFetchLoading(): Observable<boolean> {
-    return this.store$.pipe(select(fromInstanceList.getFetchLoadingState));
+    return this.store$.pipe(select(fromInstanceList.getFetchLoading));
   }
 
   getFetchError(): Observable<string | undefined> {
-    return this.store$.pipe(select(fromInstanceList.getFetchErrorState));
+    return this.store$.pipe(select(fromInstanceList.getFetchError));
   }
 
-  dispatchFetchInstances(params: { textSearch: string }): void {
+  fetchInstances(params: { textSearch: string }): void {
     this.store$.dispatch(new instanceList.FetchInstances(params));
   }
 
-  dispatchShowModalAlert(modalAlert: ModalAlert): void {
+  showModalAlert(modalAlert: ModalAlert): void {
     this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
   }
 
-  dispatchStartEffects(): void {
+  startEffects(): void {
     this.store$.dispatch(new instanceListEffects.StartEffects());
   }
 
-  dispatchStopEffects(): void {
+  stopEffects(): void {
     this.store$.dispatch(new instanceListEffects.StopEffects());
   }
 }

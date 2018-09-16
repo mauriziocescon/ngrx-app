@@ -1,17 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
 import { CoreModule } from '../../../core/core.module';
-
-import { TextFilterComponent } from './text-filter.component';
+import { SharedModule, TextFilterComponent } from '../../../shared/shared.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -24,11 +20,7 @@ describe('TextFilterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
         HttpClientModule,
-        NgbModule.forRoot(),
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -42,12 +34,9 @@ describe('TextFilterComponent', () => {
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
         CoreModule.forRoot(),
-      ],
-      declarations: [
-        TextFilterComponent,
+        SharedModule,
       ],
       providers: [
-        FormBuilder,
         TranslateService,
         NGXLogger,
       ],

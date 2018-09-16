@@ -5,16 +5,14 @@ exports.getInstances = (req, res) => {
   const textSearch = req.query.textSearch;
 
   const lightInstances = db.get('instances')
-    .map((instance) => {
+    .map((inst) => {
       return {
-        id: instance.id,
-        module: instance.module,
-        instance: instance.instance,
-        step: instance.step,
+        id: inst.id,
+        instance: inst.instance,
       };
     })
-    .filter((instance) => {
-      return textSearch === undefined || textSearch === '' || JSON.stringify(instance).includes(textSearch);
+    .filter((inst) => {
+      return textSearch === undefined || textSearch === '' || JSON.stringify(inst).includes(textSearch);
     })
     .value();
 

@@ -38,9 +38,9 @@ export class InstanceListEffects implements OnRunEffects {
         return this.instanceList.getInstances(params.textSearch)
           .pipe(
             switchMap((instances: Instance[]) => {
-              return [new FetchInstancesComplete(instances)];
+              return [new FetchInstancesComplete({ instances })];
             }),
-            catchError(err => of(new FetchInstancesError(err))),
+            catchError(error => of(new FetchInstancesError({ error }))),
           );
       }),
     );

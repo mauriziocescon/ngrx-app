@@ -27,7 +27,7 @@ export class NavigationBarContainerComponent {
               protected router: Router,
               protected appLanguage: AppLanguageService) {
     this.languages = this.appLanguage.getSupportedLanguagesList();
-    this.language$ = this.store$.pipe(select(fromCore.getLanguageState));
+    this.setupAsyncObs();
   }
 
   selectLanguage(language: string): void {
@@ -36,5 +36,9 @@ export class NavigationBarContainerComponent {
 
   goTo(route: { path: string }): void {
     this.router.navigate([route.path]);
+  }
+
+  protected setupAsyncObs(): void {
+    this.language$ = this.store$.pipe(select(fromCore.getLanguageState));
   }
 }

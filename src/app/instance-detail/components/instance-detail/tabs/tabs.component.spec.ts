@@ -10,9 +10,6 @@ import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 import { CoreModule } from '../../../../core/core.module';
 import { SharedModule } from '../../../../shared/shared.module';
 
-import { ListComponent } from '../../../components';
-import { ListContainerComponent } from '../../../containers';
-
 import { TabsComponent } from './tabs.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -27,7 +24,7 @@ describe('TabsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        NgbModule.forRoot(),
+        NgbModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -44,8 +41,6 @@ describe('TabsComponent', () => {
         SharedModule,
       ],
       declarations: [
-        ListComponent,
-        ListContainerComponent,
         TabsComponent,
       ],
       providers: [
@@ -59,6 +54,7 @@ describe('TabsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TabsComponent);
     component = fixture.componentInstance;
+    component.instance = '';
     fixture.detectChanges();
   });
 

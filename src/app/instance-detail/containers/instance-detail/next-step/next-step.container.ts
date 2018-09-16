@@ -9,10 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
 
 import { ModalAlert } from '../../../../core/core.module';
-
-import { Block, InstanceParams } from '../../../models';
-
-import { InstanceDetailIntegrationStoreService } from '../../../services';
+import { Block } from '../../../../shared/shared.module';
 
 import { NextStepStoreService } from './next-step-store.service';
 
@@ -33,10 +30,9 @@ import { NextStepStoreService } from './next-step-store.service';
     </cp-next-step>`,
 })
 export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() instanceParams: InstanceParams;
+  @Input() instance: string;
 
   syncRequired$: Observable<boolean>;
-  syncRequiredWithTimestamp$: Observable<{ syncRequired: boolean, timestamp: number | undefined }>;
   syncError$: Observable<string | undefined>;
 
   formValidity$: Observable<boolean>;
@@ -44,59 +40,24 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
 
   protected mAlertSyncErrorId: string;
 
-  protected syncRequiredWithTimestampSubscription: Subscription;
   protected modalAlertSyncErrorSubscription: Subscription;
 
   constructor(protected nextStepStore: NextStepStoreService,
-              protected instanceDetailStore: InstanceDetailIntegrationStoreService,
               protected translate: TranslateService,
               protected logger: NGXLogger) {
-    this.syncRequired$ = this.nextStepStore.getSyncRequired();
-    this.syncRequiredWithTimestamp$ = this.nextStepStore.getSyncRequiredWithTimestamp();
-
-    this.syncError$ = this.nextStepStore.getUpdateError();
   }
 
   ngOnInit(): void {
-    this.subscribeToSyncing();
-    this.subscribeToSynchErrors();
+    this.setupAsyncObs();
+    this.subscribeAll();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.formValidity$ = this.instanceDetailStore.getValiditySelector();
-    this.editedBlocks = this.instanceDetailStore.getAllEditedBlocksSelector();
+    // todo: replace
+    // this.formValidity$ = this.instanceDetailStore.getValiditySelector();
+    // this.editedBlocks = this.instanceDetailStore.getAllEditedBlocksSelector();
   }
 
-  protected subscribeToSyncing(): void {
-    this.syncRequiredWithTimestampSubscription = this.syncRequiredWithTimestamp$
-      .pipe(
-        withLatestFrom(this.editedBlocks),
-      )
-      .subscribe(([sync, blocks]) => {
-        if (sync.syncRequired === true) {
-          const payload = {
-            ...this.instanceParams,
-            blocks: blocks,
-          };
-          this.nextStepStore.dispatchSyncBlocks(payload);
-        }
-      });
-  }
-
-  protected subscribeToSynchErrors(): void {
-    this.modalAlertSyncErrorSubscription = this.syncError$
-      .subscribe((err) => {
-        if (err) {
-          const modalAlert: ModalAlert = {
-            id: this.mAlertSyncErrorId,
-            title: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_TITLE'),
-            message: err,
-            buttonLabel: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_BUTTON'),
-          };
-          this.nextStepStore.dispatchShowModalAlert(modalAlert);
-        }
-      });
-  }
 
   nextStep(): void {
     // dispatch action to move forward
@@ -109,17 +70,56 @@ export class NextStepContainerComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   retrySync(): void {
-    this.nextStepStore.dispatchSyncRequired();
+    this.nextStepStore.syncRequired();
   }
 
   ngOnDestroy(): void {
     this.unsubscribeAll();
   }
 
+  protected setupAsyncObs(): void {
+    this.syncRequired$ = this.nextStepStore.getSyncRequired();
+
+    this.syncError$ = this.nextStepStore.getUpdateError();
+  }
+
+  protected subscribeAll(): void {
+    this.subscribeToSyncing();
+    this.subscribeToSynchErrors();
+  }
+
+  protected subscribeToSyncing(): void {
+    // this.syncRequiredWithTimestampSubscription = this.syncRequiredWithTimestamp$
+    //   .pipe(
+    //     withLatestFrom(this.editedBlocks),
+    //   )
+    //   .subscribe(([sync, blocks]) => {
+    //     if (sync.syncRequired === true) {
+    //       const payload = {
+    //         instance: this.instance,
+    //         blocks: blocks,
+    //       };
+    //       this.nextStepStore.syncBlocks(payload);
+    //     }
+    //   });
+  }
+
+  protected subscribeToSynchErrors(): void {
+    this.modalAlertSyncErrorSubscription = this.syncError$
+      .subscribe((err) => {
+        if (err) {
+          const modalAlert: ModalAlert = {
+            id: this.mAlertSyncErrorId,
+            title: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_TITLE'),
+            message: err,
+            buttonLabel: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_BUTTON'),
+          };
+          this.nextStepStore.showModalAlert(modalAlert);
+        }
+      });
+  }
+
   protected unsubscribeAll(): void {
-    if (this.syncRequiredWithTimestampSubscription) {
-      this.syncRequiredWithTimestampSubscription.unsubscribe();
-    }
     if (this.modalAlertSyncErrorSubscription) {
       this.modalAlertSyncErrorSubscription.unsubscribe();
     }

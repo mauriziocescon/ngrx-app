@@ -2,43 +2,42 @@ import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ModalAlert, modalAlertsActions } from '../../../../core/core.module';
+import { Block } from '../../../../shared/shared.module';
 
-import * as list from '../../../actions/list/list.actions';
-import * as sync from '../../../actions/list/sync.actions';
+import * as blockList from '../../../../blocks/actions/block-list.actions';
+import * as sync from '../../../../blocks/actions/sync.actions';
 
-import { Block } from '../../../models';
-
-import * as fromInstanceDetail from '../../../reducers';
+import * as fromBlocks from '../../../../blocks/reducers';
 
 @Injectable()
 export class NextStepStoreService {
 
-  constructor(protected store$: Store<fromInstanceDetail.State>) {
+  constructor(protected store$: Store<fromBlocks.State>) {
   }
 
   getSyncRequired(): Observable<boolean> {
-    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequiredState));
-  }
-
-  getSyncRequiredWithTimestamp(): Observable<{ syncRequired: boolean, timestamp: number | undefined }> {
-    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequiredWithTimestampState));
+    return this.store$.pipe(
+      select(fromBlocks.isSyncRequired),
+      map(data => data.syncRequired),
+    );
   }
 
   getUpdateError(): Observable<string | undefined> {
-    return this.store$.pipe(select(fromInstanceDetail.getSyncErrorState));
+    return this.store$.pipe(select(fromBlocks.getSyncError));
   }
 
-  dispatchShowModalAlert(modalAlert: ModalAlert): void {
-    this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
+  syncBlocks(payload: { instance: string, blocks: Block[] }): void {
+    this.store$.dispatch(new blockList.SyncBlocks(payload));
   }
 
-  dispatchSyncBlocks(payload: { module: string, instance: string, step: string, blocks: Block[] }): void {
-    this.store$.dispatch(new list.SyncBlocks(payload));
-  }
-
-  dispatchSyncRequired(): void {
+  syncRequired(): void {
     this.store$.dispatch(new sync.SyncRequired(Date.now()));
+  }
+
+  showModalAlert(modalAlert: ModalAlert): void {
+    this.store$.dispatch(new modalAlertsActions.ShowModalAlert({ modal: modalAlert }));
   }
 }

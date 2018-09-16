@@ -5,15 +5,12 @@ import { environment } from '../../../environments/environment';
 export class Api {
   instances = environment.apiUrl + 'instances';
   blocks = environment.apiUrl + 'blocks';
-  rulesConfig = environment.apiUrl + 'rules-config';
 }
 
 export class Application {
   APP_NAME = 'demo';
   SHOW_JSON_SERVER_API = !environment.production;
   JSON_SERVER_API_URL = environment.apiUrl;
-
-  INSTANCE_DETAIL_MODULE = 'instance_detail_module';
 }
 
 export class Languages {

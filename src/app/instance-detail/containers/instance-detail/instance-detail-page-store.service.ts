@@ -2,22 +2,30 @@ import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import * as list from '../../actions/list/list.actions';
+import * as instanceDetailEffects from '../../actions/instance-detail-effects.actions';
 
-import * as fromInstanceDetail from '../../reducers';
+import * as fromBlocks from '../../../blocks/reducers';
 
 @Injectable()
 export class InstanceDetailPageStoreService {
 
-  constructor(protected store$: Store<fromInstanceDetail.State>) {
+  constructor(protected store$: Store<fromBlocks.State>) {
   }
 
-  isSynchronizationRequired(): Observable<boolean> {
-    return this.store$.pipe(select(fromInstanceDetail.isSynchronizationRequiredState));
+  isSyncRequired(): Observable<boolean> {
+    return this.store$.pipe(
+      select(fromBlocks.isSyncRequired),
+      map(data => data.syncRequired),
+    );
   }
 
-  dispatchClearBlocks(): void {
-    this.store$.dispatch(new list.ClearBlocks());
+  startEffects(): void {
+    this.store$.dispatch(new instanceDetailEffects.StartEffects());
+  }
+
+  stopEffects(): void {
+    this.store$.dispatch(new instanceDetailEffects.StopEffects());
   }
 }

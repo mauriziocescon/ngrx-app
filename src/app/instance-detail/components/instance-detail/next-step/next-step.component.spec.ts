@@ -16,7 +16,7 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
-describe('ListComponent', () => {
+describe('NextStepComponent', () => {
   let component: NextStepComponent;
   let fixture: ComponentFixture<NextStepComponent>;
 
@@ -24,7 +24,7 @@ describe('ListComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        NgbModule.forRoot(),
+        NgbModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -54,6 +54,9 @@ describe('ListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NextStepComponent);
     component = fixture.componentInstance;
+    component.formValidity = true;
+    component.syncing = false;
+    component.syncError = undefined;
     fixture.detectChanges();
   });
 

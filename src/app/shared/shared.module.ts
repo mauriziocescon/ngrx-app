@@ -7,15 +7,40 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { COMPONENTS } from './components';
+import {
+  COMPONENTS,
+  TextFilterComponent,
+} from './components';
 
-import { AddComponentDirective } from './directives/add-component.directive';
-import { ScrollToTopDirective } from './directives/scroll-to-top.directive';
-import { BlockValidationDirective } from './directives/validation.directive';
+import {
+  CONTAINERS,
+  GenericBlockContainerComponent,
+} from './containers';
 
-import { Enum } from './utilities/enum';
-import { KeyValue } from './utilities/keyvalue';
-import { RouterStateUrl, CustomRouterStateSerializer } from './utilities/route-util';
+import {
+  DIRECTIVES,
+  AddComponentDirective,
+  ScrollToTopDirective,
+  BlockValidationDirective,
+} from './directives';
+
+import {
+  Block,
+  BlockType,
+  BlockComponent,
+} from './models';
+
+import {
+  IBlockUtils,
+  BLOCK_UTILS_TOKEN,
+} from './tokens';
+
+import {
+  Enum,
+  KeyValue,
+  RouterStateUrl,
+  CustomRouterStateSerializer,
+} from './utilities';
 
 @NgModule({
   imports: [
@@ -29,10 +54,11 @@ import { RouterStateUrl, CustomRouterStateSerializer } from './utilities/route-u
   ],
   declarations: [
     ...COMPONENTS,
-    AddComponentDirective,
-    ScrollToTopDirective,
-    BlockValidationDirective,
+    ...CONTAINERS,
+    ...DIRECTIVES,
   ],
+  entryComponents: [],
+  providers: [],
   exports: [
     CommonModule,
     FormsModule,
@@ -41,18 +67,29 @@ import { RouterStateUrl, CustomRouterStateSerializer } from './utilities/route-u
     InfiniteScrollModule,
     TranslateModule,
     ...COMPONENTS,
-    AddComponentDirective,
-    ScrollToTopDirective,
-    BlockValidationDirective,
+    ...CONTAINERS,
+    ...DIRECTIVES,
   ],
 })
 export class SharedModule {
 }
 
 export {
+  TextFilterComponent,
+
+  GenericBlockContainerComponent,
+
   AddComponentDirective,
   ScrollToTopDirective,
   BlockValidationDirective,
+
+  Block,
+  BlockType,
+  BlockComponent,
+
+  IBlockUtils,
+  BLOCK_UTILS_TOKEN,
+
   Enum,
   KeyValue,
   RouterStateUrl,

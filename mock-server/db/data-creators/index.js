@@ -1,64 +1,29 @@
-const unknown = require('./base/unknown');
-const checkBox = require('./base/check-box');
-const dropdown = require('./base/dropdown');
-const textInput = require('./base/text-input');
+const unknown = require('./unknown');
+const checkBox = require('./check-box');
+const checkBoxConfirmer = require('./check-box-confirmer');
+const datePicker = require('./date-picker');
+const dropdown = require('./dropdown');
+const textInput = require('./text-input');
 
-const checkBoxConfirmer = require('./b1/check-box-confirmer');
-const datePicker = require('./b2/date-picker');
-
-exports.getRandomBlock = function(index) {
+exports.getRandomBlock = (index) => {
   const choice = Math.random();
 
   if (choice < 0.05) {
     return unknown.getUnknownComponent(index);
   }
-  else if (choice < 0.35) {
+  else if (choice < 0.20) {
     return checkBox.getCheckBox(index);
   }
-  else if (choice < 0.66) {
-    return dropdown.getDropdown(index);
-  }
-  else {
-    return textInput.getTextInput(index);
-  }
-};
-
-exports.getRandomB1Block = function(index) {
-  const choice = Math.random();
-
-  if (choice < 0.05) {
-    return unknown.getUnknownComponent(index);
-  }
-  else if (choice < 0.25) {
-    return checkBox.getCheckBox(index);
-  }
-  else if (choice < 0.50) {
-    return dropdown.getDropdown(index);
-  }
-  else if (choice < 0.75) {
-    return textInput.getTextInput(index);
-  }
-  else {
+  else if (choice < 0.40) {
     return checkBoxConfirmer.getCheckBoxConfirmer(index);
   }
-};
-
-exports.getRandomB2Block = function(index) {
-  const choice = Math.random();
-
-  if (choice < 0.05) {
-    return unknown.getUnknownComponent(index);
+  else if (choice < 0.60) {
+    return datePicker.getDatePicker(index);
   }
-  else if (choice < 0.25) {
-    return checkBox.getCheckBox(index);
-  }
-  else if (choice < 0.50) {
+  else if (choice < 0.80) {
     return dropdown.getDropdown(index);
   }
-  else if (choice < 0.75) {
-    return textInput.getTextInput(index);
-  }
   else {
-    return datePicker.getDatePicker(index);
+    return textInput.getTextInput(index);
   }
 };

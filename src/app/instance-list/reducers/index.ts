@@ -1,10 +1,9 @@
 import { InjectionToken } from '@angular/core';
-import { createFeatureSelector, createSelector, ActionReducerMap, combineReducers } from '@ngrx/store';
+import { createFeatureSelector, createSelector, ActionReducerMap } from '@ngrx/store';
 
 import * as fromRoot from '../../reducers';
 import * as fromInstanceListEffects from './instance-list-effects.reducer';
 import * as fromInstanceList from './instance-list.reducer';
-import * as fromEditedBlocks from '../../b2/reducers/blocks';
 
 export interface InstanceListState {
   effects: fromInstanceListEffects.State;
@@ -17,7 +16,7 @@ export interface State extends fromRoot.State {
 
 // -----------------
 // ------------ AOT
-export const TOKEN = new InjectionToken<ActionReducerMap<fromEditedBlocks.State>>('InstanceListReducers');
+export const TOKEN = new InjectionToken<ActionReducerMap<fromInstanceList.State>>('InstanceListReducers');
 
 export function getReducers(): ActionReducerMap<InstanceListState, any> {
   return {
@@ -38,6 +37,6 @@ export const getInstanceListState = createFeatureSelector<InstanceListState>('in
 // ------- instances
 export const getInstancesState = createSelector(getInstanceListState, state => state.instances);
 
-export const getFetchedInstancesState = createSelector(getInstancesState, fromInstanceList.getFetchedInstancesState);
-export const getFetchLoadingState = createSelector(getInstancesState, fromInstanceList.getFetchLoadingState);
-export const getFetchErrorState = createSelector(getInstancesState, fromInstanceList.getFetchErrorState);
+export const getFetchedInstances = createSelector(getInstancesState, fromInstanceList.getFetchedInstances);
+export const getFetchLoading = createSelector(getInstancesState, fromInstanceList.getFetchLoading);
+export const getFetchError = createSelector(getInstancesState, fromInstanceList.getFetchError);
