@@ -25,7 +25,7 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
   @Output() blockDidChange: EventEmitter<CheckBoxBlock>;
 
   block$: Observable<CheckBoxBlock | undefined>;
-  blockSubscription: Subscription;
+  blockToSyncSubscription: Subscription;
 
   constructor(protected checkBoxStore: CheckBoxStoreService) {
     this.blockDidChange = new EventEmitter();
@@ -61,15 +61,18 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
   }
 
   protected subscribeAllObs(): void {
-    this.blockSubscription = this.block$
+    this.blockToSyncSubscription = this.checkBoxStore.getCheckBoxToSyncById(this.block.id)
       .subscribe(block => {
-        this.blockDidChange.emit(block);
+        if (block) {
+          this.blockDidChange.emit(block);
+          this.checkBoxStore.syncronized(this.block.id);
+        }
       });
   }
 
   protected unsubscribeAllObs(): void {
-    if (this.blockSubscription) {
-      this.blockSubscription.unsubscribe();
+    if (this.blockToSyncSubscription) {
+      this.blockToSyncSubscription.unsubscribe();
     }
   }
 }

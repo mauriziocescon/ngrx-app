@@ -95,6 +95,19 @@ export const getCheckBoxEntityById = () => {
   );
 };
 
+export const getCheckBoxToSyncById = () => {
+  return createSelector(
+    getCheckBoxEntities,
+    fromCheckBox.getIdsToSync,
+    (entities: Dictionary<CheckBoxBlock>, idsToSync: { [id: string]: number }, props: { id: string }) => {
+      if (idsToSync[props.id] !== undefined) {
+        return entities[props.id]
+      }
+      return undefined;
+    },
+  );
+};
+
 // -----------------
 // ------ check-box-confirmer
 export const getCheckBoxConfirmerState = createSelector(getBlocksState, state => state.checkBoxConfirmer);

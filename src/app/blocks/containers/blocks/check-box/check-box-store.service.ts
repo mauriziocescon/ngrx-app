@@ -20,6 +20,10 @@ export class CheckBoxStoreService {
     return this.store$.pipe(select(fromBlocks.getCheckBoxEntityById(), { id: id }));
   }
 
+  getCheckBoxToSyncById(id: string): Observable<CheckBoxBlock | undefined> {
+    return this.store$.pipe(select(fromBlocks.getCheckBoxToSyncById(), { id: id }));
+  }
+
   addBlock(block: CheckBoxBlock): void {
     const payload = { block: block };
     this.store$.dispatch(new checkBox.AddBlock(payload));
@@ -33,5 +37,10 @@ export class CheckBoxStoreService {
   clearBlock(blockId: string): void {
     const payload = { id: blockId };
     this.store$.dispatch(new checkBox.ClearBlock(payload));
+  }
+
+  syncronized(blockId: string): void {
+    const payload = { id: blockId };
+    this.store$.dispatch(new checkBox.Synchronized(payload));
   }
 }
