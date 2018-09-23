@@ -7,6 +7,9 @@ export enum CheckBoxConfirmerActionTypes {
   ADD_BLOCK = '[CheckBoxConfirmer] Add block',
   UPDATE_BLOCK = '[CheckBoxConfirmer] Update block',
   CLEAR_BLOCK = '[CheckBoxConfirmer] Clear block',
+
+  SYNC_REQUIRED = '[CheckBoxConfirmer] Required to synchronize',
+  SYNCHRONIZED = '[CheckBoxConfirmer] Synchronized',
 }
 
 export class AddBlock implements Action {
@@ -30,7 +33,23 @@ export class ClearBlock implements Action {
   }
 }
 
+export class SyncRequired implements Action {
+  readonly type = CheckBoxConfirmerActionTypes.SYNC_REQUIRED;
+
+  constructor(public payload: { id: string, timestamp: number }) {
+  }
+}
+
+export class Synchronized implements Action {
+  readonly type = CheckBoxConfirmerActionTypes.SYNCHRONIZED;
+
+  constructor(public payload: { id: string }) {
+  }
+}
+
 export type CheckBoxConfirmerActions =
   AddBlock |
   UpdateBlock |
-  ClearBlock;
+  ClearBlock |
+  SyncRequired |
+  Synchronized;

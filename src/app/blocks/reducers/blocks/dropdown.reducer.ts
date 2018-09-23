@@ -5,6 +5,7 @@ import { DropdownActionTypes, DropdownActions } from '../../actions/blocks/dropd
 import { DropdownBlock } from '../../models';
 
 export interface State extends EntityState<DropdownBlock> {
+  idsToSync: { [id: string]: number }
 }
 
 export const adapter: EntityAdapter<DropdownBlock> = createEntityAdapter<DropdownBlock>({
@@ -14,7 +15,9 @@ export const adapter: EntityAdapter<DropdownBlock> = createEntityAdapter<Dropdow
   },
 });
 
-export const initialState: State = adapter.getInitialState({});
+export const initialState: State = adapter.getInitialState({
+  idsToSync: {},
+});
 
 export function reducer(state = initialState, action: DropdownActions): State {
   switch (action.type) {
@@ -26,6 +29,27 @@ export function reducer(state = initialState, action: DropdownActions): State {
     }
     case DropdownActionTypes.CLEAR_BLOCK: {
       return adapter.removeOne(action.payload.id, state);
+    }
+    case DropdownActionTypes.SYNC_REQUIRED: {
+      const id = action.payload.id;
+      const timestamp = action.payload.timestamp;
+      return {
+        ...state,
+        idsToSync: {
+          ...state.idsToSync,
+          [id]: timestamp,
+        }
+      };
+    }
+    case DropdownActionTypes.SYNCHRONIZED: {
+      const id = action.payload.id;
+      return {
+        ...state,
+        idsToSync: {
+          ...state.idsToSync,
+          [id]: undefined,
+        }
+      };
     }
     default: {
       return state;

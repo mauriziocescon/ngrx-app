@@ -5,6 +5,7 @@ import { DatePickerActionTypes, DatePickerActions } from '../../actions/blocks/d
 import { DatePickerBlock } from '../../models';
 
 export interface State extends EntityState<DatePickerBlock> {
+  idsToSync: { [id: string]: number }
 }
 
 export const adapter: EntityAdapter<DatePickerBlock> = createEntityAdapter<DatePickerBlock>({
@@ -14,7 +15,9 @@ export const adapter: EntityAdapter<DatePickerBlock> = createEntityAdapter<DateP
   },
 });
 
-export const initialState: State = adapter.getInitialState({});
+export const initialState: State = adapter.getInitialState({
+  idsToSync: {},
+});
 
 export function reducer(state = initialState, action: DatePickerActions): State {
   switch (action.type) {
@@ -26,6 +29,27 @@ export function reducer(state = initialState, action: DatePickerActions): State 
     }
     case DatePickerActionTypes.CLEAR_BLOCK: {
       return adapter.removeOne(action.payload.id, state);
+    }
+    case DatePickerActionTypes.SYNC_REQUIRED: {
+      const id = action.payload.id;
+      const timestamp = action.payload.timestamp;
+      return {
+        ...state,
+        idsToSync: {
+          ...state.idsToSync,
+          [id]: timestamp,
+        }
+      };
+    }
+    case DatePickerActionTypes.SYNCHRONIZED: {
+      const id = action.payload.id;
+      return {
+        ...state,
+        idsToSync: {
+          ...state.idsToSync,
+          [id]: undefined,
+        }
+      };
     }
     default: {
       return state;

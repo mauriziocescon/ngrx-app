@@ -7,6 +7,9 @@ export enum DropdownActionTypes {
   ADD_BLOCK = '[Dropdown] Add block',
   UPDATE_BLOCK = '[Dropdown] Update block',
   CLEAR_BLOCK = '[Dropdown] Clear block',
+
+  SYNC_REQUIRED = '[Dropdown] Required to synchronize',
+  SYNCHRONIZED = '[Dropdown] Synchronized',
 }
 
 export class AddBlock implements Action {
@@ -30,7 +33,23 @@ export class ClearBlock implements Action {
   }
 }
 
+export class SyncRequired implements Action {
+  readonly type = DropdownActionTypes.SYNC_REQUIRED;
+
+  constructor(public payload: { id: string, timestamp: number }) {
+  }
+}
+
+export class Synchronized implements Action {
+  readonly type = DropdownActionTypes.SYNCHRONIZED;
+
+  constructor(public payload: { id: string }) {
+  }
+}
+
 export type DropdownActions =
   AddBlock |
   UpdateBlock |
-  ClearBlock;
+  ClearBlock |
+  SyncRequired |
+  Synchronized;

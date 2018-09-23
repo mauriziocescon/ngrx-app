@@ -3,12 +3,12 @@ import { Action } from '@ngrx/store';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
-import { SyncRequired } from '../../actions/sync.actions';
 import {
   TextInputActionTypes,
   UpdateBlock,
+  SyncRequired,
 } from '../../actions/blocks/text-input.actions';
 
 @Injectable()
@@ -20,8 +20,10 @@ export class TextInputEffect {
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .pipe(
       ofType<UpdateBlock>(TextInputActionTypes.UPDATE_BLOCK),
-      switchMap(() => {
-        return [new SyncRequired(Date.now())];
+      map(action => action.payload),
+      switchMap((params) => {
+        const payload = { id: params.block.id.toString(), timestamp: Date.now() };
+        return [new SyncRequired(payload)];
       }),
     );
 }

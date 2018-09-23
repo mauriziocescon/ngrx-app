@@ -5,6 +5,7 @@ import { CheckBoxActionTypes, CheckBoxActions } from '../../actions/blocks/check
 import { CheckBoxBlock } from '../../models';
 
 export interface State extends EntityState<CheckBoxBlock> {
+  idsToSync: { [id: string]: number }
 }
 
 export const adapter: EntityAdapter<CheckBoxBlock> = createEntityAdapter<CheckBoxBlock>({
@@ -14,7 +15,9 @@ export const adapter: EntityAdapter<CheckBoxBlock> = createEntityAdapter<CheckBo
   },
 });
 
-export const initialState: State = adapter.getInitialState({});
+export const initialState: State = adapter.getInitialState({
+  idsToSync: {},
+});
 
 export function reducer(state = initialState, action: CheckBoxActions): State {
   switch (action.type) {
@@ -26,6 +29,27 @@ export function reducer(state = initialState, action: CheckBoxActions): State {
     }
     case CheckBoxActionTypes.CLEAR_BLOCK: {
       return adapter.removeOne(action.payload.id, state);
+    }
+    case CheckBoxActionTypes.SYNC_REQUIRED: {
+      const id = action.payload.id;
+      const timestamp = action.payload.timestamp;
+      return {
+        ...state,
+        idsToSync: {
+          ...state.idsToSync,
+          [id]: timestamp,
+        }
+      };
+    }
+    case CheckBoxActionTypes.SYNCHRONIZED: {
+      const id = action.payload.id;
+      return {
+        ...state,
+        idsToSync: {
+          ...state.idsToSync,
+          [id]: undefined,
+        }
+      };
     }
     default: {
       return state;

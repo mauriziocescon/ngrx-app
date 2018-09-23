@@ -7,6 +7,9 @@ export enum TextInputActionTypes {
   ADD_BLOCK = '[TextInput] Add block',
   UPDATE_BLOCK = '[TextInput] Update block',
   CLEAR_BLOCK = '[TextInput] Clear block',
+
+  SYNC_REQUIRED = '[TextInput] Required to synchronize',
+  SYNCHRONIZED = '[TextInput] Synchronized',
 }
 
 export class AddBlock implements Action {
@@ -30,7 +33,23 @@ export class ClearBlock implements Action {
   }
 }
 
+export class SyncRequired implements Action {
+  readonly type = TextInputActionTypes.SYNC_REQUIRED;
+
+  constructor(public payload: { id: string, timestamp: number }) {
+  }
+}
+
+export class Synchronized implements Action {
+  readonly type = TextInputActionTypes.SYNCHRONIZED;
+
+  constructor(public payload: { id: string }) {
+  }
+}
+
 export type TextInputActions =
   AddBlock |
   UpdateBlock |
-  ClearBlock;
+  ClearBlock |
+  SyncRequired |
+  Synchronized;

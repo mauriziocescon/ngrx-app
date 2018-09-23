@@ -7,6 +7,9 @@ export enum DatePickerActionTypes {
   ADD_BLOCK = '[DatePicker] Add block',
   UPDATE_BLOCK = '[DatePicker] Update block',
   CLEAR_BLOCK = '[DatePicker] Clear block',
+
+  SYNC_REQUIRED = '[DatePicker] Required to synchronize',
+  SYNCHRONIZED = '[DatePicker] Synchronized',
 }
 
 export class AddBlock implements Action {
@@ -30,7 +33,23 @@ export class ClearBlock implements Action {
   }
 }
 
+export class SyncRequired implements Action {
+  readonly type = DatePickerActionTypes.SYNC_REQUIRED;
+
+  constructor(public payload: { id: string, timestamp: number }) {
+  }
+}
+
+export class Synchronized implements Action {
+  readonly type = DatePickerActionTypes.SYNCHRONIZED;
+
+  constructor(public payload: { id: string }) {
+  }
+}
+
 export type DatePickerActions =
   AddBlock |
   UpdateBlock |
-  ClearBlock;
+  ClearBlock |
+  SyncRequired |
+  Synchronized;

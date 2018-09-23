@@ -5,6 +5,7 @@ import { TextInputActionTypes, TextInputActions } from '../../actions/blocks/tex
 import { TextInputBlock } from '../../models';
 
 export interface State extends EntityState<TextInputBlock> {
+  idsToSync: { [id: string]: number }
 }
 
 export const adapter: EntityAdapter<TextInputBlock> = createEntityAdapter<TextInputBlock>({
@@ -14,7 +15,9 @@ export const adapter: EntityAdapter<TextInputBlock> = createEntityAdapter<TextIn
   },
 });
 
-export const initialState: State = adapter.getInitialState({});
+export const initialState: State = adapter.getInitialState({
+  idsToSync: {},
+});
 
 export function reducer(state = initialState, action: TextInputActions): State {
   switch (action.type) {
@@ -26,6 +29,27 @@ export function reducer(state = initialState, action: TextInputActions): State {
     }
     case TextInputActionTypes.CLEAR_BLOCK: {
       return adapter.removeOne(action.payload.id, state);
+    }
+    case TextInputActionTypes.SYNC_REQUIRED: {
+      const id = action.payload.id;
+      const timestamp = action.payload.timestamp;
+      return {
+        ...state,
+        idsToSync: {
+          ...state.idsToSync,
+          [id]: timestamp,
+        }
+      };
+    }
+    case TextInputActionTypes.SYNCHRONIZED: {
+      const id = action.payload.id;
+      return {
+        ...state,
+        idsToSync: {
+          ...state.idsToSync,
+          [id]: undefined,
+        }
+      };
     }
     default: {
       return state;

@@ -3,12 +3,12 @@ import { Action } from '@ngrx/store';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
-import { SyncRequired } from '../../actions/sync.actions';
 import {
   DropdownActionTypes,
   UpdateBlock,
+  SyncRequired,
 } from '../../actions/blocks/dropdown.actions';
 
 @Injectable()
@@ -20,8 +20,10 @@ export class DropdownEffect {
   @Effect() valueDidChange$: Observable<Action> = this.actions$
     .pipe(
       ofType<UpdateBlock>(DropdownActionTypes.UPDATE_BLOCK),
-      switchMap(() => {
-        return [new SyncRequired(Date.now())];
+      map(action => action.payload),
+      switchMap((params) => {
+        const payload = { id: params.block.id.toString(), timestamp: Date.now() };
+        return [new SyncRequired(payload)];
       }),
     );
 }
