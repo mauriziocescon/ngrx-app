@@ -63,3 +63,5 @@ export const {
   selectAll: getAllDatePicker,
   selectTotal: getTotalDatePicker,
 } = adapter.getSelectors();
+
+export const getIdsToSync = (state: State) => state.idsToSync;

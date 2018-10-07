@@ -63,3 +63,5 @@ export const {
   selectAll: getAllTextInput,
   selectTotal: getTotalTextInput,
 } = adapter.getSelectors();
+
+export const getIdsToSync = (state: State) => state.idsToSync;

@@ -63,3 +63,5 @@ export const {
   selectAll: getAllCheckBoxConfirmer,
   selectTotal: getTotalCheckBoxConfirmer,
 } = adapter.getSelectors();
+
+export const getIdsToSync = (state: State) => state.idsToSync;
