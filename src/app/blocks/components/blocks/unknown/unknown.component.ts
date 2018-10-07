@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'cp-unknown',
@@ -7,7 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class UnknownComponent {
   @Input() block: any;
+  @Output() blockDidChange: EventEmitter<any>;
 
   constructor() {
+    this.blockDidChange = new EventEmitter();
   }
 }

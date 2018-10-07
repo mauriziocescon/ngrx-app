@@ -78,7 +78,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
     const foundBlock = this.blocksToSync.find(b => b.id === block.id);
 
     if (!foundBlock) {
-      this.blocksToSync.push(block);
+      this.blocksToSync = [...this.blocksToSync, block];
     } else {
       this.blocksToSync = this.blocksToSync.reduce((blocks: Block[], b: Block) => {
         const foundBlock = b.id === block.id;
@@ -86,7 +86,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
         return blocks;
       }, []);
     }
-    
+
     this.blockListStore.syncBlocks(this.instance, this.blocksToSync);
   }
 
