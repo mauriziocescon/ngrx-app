@@ -85,6 +85,7 @@ export const getCheckBoxIds = createSelector(getCheckBoxState, fromCheckBox.getC
 export const getCheckBoxEntities = createSelector(getCheckBoxState, fromCheckBox.getCheckBoxEntities);
 export const getAllCheckBox = createSelector(getCheckBoxState, fromCheckBox.getAllCheckBox);
 export const getTotalCheckBox = createSelector(getCheckBoxState, fromCheckBox.getTotalCheckBox);
+export const getIdsToSync = createSelector(getCheckBoxState, fromCheckBox.getIdsToSync);
 
 export const getCheckBoxEntityById = () => {
   return createSelector(
@@ -98,7 +99,7 @@ export const getCheckBoxEntityById = () => {
 export const getCheckBoxToSyncById = () => {
   return createSelector(
     getCheckBoxEntities,
-    fromCheckBox.getIdsToSync,
+    getIdsToSync,
     (entities: Dictionary<CheckBoxBlock>, idsToSync: { [id: string]: number }, props: { id: string }) => {
       if (idsToSync[props.id] !== undefined) {
         return entities[props.id]
