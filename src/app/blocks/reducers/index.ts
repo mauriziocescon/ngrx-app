@@ -12,7 +12,6 @@ import {
 
 import * as fromRoot from '../../reducers';
 import * as fromBlockList from './block-list.reducer';
-import * as fromSync from './sync.reducer';
 import * as fromCheckBox from './blocks/check-box.reducer';
 import * as fromCheckBoxConfirmer from './blocks/check-box-confirmer.reducer';
 import * as fromDatePicker from './blocks/date-picker.reducer';
@@ -21,7 +20,6 @@ import * as fromTextInput from './blocks/text-input.reducer';
 
 export interface BlocksState {
   blockList: fromBlockList.State;
-  serverSync: fromSync.State;
 
   checkBox: fromCheckBox.State;
   checkBoxConfirmer: fromCheckBoxConfirmer.State;
@@ -41,7 +39,6 @@ export const TOKEN = new InjectionToken<ActionReducerMap<BlocksState>>('BlocksRe
 export function getReducers(): ActionReducerMap<BlocksState, any> {
   return {
     blockList: fromBlockList.reducer,
-    serverSync: fromSync.reducer,
 
     checkBox: fromCheckBox.reducer,
     checkBoxConfirmer: fromCheckBoxConfirmer.reducer,
@@ -70,12 +67,6 @@ export const getFetchError = createSelector(getBlockListState, fromBlockList.get
 export const getSyncingBlocks = createSelector(getBlockListState, fromBlockList.getSyncingBlocks);
 export const getSyncLoading = createSelector(getBlockListState, fromBlockList.getSyncLoading);
 export const getSyncError = createSelector(getBlockListState, fromBlockList.getSyncError);
-
-// -----------------
-// ----------- sync
-export const getServerSyncState = createSelector(getBlocksState, state => state.serverSync);
-
-export const isSyncRequired = createSelector(getServerSyncState, fromSync.isSyncRequired);
 
 // -----------------
 // ------- check-box

@@ -20,6 +20,10 @@ export class TextInputStoreService {
     return this.store$.pipe(select(fromBlocks.getTextInputEntityById(), { id: id }));
   }
 
+  getTextInputToSyncById(id: string): Observable<TextInputBlock | undefined> {
+    return this.store$.pipe(select(fromBlocks.getTextInputToSyncById(), { id: id }));
+  }
+
   addBlock(block: TextInputBlock): void {
     const payload = { block: block };
     this.store$.dispatch(new textInput.AddBlock(payload));
@@ -33,5 +37,10 @@ export class TextInputStoreService {
   clearBlock(blockId: string): void {
     const payload = { id: blockId };
     this.store$.dispatch(new textInput.ClearBlock(payload));
+  }
+
+  syncronized(blockId: string): void {
+    const payload = { id: blockId };
+    this.store$.dispatch(new textInput.Synchronized(payload));
   }
 }

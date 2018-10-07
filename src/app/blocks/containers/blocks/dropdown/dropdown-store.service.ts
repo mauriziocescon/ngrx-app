@@ -20,6 +20,10 @@ export class DropdownStoreService {
     return this.store$.pipe(select(fromBlocks.getDropdownEntityById(), { id: id }));
   }
 
+  getDropdownToSyncById(id: string): Observable<DropdownBlock | undefined> {
+    return this.store$.pipe(select(fromBlocks.getDropdownToSyncById(), { id: id }));
+  }
+
   addBlock(block: DropdownBlock): void {
     const payload = { block: block };
     this.store$.dispatch(new dropdown.AddBlock(payload));
@@ -33,5 +37,10 @@ export class DropdownStoreService {
   clearBlock(blockId: string): void {
     const payload = { id: blockId };
     this.store$.dispatch(new dropdown.ClearBlock(payload));
+  }
+
+  syncronized(blockId: string): void {
+    const payload = { id: blockId };
+    this.store$.dispatch(new dropdown.Synchronized(payload));
   }
 }

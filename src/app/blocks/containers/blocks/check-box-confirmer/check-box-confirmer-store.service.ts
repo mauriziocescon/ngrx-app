@@ -23,6 +23,10 @@ export class CheckBoxConfirmerStoreService {
     return this.store$.pipe(select(fromBlocks.getCheckBoxConfirmerEntityById(), { id: id }));
   }
 
+  getCheckBoxConfirmerToSyncById(id: string): Observable<CheckBoxConfirmerBlock | undefined> {
+    return this.store$.pipe(select(fromBlocks.getCheckBoxConfirmerToSyncById(), { id: id }));
+  }
+
   getModalConfirmerResults(): Observable<{ [id: string]: ModalConfirmerResultType | undefined }> {
     return this.store$.pipe(select(fromRoot.getModalConfirmerResults));
   }
@@ -40,6 +44,11 @@ export class CheckBoxConfirmerStoreService {
   clearBlock(blockId: string): void {
     const payload = { id: blockId };
     this.store$.dispatch(new checkBoxConfirmer.ClearBlock(payload));
+  }
+
+  syncronized(blockId: string): void {
+    const payload = { id: blockId };
+    this.store$.dispatch(new checkBoxConfirmer.Synchronized(payload));
   }
 
   showModalConfirmer(modalConfirmer: ModalConfirmer): void {
