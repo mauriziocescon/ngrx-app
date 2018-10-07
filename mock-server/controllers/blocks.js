@@ -21,13 +21,20 @@ exports.getBlocks = (req, res) => {
 exports.saveBlocks = (req, res) => {
   const db = lowdb.getDb();
   const instance = req.body.instance;
+  const newBlocks = req.body.blocks;
 
   const foundInstance = db.get('instances')
     .find({instance: instance})
     .value();
 
   if (foundInstance) {
-    let blocks = req.body.blocks.sort((b1, b2) => {
+    const currentBlocks = foundInstance.blocks;
+
+    let blocksMap = {};
+    currentBlocks.forEach(block => blocksMap[block.id] = block);
+    newBlocks.forEach(block => blocksMap[block.id] = block);
+    let blocks = Object.keys(blocksMap).map(key => blocksMap[key]);
+    blocks = blocks.sort((b1, b2) => {
       return b1.order - b2.order;
     });
 
