@@ -25,7 +25,7 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
   @Output() blockDidChange: EventEmitter<TextInputBlock>;
 
   block$: Observable<TextInputBlock | undefined>;
-  blockSubscription: Subscription;
+  blockToSyncSubscription: Subscription;
 
   constructor(protected textInputStore: TextInputStoreService) {
     this.blockDidChange = new EventEmitter();
@@ -61,15 +61,18 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
   }
 
   protected subscribeAllObs(): void {
-    this.blockSubscription = this.block$
+    this.blockToSyncSubscription = this.textInputStore.getTextInputToSyncById(this.block.id)
       .subscribe(block => {
-        this.blockDidChange.emit(block);
+        if (block) {
+          this.blockDidChange.emit(block);
+          this.textInputStore.syncronized(this.block.id);
+        }
       });
   }
 
   protected unsubscribeAllObs(): void {
-    if (this.blockSubscription) {
-      this.blockSubscription.unsubscribe();
+    if (this.blockToSyncSubscription) {
+      this.blockToSyncSubscription.unsubscribe();
     }
   }
 }

@@ -31,7 +31,7 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
   @Output() blockDidChange: EventEmitter<CheckBoxConfirmerBlock>;
 
   block$: Observable<CheckBoxConfirmerBlock | undefined>;
-  blockSubscription: Subscription;
+  blockToSyncSubscription: Subscription;
 
   protected modalConfirmerResults$: Observable<{ [id: string]: ModalConfirmerResultType | undefined }>;
   protected modalConfirmerResultSubscription: Subscription;
@@ -115,17 +115,20 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
   }
 
   protected subscribeAllObs(): void {
-    this.blockSubscription = this.block$
+    this.blockToSyncSubscription = this.checkBoxConfirmerStore.getCheckBoxConfirmerToSyncById(this.block.id)
       .subscribe(block => {
-        this.blockDidChange.emit(block);
+        if (block) {
+          this.blockDidChange.emit(block);
+          this.checkBoxConfirmerStore.syncronized(this.block.id);
+        }
       });
   }
 
   protected unsubscribeAllObs(): void {
     this.unsubscribeToModalConfirmerResult();
 
-    if (this.blockSubscription) {
-      this.blockSubscription.unsubscribe();
+    if (this.blockToSyncSubscription) {
+      this.blockToSyncSubscription.unsubscribe();
     }
   }
 }

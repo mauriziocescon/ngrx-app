@@ -25,7 +25,7 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
   @Output() blockDidChange: EventEmitter<DropdownBlock>;
 
   block$: Observable<DropdownBlock | undefined>;
-  blockSubscription: Subscription;
+  blockToSyncSubscription: Subscription;
 
   constructor(protected dropdownStore: DropdownStoreService) {
     this.blockDidChange = new EventEmitter();
@@ -61,15 +61,18 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
   }
 
   protected subscribeAllObs(): void {
-    this.blockSubscription = this.block$
+    this.blockToSyncSubscription = this.dropdownStore.getDropdownToSyncById(this.block.id)
       .subscribe(block => {
-        this.blockDidChange.emit(block);
+        if (block) {
+          this.blockDidChange.emit(block);
+          this.dropdownStore.syncronized(this.block.id);
+        }
       });
   }
 
   protected unsubscribeAllObs(): void {
-    if (this.blockSubscription) {
-      this.blockSubscription.unsubscribe();
+    if (this.blockToSyncSubscription) {
+      this.blockToSyncSubscription.unsubscribe();
     }
   }
 }

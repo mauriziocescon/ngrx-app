@@ -27,7 +27,7 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
   @Output() blockDidChange: EventEmitter<DatePickerBlock>;
 
   block$: Observable<DatePickerBlock | undefined>;
-  blockSubscription: Subscription;
+  blockToSyncSubscription: Subscription;
 
   constructor(protected datePickerStore: DatePickerStoreService,
               protected translate: TranslateService) {
@@ -64,15 +64,18 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
   }
 
   protected subscribeAllObs(): void {
-    this.blockSubscription = this.block$
+    this.blockToSyncSubscription = this.datePickerStore.getDatePickerToSyncById(this.block.id)
       .subscribe(block => {
-        this.blockDidChange.emit(block);
+        if (block) {
+          this.blockDidChange.emit(block);
+          this.datePickerStore.syncronized(this.block.id);
+        }
       });
   }
 
   protected unsubscribeAllObs(): void {
-    if (this.blockSubscription) {
-      this.blockSubscription.unsubscribe();
+    if (this.blockToSyncSubscription) {
+      this.blockToSyncSubscription.unsubscribe();
     }
   }
 }
