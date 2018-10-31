@@ -1,4 +1,4 @@
-import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'cp-next-step',
@@ -6,29 +6,12 @@ import { Component, Output, Input, EventEmitter } from '@angular/core';
   styleUrls: ['./next-step.component.scss'],
 })
 export class NextStepComponent {
-  @Input() formValidity: boolean;
-  @Input() syncing: boolean;
-  @Input() syncError: string | undefined;
   @Output() nextStep: EventEmitter<void>;
   @Output() reset: EventEmitter<void>;
-  @Output() retrySync: EventEmitter<void>;
 
   constructor() {
     this.nextStep = new EventEmitter();
     this.reset = new EventEmitter();
-    this.retrySync = new EventEmitter();
-  }
-
-  get isSynchronized(): boolean {
-    return !this.isSynchronizing && this.syncError === undefined;
-  }
-
-  get isSynchronizing(): boolean {
-    return this.syncing;
-  }
-
-  get canRetrySync(): boolean {
-    return !this.isSynchronizing && this.syncError !== undefined;
   }
 
   moveToNextStep(): void {
@@ -37,9 +20,5 @@ export class NextStepComponent {
 
   resetForm(): void {
     this.reset.emit();
-  }
-
-  retrySyncronization(): void {
-    this.retrySync.emit();
   }
 }

@@ -42,11 +42,12 @@ export class InstanceDetailPageComponent implements OnInit, OnDestroy {
     this.instance = this.route.snapshot.paramMap.get('instance');
   }
 
-  canDeactivate(): Observable<boolean> {
-    return this.instanceDetailPageStore.isSyncRequired()
-      .pipe(
-        map(requireSync => !requireSync),
-      );
+  canDeactivate(): boolean {
+    // return this.instanceDetailPageStore.isSyncRequired()
+    //   .pipe(
+    //     map(requireSync => !requireSync),
+    //   );
+    return true;
   }
 
   ngOnDestroy(): void {

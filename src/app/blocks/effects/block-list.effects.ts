@@ -21,7 +21,6 @@ import {
   SyncBlocksComplete,
   SyncBlocksError,
 } from '../actions/block-list.actions';
-import { Synchronized } from '../actions/sync.actions';
 
 import { BlockListService } from '../services';
 
@@ -58,13 +57,11 @@ export class BlockListEffects {
             switchMap((blocks: Block[]) => {
               return [
                 new SyncBlocksComplete(),
-                new Synchronized(),
                 new FetchBlocksComplete({ blocks }),
               ];
             }),
             catchError(error => from([
               new SyncBlocksError({ error }),
-              new Synchronized(),
             ])),
           );
       }),
