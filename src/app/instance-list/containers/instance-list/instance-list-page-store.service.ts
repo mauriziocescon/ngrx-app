@@ -31,7 +31,7 @@ export class InstanceListStoreService {
   }
 
   fetchInstances(params: { textSearch: string }): void {
-    this.store$.dispatch(new instanceList.FetchInstances(params));
+    this.store$.dispatch(new instanceList.LoadInstances(params));
   }
 
   showModalAlert(modalAlert: ModalAlert): void {

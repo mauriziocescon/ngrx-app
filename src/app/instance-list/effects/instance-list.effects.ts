@@ -13,9 +13,9 @@ import {
 
 import {
   InstanceListActionTypes,
-  FetchInstances,
-  FetchInstancesSuccess,
-  FetchInstancesFailure,
+  LoadInstances,
+  LoadInstancesSuccess,
+  LoadInstancesFailure,
 } from '../actions/instance-list.actions';
 import { InstanceListEffectsActionTypes, StartEffects, StopEffects } from '../actions/instance-list-effects.actions';
 
@@ -30,17 +30,17 @@ export class InstanceListEffects implements OnRunEffects {
               protected instanceList: InstanceListService) {
   }
 
-  @Effect() fetchBlocks$: Observable<Action> = this.actions$
+  @Effect() loadInstances$: Observable<Action> = this.actions$
     .pipe(
-      ofType<FetchInstances>(InstanceListActionTypes.FETCH_INSTANCES),
+      ofType<LoadInstances>(InstanceListActionTypes.LOAD_INSTANCES),
       map(action => action.payload),
       switchMap((params) => {
         return this.instanceList.getInstances(params.textSearch)
           .pipe(
             switchMap((instances: Instance[]) => {
-              return [new FetchInstancesSuccess({ instances })];
+              return [new LoadInstancesSuccess({ instances })];
             }),
-            catchError(error => of(new FetchInstancesFailure({ error }))),
+            catchError(error => of(new LoadInstancesFailure({ error }))),
           );
       }),
     );

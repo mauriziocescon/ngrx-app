@@ -3,9 +3,9 @@ import { Action } from '@ngrx/store';
 import { Block } from '../../shared/shared.module';
 
 export enum BlockListActionTypes {
-  FETCH_BLOCKS = '[BlockList] Fetch blocks',
-  FETCH_BLOCKS_SUCCESS = '[BlockList] Fetch blocks success',
-  FETCH_BLOCKS_FAILURE = '[BlockList] Fetch blocks failure',
+  LOAD_BLOCKS = '[BlockList] Load blocks',
+  LOAD_BLOCKS_SUCCESS = '[BlockList] Load blocks success',
+  LOAD_BLOCKS_FAILURE = '[BlockList] Load blocks failure',
 
   SYNC_BLOCKS = '[BlockList] Sync blocks',
   SYNC_BLOCKS_SUCCESS = '[BlockList] Sync blocks success',
@@ -14,22 +14,22 @@ export enum BlockListActionTypes {
   CLEAR_BLOCKS = '[BlockList] Clear blocks',
 }
 
-export class FetchBlocks implements Action {
-  readonly type = BlockListActionTypes.FETCH_BLOCKS;
+export class LoadBlocks implements Action {
+  readonly type = BlockListActionTypes.LOAD_BLOCKS;
 
   constructor(public payload: { instance: string }) {
   }
 }
 
-export class FetchBlocksSuccess implements Action {
-  readonly type = BlockListActionTypes.FETCH_BLOCKS_SUCCESS;
+export class LoadBlocksSuccess implements Action {
+  readonly type = BlockListActionTypes.LOAD_BLOCKS_SUCCESS;
 
   constructor(public payload: { blocks: Block[] }) {
   }
 }
 
-export class FetchBlocksFailure implements Action {
-  readonly type = BlockListActionTypes.FETCH_BLOCKS_FAILURE;
+export class LoadBlocksFailure implements Action {
+  readonly type = BlockListActionTypes.LOAD_BLOCKS_FAILURE;
 
   constructor(public payload: { error: string }) {
   }
@@ -58,9 +58,9 @@ export class ClearBlocks implements Action {
 }
 
 export type BlockListActions =
-  FetchBlocks |
-  FetchBlocksSuccess |
-  FetchBlocksFailure |
+  LoadBlocks |
+  LoadBlocksSuccess |
+  LoadBlocksFailure |
   SyncBlocks |
   SyncBlocksSuccess |
   SyncBlocksFailure |

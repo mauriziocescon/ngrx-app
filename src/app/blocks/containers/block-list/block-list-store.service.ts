@@ -30,7 +30,7 @@ export class BlockListStoreService {
   }
 
   fetchBlocks(instance: string): void {
-    this.store$.dispatch(new blockList.FetchBlocks({ instance }));
+    this.store$.dispatch(new blockList.LoadBlocks({ instance }));
   }
 
   syncBlocks(instance: string, blocks: Block[]): void {

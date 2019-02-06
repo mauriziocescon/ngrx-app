@@ -17,7 +17,7 @@ const initialState: State = {
 
 export function reducer(state = initialState, action: InstanceListActions): State {
   switch (action.type) {
-    case InstanceListActionTypes.FETCH_INSTANCES: {
+    case InstanceListActionTypes.LOAD_INSTANCES: {
       return {
         ...state,
         fetchedInstances: undefined,
@@ -25,7 +25,7 @@ export function reducer(state = initialState, action: InstanceListActions): Stat
         fetchError: undefined,
       };
     }
-    case InstanceListActionTypes.FETCH_INSTANCES_SUCCESS: {
+    case InstanceListActionTypes.LOAD_INSTANCES_SUCCESS: {
       return {
         ...state,
         fetchedInstances: action.payload.instances.map(instance => instance),
@@ -33,7 +33,7 @@ export function reducer(state = initialState, action: InstanceListActions): Stat
         fetchError: undefined,
       };
     }
-    case InstanceListActionTypes.FETCH_INSTANCES_FAILURE: {
+    case InstanceListActionTypes.LOAD_INSTANCES_FAILURE: {
       return {
         ...state,
         fetchedInstances: undefined,

@@ -24,7 +24,7 @@ const initialState: State = {
 
 export function reducer(state = initialState, action: BlockListActions): State {
   switch (action.type) {
-    case BlockListActionTypes.FETCH_BLOCKS: {
+    case BlockListActionTypes.LOAD_BLOCKS: {
       return {
         ...state,
         fetchedBlocks: undefined,
@@ -32,7 +32,7 @@ export function reducer(state = initialState, action: BlockListActions): State {
         fetchError: undefined,
       };
     }
-    case BlockListActionTypes.FETCH_BLOCKS_SUCCESS: {
+    case BlockListActionTypes.LOAD_BLOCKS_SUCCESS: {
       return {
         ...state,
         fetchedBlocks: action.payload.blocks.map(block => block),
@@ -40,7 +40,7 @@ export function reducer(state = initialState, action: BlockListActions): State {
         fetchError: undefined,
       };
     }
-    case BlockListActionTypes.FETCH_BLOCKS_FAILURE: {
+    case BlockListActionTypes.LOAD_BLOCKS_FAILURE: {
       return {
         ...state,
         fetchedBlocks: undefined,
