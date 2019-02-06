@@ -56,7 +56,7 @@ describe('BlockListComponent', () => {
     component = fixture.componentInstance;
     component.blocks = [];
     component.loading = false;
-    component.fetchError = undefined;
+    component.error = undefined;
     fixture.detectChanges();
   });
 

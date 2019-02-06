@@ -10,7 +10,7 @@ import { Block } from '../../../shared/shared.module';
 export class BlockListComponent {
   @Input() blocks: Block[];
   @Input() loading: boolean;
-  @Input() fetchError: string;
+  @Input() error: string;
   @Output() reloadList: EventEmitter<void>;
   @Output() blockDidChange: EventEmitter<Block>;
 

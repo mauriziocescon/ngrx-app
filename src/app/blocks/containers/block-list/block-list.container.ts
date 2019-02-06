@@ -21,8 +21,8 @@ import { BlockListStoreService } from './block-list-store.service';
   template: `
     <cp-block-list
       [blocks]="blocks$ | async"
-      [loading]="fetchLoading$ | async"
-      [fetchError]="fetchError$ | async"
+      [loading]="loading$ | async"
+      [error]="error$ | async"
       (reloadList)="reloadList()"
       (blockDidChange)="blockDidChange($event)">
     </cp-block-list>`,
@@ -31,19 +31,19 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   @Input() instance: string;
 
   blocks$: Observable<Block[] | undefined>;
-  fetchLoading$: Observable<boolean>;
-  fetchError$: Observable<string | undefined>;
+  loading$: Observable<boolean>;
+  error$: Observable<string | undefined>;
 
   protected blocksToSync: Block[];
 
-  protected mAlertFetchErrorId: string;
+  protected mAlertErrorId: string;
 
-  protected modalAlertFetchErrorSubscription: Subscription;
+  protected modalAlertErrorSubscription: Subscription;
 
   constructor(protected translate: TranslateService,
               protected logger: NGXLogger,
               protected blockListStore: BlockListStoreService) {
-    this.mAlertFetchErrorId = '1';
+    this.mAlertErrorId = '1';
     this.blocksToSync = [];
   }
 
@@ -65,7 +65,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   }
 
   reloadList(instance?: string): void {
-    this.blockListStore.fetchBlocks(this.getInstance(instance));
+    this.blockListStore.loadBlocks(this.getInstance(instance));
   }
 
   blockDidChange(block: Block): void {
@@ -92,8 +92,8 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
 
   protected setupAsyncObs(): void {
     this.blocks$ = this.blockListStore.getFetchedBlocks();
-    this.fetchLoading$ = this.blockListStore.getFetchLoading();
-    this.fetchError$ = this.blockListStore.getFetchError();
+    this.loading$ = this.blockListStore.getFetchLoading();
+    this.error$ = this.blockListStore.getFetchError();
   }
 
   protected getInstance(instance?: string): string {
@@ -105,11 +105,11 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   }
 
   protected subscribeToFetchErrors(): void {
-    this.modalAlertFetchErrorSubscription = this.fetchError$
+    this.modalAlertErrorSubscription = this.error$
       .subscribe((err) => {
         if (err) {
           const modalAlert: ModalAlert = {
-            id: this.mAlertFetchErrorId,
+            id: this.mAlertErrorId,
             title: this.translate.instant('CONTAINER.BLOCK_LIST.ALERT_TITLE'),
             message: err,
             buttonLabel: this.translate.instant('CONTAINER.BLOCK_LIST.ALERT_BUTTON'),
@@ -120,8 +120,8 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   }
 
   protected unsubscribeAll(): void {
-    if (this.modalAlertFetchErrorSubscription) {
-      this.modalAlertFetchErrorSubscription.unsubscribe();
+    if (this.modalAlertErrorSubscription) {
+      this.modalAlertErrorSubscription.unsubscribe();
     }
   }
 }

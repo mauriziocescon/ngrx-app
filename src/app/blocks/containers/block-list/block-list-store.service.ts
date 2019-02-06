@@ -29,7 +29,7 @@ export class BlockListStoreService {
     return this.store$.pipe(select(fromBlocks.getFetchError));
   }
 
-  fetchBlocks(instance: string): void {
+  loadBlocks(instance: string): void {
     this.store$.dispatch(new blockList.LoadBlocks({ instance }));
   }
 
