@@ -5,7 +5,7 @@ import { DropdownActionTypes, DropdownActions } from '../../actions/blocks/dropd
 import { DropdownBlock } from '../../models';
 
 export interface State extends EntityState<DropdownBlock> {
-  idsToSync: { [id: string]: number }
+  idsToSync: { [id: string]: number },
 }
 
 export const adapter: EntityAdapter<DropdownBlock> = createEntityAdapter<DropdownBlock>({

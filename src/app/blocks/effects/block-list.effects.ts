@@ -15,11 +15,11 @@ import { Block } from '../../shared/shared.module';
 import {
   BlockListActionTypes,
   FetchBlocks,
-  FetchBlocksComplete,
-  FetchBlocksError,
+  FetchBlocksSuccess,
+  FetchBlocksFailure,
   SyncBlocks,
-  SyncBlocksComplete,
-  SyncBlocksError,
+  SyncBlocksSuccess,
+  SyncBlocksFailure,
 } from '../actions/block-list.actions';
 
 import { BlockListService } from '../services';
@@ -39,9 +39,9 @@ export class BlockListEffects {
         return this.blockList.getBlocks(params.instance)
           .pipe(
             switchMap((blocks: Block[]) => {
-              return [new FetchBlocksComplete({ blocks })];
+              return [new FetchBlocksSuccess({ blocks })];
             }),
-            catchError(error => of(new FetchBlocksError({ error }))),
+            catchError(error => of(new FetchBlocksFailure({ error }))),
           );
       }),
     );
@@ -56,12 +56,12 @@ export class BlockListEffects {
           .pipe(
             switchMap((blocks: Block[]) => {
               return [
-                new SyncBlocksComplete(),
-                new FetchBlocksComplete({ blocks }),
+                new SyncBlocksSuccess(),
+                new FetchBlocksSuccess({ blocks }),
               ];
             }),
             catchError(error => from([
-              new SyncBlocksError({ error }),
+              new SyncBlocksFailure({ error }),
             ])),
           );
       }),

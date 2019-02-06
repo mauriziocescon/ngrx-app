@@ -4,8 +4,8 @@ import { Instance } from '../models';
 
 export enum InstanceListActionTypes {
   FETCH_INSTANCES = '[InstanceList] Fetch instances',
-  FETCH_INSTANCES_COMPLETE = '[InstanceList] Fetch instances complete',
-  FETCH_INSTANCES_ERROR = '[InstanceList] Fetch instances error',
+  FETCH_INSTANCES_SUCCESS = '[InstanceList] Fetch instances success',
+  FETCH_INSTANCES_FAILURE = '[InstanceList] Fetch instances failure',
 }
 
 export class FetchInstances implements Action {
@@ -15,15 +15,15 @@ export class FetchInstances implements Action {
   }
 }
 
-export class FetchInstancesComplete implements Action {
-  readonly type = InstanceListActionTypes.FETCH_INSTANCES_COMPLETE;
+export class FetchInstancesSuccess implements Action {
+  readonly type = InstanceListActionTypes.FETCH_INSTANCES_SUCCESS;
 
   constructor(public payload: { instances: Instance[] }) {
   }
 }
 
-export class FetchInstancesError implements Action {
-  readonly type = InstanceListActionTypes.FETCH_INSTANCES_ERROR;
+export class FetchInstancesFailure implements Action {
+  readonly type = InstanceListActionTypes.FETCH_INSTANCES_FAILURE;
 
   constructor(public payload: { error: string }) {
   }
@@ -31,5 +31,5 @@ export class FetchInstancesError implements Action {
 
 export type InstanceListActions =
   FetchInstances |
-  FetchInstancesComplete |
-  FetchInstancesError;
+  FetchInstancesSuccess |
+  FetchInstancesFailure;

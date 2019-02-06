@@ -32,7 +32,7 @@ export function reducer(state = initialState, action: BlockListActions): State {
         fetchError: undefined,
       };
     }
-    case BlockListActionTypes.FETCH_BLOCKS_COMPLETE: {
+    case BlockListActionTypes.FETCH_BLOCKS_SUCCESS: {
       return {
         ...state,
         fetchedBlocks: action.payload.blocks.map(block => block),
@@ -40,7 +40,7 @@ export function reducer(state = initialState, action: BlockListActions): State {
         fetchError: undefined,
       };
     }
-    case BlockListActionTypes.FETCH_BLOCKS_ERROR: {
+    case BlockListActionTypes.FETCH_BLOCKS_FAILURE: {
       return {
         ...state,
         fetchedBlocks: undefined,
@@ -56,7 +56,7 @@ export function reducer(state = initialState, action: BlockListActions): State {
         syncError: undefined,
       };
     }
-    case BlockListActionTypes.SYNC_BLOCKS_COMPLETE: {
+    case BlockListActionTypes.SYNC_BLOCKS_SUCCESS: {
       return {
         ...state,
         syncingBlocks: undefined,
@@ -64,7 +64,7 @@ export function reducer(state = initialState, action: BlockListActions): State {
         syncError: undefined,
       };
     }
-    case BlockListActionTypes.SYNC_BLOCKS_ERROR: {
+    case BlockListActionTypes.SYNC_BLOCKS_FAILURE: {
       return {
         ...state,
         syncingBlocks: undefined,

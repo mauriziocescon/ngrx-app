@@ -25,7 +25,7 @@ export function reducer(state = initialState, action: InstanceListActions): Stat
         fetchError: undefined,
       };
     }
-    case InstanceListActionTypes.FETCH_INSTANCES_COMPLETE: {
+    case InstanceListActionTypes.FETCH_INSTANCES_SUCCESS: {
       return {
         ...state,
         fetchedInstances: action.payload.instances.map(instance => instance),
@@ -33,7 +33,7 @@ export function reducer(state = initialState, action: InstanceListActions): Stat
         fetchError: undefined,
       };
     }
-    case InstanceListActionTypes.FETCH_INSTANCES_ERROR: {
+    case InstanceListActionTypes.FETCH_INSTANCES_FAILURE: {
       return {
         ...state,
         fetchedInstances: undefined,
