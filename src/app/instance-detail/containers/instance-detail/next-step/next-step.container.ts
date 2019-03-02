@@ -10,7 +10,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
     </cp-next-step>`,
 })
 export class NextStepContainerComponent {
-  @Input() instance: string;
+  @Input() instanceId: string;
 
   constructor() {
   }

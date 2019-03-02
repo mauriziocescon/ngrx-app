@@ -15,23 +15,19 @@ import { InstanceDetailPageStoreService } from './instance-detail-page-store.ser
   template: `
     <div class="container-fluid">
       <div class="row">
-        <ct-info
-          class="col-12"
-          [instance]="instance">
-        </ct-info>
         <ct-next-step
           class="col-12 col-sm-4 col-lg-2"
-          [instance]="instance">
+          [instanceId]="instanceId">
         </ct-next-step>
-        <ct-tabs
+        <ct-block-list
           class="col-12 col-sm-8 col-lg-10"
-          [instance]="instance">
-        </ct-tabs>
+          [instanceId]="instanceId">
+        </ct-block-list>
       </div>
     </div>`,
 })
 export class InstanceDetailPageComponent implements OnInit, OnDestroy {
-  instance: string;
+  instanceId: string;
 
   constructor(protected route: ActivatedRoute,
               protected instanceDetailPageStore: InstanceDetailPageStoreService) {
@@ -39,7 +35,7 @@ export class InstanceDetailPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.instanceDetailPageStore.startEffects();
-    this.instance = this.route.snapshot.paramMap.get('instance');
+    this.instanceId = this.route.snapshot.paramMap.get('id');
   }
 
   canDeactivate(): boolean {

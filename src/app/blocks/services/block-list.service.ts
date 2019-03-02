@@ -17,10 +17,10 @@ export class BlockListService {
               protected appConstants: AppConstantsService) {
   }
 
-  getBlocks(instance: string): Observable<Block[]> {
+  getBlocks(instanceId: string): Observable<Block[]> {
     const options = {
       params: {
-        instance: instance,
+        instanceId: instanceId,
       },
     };
 
@@ -34,9 +34,9 @@ export class BlockListService {
       );
   }
 
-  syncBlocks(instance: string, blocks: Block[]): Observable<Block[]> {
+  syncBlocks(instanceId: string, blocks: Block[]): Observable<Block[]> {
     const body = {
-      instance: instance,
+      id: instanceId,
       blocks: blocks,
     };
 

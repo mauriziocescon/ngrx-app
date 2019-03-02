@@ -17,20 +17,12 @@
     },
     "INSTANCE_DETAIL": {
     },
-    "INFO": {
-      "HEADER": "Info"
-    },
     "NEXT_STEP": {
       "CANCEL": "Annulla",
       "HEADER": "Validazione",
       "NEXT_STEP": "Procedi",
       "SYNC": "Aggiornato",
       "SYNCING": "Sync..."
-    },
-    "TABS": {
-      "TAB_BLOCKS": "Blocchi",
-      "TAB_DOCUMENTS": "Documenti",
-      "TAB_HISTORY": "Storico"
     },
     "BLOCK_LIST": {
       "LOAD_COMPLETED": "Caricamento completato",

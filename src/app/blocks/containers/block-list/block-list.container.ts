@@ -28,7 +28,7 @@ import { BlockListStoreService } from './block-list-store.service';
     </cp-block-list>`,
 })
 export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() instance: string;
+  @Input() instanceId: string;
 
   blocks$: Observable<Block[] | undefined>;
   loading$: Observable<boolean>;
@@ -53,9 +53,9 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.instance) {
+    if (this.instanceId) {
       this.blockListStore.clearBlocks();
-      this.reloadList(this.instance);
+      this.reloadList(this.instanceId);
     }
   }
 
@@ -87,7 +87,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
       }, []);
     }
 
-    this.blockListStore.syncBlocks(this.instance, this.blocksToSync);
+    this.blockListStore.syncBlocks(this.instanceId, this.blocksToSync);
   }
 
   protected setupAsyncObs(): void {
@@ -97,7 +97,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   }
 
   protected getInstance(instance?: string): string {
-    return instance || this.instance;
+    return instance || this.instanceId;
   }
 
   protected subscribeAll(): void {
