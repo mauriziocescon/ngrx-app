@@ -6,9 +6,9 @@ import { SharedModule } from '../shared/shared.module';
 
 import { COMPONENTS, UnknownComponent } from './components';
 import { CONTAINERS } from './containers';
-import { EFFECTS } from './effects';
-import { TOKEN, reducerProvider } from './reducers';
-import { SERVICES } from './services';
+import { EFFECTS } from './store/effects';
+import { TOKEN, reducerProvider } from './store/reducers';
+import { SERVICES } from './store/services';
 
 @NgModule({
   imports: [
