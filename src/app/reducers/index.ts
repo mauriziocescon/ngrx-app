@@ -3,7 +3,7 @@ import { ActionReducer, ActionReducerMap, combineReducers, MetaReducer } from '@
 import { storeFreeze } from 'ngrx-store-freeze';
 import * as fromRouter from '@ngrx/router-store';
 
-import * as fromCore from '../core/reducers';
+import * as fromCore from '../core/store/reducers';
 
 import { RouterStateUrl } from '../shared/shared.module';
 
@@ -45,4 +45,4 @@ export {
   getAllModalAlerts,
   getAllModalConfirmers,
   getModalConfirmerResults,
-} from '../core/reducers';
+} from '../core/store/selectors';

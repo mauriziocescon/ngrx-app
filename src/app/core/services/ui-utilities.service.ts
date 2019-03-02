@@ -7,12 +7,12 @@ import { NGXLogger } from 'ngx-logger';
 import { ModalAlertComponent } from '../components/modal-alert/modal-alert.component';
 import { ModalConfirmerComponent } from '../components/modal-confirmer/modal-confirmer.component';
 
-import { DismissModalAlert } from '../actions/modal-alert.actions';
+import { DismissModalAlert } from '../store/actions/modal-alert.actions';
 import {
   DismissModalConfirmerWithPositiveResult,
   DismissModalConfirmerWithNegativeResult,
   DismissModalConfirmer,
-} from '../actions/modal-confirmer.actions';
+} from '../store/actions/modal-confirmer.actions';
 import { ModalAlert, ModalConfirmer } from '../models';
 
 @Injectable()

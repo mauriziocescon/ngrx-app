@@ -5,11 +5,11 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Observable, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
-import { UIUtilitiesService } from '../services/ui-utilities.service';
+import { UIUtilitiesService } from '../../services/ui-utilities.service';
 
 import { ModalAlertActionTypes, ShowModalAlert } from '../actions/modal-alert.actions';
 import { ModalConfirmerActionTypes, ShowModalConfirmer } from '../actions/modal-confirmer.actions';
-import { ModalAlert, ModalConfirmer } from '../models';
+import { ModalAlert, ModalConfirmer } from '../../models';
 
 @Injectable()
 export class ModalsEffects {

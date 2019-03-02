@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import * as fromCore from '../reducers';
-import * as language from '../actions/language.actions';
+import * as fromCore from '../store/reducers';
+import * as language from '../store/actions/language.actions';
 
 import { AppConstantsService } from './app-constants.service';
 import { LocalStorageService } from './local-storage.service';

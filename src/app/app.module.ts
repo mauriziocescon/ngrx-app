@@ -14,7 +14,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import { TOKEN, reducerProvider, metaReducers } from './reducers';
-import { EFFECTS } from './core/effects';
+import { EFFECTS } from './core/store/effects';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule, CustomRouterStateSerializer } from './shared/shared.module';

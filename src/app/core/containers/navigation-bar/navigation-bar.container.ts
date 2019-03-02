@@ -4,7 +4,9 @@ import { Store, select } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 
-import * as fromCore from '../../reducers';
+import * as fromCoreReducers from '../../store/reducers';
+
+import * as fromCoreSelectors from '../../store/selectors';
 
 import { AppLanguageService } from '../../services/app-language.service';
 
@@ -23,7 +25,7 @@ export class NavigationBarContainerComponent {
   languages: string[];
   language$: Observable<string>;
 
-  constructor(protected store$: Store<fromCore.CoreState>,
+  constructor(protected store$: Store<fromCoreReducers.CoreState>,
               protected router: Router,
               protected appLanguage: AppLanguageService) {
     this.languages = this.appLanguage.getSupportedLanguagesList();
@@ -39,6 +41,6 @@ export class NavigationBarContainerComponent {
   }
 
   protected setupAsyncObs(): void {
-    this.language$ = this.store$.pipe(select(fromCore.getLanguageState));
+    this.language$ = this.store$.pipe(select(fromCoreSelectors.getLanguageState));
   }
 }

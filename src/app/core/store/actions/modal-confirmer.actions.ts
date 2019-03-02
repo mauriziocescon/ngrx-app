@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { ModalConfirmer } from '../models';
+import { ModalConfirmer } from '../../models';
 
 export enum ModalConfirmerActionTypes {
   SHOW_MODAL_CONFIRMER = '[Modal Confirmer] Show modal',

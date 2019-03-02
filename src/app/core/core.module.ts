@@ -3,9 +3,9 @@ import { CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from '@angular/commo
 
 import { SharedModule } from '../shared/shared.module';
 
-import * as languageActions from './actions/language.actions';
-import * as modalAlertsActions from './actions/modal-alert.actions';
-import * as modalConfirmersActions from './actions/modal-confirmer.actions';
+import * as languageActions from './store/actions/language.actions';
+import * as modalAlertsActions from './store/actions/modal-alert.actions';
+import * as modalConfirmersActions from './store/actions/modal-confirmer.actions';
 
 import {
   COMPONENTS,

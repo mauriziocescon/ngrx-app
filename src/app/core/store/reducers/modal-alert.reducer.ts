@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import { ModalAlertActionTypes, ModalAlertActions } from '../actions/modal-alert.actions';
-import { ModalAlert } from '../models';
+import { ModalAlert } from '../../models';
 
 export interface State extends EntityState<ModalAlert> {
 }

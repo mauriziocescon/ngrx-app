@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { ModalAlert } from '../models';
+import { ModalAlert } from '../../models';
 
 export enum ModalAlertActionTypes {
   SHOW_MODAL_ALERT = '[Modal Alert] Show modal',

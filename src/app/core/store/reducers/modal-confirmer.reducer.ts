@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import { ModalConfirmerActionTypes, ModalConfirmerActions } from '../actions/modal-confirmer.actions';
-import { ModalConfirmer, ModalConfirmerResultType } from '../models';
+import { ModalConfirmer, ModalConfirmerResultType } from '../../models';
 
 export interface State extends EntityState<ModalConfirmer> {
   modalConfirmerResults: { [id: string]: ModalConfirmerResultType | undefined };
