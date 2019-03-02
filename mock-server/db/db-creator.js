@@ -12,7 +12,6 @@ function main() {
 
     // db creation
     const data = {
-      rulesConfig: [],
       instances: [],
       logs: [],
     };
@@ -22,44 +21,41 @@ function main() {
 
     let instance;
 
-    instance = {id: faker.random.uuid(), instance: 'inst-1', blocks: []};
+    instance = {id: faker.random.uuid(), instance: faker.random.word(), blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), instance: 'inst-2', blocks: []};
+    instance = {id: faker.random.uuid(), instance: faker.random.word(), blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), instance: 'inst-3', blocks: []};
+    instance = {id: faker.random.uuid(), instance: faker.random.word(), blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), instance: 'inst-4', blocks: []};
+    instance = {id: faker.random.uuid(), instance: faker.random.word(), blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), instance: 'inst-5', blocks: []};
+    instance = {id: faker.random.uuid(), instance: faker.random.word(), blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), instance: 'inst-6', blocks: []};
+    instance = {id: faker.random.uuid(), instance: faker.random.word(), blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
-
-    // rules config
-    data.rulesConfig.push({instance: 'inst-1', rules: 'rules1'});
 
     utils.saveDb(dbUrl, data, (err) => {
       if (err) {
