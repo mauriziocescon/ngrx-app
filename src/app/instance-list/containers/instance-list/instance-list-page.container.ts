@@ -7,9 +7,9 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ModalAlert, modalAlertsActions } from '../../../core/core.module';
 
-import * as instanceList from '../../actions/instance-list.actions';
+import * as instanceList from '../../store/actions/instance-list.actions';
 
-import * as fromInstanceList from '../../reducers';
+import * as fromInstanceList from '../../store/reducers';
 
 import { Instance } from '../../models';
 
@@ -65,7 +65,7 @@ export class InstanceListPageComponent implements OnInit, OnDestroy {
   }
 
   goTo(instance: Instance): void {
-    this.router.navigate(['/instance-detail', instance.instance]);
+    this.router.navigate(['/instance-detail', instance.id]);
   }
 
   subscribeToFetchErrors(): void {

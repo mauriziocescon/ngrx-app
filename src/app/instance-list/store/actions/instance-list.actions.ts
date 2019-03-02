@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Instance } from '../models';
+import { Instance } from '../../models';
 
 export enum InstanceListActionTypes {
   LOAD_INSTANCES = '[InstanceList] Load instances',

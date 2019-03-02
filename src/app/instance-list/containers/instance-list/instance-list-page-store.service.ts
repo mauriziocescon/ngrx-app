@@ -5,29 +5,29 @@ import { Observable } from 'rxjs';
 
 import { ModalAlert, modalAlertsActions } from '../../../core/core.module';
 
-import * as instanceListEffects from '../../actions/instance-list-effects.actions';
-import * as instanceList from '../../actions/instance-list.actions';
-
 import { Instance } from '../../models';
 
-import * as fromInstanceList from '../../reducers';
+import * as instanceListEffects from '../../store/actions/instance-list-effects.actions';
+import * as instanceList from '../../store/actions/instance-list.actions';
+import * as fromInstanceListReducer from '../../store/reducers';
+import * as fromInstanceListSelectors from '../../store/selectors';
 
 @Injectable()
 export class InstanceListStoreService {
 
-  constructor(protected store$: Store<fromInstanceList.State>) {
+  constructor(protected store$: Store<fromInstanceListReducer.State>) {
   }
 
   getFetchedInstances(): Observable<Instance[] | undefined> {
-    return this.store$.pipe(select(fromInstanceList.getFetchedInstances));
+    return this.store$.pipe(select(fromInstanceListSelectors.getInstances));
   }
 
   getFetchLoading(): Observable<boolean> {
-    return this.store$.pipe(select(fromInstanceList.getFetchLoading));
+    return this.store$.pipe(select(fromInstanceListSelectors.isLoading));
   }
 
   getFetchError(): Observable<string | undefined> {
-    return this.store$.pipe(select(fromInstanceList.getFetchError));
+    return this.store$.pipe(select(fromInstanceListSelectors.getError));
   }
 
   fetchInstances(params: { textSearch: string }): void {

@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
-import { createFeatureSelector, createSelector, ActionReducerMap } from '@ngrx/store';
+import { ActionReducerMap } from '@ngrx/store';
 
-import * as fromRoot from '../../reducers';
+import * as fromRoot from '../../../reducers';
 import * as fromInstanceListEffects from './instance-list-effects.reducer';
 import * as fromInstanceList from './instance-list.reducer';
 
@@ -28,15 +28,3 @@ export function getReducers(): ActionReducerMap<InstanceListState, any> {
 export const reducerProvider = [
   { provide: TOKEN, useFactory: getReducers },
 ];
-
-// -----------------
-// --- feature selector
-export const getInstanceListState = createFeatureSelector<InstanceListState>('instanceList');
-
-// -----------------
-// ------- instances
-export const getInstancesState = createSelector(getInstanceListState, state => state.instances);
-
-export const getFetchedInstances = createSelector(getInstancesState, fromInstanceList.getFetchedInstances);
-export const getFetchLoading = createSelector(getInstancesState, fromInstanceList.getFetchLoading);
-export const getFetchError = createSelector(getInstancesState, fromInstanceList.getFetchError);

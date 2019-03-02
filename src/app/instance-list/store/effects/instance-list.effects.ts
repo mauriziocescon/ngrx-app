@@ -19,7 +19,7 @@ import {
 } from '../actions/instance-list.actions';
 import { InstanceListEffectsActionTypes, StartEffects, StopEffects } from '../actions/instance-list-effects.actions';
 
-import { Instance } from '../models';
+import { Instance } from '../../models';
 
 import { InstanceListService } from '../services';
 

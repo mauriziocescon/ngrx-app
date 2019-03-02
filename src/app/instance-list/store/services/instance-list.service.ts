@@ -7,9 +7,9 @@ import {
   map,
 } from 'rxjs/operators';
 
-import { AppConstantsService } from '../../core/core.module';
+import { AppConstantsService } from '../../../core/core.module';
 
-import { Instance } from '../models';
+import { Instance } from '../../models';
 
 @Injectable()
 export class InstanceListService {
