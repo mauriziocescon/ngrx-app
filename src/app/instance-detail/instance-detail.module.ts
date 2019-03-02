@@ -9,8 +9,8 @@ import { InstanceDetailRoutingModule } from './instance-detail-routing.module';
 
 import { COMPONENTS } from './components';
 import { CONTAINERS, InstanceDetailPageComponent } from './containers';
-import { EFFECTS } from './effects';
-import { TOKEN, reducerProvider } from './reducers';
+import { EFFECTS } from './store/effects';
+import { TOKEN, reducerProvider } from './store/reducers';
 import { SERVICES } from './services';
 
 @NgModule({

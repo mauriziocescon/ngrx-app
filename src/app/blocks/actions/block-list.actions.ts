@@ -17,7 +17,7 @@ export enum BlockListActionTypes {
 export class LoadBlocks implements Action {
   readonly type = BlockListActionTypes.LOAD_BLOCKS;
 
-  constructor(public payload: { instance: string }) {
+  constructor(public payload: { instanceId: string }) {
   }
 }
 
@@ -38,7 +38,7 @@ export class LoadBlocksFailure implements Action {
 export class SyncBlocks implements Action {
   readonly type = BlockListActionTypes.SYNC_BLOCKS;
 
-  constructor(public payload: { instance: string, blocks: Block[] }) {
+  constructor(public payload: { instanceId: string, blocks: Block[] }) {
   }
 }
 

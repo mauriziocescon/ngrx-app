@@ -24,7 +24,7 @@ exports.saveBlocks = (req, res) => {
   const newBlocks = req.body.blocks;
 
   const foundInstance = db.get('instances')
-    .find({instance: instanceId})
+    .find({id: instanceId})
     .value();
 
   if (foundInstance) {
@@ -41,7 +41,7 @@ exports.saveBlocks = (req, res) => {
     blocks = blocksValidation.validate(blocks);
 
     db.get('instances')
-      .find({instance: instanceId})
+      .find({id: instanceId})
       .assign({blocks: blocks})
       .write();
 

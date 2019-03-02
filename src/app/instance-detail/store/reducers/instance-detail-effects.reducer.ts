@@ -1,7 +1,7 @@
 import {
   InstanceDetailEffectsActionTypes,
   InstanceDetailEffectsActions,
-} from '../store/actions/instance-detail-effects.actions';
+} from '../actions/instance-detail-effects.actions';
 
 export interface State {
   active: boolean;

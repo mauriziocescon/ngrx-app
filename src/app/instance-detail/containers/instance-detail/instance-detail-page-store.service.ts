@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 
 import * as instanceDetailEffects from '../../store/actions/instance-detail-effects.actions';
 
-import * as fromInstanceDetail from '../../../instance-detail/reducers';
+import * as fromInstanceDetail from '../../store/reducers';
 
 @Injectable()
 export class InstanceDetailPageStoreService {

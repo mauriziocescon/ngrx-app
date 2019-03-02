@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
-import { createFeatureSelector, createSelector, ActionReducerMap } from '@ngrx/store';
+import { ActionReducerMap } from '@ngrx/store';
 
-import * as fromRoot from '../../reducers';
+import * as fromRoot from '../../../reducers';
 import * as fromInstanceDetailEffects from './instance-detail-effects.reducer';
 
 export interface InstanceDetailState {
@@ -25,7 +25,3 @@ export function getReducers(): ActionReducerMap<InstanceDetailState, any> {
 export const reducerProvider = [
   { provide: TOKEN, useFactory: getReducers },
 ];
-
-// -----------------
-// --- feature selector
-export const getInstanceDetailState = createFeatureSelector<InstanceDetailState>('instanceDetail');

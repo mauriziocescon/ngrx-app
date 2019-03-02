@@ -36,7 +36,7 @@ export class BlockListEffects {
       ofType<LoadBlocks>(BlockListActionTypes.LOAD_BLOCKS),
       map(action => action.payload),
       switchMap((params) => {
-        return this.blockList.getBlocks(params.instance)
+        return this.blockList.getBlocks(params.instanceId)
           .pipe(
             switchMap((blocks: Block[]) => {
               return [new LoadBlocksSuccess({ blocks })];
@@ -52,7 +52,7 @@ export class BlockListEffects {
       debounceTime(3000),
       map(action => action.payload),
       switchMap((payload) => {
-        return this.blockList.syncBlocks(payload.instance, payload.blocks)
+        return this.blockList.syncBlocks(payload.instanceId, payload.blocks)
           .pipe(
             switchMap((blocks: Block[]) => {
               return [

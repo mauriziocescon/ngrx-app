@@ -54,9 +54,6 @@ describe('NextStepComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NextStepComponent);
     component = fixture.componentInstance;
-    component.formValidity = true;
-    component.syncing = false;
-    component.syncError = undefined;
     fixture.detectChanges();
   });
 

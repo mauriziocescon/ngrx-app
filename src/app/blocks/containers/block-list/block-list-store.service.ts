@@ -29,12 +29,12 @@ export class BlockListStoreService {
     return this.store$.pipe(select(fromBlocks.getFetchError));
   }
 
-  loadBlocks(instance: string): void {
-    this.store$.dispatch(new blockList.LoadBlocks({ instance }));
+  loadBlocks(instanceId: string): void {
+    this.store$.dispatch(new blockList.LoadBlocks({ instanceId }));
   }
 
-  syncBlocks(instance: string, blocks: Block[]): void {
-    this.store$.dispatch(new blockList.SyncBlocks({ instance, blocks }));
+  syncBlocks(instanceId: string, blocks: Block[]): void {
+    this.store$.dispatch(new blockList.SyncBlocks({ instanceId, blocks }));
   }
 
   clearBlocks(): void {

@@ -36,7 +36,7 @@ export class BlockListService {
 
   syncBlocks(instanceId: string, blocks: Block[]): Observable<Block[]> {
     const body = {
-      id: instanceId,
+      instanceId: instanceId,
       blocks: blocks,
     };
 

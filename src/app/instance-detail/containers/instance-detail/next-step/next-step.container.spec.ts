@@ -11,7 +11,7 @@ import { CoreModule } from '../../../../core/core.module';
 import { SharedModule } from '../../../../shared/shared.module';
 
 import * as fromRoot from '../../../../reducers';
-import * as fromInstanceDetail from '../../../reducers';
+import * as fromInstanceDetail from '../../../store/reducers';
 
 import { COMPONENTS } from '../../../components';
 import { CONTAINERS, NextStepContainerComponent } from '../../../containers';
@@ -70,7 +70,7 @@ describe('NextStepContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NextStepContainerComponent);
     component = fixture.componentInstance;
-    component.instance = '';
+    component.instanceId = '';
     fixture.detectChanges();
   });
 
