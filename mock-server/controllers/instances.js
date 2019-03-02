@@ -8,7 +8,7 @@ exports.getInstances = (req, res) => {
     .map((inst) => {
       return {
         id: inst.id,
-        instance: inst.instance,
+        description: inst.description,
       };
     })
     .filter((inst) => {

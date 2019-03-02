@@ -21,37 +21,37 @@ function main() {
 
     let instance;
 
-    instance = {id: faker.random.uuid(), description: faker.random.word(), blocks: []};
+    instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), description: faker.random.word(), blocks: []};
+    instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), description: faker.random.word(), blocks: []};
+    instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), description: faker.random.word(), blocks: []};
+    instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), description: faker.random.word(), blocks: []};
+    instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
     data.instances.push(instance);
 
-    instance = {id: faker.random.uuid(), description: faker.random.word(), blocks: []};
+    instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
     for (let i = 0; i < numberOfBlocks; i++) {
       instance.blocks.push(dataCreator.getRandomBlock(i));
     }
