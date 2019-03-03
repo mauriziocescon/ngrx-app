@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { DropdownBlock } from '../../models';
+import { DropdownBlock } from '../../../models';
 
 export enum DropdownActionTypes {
   ADD_BLOCK = '[Dropdown] Add block',

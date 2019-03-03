@@ -2,7 +2,7 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import { CheckBoxConfirmerActionTypes, CheckBoxConfirmerActions } from '../../actions/blocks/check-box-confirmer.actions';
 
-import { CheckBoxConfirmerBlock } from '../../models';
+import { CheckBoxConfirmerBlock } from '../../../models';
 
 export interface State extends EntityState<CheckBoxConfirmerBlock> {
   idsToSync: { [id: string]: number }

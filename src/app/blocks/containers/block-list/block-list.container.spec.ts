@@ -11,12 +11,12 @@ import { CoreModule } from '../../../core/core.module';
 import { SharedModule } from '../../../shared/shared.module';
 
 import * as fromRoot from '../../../reducers';
-import * as fromBlocks from '../../reducers';
+import * as fromBlocks from '../../store/reducers';
 
 import { COMPONENTS } from '../../components';
 import { CONTAINERS, BlockListContainerComponent } from '../../containers';
 
-import { BlockListService } from '../../services';
+import { BlockListService } from '../../store/services';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');

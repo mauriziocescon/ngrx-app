@@ -1,6 +1,6 @@
 import { BlockListActionTypes, BlockListActions } from '../actions/block-list.actions';
 
-import { Block } from '../../shared/shared.module';
+import { Block } from '../../../shared/shared.module';
 
 export interface State {
   fetchedBlocks: Block[] | undefined;

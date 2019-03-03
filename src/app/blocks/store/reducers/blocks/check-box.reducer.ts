@@ -2,7 +2,7 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import { CheckBoxActionTypes, CheckBoxActions } from '../../actions/blocks/check-box.actions';
 
-import { CheckBoxBlock } from '../../models';
+import { CheckBoxBlock } from '../../../models';
 
 export interface State extends EntityState<CheckBoxBlock> {
   idsToSync: { [id: string]: number }

@@ -4,24 +4,26 @@ import { Update } from '@ngrx/entity';
 
 import { Observable } from 'rxjs';
 
-import * as datePicker from '../../../actions/blocks/date-picker.actions';
+import * as datePicker from '../../../store/actions/blocks/date-picker.actions';
 
 import { DatePickerBlock } from '../../../models';
 
-import * as fromBlocks from '../../../reducers';
+import * as fromBlocksReducers from '../../../store/reducers';
+
+import * as fromBlocksSelectors from '../../../store/selectors';
 
 @Injectable()
 export class DatePickerStoreService {
 
-  constructor(protected store$: Store<fromBlocks.State>) {
+  constructor(protected store$: Store<fromBlocksReducers.State>) {
   }
 
   getDatePickerById(id: string): Observable<DatePickerBlock> {
-    return this.store$.pipe(select(fromBlocks.getDatePickerEntityById(), { id: id }));
+    return this.store$.pipe(select(fromBlocksSelectors.getDatePickerEntityById(), { id: id }));
   }
 
   getDatePickerToSyncById(id: string): Observable<DatePickerBlock | undefined> {
-    return this.store$.pipe(select(fromBlocks.getDatePickerToSyncById(), { id: id }));
+    return this.store$.pipe(select(fromBlocksSelectors.getDatePickerToSyncById(), { id: id }));
   }
 
   addBlock(block: DatePickerBlock): void {

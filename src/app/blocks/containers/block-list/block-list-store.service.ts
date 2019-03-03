@@ -7,26 +7,28 @@ import { ModalAlert, modalAlertsActions } from '../../../core/core.module';
 
 import { Block } from '../../../shared/shared.module';
 
-import * as blockList from '../../actions/block-list.actions';
+import * as blockList from '../../store/actions/block-list.actions';
 
-import * as fromBlocks from '../../reducers';
+import * as fromBlocksReducers from '../../store/reducers';
+
+import * as fromBlocksSelectors from '../../store/selectors';
 
 @Injectable()
 export class BlockListStoreService {
 
-  constructor(protected store$: Store<fromBlocks.State>) {
+  constructor(protected store$: Store<fromBlocksReducers.State>) {
   }
 
   getFetchedBlocks(): Observable<Block[] | undefined> {
-    return this.store$.pipe(select(fromBlocks.getFetchedBlocks));
+    return this.store$.pipe(select(fromBlocksSelectors.getFetchedBlocks));
   }
 
   getFetchLoading(): Observable<boolean> {
-    return this.store$.pipe(select(fromBlocks.getFetchLoading));
+    return this.store$.pipe(select(fromBlocksSelectors.getFetchLoading));
   }
 
   getFetchError(): Observable<string | undefined> {
-    return this.store$.pipe(select(fromBlocks.getFetchError));
+    return this.store$.pipe(select(fromBlocksSelectors.getFetchError));
   }
 
   loadBlocks(instanceId: string): void {

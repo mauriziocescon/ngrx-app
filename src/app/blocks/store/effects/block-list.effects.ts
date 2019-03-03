@@ -10,7 +10,7 @@ import {
   switchMap,
 } from 'rxjs/operators';
 
-import { Block } from '../../shared/shared.module';
+import { Block } from '../../../shared/shared.module';
 
 import {
   BlockListActionTypes,

@@ -4,24 +4,26 @@ import { Update } from '@ngrx/entity';
 
 import { Observable } from 'rxjs';
 
-import * as checkBox from '../../../actions/blocks/check-box.actions';
+import * as checkBox from '../../../store/actions/blocks/check-box.actions';
 
 import { CheckBoxBlock } from '../../../models';
 
-import * as fromBlocks from '../../../reducers';
+import * as fromBlocksReducers from '../../../store/reducers';
+
+import * as fromBlocksSelectors from '../../../store/selectors';
 
 @Injectable()
 export class CheckBoxStoreService {
 
-  constructor(protected store$: Store<fromBlocks.State>) {
+  constructor(protected store$: Store<fromBlocksReducers.State>) {
   }
 
   getCheckBoxById(id: string): Observable<CheckBoxBlock> {
-    return this.store$.pipe(select(fromBlocks.getCheckBoxEntityById(), { id: id }));
+    return this.store$.pipe(select(fromBlocksSelectors.getCheckBoxEntityById(), { id: id }));
   }
 
   getCheckBoxToSyncById(id: string): Observable<CheckBoxBlock | undefined> {
-    return this.store$.pipe(select(fromBlocks.getCheckBoxToSyncById(), { id: id }));
+    return this.store$.pipe(select(fromBlocksSelectors.getCheckBoxToSyncById(), { id: id }));
   }
 
   addBlock(block: CheckBoxBlock): void {

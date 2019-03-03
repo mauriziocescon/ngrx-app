@@ -4,24 +4,26 @@ import { Update } from '@ngrx/entity';
 
 import { Observable } from 'rxjs';
 
-import * as dropdown from '../../../actions/blocks/dropdown.actions';
+import * as dropdown from '../../../store/actions/blocks/dropdown.actions';
 
 import { DropdownBlock } from '../../../models';
 
-import * as fromBlocks from '../../../reducers';
+import * as fromBlocksReducers from '../../../store/reducers';
+
+import * as fromBlocksSelectors from '../../../store/selectors';
 
 @Injectable()
 export class DropdownStoreService {
 
-  constructor(protected store$: Store<fromBlocks.State>) {
+  constructor(protected store$: Store<fromBlocksReducers.State>) {
   }
 
   getDropdownById(id: string): Observable<DropdownBlock> {
-    return this.store$.pipe(select(fromBlocks.getDropdownEntityById(), { id: id }));
+    return this.store$.pipe(select(fromBlocksSelectors.getDropdownEntityById(), { id: id }));
   }
 
   getDropdownToSyncById(id: string): Observable<DropdownBlock | undefined> {
-    return this.store$.pipe(select(fromBlocks.getDropdownToSyncById(), { id: id }));
+    return this.store$.pipe(select(fromBlocksSelectors.getDropdownToSyncById(), { id: id }));
   }
 
   addBlock(block: DropdownBlock): void {

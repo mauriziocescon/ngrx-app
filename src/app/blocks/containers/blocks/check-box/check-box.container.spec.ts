@@ -11,7 +11,7 @@ import { CoreModule } from '../../../../core/core.module';
 import { BlockType, SharedModule } from '../../../../shared/shared.module';
 
 import * as fromRoot from '../../../../reducers';
-import * as fromBlocks from '../../../reducers';
+import * as fromBlocks from '../../../store/reducers';
 
 import { COMPONENTS } from '../../../components';
 import { CONTAINERS, CheckBoxContainerComponent } from '../../../containers';

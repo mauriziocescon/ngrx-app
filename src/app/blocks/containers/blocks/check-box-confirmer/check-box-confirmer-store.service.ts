@@ -6,12 +6,13 @@ import { Observable } from 'rxjs';
 
 import { ModalConfirmer, ModalConfirmerResultType, modalConfirmersActions } from '../../../../core/core.module';
 
-import * as checkBoxConfirmer from '../../../actions/blocks/check-box-confirmer.actions';
+import * as checkBoxConfirmer from '../../../store/actions/blocks/check-box-confirmer.actions';
 
 import { CheckBoxConfirmerBlock } from '../../../models';
 
 import * as fromRoot from '../../../../reducers';
-import * as fromBlocks from '../../../reducers';
+
+import * as fromBlocksSelectors from '../../../store/selectors';
 
 @Injectable()
 export class CheckBoxConfirmerStoreService {
@@ -20,11 +21,11 @@ export class CheckBoxConfirmerStoreService {
   }
 
   getCheckBoxConfirmerById(id: string): Observable<CheckBoxConfirmerBlock> {
-    return this.store$.pipe(select(fromBlocks.getCheckBoxConfirmerEntityById(), { id: id }));
+    return this.store$.pipe(select(fromBlocksSelectors.getCheckBoxConfirmerEntityById(), { id: id }));
   }
 
   getCheckBoxConfirmerToSyncById(id: string): Observable<CheckBoxConfirmerBlock | undefined> {
-    return this.store$.pipe(select(fromBlocks.getCheckBoxConfirmerToSyncById(), { id: id }));
+    return this.store$.pipe(select(fromBlocksSelectors.getCheckBoxConfirmerToSyncById(), { id: id }));
   }
 
   getModalConfirmerResults(): Observable<{ [id: string]: ModalConfirmerResultType | undefined }> {

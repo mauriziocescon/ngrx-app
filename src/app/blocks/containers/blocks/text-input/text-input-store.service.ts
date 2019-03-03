@@ -4,24 +4,26 @@ import { Update } from '@ngrx/entity';
 
 import { Observable } from 'rxjs';
 
-import * as textInput from '../../../actions/blocks/text-input.actions';
+import * as textInput from '../../../store/actions/blocks/text-input.actions';
 
 import { TextInputBlock } from '../../../models';
 
-import * as fromBlocks from '../../../reducers';
+import * as fromBlocksReducers from '../../../store/reducers';
+
+import * as fromBlocksSelectors from '../../../store/selectors';
 
 @Injectable()
 export class TextInputStoreService {
 
-  constructor(protected store$: Store<fromBlocks.State>) {
+  constructor(protected store$: Store<fromBlocksReducers.State>) {
   }
 
   getTextInputById(id: string): Observable<TextInputBlock> {
-    return this.store$.pipe(select(fromBlocks.getTextInputEntityById(), { id: id }));
+    return this.store$.pipe(select(fromBlocksSelectors.getTextInputEntityById(), { id: id }));
   }
 
   getTextInputToSyncById(id: string): Observable<TextInputBlock | undefined> {
-    return this.store$.pipe(select(fromBlocks.getTextInputToSyncById(), { id: id }));
+    return this.store$.pipe(select(fromBlocksSelectors.getTextInputToSyncById(), { id: id }));
   }
 
   addBlock(block: TextInputBlock): void {

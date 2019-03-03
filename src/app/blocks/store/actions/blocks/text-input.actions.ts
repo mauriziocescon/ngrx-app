@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { TextInputBlock } from '../../models';
+import { TextInputBlock } from '../../../models';
 
 export enum TextInputActionTypes {
   ADD_BLOCK = '[TextInput] Add block',

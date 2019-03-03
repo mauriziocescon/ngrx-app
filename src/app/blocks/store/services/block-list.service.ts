@@ -7,8 +7,8 @@ import {
   map,
 } from 'rxjs/operators';
 
-import { AppConstantsService } from '../../core/core.module';
-import { Block } from '../../shared/shared.module';
+import { AppConstantsService } from '../../../core/core.module';
+import { Block } from '../../../shared/shared.module';
 
 @Injectable()
 export class BlockListService {
