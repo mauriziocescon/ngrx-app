@@ -73,12 +73,7 @@ export function reducer(state = initialState, action: BlockListActions): State {
       };
     }
     case BlockListActionTypes.CLEAR_BLOCKS: {
-      return {
-        ...state,
-        fetchedBlocks: [],
-        fetchLoading: false,
-        fetchError: undefined,
-      };
+      return initialState;
     }
     default: {
       return state;
