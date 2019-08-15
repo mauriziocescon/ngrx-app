@@ -17,10 +17,17 @@ import {
   LoadBlocks,
   LoadBlocksSuccess,
   LoadBlocksFailure,
+  UpdateBlock,
   SyncBlocks,
   SyncBlocksSuccess,
   SyncBlocksFailure,
 } from '../actions/block-list.actions';
+
+import {
+  SyncActionTypes,
+  SyncRequired,
+  Synchronized,
+} from '../actions/sync.actions';
 
 import { BlockListService } from '../services';
 
@@ -46,6 +53,12 @@ export class BlockListEffects {
       }),
     );
 
+  @Effect() needSync$: Observable<Action> = this.actions$
+    .pipe(
+      ofType<UpdateBlock>(BlockListActionTypes.UPDATE_BLOCK),
+      map(() => new SyncRequired(Date.now())),
+    );
+
   @Effect() syncBlocks$: Observable<Action> = this.actions$
     .pipe(
       ofType<SyncBlocks>(BlockListActionTypes.SYNC_BLOCKS),
@@ -57,11 +70,13 @@ export class BlockListEffects {
             switchMap((blocks: Block[]) => {
               return [
                 new SyncBlocksSuccess(),
+                new Synchronized(),
                 new LoadBlocksSuccess({ blocks }),
               ];
             }),
             catchError(error => from([
               new SyncBlocksFailure({ error }),
+              new Synchronized(),
             ])),
           );
       }),

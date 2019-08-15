@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 
 import { Block } from '../../../shared/shared.module';
 
@@ -6,6 +7,8 @@ export enum BlockListActionTypes {
   LOAD_BLOCKS = '[BlockList] Load blocks',
   LOAD_BLOCKS_SUCCESS = '[BlockList] Load blocks success',
   LOAD_BLOCKS_FAILURE = '[BlockList] Load blocks failure',
+
+  UPDATE_BLOCK = '[BlockList] Update block',
 
   SYNC_BLOCKS = '[BlockList] Sync blocks',
   SYNC_BLOCKS_SUCCESS = '[BlockList] Sync blocks success',
@@ -35,6 +38,13 @@ export class LoadBlocksFailure implements Action {
   }
 }
 
+export class UpdateBlock implements Action {
+  readonly type = BlockListActionTypes.UPDATE_BLOCK;
+
+  constructor(public payload: { block: Update<Block> }) {
+  }
+}
+
 export class SyncBlocks implements Action {
   readonly type = BlockListActionTypes.SYNC_BLOCKS;
 
@@ -61,6 +71,7 @@ export type BlockListActions =
   LoadBlocks |
   LoadBlocksSuccess |
   LoadBlocksFailure |
+  UpdateBlock |
   SyncBlocks |
   SyncBlocksSuccess |
   SyncBlocksFailure |
