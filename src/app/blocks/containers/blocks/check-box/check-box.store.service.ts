@@ -19,7 +19,7 @@ export class CheckBoxStoreService {
   }
 
   getBlockById(id: string): Observable<CheckBoxBlock> {
-    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id })) as CheckBoxBlock;
+    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id }));
   }
 
   updateBlock(block: Update<CheckBoxBlock>): void {

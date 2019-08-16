@@ -19,7 +19,7 @@ export class TextInputStoreService {
   }
 
   getBlockById(id: string): Observable<TextInputBlock> {
-    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id })) as TextInputBlock;
+    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id }));
   }
 
   updateBlock(block: Update<TextInputBlock>): void {
