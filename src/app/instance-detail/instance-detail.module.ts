@@ -3,20 +3,19 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { SharedModule } from '../shared/shared.module';
-import { BlocksModule } from '../blocks/blocks.module';
 
 import { InstanceDetailRoutingModule } from './instance-detail-routing.module';
 
-import { COMPONENTS } from './components';
+import { COMPONENTS, UnknownComponent } from './components';
 import { CONTAINERS, InstanceDetailPageComponent } from './containers';
 import { EFFECTS } from './store/effects';
 import { TOKEN, reducerProvider } from './store/reducers';
+import { SERVICES as STORE_SERVICES } from './store/services';
 import { SERVICES } from './services';
 
 @NgModule({
   imports: [
     SharedModule,
-    BlocksModule,
 
     StoreModule.forFeature('instanceDetail', TOKEN),
     EffectsModule.forFeature([
@@ -29,9 +28,12 @@ import { SERVICES } from './services';
     ...CONTAINERS,
   ],
   entryComponents: [
+    UnknownComponent,
+    ...CONTAINERS,
   ],
   providers: [
     reducerProvider,
+    ...STORE_SERVICES,
     ...SERVICES,
   ],
   exports: [
