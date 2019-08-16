@@ -22,7 +22,7 @@ export class CheckBoxConfirmerStoreService {
   }
 
   getBlockById(id: string): Observable<CheckBoxConfirmerBlock> {
-    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id }));
+    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id })) as Observable<CheckBoxConfirmerBlock>;
   }
 
   getModalConfirmerResults(): Observable<{ [id: string]: ModalConfirmerResultType | undefined }> {

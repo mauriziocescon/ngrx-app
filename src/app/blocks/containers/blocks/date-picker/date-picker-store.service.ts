@@ -19,7 +19,7 @@ export class DatePickerStoreService {
   }
 
   getBlockById(id: string): Observable<DatePickerBlock> {
-    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id }));
+    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id })) as Observable<DatePickerBlock>;
   }
 
   updateBlock(block: Update<DatePickerBlock>): void {

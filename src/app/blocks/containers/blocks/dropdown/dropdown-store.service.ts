@@ -19,7 +19,7 @@ export class DropdownStoreService {
   }
 
   getBlockById(id: string): Observable<DropdownBlock> {
-    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id }));
+    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id })) as Observable<DropdownBlock>;
   }
 
   updateBlock(block: Update<DropdownBlock>): void {
