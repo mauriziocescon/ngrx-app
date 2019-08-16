@@ -53,7 +53,7 @@ export class BlockListEffects {
       }),
     );
 
-  @Effect() needSync$: Observable<Action> = this.actions$
+  @Effect() syncRequired$: Observable<Action> = this.actions$
     .pipe(
       ofType<UpdateBlock>(BlockListActionTypes.UPDATE_BLOCK),
       map(() => new SyncRequired(Date.now())),

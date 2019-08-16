@@ -1,8 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable, Subscription } from 'rxjs';
-
-import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
 
 import { BlockComponent } from '../../../../shared/shared.module';
 
@@ -18,31 +16,22 @@ import { DatePickerStoreService } from './date-picker-store.service';
   ],
   template: `
     <cp-date-picker
-      [block]="block$ | async"
-      (valueDidChange)="valueDidChange($event)">
+      [block]="block$ | async">
     </cp-date-picker>`,
 })
 export class DatePickerContainerComponent implements BlockComponent, OnInit, OnDestroy {
-  @Input() block: DatePickerBlock;
-  @Output() blockDidChange: EventEmitter<DatePickerBlock>;
+  @Input() blockId: string;
 
   block$: Observable<DatePickerBlock | undefined>;
-  blockToSyncSubscription: Subscription;
 
-  constructor(protected datePickerStore: DatePickerStoreService,
-              protected translate: TranslateService) {
-    this.blockDidChange = new EventEmitter();
+  constructor(protected datePickerStore: DatePickerStoreService) {
   }
 
   ngOnInit(): void {
-    this.datePickerStore.addBlock(this.block);
     this.setupAsyncObs();
-    this.subscribeAllObs();
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeAllObs();
-    this.datePickerStore.clearBlock(this.block.id);
   }
 
   valueDidChange(value: string): void {
@@ -51,7 +40,7 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
 
   protected updateBlock(value: string): void {
     const block = {
-      id: this.block.id,
+      id: this.blockId,
       changes: {
         value: value,
       },
@@ -60,22 +49,6 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.datePickerStore.getDatePickerById(this.block.id);
-  }
-
-  protected subscribeAllObs(): void {
-    this.blockToSyncSubscription = this.datePickerStore.getDatePickerToSyncById(this.block.id)
-      .subscribe(block => {
-        if (block) {
-          this.blockDidChange.emit(block);
-          this.datePickerStore.syncronized(this.block.id);
-        }
-      });
-  }
-
-  protected unsubscribeAllObs(): void {
-    if (this.blockToSyncSubscription) {
-      this.blockToSyncSubscription.unsubscribe();
-    }
+    this.block$ = this.datePickerStore.getBlockById(this.blockId);
   }
 }

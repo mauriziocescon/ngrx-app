@@ -72,17 +72,7 @@ describe('DatePickerContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DatePickerContainerComponent);
     component = fixture.componentInstance;
-    component.block = {
-      id: '1',
-      type: BlockType.DatePicker,
-      order: 1,
-      label: '',
-      value: '2018-04-29T18:30:04.237Z',
-      description: '',
-      required: true,
-      disabled: false,
-      valid: true,
-    };
+    component.blockId = '1';
     fixture.detectChanges();
   });
 

@@ -1,74 +1,81 @@
+import { createSelector } from '@ngrx/store';
+import { createEntityAdapter, Dictionary, EntityAdapter, EntityState } from '@ngrx/entity';
+
 import { BlockListActionTypes, BlockListActions } from '../actions/block-list.actions';
 
 import { Block } from '../../../shared/shared.module';
 
-export interface State {
+export interface State extends EntityState<Block> {
   fetchedBlocks: Block[] | undefined;
-  fetchLoading: boolean;
+  fetchOngoing: boolean;
   fetchError: string | undefined;
 
-  syncingBlocks: Block[] | undefined;
-  syncLoading: boolean;
+  syncOngoing: boolean;
   syncError: string | undefined;
 }
 
-const initialState: State = {
+export const adapter: EntityAdapter<Block> = createEntityAdapter<Block>({
+  selectId: (block: Block) => block.id,
+});
+
+export const initialState: State = adapter.getInitialState({
   fetchedBlocks: [],
-  fetchLoading: false,
+  fetchOngoing: false,
   fetchError: undefined,
 
-  syncingBlocks: undefined,
-  syncLoading: false,
+  editedBlocks: undefined,
+
+  syncOngoing: false,
   syncError: undefined,
-};
+});
 
 export function reducer(state = initialState, action: BlockListActions): State {
   switch (action.type) {
     case BlockListActionTypes.LOAD_BLOCKS: {
-      return {
+      return adapter.removeAll({
         ...state,
         fetchedBlocks: undefined,
-        fetchLoading: true,
+        fetchOngoing: true,
         fetchError: undefined,
-      };
+      });
     }
     case BlockListActionTypes.LOAD_BLOCKS_SUCCESS: {
-      return {
+      return adapter.addMany(action.payload.blocks, {
         ...state,
         fetchedBlocks: action.payload.blocks.map(block => block),
-        fetchLoading: false,
+        fetchOngoing: false,
         fetchError: undefined,
-      };
+      });
     }
     case BlockListActionTypes.LOAD_BLOCKS_FAILURE: {
       return {
         ...state,
         fetchedBlocks: undefined,
-        fetchLoading: false,
+        fetchOngoing: false,
         fetchError: action.payload.error,
       };
+    }
+    case BlockListActionTypes.UPDATE_BLOCK: {
+      return adapter.updateOne(action.payload.block, state);
     }
     case BlockListActionTypes.SYNC_BLOCKS: {
       return {
         ...state,
-        syncingBlocks: action.payload.blocks.map(block => block),
-        syncLoading: true,
+        syncOngoing: true,
         syncError: undefined,
       };
     }
     case BlockListActionTypes.SYNC_BLOCKS_SUCCESS: {
       return {
         ...state,
-        syncingBlocks: undefined,
-        syncLoading: false,
+        syncOngoing: false,
         syncError: undefined,
       };
     }
     case BlockListActionTypes.SYNC_BLOCKS_FAILURE: {
       return {
         ...state,
-        syncingBlocks: undefined,
-        syncLoading: false,
+        syncOngoing: false,
         syncError: action.payload.error,
       };
     }
@@ -81,10 +88,16 @@ export function reducer(state = initialState, action: BlockListActions): State {
   }
 }
 
-export const getFetchedBlocks = (state: State) => state.fetchedBlocks;
-export const getFetchLoading = (state: State) => state.fetchLoading;
-export const getFetchError = (state: State) => state.fetchError;
+export const {
+  selectIds: getIds,
+  selectEntities: getEntities,
+  selectAll: getAll,
+  selectTotal: getTotal,
+} = adapter.getSelectors();
 
-export const getSyncingBlocks = (state: State) => state.syncingBlocks;
-export const getSyncLoading = (state: State) => state.syncLoading;
+export const getBlocks = (state: State) => state.fetchedBlocks;
+export const isLoadingBlocks = (state: State) => state.fetchOngoing;
+export const getLoadingError = (state: State) => state.fetchError;
+
+export const isSyncOngoing = (state: State) => state.syncOngoing;
 export const getSyncError = (state: State) => state.syncError;

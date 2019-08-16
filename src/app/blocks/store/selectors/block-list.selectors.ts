@@ -1,4 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { Dictionary } from '@ngrx/entity';
+
+import { Block } from '../../../shared/models';
 
 import { BlocksState } from '../reducers';
 
@@ -6,16 +9,28 @@ import * as fromBlockList from '../reducers/block-list.reducer';
 
 // -----------------
 // --- feature selector
-export const getBlocksState = createFeatureSelector<BlocksState>('blocks');
+const getBlocksState = createFeatureSelector<BlocksState>('blocks');
 
 // -----------------
 // ----- block list
-export const getBlockListState = createSelector(getBlocksState, state => state.blockList);
+const getBlockListState = createSelector(getBlocksState, state => state.blockList);
 
-export const getFetchedBlocks = createSelector(getBlockListState, fromBlockList.getFetchedBlocks);
-export const getFetchLoading = createSelector(getBlockListState, fromBlockList.getFetchLoading);
-export const getFetchError = createSelector(getBlockListState, fromBlockList.getFetchError);
+export const getBlocks = createSelector(getBlockListState, fromBlockList.getBlocks);
+export const isLoadingBlocks = createSelector(getBlockListState, fromBlockList.isLoadingBlocks);
+export const getLoadingError = createSelector(getBlockListState, fromBlockList.getLoadingError);
 
-export const getSyncingBlocks = createSelector(getBlockListState, fromBlockList.getSyncingBlocks);
-export const getSyncLoading = createSelector(getBlockListState, fromBlockList.getSyncLoading);
+export const getEditedBlockIds = createSelector(getBlockListState, fromBlockList.getIds);
+export const getEditedBlockEntities = createSelector(getBlockListState, fromBlockList.getEntities);
+export const getEditedBlocks = createSelector(getBlockListState, fromBlockList.getAll);
+export const getTotalEditedBlock = createSelector(getBlockListState, fromBlockList.getTotal);
+
+export const getBlockById = () => {
+  return createSelector(
+    getEditedBlockEntities,
+    (entities: Dictionary<Block>, props: { id: string }) => {
+      return entities[props.id];
+    });
+};
+
+export const isSyncOngoing = createSelector(getBlockListState, fromBlockList.isSyncOngoing);
 export const getSyncError = createSelector(getBlockListState, fromBlockList.getSyncError);

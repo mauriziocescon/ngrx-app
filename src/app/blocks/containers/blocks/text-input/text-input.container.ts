@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { BlockComponent } from '../../../../shared/shared.module';
 
@@ -16,30 +16,22 @@ import { TextInputStoreService } from './text-input-store.service';
   ],
   template: `
     <cp-text-input
-      [block]="block$ | async"
-      (valueDidChange)="valueDidChange($event)">
+      [block]="block$ | async">
     </cp-text-input>`,
 })
 export class TextInputContainerComponent implements BlockComponent, OnInit, OnDestroy {
-  @Input() block: TextInputBlock;
-  @Output() blockDidChange: EventEmitter<TextInputBlock>;
+  @Input() blockId: string;
 
   block$: Observable<TextInputBlock | undefined>;
-  blockToSyncSubscription: Subscription;
 
   constructor(protected textInputStore: TextInputStoreService) {
-    this.blockDidChange = new EventEmitter();
   }
 
   ngOnInit(): void {
-    this.textInputStore.addBlock(this.block);
     this.setupAsyncObs();
-    this.subscribeAllObs();
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeAllObs();
-    this.textInputStore.clearBlock(this.block.id);
   }
 
   valueDidChange(value: string): void {
@@ -48,7 +40,7 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
 
   protected updateBlock(value: string): void {
     const block = {
-      id: this.block.id,
+      id: this.blockId,
       changes: {
         value: value,
       },
@@ -57,22 +49,6 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.textInputStore.getTextInputById(this.block.id);
-  }
-
-  protected subscribeAllObs(): void {
-    this.blockToSyncSubscription = this.textInputStore.getTextInputToSyncById(this.block.id)
-      .subscribe(block => {
-        if (block) {
-          this.blockDidChange.emit(block);
-          this.textInputStore.syncronized(this.block.id);
-        }
-      });
-  }
-
-  protected unsubscribeAllObs(): void {
-    if (this.blockToSyncSubscription) {
-      this.blockToSyncSubscription.unsubscribe();
-    }
+    this.block$ = this.textInputStore.getBlockById(this.blockId);
   }
 }

@@ -6,23 +6,23 @@ import { Observable } from 'rxjs';
 
 import * as blockList from '../../../store/actions/block-list.actions';
 
-import { DropdownBlock } from '../../../models';
+import { CheckBoxBlock } from '../../../models';
 
 import * as fromBlocksReducers from '../../../store/reducers';
 
 import * as fromBlocksSelectors from '../../../store/selectors';
 
 @Injectable()
-export class DropdownStoreService {
+export class CheckBoxStoreService {
 
   constructor(protected store$: Store<fromBlocksReducers.State>) {
   }
 
-  getBlockById(id: string): Observable<DropdownBlock> {
-    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id })) as DropdownBlock;
+  getBlockById(id: string): Observable<CheckBoxBlock> {
+    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id })) as CheckBoxBlock;
   }
 
-  updateBlock(block: Update<DropdownBlock>): void {
+  updateBlock(block: Update<CheckBoxBlock>): void {
     const payload = { block };
     this.store$.dispatch(new blockList.UpdateBlock(payload));
   }

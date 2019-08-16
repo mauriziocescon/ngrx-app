@@ -4,7 +4,7 @@ import { Update } from '@ngrx/entity';
 
 import { Observable } from 'rxjs';
 
-import * as datePicker from '../../../store/actions/blocks/date-picker.actions';
+import * as blockList from '../../../store/actions/block-list.actions';
 
 import { DatePickerBlock } from '../../../models';
 
@@ -18,31 +18,12 @@ export class DatePickerStoreService {
   constructor(protected store$: Store<fromBlocksReducers.State>) {
   }
 
-  getDatePickerById(id: string): Observable<DatePickerBlock> {
-    return this.store$.pipe(select(fromBlocksSelectors.getDatePickerEntityById(), { id: id }));
-  }
-
-  getDatePickerToSyncById(id: string): Observable<DatePickerBlock | undefined> {
-    return this.store$.pipe(select(fromBlocksSelectors.getDatePickerToSyncById(), { id: id }));
-  }
-
-  addBlock(block: DatePickerBlock): void {
-    const payload = { block: block };
-    this.store$.dispatch(new datePicker.AddBlock(payload));
+  getBlockById(id: string): Observable<DatePickerBlock> {
+    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id })) as DatePickerBlock;
   }
 
   updateBlock(block: Update<DatePickerBlock>): void {
-    const payload = { block: block };
-    this.store$.dispatch(new datePicker.UpdateBlock(payload));
-  }
-
-  clearBlock(blockId: string): void {
-    const payload = { id: blockId };
-    this.store$.dispatch(new datePicker.ClearBlock(payload));
-  }
-
-  syncronized(blockId: string): void {
-    const payload = { id: blockId };
-    this.store$.dispatch(new datePicker.Synchronized(payload));
+    const payload = { block };
+    this.store$.dispatch(new blockList.UpdateBlock(payload));
   }
 }

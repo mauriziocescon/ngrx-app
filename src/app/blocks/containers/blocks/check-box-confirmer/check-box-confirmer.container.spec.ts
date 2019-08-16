@@ -70,17 +70,7 @@ describe('CheckBoxConfirmerContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckBoxConfirmerContainerComponent);
     component = fixture.componentInstance;
-    component.block = {
-      id: '1',
-      type: BlockType.CheckBoxConfirmer,
-      order: 1,
-      label: '',
-      value: true,
-      description: '',
-      required: true,
-      disabled: false,
-      valid: true,
-    };
+    component.blockId = '1';
     fixture.detectChanges();
   });
 

@@ -19,16 +19,16 @@ export class BlockListStoreService {
   constructor(protected store$: Store<fromBlocksReducers.State>) {
   }
 
-  getFetchedBlocks(): Observable<Block[] | undefined> {
-    return this.store$.pipe(select(fromBlocksSelectors.getFetchedBlocks));
+  isLoadingBlocks(): Observable<boolean> {
+    return this.store$.pipe(select(fromBlocksSelectors.isLoadingBlocks));
   }
 
-  getFetchLoading(): Observable<boolean> {
-    return this.store$.pipe(select(fromBlocksSelectors.getFetchLoading));
+  getLoadingError(): Observable<string | undefined> {
+    return this.store$.pipe(select(fromBlocksSelectors.getLoadingError));
   }
 
-  getFetchError(): Observable<string | undefined> {
-    return this.store$.pipe(select(fromBlocksSelectors.getFetchError));
+  getEditedBlocks(): Observable<Block[] | undefined> {
+    return this.store$.pipe(select(fromBlocksSelectors.getEditedBlocks));
   }
 
   loadBlocks(instanceId: string): void {

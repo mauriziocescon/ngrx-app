@@ -70,18 +70,7 @@ describe('TextInputContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextInputContainerComponent);
     component = fixture.componentInstance;
-    component.block = {
-      id: '1',
-      type: BlockType.TextInput,
-      order: 1,
-      label: '',
-      value: '45',
-      required: true,
-      minLength: 0,
-      maxLength: 5,
-      disabled: false,
-      valid: true,
-    };
+    component.blockId = '1';
     fixture.detectChanges();
   });
 

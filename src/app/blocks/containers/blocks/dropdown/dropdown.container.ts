@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { BlockComponent } from '../../../../shared/shared.module';
 
@@ -16,30 +16,22 @@ import { DropdownStoreService } from './dropdown-store.service';
   ],
   template: `
     <cp-dropdown
-      [block]="block$ | async"
-      (valueDidChange)="valueDidChange($event)">
+      [block]="block$ | async">
     </cp-dropdown>`,
 })
 export class DropdownContainerComponent implements BlockComponent, OnInit, OnDestroy {
-  @Input() block: DropdownBlock;
-  @Output() blockDidChange: EventEmitter<DropdownBlock>;
+  @Input() blockId: string;
 
   block$: Observable<DropdownBlock | undefined>;
-  blockToSyncSubscription: Subscription;
 
   constructor(protected dropdownStore: DropdownStoreService) {
-    this.blockDidChange = new EventEmitter();
   }
 
   ngOnInit(): void {
-    this.dropdownStore.addBlock(this.block);
     this.setupAsyncObs();
-    this.subscribeAllObs();
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeAllObs();
-    this.dropdownStore.clearBlock(this.block.id);
   }
 
   valueDidChange(value: string): void {
@@ -48,7 +40,7 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
 
   protected updateBlock(value: string): void {
     const block = {
-      id: this.block.id,
+      id: this.blockId,
       changes: {
         value: value,
       },
@@ -57,22 +49,6 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.dropdownStore.getDropdownById(this.block.id);
-  }
-
-  protected subscribeAllObs(): void {
-    this.blockToSyncSubscription = this.dropdownStore.getDropdownToSyncById(this.block.id)
-      .subscribe(block => {
-        if (block) {
-          this.blockDidChange.emit(block);
-          this.dropdownStore.syncronized(this.block.id);
-        }
-      });
-  }
-
-  protected unsubscribeAllObs(): void {
-    if (this.blockToSyncSubscription) {
-      this.blockToSyncSubscription.unsubscribe();
-    }
+    this.block$ = this.dropdownStore.getBlockById(this.blockId);
   }
 }

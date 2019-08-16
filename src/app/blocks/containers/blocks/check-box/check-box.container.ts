@@ -1,12 +1,12 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { BlockComponent } from '../../../../shared/shared.module';
 
 import { CheckBoxBlock } from '../../../models';
 
-import { CheckBoxStoreService } from './check-box-store.service';
+import { CheckBoxStoreService } from './check-box.store.service';
 
 @Component({
   selector: 'ct-check-box',
@@ -16,30 +16,22 @@ import { CheckBoxStoreService } from './check-box-store.service';
   ],
   template: `
     <cp-check-box
-      [block]="block$ | async"
-      (valueDidChange)="valueDidChange($event)">
+      [block]="block$ | async">
     </cp-check-box>`,
 })
 export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDestroy {
-  @Input() block: CheckBoxBlock;
-  @Output() blockDidChange: EventEmitter<CheckBoxBlock>;
+  @Input() blockId: string;
 
   block$: Observable<CheckBoxBlock | undefined>;
-  blockToSyncSubscription: Subscription;
 
   constructor(protected checkBoxStore: CheckBoxStoreService) {
-    this.blockDidChange = new EventEmitter();
   }
 
   ngOnInit(): void {
-    this.checkBoxStore.addBlock(this.block);
     this.setupAsyncObs();
-    this.subscribeAllObs();
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeAllObs();
-    this.checkBoxStore.clearBlock(this.block.id);
   }
 
   valueDidChange(value: boolean): void {
@@ -48,7 +40,7 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
 
   protected updateBlock(value: boolean): void {
     const block = {
-      id: this.block.id,
+      id: this.blockId,
       changes: {
         value: value,
       },
@@ -57,22 +49,6 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.checkBoxStore.getCheckBoxById(this.block.id);
-  }
-
-  protected subscribeAllObs(): void {
-    this.blockToSyncSubscription = this.checkBoxStore.getCheckBoxToSyncById(this.block.id)
-      .subscribe(block => {
-        if (block) {
-          this.blockDidChange.emit(block);
-          this.checkBoxStore.syncronized(this.block.id);
-        }
-      });
-  }
-
-  protected unsubscribeAllObs(): void {
-    if (this.blockToSyncSubscription) {
-      this.blockToSyncSubscription.unsubscribe();
-    }
+    this.block$ = this.checkBoxStore.getBlockById(this.blockId);
   }
 }

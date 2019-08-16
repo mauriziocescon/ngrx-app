@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
 
@@ -8,6 +8,7 @@ import {
   ModalConfirmer,
   ModalConfirmerResultType,
 } from '../../../../core/core.module';
+
 import { BlockComponent } from '../../../../shared/shared.module';
 
 import { CheckBoxConfirmerBlock } from '../../../models';
@@ -22,47 +23,40 @@ import { CheckBoxConfirmerStoreService } from './check-box-confirmer-store.servi
   ],
   template: `
     <cp-check-box-confirmer
-      [block]="block$ | async"
-      (valueDidChange)="valueDidChange($event)">
+      [block]="block$ | async">
     </cp-check-box-confirmer>`,
 })
 export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnInit, OnDestroy {
-  @Input() block: CheckBoxConfirmerBlock;
-  @Output() blockDidChange: EventEmitter<CheckBoxConfirmerBlock>;
+  @Input() blockId: string;
 
   block$: Observable<CheckBoxConfirmerBlock | undefined>;
-  blockToSyncSubscription: Subscription;
 
   protected modalConfirmerResults$: Observable<{ [id: string]: ModalConfirmerResultType | undefined }>;
   protected modalConfirmerResultSubscription: Subscription;
 
   constructor(protected checkBoxConfirmerStore: CheckBoxConfirmerStoreService,
               protected translate: TranslateService) {
-    this.blockDidChange = new EventEmitter();
   }
 
   ngOnInit(): void {
-    this.checkBoxConfirmerStore.addBlock(this.block);
     this.setupAsyncObs();
-    this.subscribeAllObs();
   }
 
   ngOnDestroy(): void {
     this.unsubscribeAllObs();
-    this.checkBoxConfirmerStore.clearBlock(this.block.id);
   }
 
   valueDidChange(value: boolean): void {
     if (value === true) {
       this.askForConfirmation();
     } else {
-      this.dispatchValueDidChangeAction(value);
+      this.updateBlock(value);
     }
   }
 
-  protected dispatchValueDidChangeAction(value: boolean): void {
+  protected updateBlock(value: boolean): void {
     const block = {
-      id: this.block.id,
+      id: this.blockId,
       changes: {
         value: value,
       },
@@ -71,7 +65,7 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.checkBoxConfirmerStore.getCheckBoxConfirmerById(this.block.id);
+    this.block$ = this.checkBoxConfirmerStore.getBlockById(this.blockId);
     this.modalConfirmerResults$ = this.checkBoxConfirmerStore.getModalConfirmerResults();
   }
 
@@ -79,7 +73,7 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
     this.subscribeToModalConfirmerResult();
 
     const modalConfirmer: ModalConfirmer = {
-      id: this.block.id,
+      id: this.blockId,
       title: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE'),
       message: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE'),
       yesButtonLabel: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON'),
@@ -93,16 +87,16 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
 
     this.modalConfirmerResultSubscription = this.modalConfirmerResults$
       .subscribe((modalConfirmerResult: { [id: string]: ModalConfirmerResultType | undefined }) => {
-        const result = modalConfirmerResult[this.block.id];
+        const result = modalConfirmerResult[this.blockId];
 
         if (result) {
-          this.checkBoxConfirmerStore.cleanModalConfirmer({ id: this.block.id });
+          this.checkBoxConfirmerStore.cleanModalConfirmer({ id: this.blockId });
           this.unsubscribeToModalConfirmerResult();
 
           if (result === ModalConfirmerResultType.Positive) {
-            this.dispatchValueDidChangeAction(true);
+            this.updateBlock(true);
           } else {
-            this.dispatchValueDidChangeAction(false);
+            this.updateBlock(false);
           }
         }
       });
@@ -114,21 +108,7 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
     }
   }
 
-  protected subscribeAllObs(): void {
-    this.blockToSyncSubscription = this.checkBoxConfirmerStore.getCheckBoxConfirmerToSyncById(this.block.id)
-      .subscribe(block => {
-        if (block) {
-          this.blockDidChange.emit(block);
-          this.checkBoxConfirmerStore.syncronized(this.block.id);
-        }
-      });
-  }
-
   protected unsubscribeAllObs(): void {
     this.unsubscribeToModalConfirmerResult();
-
-    if (this.blockToSyncSubscription) {
-      this.blockToSyncSubscription.unsubscribe();
-    }
   }
 }

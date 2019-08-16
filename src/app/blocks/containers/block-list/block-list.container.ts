@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnChanges, OnDestroy, Input, SimpleChanges } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
+import { withLatestFrom } from 'rxjs/operators';
 
 import { TranslateService } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
@@ -10,6 +11,7 @@ import { Block, BLOCK_UTILS_TOKEN } from '../../../shared/shared.module';
 
 import { BlockUtilsService } from './block-utils.service';
 import { BlockListStoreService } from './block-list-store.service';
+import { SyncStoreService } from './sync-store.service';
 
 @Component({
   selector: 'ct-block-list',
@@ -17,14 +19,14 @@ import { BlockListStoreService } from './block-list-store.service';
   providers: [
     { provide: BLOCK_UTILS_TOKEN, useClass: BlockUtilsService },
     BlockListStoreService,
+    SyncStoreService,
   ],
   template: `
     <cp-block-list
       [blocks]="blocks$ | async"
       [loading]="loading$ | async"
       [error]="error$ | async"
-      (reloadList)="reloadList()"
-      (blockDidChange)="blockDidChange($event)">
+      (reloadList)="reloadList()">
     </cp-block-list>`,
 })
 export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy {
@@ -33,18 +35,18 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   blocks$: Observable<Block[] | undefined>;
   loading$: Observable<boolean>;
   error$: Observable<string | undefined>;
-
-  protected blocksToSync: Block[];
+  syncRequiredWithTimestamp$: Observable<{ syncRequired: boolean, timestamp: number | undefined }>;
 
   protected mAlertErrorId: string;
 
   protected modalAlertErrorSubscription: Subscription;
+  protected syncRequiredSubscription: Subscription;
 
   constructor(protected translate: TranslateService,
               protected logger: NGXLogger,
-              protected blockListStore: BlockListStoreService) {
+              protected blockListStore: BlockListStoreService,
+              protected syncStore: SyncStoreService) {
     this.mAlertErrorId = '1';
-    this.blocksToSync = [];
   }
 
   ngOnInit(): void {
@@ -53,9 +55,9 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.instanceId) {
+    if (changes.instanceId) {
       this.blockListStore.clearBlocks();
-      this.reloadList(this.instanceId);
+      this.reloadList();
     }
   }
 
@@ -64,47 +66,23 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
     this.blockListStore.clearBlocks();
   }
 
-  reloadList(instance?: string): void {
-    this.blockListStore.loadBlocks(this.getInstance(instance));
-  }
-
-  blockDidChange(block: Block): void {
-    // notification that a particular block has changed
-    // 1- group all blocks
-    // 2- call sync
-    // 3- update the store
-    // 4- update ui
-
-    const foundBlock = this.blocksToSync.find(b => b.id === block.id);
-
-    if (!foundBlock) {
-      this.blocksToSync = [...this.blocksToSync, block];
-    } else {
-      this.blocksToSync = this.blocksToSync.reduce((blocks: Block[], b: Block) => {
-        const foundBlock = b.id === block.id;
-        blocks.push(foundBlock ? block : b);
-        return blocks;
-      }, []);
-    }
-
-    this.blockListStore.syncBlocks(this.instanceId, this.blocksToSync);
+  reloadList(): void {
+    this.blockListStore.loadBlocks(this.instanceId);
   }
 
   protected setupAsyncObs(): void {
-    this.blocks$ = this.blockListStore.getFetchedBlocks();
-    this.loading$ = this.blockListStore.getFetchLoading();
-    this.error$ = this.blockListStore.getFetchError();
-  }
-
-  protected getInstance(instance?: string): string {
-    return instance || this.instanceId;
+    this.blocks$ = this.blockListStore.getEditedBlocks();
+    this.loading$ = this.blockListStore.isLoadingBlocks();
+    this.error$ = this.blockListStore.getLoadingError();
+    this.syncRequiredWithTimestamp$ = this.syncStore.isSyncRequiredWithTimestamp();
   }
 
   protected subscribeAll(): void {
-    this.subscribeToFetchErrors();
+    this.subscribeBlocksLoadingError();
+    this.subscribeSyncRequired();
   }
 
-  protected subscribeToFetchErrors(): void {
+  protected subscribeBlocksLoadingError(): void {
     this.modalAlertErrorSubscription = this.error$
       .subscribe((err) => {
         if (err) {
@@ -115,6 +93,18 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
             buttonLabel: this.translate.instant('CONTAINER.BLOCK_LIST.ALERT_BUTTON'),
           };
           this.blockListStore.showModalAlert(modalAlert);
+        }
+      });
+  }
+
+  protected subscribeSyncRequired(): void {
+    this.syncRequiredSubscription = this.syncRequiredWithTimestamp$
+      .pipe(
+        withLatestFrom(this.blocks$),
+      )
+      .subscribe(([sync, blocks]) => {
+        if (sync.syncRequired === true) {
+          this.blockListStore.syncBlocks(this.instanceId, blocks);
         }
       });
   }
