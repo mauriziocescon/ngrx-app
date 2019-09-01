@@ -34,3 +34,8 @@ export const getBlockById = () => {
 
 export const isSyncOngoing = createSelector(getBlockListState, fromBlockList.isSyncOngoing);
 export const getSyncError = createSelector(getBlockListState, fromBlockList.getSyncError);
+
+export const areAllBlocksValid = createSelector(getBlocks,
+  (blocks: Block[] | undefined) => {
+    return blocks ? blocks.every(block => block.valid === true) : false;
+  });

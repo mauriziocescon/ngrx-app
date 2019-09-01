@@ -6,5 +6,4 @@ export interface CheckBoxConfirmerBlock extends Block {
   description: string;
   required: boolean;
   disabled: boolean;
-  valid: boolean;
 }

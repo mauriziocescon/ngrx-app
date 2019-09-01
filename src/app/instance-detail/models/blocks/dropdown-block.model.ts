@@ -6,5 +6,4 @@ export interface DropdownBlock extends Block {
   choices: string[];
   required: boolean;
   disabled: boolean;
-  valid: boolean;
 }

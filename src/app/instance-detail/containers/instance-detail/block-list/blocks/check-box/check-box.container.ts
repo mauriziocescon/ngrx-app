@@ -6,14 +6,12 @@ import { BlockComponent } from '../../../../../../shared/shared.module';
 
 import { CheckBoxBlock } from '../../../../../models';
 
-import { CheckBoxStoreService } from './check-box.store.service';
-import { tap } from 'rxjs/operators';
+import { BlockListStoreService } from '../../../block-list-store.service';
 
 @Component({
   selector: 'ct-check-box',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    CheckBoxStoreService,
   ],
   template: `
     <cp-check-box
@@ -26,7 +24,7 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
 
   block$: Observable<CheckBoxBlock | undefined>;
 
-  constructor(protected checkBoxStore: CheckBoxStoreService) {
+  constructor(protected blockListStore: BlockListStoreService) {
   }
 
   ngOnInit(): void {
@@ -47,11 +45,10 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
         value: value,
       },
     };
-    this.checkBoxStore.updateBlock(block);
+    this.blockListStore.updateBlock(block);
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.checkBoxStore.getBlockById(this.blockId)
-      .pipe(tap(block => console.log(JSON.stringify(block))));
+    this.block$ = this.blockListStore.getBlockById(this.blockId) as Observable<CheckBoxBlock>;
   }
 }

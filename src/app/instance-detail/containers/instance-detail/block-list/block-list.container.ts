@@ -9,17 +9,17 @@ import { NGXLogger } from 'ngx-logger';
 import { ModalAlert } from '../../../../core/core.module';
 import { Block, BLOCK_UTILS_TOKEN } from '../../../../shared/shared.module';
 
+import { BlockListStoreService } from '../block-list-store.service';
+import { CoreStoreService } from '../core-store.service';
+import { SyncStoreService } from '../sync-store.service';
+
 import { BlockUtilsService } from './block-utils.service';
-import { BlockListStoreService } from './block-list-store.service';
-import { SyncStoreService } from './sync-store.service';
 
 @Component({
   selector: 'ct-block-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     { provide: BLOCK_UTILS_TOKEN, useClass: BlockUtilsService },
-    BlockListStoreService,
-    SyncStoreService,
   ],
   template: `
     <cp-block-list
@@ -45,6 +45,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   constructor(protected translate: TranslateService,
               protected logger: NGXLogger,
               protected blockListStore: BlockListStoreService,
+              protected coreStore: CoreStoreService,
               protected syncStore: SyncStoreService) {
     this.mAlertErrorId = '1';
   }
@@ -92,7 +93,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
             message: err,
             buttonLabel: this.translate.instant('CONTAINER.BLOCK_LIST.ALERT_BUTTON'),
           };
-          this.blockListStore.showModalAlert(modalAlert);
+          this.coreStore.showModalAlert(modalAlert);
         }
       });
   }

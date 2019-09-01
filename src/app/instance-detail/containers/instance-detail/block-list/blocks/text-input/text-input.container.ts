@@ -6,13 +6,12 @@ import { BlockComponent } from '../../../../../../shared/shared.module';
 
 import { TextInputBlock } from '../../../../../models';
 
-import { TextInputStoreService } from './text-input-store.service';
+import { BlockListStoreService } from '../../../block-list-store.service';
 
 @Component({
   selector: 'ct-text-input',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    TextInputStoreService,
   ],
   template: `
     <cp-text-input
@@ -25,7 +24,7 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
 
   block$: Observable<TextInputBlock | undefined>;
 
-  constructor(protected textInputStore: TextInputStoreService) {
+  constructor(protected blockListStore: BlockListStoreService) {
   }
 
   ngOnInit(): void {
@@ -46,10 +45,10 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
         value: value,
       },
     };
-    this.textInputStore.updateBlock(block);
+    this.blockListStore.updateBlock(block);
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.textInputStore.getBlockById(this.blockId);
+    this.block$ = this.blockListStore.getBlockById(this.blockId) as Observable<TextInputBlock>;
   }
 }

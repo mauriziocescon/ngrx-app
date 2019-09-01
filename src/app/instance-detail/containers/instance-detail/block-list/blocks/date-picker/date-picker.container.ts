@@ -6,13 +6,12 @@ import { BlockComponent } from '../../../../../../shared/shared.module';
 
 import { DatePickerBlock } from '../../../../../models';
 
-import { DatePickerStoreService } from './date-picker-store.service';
+import { BlockListStoreService } from '../../../block-list-store.service';
 
 @Component({
   selector: 'ct-date-picker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    DatePickerStoreService,
   ],
   template: `
     <cp-date-picker
@@ -25,7 +24,7 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
 
   block$: Observable<DatePickerBlock | undefined>;
 
-  constructor(protected datePickerStore: DatePickerStoreService) {
+  constructor(protected blockListStore: BlockListStoreService) {
   }
 
   ngOnInit(): void {
@@ -46,10 +45,10 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
         value: value,
       },
     };
-    this.datePickerStore.updateBlock(block);
+    this.blockListStore.updateBlock(block);
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.datePickerStore.getBlockById(this.blockId);
+    this.block$ = this.blockListStore.getBlockById(this.blockId) as Observable<DatePickerBlock>;
   }
 }

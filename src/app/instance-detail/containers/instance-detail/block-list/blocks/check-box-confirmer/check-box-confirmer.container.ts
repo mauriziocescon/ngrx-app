@@ -13,13 +13,13 @@ import { BlockComponent } from '../../../../../../shared/shared.module';
 
 import { CheckBoxConfirmerBlock } from '../../../../../models';
 
-import { CheckBoxConfirmerStoreService } from './check-box-confirmer-store.service';
+import { BlockListStoreService } from '../../../block-list-store.service';
+import { CoreStoreService } from '../../../core-store.service';
 
 @Component({
   selector: 'ct-check-box-confirmer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    CheckBoxConfirmerStoreService,
   ],
   template: `
     <cp-check-box-confirmer
@@ -35,8 +35,9 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
   protected modalConfirmerResults$: Observable<{ [id: string]: ModalConfirmerResultType | undefined }>;
   protected modalConfirmerResultSubscription: Subscription;
 
-  constructor(protected checkBoxConfirmerStore: CheckBoxConfirmerStoreService,
-              protected translate: TranslateService) {
+  constructor(protected translate: TranslateService,
+              protected blockListStore: BlockListStoreService,
+              protected coreStore: CoreStoreService) {
   }
 
   ngOnInit(): void {
@@ -62,12 +63,12 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
         value: value,
       },
     };
-    this.checkBoxConfirmerStore.updateBlock(block);
+    this.blockListStore.updateBlock(block);
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.checkBoxConfirmerStore.getBlockById(this.blockId);
-    this.modalConfirmerResults$ = this.checkBoxConfirmerStore.getModalConfirmerResults();
+    this.block$ = this.blockListStore.getBlockById(this.blockId) as Observable<CheckBoxConfirmerBlock>;
+    this.modalConfirmerResults$ = this.coreStore.getModalConfirmerResults();
   }
 
   protected askForConfirmation(): void {
@@ -80,7 +81,7 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
       yesButtonLabel: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON'),
       noButtonLabel: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON'),
     };
-    this.checkBoxConfirmerStore.showModalConfirmer(modalConfirmer);
+    this.coreStore.showModalConfirmer(modalConfirmer);
   }
 
   protected subscribeToModalConfirmerResult(): void {
@@ -91,7 +92,7 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
         const result = modalConfirmerResult[this.blockId];
 
         if (result) {
-          this.checkBoxConfirmerStore.cleanModalConfirmer({ id: this.blockId });
+          this.coreStore.cleanModalConfirmer({ id: this.blockId });
           this.unsubscribeToModalConfirmerResult();
 
           if (result === ModalConfirmerResultType.Positive) {

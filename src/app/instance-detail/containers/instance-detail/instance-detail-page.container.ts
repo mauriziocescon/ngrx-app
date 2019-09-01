@@ -4,13 +4,19 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { InstanceDetailPageStoreService } from './instance-detail-page-store.service';
+import { BlockListStoreService } from './block-list-store.service';
+import { CoreStoreService } from './core-store.service';
+import { EffectsStoreService } from './effects-store.service';
+import { SyncStoreService } from './sync-store.service';
 
 @Component({
   selector: 'ct-instance-detail',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    InstanceDetailPageStoreService,
+    BlockListStoreService,
+    CoreStoreService,
+    EffectsStoreService,
+    SyncStoreService,
   ],
   template: `
     <div class="container-fluid">
@@ -30,11 +36,11 @@ export class InstanceDetailPageComponent implements OnInit, OnDestroy {
   instanceId: string;
 
   constructor(protected route: ActivatedRoute,
-              protected instanceDetailPageStore: InstanceDetailPageStoreService) {
+              protected effectsStore: EffectsStoreService) {
   }
 
   ngOnInit(): void {
-    this.instanceDetailPageStore.startEffects();
+    this.effectsStore.startEffects();
     this.instanceId = this.route.snapshot.paramMap.get('id');
   }
 
@@ -47,6 +53,6 @@ export class InstanceDetailPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.instanceDetailPageStore.stopEffects();
+    this.effectsStore.stopEffects();
   }
 }

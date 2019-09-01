@@ -7,18 +7,22 @@
         </h5>
         <div class="card-body">
           <div class="button-row">
-            <button class="btn btn-primary action-button" (click)="moveToNextStep()">{{ "COMPONENT.NEXT_STEP.NEXT_STEP" | translate }}</button>
+            <button class="btn btn-primary action-button" (click)="moveToNextStep()" [disabled]="!nextStepBtnEnabled">{{ "COMPONENT.NEXT_STEP.NEXT_STEP" | translate }}</button>
           </div>
           <div class="button-row">
             <button class="btn btn-default action-button" (click)="resetForm()">{{ "COMPONENT.NEXT_STEP.CANCEL" | translate }}</button>
           </div>
-          <div class="button-row">
+          <div class="button-row" [hidden]="!isSynchronized">
             <span class="fa fa-check"></span>
             <span>{{ "COMPONENT.NEXT_STEP.SYNC" | translate }}</span>
           </div>
-          <div class="button-row">
+          <div class="button-row" [hidden]="!isSynchronizing">
             <span class="fa fa-refresh fa-spin"></span>
             <span>{{ "COMPONENT.NEXT_STEP.SYNCING" | translate }}</span>
+          </div>
+          <div class="button-row" [hidden]="!canRetrySync" (click)="retrySyncronization()">
+            <span class="fa fa-repeat"></span>
+            <span>{{ "COMPONENT.NEXT_STEP.RETRY" | translate }}</span>
           </div>
         </div>
       </div>

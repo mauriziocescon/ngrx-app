@@ -8,18 +8,18 @@ import * as blockList from '../../../../../store/actions/block-list.actions';
 
 import { TextInputBlock } from '../../../../../models';
 
-import * as fromBlocksReducers from '../../../../../store/reducers';
+import * as fromInstanceDetailReducers from '../../../../../store/reducers';
 
-import * as fromBlocksSelectors from '../../../../../store/selectors';
+import * as fromInstanceDetailSelectors from '../../../../../store/selectors';
 
 @Injectable()
 export class TextInputStoreService {
 
-  constructor(protected store$: Store<fromBlocksReducers.State>) {
+  constructor(protected store$: Store<fromInstanceDetailReducers.State>) {
   }
 
   getBlockById(id: string): Observable<TextInputBlock> {
-    return this.store$.pipe(select(fromBlocksSelectors.getBlockById(), { id: id })) as Observable<TextInputBlock>;
+    return this.store$.pipe(select(fromInstanceDetailSelectors.getBlockById(), { id: id })) as Observable<TextInputBlock>;
   }
 
   updateBlock(block: Update<TextInputBlock>): void {

@@ -6,13 +6,12 @@ import { BlockComponent } from '../../../../../../shared/shared.module';
 
 import { DropdownBlock } from '../../../../../models';
 
-import { DropdownStoreService } from './dropdown-store.service';
+import { BlockListStoreService } from '../../../block-list-store.service';
 
 @Component({
   selector: 'ct-dropdown',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    DropdownStoreService,
   ],
   template: `
     <cp-dropdown
@@ -25,7 +24,7 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
 
   block$: Observable<DropdownBlock | undefined>;
 
-  constructor(protected dropdownStore: DropdownStoreService) {
+  constructor(protected blockListStore: BlockListStoreService) {
   }
 
   ngOnInit(): void {
@@ -46,10 +45,10 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
         value: value,
       },
     };
-    this.dropdownStore.updateBlock(block);
+    this.blockListStore.updateBlock(block);
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.dropdownStore.getBlockById(this.blockId);
+    this.block$ = this.blockListStore.getBlockById(this.blockId) as Observable<DropdownBlock>;
   }
 }
