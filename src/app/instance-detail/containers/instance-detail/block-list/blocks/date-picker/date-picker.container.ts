@@ -16,7 +16,8 @@ import { DatePickerStoreService } from './date-picker-store.service';
   ],
   template: `
     <cp-date-picker
-      [block]="block$ | async">
+      [block]="block$ | async"
+      (valueDidChange)="valueDidChange($event)">
     </cp-date-picker>`,
 })
 export class DatePickerContainerComponent implements BlockComponent, OnInit, OnDestroy {

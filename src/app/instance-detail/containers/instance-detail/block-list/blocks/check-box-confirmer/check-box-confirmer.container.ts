@@ -23,7 +23,8 @@ import { CheckBoxConfirmerStoreService } from './check-box-confirmer-store.servi
   ],
   template: `
     <cp-check-box-confirmer
-      [block]="block$ | async">
+      [block]="block$ | async"
+      (valueDidChange)="valueDidChange($event)">
     </cp-check-box-confirmer>`,
 })
 export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnInit, OnDestroy {

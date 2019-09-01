@@ -16,7 +16,8 @@ import { TextInputStoreService } from './text-input-store.service';
   ],
   template: `
     <cp-text-input
-      [block]="block$ | async">
+      [block]="block$ | async"
+      (valueDidChange)="valueDidChange($event)">
     </cp-text-input>`,
 })
 export class TextInputContainerComponent implements BlockComponent, OnInit, OnDestroy {

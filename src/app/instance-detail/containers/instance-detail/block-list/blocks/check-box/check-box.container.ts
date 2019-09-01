@@ -16,7 +16,8 @@ import { CheckBoxStoreService } from './check-box.store.service';
   ],
   template: `
     <cp-check-box
-      [block]="block$ | async">
+      [block]="block$ | async"
+      (valueDidChange)="valueDidChange($event)">
     </cp-check-box>`,
 })
 export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDestroy {

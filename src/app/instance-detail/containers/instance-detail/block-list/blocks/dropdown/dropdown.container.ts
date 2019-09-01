@@ -16,7 +16,8 @@ import { DropdownStoreService } from './dropdown-store.service';
   ],
   template: `
     <cp-dropdown
-      [block]="block$ | async">
+      [block]="block$ | async"
+      (valueDidChange)="valueDidChange($event)">
     </cp-dropdown>`,
 })
 export class DropdownContainerComponent implements BlockComponent, OnInit, OnDestroy {
