@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Update } from '@ngrx/entity';
 
 import { Observable } from 'rxjs';
 
@@ -39,7 +40,7 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
   }
 
   protected updateBlock(value: boolean): void {
-    const block = {
+    const block: Update<CheckBoxBlock> = {
       id: this.blockId,
       changes: {
         value: value,

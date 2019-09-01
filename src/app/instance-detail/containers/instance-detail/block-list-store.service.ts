@@ -46,6 +46,10 @@ export class BlockListStoreService {
     return this.store$.pipe(select(fromInstanceDetailSelectors.areAllBlocksValid));
   }
 
+  isNextStepEnable(): Observable<boolean> {
+    return this.store$.pipe(select(fromInstanceDetailSelectors.isNextStepEnable));
+  }
+
   loadBlocks(instanceId: string): void {
     this.store$.dispatch(new blockList.LoadBlocks({ instanceId }));
   }

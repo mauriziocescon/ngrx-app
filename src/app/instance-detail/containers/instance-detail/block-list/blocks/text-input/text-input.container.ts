@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { Update } from '@ngrx/entity';
 
 import { BlockComponent } from '../../../../../../shared/shared.module';
 
@@ -39,7 +40,7 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
   }
 
   protected updateBlock(value: string): void {
-    const block = {
+    const block: Update<TextInputBlock> = {
       id: this.blockId,
       changes: {
         value: value,

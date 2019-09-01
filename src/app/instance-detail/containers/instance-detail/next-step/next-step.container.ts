@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, combineLatest } from 'rxjs';
 import { withLatestFrom, map } from 'rxjs/operators';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -83,16 +83,9 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
   }
 
   protected setupAsyncObs(): void {
-    this.nextStepBtnEnabled$ = this.blockListStore.areAllBlocksValid()
-      .pipe(
-        withLatestFrom(this.blockListStore.isSyncingBlocks),
-        map(([blocksValidity, isSyncingBlocks]) => {
-          return blocksValidity === true && isSyncingBlocks === false;
-        }),
-      );
+    this.nextStepBtnEnabled$ = this.blockListStore.isNextStepEnable();
     this.syncing$ = this.syncStore.isSyncRequired();
     this.syncError$ = this.blockListStore.getSyncError();
-
   }
 
   protected subscribeAll(): void {

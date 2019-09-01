@@ -39,3 +39,10 @@ export const areAllBlocksValid = createSelector(getBlocks,
   (blocks: Block[] | undefined) => {
     return blocks ? blocks.every(block => block.valid === true) : false;
   });
+
+export const isNextStepEnable = createSelector(
+  areAllBlocksValid,
+  isSyncOngoing,
+  (blocksValidity: boolean, isSyncOngoing: boolean) => {
+    return blocksValidity === true && isSyncOngoing === false;
+  });

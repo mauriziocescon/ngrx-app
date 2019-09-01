@@ -16,6 +16,7 @@ export class NextStepComponent {
   constructor() {
     this.nextStep = new EventEmitter();
     this.reset = new EventEmitter();
+    this.retrySync = new EventEmitter();
   }
 
   get isSynchronized(): boolean {

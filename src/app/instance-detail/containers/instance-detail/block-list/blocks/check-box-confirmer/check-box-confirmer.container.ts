@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Update } from '@ngrx/entity';
 
 import { Observable, Subscription } from 'rxjs';
 
@@ -11,7 +12,7 @@ import {
 
 import { BlockComponent } from '../../../../../../shared/shared.module';
 
-import { CheckBoxConfirmerBlock } from '../../../../../models';
+import { CheckBoxBlock, CheckBoxConfirmerBlock } from '../../../../../models';
 
 import { BlockListStoreService } from '../../../block-list-store.service';
 import { CoreStoreService } from '../../../core-store.service';
@@ -57,7 +58,7 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
   }
 
   protected updateBlock(value: boolean): void {
-    const block = {
+    const block: Update<CheckBoxConfirmerBlock> = {
       id: this.blockId,
       changes: {
         value: value,

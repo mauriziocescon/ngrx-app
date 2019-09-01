@@ -1,10 +1,11 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Update } from '@ngrx/entity';
 
 import { Observable } from 'rxjs';
 
 import { BlockComponent } from '../../../../../../shared/shared.module';
 
-import { DatePickerBlock } from '../../../../../models';
+import { CheckBoxConfirmerBlock, DatePickerBlock } from '../../../../../models';
 
 import { BlockListStoreService } from '../../../block-list-store.service';
 
@@ -39,7 +40,7 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
   }
 
   protected updateBlock(value: string): void {
-    const block = {
+    const block: Update<DatePickerBlock> = {
       id: this.blockId,
       changes: {
         value: value,
