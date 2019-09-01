@@ -40,7 +40,7 @@ export function reducer(state = initialState, action: BlockListActions): State {
       });
     }
     case BlockListActionTypes.LOAD_BLOCKS_SUCCESS: {
-      return adapter.addMany(action.payload.blocks, {
+      return adapter.upsertMany(action.payload.blocks, {
         ...state,
         fetchedBlocks: action.payload.blocks.map(block => block),
         fetchOngoing: false,

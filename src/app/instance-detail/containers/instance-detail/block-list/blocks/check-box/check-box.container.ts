@@ -7,6 +7,7 @@ import { BlockComponent } from '../../../../../../shared/shared.module';
 import { CheckBoxBlock } from '../../../../../models';
 
 import { CheckBoxStoreService } from './check-box.store.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'ct-check-box',
@@ -50,6 +51,7 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.checkBoxStore.getBlockById(this.blockId);
+    this.block$ = this.checkBoxStore.getBlockById(this.blockId)
+      .pipe(tap(block => console.log(JSON.stringify(block))));
   }
 }
