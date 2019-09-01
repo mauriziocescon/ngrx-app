@@ -17,45 +17,17 @@ function main() {
     };
 
     // do items
-    const numberOfBlocks = 7;
+    const numberOfInstances = faker.random.number({min: 1, max: 20});
+    const numberOfBlocks = faker.random.number({min: 1, max: 20});
 
-    let instance;
+    for (let i = 0; i < numberOfInstances; i++) {
+      let instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
 
-    instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
-    for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(dataCreator.getRandomBlock(i));
+      for (let b = 0; b < numberOfBlocks; b++) {
+        instance.blocks.push(dataCreator.getRandomBlock(b));
+      }
+      data.instances.push(instance);
     }
-    data.instances.push(instance);
-
-    instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
-    for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(dataCreator.getRandomBlock(i));
-    }
-    data.instances.push(instance);
-
-    instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
-    for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(dataCreator.getRandomBlock(i));
-    }
-    data.instances.push(instance);
-
-    instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
-    for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(dataCreator.getRandomBlock(i));
-    }
-    data.instances.push(instance);
-
-    instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
-    for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(dataCreator.getRandomBlock(i));
-    }
-    data.instances.push(instance);
-
-    instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
-    for (let i = 0; i < numberOfBlocks; i++) {
-      instance.blocks.push(dataCreator.getRandomBlock(i));
-    }
-    data.instances.push(instance);
 
     utils.saveDb(dbUrl, data, (err) => {
       if (err) {
