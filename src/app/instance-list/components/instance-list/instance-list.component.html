@@ -1,5 +1,5 @@
 <div class="container-fluid instance-list-component">
-  <div class="row">
+  <div class="row" [hidden]="!showData">
     <div class="col-12">
       <cp-text-filter (valueDidChange)="textSearchValueDidChange($event)"></cp-text-filter>
     </div>

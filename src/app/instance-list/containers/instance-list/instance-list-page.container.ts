@@ -5,20 +5,20 @@ import { Observable, Subscription } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { ModalAlert, modalAlertsActions } from '../../../core/core.module';
-
-import * as instanceList from '../../store/actions/instance-list.actions';
-
-import * as fromInstanceList from '../../store/reducers';
+import { ModalAlert } from '../../../core/core.module';
 
 import { Instance } from '../../models';
 
-import { InstanceListStoreService } from './instance-list-page-store.service';
+import { CoreStoreService } from './core-store.service';
+import { EffectsStoreService } from './effects-store.service';
+import { InstanceListStoreService } from './instance-list-store.service';
 
 @Component({
   selector: 'ct-instance-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
+    CoreStoreService,
+    EffectsStoreService,
     InstanceListStoreService,
   ],
   template: `
@@ -40,28 +40,35 @@ export class InstanceListPageComponent implements OnInit, OnDestroy {
   protected alertId: string;
   protected modalAlertSubscription: Subscription;
 
-  constructor(protected instanceListStore: InstanceListStoreService,
-              protected router: Router,
-              protected translate: TranslateService) {
-    this.instances$ = this.instanceListStore.getFetchedInstances();
-    this.loading$ = this.instanceListStore.getFetchLoading();
-    this.error$ = this.instanceListStore.getFetchError();
+  constructor(protected router: Router,
+              protected translate: TranslateService,
+              protected coreStore: CoreStoreService,
+              protected effectsStore: EffectsStoreService,
+              protected instanceListStore: InstanceListStoreService) {
+    this.instances$ = this.instanceListStore.getInstances();
+    this.loading$ = this.instanceListStore.isLoadingInstances();
+    this.error$ = this.instanceListStore.getLoadingError();
 
     this.alertId = '1';
   }
 
   ngOnInit(): void {
-    this.instanceListStore.startEffects();
+    this.effectsStore.startEffects();
     this.reloadList({ textSearch: '' });
     this.subscribeToFetchErrors();
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribeToModalConfirmerResult();
+    this.effectsStore.stopEffects();
+  }
+
   paramsDidChange(params: { textSearch: string }): void {
-    this.instanceListStore.fetchInstances(params);
+    this.instanceListStore.loadInstances(params);
   }
 
   reloadList(params: { textSearch: string }): void {
-    this.instanceListStore.fetchInstances(params);
+    this.instanceListStore.loadInstances(params);
   }
 
   goTo(instance: Instance): void {
@@ -78,14 +85,9 @@ export class InstanceListPageComponent implements OnInit, OnDestroy {
             message: err,
             buttonLabel: this.translate.instant('CONTAINER.INSTANCE_LIST.ALERT_BUTTON'),
           };
-          this.instanceListStore.showModalAlert(modalAlert);
+          this.coreStore.showModalAlert(modalAlert);
         }
       });
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribeToModalConfirmerResult();
-    this.instanceListStore.stopEffects();
   }
 
   protected unsubscribeToModalConfirmerResult(): void {

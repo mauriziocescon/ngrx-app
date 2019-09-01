@@ -25,11 +25,11 @@ export class BlockListComponent {
   }
 
   get hasNoData(): boolean {
-    return this.blocks !== undefined && this.blocks.length === 0 && this.isLoadingData === false;
+    return this.blocks !== undefined && this.blocks.length === 0 && this.isLoadingData === false && this.shouldRetry === false;
   }
 
   get shouldRetry(): boolean {
-    return this.blocks === undefined && this.isLoadingData === false;
+    return this.error !== undefined && this.isLoadingData === false;
   }
 
   get showData(): boolean {

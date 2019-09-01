@@ -36,15 +36,6 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
     this.subscribeToCheckBoxControlValueChanges();
   }
 
-  protected setupFormControllers(): void {
-    const validators = [
-      ...this.insertIf(this.block.required, Validators.required),
-    ];
-    this.checkBoxControl.setValue(this.block.value);
-    this.setDisableEnable(this.block.disabled, this.checkBoxControl);
-    this.checkBoxControl.setValidators(validators);
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.block.isFirstChange()) {
       this.unsubscribeToCheckBoxValueChanges();
@@ -55,6 +46,15 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribeToCheckBoxValueChanges();
+  }
+
+  protected setupFormControllers(): void {
+    const validators = [
+      ...this.insertIf(this.block.required, Validators.required),
+    ];
+    this.checkBoxControl.setValue(this.block.value);
+    this.setDisableEnable(this.block.disabled, this.checkBoxControl);
+    this.checkBoxControl.setValidators(validators);
   }
 
   protected subscribeToCheckBoxControlValueChanges(): void {

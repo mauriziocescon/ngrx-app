@@ -36,7 +36,8 @@ export class InstanceDetailPageComponent implements OnInit, OnDestroy {
   instanceId: string;
 
   constructor(protected route: ActivatedRoute,
-              protected effectsStore: EffectsStoreService) {
+              protected effectsStore: EffectsStoreService,
+              protected syncStore: SyncStoreService) {
   }
 
   ngOnInit(): void {
@@ -44,15 +45,14 @@ export class InstanceDetailPageComponent implements OnInit, OnDestroy {
     this.instanceId = this.route.snapshot.paramMap.get('id');
   }
 
-  canDeactivate(): boolean {
-    // return this.instanceDetailPageStore.isSyncRequired()
-    //   .pipe(
-    //     map(requireSync => !requireSync),
-    //   );
-    return true;
-  }
-
   ngOnDestroy(): void {
     this.effectsStore.stopEffects();
+  }
+
+  canDeactivate(): Observable<boolean> {
+    return this.syncStore.isSyncRequired()
+      .pipe(
+        map(requireSync => !requireSync),
+      );
   }
 }

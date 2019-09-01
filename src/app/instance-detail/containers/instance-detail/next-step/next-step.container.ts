@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Location } from '@angular/common';
 
-import { Observable, Subscription, combineLatest } from 'rxjs';
-import { withLatestFrom, map } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
@@ -36,7 +36,8 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
 
   protected modalAlertSyncErrorSubscription: Subscription;
 
-  constructor(protected translate: TranslateService,
+  constructor(protected location: Location,
+              protected translate: TranslateService,
               protected logger: NGXLogger,
               protected blockListStore: BlockListStoreService,
               protected coreStore: CoreStoreService,
@@ -54,13 +55,13 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
   }
 
   nextStep(): void {
-    // dispatch action to move forward
     alert(`NextStepContainerComponent: save`);
+    this.location.back();
   }
 
   reset(): void {
-    // dispatch action to reset the store
     alert(`NextStepContainerComponent: reset`);
+    this.location.back();
   }
 
   retrySync(): void {

@@ -19,7 +19,7 @@ export const adapter: EntityAdapter<Block> = createEntityAdapter<Block>({
 });
 
 export const initialState: State = adapter.getInitialState({
-  fetchedBlocks: [],
+  fetchedBlocks: undefined,
   fetchOngoing: false,
   fetchError: undefined,
 

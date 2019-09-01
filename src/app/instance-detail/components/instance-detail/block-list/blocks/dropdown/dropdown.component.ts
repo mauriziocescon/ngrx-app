@@ -36,15 +36,6 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
     this.subscribeToDropdownControlValueChanges();
   }
 
-  protected setupFormControllers(): void {
-    const validators = [
-      ...this.insertIf(this.block.required, Validators.required),
-    ];
-    this.dropdownControl.setValue(this.block.value);
-    this.setDisableEnable(this.block.disabled, this.dropdownControl);
-    this.dropdownControl.setValidators(validators);
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.block.isFirstChange()) {
       this.unsubscribeToDropdownControlValueChanges();
@@ -55,6 +46,15 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribeToDropdownControlValueChanges();
+  }
+
+  protected setupFormControllers(): void {
+    const validators = [
+      ...this.insertIf(this.block.required, Validators.required),
+    ];
+    this.dropdownControl.setValue(this.block.value);
+    this.setDisableEnable(this.block.disabled, this.dropdownControl);
+    this.dropdownControl.setValidators(validators);
   }
 
   protected subscribeToDropdownControlValueChanges(): void {

@@ -79,17 +79,6 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
     this.subscribeToTextInputControlValueChanges();
   }
 
-  protected setupFormControllers(): void {
-    const validators = [
-      ...this.insertIf(this.block.required, Validators.required),
-      ...this.insertIf(this.block.minLength !== undefined && this.block.minLength >= 0, Validators.minLength(this.block.minLength as number)),
-      ...this.insertIf(this.block.maxLength !== undefined && this.block.maxLength >= 0, Validators.maxLength(this.block.maxLength as number)),
-    ];
-    this.textInputControl.setValue(this.block.value);
-    this.setDisableEnable(this.block.disabled, this.textInputControl);
-    this.textInputControl.setValidators(validators);
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.block.isFirstChange()) {
       this.unsubscribeToTextInputControlValueChanges();
@@ -100,6 +89,17 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubscribeToTextInputControlValueChanges();
+  }
+
+  protected setupFormControllers(): void {
+    const validators = [
+      ...this.insertIf(this.block.required, Validators.required),
+      ...this.insertIf(this.block.minLength !== undefined && this.block.minLength >= 0, Validators.minLength(this.block.minLength as number)),
+      ...this.insertIf(this.block.maxLength !== undefined && this.block.maxLength >= 0, Validators.maxLength(this.block.maxLength as number)),
+    ];
+    this.textInputControl.setValue(this.block.value);
+    this.setDisableEnable(this.block.disabled, this.textInputControl);
+    this.textInputControl.setValidators(validators);
   }
 
   protected subscribeToTextInputControlValueChanges(): void {

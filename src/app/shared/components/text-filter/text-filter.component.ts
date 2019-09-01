@@ -36,6 +36,14 @@ export class TextFilterComponent implements OnInit, OnDestroy {
     this.subscribeToSearchControlValueChanges();
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribeToSearchControlValueChanges();
+  }
+
+  resetTextFilter(): void {
+    this.searchControl.setValue('');
+  }
+
   protected subscribeToSearchControlValueChanges(): void {
     this.unsubscribeToSearchControlValueChanges();
 
@@ -52,17 +60,9 @@ export class TextFilterComponent implements OnInit, OnDestroy {
         });
   }
 
-  resetTextFilter(): void {
-    this.searchControl.setValue('');
-  }
-
   protected unsubscribeToSearchControlValueChanges(): void {
     if (this.searchControlSubscription) {
       this.searchControlSubscription.unsubscribe();
     }
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribeToSearchControlValueChanges();
   }
 }
