@@ -61,16 +61,9 @@ describe('AppContainerComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  // it(`should have as title "Demo"`, async(() => {
+  // it(`should have as title "NgrxApp"`, async(() => {
   //   const fixture = TestBed.createComponent(AppContainerComponent);
   //   const app = fixture.debugElement.componentInstance;
-  //   expect(app.title).toEqual("Demo");
-  // }));
-
-  // it("should render title in a h1 tag", async(() => {
-  //   const fixture = TestBed.createComponent(AppContainerComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.debugElement.nativeElement;
-  //   expect(compiled.querySelector("h1").textContent).toContain("Welcome to app!");
+  //   expect(app.title).toEqual("NgrxApp");
   // }));
 });
