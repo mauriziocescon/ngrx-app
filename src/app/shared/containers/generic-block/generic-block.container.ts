@@ -26,7 +26,7 @@ import { BLOCK_UTILS_TOKEN, IBlockUtils } from '../../tokens';
 })
 export class GenericBlockContainerComponent implements OnDestroy, AfterViewInit {
   @Input() block: Block;
-  @ViewChild(AddComponentDirective) adComponent: AddComponentDirective;
+  @ViewChild(AddComponentDirective, { static: false }) adComponent: AddComponentDirective;
 
   protected blockDidChangeSubscription: Subscription;
 
