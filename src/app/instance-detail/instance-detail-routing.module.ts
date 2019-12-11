@@ -7,7 +7,7 @@ import { InstanceDetailGuard } from './services';
 
 export const instanceDetailRoutes: Routes = [
   {
-    path: 'instance-detail/:id',
+    path: '',
     component: InstanceDetailPageComponent,
     canDeactivate: [InstanceDetailGuard],
   },

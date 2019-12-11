@@ -5,7 +5,7 @@ import { InstanceListPageComponent } from './containers';
 
 export const instanceListRoutes: Routes = [
   {
-    path: 'instance-list',
+    path: '',
     component: InstanceListPageComponent,
   },
 ];

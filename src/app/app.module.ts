@@ -18,8 +18,6 @@ import { EFFECTS } from './core/store/effects';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule, CustomRouterStateSerializer } from './shared/shared.module';
-import { InstanceListModule } from './instance-list/instance-list.module';
-import { InstanceDetailModule } from './instance-detail/instance-detail.module';
 
 import { AppContainerComponent } from './app.container';
 
