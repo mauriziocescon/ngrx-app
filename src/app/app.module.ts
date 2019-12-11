@@ -54,8 +54,6 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     CoreModule.forRoot(),
     SharedModule,
-    InstanceListModule,
-    InstanceDetailModule,
     AppRoutingModule,
   ],
   declarations: [
