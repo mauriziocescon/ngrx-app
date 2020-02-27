@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { NGXLogger } from 'ngx-logger';
+// import { NGXLogger } from 'ngx-logger';
 
 import { Enum } from '../../shared/shared.module';
 
