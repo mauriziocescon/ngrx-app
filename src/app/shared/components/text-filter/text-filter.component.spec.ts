@@ -6,6 +6,9 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
+import { StoreModule, Store, combineReducers } from '@ngrx/store';
+import * as fromRoot from '../../../reducers';
+
 import { CoreModule } from '../../../core/core.module';
 import { SharedModule, TextFilterComponent } from '../../../shared/shared.module';
 
@@ -33,6 +36,7 @@ describe('TextFilterComponent', () => {
           level: NgxLoggerLevel.OFF,
           serverLogLevel: NgxLoggerLevel.OFF,
         }),
+        StoreModule.forRoot(fromRoot.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
       ],
