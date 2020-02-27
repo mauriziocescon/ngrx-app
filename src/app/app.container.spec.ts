@@ -7,7 +7,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { LoggerModule, NGXLogger, NgxLoggerLevel } from 'ngx-logger';
+import { LoggerTestingModule } from 'ngx-logger/testing';
 
 import { StoreModule, Store, combineReducers } from '@ngrx/store';
 import * as fromRoot from './reducers';
@@ -35,11 +35,7 @@ describe('AppContainerComponent', () => {
             deps: [HttpClient],
           },
         }),
-        LoggerModule.forRoot({
-          serverLoggingUrl: '',
-          level: NgxLoggerLevel.OFF,
-          serverLogLevel: NgxLoggerLevel.OFF,
-        }),
+        LoggerTestingModule,
         StoreModule.forRoot(fromRoot.TOKEN),
         CoreModule.forRoot(),
         SharedModule,
@@ -49,7 +45,6 @@ describe('AppContainerComponent', () => {
       ],
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' },
-        NGXLogger,
         fromRoot.reducerProvider,
       ],
     }).compileComponents();
