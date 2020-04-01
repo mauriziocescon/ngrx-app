@@ -97,9 +97,9 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
       ...this.insertIf(this.block.minLength !== undefined && this.block.minLength >= 0, Validators.minLength(this.block.minLength as number)),
       ...this.insertIf(this.block.maxLength !== undefined && this.block.maxLength >= 0, Validators.maxLength(this.block.maxLength as number)),
     ];
-    this.textInputControl.setValue(this.block.value);
-    this.setDisableEnable(this.block.disabled, this.textInputControl);
     this.textInputControl.setValidators(validators);
+    this.setDisableEnable(this.block.disabled, this.textInputControl);
+    this.textInputControl.setValue(this.block.value);
   }
 
   protected subscribeToTextInputControlValueChanges(): void {

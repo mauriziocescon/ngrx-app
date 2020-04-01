@@ -52,9 +52,9 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
     const validators = [
       ...this.insertIf(this.block.required, Validators.required),
     ];
-    this.checkBoxControl.setValue(this.block.value);
-    this.setDisableEnable(this.block.disabled, this.checkBoxControl);
     this.checkBoxControl.setValidators(validators);
+    this.setDisableEnable(this.block.disabled, this.checkBoxControl);
+    this.checkBoxControl.setValue(this.block.value);
   }
 
   protected subscribeToCheckBoxControlValueChanges(): void {

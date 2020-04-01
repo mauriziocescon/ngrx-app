@@ -52,9 +52,9 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
     const validators = [
       ...this.insertIf(this.block.required, Validators.required),
     ];
-    this.dropdownControl.setValue(this.block.value);
-    this.setDisableEnable(this.block.disabled, this.dropdownControl);
     this.dropdownControl.setValidators(validators);
+    this.setDisableEnable(this.block.disabled, this.dropdownControl);
+    this.dropdownControl.setValue(this.block.value);
   }
 
   protected subscribeToDropdownControlValueChanges(): void {
