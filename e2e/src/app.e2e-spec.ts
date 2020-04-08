@@ -8,7 +8,7 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display the title', () => {
     page.navigateTo();
     browser.getTitle().then((title: string) => {
       expect(title).toEqual('NgrxApp');
