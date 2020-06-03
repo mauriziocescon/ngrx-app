@@ -6,9 +6,8 @@ const isCheckBoxConfirmerBlockValid = (checkBoxConfirmer) => {
   return checkBoxConfirmer.required ? !!checkBoxConfirmer.value : true;
 };
 
-const isDatePickerBlockValid = (datePicker) => {
-  // todo: to be implemented
-  return true;
+const isDatePickerBlockValid = (datePickerBlock) => {
+  return datePickerBlock.required ? !!datePickerBlock.value : true;
 };
 
 const isDropdownBlockValid = (dropdownBlock) => {
