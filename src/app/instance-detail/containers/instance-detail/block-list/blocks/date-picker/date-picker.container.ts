@@ -10,15 +10,14 @@ import { CheckBoxConfirmerBlock, DatePickerBlock } from '../../../../../models';
 import { BlockListStoreService } from '../../../block-list-store.service';
 
 @Component({
-  selector: 'ct-date-picker',
+  selector: 'app-date-picker-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-  ],
+  providers: [],
   template: `
-    <cp-date-picker
+    <app-date-picker-cp
       [block]="block$ | async"
       (valueDidChange)="valueDidChange($event)">
-    </cp-date-picker>`,
+    </app-date-picker-cp>`,
 })
 export class DatePickerContainerComponent implements BlockComponent, OnInit, OnDestroy {
   @Input() blockId: string;

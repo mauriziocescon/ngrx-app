@@ -21,14 +21,14 @@ import { SyncStoreService } from './sync-store.service';
   template: `
     <div class="container-fluid">
       <div class="row">
-        <ct-next-step
+        <app-next-step-ct
           class="col-12 col-sm-4 col-lg-2"
           [instanceId]="instanceId">
-        </ct-next-step>
-        <ct-block-list
+        </app-next-step-ct>
+        <app-block-list-ct
           class="col-12 col-sm-8 col-lg-10"
           [instanceId]="instanceId">
-        </ct-block-list>
+        </app-block-list-ct>
       </div>
     </div>`,
 })

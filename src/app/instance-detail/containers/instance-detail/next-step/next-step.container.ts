@@ -13,17 +13,17 @@ import { CoreStoreService } from '../core-store.service';
 import { SyncStoreService } from '../sync-store.service';
 
 @Component({
-  selector: 'ct-next-step',
+  selector: 'app-next-step-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <cp-next-step
+    <app-next-step-cp
       [nextStepBtnEnabled]="nextStepBtnEnabled$ | async"
       [syncing]="syncing$ | async"
       [syncError]="syncError$ | async"
       (nextStep)="nextStep()"
       (reset)="reset()"
       (retrySync)="retrySync()">
-    </cp-next-step>`,
+    </app-next-step-cp>`,
 })
 export class NextStepContainerComponent implements OnInit, OnDestroy {
   @Input() instanceId: string;

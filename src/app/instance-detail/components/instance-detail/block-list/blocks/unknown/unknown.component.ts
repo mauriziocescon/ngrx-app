@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'cp-unknown',
+  selector: 'app-unknown-cp',
   templateUrl: './unknown.component.html',
   styleUrls: ['./unknown.component.scss'],
 })

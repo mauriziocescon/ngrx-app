@@ -3,7 +3,7 @@ import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { Block } from '../../../../shared/shared.module';
 
 @Component({
-  selector: 'cp-block-list',
+  selector: 'app-block-list-cp',
   templateUrl: './block-list.component.html',
   styleUrls: ['./block-list.component.scss'],
 })

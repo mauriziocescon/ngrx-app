@@ -18,15 +18,14 @@ import { BlockListStoreService } from '../../../block-list-store.service';
 import { CoreStoreService } from '../../../core-store.service';
 
 @Component({
-  selector: 'ct-check-box-confirmer',
+  selector: 'app-check-box-confirmer-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-  ],
+  providers: [],
   template: `
-    <cp-check-box-confirmer
+    <app-check-box-confirmer-cp
       [block]="block$ | async"
       (valueDidChange)="valueDidChange($event)">
-    </cp-check-box-confirmer>`,
+    </app-check-box-confirmer-cp>`,
 })
 export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnInit, OnDestroy {
   @Input() blockId: string;

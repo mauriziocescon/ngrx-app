@@ -9,7 +9,7 @@ import { NGXLogger } from 'ngx-logger';
 import { TextInputBlock } from '../../../../../models';
 
 @Component({
-  selector: 'cp-text-input',
+  selector: 'app-text-input-cp',
   templateUrl: './text-input.component.html',
   styleUrls: ['./text-input.component.scss'],
 })

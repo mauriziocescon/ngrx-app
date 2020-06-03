@@ -9,7 +9,7 @@ import { NGXLogger } from 'ngx-logger';
 import { CheckBoxConfirmerBlock } from '../../../../../models';
 
 @Component({
-  selector: 'cp-check-box-confirmer',
+  selector: 'app-check-box-confirmer-cp',
   templateUrl: './check-box-confirmer.component.html',
   styleUrls: ['./check-box-confirmer.component.scss'],
 })

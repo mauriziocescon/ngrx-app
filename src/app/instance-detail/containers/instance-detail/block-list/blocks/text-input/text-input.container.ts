@@ -10,15 +10,14 @@ import { TextInputBlock } from '../../../../../models';
 import { BlockListStoreService } from '../../../block-list-store.service';
 
 @Component({
-  selector: 'ct-text-input',
+  selector: 'app-text-input-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-  ],
+  providers: [],
   template: `
-    <cp-text-input
+    <app-text-input-cp
       [block]="block$ | async"
       (valueDidChange)="valueDidChange($event)">
-    </cp-text-input>`,
+    </app-text-input-cp>`,
 })
 export class TextInputContainerComponent implements BlockComponent, OnInit, OnDestroy {
   @Input() blockId: string;

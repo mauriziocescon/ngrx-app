@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'cp-next-step',
+  selector: 'app-next-step-cp',
   templateUrl: './next-step.component.html',
   styleUrls: ['./next-step.component.scss'],
 })

@@ -9,7 +9,7 @@ import { NGXLogger } from 'ngx-logger';
 import { CheckBoxBlock } from '../../../../../models';
 
 @Component({
-  selector: 'cp-check-box',
+  selector: 'app-check-box-cp',
   templateUrl: './check-box.component.html',
   styleUrls: ['./check-box.component.scss'],
 })

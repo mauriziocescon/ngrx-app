@@ -10,15 +10,14 @@ import { CheckBoxBlock } from '../../../../../models';
 import { BlockListStoreService } from '../../../block-list-store.service';
 
 @Component({
-  selector: 'ct-check-box',
+  selector: 'app-check-box-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-  ],
+  providers: [],
   template: `
-    <cp-check-box
+    <app-check-box-cp
       [block]="block$ | async"
       (valueDidChange)="valueDidChange($event)">
-    </cp-check-box>`,
+    </app-check-box-cp>`,
 })
 export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDestroy {
   @Input() blockId: string;

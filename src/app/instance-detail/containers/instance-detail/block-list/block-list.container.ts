@@ -16,18 +16,18 @@ import { SyncStoreService } from '../sync-store.service';
 import { BlockUtilsService } from './block-utils.service';
 
 @Component({
-  selector: 'ct-block-list',
+  selector: 'app-block-list-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     { provide: BLOCK_UTILS_TOKEN, useClass: BlockUtilsService },
   ],
   template: `
-    <cp-block-list
+    <app-block-list-cp
       [blocks]="blocks$ | async"
       [loading]="loading$ | async"
       [error]="error$ | async"
       (reloadList)="reloadList()">
-    </cp-block-list>`,
+    </app-block-list-cp>`,
 })
 export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() instanceId: string;

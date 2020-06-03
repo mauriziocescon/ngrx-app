@@ -10,15 +10,14 @@ import { DropdownBlock } from '../../../../../models';
 import { BlockListStoreService } from '../../../block-list-store.service';
 
 @Component({
-  selector: 'ct-dropdown',
+  selector: 'app-dropdown-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-  ],
+  providers: [],
   template: `
-    <cp-dropdown
+    <app-dropdown-cp
       [block]="block$ | async"
       (valueDidChange)="valueDidChange($event)">
-    </cp-dropdown>`,
+    </app-dropdown-cp>`,
 })
 export class DropdownContainerComponent implements BlockComponent, OnInit, OnDestroy {
   @Input() blockId: string;

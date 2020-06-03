@@ -9,7 +9,7 @@ import { NGXLogger } from 'ngx-logger';
 import { DropdownBlock } from '../../../../../models';
 
 @Component({
-  selector: 'cp-dropdown',
+  selector: 'app-dropdown-cp',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
 })

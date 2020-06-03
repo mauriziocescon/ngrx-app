@@ -6,7 +6,7 @@ import { NGXLogger } from 'ngx-logger';
 import { DatePickerBlock } from '../../../../../models';
 
 @Component({
-  selector: 'cp-date-picker',
+  selector: 'app-date-picker-cp',
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.scss'],
 })
