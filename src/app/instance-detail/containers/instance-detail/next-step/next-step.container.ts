@@ -55,12 +55,17 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
   }
 
   nextStep(): void {
-    alert(`NextStepContainerComponent: save`);
+    const modalAlert: ModalAlert = {
+      id: this.mAlertSyncErrorId,
+      title: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_TITLE'),
+      message: this.translate.instant('CONTAINER.NEXT_STEP.DONE'),
+      buttonLabel: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_BUTTON'),
+    };
+    this.coreStore.showModalAlert(modalAlert);
     this.location.back();
   }
 
   reset(): void {
-    alert(`NextStepContainerComponent: reset`);
     this.location.back();
   }
 

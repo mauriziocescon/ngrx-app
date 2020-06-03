@@ -19,6 +19,7 @@
     },
     "NEXT_STEP": {
       "CANCEL": "Annulla",
+      "DONE": "Completato",
       "HEADER": "Validazione",
       "NEXT_STEP": "Procedi",
       "RETRY": "Riprova",

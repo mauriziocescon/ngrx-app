@@ -19,6 +19,7 @@
     },
     "NEXT_STEP": {
       "CANCEL": "*** Cancel ***",
+      "DONE": "*** Done ***",
       "HEADER": "*** Validation ***",
       "NEXT_STEP": "*** Next step ***",
       "RETRY": "Retry",
