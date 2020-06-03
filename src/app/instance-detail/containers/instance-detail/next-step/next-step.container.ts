@@ -21,7 +21,7 @@ import { SyncStoreService } from '../sync-store.service';
       [syncing]="syncing$ | async"
       [syncError]="syncError$ | async"
       (nextStep)="nextStep()"
-      (reset)="reset()"
+      (resetSelections)="reset()"
       (retrySync)="retrySync()">
     </app-next-step-cp>`,
 })

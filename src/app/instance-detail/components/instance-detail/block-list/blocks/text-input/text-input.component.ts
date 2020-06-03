@@ -33,7 +33,10 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
 
   get inputGroupMessage(): string {
     if (this.block) {
-      if (this.block.minLength !== undefined && this.block.minLength >= 0 && this.block.maxLength !== undefined && this.block.maxLength >= 0) {
+      if (this.block.minLength !== undefined &&
+        this.block.minLength >= 0 &&
+        this.block.maxLength !== undefined &&
+        this.block.maxLength >= 0) {
         return 'COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MIN_MAX_LENGTH';
       } else if (this.block.minLength !== undefined && this.block.minLength >= 0) {
         return 'COMPONENT.TEXT_INPUT.TEXT_INPUT_MSG_MIN_LENGTH';
@@ -49,7 +52,10 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
 
   get inputGroupParams(): any {
     if (this.block) {
-      if (this.block.minLength !== undefined && this.block.minLength >= 0 && this.block.maxLength !== undefined && this.block.maxLength >= 0) {
+      if (this.block.minLength !== undefined &&
+        this.block.minLength >= 0 &&
+        this.block.maxLength !== undefined &&
+        this.block.maxLength >= 0) {
         return {
           minLength: this.block.minLength,
           maxLength: this.block.maxLength,
@@ -94,8 +100,14 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
   protected setupFormControllers(): void {
     const validators = [
       ...this.insertIf(this.block.required, Validators.required),
-      ...this.insertIf(this.block.minLength !== undefined && this.block.minLength >= 0, Validators.minLength(this.block.minLength as number)),
-      ...this.insertIf(this.block.maxLength !== undefined && this.block.maxLength >= 0, Validators.maxLength(this.block.maxLength as number)),
+      ...this.insertIf(
+        this.block.minLength !== undefined && this.block.minLength >= 0,
+        Validators.minLength(this.block.minLength as number),
+      ),
+      ...this.insertIf(
+        this.block.maxLength !== undefined && this.block.maxLength >= 0,
+        Validators.maxLength(this.block.maxLength as number),
+      ),
     ];
     this.textInputControl.setValidators(validators);
     this.setDisableEnable(this.block.disabled, this.textInputControl);

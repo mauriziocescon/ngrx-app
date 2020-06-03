@@ -10,12 +10,12 @@ export class NextStepComponent {
   @Input() syncing: boolean;
   @Input() syncError: boolean;
   @Output() nextStep: EventEmitter<void>;
-  @Output() reset: EventEmitter<void>;
+  @Output() resetSelections: EventEmitter<void>;
   @Output() retrySync: EventEmitter<void>;
 
   constructor() {
     this.nextStep = new EventEmitter();
-    this.reset = new EventEmitter();
+    this.resetSelections = new EventEmitter();
     this.retrySync = new EventEmitter();
   }
 
@@ -36,7 +36,7 @@ export class NextStepComponent {
   }
 
   resetForm(): void {
-    this.reset.emit();
+    this.resetSelections.emit();
   }
 
   retrySyncronization(): void {
