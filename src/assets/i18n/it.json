@@ -19,7 +19,6 @@
     },
     "NEXT_STEP": {
       "CANCEL": "Annulla",
-      "DONE": "Completato",
       "HEADER": "Validazione",
       "NEXT_STEP": "Procedi",
       "RETRY": "Riprova",
@@ -70,7 +69,8 @@
     },
     "NEXT_STEP": {
       "ALERT_BUTTON": "Ok",
-      "ALERT_TITLE": "Avviso"
+      "ALERT_TITLE": "Avviso",
+      "DONE": "Completato"
     },
     "BLOCK_LIST": {
       "ALERT_BUTTON": "Ok",

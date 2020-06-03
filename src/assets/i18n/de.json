@@ -19,7 +19,6 @@
     },
     "NEXT_STEP": {
       "CANCEL": "*** Cancel ***",
-      "DONE": "*** Done ***",
       "HEADER": "*** Validation ***",
       "NEXT_STEP": "*** Next step ***",
       "RETRY": "Retry",
@@ -70,7 +69,8 @@
     },
     "NEXT_STEP": {
       "ALERT_BUTTON": "*** Ok ***",
-      "ALERT_TITLE": "*** Alert ***"
+      "ALERT_TITLE": "*** Alert ***",
+      "DONE": "*** Done ***"
     },
     "BLOCK_LIST": {
       "ALERT_BUTTON": "*** Ok ***",
