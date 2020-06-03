@@ -31,7 +31,7 @@ export const reducerProvider = [
 
 // console.log all actions
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
-  return function (state: State, action: any): State {
+  return (state: State, action: any) => {
     console.log('state', state);
     console.log('action', action);
 

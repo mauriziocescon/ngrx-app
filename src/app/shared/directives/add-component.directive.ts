@@ -1,7 +1,7 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[app-add-component]',
+  selector: '[appAddComponent]',
 })
 export class AddComponentDirective {
   constructor(public viewContainerRef: ViewContainerRef) {

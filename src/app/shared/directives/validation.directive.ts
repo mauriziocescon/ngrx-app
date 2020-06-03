@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
 
 @Directive({
-  selector: '[blockValidation]',
+  selector: '[appBlockValidation]',
 })
 export class BlockValidationDirective implements OnChanges {
   @Input() valid: boolean;

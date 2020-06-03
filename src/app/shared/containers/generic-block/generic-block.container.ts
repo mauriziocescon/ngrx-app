@@ -21,7 +21,7 @@ import { BLOCK_UTILS_TOKEN, IBlockUtils } from '../../tokens';
   selector: 'app-generic-block-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ng-template app-add-component></ng-template>
+    <ng-template appAddComponent></ng-template>
   `,
 })
 export class GenericBlockContainerComponent implements OnDestroy, AfterViewInit {
