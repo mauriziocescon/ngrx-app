@@ -21,7 +21,7 @@ export class InstanceListService {
   getInstances(textSearch: string): Observable<Instance[]> {
     const params = { textSearch: textSearch || '' };
 
-    return this.http.get<Instance[]>(this.appConstants.Api.instances, { params: params })
+    return this.http.get<Instance[]>(this.appConstants.Api.instances, { params })
       .pipe(
         map(data => data),
         catchError((err: HttpErrorResponse) => this.handleError(err)),

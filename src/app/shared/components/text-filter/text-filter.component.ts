@@ -7,7 +7,7 @@ import { debounceTime } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
 
 @Component({
-  selector: 'cp-text-filter',
+  selector: 'app-text-filter-cp',
   templateUrl: './text-filter.component.html',
   styleUrls: ['./text-filter.component.scss'],
 })

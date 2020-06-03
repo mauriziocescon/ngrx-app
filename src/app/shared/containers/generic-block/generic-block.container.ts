@@ -18,10 +18,10 @@ import { Block, BlockComponent } from '../../models';
 import { BLOCK_UTILS_TOKEN, IBlockUtils } from '../../tokens';
 
 @Component({
-  selector: 'ct-generic-block',
+  selector: 'app-generic-block-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ng-template add-component></ng-template>
+    <ng-template app-add-component></ng-template>
   `,
 })
 export class GenericBlockContainerComponent implements OnDestroy, AfterViewInit {

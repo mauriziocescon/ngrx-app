@@ -2,7 +2,7 @@ import { Directive, ElementRef, HostListener, Inject, Renderer2 } from '@angular
 import { DOCUMENT } from '@angular/common';
 
 @Directive({
-  selector: '[scrollToTop]',
+  selector: '[appScrollToTop]',
 })
 export class ScrollToTopDirective {
 

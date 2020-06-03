@@ -20,7 +20,7 @@ export class BlockListService {
   getBlocks(instanceId: string): Observable<Block[]> {
     const options = {
       params: {
-        instanceId: instanceId,
+        instanceId,
       },
     };
 
@@ -36,8 +36,8 @@ export class BlockListService {
 
   syncBlocks(instanceId: string, blocks: Block[]): Observable<Block[]> {
     const body = {
-      instanceId: instanceId,
-      blocks: blocks,
+      instanceId,
+      blocks,
     };
 
     return this.http
