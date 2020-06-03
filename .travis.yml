@@ -2,8 +2,8 @@ language: node_js
 
 # test on different versions of node.js
 node_js:
-  - 12.17.0
-  - 14.3.0
+  - 12.18.0
+  - 14.4.0
 
 # addition of chrome for testing
 addons:
