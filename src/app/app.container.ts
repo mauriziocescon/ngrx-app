@@ -5,7 +5,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="app-component">
-      <ct-navigation-bar></ct-navigation-bar>
+      <app-navigation-bar-ct></app-navigation-bar-ct>
       <div class="main-view">
         <router-outlet></router-outlet>
       </div>

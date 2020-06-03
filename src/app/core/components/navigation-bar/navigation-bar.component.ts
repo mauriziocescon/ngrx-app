@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AppConstantsService } from '../../services/app-constants.service';
 
 @Component({
-  selector: 'cp-navigation-bar',
+  selector: 'app-navigation-bar-cp',
   templateUrl: './navigation-bar.component.html',
   styleUrls: ['./navigation-bar.component.scss'],
 })
@@ -15,7 +15,7 @@ export class NavigationBarComponent {
 
   isCollapsed: boolean;
 
-  constructor(protected appConstants: AppConstantsService,) {
+  constructor(protected appConstants: AppConstantsService) {
     this.languageDidChange = new EventEmitter<string>();
     this.navigationDidChange = new EventEmitter<{ path: string }>();
     this.isCollapsed = true;

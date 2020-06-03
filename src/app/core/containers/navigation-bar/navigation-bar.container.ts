@@ -11,15 +11,15 @@ import * as fromCoreSelectors from '../../store/selectors';
 import { AppLanguageService } from '../../services/app-language.service';
 
 @Component({
-  selector: 'ct-navigation-bar',
+  selector: 'app-navigation-bar-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <cp-navigation-bar
+    <app-navigation-bar-cp
       [languages]="languages"
       [selectedLanguageId]="language$ | async"
       (languageDidChange)="selectLanguage($event)"
       (navigationDidChange)="goTo($event)">
-    </cp-navigation-bar>`,
+    </app-navigation-bar-cp>`,
 })
 export class NavigationBarContainerComponent {
   languages: string[];
