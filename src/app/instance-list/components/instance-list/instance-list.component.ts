@@ -3,7 +3,7 @@ import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { Instance } from '../../models';
 
 @Component({
-  selector: 'cp-instance-list',
+  selector: 'app-instance-list-cp',
   templateUrl: './instance-list.component.html',
   styleUrls: ['./instance-list.component.scss'],
 })

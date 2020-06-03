@@ -14,7 +14,7 @@ import { EffectsStoreService } from './effects-store.service';
 import { InstanceListStoreService } from './instance-list-store.service';
 
 @Component({
-  selector: 'ct-instance-list',
+  selector: 'app-instance-list-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     CoreStoreService,
@@ -22,14 +22,14 @@ import { InstanceListStoreService } from './instance-list-store.service';
     InstanceListStoreService,
   ],
   template: `
-    <cp-instance-list
+    <app-instance-list-cp
       [instances]="instances$ | async"
       [loading]="loading$ | async"
       [error]="error$ | async"
       (paramsDidChange)="paramsDidChange($event)"
       (reloadList)="reloadList($event)"
       (goTo)="goTo($event)">
-    </cp-instance-list>
+    </app-instance-list-cp>
   `,
 })
 export class InstanceListPageComponent implements OnInit, OnDestroy {
