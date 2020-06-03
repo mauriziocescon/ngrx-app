@@ -59,7 +59,7 @@ export class AppLanguageService {
       this.registerLocale();
       this.store$.dispatch(new language.SetLanguage(this.selectedLanguageId));
       this.translate.use(languageId);
-      location.reload(true);
+      location.reload();
     }
   }
 
