@@ -52,7 +52,7 @@ exports.validate = (blocks) => {
         break;
       }
       default: {
-        block.valid = false;
+        block.valid = true;
       }
     }
   });

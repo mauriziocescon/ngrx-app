@@ -12,7 +12,7 @@ exports.getInstances = (req, res) => {
       };
     })
     .filter((inst) => {
-      return textSearch === undefined || textSearch === '' || JSON.stringify(inst).includes(textSearch);
+      return textSearch === undefined || textSearch === '' || JSON.stringify(inst).toLowerCase().includes(textSearch.toLowerCase());
     })
     .value();
 
