@@ -60,7 +60,7 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
     const block: Update<CheckBoxConfirmerBlock> = {
       id: this.blockId,
       changes: {
-        value: value,
+        value,
       },
     };
     this.blockListStore.updateBlock(block);

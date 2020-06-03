@@ -10,7 +10,7 @@ import { EffectsStoreService } from './effects-store.service';
 import { SyncStoreService } from './sync-store.service';
 
 @Component({
-  selector: 'ct-instance-detail',
+  selector: 'app-instance-detail-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     BlockListStoreService,

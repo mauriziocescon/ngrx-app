@@ -42,7 +42,7 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
     const block: Update<DatePickerBlock> = {
       id: this.blockId,
       changes: {
-        value: value,
+        value,
       },
     };
     this.blockListStore.updateBlock(block);

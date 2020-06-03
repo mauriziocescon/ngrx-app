@@ -42,7 +42,7 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
     const block: Update<CheckBoxBlock> = {
       id: this.blockId,
       changes: {
-        value: value,
+        value,
       },
     };
     this.blockListStore.updateBlock(block);

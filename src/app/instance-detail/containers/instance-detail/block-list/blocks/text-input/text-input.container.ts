@@ -42,7 +42,7 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
     const block: Update<TextInputBlock> = {
       id: this.blockId,
       changes: {
-        value: value,
+        value,
       },
     };
     this.blockListStore.updateBlock(block);

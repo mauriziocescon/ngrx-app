@@ -42,7 +42,7 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
     const block: Update<DropdownBlock> = {
       id: this.blockId,
       changes: {
-        value: value,
+        value,
       },
     };
     this.blockListStore.updateBlock(block);
