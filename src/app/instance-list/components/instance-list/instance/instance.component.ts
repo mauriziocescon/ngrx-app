@@ -28,7 +28,8 @@ export class InstanceComponent {
   }
 
   get blocksCounter(): string {
-    return `(${this.instance.blocks.length})`;
+    const validBlocks = this.instance.blocks.filter(b => b.valid === true).length;
+    return `(${validBlocks} / ${this.instance.blocks.length})`;
   }
 
   selectInstance(): void {
