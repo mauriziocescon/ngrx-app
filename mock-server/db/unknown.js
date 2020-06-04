@@ -5,5 +5,6 @@ exports.getUnknownComponent = (index) => {
     id: faker.random.uuid(),
     type: 'unknown',
     order: parseInt(index),
+    valid: true,
   };
 };

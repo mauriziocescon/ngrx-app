@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const unknown = require('./unknown');
 const checkBox = require('./check-box');
 const checkBoxConfirmer = require('./check-box-confirmer');
@@ -5,7 +7,17 @@ const datePicker = require('./date-picker');
 const dropdown = require('./dropdown');
 const textInput = require('./text-input');
 
-exports.getRandomBlock = (index) => {
+// db creation
+const mocks = {
+  instances: [],
+  logs: [],
+};
+
+// #items
+const numberOfInstances = faker.random.number({min: 1, max: 20});
+const numberOfBlocks = faker.random.number({min: 1, max: 10});
+
+const getRandomBlock = (index) => {
   const choice = Math.random();
 
   if (choice < 0.05) {
@@ -27,3 +39,14 @@ exports.getRandomBlock = (index) => {
     return textInput.getTextInput(index);
   }
 };
+
+for (let i = 0; i < numberOfInstances; i++) {
+  let instance = {id: faker.random.uuid(), description: faker.random.words(), blocks: []};
+
+  for (let b = 0; b < numberOfBlocks; b++) {
+    instance.blocks.push(getRandomBlock(b));
+  }
+  mocks.instances.push(instance);
+}
+
+exports.mocks = mocks;
