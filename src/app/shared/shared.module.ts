@@ -20,7 +20,7 @@ import {
   DIRECTIVES,
   AddComponentDirective,
   ScrollToTopDirective,
-  BlockValidationDirective,
+  ValidityStateDirective,
 } from './directives';
 
 import {
@@ -79,7 +79,7 @@ export {
 
   AddComponentDirective,
   ScrollToTopDirective,
-  BlockValidationDirective,
+  ValidityStateDirective,
 
   Block,
   BlockType,

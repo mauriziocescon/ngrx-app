@@ -3,7 +3,7 @@ import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } fro
 @Directive({
   selector: '[appValidityState]',
 })
-export class BlockValidationDirective implements OnChanges {
+export class ValidityStateDirective implements OnChanges {
   @Input() valid: boolean;
 
   constructor(private el: ElementRef,
