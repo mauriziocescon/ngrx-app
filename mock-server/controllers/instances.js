@@ -6,7 +6,7 @@ exports.getInstances = (req, res) => {
 
   const lightInstances = db.get('instances')
     .filter((inst) => {
-      return textSearch === undefined || textSearch === '' || JSON.stringify(inst).toLowerCase().includes(textSearch.toLowerCase());
+      return textSearch === undefined || textSearch === '' || JSON.stringify({id: inst.id, description: inst.description}).toLowerCase().includes(textSearch.toLowerCase());
     })
     .value();
 
