@@ -13,7 +13,7 @@ import { SERVICES } from './store/services';
 import { COMPONENTS } from './components';
 import {
   CONTAINERS,
-  InstanceListPageComponent,
+  InstanceListContainerComponent,
 } from './containers';
 
 @NgModule({
@@ -42,5 +42,5 @@ export class InstanceListModule {
 export * from './models';
 
 export {
-  InstanceListPageComponent,
+  InstanceListContainerComponent,
 };

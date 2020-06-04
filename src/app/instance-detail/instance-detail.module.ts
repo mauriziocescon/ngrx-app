@@ -7,7 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { InstanceDetailRoutingModule } from './instance-detail-routing.module';
 
 import { COMPONENTS, UnknownComponent } from './components';
-import { CONTAINERS, InstanceDetailPageComponent } from './containers';
+import { CONTAINERS, InstanceDetailContainerComponent } from './containers';
 import { EFFECTS } from './store/effects';
 import { TOKEN, reducerProvider } from './store/reducers';
 import { SERVICES as STORE_SERVICES } from './store/services';
@@ -37,7 +37,7 @@ import { SERVICES } from './services';
     ...SERVICES,
   ],
   exports: [
-    InstanceDetailPageComponent,
+    InstanceDetailContainerComponent,
   ],
 })
 export class InstanceDetailModule {

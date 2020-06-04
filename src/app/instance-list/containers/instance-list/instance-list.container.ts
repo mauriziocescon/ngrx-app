@@ -1,5 +1,4 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
 
@@ -27,12 +26,11 @@ import { InstanceListStoreService } from './instance-list-store.service';
       [loading]="loading$ | async"
       [error]="error$ | async"
       (paramsDidChange)="paramsDidChange($event)"
-      (reloadList)="reloadList($event)"
-      (goTo)="goTo($event)">
+      (reloadList)="reloadList($event)">
     </app-instance-list-cp>
   `,
 })
-export class InstanceListPageComponent implements OnInit, OnDestroy {
+export class InstanceListContainerComponent implements OnInit, OnDestroy {
   instances$: Observable<Instance[] | undefined>;
   loading$: Observable<boolean>;
   error$: Observable<string | undefined>;
@@ -40,19 +38,16 @@ export class InstanceListPageComponent implements OnInit, OnDestroy {
   protected alertId: string;
   protected modalAlertSubscription: Subscription;
 
-  constructor(protected router: Router,
-              protected translate: TranslateService,
+  constructor(protected translate: TranslateService,
               protected coreStore: CoreStoreService,
               protected effectsStore: EffectsStoreService,
               protected instanceListStore: InstanceListStoreService) {
-    this.instances$ = this.instanceListStore.getInstances();
-    this.loading$ = this.instanceListStore.isLoadingInstances();
-    this.error$ = this.instanceListStore.getLoadingError();
-
     this.alertId = '1';
   }
 
   ngOnInit(): void {
+    this.setupAsyncObs();
+
     this.effectsStore.startEffects();
     this.reloadList({ textSearch: '' });
     this.subscribeToFetchErrors();
@@ -71,11 +66,13 @@ export class InstanceListPageComponent implements OnInit, OnDestroy {
     this.instanceListStore.loadInstances(params);
   }
 
-  goTo(instance: Instance): void {
-    this.router.navigate(['/instance-detail', instance.id]);
+  protected setupAsyncObs(): void {
+    this.instances$ = this.instanceListStore.getInstances();
+    this.loading$ = this.instanceListStore.isLoadingInstances();
+    this.error$ = this.instanceListStore.getLoadingError();
   }
 
-  subscribeToFetchErrors(): void {
+  protected subscribeToFetchErrors(): void {
     this.modalAlertSubscription = this.error$
       .subscribe((err) => {
         if (err) {

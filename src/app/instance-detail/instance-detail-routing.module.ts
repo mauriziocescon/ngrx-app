@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { InstanceDetailPageComponent } from './containers';
+import { InstanceDetailContainerComponent } from './containers';
 
 import { InstanceDetailGuard } from './services';
 
 export const instanceDetailRoutes: Routes = [
   {
     path: '',
-    component: InstanceDetailPageComponent,
+    component: InstanceDetailContainerComponent,
     canDeactivate: [InstanceDetailGuard],
   },
 ];

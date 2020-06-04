@@ -6,19 +6,9 @@
     </div>
   </div>
 
-  <div class="row list-main-content" [hidden]="!showData">
-    <div class="col-12 col-sm-6 instance" *ngFor="let instance of dataSource; trackBy: trackByBlock">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ instance.id }}</h5>
-          <h6 class="card-subtitle text-right">
-            <span class="mr-1">{{ getBlocksCounter(instance) }}</span>
-            <span appValidityState [valid]="getInstanceValidityState(instance)"></span>
-          </h6>
-          <p class="card-text">{{ instance.description }}</p>
-          <button class="btn btn-primary" (click)="selectInstance(instance)">{{ "COMPONENT.INSTANCE_LIST.SHOW" | translate }}</button>
-        </div>
-      </div>
+  <div class="row list-main-content" *ngIf="showData">
+    <div class="col-12 col-sm-6 instance" *ngFor="let instanceId of dataSource; trackBy: trackByBlock">
+      <app-instance-ct [instanceId]="instanceId"></app-instance-ct>
     </div>
     <div class="col-12">
       <div class="full-width-message">{{ "COMPONENT.INSTANCE_LIST.LOAD_COMPLETED" | translate }}</div>

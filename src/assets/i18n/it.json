@@ -12,7 +12,9 @@
       "LOAD_COMPLETED": "Caricamento completato",
       "LOADING": "Caricamento...",
       "NO_RESULT": "Vuoto",
-      "RETRY": "Riprova",
+      "RETRY": "Riprova"
+    },
+    "INSTANCE": {
       "SHOW": "Visualizza"
     },
     "INSTANCE_DETAIL": {

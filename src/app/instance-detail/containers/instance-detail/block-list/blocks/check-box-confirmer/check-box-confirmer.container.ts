@@ -12,7 +12,7 @@ import {
 
 import { BlockComponent } from '../../../../../../shared/shared.module';
 
-import { CheckBoxBlock, CheckBoxConfirmerBlock } from '../../../../../models';
+import { CheckBoxConfirmerBlock } from '../../../../../models';
 
 import { BlockListStoreService } from '../../../block-list-store.service';
 import { CoreStoreService } from '../../../core-store.service';

@@ -12,7 +12,9 @@
       "LOAD_COMPLETED": "Ladevorgang abgeschlossen",
       "LOADING": "Daten werden geladen",
       "NO_RESULT": "Leer",
-      "RETRY": "Erneut versuchen",
+      "RETRY": "Erneut versuchen"
+    },
+    "INSTANCE": {
       "SHOW": "Show"
     },
     "INSTANCE_DETAIL": {

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { InstanceListPageComponent } from './containers';
+import { InstanceListContainerComponent } from './containers';
 
 export const instanceListRoutes: Routes = [
   {
     path: '',
-    component: InstanceListPageComponent,
+    component: InstanceListContainerComponent,
   },
 ];
 

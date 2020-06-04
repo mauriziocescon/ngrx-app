@@ -1,9 +1,12 @@
-import { InstanceListPageComponent } from './instance-list/instance-list-page.container';
+import { InstanceListContainerComponent } from './instance-list/instance-list.container';
+import { InstanceContainerComponent } from './instance-list/instance/instance.container';
 
 export const CONTAINERS = [
-  InstanceListPageComponent,
+  InstanceListContainerComponent,
+  InstanceContainerComponent,
 ];
 
 export {
-  InstanceListPageComponent,
+  InstanceListContainerComponent,
+  InstanceContainerComponent,
 };

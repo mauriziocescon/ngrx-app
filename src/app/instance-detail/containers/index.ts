@@ -1,4 +1,4 @@
-import { InstanceDetailPageComponent } from './instance-detail/instance-detail-page.container';
+import { InstanceDetailContainerComponent } from './instance-detail/instance-detail.container';
 
 import { BlockListContainerComponent } from './instance-detail/block-list/block-list.container';
 import { CheckBoxContainerComponent } from './instance-detail/block-list/blocks/check-box/check-box.container';
@@ -10,7 +10,7 @@ import { TextInputContainerComponent } from './instance-detail/block-list/blocks
 import { NextStepContainerComponent } from './instance-detail/next-step/next-step.container';
 
 export const CONTAINERS = [
-  InstanceDetailPageComponent,
+  InstanceDetailContainerComponent,
 
   BlockListContainerComponent,
   CheckBoxContainerComponent,
@@ -23,5 +23,5 @@ export const CONTAINERS = [
 ];
 
 export {
-  InstanceDetailPageComponent,
+  InstanceDetailContainerComponent,
 };

@@ -32,7 +32,7 @@ import { SyncStoreService } from './sync-store.service';
       </div>
     </div>`,
 })
-export class InstanceDetailPageComponent implements OnInit, OnDestroy {
+export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
   instanceId: string;
 
   constructor(protected route: ActivatedRoute,
