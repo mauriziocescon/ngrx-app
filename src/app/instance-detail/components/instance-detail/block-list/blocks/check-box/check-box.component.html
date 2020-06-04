@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header">
           <span>{{ "COMPONENT.CHECK_BOX.HEADER" | translate }}</span>&nbsp;
-          <span appBlockValidation [valid]="block.valid"></span>
+          <span appValidityState [valid]="block.valid"></span>
         </div>
         <div class="card-body">
           <form [formGroup]="checkBoxForm">

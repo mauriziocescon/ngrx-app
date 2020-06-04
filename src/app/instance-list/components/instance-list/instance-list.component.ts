@@ -43,6 +43,14 @@ export class InstanceListComponent {
     return this.instances;
   }
 
+  getInstanceValidityState(instance: Instance): boolean {
+    return instance.blocks.every(i => i.valid === true);
+  }
+
+  getBlocksCounter(instance: Instance): string {
+    return `(${instance.blocks.length})`;
+  }
+
   trackByBlock(index: number, instance: Instance): number {
     return parseInt(instance.id, 10);
   }
