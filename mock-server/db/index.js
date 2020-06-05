@@ -37,7 +37,7 @@ const getRandomBlock = (index) => {
 };
 
 // #items
-const numberOfInstances = faker.random.number({min: 1, max: 20});
+const numberOfInstances = faker.random.number({min: 5, max: 20});
 
 for (let i = 0; i < numberOfInstances; i++) {
   let instance = {id: faker.random.uuid(), description: faker.lorem.sentences(), blocks: []};
