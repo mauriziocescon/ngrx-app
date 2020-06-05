@@ -22,6 +22,6 @@ export const getInstanceById = () => {
   return createSelector(
     getInstances,
     (instances: Instance[], props: { id: string }) => {
-      return instances.find(instance => instance.id === props.id);
+      return instances?.find(instance => instance.id === props.id);
     });
 };
