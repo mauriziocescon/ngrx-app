@@ -17,7 +17,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppContainerComponent } from './app.container';
 
-export function createTranslateLoader(http: HttpClient) {
+export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 

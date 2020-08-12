@@ -28,7 +28,7 @@ export class TextFilterComponent implements OnInit, OnDestroy {
     return this.searchControl.value;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.searchForm = this.formBuilder.group({
       textFilter: this.searchControl = new FormControl(''),
     });

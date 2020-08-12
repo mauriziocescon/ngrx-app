@@ -23,7 +23,7 @@ import {
   AppLanguageService,
 } from './services';
 
-export function createLanguageIdLoader(appLanguage: AppLanguageService) {
+export function createLanguageIdLoader(appLanguage: AppLanguageService): string {
   return appLanguage.getLanguageId();
 }
 
@@ -52,7 +52,7 @@ export class CoreModule {
     }
   }
 
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<CoreModule> {
     return {
       ngModule: CoreModule,
       providers: [

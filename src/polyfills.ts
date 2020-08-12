@@ -18,11 +18,6 @@
  * BROWSER POLYFILLS
  */
 
-/**
- * Angular 9 introduced a global $localize() function that needs to be loaded
- */
-import '@angular/localize/init';
-
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
 // import 'classlist.js';  // Run `npm install --save classlist.js`.
 
