@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { APP_BASE_HREF } from '@angular/common';
@@ -22,7 +22,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
 }
 
 describe('AppContainerComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
@@ -50,13 +50,13 @@ describe('AppContainerComponent', () => {
     }).compileComponents();
   }));
 
-  it('should create the app', async(() => {
+  it('should create the app', waitForAsync(() => {
     const fixture = TestBed.createComponent(AppContainerComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
 
-  // it(`should have as title "NgrxApp"`, async(() => {
+  // it(`should have as title "NgrxApp"`, waitForAsync(() => {
   //   const fixture = TestBed.createComponent(AppContainerComponent);
   //   const app = fixture.debugElement.componentInstance;
   //   expect(app.title).toEqual("NgrxApp");
