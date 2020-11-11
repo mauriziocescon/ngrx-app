@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +15,12 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./app.container.scss'],
 })
 export class AppContainerComponent {
+
+  constructor(protected swUpdate: SwUpdate) {
+    this.swUpdate
+      .available
+      .subscribe(evt => {
+        location.reload();
+      });
+  }
 }
