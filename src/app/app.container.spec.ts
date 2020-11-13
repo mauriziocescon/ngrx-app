@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ServiceWorkerModule, SwUpdate } from '@angular/service-worker';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -16,6 +17,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppContainerComponent } from './app.container';
+import { environment } from '../environments/environment';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -27,6 +29,7 @@ describe('AppContainerComponent', () => {
       imports: [
         HttpClientModule,
         RouterTestingModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
         NgbModule,
         TranslateModule.forRoot({
           loader: {
@@ -45,6 +48,7 @@ describe('AppContainerComponent', () => {
       ],
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' },
+        SwUpdate,
         fromRoot.reducerProvider,
       ],
     }).compileComponents();
