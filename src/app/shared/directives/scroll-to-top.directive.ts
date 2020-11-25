@@ -13,7 +13,7 @@ export class ScrollToTopDirective {
   }
 
   @HostListener('window:scroll', ['$event'])
-  onWindowScroll(event): void {
+  onWindowScroll(event: any): void {
     const scrollTopHeight = this.document.documentElement.scrollTop || 0;
     if (scrollTopHeight > 100) {
       this.renderer.setStyle(this.el.nativeElement, 'visibility', 'visible');
