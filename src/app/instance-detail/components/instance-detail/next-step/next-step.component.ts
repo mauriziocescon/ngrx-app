@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class NextStepComponent {
   @Input() nextStepBtnEnabled: boolean;
   @Input() syncing: boolean;
-  @Input() syncError: boolean;
+  @Input() syncError: string;
   @Output() nextStep: EventEmitter<void>;
   @Output() resetSelections: EventEmitter<void>;
   @Output() retrySync: EventEmitter<void>;

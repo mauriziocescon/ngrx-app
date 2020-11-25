@@ -2,7 +2,7 @@
   <div class="row block-list-main-content" [hidden]="!showData">
     <div class="col-12" *ngFor="let block of dataSource; trackBy: trackByBlock">
       <div class="generic-block">
-        <app-generic-block-ct [block]="block" (blockDidChange)="triggerChange($event)"></app-generic-block-ct>
+        <app-generic-block-ct [block]="block"></app-generic-block-ct>
       </div>
     </div>
     <div class="col-12">
