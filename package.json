@@ -1,7 +1,7 @@
 {
   "name": "ngrx-app",
   "version": "1.0.0",
-  "description": "A demo application built on angular 10.x and ngrx (beta)",
+  "description": "A demo application built on angular 11.x and ngrx",
   "author": "Maurizio Cescon <maurizio.cescon@gmail.com> (http://www.mauriziocescon.com)",
   "homepage": "http://www.mauriziocescon.com",
   "private": false,
