@@ -1,13 +1,13 @@
 const faker = require('faker');
 
 exports.getTextInput = (index) => {
-  const value = faker.random.boolean() ? faker.lorem.words(faker.random.number(5)) : undefined;
-  const required = faker.random.boolean();
-  const minLength = required && faker.random.boolean() ? faker.random.number(5) : undefined;
-  const maxLength = required && faker.random.boolean() ? faker.random.number({min: 5, max: 10}) : undefined;
+  const value = faker.datatype.boolean() ? faker.lorem.words(faker.datatype.number(5)) : undefined;
+  const required = faker.datatype.boolean();
+  const minLength = required && faker.datatype.boolean() ? faker.datatype.number(5) : undefined;
+  const maxLength = required && faker.datatype.boolean() ? faker.datatype.number({min: 5, max: 10}) : undefined;
 
   let textInput = {
-    id: faker.random.uuid(),
+    id: faker.datatype.uuid(),
     type: 'text-input',
     order: parseInt(index),
     label: 'COMPONENT.TEXT_INPUT.TEXT_INPUT_LABEL',

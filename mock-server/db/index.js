@@ -37,12 +37,12 @@ const getRandomBlock = (index) => {
 };
 
 // #items
-const numberOfInstances = faker.random.number({min: 5, max: 20});
+const numberOfInstances = faker.datatype.number({min: 5, max: 20});
 
 for (let i = 0; i < numberOfInstances; i++) {
-  let instance = {id: faker.random.uuid(), description: faker.lorem.sentences(), blocks: []};
+  let instance = {id: faker.datatype.uuid(), description: faker.lorem.sentences(), blocks: []};
 
-  const numberOfBlocks = faker.random.number({min: 1, max: 10});
+  const numberOfBlocks = faker.datatype.number({min: 1, max: 10});
 
   for (let b = 0; b < numberOfBlocks; b++) {
     instance.blocks.push(getRandomBlock(b));

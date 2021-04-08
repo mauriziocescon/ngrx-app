@@ -1,11 +1,11 @@
 const faker = require('faker');
 
 exports.getCheckBox = (index) => {
-  const value = faker.random.boolean() ? true : undefined;
-  const required = faker.random.boolean();
+  const value = faker.datatype.boolean() ? true : undefined;
+  const required = faker.datatype.boolean();
 
   let checkBox = {
-    id: faker.random.uuid(),
+    id: faker.datatype.uuid(),
     type: 'check-box',
     order: parseInt(index),
     label: 'COMPONENT.CHECK_BOX.CHECK_BOX_LABEL',

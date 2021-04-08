@@ -2,10 +2,10 @@ const faker = require('faker');
 
 exports.getDatePicker = (index) => {
   const value = faker.date.future().toISOString();
-  const required = faker.random.boolean();
+  const required = faker.datatype.boolean();
 
   let datePicker = {
-    id: faker.random.uuid(),
+    id: faker.datatype.uuid(),
     type: 'date-picker',
     order: parseInt(index),
     label: 'COMPONENT.DATE_PICKER.DATE_PICKER_LABEL',
