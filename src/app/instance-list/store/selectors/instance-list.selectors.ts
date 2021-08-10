@@ -18,10 +18,10 @@ export const getInstances = createSelector(getInstancesState, fromInstanceList.g
 export const isLoading = createSelector(getInstancesState, fromInstanceList.isLoading);
 export const getError = createSelector(getInstancesState, fromInstanceList.getError);
 
-export const getInstanceById = () => {
+export const getInstanceById = (id: string) => {
   return createSelector(
     getInstances,
-    (instances: Instance[], props: { id: string }) => {
-      return instances?.find(instance => instance.id === props.id);
+    (instances: Instance[]) => {
+      return instances?.find(instance => instance.id === id);
     });
 };

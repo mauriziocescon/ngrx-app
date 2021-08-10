@@ -24,11 +24,11 @@ export const getEditedBlockEntities = createSelector(getBlockListState, fromBloc
 export const getEditedBlocks = createSelector(getBlockListState, fromBlockList.getAll);
 export const getTotalEditedBlock = createSelector(getBlockListState, fromBlockList.getTotal);
 
-export const getBlockById = () => {
+export const getBlockById = (id: string) => {
   return createSelector(
     getEditedBlockEntities,
-    (entities: Dictionary<Block>, props: { id: string }) => {
-      return entities[props.id];
+    (entities: Dictionary<Block>) => {
+      return entities[id];
     });
 };
 

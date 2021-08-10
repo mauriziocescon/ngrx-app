@@ -19,7 +19,7 @@ export class BlockListStoreService {
   }
 
   getBlockById(id: string): Observable<Block> {
-    return this.store$.pipe(select(fromInstanceDetailSelectors.getBlockById(), { id }));
+    return this.store$.pipe(select(fromInstanceDetailSelectors.getBlockById(id)));
   }
 
   isLoadingBlocks(): Observable<boolean> {

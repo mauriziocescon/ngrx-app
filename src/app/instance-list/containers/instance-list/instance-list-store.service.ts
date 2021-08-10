@@ -22,7 +22,7 @@ export class InstanceListStoreService {
   }
 
   getInstanceById(id: string): Observable<Instance | undefined> {
-    return this.store$.pipe(select(fromInstanceListSelectors.getInstanceById(), { id }));
+    return this.store$.pipe(select(fromInstanceListSelectors.getInstanceById(id)));
   }
 
   isLoadingInstances(): Observable<boolean> {
