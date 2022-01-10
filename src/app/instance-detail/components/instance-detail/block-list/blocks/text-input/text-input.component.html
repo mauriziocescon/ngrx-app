@@ -16,8 +16,8 @@
                          placeholder="{{ 'COMPONENT.TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | translate }}">
                   <div class="input-group-append" (click)="resetTextInput()">
                 <span class="input-group-text addon">
-                  <span class="fa fa-search" [hidden]="isTextInputNotEmpty"></span>
-                  <span class="fa fa-remove" [hidden]="!isTextInputNotEmpty"></span>
+                  <span class="fas fa-search" [hidden]="isTextInputNotEmpty"></span>
+                  <span class="fas fa-times" [hidden]="!isTextInputNotEmpty"></span>
                 </span>
                   </div>
                 </div>
