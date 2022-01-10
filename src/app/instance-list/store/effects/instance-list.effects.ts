@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
-import { Effect, Actions, ofType, OnRunEffects, EffectNotification } from '@ngrx/effects';
+import { createEffect, Actions, ofType, OnRunEffects, EffectNotification } from '@ngrx/effects';
 
 import { Observable, of } from 'rxjs';
 import {
@@ -17,7 +16,11 @@ import {
   LoadInstancesSuccess,
   LoadInstancesFailure,
 } from '../actions/instance-list.actions';
-import { InstanceListEffectsActionTypes, StartEffects, StopEffects } from '../actions/instance-list-effects.actions';
+import {
+  InstanceListEffectsActionTypes,
+  StartEffects,
+  StopEffects,
+} from '../actions/instance-list-effects.actions';
 
 import { Instance } from '../../models';
 
@@ -30,20 +33,22 @@ export class InstanceListEffects implements OnRunEffects {
               protected instanceList: InstanceListService) {
   }
 
-  @Effect() loadInstances$: Observable<Action> = this.actions$
-    .pipe(
-      ofType<LoadInstances>(InstanceListActionTypes.LOAD_INSTANCES),
-      map(action => action.payload),
-      switchMap((params) => {
-        return this.instanceList.getInstances(params.textSearch)
-          .pipe(
-            switchMap((instances: Instance[]) => {
-              return [new LoadInstancesSuccess({ instances })];
-            }),
-            catchError(error => of(new LoadInstancesFailure({ error }))),
-          );
-      }),
-    );
+  loadInstances$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType<LoadInstances>(InstanceListActionTypes.LOAD_INSTANCES),
+        map(action => action.payload),
+        switchMap((params) => {
+          return this.instanceList.getInstances(params.textSearch)
+            .pipe(
+              switchMap((instances: Instance[]) => {
+                return [new LoadInstancesSuccess({ instances })];
+              }),
+              catchError(error => of(new LoadInstancesFailure({ error }))),
+            );
+        }),
+      );
+  });
 
   ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>): Observable<EffectNotification> {
     return this.actions$

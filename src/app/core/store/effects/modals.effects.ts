@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
 
-import { Observable, from } from 'rxjs';
+import { from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { UIUtilitiesService } from '../../services/ui-utilities.service';
@@ -18,21 +17,25 @@ export class ModalsEffects {
               protected uiUtilities: UIUtilitiesService) {
   }
 
-  @Effect() showModalAlert$: Observable<Action> = this.actions$
-    .pipe(
-      ofType<ShowModalAlert>(ModalAlertActionTypes.SHOW_MODAL_ALERT),
-      map(action => action.payload.modal),
-      switchMap((modalAlert: ModalAlert) => {
-        return from(this.uiUtilities.modalAlert(modalAlert));
-      }),
-    );
+  showModalAlert$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType<ShowModalAlert>(ModalAlertActionTypes.SHOW_MODAL_ALERT),
+        map(action => action.payload.modal),
+        switchMap((modalAlert: ModalAlert) => {
+          return from(this.uiUtilities.modalAlert(modalAlert));
+        }),
+      );
+  });
 
-  @Effect() showModalConfirmer$: Observable<Action> = this.actions$
-    .pipe(
-      ofType<ShowModalConfirmer>(ModalConfirmerActionTypes.SHOW_MODAL_CONFIRMER),
-      map(action => action.payload.modal),
-      switchMap((modalConfirmer: ModalConfirmer) => {
-        return from(this.uiUtilities.modalConfirmer(modalConfirmer));
-      }),
-    );
+  showModalConfirmer$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType<ShowModalConfirmer>(ModalConfirmerActionTypes.SHOW_MODAL_CONFIRMER),
+        map(action => action.payload.modal),
+        switchMap((modalConfirmer: ModalConfirmer) => {
+          return from(this.uiUtilities.modalConfirmer(modalConfirmer));
+        }),
+      );
+  });
 }
