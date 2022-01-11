@@ -37,7 +37,7 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes.block.isFirstChange()) {
+    if (!changes['block'].isFirstChange()) {
       this.unsubscribeToDropdownControlValueChanges();
       this.setupFormControllers();
       this.subscribeToDropdownControlValueChanges();

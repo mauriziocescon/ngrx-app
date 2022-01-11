@@ -42,7 +42,7 @@ export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.effectsStore.startEffects();
-    this.instanceId = this.route.snapshot.paramMap.get('id');
+    this.instanceId = this.route.snapshot.paramMap.get('id') as string;
   }
 
   ngOnDestroy(): void {

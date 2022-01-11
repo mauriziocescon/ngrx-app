@@ -23,7 +23,7 @@ export class ScrollToTopDirective {
   }
 
   @HostListener('click', ['$event'])
-  scrollToTop(event): void {
+  scrollToTop(event: any): void {
     this.document.documentElement.scrollTop = 0;
   }
 }

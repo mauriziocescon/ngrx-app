@@ -15,7 +15,7 @@ import { BlockListStoreService } from '../../../block-list-store.service';
   providers: [],
   template: `
     <app-text-input-cp
-      [block]="block$ | async"
+      [block]="(block$ | async)!"
       (valueDidChange)="valueDidChange($event)">
     </app-text-input-cp>`,
 })

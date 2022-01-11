@@ -26,7 +26,7 @@ export class DatePickerComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes.block.isFirstChange()) {
+    if (!changes['block'].isFirstChange()) {
       const date = this.block.value ? new Date(this.block.value) : new Date();
       this.selectedDate = this.fromModel(date);
     }

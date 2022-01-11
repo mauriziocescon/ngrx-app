@@ -12,7 +12,7 @@ import { InstanceListStoreService } from '../instance-list-store.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-instance-cp
-      [instance]="instance$ | async"
+      [instance]="(instance$ | async)!"
       (instanceSelected)="goTo()">
     </app-instance-cp>
   `,

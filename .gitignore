@@ -6,8 +6,6 @@
 /out-tsc
 # Only exists if Bazel was run
 /bazel-out
-.awcache
-.cache-loader
 /mock-server/db/db.json
 
 # dependencies
@@ -15,7 +13,6 @@
 
 # profiling files
 chrome-profiler-events*.json
-speed-measure-plugin*.json
 
 # IDEs and editors
 /.idea
@@ -35,6 +32,7 @@ speed-measure-plugin*.json
 .history/*
 
 # misc
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage

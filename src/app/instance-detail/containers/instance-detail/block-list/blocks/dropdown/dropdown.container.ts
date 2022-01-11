@@ -15,7 +15,7 @@ import { BlockListStoreService } from '../../../block-list-store.service';
   providers: [],
   template: `
     <app-dropdown-cp
-      [block]="block$ | async"
+      [block]="(block$ | async)!"
       (valueDidChange)="valueDidChange($event)">
     </app-dropdown-cp>`,
 })

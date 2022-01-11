@@ -21,7 +21,7 @@ export const getError = createSelector(getInstancesState, fromInstanceList.getEr
 export const getInstanceById = (id: string) => {
   return createSelector(
     getInstances,
-    (instances: Instance[]) => {
+    (instances: Instance[] | undefined) => {
       return instances?.find(instance => instance.id === id);
     });
 };

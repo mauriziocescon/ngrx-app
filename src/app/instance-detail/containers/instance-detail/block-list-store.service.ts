@@ -18,7 +18,7 @@ export class BlockListStoreService {
   constructor(protected store$: Store<fromInstanceDetailReducers.State>) {
   }
 
-  getBlockById(id: string): Observable<Block> {
+  getBlockById(id: string): Observable<Block | undefined> {
     return this.store$.pipe(select(fromInstanceDetailSelectors.getBlockById(id)));
   }
 

@@ -12,7 +12,7 @@ export class ValidityStateDirective implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.valid.currentValue === true) {
+    if (changes['valid'].currentValue === true) {
       this.removeInvalidSymbol();
       this.addValidSymbol();
     } else {

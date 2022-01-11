@@ -17,9 +17,9 @@ import { SyncStoreService } from '../sync-store.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-next-step-cp
-      [nextStepBtnEnabled]="nextStepBtnEnabled$ | async"
-      [syncing]="syncing$ | async"
-      [syncError]="syncError$ | async"
+      [nextStepBtnEnabled]="(nextStepBtnEnabled$ | async)!"
+      [syncing]="(syncing$ | async)!"
+      [syncError]="(syncError$ | async)!"
       (nextStep)="nextStep()"
       (resetSelections)="reset()"
       (retrySync)="retrySync()">

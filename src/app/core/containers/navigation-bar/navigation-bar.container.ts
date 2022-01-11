@@ -16,7 +16,7 @@ import { AppLanguageService } from '../../services/app-language.service';
   template: `
     <app-navigation-bar-cp
       [languages]="languages"
-      [selectedLanguageId]="language$ | async"
+      [selectedLanguageId]="(language$ | async)!"
       (languageDidChange)="selectLanguage($event)"
       (navigationDidChange)="goTo($event)">
     </app-navigation-bar-cp>`,

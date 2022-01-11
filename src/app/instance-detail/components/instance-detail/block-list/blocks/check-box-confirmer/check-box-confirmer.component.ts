@@ -37,7 +37,7 @@ export class CheckBoxConfirmerComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes.block.isFirstChange()) {
+    if (!changes['block'].isFirstChange()) {
       this.unsubscribeToCheckBoxConfirmerValueChanges();
       this.setupFormControllers();
       this.subscribeToCheckBoxConfirmerControlValueChanges();

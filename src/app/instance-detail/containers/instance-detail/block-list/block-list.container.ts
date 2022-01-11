@@ -23,9 +23,9 @@ import { BlockUtilsService } from './block-utils.service';
   ],
   template: `
     <app-block-list-cp
-      [blocks]="blocks$ | async"
-      [loading]="loading$ | async"
-      [error]="error$ | async"
+      [blocks]="(blocks$ | async)!"
+      [loading]="(loading$ | async)!"
+      [error]="(error$ | async)!"
       (reloadList)="reloadList()">
     </app-block-list-cp>`,
 })
@@ -56,7 +56,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.instanceId) {
+    if (changes['instanceId']) {
       this.blockListStore.clearBlocks();
       this.reloadList();
     }
@@ -105,7 +105,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
       )
       .subscribe(([sync, blocks]) => {
         if (sync.syncRequired === true) {
-          this.blockListStore.syncBlocks(this.instanceId, blocks);
+          this.blockListStore.syncBlocks(this.instanceId, blocks as Block[]);
         }
       });
   }

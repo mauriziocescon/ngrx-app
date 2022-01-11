@@ -15,7 +15,7 @@ import { BlockListStoreService } from '../../../block-list-store.service';
   providers: [],
   template: `
     <app-check-box-cp
-      [block]="block$ | async"
+      [block]="(block$ | async)!"
       (valueDidChange)="valueDidChange($event)">
     </app-check-box-cp>`,
 })

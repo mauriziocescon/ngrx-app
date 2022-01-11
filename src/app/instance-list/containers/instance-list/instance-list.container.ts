@@ -22,9 +22,9 @@ import { InstanceListStoreService } from './instance-list-store.service';
   ],
   template: `
     <app-instance-list-cp
-      [instances]="instances$ | async"
-      [loading]="loading$ | async"
-      [error]="error$ | async"
+      [instances]="(instances$ | async)!"
+      [loading]="(loading$ | async)!"
+      [error]="(error$ | async)!"
       (paramsDidChange)="paramsDidChange($event)"
       (reloadList)="reloadList($event)">
     </app-instance-list-cp>
@@ -73,7 +73,7 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
   }
 
   protected subscribeToFetchErrors(): void {
-    this.modalAlertSubscription = this.error$
+    this.modalAlertSubscription = this.error$!
       .subscribe((err) => {
         if (err) {
           const modalAlert: ModalAlert = {

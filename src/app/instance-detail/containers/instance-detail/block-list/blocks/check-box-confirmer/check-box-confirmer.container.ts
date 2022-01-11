@@ -23,7 +23,7 @@ import { CoreStoreService } from '../../../core-store.service';
   providers: [],
   template: `
     <app-check-box-confirmer-cp
-      [block]="block$ | async"
+      [block]="(block$ | async)!"
       (valueDidChange)="valueDidChange($event)">
     </app-check-box-confirmer-cp>`,
 })
