@@ -69,7 +69,7 @@
     "ngrx-store-freeze": "0.2.4",
     "ngx-infinite-scroll": "13.0.2",
     "ngx-logger": "5.0.11",
-    "parse-link-header": "1.0.1",
+    "parse-link-header": "2.0.0",
     "querystring-es3": "0.2.1",
     "roboto-fontface": "0.10.0",
     "rxjs": "~7.4.0",
