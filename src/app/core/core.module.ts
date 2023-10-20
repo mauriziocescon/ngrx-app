@@ -17,9 +17,6 @@ function createLanguageIdLoader(appLanguage: AppLanguageService): string {
 
 @NgModule({
   imports: [
-    // StoreModule.forFeature(coreFeature),
-    // EffectsModule.forFeature(coreEffects),
-
     SharedModule,
   ],
   declarations: [
