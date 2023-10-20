@@ -17,8 +17,8 @@ function createLanguageIdLoader(appLanguage: AppLanguageService): string {
 
 @NgModule({
   imports: [
-    StoreModule.forFeature(coreFeature),
-    EffectsModule.forFeature(coreEffects),
+    // StoreModule.forFeature(coreFeature),
+    // EffectsModule.forFeature(coreEffects),
 
     SharedModule,
   ],
@@ -27,6 +27,8 @@ function createLanguageIdLoader(appLanguage: AppLanguageService): string {
     ...CONTAINERS,
   ],
   providers: [
+    provideState(coreFeature),
+    provideEffects(coreEffects),
     {
       provide: LOCALE_ID,
       useFactory: (createLanguageIdLoader),

@@ -4,10 +4,10 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule, provideStore } from '@ngrx/store';
+import { EffectsModule, provideEffects } from '@ngrx/effects';
+import { StoreRouterConnectingModule, provideRouterStore } from '@ngrx/router-store';
+import { StoreDevtoolsModule, provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -38,8 +38,8 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 
     StoreModule.forRoot(TOKEN, { metaReducers }),
-    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument({ name: 'NgRx-App DevTools', logOnly: environment.production }),
 
     NgbModule,
@@ -69,7 +69,10 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     AppContainerComponent,
   ],
   providers: [
-    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
+    provideStore(TOKEN, { metaReducers }),
+    provideEffects(),
+    provideRouterStore({ stateKey: 'router', serializer: CustomRouterStateSerializer }),
+    provideStoreDevtools({ name: 'NgRx-App DevTools', logOnly: environment.production }),
     reducerProvider,
   ],
   bootstrap: [
