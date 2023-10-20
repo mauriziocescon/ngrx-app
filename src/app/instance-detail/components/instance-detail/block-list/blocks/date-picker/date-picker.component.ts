@@ -8,7 +8,16 @@ import { DatePickerBlock } from '../../../../../models';
 @Component({
   selector: 'app-date-picker-cp',
   templateUrl: './date-picker.component.html',
-  styleUrls: ['./date-picker.component.scss'],
+  styles: [`
+    @import "../../../../../../../styles";
+
+    .date-picker-component {
+
+      .addon {
+        color: $accent-color;
+      }
+    }
+  `],
 })
 export class DatePickerComponent implements OnInit, OnChanges {
   @Input() block: DatePickerBlock;

@@ -11,7 +11,14 @@ import { TextInputBlock } from '../../../../../models';
 @Component({
   selector: 'app-text-input-cp',
   templateUrl: './text-input.component.html',
-  styleUrls: ['./text-input.component.scss'],
+  styles: [`
+    .text-input-component {
+
+      .addon {
+        color: $accent-color;
+      }
+    }
+  `],
 })
 export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: TextInputBlock;

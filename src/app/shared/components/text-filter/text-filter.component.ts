@@ -9,7 +9,13 @@ import { NGXLogger } from 'ngx-logger';
 @Component({
   selector: 'app-text-filter-cp',
   templateUrl: './text-filter.component.html',
-  styleUrls: ['./text-filter.component.scss'],
+  styles: [`
+    @import "../../../../styles";
+
+    .addon {
+      color: $accent-color;
+    }
+  `],
 })
 export class TextFilterComponent implements OnInit, OnDestroy {
   @Output() valueDidChange: EventEmitter<string>;

@@ -11,7 +11,6 @@ import { CheckBoxBlock } from '../../../../../models';
 @Component({
   selector: 'app-check-box-cp',
   templateUrl: './check-box.component.html',
-  styleUrls: ['./check-box.component.scss'],
 })
 export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: CheckBoxBlock;

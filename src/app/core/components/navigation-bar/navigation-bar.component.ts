@@ -5,7 +5,13 @@ import { AppConstantsService } from '../../services/app-constants.service';
 @Component({
   selector: 'app-navigation-bar-cp',
   templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.scss'],
+  styles: [`
+    .navigation-bar-component {
+      .navbar-brand.custom {
+        color: white;
+      }
+    }
+  `],
 })
 export class NavigationBarComponent {
   @Input() languages: string[];

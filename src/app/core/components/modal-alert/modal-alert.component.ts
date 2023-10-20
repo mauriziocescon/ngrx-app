@@ -5,7 +5,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-modal-alert',
   templateUrl: './modal-alert.component.html',
-  styleUrls: ['./modal-alert.component.scss'],
 })
 export class ModalAlertComponent {
   @Input() title: string;

@@ -5,7 +5,17 @@ import { Block } from '../../../../shared/shared.module';
 @Component({
   selector: 'app-block-list-cp',
   templateUrl: './block-list.component.html',
-  styleUrls: ['./block-list.component.scss'],
+  styles: [`
+    .block-list-component {
+      .block-list-main-content {
+
+        .generic-block {
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+      }
+    }
+  `],
 })
 export class BlockListComponent {
   @Input() blocks: Block[];

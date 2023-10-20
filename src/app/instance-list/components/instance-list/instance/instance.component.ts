@@ -5,7 +5,6 @@ import { Instance } from '../../../models';
 @Component({
   selector: 'app-instance-cp',
   templateUrl: './instance.component.html',
-  styleUrls: ['./instance.component.scss'],
 })
 export class InstanceComponent {
   @Input() instance: Instance;

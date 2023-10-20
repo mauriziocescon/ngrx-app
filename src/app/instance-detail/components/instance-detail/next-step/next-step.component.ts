@@ -3,7 +3,22 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-next-step-cp',
   templateUrl: './next-step.component.html',
-  styleUrls: ['./next-step.component.scss'],
+  styles: [`
+    @import "../../../../../styles";
+
+    .next-step-component {
+      top: 4.5 * $navbar-padding-y;
+      padding-top: 20px;
+
+      .button-row {
+        padding-top: 5px;
+
+        .action-button {
+          min-width: 90px;
+        }
+      }
+    }
+  `],
 })
 export class NextStepComponent {
   @Input() nextStepBtnEnabled: boolean;

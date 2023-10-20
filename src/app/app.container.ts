@@ -12,7 +12,13 @@ import { SwUpdate } from '@angular/service-worker';
       </div>
     </div>
   `,
-  styleUrls: ['./app.container.scss'],
+  styles: [`
+    .app-component {
+      .main-view {
+        padding-top: 4.25rem;
+      }
+    }
+  `],
 })
 export class AppContainerComponent {
 

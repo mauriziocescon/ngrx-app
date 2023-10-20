@@ -11,7 +11,6 @@ import { DropdownBlock } from '../../../../../models';
 @Component({
   selector: 'app-dropdown-cp',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss'],
 })
 export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: DropdownBlock;

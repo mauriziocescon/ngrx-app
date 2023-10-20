@@ -5,7 +5,21 @@ import { Instance } from '../../models';
 @Component({
   selector: 'app-instance-list-cp',
   templateUrl: './instance-list.component.html',
-  styleUrls: ['./instance-list.component.scss'],
+  styles: [`
+    .instance-list-component {
+      padding-top: 10px;
+
+      .list-main-content {
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        .instance {
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+      }
+    }
+  `],
 })
 export class InstanceListComponent {
   @Input() instances: Instance[];

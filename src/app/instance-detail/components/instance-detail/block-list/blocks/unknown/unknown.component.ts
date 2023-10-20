@@ -3,7 +3,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-unknown-cp',
   templateUrl: './unknown.component.html',
-  styleUrls: ['./unknown.component.scss'],
+  styles: [`
+    .unknown-component {
+      padding-top: 10px;
+    }
+  `],
 })
 export class UnknownComponent {
   @Input() block: any;

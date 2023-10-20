@@ -5,7 +5,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-modal-confirmer',
   templateUrl: './modal-confirmer.component.html',
-  styleUrls: ['./modal-confirmer.component.scss'],
 })
 export class ModalConfirmerComponent {
   @Input() title: string;
