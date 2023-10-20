@@ -24,13 +24,13 @@ function createLanguageIdLoader(appLanguage: AppLanguageService): string {
     ...CONTAINERS,
   ],
   providers: [
-    provideState(coreFeature),
-    provideEffects(coreEffects),
     {
       provide: LOCALE_ID,
       useFactory: (createLanguageIdLoader),
       deps: [AppLanguageService],
     },
+    provideState(coreFeature),
+    provideEffects(coreEffects),
   ],
   exports: [
     ...CONTAINERS,
