@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@a
 import { Observable } from 'rxjs';
 import { Update } from '@ngrx/entity';
 
-import { BlockComponent } from '../../../../../../shared/shared.module';
+import { BlockComponent } from '../../../../../../shared';
 
 import { TextInputBlock } from '../../../../../models';
 

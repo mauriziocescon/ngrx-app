@@ -4,7 +4,7 @@ import {
   Block,
   BlockType,
   IBlockUtils,
-} from '../../../../shared/shared.module';
+} from '../../../../shared';
 
 import {
   UnknownComponent,

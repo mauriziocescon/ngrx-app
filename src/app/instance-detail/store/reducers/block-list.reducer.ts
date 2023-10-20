@@ -3,7 +3,7 @@ import { createEntityAdapter, Dictionary, EntityAdapter, EntityState } from '@ng
 
 import { BlockListActionTypes, BlockListActions } from '../actions/block-list.actions';
 
-import { Block } from '../../../shared/shared.module';
+import { Block } from '../../../shared';
 
 export interface State extends EntityState<Block> {
   fetchedBlocks: Block[] | undefined;

@@ -1,9 +1,5 @@
-import { GenericBlockContainerComponent } from './generic-block/generic-block.container';
+import { GenericBlockContainerComponent } from './generic-block.container';
 
 export const CONTAINERS = [
   GenericBlockContainerComponent,
 ];
-
-export {
-  GenericBlockContainerComponent,
-};

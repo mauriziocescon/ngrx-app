@@ -2,7 +2,7 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { StoreModule, provideState } from '@ngrx/store';
 import { EffectsModule, provideEffects } from '@ngrx/effects';
 
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../shared';
 
 import { COMPONENTS } from './components';
 import { CONTAINERS } from './containers';

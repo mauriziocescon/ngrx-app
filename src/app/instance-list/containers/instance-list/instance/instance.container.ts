@@ -34,7 +34,7 @@ export class InstanceContainerComponent implements OnInit, OnDestroy {
   }
 
   goTo(): void {
-    this.router.navigate(['/instance-detail', this.instanceId]);
+    this.router.navigateByUrl(`/instance-detail/${this.instanceId}`);
   }
 
   protected setupAsyncObs(): void {

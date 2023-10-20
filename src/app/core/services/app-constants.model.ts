@@ -1,4 +1,4 @@
-import { Enum } from '../../shared/shared.module';
+import { Enum } from '../../shared';
 
 import { environment } from '../../../environments/environment';
 

@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
 
 import { ModalAlert, ModalStoreService } from '../../../../core';
-import { Block, BLOCK_UTILS_TOKEN } from '../../../../shared/shared.module';
+import { Block, BLOCK_UTILS_TOKEN } from '../../../../shared';
 
 import { BlockListStoreService } from '../block-list-store.service';
 import { SyncStoreService } from '../sync-store.service';

@@ -1,6 +1,9 @@
 import { InjectionToken } from '@angular/core';
 
-import { IBlockUtils } from './utils';
+import { Block } from '../models';
 
-export { IBlockUtils };
 export const BLOCK_UTILS_TOKEN = new InjectionToken<IBlockUtils>('BlockUtilsService');
+
+export interface IBlockUtils {
+  getComponentForBlock(block: Block): any;
+}

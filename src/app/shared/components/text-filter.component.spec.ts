@@ -7,10 +7,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 
 import { StoreModule, Store, combineReducers } from '@ngrx/store';
-import * as fromRoot from '../../../reducers';
+import * as fromRoot from '../../reducers';
 
-import { CoreModule } from '../../../core';
-import { SharedModule, TextFilterComponent } from '../../../shared/shared.module';
+import { CoreModule } from '../../core';
+import { SharedModule, TextFilterComponent } from '../shared.module';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');

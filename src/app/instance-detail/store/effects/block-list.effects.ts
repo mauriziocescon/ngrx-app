@@ -9,7 +9,7 @@ import {
   switchMap,
 } from 'rxjs/operators';
 
-import { Block } from '../../../shared/shared.module';
+import { Block } from '../../../shared';
 
 import {
   BlockListActionTypes,
@@ -33,10 +33,6 @@ import { BlockListService } from '../services';
 @Injectable()
 export class BlockListEffects {
 
-  constructor(protected actions$: Actions,
-              protected blockList: BlockListService) {
-  }
-
   loadBlocks$ = createEffect(() => {
     return this.actions$
       .pipe(
@@ -53,7 +49,6 @@ export class BlockListEffects {
         }),
       );
   });
-
   syncRequired$ = createEffect(() => {
     return this.actions$
       .pipe(
@@ -61,7 +56,6 @@ export class BlockListEffects {
         map(() => new SyncRequired(Date.now())),
       );
   });
-
   syncBlocks$ = createEffect(() => {
     return this.actions$
       .pipe(
@@ -86,4 +80,8 @@ export class BlockListEffects {
         }),
       );
   });
+
+  constructor(protected actions$: Actions,
+              protected blockList: BlockListService) {
+  }
 }

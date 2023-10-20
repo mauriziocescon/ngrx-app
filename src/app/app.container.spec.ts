@@ -14,7 +14,7 @@ import { StoreModule, Store, combineReducers } from '@ngrx/store';
 import * as fromRoot from './reducers';
 
 import { CoreModule } from './core';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './shared';
 
 import { AppContainerComponent } from './app.container';
 

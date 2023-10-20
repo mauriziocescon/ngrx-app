@@ -18,7 +18,7 @@ import { TOKEN, reducerProvider, metaReducers } from './reducers';
 import { CustomRouterStateSerializer } from './reducers/route-util';
 
 import { CoreModule } from './core';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './shared';
 
 import { AppContainerComponent } from './app.container';
 

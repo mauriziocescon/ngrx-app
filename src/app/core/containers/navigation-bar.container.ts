@@ -35,7 +35,7 @@ export class NavigationBarContainerComponent {
   }
 
   goTo(route: { path: string }): void {
-    this.router.navigate([route.path]);
+    this.router.navigateByUrl(route.path);
   }
 
   protected setupAsyncObs(): void {

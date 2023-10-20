@@ -1,6 +1,6 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 
-import { Block } from '../../../../shared/shared.module';
+import { Block } from '../../../../shared';
 
 @Component({
   selector: 'app-block-list-cp',
@@ -18,7 +18,8 @@ import { Block } from '../../../../shared/shared.module';
       </div>
       <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.BLOCK_LIST.LOADING" | translate }}</div>
       <div class="full-width-message" [hidden]="!hasNoData">{{ "COMPONENT.BLOCK_LIST.NO_RESULT" | translate }}</div>
-      <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">{{ "COMPONENT.BLOCK_LIST.RETRY" | translate }}</div>
+      <div class="full-width-message" [hidden]="!shouldRetry"
+           (click)="loadList()">{{ "COMPONENT.BLOCK_LIST.RETRY" | translate }}</div>
       <div class="go-up" appScrollToTop></div>
     </div>`,
   styles: [`

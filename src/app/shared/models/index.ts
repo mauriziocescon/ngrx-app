@@ -1,9 +1,3 @@
-import { Block } from './block.model';
-import { BlockType } from './block-types';
-import { BlockComponent } from './generic-block.model';
-
-export {
-  Block,
-  BlockType,
-  BlockComponent,
-};
+export { Block } from './block.model';
+export { BlockType } from './block-types';
+export { BlockComponent } from './generic-block.model';

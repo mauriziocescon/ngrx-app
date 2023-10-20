@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { Block } from '../../../shared/shared.module';
+import { Block } from '../../../shared';
 
 export enum BlockListActionTypes {
   LOAD_BLOCKS = '[BlockList] Load blocks',

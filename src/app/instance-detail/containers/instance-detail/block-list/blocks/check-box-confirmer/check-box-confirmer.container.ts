@@ -11,7 +11,7 @@ import {
   ModalStoreService,
 } from '../../../../../../core';
 
-import { BlockComponent } from '../../../../../../shared/shared.module';
+import { BlockComponent } from '../../../../../../shared';
 
 import { CheckBoxConfirmerBlock } from '../../../../../models';
 

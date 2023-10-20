@@ -11,7 +11,8 @@ import { NGXLogger } from 'ngx-logger';
   template: `
     <form [formGroup]="searchForm">
       <div class="input-group">
-        <input type="text" class="form-control" formControlName="textFilter" placeholder="{{ 'COMPONENT.TEXT_FILTER.PLACEHOLDER' | translate }}">
+        <input type="text" class="form-control" formControlName="textFilter"
+               placeholder="{{ 'COMPONENT.TEXT_FILTER.PLACEHOLDER' | translate }}">
         <div class="input-group-append" (click)="resetTextFilter()">
       <span class="input-group-text addon">
         <span class="fas fa-search" [hidden]="isTextFilterNotEmpty"></span>
@@ -21,7 +22,7 @@ import { NGXLogger } from 'ngx-logger';
       </div>
     </form>`,
   styles: [`
-    @import "../../../../styles";
+    @import "../../../styles";
 
     .addon {
       color: $accent-color;
@@ -32,7 +33,7 @@ export class TextFilterComponent implements OnInit, OnDestroy {
   @Output() valueDidChange: EventEmitter<string>;
 
   searchForm: FormGroup;
-  protected searchControl: FormControl;
+  protected searchControl: FormControl<string>;
 
   protected searchControlSubscription: Subscription;
 
@@ -42,7 +43,7 @@ export class TextFilterComponent implements OnInit, OnDestroy {
   }
 
   get isTextFilterNotEmpty(): boolean {
-    return this.searchControl.value;
+    return this.searchControl.value !== undefined;
   }
 
   ngOnInit(): void {
@@ -66,20 +67,14 @@ export class TextFilterComponent implements OnInit, OnDestroy {
 
     this.searchControlSubscription = this.searchControl
       .valueChanges
-      .pipe(
-        debounceTime(1000),
-      )
-      .subscribe((value: string) => {
-          this.valueDidChange.emit(value);
-        },
-        (e) => {
-          this.logger.error(e.toString());
-        });
+      .pipe(debounceTime(1000))
+      .subscribe({
+        next: value => this.valueDidChange.emit(value),
+        error: e => this.logger.error(e.toString()),
+      });
   }
 
   protected unsubscribeToSearchControlValueChanges(): void {
-    if (this.searchControlSubscription) {
-      this.searchControlSubscription.unsubscribe();
-    }
+    this.searchControlSubscription?.unsubscribe();
   }
 }

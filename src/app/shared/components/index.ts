@@ -1,9 +1,5 @@
-import { TextFilterComponent } from './text-filter/text-filter.component';
+import { TextFilterComponent } from './text-filter.component';
 
 export const COMPONENTS = [
   TextFilterComponent,
 ];
-
-export {
-  TextFilterComponent,
-};

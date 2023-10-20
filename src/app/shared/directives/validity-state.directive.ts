@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, inject, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: '[appValidityState]',
@@ -6,8 +6,10 @@ import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } fro
 export class ValidityStateDirective implements OnChanges {
   @Input() valid: boolean;
 
-  constructor(private el: ElementRef,
-              private renderer: Renderer2) {
+  el = inject(ElementRef);
+  renderer = inject(Renderer2);
+
+  constructor() {
     this.renderer.addClass(this.el.nativeElement, 'fa');
   }
 

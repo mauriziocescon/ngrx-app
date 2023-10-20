@@ -3,7 +3,7 @@ import { Update } from '@ngrx/entity';
 
 import { Observable } from 'rxjs';
 
-import { BlockComponent } from '../../../../../../shared/shared.module';
+import { BlockComponent } from '../../../../../../shared';
 
 import { CheckBoxBlock } from '../../../../../models';
 

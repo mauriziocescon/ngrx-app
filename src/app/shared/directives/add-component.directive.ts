@@ -1,9 +1,8 @@
-import { Directive, ViewContainerRef } from '@angular/core';
+import { Directive, inject, ViewContainerRef } from '@angular/core';
 
 @Directive({
   selector: '[appAddComponent]',
 })
 export class AddComponentDirective {
-  constructor(public viewContainerRef: ViewContainerRef) {
-  }
+  viewContainerRef = inject(ViewContainerRef);
 }

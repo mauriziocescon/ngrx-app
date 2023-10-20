@@ -1,4 +1,4 @@
-import { Block } from '../../../shared/shared.module';
+import { Block } from '../../../shared';
 
 export interface CheckBoxConfirmerBlock extends Block {
   label: string;

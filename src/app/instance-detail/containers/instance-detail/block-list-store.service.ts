@@ -4,7 +4,7 @@ import { Update } from '@ngrx/entity';
 
 import { Observable } from 'rxjs';
 
-import { Block } from '../../../shared/shared.module';
+import { Block } from '../../../shared';
 
 import * as blockList from '../../store/actions/block-list.actions';
 

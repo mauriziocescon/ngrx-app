@@ -6,38 +6,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TranslateModule } from '@ngx-translate/core';
 
-import {
-  COMPONENTS,
-  TextFilterComponent,
-} from './components';
-
-import {
-  CONTAINERS,
-  GenericBlockContainerComponent,
-} from './containers';
-
-import {
-  DIRECTIVES,
-  AddComponentDirective,
-  ScrollToTopDirective,
-  ValidityStateDirective,
-} from './directives';
-
-import {
-  Block,
-  BlockType,
-  BlockComponent,
-} from './models';
-
-import {
-  IBlockUtils,
-  BLOCK_UTILS_TOKEN,
-} from './tokens';
-
-import {
-  Enum,
-  KeyValue,
-} from './utilities';
+import { COMPONENTS } from './components';
+import { CONTAINERS } from './containers';
+import { DIRECTIVES } from './directives';
 
 @NgModule({
   imports: [
@@ -53,7 +24,6 @@ import {
     ...CONTAINERS,
     ...DIRECTIVES,
   ],
-  providers: [],
   exports: [
     CommonModule,
     FormsModule,
@@ -68,23 +38,3 @@ import {
 })
 export class SharedModule {
 }
-
-export {
-  TextFilterComponent,
-
-  GenericBlockContainerComponent,
-
-  AddComponentDirective,
-  ScrollToTopDirective,
-  ValidityStateDirective,
-
-  Block,
-  BlockType,
-  BlockComponent,
-
-  IBlockUtils,
-  BLOCK_UTILS_TOKEN,
-
-  Enum,
-  KeyValue,
-};
