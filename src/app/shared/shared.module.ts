@@ -55,7 +55,6 @@ import {
     ...CONTAINERS,
     ...DIRECTIVES,
   ],
-  entryComponents: [],
   providers: [],
   exports: [
     CommonModule,

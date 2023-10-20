@@ -27,10 +27,6 @@ import { SERVICES } from './services';
     ...COMPONENTS,
     ...CONTAINERS,
   ],
-  entryComponents: [
-    UnknownComponent,
-    ...CONTAINERS,
-  ],
   providers: [
     reducerProvider,
     ...STORE_SERVICES,

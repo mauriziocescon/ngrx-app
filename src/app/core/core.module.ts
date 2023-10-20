@@ -35,10 +35,6 @@ export function createLanguageIdLoader(appLanguage: AppLanguageService): string 
     ...COMPONENTS,
     ...CONTAINERS,
   ],
-  entryComponents: [
-    ModalAlertComponent,
-    ModalConfirmerComponent,
-  ],
   exports: [
     NavigationBarContainerComponent,
   ],

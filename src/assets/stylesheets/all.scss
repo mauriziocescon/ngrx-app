@@ -10,7 +10,7 @@
 $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 $roboto-font-path: "~roboto-fontface/fonts";
 
-@import "~bootstrap/scss/bootstrap";
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~roboto-fontface/css/roboto/sass/roboto-fontface";
+@import "bootstrap/scss/bootstrap";
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/solid";
+@import "roboto-fontface/css/roboto/sass/roboto-fontface";

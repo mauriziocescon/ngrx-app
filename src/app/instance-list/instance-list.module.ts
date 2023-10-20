@@ -30,7 +30,6 @@ import {
     ...COMPONENTS,
     ...CONTAINERS,
   ],
-  entryComponents: [],
   providers: [
     reducerProvider,
     ...SERVICES,
