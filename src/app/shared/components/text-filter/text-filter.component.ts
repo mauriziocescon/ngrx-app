@@ -8,7 +8,18 @@ import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-text-filter-cp',
-  templateUrl: './text-filter.component.html',
+  template: `
+    <form [formGroup]="searchForm">
+      <div class="input-group">
+        <input type="text" class="form-control" formControlName="textFilter" placeholder="{{ 'COMPONENT.TEXT_FILTER.PLACEHOLDER' | translate }}">
+        <div class="input-group-append" (click)="resetTextFilter()">
+      <span class="input-group-text addon">
+        <span class="fas fa-search" [hidden]="isTextFilterNotEmpty"></span>
+        <span class="fas fa-times" [hidden]="!isTextFilterNotEmpty"></span>
+      </span>
+        </div>
+      </div>
+    </form>`,
   styles: [`
     @import "../../../../styles";
 
