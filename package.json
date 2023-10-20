@@ -72,6 +72,7 @@
     "parse-link-header": "1.0.1",
     "querystring-es3": "0.2.1",
     "roboto-fontface": "0.10.0",
+    "@popperjs/core": "2.11.5",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "url": "0.11.0",
