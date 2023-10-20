@@ -10,7 +10,34 @@ import { CheckBoxBlock } from '../../../../../models';
 
 @Component({
   selector: 'app-check-box-cp',
-  templateUrl: './check-box.component.html',
+  template: `
+    <div class="container-fluid check-box-component">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <span>{{ "COMPONENT.CHECK_BOX.HEADER" | translate }}</span>&nbsp;
+              <span appValidityState [valid]="block.valid"></span>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="checkBoxForm">
+                <div class="form-group row">
+                  <label for="{{ block.id }}" class="col-sm-2 col-form-label">{{ block.label | translate }}</label>
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" id="{{ block.id }}" formControlName="checkBox">
+                        {{ block.description | translate }}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`,
 })
 export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: CheckBoxBlock;

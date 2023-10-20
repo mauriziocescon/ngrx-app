@@ -4,7 +4,29 @@ import { Instance } from '../../models';
 
 @Component({
   selector: 'app-instance-list-cp',
-  templateUrl: './instance-list.component.html',
+  template: `
+    <div class="container-fluid instance-list-component">
+
+      <div class="row">
+        <div class="col-12">
+          <app-text-filter-cp (valueDidChange)="textSearchValueDidChange($event)"></app-text-filter-cp>
+        </div>
+      </div>
+
+      <div class="row list-main-content" *ngIf="showData">
+        <div class="col-12 col-sm-6 instance" *ngFor="let instanceId of dataSource; trackBy: trackByBlock">
+          <app-instance-ct [instanceId]="instanceId"></app-instance-ct>
+        </div>
+        <div class="col-12">
+          <div class="full-width-message">{{ "COMPONENT.INSTANCE_LIST.LOAD_COMPLETED" | translate }}</div>
+        </div>
+      </div>
+
+      <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.INSTANCE_LIST.LOADING" | translate }}</div>
+      <div class="full-width-message" [hidden]="!hasNoData">{{ "COMPONENT.INSTANCE_LIST.NO_RESULT" | translate }}</div>
+      <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">{{ "COMPONENT.INSTANCE_LIST.RETRY" | translate }}</div>
+      <div class="go-up" appScrollToTop></div>
+    </div>`,
   styles: [`
     .instance-list-component {
       padding-top: 10px;
