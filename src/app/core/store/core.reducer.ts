@@ -46,7 +46,7 @@ export const coreFeature = createFeature({
       modalConfirmers: { ...state.modalConfirmers, [action.id]: undefined },
       modalConfirmerResults: { ...state.modalConfirmerResults, [action.id]: ModalConfirmerResultType.Positive },
     })),
-    on(coreActions.dismissModalConfirmerWithPositiveResult, (state, action) => ({
+    on(coreActions.dismissModalConfirmerWithNegativeResult, (state, action) => ({
       ...state,
       modalConfirmers: { ...state.modalConfirmers, [action.id]: undefined },
       modalConfirmerResults: { ...state.modalConfirmerResults, [action.id]: ModalConfirmerResultType.Negative },
