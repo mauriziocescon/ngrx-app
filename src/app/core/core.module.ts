@@ -1,6 +1,6 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { StoreModule, provideState } from '@ngrx/store';
-import { EffectsModule, provideEffects } from '@ngrx/effects';
+import { provideState } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
 
 import { SharedModule } from '../shared';
 
