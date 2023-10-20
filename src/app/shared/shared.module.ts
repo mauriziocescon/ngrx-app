@@ -37,8 +37,6 @@ import {
 import {
   Enum,
   KeyValue,
-  RouterStateUrl,
-  CustomRouterStateSerializer,
 } from './utilities';
 
 @NgModule({
@@ -89,6 +87,4 @@ export {
 
   Enum,
   KeyValue,
-  RouterStateUrl,
-  CustomRouterStateSerializer,
 };

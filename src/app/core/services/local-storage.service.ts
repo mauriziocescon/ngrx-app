@@ -11,7 +11,9 @@ import { AppConstantsService } from './app-constants.service';
  * local storage for the
  * application
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class LocalStorageService {
   protected prefix: string;
 

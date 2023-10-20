@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { BlockListStoreService } from './block-list-store.service';
-import { CoreStoreService } from './core-store.service';
 import { EffectsStoreService } from './effects-store.service';
 import { SyncStoreService } from './sync-store.service';
 
@@ -14,7 +13,6 @@ import { SyncStoreService } from './sync-store.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     BlockListStoreService,
-    CoreStoreService,
     EffectsStoreService,
     SyncStoreService,
   ],

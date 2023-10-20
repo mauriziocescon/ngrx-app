@@ -1,17 +1,14 @@
 import { InjectionToken } from '@angular/core';
-import { ActionReducer, ActionReducerMap, combineReducers, MetaReducer } from '@ngrx/store';
+import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { storeFreeze } from 'ngrx-store-freeze';
 import * as fromRouter from '@ngrx/router-store';
 
-import * as fromCore from '../core/store/reducers';
-
-import { RouterStateUrl } from '../shared/shared.module';
+import { RouterStateUrl } from './route-util';
 
 import { environment } from '../../environments/environment';
 
 export interface State {
   router: fromRouter.RouterReducerState<RouterStateUrl>;
-  core: fromCore.CoreState;
 }
 
 // -----------------
@@ -21,7 +18,6 @@ export const TOKEN = new InjectionToken<ActionReducerMap<State>>('AppReducers');
 export function getReducers(): ActionReducerMap<State, any> {
   return {
     router: fromRouter.routerReducer,
-    core: combineReducers(fromCore.reducers),
   };
 }
 
@@ -31,18 +27,16 @@ export const reducerProvider = [
 
 // console.log all actions
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
-  return (state: State | undefined, action: any) => {
-    console.log('state', state);
+  return (state, action) => {
+    const result = reducer(state, action);
+    console.groupCollapsed(action.type);
+    console.log('prev state', state);
     console.log('action', action);
+    console.log('next state', result);
+    console.groupEnd();
 
-    return reducer(state, action);
+    return result;
   };
 }
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [logger, storeFreeze] : [];
-
-export {
-  getAllModalAlerts,
-  getAllModalConfirmers,
-  getModalConfirmerResults,
-} from '../core/store/selectors';

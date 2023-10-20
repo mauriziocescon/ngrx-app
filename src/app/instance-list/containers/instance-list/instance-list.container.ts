@@ -4,11 +4,10 @@ import { Observable, Subscription } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { ModalAlert } from '../../../core/core.module';
+import { ModalAlert, ModalStoreService } from '../../../core';
 
 import { Instance } from '../../models';
 
-import { CoreStoreService } from './core-store.service';
 import { EffectsStoreService } from './effects-store.service';
 import { InstanceListStoreService } from './instance-list-store.service';
 
@@ -16,7 +15,6 @@ import { InstanceListStoreService } from './instance-list-store.service';
   selector: 'app-instance-list-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    CoreStoreService,
     EffectsStoreService,
     InstanceListStoreService,
   ],
@@ -39,7 +37,7 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
   protected modalAlertSubscription: Subscription;
 
   constructor(protected translate: TranslateService,
-              protected coreStore: CoreStoreService,
+              protected modalStore: ModalStoreService,
               protected effectsStore: EffectsStoreService,
               protected instanceListStore: InstanceListStoreService) {
     this.alertId = '1';
@@ -82,14 +80,12 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
             message: err,
             buttonLabel: this.translate.instant('CONTAINER.INSTANCE_LIST.ALERT_BUTTON'),
           };
-          this.coreStore.showModalAlert(modalAlert);
+          this.modalStore.showModalAlert(modalAlert);
         }
       });
   }
 
   protected unsubscribeToModalConfirmerResult(): void {
-    if (this.modalAlertSubscription) {
-      this.modalAlertSubscription.unsubscribe();
-    }
+    this.modalAlertSubscription?.unsubscribe();
   }
 }

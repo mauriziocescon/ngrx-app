@@ -4,7 +4,9 @@ import * as parseLinkHeader from 'parse-link-header';
 
 import { AppConstantsService } from './app-constants.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class UtilitiesService {
 
   constructor(protected appConstants: AppConstantsService) {

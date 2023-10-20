@@ -15,10 +15,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import { TOKEN, reducerProvider, metaReducers } from './reducers';
-import { EFFECTS } from './core/store/effects';
+import { CustomRouterStateSerializer } from './reducers/route-util';
 
-import { CoreModule } from './core/core.module';
-import { SharedModule, CustomRouterStateSerializer } from './shared/shared.module';
+import { CoreModule } from './core';
+import { SharedModule } from './shared/shared.module';
 
 import { AppContainerComponent } from './app.container';
 
@@ -39,7 +39,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
 
     StoreModule.forRoot(TOKEN, { metaReducers }),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
-    EffectsModule.forRoot(EFFECTS),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ name: 'NgRx-App DevTools', logOnly: environment.production }),
 
     NgbModule,
@@ -55,14 +55,14 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
       level: !environment.production ? NgxLoggerLevel.ERROR : NgxLoggerLevel.DEBUG,
       serverLogLevel: NgxLoggerLevel.LOG,
     }),
-    CoreModule.forRoot(),
+    CoreModule,
     SharedModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
   declarations: [

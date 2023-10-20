@@ -7,7 +7,9 @@ import * as Constants from './app-constants.model';
  * saved in app-constants.model
  * grouped by field
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AppConstantsService {
   protected api: Constants.Api;
   protected application: Constants.Application;

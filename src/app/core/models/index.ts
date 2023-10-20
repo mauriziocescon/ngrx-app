@@ -1,11 +1,4 @@
-import { Modal } from './modals/modal.model';
-import { ModalAlert } from './modals/modal-alert.model';
-import { ModalConfirmer } from './modals/modal-confirmer.model';
-import { ModalConfirmerResultType } from './modals/modal-confirmer-result-types';
-
-export {
-  Modal,
-  ModalAlert,
-  ModalConfirmer,
-  ModalConfirmerResultType,
-};
+export * from './modal.model';
+export * from './modal-alert.model';
+export * from './modal-confirmer.model';
+export * from './modal-confirmer-result-types';

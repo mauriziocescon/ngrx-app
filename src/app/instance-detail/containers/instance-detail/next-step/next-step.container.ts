@@ -6,10 +6,9 @@ import { Observable, Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
 
-import { ModalAlert } from '../../../../core/core.module';
+import { ModalAlert, ModalStoreService } from '../../../../core';
 
 import { BlockListStoreService } from '../block-list-store.service';
-import { CoreStoreService } from '../core-store.service';
 import { SyncStoreService } from '../sync-store.service';
 
 @Component({
@@ -40,7 +39,7 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
               protected translate: TranslateService,
               protected logger: NGXLogger,
               protected blockListStore: BlockListStoreService,
-              protected coreStore: CoreStoreService,
+              protected modalStore: ModalStoreService,
               protected syncStore: SyncStoreService) {
     this.mAlertSyncErrorId = 'mAlertSyncErrorId';
   }
@@ -61,7 +60,7 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
       message: this.translate.instant('CONTAINER.NEXT_STEP.DONE'),
       buttonLabel: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_BUTTON'),
     };
-    this.coreStore.showModalAlert(modalAlert);
+    this.modalStore.showModalAlert(modalAlert);
     this.location.back();
   }
 
@@ -83,7 +82,7 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
             message: err,
             buttonLabel: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_BUTTON'),
           };
-          this.coreStore.showModalAlert(modalAlert);
+          this.modalStore.showModalAlert(modalAlert);
         }
       });
   }
@@ -99,8 +98,6 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
   }
 
   protected unsubscribeAll(): void {
-    if (this.modalAlertSyncErrorSubscription) {
-      this.modalAlertSyncErrorSubscription.unsubscribe();
-    }
+    this.modalAlertSyncErrorSubscription?.unsubscribe();
   }
 }

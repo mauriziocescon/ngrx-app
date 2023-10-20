@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+import localeEn from '@angular/common/locales/en';
+import localeIt from '@angular/common/locales/it';
 import { Store } from '@ngrx/store';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import * as fromCore from '../store/reducers';
-import * as language from '../store/actions/language.actions';
-
 import { AppConstantsService } from './app-constants.service';
 import { LocalStorageService } from './local-storage.service';
 
-import localeDe from '@angular/common/locales/de';
-import localeEn from '@angular/common/locales/en';
-import localeIt from '@angular/common/locales/it';
+import { coreActions } from '../store/core.actions';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AppLanguageService {
   protected selectedLanguageId: string;
 
-  constructor(protected store$: Store<fromCore.CoreState>,
+  constructor(protected store$: Store,
               protected translate: TranslateService,
               protected appConstants: AppConstantsService,
               protected localStorage: LocalStorageService) {
@@ -36,12 +36,12 @@ export class AppLanguageService {
     if (localStorageLang && this.appConstants.Languages.SUPPORTED_LANG.indexOf(localStorageLang) !== -1) {
       this.selectedLanguageId = localStorageLang;
       this.registerLocale();
-      this.store$.dispatch(new language.SetLanguage(this.selectedLanguageId));
+      this.store$.dispatch(coreActions.setLanguage({ lang: this.selectedLanguageId }));
     } else {
       this.selectedLanguageId = this.appConstants.Languages.SUPPORTED_LANG.indexOf(browserLang) === -1 ? defaultLang : browserLang;
       this.registerLocale();
       this.localStorage.setData(this.appConstants.LocalStorageKey.LANGUAGE_ID, this.selectedLanguageId);
-      this.store$.dispatch(new language.SetLanguage(this.selectedLanguageId));
+      this.store$.dispatch(coreActions.setLanguage({ lang: this.selectedLanguageId }));
     }
   }
 
@@ -57,7 +57,7 @@ export class AppLanguageService {
       this.selectedLanguageId = languageId;
       this.localStorage.setData(this.appConstants.LocalStorageKey.LANGUAGE_ID, this.selectedLanguageId);
       this.registerLocale();
-      this.store$.dispatch(new language.SetLanguage(this.selectedLanguageId));
+      this.store$.dispatch(coreActions.setLanguage({ lang: this.selectedLanguageId }));
       this.translate.use(languageId);
       location.reload();
     }

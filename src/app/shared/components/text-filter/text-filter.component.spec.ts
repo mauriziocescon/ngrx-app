@@ -9,7 +9,7 @@ import { LoggerTestingModule } from 'ngx-logger/testing';
 import { StoreModule, Store, combineReducers } from '@ngrx/store';
 import * as fromRoot from '../../../reducers';
 
-import { CoreModule } from '../../../core/core.module';
+import { CoreModule } from '../../../core';
 import { SharedModule, TextFilterComponent } from '../../../shared/shared.module';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
@@ -33,7 +33,7 @@ describe('TextFilterComponent', () => {
         }),
         LoggerTestingModule,
         StoreModule.forRoot(fromRoot.TOKEN),
-        CoreModule.forRoot(),
+        CoreModule,
         SharedModule,
       ],
       providers: [

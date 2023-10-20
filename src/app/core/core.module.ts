@@ -1,79 +1,41 @@
-import { NgModule, Optional, SkipSelf, ModuleWithProviders, LOCALE_ID } from '@angular/core';
-import { CurrencyPipe, DatePipe, DecimalPipe, PercentPipe } from '@angular/common';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { StoreModule, provideState } from '@ngrx/store';
+import { EffectsModule, provideEffects } from '@ngrx/effects';
 
 import { SharedModule } from '../shared/shared.module';
 
-import * as languageActions from './store/actions/language.actions';
-import * as modalAlertsActions from './store/actions/modal-alert.actions';
-import * as modalConfirmersActions from './store/actions/modal-confirmer.actions';
+import { COMPONENTS } from './components';
+import { CONTAINERS } from './containers';
+import { AppLanguageService } from './services';
 
-import {
-  COMPONENTS,
-  ModalAlertComponent,
-  ModalConfirmerComponent,
-} from './components';
+import * as coreEffects from './store/core.effects';
+import { coreFeature } from './store/core.reducer';
 
-import {
-  CONTAINERS,
-  NavigationBarContainerComponent,
-} from './containers';
-
-import {
-  SERVICES,
-  AppLanguageService,
-} from './services';
-
-export function createLanguageIdLoader(appLanguage: AppLanguageService): string {
+function createLanguageIdLoader(appLanguage: AppLanguageService): string {
   return appLanguage.getLanguageId();
 }
 
 @NgModule({
   imports: [
+    StoreModule.forFeature(coreFeature),
+    EffectsModule.forFeature(coreEffects),
+
     SharedModule,
   ],
   declarations: [
     ...COMPONENTS,
     ...CONTAINERS,
   ],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useFactory: (createLanguageIdLoader),
+      deps: [AppLanguageService],
+    },
+  ],
   exports: [
-    NavigationBarContainerComponent,
+    ...CONTAINERS,
   ],
 })
 export class CoreModule {
-
-  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
-    if (parentModule) {
-      throw new Error(
-        'CoreModule is already loaded. Import it in the AppModule only');
-    }
-  }
-
-  static forRoot(): ModuleWithProviders<CoreModule> {
-    return {
-      ngModule: CoreModule,
-      providers: [
-        CurrencyPipe,
-        DatePipe,
-        DecimalPipe,
-        PercentPipe,
-
-        ...SERVICES,
-        {
-          provide: LOCALE_ID,
-          useFactory: (createLanguageIdLoader),
-          deps: [AppLanguageService],
-        },
-      ],
-    };
-  }
 }
-
-export {
-  languageActions,
-  modalAlertsActions,
-  modalConfirmersActions,
-};
-
-export * from './models';
-
-export * from './services';

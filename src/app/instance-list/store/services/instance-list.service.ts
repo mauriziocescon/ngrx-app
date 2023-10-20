@@ -7,7 +7,7 @@ import {
   map,
 } from 'rxjs/operators';
 
-import { AppConstantsService } from '../../../core/core.module';
+import { AppConstantsService } from '../../../core';
 
 import { Instance } from '../../models';
 

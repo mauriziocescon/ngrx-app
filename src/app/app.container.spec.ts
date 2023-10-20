@@ -13,7 +13,7 @@ import { LoggerTestingModule } from 'ngx-logger/testing';
 import { StoreModule, Store, combineReducers } from '@ngrx/store';
 import * as fromRoot from './reducers';
 
-import { CoreModule } from './core/core.module';
+import { CoreModule } from './core';
 import { SharedModule } from './shared/shared.module';
 
 import { AppContainerComponent } from './app.container';
@@ -42,7 +42,7 @@ describe('AppContainerComponent', () => {
         }),
         LoggerTestingModule,
         StoreModule.forRoot(fromRoot.TOKEN),
-        CoreModule.forRoot(),
+        CoreModule,
         SharedModule,
       ],
       declarations: [
