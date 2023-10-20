@@ -44,6 +44,8 @@ import { TextInputBlock } from '../../../../../models';
       </div>
     </div>`,
   styles: [`
+    @import "../../../../../../../styles";
+
     .text-input-component {
 
       .addon {
