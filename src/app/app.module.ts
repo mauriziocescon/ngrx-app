@@ -68,11 +68,11 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     AppContainerComponent,
   ],
   providers: [
+    reducerProvider,
     provideStore(TOKEN, { metaReducers }),
     provideEffects(),
     provideRouterStore({ stateKey: 'router', serializer: CustomRouterStateSerializer }),
     provideStoreDevtools({ name: 'NgRx-App DevTools', logOnly: environment.production }),
-    reducerProvider,
   ],
   bootstrap: [
     AppContainerComponent,
