@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { CoreModule } from '../core';
 import { SharedModule } from '../shared';
 
 import { InstanceListRoutingModule } from './instance-list-routing.module';
@@ -18,6 +19,7 @@ import {
 
 @NgModule({
   imports: [
+    CoreModule,
     SharedModule,
 
     StoreModule.forFeature('instanceList', TOKEN),

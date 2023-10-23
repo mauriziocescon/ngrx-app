@@ -1,6 +1,6 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { provideState } from '@ngrx/store';
-import { provideEffects } from '@ngrx/effects';
+import { StoreModule, provideState } from '@ngrx/store';
+import { EffectsModule, provideEffects } from '@ngrx/effects';
 
 import { SharedModule } from '../shared';
 
@@ -18,6 +18,10 @@ function createLanguageIdLoader(appLanguage: AppLanguageService): string {
 @NgModule({
   imports: [
     SharedModule,
+
+    // WORKING FINE
+    StoreModule.forFeature(coreFeature),
+    EffectsModule.forFeature(coreEffects),
   ],
   declarations: [
     ...COMPONENTS,
@@ -29,8 +33,10 @@ function createLanguageIdLoader(appLanguage: AppLanguageService): string {
       useFactory: (createLanguageIdLoader),
       deps: [AppLanguageService],
     },
-    provideState(coreFeature),
-    provideEffects(coreEffects),
+
+    // NOT WORKING
+    // provideState(coreFeature),
+    // provideEffects(coreEffects),
   ],
   exports: [
     ...CONTAINERS,
