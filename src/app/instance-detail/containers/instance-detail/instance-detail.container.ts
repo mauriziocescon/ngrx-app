@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { BlockListStoreService } from './block-list-store.service';
@@ -32,6 +32,9 @@ import { SyncStoreService } from './sync-store.service';
 })
 export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
   instanceId: string;
+  canDeactivate: boolean;
+
+  protected canDeactivateSubscription: Subscription;
 
   constructor(protected route: ActivatedRoute,
               protected effectsStore: EffectsStoreService,
@@ -41,16 +44,21 @@ export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.effectsStore.startEffects();
     this.instanceId = this.route.snapshot.paramMap.get('id') as string;
+    this.subscribeAll();
   }
 
   ngOnDestroy(): void {
     this.effectsStore.stopEffects();
+    this.unsubscribeAll();
   }
 
-  canDeactivate(): Observable<boolean> {
-    return this.syncStore.isSyncRequired()
-      .pipe(
-        map(requireSync => !requireSync),
-      );
+  protected subscribeAll(): void {
+    this.canDeactivateSubscription = this.syncStore.isSyncRequired()
+      .pipe(map(requireSync => !requireSync))
+      .subscribe(v => this.canDeactivate = v);
+  }
+
+  protected unsubscribeAll(): void {
+    this.canDeactivateSubscription?.unsubscribe();
   }
 }
