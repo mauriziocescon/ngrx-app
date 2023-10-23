@@ -8,7 +8,7 @@ import { SharedModule } from '../shared';
 import { InstanceDetailRoutingModule } from './instance-detail-routing.module';
 
 import { COMPONENTS } from './components';
-import { CONTAINERS, InstanceDetailContainerComponent } from './containers';
+import { CONTAINERS } from './containers';
 import { EFFECTS } from './store/effects';
 import { TOKEN, reducerProvider } from './store/reducers';
 import { SERVICES } from './store/services';
@@ -31,9 +31,6 @@ import { SERVICES } from './store/services';
   providers: [
     reducerProvider,
     ...SERVICES,
-  ],
-  exports: [
-    InstanceDetailContainerComponent,
   ],
 })
 export class InstanceDetailModule {
