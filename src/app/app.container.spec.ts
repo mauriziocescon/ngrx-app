@@ -11,12 +11,14 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 
 import { StoreModule, Store, combineReducers } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import * as fromRoot from './reducers';
 
 import { CoreModule } from './core';
 import { SharedModule } from './shared';
 
 import { AppContainerComponent } from './app.container';
+
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -42,6 +44,7 @@ describe('AppContainerComponent', () => {
         }),
         LoggerTestingModule,
         StoreModule.forRoot(fromRoot.TOKEN),
+        EffectsModule.forRoot(),
         CoreModule,
         SharedModule,
       ],

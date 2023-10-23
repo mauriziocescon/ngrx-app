@@ -7,6 +7,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerTestingModule } from 'ngx-logger/testing';
 
 import { StoreModule, Store, combineReducers } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import * as fromRoot from '../../reducers';
 
 import { CoreModule } from '../../core';
@@ -35,6 +36,7 @@ describe('TextFilterComponent', () => {
         }),
         LoggerTestingModule,
         StoreModule.forRoot(fromRoot.TOKEN),
+        EffectsModule.forRoot(),
         CoreModule,
         SharedModule,
       ],
