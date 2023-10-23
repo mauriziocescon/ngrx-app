@@ -5,8 +5,3 @@ export const COMPONENTS = [
   InstanceListComponent,
   InstanceComponent,
 ];
-
-export {
-  InstanceListComponent,
-  InstanceComponent,
-};
