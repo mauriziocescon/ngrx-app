@@ -7,12 +7,11 @@ import { SharedModule } from '../shared';
 
 import { InstanceDetailRoutingModule } from './instance-detail-routing.module';
 
-import { COMPONENTS, UnknownComponent } from './components';
+import { COMPONENTS } from './components';
 import { CONTAINERS, InstanceDetailContainerComponent } from './containers';
 import { EFFECTS } from './store/effects';
 import { TOKEN, reducerProvider } from './store/reducers';
-import { SERVICES as STORE_SERVICES } from './store/services';
-import { SERVICES } from './services';
+import { SERVICES } from './store/services';
 
 @NgModule({
   imports: [
@@ -31,7 +30,6 @@ import { SERVICES } from './services';
   ],
   providers: [
     reducerProvider,
-    ...STORE_SERVICES,
     ...SERVICES,
   ],
   exports: [

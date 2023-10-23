@@ -10,7 +10,9 @@ import { StoreModule, Store, combineReducers } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 
 import { CoreModule } from '../../core';
-import { SharedModule, TextFilterComponent } from '../shared.module';
+import { SharedModule } from '../shared.module';
+
+import { TextFilterComponent } from './text-filter.component';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');

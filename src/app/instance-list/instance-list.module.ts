@@ -7,15 +7,11 @@ import { SharedModule } from '../shared';
 
 import { InstanceListRoutingModule } from './instance-list-routing.module';
 
+import { COMPONENTS } from './components';
+import { CONTAINERS } from './containers';
 import { EFFECTS } from './store/effects';
 import { TOKEN, reducerProvider } from './store/reducers';
 import { SERVICES } from './store/services';
-
-import { COMPONENTS } from './components';
-import {
-  CONTAINERS,
-  InstanceListContainerComponent,
-} from './containers';
 
 @NgModule({
   imports: [
@@ -39,9 +35,3 @@ import {
 })
 export class InstanceListModule {
 }
-
-export * from './models';
-
-export {
-  InstanceListContainerComponent,
-};

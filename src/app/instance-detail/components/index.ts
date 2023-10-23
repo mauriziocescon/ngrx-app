@@ -8,6 +8,8 @@ import { UnknownComponent } from './instance-detail/block-list/blocks/unknown/un
 
 import { NextStepComponent } from './instance-detail/next-step/next-step.component';
 
+export { UnknownComponent } from './instance-detail/block-list/blocks/unknown/unknown.component';
+
 export const COMPONENTS = [
   BlockListComponent,
   CheckBoxComponent,
@@ -19,7 +21,3 @@ export const COMPONENTS = [
 
   NextStepComponent,
 ];
-
-export {
-  UnknownComponent,
-};
