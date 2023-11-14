@@ -9,28 +9,22 @@ import { InstanceListRoutingModule } from './instance-list-routing.module';
 
 import { COMPONENTS } from './components';
 import { CONTAINERS } from './containers';
-import { EFFECTS } from './store/effects';
-import { TOKEN, reducerProvider } from './store/reducers';
-import { SERVICES } from './store/services';
+
+import { InstanceListEffects } from './store/instance-list.effects';
+import { feature } from './store/instance-list.feature';
 
 @NgModule({
   imports: [
     CoreModule,
     SharedModule,
 
-    StoreModule.forFeature('instanceList', TOKEN),
-    EffectsModule.forFeature([
-      ...EFFECTS,
-    ]),
+    StoreModule.forFeature(feature),
+    EffectsModule.forFeature([InstanceListEffects]),
     InstanceListRoutingModule,
   ],
   declarations: [
     ...COMPONENTS,
     ...CONTAINERS,
-  ],
-  providers: [
-    reducerProvider,
-    ...SERVICES,
   ],
 })
 export class InstanceListModule {

@@ -8,14 +8,12 @@ import { ModalAlert, ModalStoreService } from '../../../core';
 
 import { Instance } from '../../models';
 
-import { EffectsStoreService } from './effects-store.service';
 import { InstanceListStoreService } from './instance-list-store.service';
 
 @Component({
   selector: 'app-instance-list-ct',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    EffectsStoreService,
     InstanceListStoreService,
   ],
   template: `
@@ -38,7 +36,6 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
 
   constructor(protected translate: TranslateService,
               protected modalStore: ModalStoreService,
-              protected effectsStore: EffectsStoreService,
               protected instanceListStore: InstanceListStoreService) {
     this.alertId = '1';
   }
@@ -46,14 +43,14 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.setupAsyncObs();
 
-    this.effectsStore.startEffects();
+    this.instanceListStore.startEffects();
     this.reloadList({ textSearch: '' });
     this.subscribeToFetchErrors();
   }
 
   ngOnDestroy(): void {
     this.unsubscribeToModalConfirmerResult();
-    this.effectsStore.stopEffects();
+    this.instanceListStore.stopEffects();
   }
 
   paramsDidChange(params: { textSearch: string }): void {

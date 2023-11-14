@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
@@ -7,16 +7,16 @@ import {
   map,
 } from 'rxjs/operators';
 
-import { AppConstantsService } from '../../../core';
+import { AppConstantsService } from '../../core';
 
-import { Instance } from '../../models';
+import { Instance } from '../models';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class InstanceListService {
-
-  constructor(protected http: HttpClient,
-              protected appConstants: AppConstantsService) {
-  }
+  protected http = inject(HttpClient);
+  protected appConstants = inject(AppConstantsService);
 
   getInstances(textSearch: string): Observable<Instance[]> {
     const params = { textSearch: textSearch || '' };
@@ -29,12 +29,12 @@ export class InstanceListService {
   }
 
   protected handleError(err: HttpErrorResponse): Observable<never> {
-    if (err.error instanceof ErrorEvent) {
+    if (err.status === 0) {
       // A client-side or network error occurred
-      return throwError(err.error.message);
+      return throwError(() => err.error);
     } else {
       // The backend returned an unsuccessful response code.
-      return throwError(`Code ${err.status}, body: ${err.message}` || 'Server error');
+      return throwError(() => `Code ${err.status}, body: ${err.message}` || 'Server error');
     }
   }
 }

@@ -28,7 +28,7 @@ import {
   Synchronized,
 } from '../actions/sync.actions';
 
-import { BlockListService } from '../services';
+import { BlockListService } from '../services/block-list.service';
 
 @Injectable()
 export class BlockListEffects {

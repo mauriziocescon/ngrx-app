@@ -1,39 +1,42 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 
 import { Instance } from '../../models';
 
-import * as instanceList from '../../store/actions/instance-list.actions';
-
-import * as fromInstanceListReducer from '../../store/reducers';
-
-import * as fromInstanceListSelectors from '../../store/selectors';
+import { actionGroup } from '../../store/instance-list.actions';
+import { feature } from '../../store/instance-list.feature';
 
 @Injectable()
 export class InstanceListStoreService {
-
-  constructor(protected store$: Store<fromInstanceListReducer.State>) {
-  }
+  protected store$ = inject(Store);
 
   getInstances(): Observable<Instance[] | undefined> {
-    return this.store$.pipe(select(fromInstanceListSelectors.getInstances));
+    return this.store$.pipe(select(feature.getInstances));
   }
 
   getInstanceById(id: string): Observable<Instance | undefined> {
-    return this.store$.pipe(select(fromInstanceListSelectors.getInstanceById(id)));
+    return this.store$.pipe(select(feature.getInstanceById(id)));
   }
 
   isLoadingInstances(): Observable<boolean> {
-    return this.store$.pipe(select(fromInstanceListSelectors.isLoading));
+    return this.store$.pipe(select(feature.isLoading));
   }
 
   getLoadingError(): Observable<string | undefined> {
-    return this.store$.pipe(select(fromInstanceListSelectors.getError));
+    return this.store$.pipe(select(feature.getError));
   }
 
   loadInstances(params: { textSearch: string }): void {
-    this.store$.dispatch(new instanceList.LoadInstances(params));
+    this.store$.dispatch(actionGroup.loadInstances(params));
+  }
+
+  startEffects(): void {
+    this.store$.dispatch(actionGroup.startEffects());
+  }
+
+  stopEffects(): void {
+    this.store$.dispatch(actionGroup.stopEffects());
   }
 }

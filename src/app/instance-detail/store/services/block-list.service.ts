@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
@@ -8,14 +8,15 @@ import {
 } from 'rxjs/operators';
 
 import { AppConstantsService } from '../../../core';
+
 import { Block } from '../../../shared';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class BlockListService {
-
-  constructor(protected http: HttpClient,
-              protected appConstants: AppConstantsService) {
-  }
+  protected http = inject(HttpClient);
+  protected appConstants = inject(AppConstantsService);
 
   getBlocks(instanceId: string): Observable<Block[]> {
     const options = {
@@ -51,12 +52,12 @@ export class BlockListService {
   }
 
   protected handleError(err: HttpErrorResponse): Observable<never> {
-    if (err.error instanceof ErrorEvent) {
+    if (err.status === 0) {
       // A client-side or network error occurred
-      return throwError(err.error.message);
+      return throwError(() => err.error);
     } else {
       // The backend returned an unsuccessful response code.
-      return throwError(`Code ${err.status}, body: ${err.message}` || 'Server error');
+      return throwError(() => `Code ${err.status}, body: ${err.message}` || 'Server error');
     }
   }
 }

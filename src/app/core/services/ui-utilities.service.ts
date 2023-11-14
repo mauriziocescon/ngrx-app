@@ -9,7 +9,7 @@ import { ModalConfirmerComponent } from '../components/modal-confirmer.component
 
 import { ModalAlert, ModalConfirmer } from '../models';
 
-import { coreActions } from '../store/core.actions';
+import { actionGroup } from '../store/core.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -28,10 +28,10 @@ export class UIUtilitiesService {
 
     return modalRef.result.then((result) => {
       this.logger.log(`Closed with: ${result}`);
-      return coreActions.dismissModalAlert({ id: modalAlert.id });
+      return actionGroup.dismissModalAlert({ id: modalAlert.id });
     }, (reason) => {
       this.logger.log(`Dismissed ${this.getDismissReason(reason)}`);
-      return coreActions.dismissModalAlert({ id: modalAlert.id });
+      return actionGroup.dismissModalAlert({ id: modalAlert.id });
     });
   }
 
@@ -45,13 +45,13 @@ export class UIUtilitiesService {
     return modalRef.result.then((result) => {
       this.logger.log(`Closed with: ${result}`);
       if (result) {
-        return coreActions.dismissModalConfirmerWithPositiveResult({ id: modalConfirmer.id });
+        return actionGroup.dismissModalConfirmerWithPositiveResult({ id: modalConfirmer.id });
       } else {
-        return coreActions.dismissModalConfirmerWithNegativeResult({ id: modalConfirmer.id });
+        return actionGroup.dismissModalConfirmerWithNegativeResult({ id: modalConfirmer.id });
       }
     }, (reason) => {
       this.logger.log(`Dismissed ${this.getDismissReason(reason)}`);
-      return coreActions.dismissModalConfirmer({ id: modalConfirmer.id });
+      return actionGroup.dismissModalConfirmer({ id: modalConfirmer.id });
     });
   }
 

@@ -8,8 +8,8 @@ import { COMPONENTS } from './components';
 import { CONTAINERS } from './containers';
 import { AppLanguageService } from './services';
 
-import * as coreEffects from './store/core.effects';
-import { coreFeature } from './store/core.reducer';
+import * as effects from './store/core.effects';
+import { feature } from './store/core.feature';
 
 function createLanguageIdLoader(appLanguage: AppLanguageService): string {
   return appLanguage.getLanguageId();
@@ -20,8 +20,8 @@ function createLanguageIdLoader(appLanguage: AppLanguageService): string {
     SharedModule,
 
     // WORKING FINE
-    StoreModule.forFeature(coreFeature),
-    EffectsModule.forFeature(coreEffects),
+    StoreModule.forFeature(feature),
+    EffectsModule.forFeature(effects),
   ],
   declarations: [
     ...COMPONENTS,

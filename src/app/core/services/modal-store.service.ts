@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 
 import { ModalAlert, ModalConfirmer, ModalConfirmerResultType } from '../models';
 
-import { coreActions } from '../store/core.actions';
-import { coreFeature } from '../store/core.reducer';
+import { actionGroup } from '../store/core.actions';
+import { feature } from '../store/core.feature';
 
 @Injectable({
   providedIn: 'root',
@@ -15,18 +15,18 @@ export class ModalStoreService {
   store$ = inject(Store);
 
   showModalAlert(modalAlert: ModalAlert): void {
-    this.store$.dispatch(coreActions.showModalAlert({ modal: modalAlert }));
+    this.store$.dispatch(actionGroup.showModalAlert({ modal: modalAlert }));
   }
 
   getModalConfirmerResults(): Observable<{ [id: string]: ModalConfirmerResultType | undefined }> {
-    return this.store$.pipe(select(coreFeature.selectModalConfirmerResults));
+    return this.store$.pipe(select(feature.selectModalConfirmerResults));
   }
 
   showModalConfirmer(modalConfirmer: ModalConfirmer): void {
-    this.store$.dispatch(coreActions.showModalConfirmer({ modal: modalConfirmer }));
+    this.store$.dispatch(actionGroup.showModalConfirmer({ modal: modalConfirmer }));
   }
 
   cleanModalConfirmer(payload: { id: string }): void {
-    this.store$.dispatch(coreActions.cleanModalConfirmer(payload));
+    this.store$.dispatch(actionGroup.cleanModalConfirmer(payload));
   }
 }

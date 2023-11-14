@@ -4,9 +4,9 @@ import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-import { coreActions } from './core.actions';
-
 import { UIUtilitiesService } from '../services/ui-utilities.service';
+
+import { actionGroup } from './core.actions';
 
 export const showModalAlert$ = createEffect(
   (
@@ -15,7 +15,7 @@ export const showModalAlert$ = createEffect(
   ) => {
     return actions$
       .pipe(
-        ofType(coreActions.showModalAlert),
+        ofType(actionGroup.showModalAlert),
         switchMap(data => from(uiUtilities.modalAlert(data.modal))),
       );
   },
@@ -29,7 +29,7 @@ export const showModalConfirmer$ = createEffect(
   ) => {
     return actions$
       .pipe(
-        ofType(coreActions.showModalConfirmer),
+        ofType(actionGroup.showModalConfirmer),
         switchMap(data => from(uiUtilities.modalConfirmer(data.modal))),
       );
   },

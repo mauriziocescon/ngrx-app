@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 import { AppLanguageService } from '../services/app-language.service';
 
-import { coreFeature } from '../store/core.reducer';
+import { feature } from '../store/core.feature';
 
 @Component({
   selector: 'app-navigation-bar-ct',
@@ -39,6 +39,6 @@ export class NavigationBarContainerComponent {
   }
 
   protected setupAsyncObs(): void {
-    this.language$ = this.store$.pipe(select(coreFeature.selectSelectedLanguage));
+    this.language$ = this.store$.pipe(select(feature.selectSelectedLanguage));
   }
 }

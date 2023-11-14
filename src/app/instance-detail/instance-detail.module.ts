@@ -11,7 +11,6 @@ import { COMPONENTS } from './components';
 import { CONTAINERS } from './containers';
 import { EFFECTS } from './store/effects';
 import { TOKEN, reducerProvider } from './store/reducers';
-import { SERVICES } from './store/services';
 
 @NgModule({
   imports: [
@@ -30,7 +29,6 @@ import { SERVICES } from './store/services';
   ],
   providers: [
     reducerProvider,
-    ...SERVICES,
   ],
 })
 export class InstanceDetailModule {

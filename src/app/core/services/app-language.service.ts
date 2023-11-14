@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AppConstantsService } from './app-constants.service';
 import { LocalStorageService } from './local-storage.service';
 
-import { coreActions } from '../store/core.actions';
+import { actionGroup } from '../store/core.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -36,12 +36,12 @@ export class AppLanguageService {
     if (localStorageLang && this.appConstants.Languages.SUPPORTED_LANG.indexOf(localStorageLang) !== -1) {
       this.selectedLanguageId = localStorageLang;
       this.registerLocale();
-      this.store$.dispatch(coreActions.setLanguage({ lang: this.selectedLanguageId }));
+      this.store$.dispatch(actionGroup.setLanguage({ lang: this.selectedLanguageId }));
     } else {
       this.selectedLanguageId = this.appConstants.Languages.SUPPORTED_LANG.indexOf(browserLang) === -1 ? defaultLang : browserLang;
       this.registerLocale();
       this.localStorage.setData(this.appConstants.LocalStorageKey.LANGUAGE_ID, this.selectedLanguageId);
-      this.store$.dispatch(coreActions.setLanguage({ lang: this.selectedLanguageId }));
+      this.store$.dispatch(actionGroup.setLanguage({ lang: this.selectedLanguageId }));
     }
   }
 
@@ -57,7 +57,7 @@ export class AppLanguageService {
       this.selectedLanguageId = languageId;
       this.localStorage.setData(this.appConstants.LocalStorageKey.LANGUAGE_ID, this.selectedLanguageId);
       this.registerLocale();
-      this.store$.dispatch(coreActions.setLanguage({ lang: this.selectedLanguageId }));
+      this.store$.dispatch(actionGroup.setLanguage({ lang: this.selectedLanguageId }));
       this.translate.use(languageId);
       location.reload();
     }
