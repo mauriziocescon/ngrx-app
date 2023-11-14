@@ -1,9 +1,20 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import { Instance } from '../../../models';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { SharedModule } from '../../../shared';
+
+import { Instance } from '../../models';
 
 @Component({
   selector: 'app-instance-cp',
+  standalone: true,
+  imports: [
+    CommonModule,
+    TranslateModule,
+    SharedModule,
+  ],
   template: `
     <div class="card">
       <div class="card-body">
@@ -19,11 +30,7 @@ import { Instance } from '../../../models';
 })
 export class InstanceComponent {
   @Input() instance: Instance;
-  @Output() instanceSelected: EventEmitter<void>;
-
-  constructor() {
-    this.instanceSelected = new EventEmitter<void>();
-  }
+  @Output() instanceSelected = new EventEmitter<void>();
 
   get title(): string {
     return this.instance.id;

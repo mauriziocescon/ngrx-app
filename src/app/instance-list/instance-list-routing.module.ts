@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { InstanceListContainerComponent } from './containers';
+import { InstanceListContainerComponent } from './ui/instance-list.container';
 
 export const instanceListRoutes: Routes = [
   {

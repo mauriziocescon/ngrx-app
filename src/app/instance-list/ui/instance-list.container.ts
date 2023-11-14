@@ -1,17 +1,24 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { Observable, Subscription } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { ModalAlert, ModalStoreService } from '../../../core';
+import { ModalAlert, ModalStoreService } from '../../core';
 
-import { Instance } from '../../models';
+import { Instance } from '../models';
 
 import { InstanceListStoreService } from './instance-list-store.service';
+import { InstanceListComponent } from './instance-list.component';
 
 @Component({
   selector: 'app-instance-list-ct',
+  standalone: true,
+  imports: [
+    CommonModule,
+    InstanceListComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     InstanceListStoreService,
@@ -23,8 +30,7 @@ import { InstanceListStoreService } from './instance-list-store.service';
       [error]="(error$ | async)!"
       (paramsDidChange)="paramsDidChange($event)"
       (reloadList)="reloadList($event)">
-    </app-instance-list-cp>
-  `,
+    </app-instance-list-cp>`,
 })
 export class InstanceListContainerComponent implements OnInit, OnDestroy {
   instances$: Observable<Instance[] | undefined>;
@@ -34,9 +40,11 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
   protected alertId: string;
   protected modalAlertSubscription: Subscription;
 
-  constructor(protected translate: TranslateService,
-              protected modalStore: ModalStoreService,
-              protected instanceListStore: InstanceListStoreService) {
+  protected translate = inject(TranslateService);
+  protected modalStore = inject(ModalStoreService);
+  protected instanceListStore = inject(InstanceListStoreService);
+
+  constructor() {
     this.alertId = '1';
   }
 

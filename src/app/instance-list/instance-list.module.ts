@@ -7,8 +7,7 @@ import { SharedModule } from '../shared';
 
 import { InstanceListRoutingModule } from './instance-list-routing.module';
 
-import { COMPONENTS } from './components';
-import { CONTAINERS } from './containers';
+import { InstanceListContainerComponent } from './ui/instance-list.container';
 
 import { InstanceListEffects } from './store/instance-list.effects';
 import { feature } from './store/instance-list.feature';
@@ -21,10 +20,7 @@ import { feature } from './store/instance-list.feature';
     StoreModule.forFeature(feature),
     EffectsModule.forFeature([InstanceListEffects]),
     InstanceListRoutingModule,
-  ],
-  declarations: [
-    ...COMPONENTS,
-    ...CONTAINERS,
+    InstanceListContainerComponent,
   ],
 })
 export class InstanceListModule {

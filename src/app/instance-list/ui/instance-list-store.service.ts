@@ -3,10 +3,10 @@ import { Store, select } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 
-import { Instance } from '../../models';
+import { Instance } from '../models';
 
-import { actionGroup } from '../../store/instance-list.actions';
-import { feature } from '../../store/instance-list.feature';
+import { actionGroup } from '../store/instance-list.actions';
+import { feature } from '../store/instance-list.feature';
 
 @Injectable()
 export class InstanceListStoreService {

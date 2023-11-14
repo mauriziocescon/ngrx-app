@@ -1,9 +1,23 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import { Instance } from '../../models';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { SharedModule } from '../../shared';
+
+import { Instance } from '../models';
+
+import { InstanceContainerComponent } from './instance/instance.container';
 
 @Component({
   selector: 'app-instance-list-cp',
+  standalone: true,
+  imports: [
+    CommonModule,
+    TranslateModule,
+    SharedModule,
+    InstanceContainerComponent,
+  ],
   template: `
     <div class="container-fluid instance-list-component">
 
@@ -22,9 +36,15 @@ import { Instance } from '../../models';
         </div>
       </div>
 
-      <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.INSTANCE_LIST.LOADING" | translate }}</div>
-      <div class="full-width-message" [hidden]="!hasNoData">{{ "COMPONENT.INSTANCE_LIST.NO_RESULT" | translate }}</div>
-      <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">{{ "COMPONENT.INSTANCE_LIST.RETRY" | translate }}</div>
+      <div class="full-width-message" [hidden]="!isLoadingData">
+        {{ "COMPONENT.INSTANCE_LIST.LOADING" | translate }}
+      </div>
+      <div class="full-width-message" [hidden]="!hasNoData">
+        {{ "COMPONENT.INSTANCE_LIST.NO_RESULT" | translate }}
+      </div>
+      <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">
+        {{ "COMPONENT.INSTANCE_LIST.RETRY" | translate }}
+      </div>
       <div class="go-up" appScrollToTop></div>
     </div>`,
   styles: [`
@@ -47,15 +67,10 @@ export class InstanceListComponent {
   @Input() instances: Instance[];
   @Input() loading: boolean;
   @Input() error: string;
-  @Output() paramsDidChange: EventEmitter<{ textSearch: string }>;
-  @Output() reloadList: EventEmitter<{ textSearch: string }>;
+  @Output() paramsDidChange = new EventEmitter<{ textSearch: string }>();
+  @Output() reloadList = new EventEmitter<{ textSearch: string }>();
 
   protected textSearch: string;
-
-  constructor() {
-    this.paramsDidChange = new EventEmitter<{ textSearch: string }>();
-    this.reloadList = new EventEmitter<{ textSearch: string }>();
-  }
 
   get isLoadingData(): boolean {
     return this.loading === true;
