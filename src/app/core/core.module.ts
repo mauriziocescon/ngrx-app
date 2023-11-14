@@ -35,8 +35,8 @@ function createLanguageIdLoader(appLanguage: AppLanguageService): string {
     },
 
     // NOT WORKING
-    // provideState(coreFeature),
-    // provideEffects(coreEffects),
+    // provideState(feature),
+    // provideEffects(effects),
   ],
   exports: [
     ...CONTAINERS,
