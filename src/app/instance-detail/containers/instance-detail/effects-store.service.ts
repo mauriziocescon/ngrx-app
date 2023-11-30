@@ -1,21 +1,17 @@
-import { Injectable } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { inject, Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import * as effects from '../../store/actions/instance-detail-effects.actions';
-
-import * as fromInstanceDetailReducers from '../../store/reducers';
+import { actionGroup } from '../../store/instance-detail.actions';
 
 @Injectable()
 export class EffectsStoreService {
-
-  constructor(protected store$: Store<fromInstanceDetailReducers.State>) {
-  }
+  protected store$ = inject(Store);
 
   startEffects(): void {
-    this.store$.dispatch(new effects.StartEffects());
+    this.store$.dispatch(actionGroup.startEffects());
   }
 
   stopEffects(): void {
-    this.store$.dispatch(new effects.StopEffects());
+    this.store$.dispatch(actionGroup.stopEffects());
   }
 }

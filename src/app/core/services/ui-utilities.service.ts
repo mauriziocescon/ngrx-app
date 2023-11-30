@@ -4,8 +4,8 @@ import { Action } from '@ngrx/store';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NGXLogger } from 'ngx-logger';
 
-import { ModalAlertComponent } from '../components/modal-alert.component';
-import { ModalConfirmerComponent } from '../components/modal-confirmer.component';
+import { ModalAlertComponent } from '../ui/modal-alert.component';
+import { ModalConfirmerComponent } from '../ui/modal-confirmer.component';
 
 import { ModalAlert, ModalConfirmer } from '../models';
 

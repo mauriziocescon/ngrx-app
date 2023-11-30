@@ -19,7 +19,7 @@ const initialState: State = {
 };
 
 export const feature = createFeature({
-  name: `ngrxApp_list`,
+  name: `list`,
   reducer: createReducer(
     initialState,
     on(actionGroup.loadInstances, (state, action) => ({

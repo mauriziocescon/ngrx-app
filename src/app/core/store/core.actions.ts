@@ -3,7 +3,7 @@ import { createActionGroup, props, emptyProps } from '@ngrx/store';
 import { ModalAlert, ModalConfirmer } from '../models';
 
 export const actionGroup = createActionGroup({
-  source: `ngrxApp_core`,
+  source: `core`,
   events: {
     setLanguage: props<{ lang: string }>(),
 

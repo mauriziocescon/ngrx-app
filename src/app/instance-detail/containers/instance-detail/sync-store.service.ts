@@ -1,29 +1,24 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 
-import * as sync from '../../store/actions/sync.actions';
-
-import * as fromInstanceDetailReducers from '../../store/reducers';
-
-import * as fromInstanceDetailSelectors from '../../store/selectors';
+import { actionGroup } from '../../store/instance-detail.actions';
+import { feature } from '../../store/instance-detail.feature';
 
 @Injectable()
 export class SyncStoreService {
-
-  constructor(protected store$: Store<fromInstanceDetailReducers.State>) {
-  }
+  protected store$ = inject(Store);
 
   isSyncRequired(): Observable<boolean> {
-    return this.store$.pipe(select(fromInstanceDetailSelectors.isSyncRequired));
+    return this.store$.pipe(select(feature.isSyncRequired));
   }
 
   isSyncRequiredWithTimestamp(): Observable<{ syncRequired: boolean, timestamp: number | undefined }> {
-    return this.store$.pipe(select(fromInstanceDetailSelectors.isSyncRequiredWithTimestamp));
+    return this.store$.pipe(select(feature.isSyncRequiredWithTimestamp));
   }
 
   syncRequired(): void {
-    this.store$.dispatch(new sync.SyncRequired(Date.now()));
+    this.store$.dispatch(actionGroup.syncRequired({ timestamp: Date.now() }));
   }
 }

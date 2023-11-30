@@ -13,13 +13,13 @@ interface State {
 
 const initialState: State = {
   selectedLanguage: 'en',
-  modalAlerts: undefined,
-  modalConfirmers: undefined,
-  modalConfirmerResults: undefined,
+  modalAlerts: {},
+  modalConfirmers: {},
+  modalConfirmerResults: {},
 };
 
 export const feature = createFeature({
-  name: `ngrxApp_core`,
+  name: `core`,
   reducer: createReducer(
     initialState,
 

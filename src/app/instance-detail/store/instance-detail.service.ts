@@ -7,14 +7,14 @@ import {
   map,
 } from 'rxjs/operators';
 
-import { AppConstantsService } from '../../../core';
+import { AppConstantsService } from '../../core';
 
-import { Block } from '../../../shared';
+import { Block } from '../../shared';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BlockListService {
+export class InstanceDetailService {
   protected http = inject(HttpClient);
   protected appConstants = inject(AppConstantsService);
 

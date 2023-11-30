@@ -9,26 +9,22 @@ import { InstanceDetailRoutingModule } from './instance-detail-routing.module';
 
 import { COMPONENTS } from './components';
 import { CONTAINERS } from './containers';
-import { EFFECTS } from './store/effects';
-import { TOKEN, reducerProvider } from './store/reducers';
+
+import { InstanceDetailEffects } from './store/instance-detail.effects';
+import { feature } from './store/instance-detail.feature';
 
 @NgModule({
   imports: [
     CoreModule,
     SharedModule,
 
-    StoreModule.forFeature('instanceDetail', TOKEN),
-    EffectsModule.forFeature([
-      ...EFFECTS,
-    ]),
+    StoreModule.forFeature(feature),
+    EffectsModule.forFeature([InstanceDetailEffects]),
     InstanceDetailRoutingModule,
   ],
   declarations: [
     ...COMPONENTS,
     ...CONTAINERS,
-  ],
-  providers: [
-    reducerProvider,
   ],
 })
 export class InstanceDetailModule {
