@@ -7,8 +7,6 @@ import { SharedModule } from '../shared';
 
 import { InstanceDetailRoutingModule } from './instance-detail-routing.module';
 
-import { InstanceDetailContainerComponent } from './ui/instance-detail.container';
-
 import { InstanceDetailEffects } from './store/instance-detail.effects';
 import { feature } from './store/instance-detail.feature';
 
@@ -16,11 +14,10 @@ import { feature } from './store/instance-detail.feature';
   imports: [
     CoreModule,
     SharedModule,
-    
+
     StoreModule.forFeature(feature),
     EffectsModule.forFeature([InstanceDetailEffects]),
     InstanceDetailRoutingModule,
-    InstanceDetailContainerComponent,
   ],
 })
 export class InstanceDetailModule {
