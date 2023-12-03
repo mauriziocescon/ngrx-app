@@ -1,5 +1,4 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -11,7 +10,6 @@ import { Instance } from '../../models';
   selector: 'app-instance-cp',
   standalone: true,
   imports: [
-    CommonModule,
     TranslateModule,
     SharedModule,
   ],

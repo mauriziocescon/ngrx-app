@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, Input, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -14,7 +14,7 @@ import { InstanceComponent } from './instance.component';
   selector: 'app-instance-ct',
   standalone: true,
   imports: [
-    CommonModule,
+    AsyncPipe,
     InstanceComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

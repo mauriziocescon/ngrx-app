@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 
@@ -8,8 +9,15 @@ import { AppLanguageService } from '../services/app-language.service';
 
 import { feature } from '../store/core.feature';
 
+import { NavigationBarComponent } from './navigation-bar.component';
+
 @Component({
   selector: 'app-navigation-bar-ct',
+  standalone: true,
+  imports: [
+    AsyncPipe,
+    NavigationBarComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-navigation-bar-cp
@@ -23,9 +31,11 @@ export class NavigationBarContainerComponent {
   languages: string[];
   language$: Observable<string>;
 
-  constructor(protected router: Router,
-              protected store$: Store,
-              protected appLanguage: AppLanguageService) {
+  protected router = inject(Router);
+  protected store$ = inject(Store);
+  protected appLanguage = inject(AppLanguageService);
+
+  constructor() {
     this.languages = this.appLanguage.getSupportedLanguagesList();
     this.setupAsyncObs();
   }

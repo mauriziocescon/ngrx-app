@@ -1,9 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal-alert',
+  standalone: true,
+  imports: [
+    NgbModalModule,
+  ],
   template: `
     <div class="modal-header">
       <h4 class="modal-title">{{ title }}</h4>
@@ -23,8 +27,7 @@ export class ModalAlertComponent {
   @Input() message: string;
   @Input() buttonLabel: string;
 
-  constructor(protected activeModal: NgbActiveModal) {
-  }
+  protected activeModal = inject(NgbActiveModal);
 
   close(): void {
     this.activeModal.close('Close click');

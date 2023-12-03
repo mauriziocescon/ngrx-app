@@ -1,5 +1,5 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -13,7 +13,8 @@ import { InstanceContainerComponent } from './instance/instance.container';
   selector: 'app-instance-list-cp',
   standalone: true,
   imports: [
-    CommonModule,
+    NgIf,
+    NgFor,
     TranslateModule,
     SharedModule,
     InstanceContainerComponent,

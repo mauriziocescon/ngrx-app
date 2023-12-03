@@ -4,8 +4,8 @@ import { EffectsModule, provideEffects } from '@ngrx/effects';
 
 import { SharedModule } from '../shared';
 
-import { COMPONENTS } from './ui';
 import { AppLanguageService } from './services';
+import { UI } from './ui';
 
 import * as effects from './store/core.effects';
 import { feature } from './store/core.feature';
@@ -21,9 +21,8 @@ function createLanguageIdLoader(appLanguage: AppLanguageService): string {
     // WORKING FINE
     StoreModule.forFeature(feature),
     EffectsModule.forFeature(effects),
-  ],
-  declarations: [
-    ...COMPONENTS,
+
+    ...UI,
   ],
   providers: [
     {
@@ -37,7 +36,7 @@ function createLanguageIdLoader(appLanguage: AppLanguageService): string {
     // provideEffects(effects),
   ],
   exports: [
-    ...COMPONENTS,
+    ...UI,
   ],
 })
 export class CoreModule {

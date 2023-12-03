@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { InstanceDetailContainerComponent } from './containers';
+import { InstanceDetailContainerComponent } from './ui/instance-detail.container';
 
 export const instanceDetailRoutes: Routes = [
   {

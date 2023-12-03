@@ -10,7 +10,7 @@ import { StoreRouterConnectingModule, provideRouterStore } from '@ngrx/router-st
 import { StoreDevtoolsModule, provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 

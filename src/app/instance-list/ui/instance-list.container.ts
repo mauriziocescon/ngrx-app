@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 import { Observable, Subscription } from 'rxjs';
 
@@ -16,7 +16,7 @@ import { InstanceListComponent } from './instance-list.component';
   selector: 'app-instance-list-ct',
   standalone: true,
   imports: [
-    CommonModule,
+    AsyncPipe,
     InstanceListComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

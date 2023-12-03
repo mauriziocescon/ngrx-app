@@ -1,9 +1,21 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
+
+import { TranslateModule } from '@ngx-translate/core';
+import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppConstantsService } from '../services/app-constants.service';
 
 @Component({
   selector: 'app-navigation-bar-cp',
+  standalone: true,
+  imports: [
+    NgIf,
+    NgFor,
+    TranslateModule,
+    NgbCollapseModule,
+    NgbDropdownModule,
+  ],
   template: `
     <nav class="navbar navbar-expand-lg bg-primary navbar-light fixed-top navigation-bar-component">
       <a class="navbar-brand custom" href="#">{{ "COMPONENT.NAVIGATION_BAR.NAME" | translate }}</a>
@@ -48,7 +60,9 @@ export class NavigationBarComponent {
 
   isCollapsed: boolean;
 
-  constructor(protected appConstants: AppConstantsService) {
+  protected appConstants = inject(AppConstantsService);
+
+  constructor() {
     this.languageDidChange = new EventEmitter<string>();
     this.navigationDidChange = new EventEmitter<{ path: string }>();
     this.isCollapsed = true;
