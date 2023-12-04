@@ -53,12 +53,10 @@ import { DatePickerBlock } from '../../../../models';
       </div>
     </div>`,
   styles: [`
-    @import "../../../../../../styles";
-
     .date-picker-component {
 
       .addon {
-        color: $accent-color;
+        color: var(--accent-color);
       }
     }
   `],

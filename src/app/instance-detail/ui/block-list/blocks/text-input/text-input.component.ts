@@ -53,12 +53,10 @@ import { TextInputBlock } from '../../../../models';
       </div>
     </div>`,
   styles: [`
-    @import "../../../../../../styles";
-
     .text-input-component {
 
       .addon {
-        color: $accent-color;
+        color: var(--accent-color);
       }
     }
   `],

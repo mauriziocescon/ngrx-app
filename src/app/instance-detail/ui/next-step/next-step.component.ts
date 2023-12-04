@@ -43,10 +43,8 @@ import { TranslateModule } from '@ngx-translate/core';
       </div>
     </div>`,
   styles: [`
-    @import "../../../../styles";
-
     .next-step-component {
-      top: 4.5 * $navbar-padding-y;
+      top: calc(var(--navbar-padding-y) * 4.5);
       padding-top: 20px;
 
       .button-row {

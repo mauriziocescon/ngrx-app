@@ -3,12 +3,12 @@
 
 $primary-color: #004494 !default;
 $accent-color: #ffeb3b !default;
-$secondary-color: $app-white !default;
+$secondary-color: #fff !default;
 $info-color: #03a9f4;
 $success-color: #4caf50;
 $warning-color: #ff9800;
 $danger-color: #f44336;
-$gray-color: $app-gray-2 !default;
+$gray-color: #666 !default;
 
 // -------------------------------------------------------
 // Bootstrap variables
@@ -35,8 +35,8 @@ $grid-gutter-width: 8px;
 //== Navbar
 $navbar-padding-y: 0.75rem;
 
-$navbar-light-color: $app-white;
-$navbar-light-hover-color: $app-white;
+$navbar-light-color: $secondary-color;
+$navbar-light-hover-color: $secondary-color;
 
 //== Buttons
 
@@ -44,7 +44,12 @@ $navbar-light-hover-color: $app-white;
 $input-group-addon-bg: $primary-color;
 
 // -------------------------------------------------------
-// Font awesome variables
+// Root variables
+
+:root {
+  --accent-color: #{$accent-color};
+  --navbar-padding-y: #{$navbar-padding-y};
+}
 
 // -------------------------------------------------------
 // Common style
@@ -68,7 +73,7 @@ $input-group-addon-bg: $primary-color;
   background-repeat: no-repeat;
   background-position: center;
   color: $primary-color;
-  background-color: $app-white;
+  background-color: $secondary-color;
   opacity: 0.7;
   bottom: 5px;
   left: 50%;

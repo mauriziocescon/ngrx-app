@@ -31,10 +31,8 @@ import { NGXLogger } from 'ngx-logger';
       </div>
     </form>`,
   styles: [`
-    @import "../../../styles";
-
     .addon {
-      color: $accent-color;
+      color: var(--accent-color);
     }
   `],
 })
