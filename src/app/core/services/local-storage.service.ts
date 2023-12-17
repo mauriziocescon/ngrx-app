@@ -1,6 +1,4 @@
-import { Injectable } from '@angular/core';
-
-// import { NGXLogger } from 'ngx-logger';
+import { inject, Injectable } from '@angular/core';
 
 import { Enum } from '../../shared';
 
@@ -15,10 +13,10 @@ import { AppConstantsService } from './app-constants.service';
   providedIn: 'root',
 })
 export class LocalStorageService {
-  protected prefix: string;
+  private prefix: string;
+  private appConstants = inject(AppConstantsService);
 
-  constructor(// protected logger: NGXLogger,
-    protected appConstants: AppConstantsService) {
+  constructor() {
     this.prefix = this.appConstants.Application.APP_NAME;
   }
 

@@ -11,10 +11,10 @@ import * as Constants from './app-constants.model';
   providedIn: 'root',
 })
 export class AppConstantsService {
-  protected api: Constants.Api;
-  protected application: Constants.Application;
-  protected languages: Constants.Languages;
-  protected localStorageKey: Constants.LocalStorageKey;
+  private api: Constants.Api;
+  private application: Constants.Application;
+  private languages: Constants.Languages;
+  private localStorageKey: Constants.LocalStorageKey;
 
   constructor() {
     this.api = new Constants.Api();

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -17,7 +17,7 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { TOKEN, reducerProvider, metaReducers } from './reducers';
 import { CustomRouterStateSerializer } from './reducers/route-util';
 
-import { CoreModule } from './core';
+import { CoreModule, AppLanguageService } from './core';
 import { SharedModule } from './shared';
 
 import { AppContainerComponent } from './app.container';
@@ -28,6 +28,10 @@ import { environment } from '../environments/environment';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
+
+function createLanguageIdLoader(appLanguage: AppLanguageService): string {
+  return appLanguage.getLanguageId();
 }
 
 @NgModule({
@@ -68,6 +72,11 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     AppContainerComponent,
   ],
   providers: [
+    {
+      provide: LOCALE_ID,
+      useFactory: (createLanguageIdLoader),
+      deps: [AppLanguageService],
+    },
     reducerProvider,
     provideStore(TOKEN, { metaReducers }),
     provideEffects(),

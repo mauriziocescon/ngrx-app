@@ -14,8 +14,8 @@ import { ModalAlert, ModalConfirmer } from '../models';
   providedIn: 'root',
 })
 export class UIUtilitiesService {
-  protected dialog = inject(MatDialog);
-  protected logger = inject(NGXLogger);
+  private dialog = inject(MatDialog);
+  private logger = inject(NGXLogger);
 
   modalAlert(modalAlert: ModalAlert): Observable<void> {
     const dialogRef = this.dialog.open(ModalAlertComponent, {

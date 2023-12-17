@@ -22,32 +22,32 @@ import { AppConstantsService } from '../services/app-constants.service';
     MatToolbarModule,
   ],
   template: `
-    <mat-toolbar>
-      <span>{{ "COMPONENT.NAVIGATION_BAR.NAME" | translate }}</span>
-      <button mat-button aria-label="go to instances" (click)="goToInstanceList()">
-        {{ "COMPONENT.NAVIGATION_BAR.INSTANCES" | translate }}
-      </button>
-
-      <span class="spacer"></span>
-
-      <ng-container *ngIf="canOpenJsonServer">
-        <button mat-icon-button aria-label="open json server" (click)="openJsonServer()">
-          <mat-icon>dns</mat-icon>
-        </button>
-      </ng-container>
-
-      <button mat-button [matMenuTriggerFor]="menu" aria-label="selected language">
-        {{ selectedLanguageId }}
-      </button>
-      <mat-menu #menu="matMenu">
-        <ng-container *ngFor="let language of languages">
-          <button mat-menu-item (click)="selectLanguage(language)">
-            <span>{{ language }}</span>
+      <mat-toolbar>
+          <span>{{ "COMPONENT.NAVIGATION_BAR.NAME" | translate }}</span>
+          <button mat-button aria-label="go to instances" (click)="goToInstanceList()">
+              {{ "COMPONENT.NAVIGATION_BAR.INSTANCES" | translate }}
           </button>
-        </ng-container>
-      </mat-menu>
 
-    </mat-toolbar>`,
+          <span class="spacer"></span>
+
+          <ng-container *ngIf="canOpenJsonServer">
+              <button mat-icon-button aria-label="open json server" (click)="openJsonServer()">
+                  <mat-icon>dns</mat-icon>
+              </button>
+          </ng-container>
+
+          <button mat-button [matMenuTriggerFor]="menu" aria-label="selected language">
+              {{ selectedLanguageId }}
+          </button>
+          <mat-menu #menu="matMenu">
+              <ng-container *ngFor="let language of languages">
+                  <button mat-menu-item (click)="selectLanguage(language)">
+                      <span>{{ language }}</span>
+                  </button>
+              </ng-container>
+          </mat-menu>
+
+      </mat-toolbar>`,
   styles: [`
     .spacer {
       flex: 1 1 auto;

@@ -20,12 +20,12 @@ import { NavigationBarComponent } from './navigation-bar.component';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-navigation-bar-cp
-      [languages]="languages"
-      [selectedLanguageId]="(language$ | async)!"
-      (languageDidChange)="selectLanguage($event)"
-      (navigationDidChange)="goTo($event)">
-    </app-navigation-bar-cp>`,
+      <app-navigation-bar-cp
+              [languages]="languages"
+              [selectedLanguageId]="(language$ | async)!"
+              (languageDidChange)="selectLanguage($event)"
+              (navigationDidChange)="goTo($event)">
+      </app-navigation-bar-cp>`,
 })
 export class NavigationBarContainerComponent {
   languages: string[];

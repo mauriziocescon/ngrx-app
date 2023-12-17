@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import localeEn from '@angular/common/locales/en';
@@ -16,12 +16,14 @@ import { actionGroup } from '../store/core.actions';
   providedIn: 'root',
 })
 export class AppLanguageService {
-  protected selectedLanguageId: string;
+  private selectedLanguageId: string;
 
-  constructor(protected store$: Store,
-              protected translate: TranslateService,
-              protected appConstants: AppConstantsService,
-              protected localStorage: LocalStorageService) {
+  private store$ = inject(Store);
+  private translate = inject(TranslateService);
+  private appConstants = inject(AppConstantsService);
+  private localStorage = inject(LocalStorageService);
+
+  constructor() {
     this.start();
 
     this.translate.setDefaultLang(this.appConstants.Languages.DEFAULT_LANGUAGE);

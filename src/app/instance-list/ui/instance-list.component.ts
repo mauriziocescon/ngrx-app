@@ -20,47 +20,34 @@ import { InstanceContainerComponent } from './instance/instance.container';
     InstanceContainerComponent,
   ],
   template: `
-    <div class="container-fluid instance-list-component">
-
-      <div class="row">
-        <div class="col-12">
+      <div class="text-filter">
           <app-text-filter-cp (valueDidChange)="textSearchValueDidChange($event)"></app-text-filter-cp>
-        </div>
       </div>
 
-      <div class="row list-main-content" *ngIf="showData">
-        <div class="col-12 col-sm-6 instance" *ngFor="let instanceId of dataSource; trackBy: trackByBlock">
-          <app-instance-ct [instanceId]="instanceId"></app-instance-ct>
-        </div>
-        <div class="col-12">
+      <ng-container *ngIf="showData">
+          <div class="instance" *ngFor="let instanceId of dataSource; trackBy: trackByBlock">
+              <app-instance-ct [instanceId]="instanceId"></app-instance-ct>
+          </div>
           <div class="full-width-message">{{ "COMPONENT.INSTANCE_LIST.LOAD_COMPLETED" | translate }}</div>
-        </div>
-      </div>
+      </ng-container>
 
       <div class="full-width-message" [hidden]="!isLoadingData">
-        {{ "COMPONENT.INSTANCE_LIST.LOADING" | translate }}
+          {{ "COMPONENT.INSTANCE_LIST.LOADING" | translate }}
       </div>
       <div class="full-width-message" [hidden]="!hasNoData">
-        {{ "COMPONENT.INSTANCE_LIST.NO_RESULT" | translate }}
+          {{ "COMPONENT.INSTANCE_LIST.NO_RESULT" | translate }}
       </div>
       <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">
-        {{ "COMPONENT.INSTANCE_LIST.RETRY" | translate }}
+          {{ "COMPONENT.INSTANCE_LIST.RETRY" | translate }}
       </div>
-      <div class="go-up" appScrollToTop></div>
-    </div>`,
+      <div class="go-up" appScrollToTop></div>`,
   styles: [`
-    .instance-list-component {
-      padding-top: 10px;
+    .text-filter {
+      padding: 15px;
+    }
 
-      .list-main-content {
-        padding-top: 10px;
-        padding-bottom: 10px;
-
-        .instance {
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-      }
+    .instance {
+      padding: 15px;
     }
   `],
 })

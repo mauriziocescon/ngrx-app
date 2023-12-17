@@ -1,38 +1,44 @@
 import { Component, EventEmitter, OnInit, OnDestroy, Output } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-text-filter-cp',
   standalone: true,
   imports: [
+    NgIf,
     ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
     TranslateModule,
   ],
   template: `
-    <form [formGroup]="searchForm">
-      <div class="input-group">
-        <input
-          type="text"
-          class="form-control"
-          formControlName="textFilter"
-          placeholder="{{ 'COMPONENT.TEXT_FILTER.PLACEHOLDER' | translate }}">
-        <div class="input-group-append" (click)="resetTextFilter()">
-      <span class="input-group-text addon">
-        <span class="fas fa-search" [hidden]="isTextFilterNotEmpty"></span>
-        <span class="fas fa-times" [hidden]="!isTextFilterNotEmpty"></span>
-      </span>
-        </div>
-      </div>
-    </form>`,
+      <form [formGroup]="searchForm">
+          <mat-form-field appearance="outline" class="search-field">
+              <mat-label>{{ 'COMPONENT.TEXT_FILTER.PLACEHOLDER' | translate }}</mat-label>
+              <input matInput type="search" formControlName="textFilter">
+              <!--ng-container *ngIf="isTextFilterNotEmpty">
+                  <button matSuffix mat-icon-button aria-label="Clear" (click)="resetTextFilter()">
+                      <mat-icon>close</mat-icon>
+                  </button>
+              </ng-container-->
+          </mat-form-field>
+      </form>`,
   styles: [`
-    .addon {
-      color: var(--accent-color);
+    .search-field {
+      width: 100%;
     }
   `],
 })
@@ -40,9 +46,9 @@ export class TextFilterComponent implements OnInit, OnDestroy {
   @Output() valueDidChange: EventEmitter<string>;
 
   searchForm: FormGroup;
-  protected searchControl: FormControl<string>;
+  private searchControl: FormControl<string>;
 
-  protected searchControlSubscription: Subscription;
+  private searchControlSubscription: Subscription;
 
   constructor(protected formBuilder: FormBuilder,
               protected logger: NGXLogger) {
