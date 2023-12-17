@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
+import { inject, Injectable } from '@angular/core';
 
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
+
+import { MatDialog } from '@angular/material/dialog';
 import { NGXLogger } from 'ngx-logger';
 
 import { ModalAlertComponent } from '../ui/modal-alert.component';
@@ -9,59 +10,33 @@ import { ModalConfirmerComponent } from '../ui/modal-confirmer.component';
 
 import { ModalAlert, ModalConfirmer } from '../models';
 
-import { actionGroup } from '../store/core.actions';
-
 @Injectable({
   providedIn: 'root',
 })
 export class UIUtilitiesService {
+  protected dialog = inject(MatDialog);
+  protected logger = inject(NGXLogger);
 
-  constructor(protected modal: NgbModal,
-              protected logger: NGXLogger) {
-  }
-
-  modalAlert(modalAlert: ModalAlert): Promise<Action> {
-    const modalRef = this.modal.open(ModalAlertComponent);
-    modalRef.componentInstance.title = modalAlert.title;
-    modalRef.componentInstance.message = modalAlert.message;
-    modalRef.componentInstance.buttonLabel = modalAlert.buttonLabel;
-
-    return modalRef.result.then((result) => {
-      this.logger.log(`Closed with: ${result}`);
-      return actionGroup.dismissModalAlert({ id: modalAlert.id });
-    }, (reason) => {
-      this.logger.log(`Dismissed ${this.getDismissReason(reason)}`);
-      return actionGroup.dismissModalAlert({ id: modalAlert.id });
+  modalAlert(modalAlert: ModalAlert): Observable<void> {
+    const dialogRef = this.dialog.open(ModalAlertComponent, {
+      data: {
+        title: modalAlert.title,
+        message: modalAlert.message,
+        buttonLabel: modalAlert.buttonLabel,
+      },
     });
+    return dialogRef.afterClosed();
   }
 
-  modalConfirmer(modalConfirmer: ModalConfirmer): Promise<Action> {
-    const modalRef = this.modal.open(ModalConfirmerComponent);
-    modalRef.componentInstance.title = modalConfirmer.title;
-    modalRef.componentInstance.message = modalConfirmer.message;
-    modalRef.componentInstance.yesButtonLabel = modalConfirmer.yesButtonLabel;
-    modalRef.componentInstance.noButtonLabel = modalConfirmer.noButtonLabel;
-
-    return modalRef.result.then((result) => {
-      this.logger.log(`Closed with: ${result}`);
-      if (result) {
-        return actionGroup.dismissModalConfirmerWithPositiveResult({ id: modalConfirmer.id });
-      } else {
-        return actionGroup.dismissModalConfirmerWithNegativeResult({ id: modalConfirmer.id });
-      }
-    }, (reason) => {
-      this.logger.log(`Dismissed ${this.getDismissReason(reason)}`);
-      return actionGroup.dismissModalConfirmer({ id: modalConfirmer.id });
+  modalConfirmer(modalConfirmer: ModalConfirmer): Observable<boolean | undefined> {
+    const dialogRef = this.dialog.open(ModalConfirmerComponent, {
+      data: {
+        title: modalConfirmer.title,
+        message: modalConfirmer.message,
+        yesButtonLabel: modalConfirmer.yesButtonLabel,
+        noButtonLabel: modalConfirmer.noButtonLabel,
+      },
     });
-  }
-
-  protected getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+    return dialogRef.afterClosed();
   }
 }

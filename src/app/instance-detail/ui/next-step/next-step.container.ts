@@ -6,7 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
 
-import { ModalAlert, ModalStoreService } from '../../../core';
+import { ModalAlert, UIUtilitiesService } from '../../../core';
 
 import { BlockListStoreService } from '../block-list-store.service';
 import { SyncStoreService } from '../sync-store.service';
@@ -22,14 +22,14 @@ import { NextStepComponent } from './next-step.component';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-next-step-cp
-      [nextStepBtnEnabled]="(nextStepBtnEnabled$ | async)!"
-      [syncing]="(syncing$ | async)!"
-      [syncError]="(syncError$ | async)!"
-      (nextStep)="nextStep()"
-      (resetSelections)="reset()"
-      (retrySync)="retrySync()">
-    </app-next-step-cp>`,
+      <app-next-step-cp
+              [nextStepBtnEnabled]="(nextStepBtnEnabled$ | async)!"
+              [syncing]="(syncing$ | async)!"
+              [syncError]="(syncError$ | async)!"
+              (nextStep)="nextStep()"
+              (resetSelections)="reset()"
+              (retrySync)="retrySync()">
+      </app-next-step-cp>`,
 })
 export class NextStepContainerComponent implements OnInit, OnDestroy {
   @Input() instanceId: string;
@@ -46,7 +46,7 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
               protected translate: TranslateService,
               protected logger: NGXLogger,
               protected blockListStore: BlockListStoreService,
-              protected modalStore: ModalStoreService,
+              protected uiUtilities: UIUtilitiesService,
               protected syncStore: SyncStoreService) {
     this.mAlertSyncErrorId = 'mAlertSyncErrorId';
   }
@@ -67,7 +67,7 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
       message: this.translate.instant('CONTAINER.NEXT_STEP.DONE'),
       buttonLabel: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_BUTTON'),
     };
-    this.modalStore.showModalAlert(modalAlert);
+    this.uiUtilities.modalAlert(modalAlert);
     this.location.back();
   }
 
@@ -89,7 +89,7 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
             message: err,
             buttonLabel: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_BUTTON'),
           };
-          this.modalStore.showModalAlert(modalAlert);
+          this.uiUtilities.modalAlert(modalAlert);
         }
       });
   }

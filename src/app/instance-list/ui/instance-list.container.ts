@@ -5,7 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { ModalAlert, ModalStoreService } from '../../core';
+import { ModalAlert, UIUtilitiesService } from '../../core';
 
 import { Instance } from '../models';
 
@@ -24,13 +24,13 @@ import { InstanceListComponent } from './instance-list.component';
     InstanceListStoreService,
   ],
   template: `
-    <app-instance-list-cp
-      [instances]="(instances$ | async)!"
-      [loading]="(loading$ | async)!"
-      [error]="(error$ | async)!"
-      (paramsDidChange)="paramsDidChange($event)"
-      (reloadList)="reloadList($event)">
-    </app-instance-list-cp>`,
+      <app-instance-list-cp
+              [instances]="(instances$ | async)!"
+              [loading]="(loading$ | async)!"
+              [error]="(error$ | async)!"
+              (paramsDidChange)="paramsDidChange($event)"
+              (reloadList)="reloadList($event)">
+      </app-instance-list-cp>`,
 })
 export class InstanceListContainerComponent implements OnInit, OnDestroy {
   instances$: Observable<Instance[] | undefined>;
@@ -41,7 +41,7 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
   protected modalAlertSubscription: Subscription;
 
   protected translate = inject(TranslateService);
-  protected modalStore = inject(ModalStoreService);
+  protected uiUtilities = inject(UIUtilitiesService);
   protected instanceListStore = inject(InstanceListStoreService);
 
   constructor() {
@@ -85,7 +85,7 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
             message: err,
             buttonLabel: this.translate.instant('CONTAINER.INSTANCE_LIST.ALERT_BUTTON'),
           };
-          this.modalStore.showModalAlert(modalAlert);
+          this.uiUtilities.modalAlert(modalAlert);
         }
       });
   }

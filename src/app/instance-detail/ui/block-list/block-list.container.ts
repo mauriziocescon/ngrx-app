@@ -7,7 +7,7 @@ import { withLatestFrom } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
 
-import { ModalAlert, ModalStoreService } from '../../../core';
+import { ModalAlert, UIUtilitiesService } from '../../../core';
 import { Block, BLOCK_UTILS_TOKEN } from '../../../shared';
 
 import { BlockListStoreService } from '../block-list-store.service';
@@ -28,12 +28,12 @@ import { BlockUtilsService } from './block-utils.service';
     { provide: BLOCK_UTILS_TOKEN, useClass: BlockUtilsService },
   ],
   template: `
-    <app-block-list-cp
-      [blocks]="(blocks$ | async)!"
-      [loading]="(loading$ | async)!"
-      [error]="(error$ | async)!"
-      (reloadList)="reloadList()">
-    </app-block-list-cp>`,
+      <app-block-list-cp
+              [blocks]="(blocks$ | async)!"
+              [loading]="(loading$ | async)!"
+              [error]="(error$ | async)!"
+              (reloadList)="reloadList()">
+      </app-block-list-cp>`,
 })
 export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() instanceId: string;
@@ -51,7 +51,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   constructor(protected translate: TranslateService,
               protected logger: NGXLogger,
               protected blockListStore: BlockListStoreService,
-              protected modalStore: ModalStoreService,
+              protected uiUtilities: UIUtilitiesService,
               protected syncStore: SyncStoreService) {
     this.mAlertErrorId = '1';
   }
@@ -99,7 +99,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
             message: err,
             buttonLabel: this.translate.instant('CONTAINER.BLOCK_LIST.ALERT_BUTTON'),
           };
-          this.modalStore.showModalAlert(modalAlert);
+          this.uiUtilities.modalAlert(modalAlert);
         }
       });
   }

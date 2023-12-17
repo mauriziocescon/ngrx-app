@@ -2,7 +2,10 @@ import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppConstantsService } from '../services/app-constants.service';
 
@@ -13,42 +16,41 @@ import { AppConstantsService } from '../services/app-constants.service';
     NgIf,
     NgFor,
     TranslateModule,
-    NgbCollapseModule,
-    NgbDropdownModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatToolbarModule,
   ],
   template: `
-    <nav class="navbar navbar-expand-lg bg-primary navbar-light fixed-top navigation-bar-component">
-      <a class="navbar-brand custom" href="#">{{ "COMPONENT.NAVIGATION_BAR.NAME" | translate }}</a>
-      <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
-        <span class="navbar-toggler-icon"></span>
+    <mat-toolbar>
+      <span>{{ "COMPONENT.NAVIGATION_BAR.NAME" | translate }}</span>
+      <button mat-button aria-label="go to instances" (click)="goToInstanceList()">
+        {{ "COMPONENT.NAVIGATION_BAR.INSTANCES" | translate }}
       </button>
 
-      <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" (click)="goToInstanceList()">{{ "COMPONENT.NAVIGATION_BAR.INSTANCES" | translate }}</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item" *ngIf="canOpenJsonServer">
-            <a class="nav-link" (click)="openJsonServer()"><span class="fas fa-server"></span></a>
-          </li>
-          <li class="nav-item dropdown" ngbDropdown>
-            <a class="nav-link dropdown-toggle" ngbDropdownToggle>{{ selectedLanguageId }}</a>
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <a class="dropdown-item" *ngFor="let language of languages" (click)="selectLanguage(language)">
-                {{ language }}
-              </a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>`,
+      <span class="spacer"></span>
+
+      <ng-container *ngIf="canOpenJsonServer">
+        <button mat-icon-button aria-label="open json server" (click)="openJsonServer()">
+          <mat-icon>dns</mat-icon>
+        </button>
+      </ng-container>
+
+      <button mat-button [matMenuTriggerFor]="menu" aria-label="selected language">
+        {{ selectedLanguageId }}
+      </button>
+      <mat-menu #menu="matMenu">
+        <ng-container *ngFor="let language of languages">
+          <button mat-menu-item (click)="selectLanguage(language)">
+            <span>{{ language }}</span>
+          </button>
+        </ng-container>
+      </mat-menu>
+
+    </mat-toolbar>`,
   styles: [`
-    .navigation-bar-component {
-      .navbar-brand.custom {
-        color: white;
-      }
+    .spacer {
+      flex: 1 1 auto;
     }
   `],
 })

@@ -1,39 +1,33 @@
 import { Component, inject, Input } from '@angular/core';
 
-import { NgbModalModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal-alert',
   standalone: true,
   imports: [
-    NgbModalModule,
+    MatButtonModule,
+    MatDialogModule,
   ],
   template: `
-    <div class="modal-header">
-      <h4 class="modal-title">{{ title }}</h4>
-      <button type="button" class="close" aria-label="Close" (click)="dismiss()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>{{ message }}</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="close()">{{ buttonLabel }}</button>
-    </div>`,
+      <h1 mat-dialog-title>{{ data.title }}</h1>
+      <div mat-dialog-content>
+          {{ data.message }}
+      </div>
+      <div mat-dialog-actions>
+          <button mat-button color="primary" (click)="close()">{{ data.buttonLabel }}</button>
+      </div>`,
 })
 export class ModalAlertComponent {
   @Input() title: string;
   @Input() message: string;
   @Input() buttonLabel: string;
 
-  protected activeModal = inject(NgbActiveModal);
+  protected dialogRef = inject(MatDialogRef<ModalAlertComponent>);
+  protected data: { title: string, message: string, buttonLabel: string } = inject(MAT_DIALOG_DATA);
 
   close(): void {
-    this.activeModal.close('Close click');
-  }
-
-  dismiss(): void {
-    this.activeModal.dismiss('Close click');
+    this.dialogRef.close();
   }
 }
