@@ -22,7 +22,7 @@ import { AppConstantsService } from '../services/app-constants.service';
     MatToolbarModule,
   ],
   template: `
-      <mat-toolbar>
+      <mat-toolbar color="primary">
           <span>{{ "COMPONENT.NAVIGATION_BAR.NAME" | translate }}</span>
           <button mat-button aria-label="go to instances" (click)="goToInstanceList()">
               {{ "COMPONENT.NAVIGATION_BAR.INSTANCES" | translate }}
