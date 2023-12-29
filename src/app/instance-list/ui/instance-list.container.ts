@@ -24,13 +24,13 @@ import { InstanceListComponent } from './instance-list.component';
     InstanceListStoreService,
   ],
   template: `
-      <app-instance-list-cp
-              [instances]="(instances$ | async)!"
-              [loading]="(loading$ | async)!"
-              [error]="(error$ | async)!"
-              (paramsDidChange)="paramsDidChange($event)"
-              (reloadList)="reloadList($event)">
-      </app-instance-list-cp>`,
+    <app-instance-list-cp
+      [instances]="(instances$ | async)!"
+      [loading]="(loading$ | async)!"
+      [error]="(error$ | async)!"
+      (paramsDidChange)="paramsDidChange($event)"
+      (reloadList)="reloadList($event)">
+    </app-instance-list-cp>`,
 })
 export class InstanceListContainerComponent implements OnInit, OnDestroy {
   instances$: Observable<Instance[] | undefined>;

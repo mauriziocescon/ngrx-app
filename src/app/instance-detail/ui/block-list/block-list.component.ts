@@ -3,7 +3,7 @@ import { NgFor } from '@angular/common';
 
 import { TranslateModule } from '@ngx-translate/core';
 
-import { GenericBlockContainerComponent, Block } from '../../../shared';
+import { GenericBlockContainerComponent, ScrollToTopDirective, Block } from '../../../shared';
 
 import { CheckBoxContainerComponent } from './blocks/check-box/check-box.container';
 import { CheckBoxConfirmerContainerComponent } from './blocks/check-box-confirmer/check-box-confirmer.container';
@@ -19,6 +19,7 @@ import { UnknownComponent } from './blocks/unknown/unknown.component';
     NgFor,
     TranslateModule,
     GenericBlockContainerComponent,
+    ScrollToTopDirective,
     CheckBoxContainerComponent,
     CheckBoxConfirmerContainerComponent,
     DatePickerContainerComponent,
@@ -27,33 +28,26 @@ import { UnknownComponent } from './blocks/unknown/unknown.component';
     UnknownComponent,
   ],
   template: `
-    <div class="container-fluid block-list-component">
-      <div class="row block-list-main-content" [hidden]="!showData">
-        <div class="col-12" *ngFor="let block of dataSource; trackBy: trackByBlock">
-          <div class="generic-block">
-            <app-generic-block-ct [block]="block"></app-generic-block-ct>
-          </div>
+    <div [hidden]="!showData">
+      <ng-container *ngFor="let block of dataSource; trackBy: trackByBlock">
+        <div class="generic-block">
+          <app-generic-block-ct [block]="block"></app-generic-block-ct>
         </div>
-        <div class="col-12">
-          <div class="full-width-message">{{ "COMPONENT.BLOCK_LIST.LOAD_COMPLETED" | translate }}</div>
-        </div>
-      </div>
-      <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.BLOCK_LIST.LOADING" | translate }}</div>
-      <div class="full-width-message" [hidden]="!hasNoData">{{ "COMPONENT.BLOCK_LIST.NO_RESULT" | translate }}</div>
-      <div class="full-width-message" [hidden]="!shouldRetry"
-           (click)="loadList()">{{ "COMPONENT.BLOCK_LIST.RETRY" | translate }}
-      </div>
-      <div class="go-up" appScrollToTop></div>
-    </div>`,
+      </ng-container>
+      <div class="full-width-message">{{ "COMPONENT.BLOCK_LIST.LOAD_COMPLETED" | translate }}</div>
+    </div>
+    <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.BLOCK_LIST.LOADING" | translate }}</div>
+    <div class="full-width-message" [hidden]="!hasNoData">{{ "COMPONENT.BLOCK_LIST.NO_RESULT" | translate }}</div>
+    <div class="full-width-message" [hidden]="!shouldRetry"
+         (click)="loadList()">{{ "COMPONENT.BLOCK_LIST.RETRY" | translate }}
+    </div>
+    <div class="go-up" appScrollToTop></div>`,
   styles: [`
-    .block-list-component {
-      .block-list-main-content {
-
-        .generic-block {
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-      }
+    .generic-block {
+      padding-top: 15px;
+      padding-left: 5px;
+      padding-bottom: 15px;
+      padding-right: 5px;
     }
   `],
 })

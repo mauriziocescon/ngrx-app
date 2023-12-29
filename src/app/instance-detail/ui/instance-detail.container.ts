@@ -27,9 +27,9 @@ import { SyncStoreService } from './sync-store.service';
     SyncStoreService,
   ],
   template: `
-      <app-instance-detail-cp
-              [instanceId]="instanceId">
-      </app-instance-detail-cp>`,
+    <app-instance-detail-cp
+      [instanceId]="instanceId">
+    </app-instance-detail-cp>`,
 })
 export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
   instanceId: string;

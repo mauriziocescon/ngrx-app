@@ -22,14 +22,14 @@ import { NextStepComponent } from './next-step.component';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-      <app-next-step-cp
-              [nextStepBtnEnabled]="(nextStepBtnEnabled$ | async)!"
-              [syncing]="(syncing$ | async)!"
-              [syncError]="(syncError$ | async)!"
-              (nextStep)="nextStep()"
-              (resetSelections)="reset()"
-              (retrySync)="retrySync()">
-      </app-next-step-cp>`,
+    <app-next-step-cp
+      [nextStepBtnEnabled]="(nextStepBtnEnabled$ | async)!"
+      [syncing]="(syncing$ | async)!"
+      [syncError]="(syncError$ | async)!"
+      (nextStep)="nextStep()"
+      (resetSelections)="reset()"
+      (retrySync)="retrySync()">
+    </app-next-step-cp>`,
 })
 export class NextStepContainerComponent implements OnInit, OnDestroy {
   @Input() instanceId: string;

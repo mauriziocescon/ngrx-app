@@ -5,6 +5,9 @@ import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NGXLogger } from 'ngx-logger';
 
 import { ValidityStateDirective } from '../../../../../shared';
@@ -17,36 +20,26 @@ import { CheckBoxBlock } from '../../../../models';
   imports: [
     ReactiveFormsModule,
     TranslateModule,
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
     ValidityStateDirective,
   ],
   template: `
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <span>{{ "COMPONENT.CHECK_BOX.HEADER" | translate }}</span>&nbsp;
-              <span appValidityState [valid]="block.valid"></span>
-            </div>
-            <div class="card-body">
-              <form [formGroup]="checkBoxForm">
-                <div class="form-group row">
-                  <label for="{{ block.id }}" class="col-sm-2 col-form-label">{{ block.label | translate }}</label>
-                  <div class="col-sm-10">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" id="{{ block.id }}" formControlName="checkBox">
-                        {{ block.description | translate }}
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>`,
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ "COMPONENT.CHECK_BOX.HEADER" | translate }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="checkBoxForm">
+          <label>{{ block.label | translate }}</label>
+          <mat-checkbox formControlName="checkBox">{{ block.description | translate }}</mat-checkbox>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <span appValidityState [valid]="block.valid"></span>
+      </mat-card-actions>
+    </mat-card>`,
 })
 export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: CheckBoxBlock;

@@ -44,11 +44,13 @@ import { InstanceContainerComponent } from './instance/instance.container';
     <div class="go-up" appScrollToTop></div>`,
   styles: [`
     .text-filter {
-      padding: 15px;
+      padding-top: 15px;
+      padding-bottom: 15px;
     }
 
     .instance {
-      padding: 15px;
+      padding-top: 15px;
+      padding-bottom: 15px;
     }
   `],
 })

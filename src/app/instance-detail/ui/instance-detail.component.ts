@@ -17,14 +17,14 @@ import { NextStepContainerComponent } from './next-step/next-step.container';
     NextStepContainerComponent,
   ],
   template: `
-      <div class="instance-detail">
-          <div [ngClass]="nextStep">
-              <app-next-step-ct [instanceId]="instanceId"></app-next-step-ct>
-          </div>
-          <div [ngClass]="blockList">
-              <app-block-list-ct [instanceId]="instanceId"></app-block-list-ct>
-          </div>
-      </div>`,
+    <div class="instance-detail">
+      <div [ngClass]="nextStep">
+        <app-next-step-ct [instanceId]="instanceId"></app-next-step-ct>
+      </div>
+      <div [ngClass]="blockList">
+        <app-block-list-ct [instanceId]="instanceId"></app-block-list-ct>
+      </div>
+    </div>`,
   styles: [`
     .instance-detail {
       display: flex;

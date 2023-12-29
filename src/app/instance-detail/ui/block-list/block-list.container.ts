@@ -28,12 +28,12 @@ import { BlockUtilsService } from './block-utils.service';
     { provide: BLOCK_UTILS_TOKEN, useClass: BlockUtilsService },
   ],
   template: `
-      <app-block-list-cp
-              [blocks]="(blocks$ | async)!"
-              [loading]="(loading$ | async)!"
-              [error]="(error$ | async)!"
-              (reloadList)="reloadList()">
-      </app-block-list-cp>`,
+    <app-block-list-cp
+      [blocks]="(blocks$ | async)!"
+      [loading]="(loading$ | async)!"
+      [error]="(error$ | async)!"
+      (reloadList)="reloadList()">
+    </app-block-list-cp>`,
 })
 export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() instanceId: string;
