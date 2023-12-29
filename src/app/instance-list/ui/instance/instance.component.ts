@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
-import { SharedModule } from '../../../shared';
+import { ValidityStateDirective } from '../../../shared';
 
 import { Instance } from '../../models';
 
@@ -15,24 +15,24 @@ import { Instance } from '../../models';
     TranslateModule,
     MatButtonModule,
     MatCardModule,
-    SharedModule,
+    ValidityStateDirective,
   ],
   template: `
-      <mat-card>
-          <mat-card-header>
-              <mat-card-title>{{ title }}</mat-card-title>
-              <mat-card-subtitle>
-                  <span>{{ blocksCounter }}</span>
-                  <span class="validity-state" appValidityState [valid]="validityState"></span>
-              </mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>{{ bodyText }}</mat-card-content>
-          <mat-card-actions align="end">
-              <button mat-button color="primary" (click)="selectInstance()">
-                  {{ "COMPONENT.INSTANCE.SHOW" | translate }}
-              </button>
-          </mat-card-actions>
-      </mat-card>`,
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ title }}</mat-card-title>
+        <mat-card-subtitle>
+          <span>{{ blocksCounter }}</span>
+          <span class="validity-state" appValidityState [valid]="validityState"></span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>{{ bodyText }}</mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button color="primary" (click)="selectInstance()">
+          {{ "COMPONENT.INSTANCE.SHOW" | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>`,
   styles: [`
     .validity-state {
       padding-left: 15px;

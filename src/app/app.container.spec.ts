@@ -15,7 +15,6 @@ import { EffectsModule } from '@ngrx/effects';
 import * as fromRoot from './reducers';
 
 import { CoreModule } from './core';
-import { SharedModule } from './shared';
 
 import { AppContainerComponent } from './app.container';
 
@@ -46,7 +45,6 @@ describe('AppContainerComponent', () => {
         StoreModule.forRoot(fromRoot.TOKEN),
         EffectsModule.forRoot(),
         CoreModule,
-        SharedModule,
       ],
       declarations: [
         AppContainerComponent,

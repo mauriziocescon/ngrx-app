@@ -3,7 +3,7 @@ import { NgIf, NgFor } from '@angular/common';
 
 import { TranslateModule } from '@ngx-translate/core';
 
-import { SharedModule } from '../../shared';
+import { TextFilterComponent, ScrollToTopDirective } from '../../shared';
 
 import { Instance } from '../models';
 
@@ -16,31 +16,32 @@ import { InstanceContainerComponent } from './instance/instance.container';
     NgIf,
     NgFor,
     TranslateModule,
-    SharedModule,
+    TextFilterComponent,
+    ScrollToTopDirective,
     InstanceContainerComponent,
   ],
   template: `
-      <div class="text-filter">
-          <app-text-filter-cp (valueDidChange)="textSearchValueDidChange($event)"></app-text-filter-cp>
-      </div>
+    <div class="text-filter">
+      <app-text-filter-cp (valueDidChange)="textSearchValueDidChange($event)"></app-text-filter-cp>
+    </div>
 
-      <ng-container *ngIf="showData">
-          <div class="instance" *ngFor="let instanceId of dataSource; trackBy: trackByBlock">
-              <app-instance-ct [instanceId]="instanceId"></app-instance-ct>
-          </div>
-          <div class="full-width-message">{{ "COMPONENT.INSTANCE_LIST.LOAD_COMPLETED" | translate }}</div>
-      </ng-container>
+    <ng-container *ngIf="showData">
+      <div class="instance" *ngFor="let instanceId of dataSource; trackBy: trackByBlock">
+        <app-instance-ct [instanceId]="instanceId"></app-instance-ct>
+      </div>
+      <div class="full-width-message">{{ "COMPONENT.INSTANCE_LIST.LOAD_COMPLETED" | translate }}</div>
+    </ng-container>
 
-      <div class="full-width-message" [hidden]="!isLoadingData">
-          {{ "COMPONENT.INSTANCE_LIST.LOADING" | translate }}
-      </div>
-      <div class="full-width-message" [hidden]="!hasNoData">
-          {{ "COMPONENT.INSTANCE_LIST.NO_RESULT" | translate }}
-      </div>
-      <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">
-          {{ "COMPONENT.INSTANCE_LIST.RETRY" | translate }}
-      </div>
-      <div class="go-up" appScrollToTop></div>`,
+    <div class="full-width-message" [hidden]="!isLoadingData">
+      {{ "COMPONENT.INSTANCE_LIST.LOADING" | translate }}
+    </div>
+    <div class="full-width-message" [hidden]="!hasNoData">
+      {{ "COMPONENT.INSTANCE_LIST.NO_RESULT" | translate }}
+    </div>
+    <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">
+      {{ "COMPONENT.INSTANCE_LIST.RETRY" | translate }}
+    </div>
+    <div class="go-up" appScrollToTop></div>`,
   styles: [`
     .text-filter {
       padding: 15px;

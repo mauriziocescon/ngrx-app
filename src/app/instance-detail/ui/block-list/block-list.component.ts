@@ -3,7 +3,7 @@ import { NgFor } from '@angular/common';
 
 import { TranslateModule } from '@ngx-translate/core';
 
-import { SharedModule, Block } from '../../../shared';
+import { GenericBlockContainerComponent, Block } from '../../../shared';
 
 import { CheckBoxContainerComponent } from './blocks/check-box/check-box.container';
 import { CheckBoxConfirmerContainerComponent } from './blocks/check-box-confirmer/check-box-confirmer.container';
@@ -18,7 +18,7 @@ import { UnknownComponent } from './blocks/unknown/unknown.component';
   imports: [
     NgFor,
     TranslateModule,
-    SharedModule,
+    GenericBlockContainerComponent,
     CheckBoxContainerComponent,
     CheckBoxConfirmerContainerComponent,
     DatePickerContainerComponent,
@@ -41,7 +41,8 @@ import { UnknownComponent } from './blocks/unknown/unknown.component';
       <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.BLOCK_LIST.LOADING" | translate }}</div>
       <div class="full-width-message" [hidden]="!hasNoData">{{ "COMPONENT.BLOCK_LIST.NO_RESULT" | translate }}</div>
       <div class="full-width-message" [hidden]="!shouldRetry"
-           (click)="loadList()">{{ "COMPONENT.BLOCK_LIST.RETRY" | translate }}</div>
+           (click)="loadList()">{{ "COMPONENT.BLOCK_LIST.RETRY" | translate }}
+      </div>
       <div class="go-up" appScrollToTop></div>
     </div>`,
   styles: [`

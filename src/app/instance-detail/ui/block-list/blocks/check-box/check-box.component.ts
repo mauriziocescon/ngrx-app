@@ -7,7 +7,7 @@ import { debounceTime } from 'rxjs/operators';
 import { TranslateModule } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
 
-import { SharedModule } from '../../../../../shared';
+import { ValidityStateDirective } from '../../../../../shared';
 
 import { CheckBoxBlock } from '../../../../models';
 
@@ -17,7 +17,7 @@ import { CheckBoxBlock } from '../../../../models';
   imports: [
     ReactiveFormsModule,
     TranslateModule,
-    SharedModule,
+    ValidityStateDirective,
   ],
   template: `
     <div class="container-fluid">

@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { NGXLogger } from 'ngx-logger';
 
-import { SharedModule } from '../../../../../shared';
+import { ValidityStateDirective } from '../../../../../shared';
 
 import { DatePickerBlock } from '../../../../models';
 
@@ -18,7 +18,7 @@ import { DatePickerBlock } from '../../../../models';
     FormsModule,
     TranslateModule,
     NgbDatepickerModule,
-    SharedModule,
+    ValidityStateDirective,
   ],
   template: `
     <div class="container-fluid">

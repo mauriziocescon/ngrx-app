@@ -18,7 +18,6 @@ import { TOKEN, reducerProvider, metaReducers } from './reducers';
 import { CustomRouterStateSerializer } from './reducers/route-util';
 
 import { CoreModule, AppLanguageService } from './core';
-import { SharedModule } from './shared';
 
 import { AppContainerComponent } from './app.container';
 
@@ -65,7 +64,6 @@ function createLanguageIdLoader(appLanguage: AppLanguageService): string {
       serverLogLevel: NgxLoggerLevel.LOG,
     }),
     CoreModule,
-    SharedModule,
     AppRoutingModule,
   ],
   declarations: [
