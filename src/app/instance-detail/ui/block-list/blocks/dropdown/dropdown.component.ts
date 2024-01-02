@@ -6,6 +6,10 @@ import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { NGXLogger } from 'ngx-logger';
 
 import { ValidityStateDirective } from '../../../../../shared';
@@ -19,96 +23,86 @@ import { DropdownBlock } from '../../../../models';
     NgFor,
     ReactiveFormsModule,
     TranslateModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     ValidityStateDirective,
   ],
   template: `
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <span>{{ "COMPONENT.DROPDOWN.HEADER" | translate }}</span>&nbsp;
-              <span appValidityState [valid]="block.valid"></span>
-            </div>
-            <div class="card-body">
-              <form [formGroup]="dropdownForm">
-                <div class="form-group row">
-                  <label for="{{ block.id }}" class="col-sm-2 col-form-label">{{ block.label | translate }}</label>
-                  <div class="col-sm-10">
-                    <div class="input-group">
-                      <select class="custom-select" id="{{ block.id }}" formControlName="selectedValue">
-                        <option *ngFor="let value of block.choices" [ngValue]="value">
-                          {{ value }}
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>`,
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ "COMPONENT.DROPDOWN.HEADER" | translate }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="form">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ block.label | translate }}</mat-label>
+            <mat-select [formControl]="control">
+              <mat-option *ngFor="let value of block.choices" [value]="value"> {{ value }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <span appValidityState [valid]="block.valid"></span>
+      </mat-card-actions>
+    </mat-card>`,
 })
 export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: DropdownBlock;
   @Output() valueDidChange: EventEmitter<string>;
 
-  dropdownForm: FormGroup;
-  protected dropdownControl: FormControl;
+  form: FormGroup;
+  protected control: FormControl<string>;
 
-  protected dropdownControlSubscription: Subscription;
+  protected controlSubscription: Subscription;
 
   constructor(protected formBuilder: FormBuilder,
               protected logger: NGXLogger) {
-    this.valueDidChange = new EventEmitter<string>();
+    this.valueDidChange = new EventEmitter();
   }
 
   ngOnInit(): void {
-    this.dropdownForm = this.formBuilder.group({
-      selectedValue: this.dropdownControl = new FormControl(),
+    this.form = this.formBuilder.group({
+      dropdown: this.control = new FormControl(),
     });
-    this.setupFormControllers();
+    this.setupController();
 
-    this.subscribeToDropdownControlValueChanges();
+    this.subscribeValueChanges();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['block'].isFirstChange()) {
-      this.unsubscribeToDropdownControlValueChanges();
-      this.setupFormControllers();
-      this.subscribeToDropdownControlValueChanges();
+      this.unsubscribeValueChanges();
+      this.setupController();
+      this.subscribeValueChanges();
     }
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeToDropdownControlValueChanges();
+    this.unsubscribeValueChanges();
   }
 
-  protected setupFormControllers(): void {
+  protected setupController(): void {
     const validators = [
       ...this.insertIf(this.block.required, Validators.required),
     ];
-    this.dropdownControl.setValidators(validators);
-    this.setDisableEnable(this.block.disabled, this.dropdownControl);
-    this.dropdownControl.setValue(this.block.value);
+    this.control.setValidators(validators);
+    this.setDisableEnable(this.block.disabled, this.control);
+    this.control.setValue(this.block.value);
   }
 
-  protected subscribeToDropdownControlValueChanges(): void {
-    this.unsubscribeToDropdownControlValueChanges();
+  protected subscribeValueChanges(): void {
+    this.unsubscribeValueChanges();
 
-    this.dropdownControlSubscription = this.dropdownControl
+    this.controlSubscription = this.control
       .valueChanges
-      .pipe(
-        debounceTime(500),
-      )
-      .subscribe((value: string) => {
-          this.valueDidChange.emit(value);
-        },
-        (e) => {
-          this.logger.error(e.toString());
-        });
+      .pipe(debounceTime(500))
+      .subscribe({
+        next: value => this.valueDidChange.emit(value),
+        error: e => this.logger.error(e.toString()),
+      });
   }
 
   protected setDisableEnable(condition: boolean, control: FormControl): void {
@@ -123,9 +117,7 @@ export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
     return condition ? [element] : [];
   }
 
-  protected unsubscribeToDropdownControlValueChanges(): void {
-    if (this.dropdownControlSubscription) {
-      this.dropdownControlSubscription.unsubscribe();
-    }
+  protected unsubscribeValueChanges(): void {
+    this.controlSubscription?.unsubscribe();
   }
 }

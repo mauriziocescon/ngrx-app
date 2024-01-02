@@ -31,7 +31,7 @@ import { CheckBoxBlock } from '../../../../models';
         <mat-card-title>{{ "COMPONENT.CHECK_BOX.HEADER" | translate }}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <form [formGroup]="checkBoxForm">
+        <form [formGroup]="form">
           <label>{{ block.label | translate }}</label>
           <mat-checkbox formControlName="checkBox">{{ block.description | translate }}</mat-checkbox>
         </form>
@@ -45,60 +45,56 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: CheckBoxBlock;
   @Output() valueDidChange: EventEmitter<boolean>;
 
-  checkBoxForm: FormGroup;
-  protected checkBoxControl: FormControl;
+  form: FormGroup;
+  protected control: FormControl<boolean>;
 
-  protected checkBoxControlSubscription: Subscription;
+  protected controlSubscription: Subscription;
 
   constructor(protected formBuilder: FormBuilder,
               protected logger: NGXLogger) {
-    this.valueDidChange = new EventEmitter<boolean>();
+    this.valueDidChange = new EventEmitter();
   }
 
   ngOnInit(): void {
-    this.checkBoxForm = this.formBuilder.group({
-      checkBox: this.checkBoxControl = new FormControl(),
+    this.form = this.formBuilder.group({
+      checkBox: this.control = new FormControl(),
     });
-    this.setupFormControllers();
+    this.setupController();
 
-    this.subscribeToCheckBoxControlValueChanges();
+    this.subscribeValueChanges();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['block'].isFirstChange()) {
-      this.unsubscribeToCheckBoxValueChanges();
-      this.setupFormControllers();
-      this.subscribeToCheckBoxControlValueChanges();
+      this.unsubscribeValueChanges();
+      this.setupController();
+      this.subscribeValueChanges();
     }
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeToCheckBoxValueChanges();
+    this.unsubscribeValueChanges();
   }
 
-  protected setupFormControllers(): void {
+  protected setupController(): void {
     const validators = [
       ...this.insertIf(this.block.required, Validators.required),
     ];
-    this.checkBoxControl.setValidators(validators);
-    this.setDisableEnable(this.block.disabled, this.checkBoxControl);
-    this.checkBoxControl.setValue(this.block.value);
+    this.control.setValidators(validators);
+    this.setDisableEnable(this.block.disabled, this.control);
+    this.control.setValue(this.block.value);
   }
 
-  protected subscribeToCheckBoxControlValueChanges(): void {
-    this.unsubscribeToCheckBoxValueChanges();
+  protected subscribeValueChanges(): void {
+    this.unsubscribeValueChanges();
 
-    this.checkBoxControlSubscription = this.checkBoxControl
+    this.controlSubscription = this.control
       .valueChanges
-      .pipe(
-        debounceTime(500),
-      )
-      .subscribe((value: boolean) => {
-          this.valueDidChange.emit(value);
-        },
-        (e) => {
-          this.logger.error(e.toString());
-        });
+      .pipe(debounceTime(500))
+      .subscribe({
+        next: value => this.valueDidChange.emit(value),
+        error: e => this.logger.error(e.toString()),
+      });
   }
 
   protected setDisableEnable(condition: boolean, control: FormControl): void {
@@ -113,9 +109,7 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
     return condition ? [element] : [];
   }
 
-  protected unsubscribeToCheckBoxValueChanges(): void {
-    if (this.checkBoxControlSubscription) {
-      this.checkBoxControlSubscription.unsubscribe();
-    }
+  protected unsubscribeValueChanges(): void {
+    this.controlSubscription?.unsubscribe();
   }
 }

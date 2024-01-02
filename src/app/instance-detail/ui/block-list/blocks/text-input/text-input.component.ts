@@ -29,7 +29,7 @@ import { TextInputBlock } from '../../../../models';
               <span appValidityState [valid]="block.valid"></span>
             </div>
             <div class="card-body">
-              <form [formGroup]="textInputForm">
+              <form [formGroup]="form">
                 <div class="form-group row">
                   <label for="{{ block.id }}" class="col-sm-2 col-form-label">{{ block.label | translate }}</label>
                   <div class="col-sm-10">
@@ -65,18 +65,18 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: TextInputBlock;
   @Output() valueDidChange: EventEmitter<string>;
 
-  textInputForm: FormGroup;
-  protected textInputControl: FormControl;
+  form: FormGroup;
+  protected control: FormControl<string>;
 
-  protected textInputControlSubscription: Subscription;
+  protected controlSubscription: Subscription;
 
   constructor(protected formBuilder: FormBuilder,
               protected logger: NGXLogger) {
-    this.valueDidChange = new EventEmitter<string>();
+    this.valueDidChange = new EventEmitter();
   }
 
   get isTextInputNotEmpty(): boolean {
-    return this.textInputControl.value;
+    return !!this.control.value;
   }
 
   get inputGroupMessage(): string {
@@ -125,31 +125,31 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.textInputForm = this.formBuilder.group({
-      textInput: this.textInputControl = new FormControl(),
+    this.form = this.formBuilder.group({
+      textInput: this.control = new FormControl(),
     });
-    this.setupFormControllers();
+    this.setupController();
 
-    this.subscribeToTextInputControlValueChanges();
+    this.subscribeValueChanges();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['block'].isFirstChange()) {
-      this.unsubscribeToTextInputControlValueChanges();
-      this.setupFormControllers();
-      this.subscribeToTextInputControlValueChanges();
+      this.unsubscribeValueChanges();
+      this.setupController();
+      this.subscribeValueChanges();
     }
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeToTextInputControlValueChanges();
+    this.unsubscribeValueChanges();
   }
 
   resetTextInput(): void {
-    this.textInputControl.setValue('');
+    this.control.setValue('');
   }
 
-  protected setupFormControllers(): void {
+  protected setupController(): void {
     const validators = [
       ...this.insertIf(this.block.required, Validators.required),
       ...this.insertIf(
@@ -161,25 +161,21 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
         Validators.maxLength(this.block.maxLength as number),
       ),
     ];
-    this.textInputControl.setValidators(validators);
-    this.setDisableEnable(this.block.disabled, this.textInputControl);
-    this.textInputControl.setValue(this.block.value);
+    this.control.setValidators(validators);
+    this.setDisableEnable(this.block.disabled, this.control);
+    this.control.setValue(this.block.value);
   }
 
-  protected subscribeToTextInputControlValueChanges(): void {
-    this.unsubscribeToTextInputControlValueChanges();
+  protected subscribeValueChanges(): void {
+    this.unsubscribeValueChanges();
 
-    this.textInputControlSubscription = this.textInputControl
+    this.controlSubscription = this.control
       .valueChanges
-      .pipe(
-        debounceTime(500),
-      )
-      .subscribe((value: string) => {
-          this.valueDidChange.emit(value);
-        },
-        (e) => {
-          this.logger.error(e.toString());
-        });
+      .pipe(debounceTime(500))
+      .subscribe({
+        next: value => this.valueDidChange.emit(value),
+        error: e => this.logger.error(e.toString()),
+      });
   }
 
   protected setDisableEnable(condition: boolean, control: FormControl): void {
@@ -194,9 +190,7 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
     return condition ? [element] : [];
   }
 
-  protected unsubscribeToTextInputControlValueChanges(): void {
-    if (this.textInputControlSubscription) {
-      this.textInputControlSubscription.unsubscribe();
-    }
+  protected unsubscribeValueChanges(): void {
+    this.controlSubscription?.unsubscribe();
   }
 }

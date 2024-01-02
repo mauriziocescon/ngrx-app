@@ -1,9 +1,16 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges, OnDestroy } from '@angular/core';
+import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+
+import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 import { NGXLogger } from 'ngx-logger';
 
 import { ValidityStateDirective } from '../../../../../shared';
@@ -14,84 +21,98 @@ import { DatePickerBlock } from '../../../../models';
   selector: 'app-date-picker-cp',
   standalone: true,
   imports: [
-    CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     TranslateModule,
-    NgbDatepickerModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
     ValidityStateDirective,
   ],
   template: `
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <span>{{ "COMPONENT.DATE_PICKER.HEADER" | translate }}</span>&nbsp;
-              <span appValidityState [valid]="block.valid"></span>
-            </div>
-            <div class="card-body">
-              <form>
-                <div class="form-group row">
-                  <label for="{{ block.id }}" class="col-sm-2 col-form-label">{{ block.label | translate }}</label>
-                  <div class="col-sm-10">
-                    <div class="input-group">
-                      <input class="form-control" id="{{ block.id }}"
-                             name="dp" [(ngModel)]="selectedDate" (ngModelChange)="onChange($event)" ngbDatepicker
-                             #d="ngbDatepicker" [navigation]="'arrows'" placeholder="yyyy-mm-dd">
-                      <div class="input-group-append">
-                        <button class="btn btn-primary addon" (click)="d.toggle()" type="button">
-                          <span class="fas fa-calendar"></span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>`,
-  styles: [`
-    .date-picker-component {
-
-      .addon {
-        color: var(--accent-color);
-      }
-    }
-  `],
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ "COMPONENT.DATE_PICKER.HEADER" | translate }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="form">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ block.label | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker1" [formControl]="control">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <span appValidityState [valid]="block.valid"></span>
+      </mat-card-actions>
+    </mat-card>`,
 })
-export class DatePickerComponent implements OnInit, OnChanges {
+export class DatePickerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: DatePickerBlock;
   @Output() valueDidChange: EventEmitter<string>;
 
-  selectedDate: NgbDateStruct;
+  form: FormGroup;
+  control: FormControl<string>;
 
-  constructor(protected logger: NGXLogger) {
-    this.valueDidChange = new EventEmitter<string>();
+  protected controlSubscription: Subscription;
+
+  constructor(protected formBuilder: FormBuilder,
+              protected logger: NGXLogger) {
+    this.valueDidChange = new EventEmitter();
   }
 
   ngOnInit(): void {
-    const date = this.block.value ? new Date(this.block.value) : new Date();
-    this.selectedDate = this.fromModel(date);
+    this.form = this.formBuilder.group({
+      date: this.control = new FormControl(),
+    });
+    this.setupController();
+
+    this.subscribeValueChanges();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['block'].isFirstChange()) {
-      const date = this.block.value ? new Date(this.block.value) : new Date();
-      this.selectedDate = this.fromModel(date);
+      this.unsubscribeValueChanges();
+      this.setupController();
+      this.subscribeValueChanges();
     }
   }
 
-  onChange(date: NgbDateStruct): void {
-    this.valueDidChange.emit(this.toModel(date).toISOString());
+  ngOnDestroy(): void {
+    this.unsubscribeValueChanges();
   }
 
-  protected fromModel(date: Date): NgbDateStruct {
-    return { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
+  protected setupController(): void {
+    this.setDisableEnable(this.block.disabled, this.control);
+    this.control.setValue(this.block.value);
   }
 
-  protected toModel(date: NgbDateStruct): Date {
-    return new Date(date.year, date.month - 1, date.day);
+  protected subscribeValueChanges(): void {
+    this.unsubscribeValueChanges();
+
+    this.controlSubscription = this.control
+      .valueChanges
+      .pipe(debounceTime(500))
+      .subscribe({
+        next: value => this.valueDidChange.emit(value),
+        error: e => this.logger.error(e.toString()),
+      });
+  }
+
+  protected setDisableEnable(condition: boolean, control: FormControl): void {
+    if (condition) {
+      control.disable();
+    } else {
+      control.enable();
+    }
+  }
+
+  protected unsubscribeValueChanges(): void {
+    this.controlSubscription?.unsubscribe();
   }
 }

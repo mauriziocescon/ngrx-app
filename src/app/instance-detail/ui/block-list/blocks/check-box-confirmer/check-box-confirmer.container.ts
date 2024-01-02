@@ -25,10 +25,10 @@ import { CheckBoxConfirmerComponent } from './check-box-confirmer.component';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-      <app-check-box-confirmer-cp
-              [block]="(block$ | async)!"
-              (valueDidChange)="valueDidChange($event)">
-      </app-check-box-confirmer-cp>`,
+    <app-check-box-confirmer-cp
+      [block]="(block$ | async)!"
+      (valueDidChange)="valueDidChange($event)">
+    </app-check-box-confirmer-cp>`,
 })
 export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnInit, OnDestroy {
   @Input() blockId: string;
