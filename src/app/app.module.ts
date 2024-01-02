@@ -9,7 +9,6 @@ import { EffectsModule, provideEffects } from '@ngrx/effects';
 import { StoreRouterConnectingModule, provideRouterStore } from '@ngrx/router-store';
 import { StoreDevtoolsModule, provideStoreDevtools } from '@ngrx/store-devtools';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
@@ -50,7 +49,6 @@ function createLanguageIdLoader(appLanguage: AppLanguageService): string {
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument({ name: 'NgRx-App DevTools', logOnly: environment.production }),
 
-    NgbModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

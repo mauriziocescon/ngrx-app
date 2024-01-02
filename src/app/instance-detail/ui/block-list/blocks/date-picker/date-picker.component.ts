@@ -34,11 +34,13 @@ import { DatePickerBlock } from '../../../../models';
   template: `
     <mat-card>
       <mat-card-header>
-        <mat-card-title>{{ "COMPONENT.DATE_PICKER.HEADER" | translate }}</mat-card-title>
+        <mat-card-title>
+          <div class="card-title">{{ "COMPONENT.DATE_PICKER.HEADER" | translate }}</div>
+        </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form [formGroup]="form">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class="card-content">
             <mat-label>{{ block.label | translate }}</mat-label>
             <input matInput [matDatepicker]="picker1" [formControl]="control">
             <mat-hint>MM/DD/YYYY</mat-hint>

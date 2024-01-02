@@ -10,6 +10,7 @@ exports.getDatePicker = (index) => {
     order: parseInt(index),
     label: 'COMPONENT.DATE_PICKER.DATE_PICKER_LABEL',
     value: value,
+    description: 'COMPONENT.DATE_PICKER.DATE_PICKER_DESC',
     required: required,
     disabled: false,
     valid: required ? !!value : true,

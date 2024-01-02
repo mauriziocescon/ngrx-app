@@ -26,7 +26,9 @@ import { CheckBoxConfirmerBlock } from '../../../../models';
   template: `
     <mat-card>
       <mat-card-header>
-        <mat-card-title>{{ "COMPONENT.CHECK_BOX_CONFIRMER.HEADER" | translate }}</mat-card-title>
+        <mat-card-title>
+          <div class="card-title">{{ "COMPONENT.CHECK_BOX_CONFIRMER.HEADER" | translate }}</div>
+        </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form [formGroup]="form">

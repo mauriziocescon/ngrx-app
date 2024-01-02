@@ -5,7 +5,6 @@ import { APP_BASE_HREF } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule, SwUpdate } from '@angular/service-worker';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { LoggerTestingModule } from 'ngx-logger/testing';
@@ -33,7 +32,6 @@ describe('AppContainerComponent', () => {
         HttpClientModule,
         RouterTestingModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
-        NgbModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

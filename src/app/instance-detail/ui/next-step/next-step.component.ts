@@ -51,7 +51,7 @@ import { ValidityStateDirective } from '../../../shared';
       flex-direction: column;
 
       button {
-        margin: 5px;
+        margin: var(--padding-s);
       }
     }
   `],

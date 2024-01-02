@@ -1,64 +1,40 @@
 // -------------------------------------------------------
-// App variables
-
-$primary-color: #004494 !default;
-$accent-color: #ffeb3b !default;
-$secondary-color: #fff !default;
-$info-color: #03a9f4;
-$success-color: #4caf50;
-$warning-color: #ff9800;
-$danger-color: #f44336;
-$gray-color: #666 !default;
-
-// -------------------------------------------------------
-// Bootstrap variables
-
-//== Colors
-$theme-colors: (
-  primary: $primary-color,
-  secondary: $secondary-color,
-  success: $success-color,
-  info: $info-color,
-  warning: $warning-color,
-  danger: $danger-color,
-  light: $gray-color,
-  dark: $gray-color
-);
-
-//== Typography
-$font-size-base: 1rem;
-$font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-
-//== Grid system
-$grid-gutter-width: 8px;
-
-//== Navbar
-$navbar-padding-y: 0.75rem;
-
-$navbar-light-color: $secondary-color;
-$navbar-light-hover-color: $secondary-color;
-
-//== Buttons
-
-// Forms
-$input-group-addon-bg: $primary-color;
-
-// -------------------------------------------------------
 // Root variables
 
 :root {
-  --accent-color: #{$accent-color};
-  --navbar-padding-y: #{$navbar-padding-y};
+  --primary-color: #004494;
+  --accent-color: #ffeb3b;
+  --secondary-color: #fff;
+  --info-color: #03a9f4;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --danger-color: #f44336;
+  --gray-color: #666;
+
+  --padding-s: 10px;
+  --padding-m: 15px;
+  --padding-l: 20px;
+
+  --full-width: 100%;
 }
 
 // -------------------------------------------------------
 // Common style
 
+.card-title {
+  padding-top: var(--padding-s);
+  padding-bottom: var(--padding-s);
+}
+
+.card-content {
+  width: var(--full-width);
+}
+
 .full-width-message {
-  width: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: 1.5 * $font-size-base;
+  width: var(--full-width);
+  padding-top: var(--padding-l);
+  padding-bottom: var(--padding-l);
+  font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
 }
@@ -72,29 +48,11 @@ $input-group-addon-bg: $primary-color;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  color: $primary-color;
-  background-color: $secondary-color;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
   opacity: 0.7;
   bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 200;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
-input.ng-invalid,
-select.ng-invalid,
-textarea.ng-invalid {
-  color: $danger-color;
-  border-color: $danger-color;
-}
-
-input.ng-invalid-mc-custom-validator-error,
-select.ng-invalid-mc-custom-validator-error,
-textarea.ng-invalid-mc-custom-validator-error {
-  color: $danger-color;
-  border-color: $danger-color;
 }

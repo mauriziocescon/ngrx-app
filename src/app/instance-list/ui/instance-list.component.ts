@@ -21,9 +21,7 @@ import { InstanceContainerComponent } from './instance/instance.container';
     InstanceContainerComponent,
   ],
   template: `
-    <div class="text-filter">
-      <app-text-filter-cp (valueDidChange)="textSearchValueDidChange($event)"></app-text-filter-cp>
-    </div>
+    <app-text-filter-cp (valueDidChange)="textSearchValueDidChange($event)"></app-text-filter-cp>
 
     <ng-container *ngIf="showData">
       <div class="instance" *ngFor="let instanceId of dataSource; trackBy: trackByBlock">
@@ -43,14 +41,11 @@ import { InstanceContainerComponent } from './instance/instance.container';
     </div>
     <div class="go-up" appScrollToTop></div>`,
   styles: [`
-    .text-filter {
-      padding-top: 15px;
-      padding-bottom: 15px;
-    }
-
     .instance {
-      padding-top: 15px;
-      padding-bottom: 15px;
+      padding-left: var(--padding-s);
+      padding-right: var(--padding-s);
+      padding-top: var(--padding-m);
+      padding-bottom: var(--padding-m);
     }
   `],
 })

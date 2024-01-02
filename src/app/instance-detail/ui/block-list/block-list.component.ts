@@ -44,10 +44,10 @@ import { UnknownComponent } from './blocks/unknown/unknown.component';
     <div class="go-up" appScrollToTop></div>`,
   styles: [`
     .generic-block {
-      padding-top: 15px;
-      padding-left: 5px;
-      padding-bottom: 15px;
-      padding-right: 5px;
+      padding-left: var(--padding-s);
+      padding-right: var(--padding-s);
+      padding-top: var(--padding-m);
+      padding-bottom: var(--padding-m);
     }
   `],
 })

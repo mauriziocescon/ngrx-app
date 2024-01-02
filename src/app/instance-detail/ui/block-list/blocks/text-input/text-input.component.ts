@@ -1,10 +1,16 @@
 import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { NGXLogger } from 'ngx-logger';
 
 import { ValidityStateDirective } from '../../../../../shared';
@@ -15,58 +21,50 @@ import { TextInputBlock } from '../../../../models';
   selector: 'app-text-input-cp',
   standalone: true,
   imports: [
+    NgFor,
+    NgIf,
     ReactiveFormsModule,
     TranslateModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
     ValidityStateDirective,
   ],
   template: `
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <span>{{ "COMPONENT.TEXT_INPUT.HEADER" | translate }}</span>&nbsp;
-              <span appValidityState [valid]="block.valid"></span>
-            </div>
-            <div class="card-body">
-              <form [formGroup]="form">
-                <div class="form-group row">
-                  <label for="{{ block.id }}" class="col-sm-2 col-form-label">{{ block.label | translate }}</label>
-                  <div class="col-sm-10">
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="{{ block.id }}" formControlName="textInput"
-                             placeholder="{{ 'COMPONENT.TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | translate }}">
-                      <div class="input-group-append" (click)="resetTextInput()">
-                        <span class="input-group-text addon">
-                          <span class="fas fa-search" [hidden]="isTextInputNotEmpty"></span>
-                          <span class="fas fa-times" [hidden]="!isTextInputNotEmpty"></span>
-                        </span>
-                      </div>
-                    </div>
-                    <div class="input-group-message">{{ inputGroupMessage | translate: inputGroupParams }}</div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>`,
-  styles: [`
-    .text-input-component {
-
-      .addon {
-        color: var(--accent-color);
-      }
-    }
-  `],
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <div class="card-title">{{ "COMPONENT.TEXT_INPUT.HEADER" | translate }}</div>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="form">
+          <mat-form-field appearance="outline" class="card-content">
+            <mat-label>{{ block.label | translate }}</mat-label>
+            <input type="text" matInput [formControl]="control"
+                   placeholder="{{ 'COMPONENT.TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | translate }}">
+            <ng-container *ngIf="isTextInputNotEmpty">
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="resetTextInput()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </ng-container>
+            <mat-hint>{{ inputGroupMessage | translate: inputGroupParams }}</mat-hint>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <span appValidityState [valid]="block.valid"></span>
+      </mat-card-actions>
+    </mat-card>`,
 })
 export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
   @Input() block: TextInputBlock;
   @Output() valueDidChange: EventEmitter<string>;
 
   form: FormGroup;
-  protected control: FormControl<string>;
+  control: FormControl<string>;
 
   protected controlSubscription: Subscription;
 

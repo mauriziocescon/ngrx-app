@@ -25,20 +25,24 @@ import { NGXLogger } from 'ngx-logger';
     TranslateModule,
   ],
   template: `
-      <form [formGroup]="searchForm">
-          <mat-form-field appearance="outline" class="search-field">
-              <mat-label>{{ 'COMPONENT.TEXT_FILTER.PLACEHOLDER' | translate }}</mat-label>
-              <input matInput type="search" formControlName="textFilter">
-              <!--ng-container *ngIf="isTextFilterNotEmpty">
-                  <button matSuffix mat-icon-button aria-label="Clear" (click)="resetTextFilter()">
-                      <mat-icon>close</mat-icon>
-                  </button>
-              </ng-container-->
-          </mat-form-field>
-      </form>`,
+    <form [formGroup]="searchForm">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>{{ 'COMPONENT.TEXT_FILTER.PLACEHOLDER' | translate }}</mat-label>
+        <input matInput type="search" formControlName="textFilter">
+        <!--ng-container *ngIf="isTextFilterNotEmpty">
+            <button matSuffix mat-icon-button aria-label="Clear" (click)="resetTextFilter()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </ng-container-->
+      </mat-form-field>
+    </form>`,
   styles: [`
     .search-field {
-      width: 100%;
+      display: flex;
+      padding-left: var(--padding-s);
+      padding-right: var(--padding-s);
+      padding-top: var(--padding-m);
+      padding-bottom: var(--padding-m);
     }
   `],
 })

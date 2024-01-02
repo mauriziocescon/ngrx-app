@@ -32,11 +32,13 @@ import { DropdownBlock } from '../../../../models';
   template: `
     <mat-card>
       <mat-card-header>
-        <mat-card-title>{{ "COMPONENT.DROPDOWN.HEADER" | translate }}</mat-card-title>
+        <mat-card-title>
+          <div class="card-title">{{ "COMPONENT.DROPDOWN.HEADER" | translate }}</div>
+        </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form [formGroup]="form">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class="card-content">
             <mat-label>{{ block.label | translate }}</mat-label>
             <mat-select [formControl]="control">
               <mat-option *ngFor="let value of block.choices" [value]="value"> {{ value }}</mat-option>
