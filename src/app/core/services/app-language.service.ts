@@ -17,15 +17,16 @@ import { actionGroup } from '../store/core.actions';
 })
 export class AppLanguageService {
   private selectedLanguageId: string;
-
+  
   private store$ = inject(Store);
   private translate = inject(TranslateService);
   private appConstants = inject(AppConstantsService);
   private localStorage = inject(LocalStorageService);
 
   constructor() {
-    this.start();
+    this.selectedLanguageId = this.appConstants.Languages.DEFAULT_LANGUAGE;
 
+    this.start();
     this.translate.setDefaultLang(this.appConstants.Languages.DEFAULT_LANGUAGE);
     this.translate.use(this.getLanguageId());
   }

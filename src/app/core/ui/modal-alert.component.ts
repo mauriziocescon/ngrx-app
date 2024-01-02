@@ -20,9 +20,9 @@ import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/materia
     </div>`,
 })
 export class ModalAlertComponent {
-  @Input() title: string;
-  @Input() message: string;
-  @Input() buttonLabel: string;
+  @Input() title: string | undefined;
+  @Input() message: string | undefined;
+  @Input() buttonLabel: string | undefined;
 
   protected dialogRef = inject(MatDialogRef<ModalAlertComponent>);
   protected data: { title: string, message: string, buttonLabel: string } = inject(MAT_DIALOG_DATA);

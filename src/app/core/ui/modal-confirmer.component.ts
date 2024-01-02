@@ -21,10 +21,10 @@ import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/materia
     </div>`,
 })
 export class ModalConfirmerComponent {
-  @Input() title: string;
-  @Input() message: string;
-  @Input() yesButtonLabel: string;
-  @Input() noButtonLabel: string;
+  @Input() title: string | undefined;
+  @Input() message: string | undefined;
+  @Input() yesButtonLabel: string | undefined;
+  @Input() noButtonLabel: string | undefined;
 
   protected dialogRef = inject(MatDialogRef<ModalConfirmerComponent>);
   protected data: {
