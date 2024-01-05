@@ -8,7 +8,7 @@ import { BlockComponent } from '../../../../../shared';
 
 import { DropdownBlock } from '../../../../models';
 
-import { BlockListStoreService } from '../../../block-list-store.service';
+import { InstanceDetailStoreService } from '../../../instance-detail-store.service';
 
 import { DropdownComponent } from './dropdown.component';
 
@@ -31,7 +31,7 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
 
   block$: Observable<DropdownBlock | undefined>;
 
-  protected blockListStore = inject(BlockListStoreService);
+  protected instanceDetailStore = inject(InstanceDetailStoreService);
 
   ngOnInit(): void {
     this.setupAsyncObs();
@@ -51,10 +51,10 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
         value,
       },
     };
-    this.blockListStore.updateBlock(block);
+    this.instanceDetailStore.updateBlock(block);
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.blockListStore.getBlockById(this.blockId) as Observable<DropdownBlock>;
+    this.block$ = this.instanceDetailStore.getBlockById(this.blockId) as Observable<DropdownBlock>;
   }
 }

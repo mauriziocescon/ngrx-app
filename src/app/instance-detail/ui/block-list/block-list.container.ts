@@ -19,8 +19,7 @@ import { NGXLogger } from 'ngx-logger';
 import { ModalAlert, UIUtilitiesService } from '../../../core';
 import { Block, BLOCK_UTILS_TOKEN } from '../../../shared';
 
-import { BlockListStoreService } from '../block-list-store.service';
-import { SyncStoreService } from '../sync-store.service';
+import { InstanceDetailStoreService } from '../instance-detail-store.service';
 
 import { BlockListComponent } from './block-list.component';
 import { BlockUtilsService } from './block-utils.service';
@@ -59,9 +58,8 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
 
   protected translate = inject(TranslateService);
   protected logger = inject(NGXLogger);
-  protected blockListStore = inject(BlockListStoreService);
+  protected instanceDetailStore = inject(InstanceDetailStoreService);
   protected uiUtilities = inject(UIUtilitiesService);
-  protected syncStore = inject(SyncStoreService);
 
   constructor() {
     this.mAlertErrorId = '1';
@@ -74,25 +72,25 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['instanceId']) {
-      this.blockListStore.clearBlocks();
+      this.instanceDetailStore.clearBlocks();
       this.reloadList();
     }
   }
 
   ngOnDestroy(): void {
     this.unsubscribeAll();
-    this.blockListStore.clearBlocks();
+    this.instanceDetailStore.clearBlocks();
   }
 
   reloadList(): void {
-    this.blockListStore.loadBlocks(this.instanceId);
+    this.instanceDetailStore.loadBlocks(this.instanceId);
   }
 
   protected setupAsyncObs(): void {
-    this.blocks$ = this.blockListStore.getEditedBlocks();
-    this.loading$ = this.blockListStore.isLoadingBlocks();
-    this.error$ = this.blockListStore.getLoadingError();
-    this.syncRequiredWithTimestamp$ = this.syncStore.isSyncRequiredWithTimestamp();
+    this.blocks$ = this.instanceDetailStore.getEditedBlocks();
+    this.loading$ = this.instanceDetailStore.isLoadingBlocks();
+    this.error$ = this.instanceDetailStore.getLoadingError();
+    this.syncRequiredWithTimestamp$ = this.instanceDetailStore.isSyncRequiredWithTimestamp();
   }
 
   protected subscribeAll(): void {
@@ -120,7 +118,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
       .pipe(withLatestFrom(this.blocks$))
       .subscribe(([sync, blocks]) => {
         if (sync.syncRequired === true) {
-          this.blockListStore.syncBlocks(this.instanceId, blocks as Block[]);
+          this.instanceDetailStore.syncBlocks(this.instanceId, blocks as Block[]);
         }
       });
   }

@@ -8,8 +8,7 @@ import { NGXLogger } from 'ngx-logger';
 
 import { ModalAlert, UIUtilitiesService } from '../../../core';
 
-import { BlockListStoreService } from '../block-list-store.service';
-import { SyncStoreService } from '../sync-store.service';
+import { InstanceDetailStoreService } from '../instance-detail-store.service';
 
 import { NextStepComponent } from './next-step.component';
 
@@ -45,9 +44,8 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
   protected location = inject(Location);
   protected translate = inject(TranslateService);
   protected logger = inject(NGXLogger);
-  protected blockListStore = inject(BlockListStoreService);
+  protected instanceDetailStore = inject(InstanceDetailStoreService);
   protected uiUtilities = inject(UIUtilitiesService);
-  protected syncStore = inject(SyncStoreService);
 
   constructor() {
     this.mAlertSyncErrorId = 'mAlertSyncErrorId';
@@ -78,7 +76,7 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
   }
 
   retrySync(): void {
-    this.syncStore.syncRequired();
+    this.instanceDetailStore.syncRequired();
   }
 
   protected subscribeSynchErrors(): void {
@@ -97,9 +95,9 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
   }
 
   protected setupAsyncObs(): void {
-    this.nextStepBtnEnabled$ = this.blockListStore.isNextStepEnable();
-    this.syncing$ = this.syncStore.isSyncRequired();
-    this.syncError$ = this.blockListStore.getSyncError();
+    this.nextStepBtnEnabled$ = this.instanceDetailStore.isNextStepEnable();
+    this.syncing$ = this.instanceDetailStore.isSyncRequired();
+    this.syncError$ = this.instanceDetailStore.getSyncError();
   }
 
   protected subscribeAll(): void {

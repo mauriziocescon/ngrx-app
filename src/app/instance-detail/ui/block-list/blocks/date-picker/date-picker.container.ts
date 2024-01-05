@@ -8,7 +8,7 @@ import { BlockComponent } from '../../../../../shared';
 
 import { DatePickerBlock } from '../../../../models';
 
-import { BlockListStoreService } from '../../../block-list-store.service';
+import { InstanceDetailStoreService } from '../../../instance-detail-store.service';
 
 import { DatePickerComponent } from './date-picker.component';
 
@@ -31,7 +31,7 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
 
   block$: Observable<DatePickerBlock | undefined>;
 
-  protected blockListStore = inject(BlockListStoreService);
+  protected instanceDetailStore = inject(InstanceDetailStoreService);
 
   ngOnInit(): void {
     this.setupAsyncObs();
@@ -51,10 +51,10 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
         value,
       },
     };
-    this.blockListStore.updateBlock(block);
+    this.instanceDetailStore.updateBlock(block);
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.blockListStore.getBlockById(this.blockId) as Observable<DatePickerBlock>;
+    this.block$ = this.instanceDetailStore.getBlockById(this.blockId) as Observable<DatePickerBlock>;
   }
 }

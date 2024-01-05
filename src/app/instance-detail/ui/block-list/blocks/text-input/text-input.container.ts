@@ -8,7 +8,7 @@ import { BlockComponent } from '../../../../../shared';
 
 import { TextInputBlock } from '../../../../models';
 
-import { BlockListStoreService } from '../../../block-list-store.service';
+import { InstanceDetailStoreService } from '../../../instance-detail-store.service';
 
 import { TextInputComponent } from './text-input.component';
 
@@ -31,7 +31,7 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
 
   block$: Observable<TextInputBlock | undefined>;
 
-  protected blockListStore = inject(BlockListStoreService);
+  protected instanceDetailStore = inject(InstanceDetailStoreService);
 
   ngOnInit(): void {
     this.setupAsyncObs();
@@ -51,10 +51,10 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
         value,
       },
     };
-    this.blockListStore.updateBlock(block);
+    this.instanceDetailStore.updateBlock(block);
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.blockListStore.getBlockById(this.blockId) as Observable<TextInputBlock>;
+    this.block$ = this.instanceDetailStore.getBlockById(this.blockId) as Observable<TextInputBlock>;
   }
 }

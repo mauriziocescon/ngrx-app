@@ -8,7 +8,7 @@ import { BlockComponent } from '../../../../../shared';
 
 import { CheckBoxBlock } from '../../../../models';
 
-import { BlockListStoreService } from '../../../block-list-store.service';
+import { InstanceDetailStoreService } from '../../../instance-detail-store.service';
 
 import { CheckBoxComponent } from './check-box.component';
 
@@ -31,7 +31,7 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
 
   block$: Observable<CheckBoxBlock | undefined>;
 
-  protected blockListStore = inject(BlockListStoreService);
+  protected instanceDetailStore = inject(InstanceDetailStoreService);
 
   ngOnInit(): void {
     this.setupAsyncObs();
@@ -51,10 +51,10 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
         value,
       },
     };
-    this.blockListStore.updateBlock(block);
+    this.instanceDetailStore.updateBlock(block);
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.blockListStore.getBlockById(this.blockId) as Observable<CheckBoxBlock>;
+    this.block$ = this.instanceDetailStore.getBlockById(this.blockId) as Observable<CheckBoxBlock>;
   }
 }

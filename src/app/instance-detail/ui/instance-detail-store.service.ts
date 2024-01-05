@@ -10,7 +10,7 @@ import { actionGroup } from '../store/instance-detail.actions';
 import { feature } from '../store/instance-detail.feature';
 
 @Injectable()
-export class BlockListStoreService {
+export class InstanceDetailStoreService {
   protected store$ = inject(Store);
 
   getBlockById(id: string): Observable<Block | undefined> {
@@ -41,6 +41,18 @@ export class BlockListStoreService {
     return this.store$.pipe(select(feature.isNextStepEnable));
   }
 
+  isSyncRequired(): Observable<boolean> {
+    return this.store$.pipe(select(feature.isSyncRequired));
+  }
+
+  isSyncRequiredWithTimestamp(): Observable<{ syncRequired: boolean, timestamp: number | undefined }> {
+    return this.store$.pipe(select(feature.isSyncRequiredWithTimestamp));
+  }
+
+  syncRequired(): void {
+    this.store$.dispatch(actionGroup.syncRequired({ timestamp: Date.now() }));
+  }
+
   loadBlocks(instanceId: string): void {
     this.store$.dispatch(actionGroup.loadBlocks({ instanceId }));
   }
@@ -51,6 +63,14 @@ export class BlockListStoreService {
 
   updateBlock(block: Update<Block>): void {
     this.store$.dispatch(actionGroup.updateBlock({ block }));
+  }
+
+  startEffects(): void {
+    this.store$.dispatch(actionGroup.startEffects());
+  }
+
+  stopEffects(): void {
+    this.store$.dispatch(actionGroup.stopEffects());
   }
 
   clearBlocks(): void {

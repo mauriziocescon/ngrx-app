@@ -12,7 +12,7 @@ import { BlockComponent } from '../../../../../shared';
 
 import { CheckBoxConfirmerBlock } from '../../../../models';
 
-import { BlockListStoreService } from '../../../block-list-store.service';
+import { InstanceDetailStoreService } from '../../../instance-detail-store.service';
 
 import { CheckBoxConfirmerComponent } from './check-box-confirmer.component';
 
@@ -38,7 +38,7 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
   protected modalConfirmerResultSubscription: Subscription;
 
   protected translate = inject(TranslateService);
-  protected blockListStore = inject(BlockListStoreService);
+  protected instanceDetailStore = inject(InstanceDetailStoreService);
   protected uiUtilities = inject(UIUtilitiesService);
 
   ngOnInit(): void {
@@ -64,11 +64,11 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
         value,
       },
     };
-    this.blockListStore.updateBlock(block);
+    this.instanceDetailStore.updateBlock(block);
   }
 
   protected setupAsyncObs(): void {
-    this.block$ = this.blockListStore.getBlockById(this.blockId) as Observable<CheckBoxConfirmerBlock>;
+    this.block$ = this.instanceDetailStore.getBlockById(this.blockId) as Observable<CheckBoxConfirmerBlock>;
   }
 
   protected askForConfirmation(): void {

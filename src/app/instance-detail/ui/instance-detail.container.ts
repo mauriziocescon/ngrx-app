@@ -8,9 +8,7 @@ import { InstanceDetailComponent } from './instance-detail.component';
 import { BlockListContainerComponent } from './block-list/block-list.container';
 import { NextStepContainerComponent } from './next-step/next-step.container';
 
-import { BlockListStoreService } from './block-list-store.service';
-import { EffectsStoreService } from './effects-store.service';
-import { SyncStoreService } from './sync-store.service';
+import { InstanceDetailStoreService } from './instance-detail-store.service';
 
 @Component({
   selector: 'app-instance-detail-ct',
@@ -22,9 +20,7 @@ import { SyncStoreService } from './sync-store.service';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    BlockListStoreService,
-    EffectsStoreService,
-    SyncStoreService,
+    InstanceDetailStoreService,
   ],
   template: `
     <app-instance-detail-cp
@@ -35,25 +31,24 @@ export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
   instanceId: string;
   canDeactivate: boolean;
 
-  private route = inject(ActivatedRoute);
-  private effectsStore = inject(EffectsStoreService);
-  private syncStore = inject(SyncStoreService);
+  protected route = inject(ActivatedRoute);
+  protected instanceDetailStore = inject(InstanceDetailStoreService);
 
-  private canDeactivateSubscription: Subscription;
+  protected canDeactivateSubscription: Subscription;
 
   ngOnInit(): void {
-    this.effectsStore.startEffects();
+    this.instanceDetailStore.startEffects();
     this.instanceId = this.route.snapshot.paramMap.get('id') as string;
     this.subscribeAll();
   }
 
   ngOnDestroy(): void {
-    this.effectsStore.stopEffects();
+    this.instanceDetailStore.stopEffects();
     this.unsubscribeAll();
   }
 
   protected subscribeAll(): void {
-    this.canDeactivateSubscription = this.syncStore.isSyncRequired()
+    this.canDeactivateSubscription = this.instanceDetailStore.isSyncRequired()
       .pipe(map(requireSync => !requireSync))
       .subscribe(v => this.canDeactivate = v);
   }
