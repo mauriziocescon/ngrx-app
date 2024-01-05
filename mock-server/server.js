@@ -3,7 +3,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const jsonServer = require('json-server');
 const app = jsonServer.create();
 const router = require('./lowdb').getRouter();
-const middlewares = jsonServer.defaults(isProduction ? {static: './dist/ngrx-app'} : {});
+const middlewares = jsonServer.defaults(isProduction ? {static: './dist/ngrx-app/browser'} : {});
 
 const delayMiddleware = require('./middlewares/delay');
 const errosMiddleware = require('./middlewares/errors');

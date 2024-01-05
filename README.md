@@ -1,4 +1,4 @@
-Demo built on ngrx 16.x using [Angular CLI](https://github.com/angular/angular-cli)
+Demo built on ngrx 17.x using [Angular CLI](https://github.com/angular/angular-cli)
 =========
 
 ## Demo

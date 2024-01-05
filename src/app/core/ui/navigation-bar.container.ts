@@ -1,13 +1,10 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { AppLanguageService } from '../services/app-language.service';
-
-import { feature } from '../store/core.feature';
 
 import { NavigationBarComponent } from './navigation-bar.component';
 
@@ -32,7 +29,6 @@ export class NavigationBarContainerComponent {
   language$: Observable<string>;
 
   protected router = inject(Router);
-  protected store$ = inject(Store);
   protected appLanguage = inject(AppLanguageService);
 
   constructor() {
@@ -49,6 +45,6 @@ export class NavigationBarContainerComponent {
   }
 
   protected setupAsyncObs(): void {
-    this.language$ = this.store$.pipe(select(feature.selectSelectedLanguage));
+    this.language$ = of(this.appLanguage.getLanguageId());
   }
 }
