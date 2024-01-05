@@ -9,7 +9,7 @@ import { provideHttpClient, HttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
-import { provideStore } from '@ngrx/store';
+import { provideStore, ActionReducer } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -32,20 +32,30 @@ function createLanguageIdLoader(appLanguageService: AppLanguageService): string 
   return appLanguageService.getLanguageId();
 }
 
+function logger(reducer: ActionReducer<any>): ActionReducer<any> {
+  return (state, action) => {
+    const result = reducer(state, action);
+    console.groupCollapsed(action.type);
+    console.log('prev state', state);
+    console.log('action', action);
+    console.log('next state', result);
+    console.groupEnd();
+    return result;
+  };
+}
+
+const metaReducers = isDevMode() ? [logger] : [];
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideHttpClient(),
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideStore({ router: routerReducer }),
+    provideStore({ router: routerReducer }, { metaReducers }),
     provideEffects(),
     provideRouterStore(),
-    provideStoreDevtools({
-      maxAge: 25,
-      logOnly: !isDevMode(),
-      name: 'NgRx Standalone App',
-    }),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode(), name: 'NgRx Standalone App' }),
     importProvidersFrom(
       TranslateModule.forRoot({
         loader: {
@@ -63,7 +73,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       LoggerModule.forRoot({
         serverLoggingUrl: environment.logsUrl,
-        level: !environment.production ? NgxLoggerLevel.ERROR : NgxLoggerLevel.DEBUG,
+        level: isDevMode() ? NgxLoggerLevel.DEBUG : NgxLoggerLevel.ERROR,
         serverLogLevel: NgxLoggerLevel.LOG,
       }),
     ),
