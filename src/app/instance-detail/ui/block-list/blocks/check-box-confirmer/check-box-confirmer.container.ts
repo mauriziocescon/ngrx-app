@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Update } from '@ngrx/entity';
 
@@ -37,10 +37,9 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
 
   protected modalConfirmerResultSubscription: Subscription;
 
-  constructor(protected translate: TranslateService,
-              protected blockListStore: BlockListStoreService,
-              protected uiUtilities: UIUtilitiesService) {
-  }
+  protected translate = inject(TranslateService);
+  protected blockListStore = inject(BlockListStoreService);
+  protected uiUtilities = inject(UIUtilitiesService);
 
   ngOnInit(): void {
     this.setupAsyncObs();

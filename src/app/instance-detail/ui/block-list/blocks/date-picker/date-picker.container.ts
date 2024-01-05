@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Update } from '@ngrx/entity';
 
@@ -31,8 +31,7 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
 
   block$: Observable<DatePickerBlock | undefined>;
 
-  constructor(protected blockListStore: BlockListStoreService) {
-  }
+  protected blockListStore = inject(BlockListStoreService);
 
   ngOnInit(): void {
     this.setupAsyncObs();

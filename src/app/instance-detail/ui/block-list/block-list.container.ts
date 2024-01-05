@@ -1,4 +1,13 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnChanges, OnDestroy, Input, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  OnInit,
+  OnChanges,
+  OnDestroy,
+  Input,
+  SimpleChanges,
+  inject,
+} from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 
 import { Observable, Subscription } from 'rxjs';
@@ -48,11 +57,13 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   protected modalAlertErrorSubscription: Subscription;
   protected syncRequiredSubscription: Subscription;
 
-  constructor(protected translate: TranslateService,
-              protected logger: NGXLogger,
-              protected blockListStore: BlockListStoreService,
-              protected uiUtilities: UIUtilitiesService,
-              protected syncStore: SyncStoreService) {
+  protected translate = inject(TranslateService);
+  protected logger = inject(NGXLogger);
+  protected blockListStore = inject(BlockListStoreService);
+  protected uiUtilities = inject(UIUtilitiesService);
+  protected syncStore = inject(SyncStoreService);
+
+  constructor() {
     this.mAlertErrorId = '1';
   }
 

@@ -1,4 +1,14 @@
-import { Component, OnInit, OnChanges, OnDestroy, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  OnDestroy,
+  Input,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+  inject,
+} from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
@@ -52,8 +62,10 @@ export class CheckBoxComponent implements OnInit, OnChanges, OnDestroy {
 
   protected controlSubscription: Subscription;
 
-  constructor(protected formBuilder: FormBuilder,
-              protected logger: NGXLogger) {
+  protected formBuilder = inject(FormBuilder);
+  protected logger = inject(NGXLogger);
+
+  constructor() {
     this.valueDidChange = new EventEmitter();
   }
 

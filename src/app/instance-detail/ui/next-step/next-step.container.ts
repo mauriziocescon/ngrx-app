@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { AsyncPipe, Location } from '@angular/common';
 
 import { Observable, Subscription } from 'rxjs';
@@ -42,12 +42,14 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
 
   protected modalAlertSyncErrorSubscription: Subscription;
 
-  constructor(protected location: Location,
-              protected translate: TranslateService,
-              protected logger: NGXLogger,
-              protected blockListStore: BlockListStoreService,
-              protected uiUtilities: UIUtilitiesService,
-              protected syncStore: SyncStoreService) {
+  protected location = inject(Location);
+  protected translate = inject(TranslateService);
+  protected logger = inject(NGXLogger);
+  protected blockListStore = inject(BlockListStoreService);
+  protected uiUtilities = inject(UIUtilitiesService);
+  protected syncStore = inject(SyncStoreService);
+
+  constructor() {
     this.mAlertSyncErrorId = 'mAlertSyncErrorId';
   }
 

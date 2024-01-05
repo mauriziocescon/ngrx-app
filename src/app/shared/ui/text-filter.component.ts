@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, OnDestroy, Output, inject } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
@@ -29,11 +29,11 @@ import { NGXLogger } from 'ngx-logger';
       <mat-form-field appearance="outline" class="search-field">
         <mat-label>{{ 'COMPONENT.TEXT_FILTER.PLACEHOLDER' | translate }}</mat-label>
         <input matInput type="search" formControlName="textFilter">
-        <!--ng-container *ngIf="isTextFilterNotEmpty">
-            <button matSuffix mat-icon-button aria-label="Clear" (click)="resetTextFilter()">
-                <mat-icon>close</mat-icon>
-            </button>
-        </ng-container-->
+        <ng-container *ngIf="isTextFilterNotEmpty">
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="resetTextFilter()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </ng-container>
       </mat-form-field>
     </form>`,
   styles: [`
@@ -50,12 +50,14 @@ export class TextFilterComponent implements OnInit, OnDestroy {
   @Output() valueDidChange: EventEmitter<string>;
 
   searchForm: FormGroup;
-  private searchControl: FormControl<string>;
+  protected searchControl: FormControl<string>;
 
-  private searchControlSubscription: Subscription;
+  protected searchControlSubscription: Subscription;
 
-  constructor(protected formBuilder: FormBuilder,
-              protected logger: NGXLogger) {
+  protected formBuilder = inject(FormBuilder);
+  protected logger = inject(NGXLogger);
+
+  constructor() {
     this.valueDidChange = new EventEmitter<string>();
   }
 

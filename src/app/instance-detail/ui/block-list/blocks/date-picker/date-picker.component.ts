@@ -1,4 +1,14 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  Input,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+  OnDestroy,
+  inject,
+} from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
@@ -63,8 +73,10 @@ export class DatePickerComponent implements OnInit, OnChanges, OnDestroy {
 
   protected controlSubscription: Subscription;
 
-  constructor(protected formBuilder: FormBuilder,
-              protected logger: NGXLogger) {
+  protected formBuilder = inject(FormBuilder);
+  protected logger = inject(NGXLogger);
+
+  constructor() {
     this.valueDidChange = new EventEmitter();
   }
 
