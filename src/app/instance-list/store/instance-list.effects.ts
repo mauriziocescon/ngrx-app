@@ -15,8 +15,8 @@ import { actionGroup } from './instance-list.actions';
 
 @Injectable()
 export class InstanceListEffects implements OnRunEffects {
-  protected actions$ = inject(Actions);
-  protected instanceList = inject(InstanceListService);
+  actions$ = inject(Actions);
+  instanceList = inject(InstanceListService);
 
   loadInstances$ = createEffect(() => {
     return this.actions$

@@ -17,7 +17,9 @@ import { actionGroup } from './instance-detail.actions';
 
 @Injectable()
 export class InstanceDetailEffects implements OnRunEffects {
-  protected actions$ = inject(Actions);
+  actions$ = inject(Actions);
+  instanceDetail = inject(InstanceDetailService);
+
   syncRequired$ = createEffect(() => {
     return this.actions$
       .pipe(
@@ -25,7 +27,7 @@ export class InstanceDetailEffects implements OnRunEffects {
         map(() => actionGroup.syncRequired({ timestamp: Date.now() })),
       );
   });
-  protected instanceDetail = inject(InstanceDetailService);
+
   loadBlocks$ = createEffect(() => {
     return this.actions$
       .pipe(
@@ -41,6 +43,7 @@ export class InstanceDetailEffects implements OnRunEffects {
         }),
       );
   });
+
   syncBlocks$ = createEffect(() => {
     return this.actions$
       .pipe(
