@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, OnDestroy, Output, inject } from '@angular/core';
-import { NgIf } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
@@ -16,7 +15,6 @@ import { NGXLogger } from 'ngx-logger';
   selector: 'app-text-filter-cp',
   standalone: true,
   imports: [
-    NgIf,
     ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -28,12 +26,12 @@ import { NGXLogger } from 'ngx-logger';
     <form [formGroup]="searchForm">
       <mat-form-field appearance="outline" class="search-field">
         <mat-label>{{ 'COMPONENT.TEXT_FILTER.PLACEHOLDER' | translate }}</mat-label>
-        <input matInput type="search" formControlName="textFilter">
-        <ng-container *ngIf="isTextFilterNotEmpty">
+        <input matInput type="text" formControlName="textFilter">
+        @if (isTextFilterNotEmpty) {
           <button matSuffix mat-icon-button aria-label="Clear" (click)="resetTextFilter()">
             <mat-icon>close</mat-icon>
           </button>
-        </ng-container>
+        }
       </mat-form-field>
     </form>`,
   styles: [`

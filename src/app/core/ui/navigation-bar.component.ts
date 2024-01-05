@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
-import { NgIf, NgFor } from '@angular/common';
 
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,8 +12,6 @@ import { AppConstantsService } from '../services/app-constants.service';
   selector: 'app-navigation-bar-cp',
   standalone: true,
   imports: [
-    NgIf,
-    NgFor,
     TranslateModule,
     MatButtonModule,
     MatIconModule,
@@ -30,21 +27,21 @@ import { AppConstantsService } from '../services/app-constants.service';
 
       <span class="spacer"></span>
 
-      <ng-container *ngIf="canOpenJsonServer">
+      @if (canOpenJsonServer) {
         <button mat-icon-button aria-label="open json server" (click)="openJsonServer()">
           <mat-icon>dns</mat-icon>
         </button>
-      </ng-container>
+      }
 
       <button mat-button [matMenuTriggerFor]="menu" aria-label="selected language">
         {{ selectedLanguageId }}
       </button>
       <mat-menu #menu="matMenu">
-        <ng-container *ngFor="let language of languages">
+        @for (language of languages; track language) {
           <button mat-menu-item (click)="selectLanguage(language)">
             <span>{{ language }}</span>
           </button>
-        </ng-container>
+        }
       </mat-menu>
 
     </mat-toolbar>`,

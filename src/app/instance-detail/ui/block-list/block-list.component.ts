@@ -1,5 +1,4 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-import { NgFor } from '@angular/common';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -16,7 +15,6 @@ import { UnknownComponent } from './blocks/unknown/unknown.component';
   selector: 'app-block-list-cp',
   standalone: true,
   imports: [
-    NgFor,
     TranslateModule,
     GenericBlockContainerComponent,
     ScrollToTopDirective,
@@ -29,11 +27,11 @@ import { UnknownComponent } from './blocks/unknown/unknown.component';
   ],
   template: `
     <div [hidden]="!showData">
-      <ng-container *ngFor="let block of dataSource; trackBy: trackByBlock">
+      @for (block of dataSource; track block.id) {
         <div class="generic-block">
           <app-generic-block-ct [block]="block"></app-generic-block-ct>
         </div>
-      </ng-container>
+      }
       <div class="full-width-message">{{ "COMPONENT.BLOCK_LIST.LOAD_COMPLETED" | translate }}</div>
     </div>
     <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.BLOCK_LIST.LOADING" | translate }}</div>
@@ -56,12 +54,10 @@ export class BlockListComponent {
   @Input() loading: boolean;
   @Input() error: string;
   @Output() reloadList: EventEmitter<void>;
-  @Output() blockDidChange: EventEmitter<Block>;
 
   constructor() {
     this.loading = false;
     this.reloadList = new EventEmitter();
-    this.blockDidChange = new EventEmitter();
   }
 
   get isLoadingData(): boolean {
@@ -84,15 +80,7 @@ export class BlockListComponent {
     return this.blocks;
   }
 
-  trackByBlock(index: number, block: Block): number {
-    return parseInt(block.id, 10);
-  }
-
   loadList(): void {
     this.reloadList.emit();
-  }
-
-  triggerChange(block: Block): void {
-    this.blockDidChange.emit(block);
   }
 }

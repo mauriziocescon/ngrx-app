@@ -9,7 +9,6 @@ import {
   SimpleChanges,
   inject,
 } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
@@ -31,8 +30,6 @@ import { TextInputBlock } from '../../../../models';
   selector: 'app-text-input-cp',
   standalone: true,
   imports: [
-    NgFor,
-    NgIf,
     ReactiveFormsModule,
     TranslateModule,
     MatButtonModule,
@@ -55,11 +52,11 @@ import { TextInputBlock } from '../../../../models';
             <mat-label>{{ block.label | translate }}</mat-label>
             <input type="text" matInput [formControl]="control"
                    placeholder="{{ 'COMPONENT.TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | translate }}">
-            <ng-container *ngIf="isTextInputNotEmpty">
+            @if (isTextInputNotEmpty) {
               <button matSuffix mat-icon-button aria-label="Clear" (click)="resetTextInput()">
                 <mat-icon>close</mat-icon>
               </button>
-            </ng-container>
+            }
             <mat-hint>{{ inputGroupMessage | translate: inputGroupParams }}</mat-hint>
           </mat-form-field>
         </form>

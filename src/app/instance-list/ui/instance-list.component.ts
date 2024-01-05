@@ -1,5 +1,4 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-import { NgIf, NgFor } from '@angular/common';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -13,8 +12,6 @@ import { InstanceContainerComponent } from './instance/instance.container';
   selector: 'app-instance-list-cp',
   standalone: true,
   imports: [
-    NgIf,
-    NgFor,
     TranslateModule,
     TextFilterComponent,
     ScrollToTopDirective,
@@ -23,12 +20,14 @@ import { InstanceContainerComponent } from './instance/instance.container';
   template: `
     <app-text-filter-cp (valueDidChange)="textSearchValueDidChange($event)"></app-text-filter-cp>
 
-    <ng-container *ngIf="showData">
-      <div class="instance" *ngFor="let instanceId of dataSource; trackBy: trackByBlock">
-        <app-instance-ct [instanceId]="instanceId"></app-instance-ct>
-      </div>
+    @if (showData) {
+      @for (instanceId of dataSource; track instanceId) {
+        <div class="instance">
+          <app-instance-ct [instanceId]="instanceId"></app-instance-ct>
+        </div>
+      }
       <div class="full-width-message">{{ "COMPONENT.INSTANCE_LIST.LOAD_COMPLETED" | translate }}</div>
-    </ng-container>
+    }
 
     <div class="full-width-message" [hidden]="!isLoadingData">
       {{ "COMPONENT.INSTANCE_LIST.LOADING" | translate }}
@@ -76,10 +75,6 @@ export class InstanceListComponent {
 
   get dataSource(): string[] | undefined {
     return this.instances.map(instance => instance.id);
-  }
-
-  trackByBlock(index: number, id: string): string {
-    return id;
   }
 
   textSearchValueDidChange(value: string): void {

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, inject, Input, ChangeDetectorRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 import { Subscription } from 'rxjs';
 
@@ -12,7 +12,7 @@ import { NextStepContainerComponent } from './next-step/next-step.container';
   selector: 'app-instance-detail-cp',
   standalone: true,
   imports: [
-    CommonModule,
+    NgClass,
     BlockListContainerComponent,
     NextStepContainerComponent,
   ],

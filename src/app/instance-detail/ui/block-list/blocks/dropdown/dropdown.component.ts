@@ -9,7 +9,6 @@ import {
   SimpleChanges,
   inject,
 } from '@angular/core';
-import { NgFor } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
@@ -30,7 +29,6 @@ import { DropdownBlock } from '../../../../models';
   selector: 'app-dropdown-cp',
   standalone: true,
   imports: [
-    NgFor,
     ReactiveFormsModule,
     TranslateModule,
     MatCardModule,
@@ -51,7 +49,9 @@ import { DropdownBlock } from '../../../../models';
           <mat-form-field appearance="outline" class="card-content">
             <mat-label>{{ block.label | translate }}</mat-label>
             <mat-select [formControl]="control">
-              <mat-option *ngFor="let value of block.choices" [value]="value"> {{ value }}</mat-option>
+              @for (value of block.choices; track value) {
+                <mat-option [value]="value"> {{ value }}</mat-option>
+              }
             </mat-select>
           </mat-form-field>
         </form>
