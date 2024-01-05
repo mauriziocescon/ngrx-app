@@ -40,14 +40,14 @@ import { UnknownComponent } from './blocks/unknown/unknown.component';
          (click)="loadList()">{{ "COMPONENT.BLOCK_LIST.RETRY" | translate }}
     </div>
     <div class="go-up" appScrollToTop></div>`,
-  styles: [`
+  styles: `
     .generic-block {
       padding-left: var(--padding-s);
       padding-right: var(--padding-s);
       padding-top: var(--padding-m);
       padding-bottom: var(--padding-m);
     }
-  `],
+  `,
 })
 export class BlockListComponent {
   @Input() blocks: Block[];

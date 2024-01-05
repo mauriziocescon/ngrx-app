@@ -45,7 +45,7 @@ import { ValidityStateDirective } from '../../../shared';
         </div>
       </mat-card-actions>
     </mat-card>`,
-  styles: [`
+  styles: `
     .action-btns {
       display: flex;
       flex-direction: column;
@@ -54,7 +54,7 @@ import { ValidityStateDirective } from '../../../shared';
         margin: var(--padding-s);
       }
     }
-  `],
+  `,
 })
 export class NextStepComponent {
   @Input() nextStepBtnEnabled: boolean;

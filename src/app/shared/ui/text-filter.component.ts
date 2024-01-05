@@ -34,7 +34,7 @@ import { NGXLogger } from 'ngx-logger';
         }
       </mat-form-field>
     </form>`,
-  styles: [`
+  styles: `
     .search-field {
       display: flex;
       padding-left: var(--padding-s);
@@ -42,7 +42,7 @@ import { NGXLogger } from 'ngx-logger';
       padding-top: var(--padding-m);
       padding-bottom: var(--padding-m);
     }
-  `],
+  `,
 })
 export class TextFilterComponent implements OnInit, OnDestroy {
   @Output() valueDidChange: EventEmitter<string>;

@@ -33,11 +33,11 @@ import { Instance } from '../../models';
         </button>
       </mat-card-actions>
     </mat-card>`,
-  styles: [`
+  styles: `
     .validity-state {
       padding-left: 15px;
     }
-  `],
+  `,
 })
 export class InstanceComponent {
   @Input() instance: Instance;

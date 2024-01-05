@@ -45,11 +45,11 @@ import { AppConstantsService } from '../services/app-constants.service';
       </mat-menu>
 
     </mat-toolbar>`,
-  styles: [`
+  styles: `
     .spacer {
       flex: 1 1 auto;
     }
-  `],
+  `,
 })
 export class NavigationBarComponent {
   @Input() languages: string[];

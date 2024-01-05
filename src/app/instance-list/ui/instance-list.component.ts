@@ -39,14 +39,14 @@ import { InstanceContainerComponent } from './instance/instance.container';
       {{ "COMPONENT.INSTANCE_LIST.RETRY" | translate }}
     </div>
     <div class="go-up" appScrollToTop></div>`,
-  styles: [`
+  styles: `
     .instance {
       padding-left: var(--padding-s);
       padding-right: var(--padding-s);
       padding-top: var(--padding-m);
       padding-bottom: var(--padding-m);
     }
-  `],
+  `,
 })
 export class InstanceListComponent {
   @Input() instances: Instance[];

@@ -25,7 +25,7 @@ import { NextStepContainerComponent } from './next-step/next-step.container';
         <app-block-list-ct [instanceId]="instanceId"></app-block-list-ct>
       </div>
     </div>`,
-  styles: [`
+  styles: `
     .instance-detail {
       display: flex;
       flex-flow: wrap;
@@ -56,7 +56,7 @@ import { NextStepContainerComponent } from './next-step/next-step.container';
       flex: 0 0 auto;
       width: 100%;
     }
-  `],
+  `,
 })
 export class InstanceDetailComponent implements OnInit, OnDestroy {
   @Input() instanceId: string;
