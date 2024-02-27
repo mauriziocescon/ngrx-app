@@ -1,6 +1,6 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoPipe } from '@ngneat/transloco';
 
 import { GenericBlockContainerComponent, ScrollToTopDirective, Block } from '../../../shared';
 
@@ -15,7 +15,7 @@ import { UnknownComponent } from './blocks/unknown/unknown.component';
   selector: 'app-block-list-cp',
   standalone: true,
   imports: [
-    TranslateModule,
+    TranslocoPipe,
     GenericBlockContainerComponent,
     ScrollToTopDirective,
     CheckBoxContainerComponent,
@@ -32,12 +32,12 @@ import { UnknownComponent } from './blocks/unknown/unknown.component';
           <app-generic-block-ct [block]="block"></app-generic-block-ct>
         </div>
       }
-      <div class="full-width-message">{{ "COMPONENT.BLOCK_LIST.LOAD_COMPLETED" | translate }}</div>
+      <div class="full-width-message">{{ "COMPONENT.BLOCK_LIST.LOAD_COMPLETED" | transloco }}</div>
     </div>
-    <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.BLOCK_LIST.LOADING" | translate }}</div>
-    <div class="full-width-message" [hidden]="!hasNoData">{{ "COMPONENT.BLOCK_LIST.NO_RESULT" | translate }}</div>
-    <div class="full-width-message" [hidden]="!shouldRetry"
-         (click)="loadList()">{{ "COMPONENT.BLOCK_LIST.RETRY" | translate }}
+    <div class="full-width-message" [hidden]="!isLoadingData">{{ "COMPONENT.BLOCK_LIST.LOADING" | transloco }}</div>
+    <div class="full-width-message" [hidden]="!hasNoData">{{ "COMPONENT.BLOCK_LIST.NO_RESULT" | transloco }}</div>
+    <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">
+      {{ "COMPONENT.BLOCK_LIST.RETRY" | transloco }}
     </div>
     <div class="go-up" appScrollToTop></div>`,
   styles: `

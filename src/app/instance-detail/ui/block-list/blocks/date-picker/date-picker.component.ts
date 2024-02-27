@@ -14,7 +14,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl } from '@angul
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoPipe } from '@ngneat/transloco';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -31,7 +31,7 @@ import { DatePickerBlock } from '../../../../models';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    TranslateModule,
+    TranslocoPipe,
     MatCardModule,
     MatCheckboxModule,
     MatDatepickerModule,
@@ -44,13 +44,13 @@ import { DatePickerBlock } from '../../../../models';
     <mat-card>
       <mat-card-header>
         <mat-card-title>
-          <div class="card-title">{{ "COMPONENT.DATE_PICKER.HEADER" | translate }}</div>
+          <div class="card-title">{{ "COMPONENT.DATE_PICKER.HEADER" | transloco }}</div>
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form [formGroup]="form">
           <mat-form-field appearance="outline" class="card-content">
-            <mat-label>{{ block.label | translate }}</mat-label>
+            <mat-label>{{ block.label | transloco }}</mat-label>
             <input matInput [matDatepicker]="picker1" [formControl]="control">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>

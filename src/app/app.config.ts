@@ -1,11 +1,10 @@
 import {
   ApplicationConfig,
-  importProvidersFrom,
   isDevMode,
   LOCALE_ID,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideHttpClient, HttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
@@ -14,16 +13,11 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideTransloco } from '@ngneat/transloco';
 
-import { AppLanguageService } from './core';
+import { AppLanguageService, TranslocoHttpLoader } from './core';
 
 import { routes } from './app.routes';
-
-function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
-}
 
 function createLanguageIdLoader(appLanguageService: AppLanguageService): string {
   return appLanguageService.getLanguageId();
@@ -53,15 +47,12 @@ export const appConfig: ApplicationConfig = {
     provideEffects(),
     provideRouterStore(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode(), name: 'NgRx Standalone App' }),
-    importProvidersFrom(
-      TranslateModule.forRoot({
-        loader: {
-          provide: TranslateLoader,
-          useFactory: (createTranslateLoader),
-          deps: [HttpClient],
-        },
-      }),
-    ),
+    provideTransloco({
+      config: {
+        prodMode: !isDevMode(),
+      },
+      loader: TranslocoHttpLoader,
+    }),
     {
       provide: LOCALE_ID,
       useFactory: (createLanguageIdLoader),

@@ -1,6 +1,6 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoPipe } from '@ngneat/transloco';
 
 import { TextFilterComponent, ScrollToTopDirective } from '../../shared';
 
@@ -12,7 +12,7 @@ import { InstanceContainerComponent } from './instance/instance.container';
   selector: 'app-instance-list-cp',
   standalone: true,
   imports: [
-    TranslateModule,
+    TranslocoPipe,
     TextFilterComponent,
     ScrollToTopDirective,
     InstanceContainerComponent,
@@ -26,17 +26,17 @@ import { InstanceContainerComponent } from './instance/instance.container';
           <app-instance-ct [instanceId]="instanceId"></app-instance-ct>
         </div>
       }
-      <div class="full-width-message">{{ "COMPONENT.INSTANCE_LIST.LOAD_COMPLETED" | translate }}</div>
+      <div class="full-width-message">{{ "COMPONENT.INSTANCE_LIST.LOAD_COMPLETED" | transloco }}</div>
     }
 
     <div class="full-width-message" [hidden]="!isLoadingData">
-      {{ "COMPONENT.INSTANCE_LIST.LOADING" | translate }}
+      {{ "COMPONENT.INSTANCE_LIST.LOADING" | transloco }}
     </div>
     <div class="full-width-message" [hidden]="!hasNoData">
-      {{ "COMPONENT.INSTANCE_LIST.NO_RESULT" | translate }}
+      {{ "COMPONENT.INSTANCE_LIST.NO_RESULT" | transloco }}
     </div>
     <div class="full-width-message" [hidden]="!shouldRetry" (click)="loadList()">
-      {{ "COMPONENT.INSTANCE_LIST.RETRY" | translate }}
+      {{ "COMPONENT.INSTANCE_LIST.RETRY" | transloco }}
     </div>
     <div class="go-up" appScrollToTop></div>`,
   styles: `

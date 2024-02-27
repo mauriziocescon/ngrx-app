@@ -4,7 +4,7 @@ import localeDe from '@angular/common/locales/de';
 import localeEn from '@angular/common/locales/en';
 import localeIt from '@angular/common/locales/it';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@ngneat/transloco';
 
 import { AppConstantsService } from './app-constants.service';
 import { LocalStorageService } from './local-storage.service';
@@ -15,14 +15,15 @@ import { LocalStorageService } from './local-storage.service';
 export class AppLanguageService {
   private selectedLanguageId: string;
 
-  private translate = inject(TranslateService);
+  private transloco = inject(TranslocoService);
   private appConstants = inject(AppConstantsService);
   private localStorage = inject(LocalStorageService);
 
   constructor() {
     this.setup();
-    this.translate.setDefaultLang(this.appConstants.Languages.DEFAULT_LANGUAGE);
-    this.translate.use(this.getLanguageId());
+    this.transloco.setAvailableLangs(this.appConstants.Languages.SUPPORTED_LANG);
+    this.transloco.setDefaultLang(this.appConstants.Languages.DEFAULT_LANGUAGE);
+    this.transloco.setActiveLang(this.getLanguageId());
   }
 
   getLanguageId(): string {
@@ -37,7 +38,7 @@ export class AppLanguageService {
       this.selectedLanguageId = languageId;
       this.localStorage.setData(this.appConstants.LocalStorageKey.LANGUAGE_ID, this.selectedLanguageId);
       this.registerLocale();
-      this.translate.use(this.selectedLanguageId);
+      this.transloco.setActiveLang(this.selectedLanguageId);
       location.reload();
     }
   }

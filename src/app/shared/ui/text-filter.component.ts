@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormBuilder, FormControl, FormGroup } from '@angul
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoPipe } from '@ngneat/transloco';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,16 +15,16 @@ import { MatInputModule } from '@angular/material/input';
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    TranslocoPipe,
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    TranslateModule,
   ],
   template: `
     <form [formGroup]="searchForm">
       <mat-form-field appearance="outline" class="search-field">
-        <mat-label>{{ 'COMPONENT.TEXT_FILTER.PLACEHOLDER' | translate }}</mat-label>
+        <mat-label>{{ 'COMPONENT.TEXT_FILTER.PLACEHOLDER' | transloco }}</mat-label>
         <input matInput type="text" formControlName="textFilter">
         @if (isTextFilterNotEmpty) {
           <button matSuffix mat-icon-button aria-label="Clear" (click)="resetTextFilter()">

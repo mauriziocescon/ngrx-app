@@ -13,7 +13,7 @@ import { AsyncPipe } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
 import { withLatestFrom } from 'rxjs/operators';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@ngneat/transloco';
 
 import { ModalAlert, UIUtilitiesService } from '../../../core';
 import { Block, BLOCK_UTILS_TOKEN } from '../../../shared';
@@ -55,7 +55,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   private modalAlertErrorSubscription: Subscription;
   private syncRequiredSubscription: Subscription;
 
-  private translate = inject(TranslateService);
+  private transloco = inject(TranslocoService);
   private instanceDetailStore = inject(InstanceDetailStoreService);
   private uiUtilities = inject(UIUtilitiesService);
 
@@ -102,9 +102,9 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
         if (err) {
           const modalAlert: ModalAlert = {
             id: this.mAlertErrorId,
-            title: this.translate.instant('CONTAINER.BLOCK_LIST.ALERT_TITLE'),
+            title: this.transloco.translate('CONTAINER.BLOCK_LIST.ALERT_TITLE'),
             message: err,
-            buttonLabel: this.translate.instant('CONTAINER.BLOCK_LIST.ALERT_BUTTON'),
+            buttonLabel: this.transloco.translate('CONTAINER.BLOCK_LIST.ALERT_BUTTON'),
           };
           this.uiUtilities.modalAlert(modalAlert);
         }

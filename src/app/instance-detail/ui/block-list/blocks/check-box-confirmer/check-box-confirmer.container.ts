@@ -4,7 +4,7 @@ import { Update } from '@ngrx/entity';
 
 import { Observable, Subscription } from 'rxjs';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@ngneat/transloco';
 
 import { ModalConfirmer, UIUtilitiesService } from '../../../../../core';
 
@@ -37,7 +37,7 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
 
   private modalConfirmerResultSubscription: Subscription;
 
-  private translate = inject(TranslateService);
+  private transloco = inject(TranslocoService);
   private instanceDetailStore = inject(InstanceDetailStoreService);
   private uiUtilities = inject(UIUtilitiesService);
 
@@ -76,10 +76,10 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
 
     const modalConfirmer: ModalConfirmer = {
       id: this.blockId,
-      title: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE'),
-      message: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE'),
-      yesButtonLabel: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON'),
-      noButtonLabel: this.translate.instant('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON'),
+      title: this.transloco.translate('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_TITLE'),
+      message: this.transloco.translate('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_MESSAGE'),
+      yesButtonLabel: this.transloco.translate('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_YES_BUTTON'),
+      noButtonLabel: this.transloco.translate('CONTAINER.CHECK_BOX_CONFIRMER.CONFIRMATION_NO_BUTTON'),
     };
     this.uiUtilities.modalConfirmer(modalConfirmer)
       .subscribe(result => {

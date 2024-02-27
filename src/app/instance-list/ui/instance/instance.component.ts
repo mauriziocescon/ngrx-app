@@ -1,6 +1,6 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoPipe } from '@ngneat/transloco';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
@@ -12,7 +12,7 @@ import { Instance } from '../../models';
   selector: 'app-instance-cp',
   standalone: true,
   imports: [
-    TranslateModule,
+    TranslocoPipe,
     MatButtonModule,
     MatCardModule,
     ValidityStateDirective,
@@ -29,7 +29,7 @@ import { Instance } from '../../models';
       <mat-card-content>{{ bodyText }}</mat-card-content>
       <mat-card-actions align="end">
         <button mat-button color="primary" (click)="selectInstance()">
-          {{ "COMPONENT.INSTANCE.SHOW" | translate }}
+          {{ "COMPONENT.INSTANCE.SHOW" | transloco }}
         </button>
       </mat-card-actions>
     </mat-card>`,

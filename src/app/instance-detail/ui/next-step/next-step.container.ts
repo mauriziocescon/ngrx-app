@@ -3,7 +3,7 @@ import { AsyncPipe, Location } from '@angular/common';
 
 import { Observable, Subscription } from 'rxjs';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@ngneat/transloco';
 
 import { ModalAlert, UIUtilitiesService } from '../../../core';
 
@@ -41,7 +41,7 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
   private modalAlertSyncErrorSubscription: Subscription;
 
   private location = inject(Location);
-  private translate = inject(TranslateService);
+  private transloco = inject(TranslocoService);
   private instanceDetailStore = inject(InstanceDetailStoreService);
   private uiUtilities = inject(UIUtilitiesService);
 
@@ -61,9 +61,9 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
   nextStep(): void {
     const modalAlert: ModalAlert = {
       id: this.mAlertSyncErrorId,
-      title: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_TITLE'),
-      message: this.translate.instant('CONTAINER.NEXT_STEP.DONE'),
-      buttonLabel: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_BUTTON'),
+      title: this.transloco.translate('CONTAINER.NEXT_STEP.ALERT_TITLE'),
+      message: this.transloco.translate('CONTAINER.NEXT_STEP.DONE'),
+      buttonLabel: this.transloco.translate('CONTAINER.NEXT_STEP.ALERT_BUTTON'),
     };
     this.uiUtilities.modalAlert(modalAlert);
     this.location.back();
@@ -83,9 +83,9 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
         if (err) {
           const modalAlert: ModalAlert = {
             id: this.mAlertSyncErrorId,
-            title: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_TITLE'),
+            title: this.transloco.translate('CONTAINER.NEXT_STEP.ALERT_TITLE'),
             message: err,
-            buttonLabel: this.translate.instant('CONTAINER.NEXT_STEP.ALERT_BUTTON'),
+            buttonLabel: this.transloco.translate('CONTAINER.NEXT_STEP.ALERT_BUTTON'),
           };
           this.uiUtilities.modalAlert(modalAlert);
         }

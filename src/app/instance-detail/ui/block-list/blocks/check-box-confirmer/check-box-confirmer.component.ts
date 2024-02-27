@@ -14,7 +14,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } 
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoPipe } from '@ngneat/transloco';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
@@ -27,7 +27,7 @@ import { CheckBoxConfirmerBlock } from '../../../../models';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    TranslateModule,
+    TranslocoPipe,
     MatCardModule,
     MatCheckboxModule,
     ValidityStateDirective,
@@ -36,13 +36,13 @@ import { CheckBoxConfirmerBlock } from '../../../../models';
     <mat-card>
       <mat-card-header>
         <mat-card-title>
-          <div class="card-title">{{ "COMPONENT.CHECK_BOX_CONFIRMER.HEADER" | translate }}</div>
+          <div class="card-title">{{ "COMPONENT.CHECK_BOX_CONFIRMER.HEADER" | transloco }}</div>
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form [formGroup]="form">
-          <label>{{ block.label | translate }}</label>
-          <mat-checkbox formControlName="checkBoxConfirmer">{{ block.description | translate }}</mat-checkbox>
+          <label>{{ block.label | transloco }}</label>
+          <mat-checkbox formControlName="checkBoxConfirmer">{{ block.description | transloco }}</mat-checkbox>
         </form>
       </mat-card-content>
       <mat-card-actions>

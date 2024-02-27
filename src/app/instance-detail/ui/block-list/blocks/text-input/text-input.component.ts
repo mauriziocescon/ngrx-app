@@ -14,7 +14,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } 
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoPipe } from '@ngneat/transloco';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,7 +30,7 @@ import { TextInputBlock } from '../../../../models';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    TranslateModule,
+    TranslocoPipe,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
@@ -42,21 +42,21 @@ import { TextInputBlock } from '../../../../models';
     <mat-card>
       <mat-card-header>
         <mat-card-title>
-          <div class="card-title">{{ "COMPONENT.TEXT_INPUT.HEADER" | translate }}</div>
+          <div class="card-title">{{ "COMPONENT.TEXT_INPUT.HEADER" | transloco }}</div>
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form [formGroup]="form">
           <mat-form-field appearance="outline" class="card-content">
-            <mat-label>{{ block.label | translate }}</mat-label>
+            <mat-label>{{ block.label | transloco }}</mat-label>
             <input type="text" matInput [formControl]="control"
-                   placeholder="{{ 'COMPONENT.TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | translate }}">
+                   placeholder="{{ 'COMPONENT.TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | transloco }}">
             @if (isTextInputNotEmpty) {
               <button matSuffix mat-icon-button aria-label="Clear" (click)="resetTextInput()">
                 <mat-icon>close</mat-icon>
               </button>
             }
-            <mat-hint>{{ inputGroupMessage | translate: inputGroupParams }}</mat-hint>
+            <mat-hint>{{ inputGroupMessage | transloco: inputGroupParams }}</mat-hint>
           </mat-form-field>
         </form>
       </mat-card-content>

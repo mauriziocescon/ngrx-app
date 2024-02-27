@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoPipe } from '@ngneat/transloco';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -12,7 +12,7 @@ import { AppConstantsService } from '../services/app-constants.service';
   selector: 'app-navigation-bar-cp',
   standalone: true,
   imports: [
-    TranslateModule,
+    TranslocoPipe,
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
@@ -20,9 +20,9 @@ import { AppConstantsService } from '../services/app-constants.service';
   ],
   template: `
     <mat-toolbar color="primary">
-      <span>{{ "COMPONENT.NAVIGATION_BAR.NAME" | translate }}</span>
+      <span>{{ "COMPONENT.NAVIGATION_BAR.NAME" | transloco }}</span>
       <button mat-button aria-label="go to instances" (click)="goToInstanceList()">
-        {{ "COMPONENT.NAVIGATION_BAR.INSTANCES" | translate }}
+        {{ "COMPONENT.NAVIGATION_BAR.INSTANCES" | transloco }}
       </button>
 
       <span class="spacer"></span>

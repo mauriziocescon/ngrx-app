@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideStore } from '@ngrx/store';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { NavigationBarContainerComponent } from './core';
 
@@ -11,7 +11,14 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        TranslateModule.forRoot(),
+        TranslocoTestingModule.forRoot({
+          langs: { de: {}, en: {}, it: {} },
+          translocoConfig: {
+            availableLangs: ['de', 'en', 'it'],
+            defaultLang: 'en',
+          },
+          preloadLangs: true,
+        }),
         NavigationBarContainerComponent,
         AppComponent,
       ],

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoPipe } from '@ngneat/transloco';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,7 +11,7 @@ import { ValidityStateDirective } from '../../../shared';
   selector: 'app-next-step-cp',
   standalone: true,
   imports: [
-    TranslateModule,
+    TranslocoPipe,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
@@ -20,27 +20,27 @@ import { ValidityStateDirective } from '../../../shared';
   template: `
     <mat-card>
       <mat-card-header>
-        <mat-card-title>{{ "COMPONENT.NEXT_STEP.HEADER" | translate }}</mat-card-title>
+        <mat-card-title>{{ "COMPONENT.NEXT_STEP.HEADER" | transloco }}</mat-card-title>
       </mat-card-header>
       <mat-card-actions>
         <div class="action-btns">
           <button mat-raised-button color="primary" (click)="moveToNextStep()" [disabled]="!nextStepBtnEnabled">
-            {{ "COMPONENT.NEXT_STEP.NEXT_STEP" | translate }}
+            {{ "COMPONENT.NEXT_STEP.NEXT_STEP" | transloco }}
           </button>
           <button mat-raised-button (click)="resetForm()" [disabled]="!nextStepBtnEnabled">
-            {{ "COMPONENT.NEXT_STEP.CANCEL" | translate }}
+            {{ "COMPONENT.NEXT_STEP.CANCEL" | transloco }}
           </button>
           <div [hidden]="!isSynchronized">
             <mat-icon>done</mat-icon>
-            <span>{{ "COMPONENT.NEXT_STEP.SYNC" | translate }}</span>
+            <span>{{ "COMPONENT.NEXT_STEP.SYNC" | transloco }}</span>
           </div>
           <div [hidden]="!isSynchronizing">
             <mat-icon>sync</mat-icon>
-            <span>{{ "COMPONENT.NEXT_STEP.SYNCING" | translate }}</span>
+            <span>{{ "COMPONENT.NEXT_STEP.SYNCING" | transloco }}</span>
           </div>
           <div [hidden]="!canRetrySync" (click)="retrySyncronization()">
             <mat-icon>redo</mat-icon>
-            <span>{{ "COMPONENT.NEXT_STEP.RETRY" | translate }}</span>
+            <span>{{ "COMPONENT.NEXT_STEP.RETRY" | transloco }}</span>
           </div>
         </div>
       </mat-card-actions>

@@ -14,7 +14,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } 
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoPipe } from '@ngneat/transloco';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -29,7 +29,7 @@ import { DropdownBlock } from '../../../../models';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    TranslateModule,
+    TranslocoPipe,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -40,13 +40,13 @@ import { DropdownBlock } from '../../../../models';
     <mat-card>
       <mat-card-header>
         <mat-card-title>
-          <div class="card-title">{{ "COMPONENT.DROPDOWN.HEADER" | translate }}</div>
+          <div class="card-title">{{ "COMPONENT.DROPDOWN.HEADER" | transloco }}</div>
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form [formGroup]="form">
           <mat-form-field appearance="outline" class="card-content">
-            <mat-label>{{ block.label | translate }}</mat-label>
+            <mat-label>{{ block.label | transloco }}</mat-label>
             <mat-select [formControl]="control">
               @for (value of block.choices; track value) {
                 <mat-option [value]="value"> {{ value }}</mat-option>

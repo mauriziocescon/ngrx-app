@@ -3,7 +3,7 @@ import { AsyncPipe } from '@angular/common';
 
 import { Observable, Subscription } from 'rxjs';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@ngneat/transloco';
 
 import { ModalAlert, UIUtilitiesService } from '../../core';
 
@@ -40,7 +40,7 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
   private alertId: string;
   private modalAlertSubscription: Subscription;
 
-  private translate = inject(TranslateService);
+  private transloco = inject(TranslocoService);
   private uiUtilities = inject(UIUtilitiesService);
   private instanceListStore = inject(InstanceListStoreService);
 
@@ -81,9 +81,9 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
         if (err) {
           const modalAlert: ModalAlert = {
             id: this.alertId,
-            title: this.translate.instant('CONTAINER.INSTANCE_LIST.ALERT_TITLE'),
+            title: this.transloco.translate('CONTAINER.INSTANCE_LIST.ALERT_TITLE'),
             message: err,
-            buttonLabel: this.translate.instant('CONTAINER.INSTANCE_LIST.ALERT_BUTTON'),
+            buttonLabel: this.transloco.translate('CONTAINER.INSTANCE_LIST.ALERT_BUTTON'),
           };
           this.uiUtilities.modalAlert(modalAlert);
         }
