@@ -31,7 +31,7 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
 
   block$: Observable<TextInputBlock | undefined>;
 
-  protected instanceDetailStore = inject(InstanceDetailStoreService);
+  private instanceDetailStore = inject(InstanceDetailStoreService);
 
   ngOnInit(): void {
     this.setupAsyncObs();
@@ -44,7 +44,7 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
     this.updateBlock(value);
   }
 
-  protected updateBlock(value: string): void {
+  private updateBlock(value: string): void {
     const block: Update<TextInputBlock> = {
       id: this.blockId,
       changes: {
@@ -54,7 +54,7 @@ export class TextInputContainerComponent implements BlockComponent, OnInit, OnDe
     this.instanceDetailStore.updateBlock(block);
   }
 
-  protected setupAsyncObs(): void {
+  private setupAsyncObs(): void {
     this.block$ = this.instanceDetailStore.getBlockById(this.blockId) as Observable<TextInputBlock>;
   }
 }

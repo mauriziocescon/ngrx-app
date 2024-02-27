@@ -4,7 +4,6 @@ import { AsyncPipe, Location } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
-import { NGXLogger } from 'ngx-logger';
 
 import { ModalAlert, UIUtilitiesService } from '../../../core';
 
@@ -37,15 +36,14 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
   syncing$: Observable<boolean>;
   syncError$: Observable<string | undefined>;
 
-  protected mAlertSyncErrorId: string;
+  private mAlertSyncErrorId: string;
 
-  protected modalAlertSyncErrorSubscription: Subscription;
+  private modalAlertSyncErrorSubscription: Subscription;
 
-  protected location = inject(Location);
-  protected translate = inject(TranslateService);
-  protected logger = inject(NGXLogger);
-  protected instanceDetailStore = inject(InstanceDetailStoreService);
-  protected uiUtilities = inject(UIUtilitiesService);
+  private location = inject(Location);
+  private translate = inject(TranslateService);
+  private instanceDetailStore = inject(InstanceDetailStoreService);
+  private uiUtilities = inject(UIUtilitiesService);
 
   constructor() {
     this.mAlertSyncErrorId = 'mAlertSyncErrorId';
@@ -79,7 +77,7 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
     this.instanceDetailStore.syncRequired();
   }
 
-  protected subscribeSynchErrors(): void {
+  private subscribeSynchErrors(): void {
     this.modalAlertSyncErrorSubscription = this.syncError$
       .subscribe((err) => {
         if (err) {
@@ -94,17 +92,17 @@ export class NextStepContainerComponent implements OnInit, OnDestroy {
       });
   }
 
-  protected setupAsyncObs(): void {
+  private setupAsyncObs(): void {
     this.nextStepBtnEnabled$ = this.instanceDetailStore.isNextStepEnable();
     this.syncing$ = this.instanceDetailStore.isSyncRequired();
     this.syncError$ = this.instanceDetailStore.getSyncError();
   }
 
-  protected subscribeAll(): void {
+  private subscribeAll(): void {
     this.subscribeSynchErrors();
   }
 
-  protected unsubscribeAll(): void {
+  private unsubscribeAll(): void {
     this.modalAlertSyncErrorSubscription?.unsubscribe();
   }
 }

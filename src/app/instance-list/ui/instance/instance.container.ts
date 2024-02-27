@@ -29,8 +29,8 @@ export class InstanceContainerComponent implements OnInit, OnDestroy {
 
   instance$: Observable<Instance | undefined>;
 
-  protected router = inject(Router);
-  protected instanceListStore = inject(InstanceListStoreService);
+  private router = inject(Router);
+  private instanceListStore = inject(InstanceListStoreService);
 
   ngOnInit(): void {
     this.setupAsyncObs();
@@ -43,7 +43,7 @@ export class InstanceContainerComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(`/instance-detail/${this.instanceId}`);
   }
 
-  protected setupAsyncObs(): void {
+  private setupAsyncObs(): void {
     this.instance$ = this.instanceListStore.getInstanceById(this.instanceId);
   }
 }

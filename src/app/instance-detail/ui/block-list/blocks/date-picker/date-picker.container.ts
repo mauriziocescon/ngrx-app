@@ -31,7 +31,7 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
 
   block$: Observable<DatePickerBlock | undefined>;
 
-  protected instanceDetailStore = inject(InstanceDetailStoreService);
+  private instanceDetailStore = inject(InstanceDetailStoreService);
 
   ngOnInit(): void {
     this.setupAsyncObs();
@@ -44,7 +44,7 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
     this.updateBlock(value);
   }
 
-  protected updateBlock(value: string): void {
+  private updateBlock(value: string): void {
     const block: Update<DatePickerBlock> = {
       id: this.blockId,
       changes: {
@@ -54,7 +54,7 @@ export class DatePickerContainerComponent implements BlockComponent, OnInit, OnD
     this.instanceDetailStore.updateBlock(block);
   }
 
-  protected setupAsyncObs(): void {
+  private setupAsyncObs(): void {
     this.block$ = this.instanceDetailStore.getBlockById(this.blockId) as Observable<DatePickerBlock>;
   }
 }

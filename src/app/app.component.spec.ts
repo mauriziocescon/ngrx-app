@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { provideStore } from '@ngrx/store';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { LoggerModule } from 'ngx-logger';
 
 import { NavigationBarContainerComponent } from './core';
 
@@ -13,7 +12,6 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         TranslateModule.forRoot(),
-        LoggerModule.forRoot(undefined),
         NavigationBarContainerComponent,
         AppComponent,
       ],

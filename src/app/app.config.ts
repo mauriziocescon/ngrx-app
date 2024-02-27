@@ -16,13 +16,10 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import { AppLanguageService } from './core';
 
 import { routes } from './app.routes';
-
-import { environment } from '../environments/environment';
 
 function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -70,12 +67,5 @@ export const appConfig: ApplicationConfig = {
       useFactory: (createLanguageIdLoader),
       deps: [AppLanguageService],
     },
-    importProvidersFrom(
-      LoggerModule.forRoot({
-        serverLoggingUrl: environment.logsUrl,
-        level: isDevMode() ? NgxLoggerLevel.DEBUG : NgxLoggerLevel.ERROR,
-        serverLogLevel: NgxLoggerLevel.LOG,
-      }),
-    ),
   ],
 };

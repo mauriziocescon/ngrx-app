@@ -15,8 +15,8 @@ import { Block } from '../../shared';
   providedIn: 'root',
 })
 export class InstanceDetailService {
-  protected http = inject(HttpClient);
-  protected appConstants = inject(AppConstantsService);
+  private http = inject(HttpClient);
+  private appConstants = inject(AppConstantsService);
 
   getBlocks(instanceId: string): Observable<Block[]> {
     const options = {
@@ -51,7 +51,7 @@ export class InstanceDetailService {
       );
   }
 
-  protected handleError(err: HttpErrorResponse): Observable<never> {
+  private handleError(err: HttpErrorResponse): Observable<never> {
     if (err.status === 0) {
       // A client-side or network error occurred
       return throwError(() => err.error);

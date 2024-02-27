@@ -35,11 +35,11 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
 
   block$: Observable<CheckBoxConfirmerBlock | undefined>;
 
-  protected modalConfirmerResultSubscription: Subscription;
+  private modalConfirmerResultSubscription: Subscription;
 
-  protected translate = inject(TranslateService);
-  protected instanceDetailStore = inject(InstanceDetailStoreService);
-  protected uiUtilities = inject(UIUtilitiesService);
+  private translate = inject(TranslateService);
+  private instanceDetailStore = inject(InstanceDetailStoreService);
+  private uiUtilities = inject(UIUtilitiesService);
 
   ngOnInit(): void {
     this.setupAsyncObs();
@@ -57,7 +57,7 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
     }
   }
 
-  protected updateBlock(value: boolean): void {
+  private updateBlock(value: boolean): void {
     const block: Update<CheckBoxConfirmerBlock> = {
       id: this.blockId,
       changes: {
@@ -67,11 +67,11 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
     this.instanceDetailStore.updateBlock(block);
   }
 
-  protected setupAsyncObs(): void {
+  private setupAsyncObs(): void {
     this.block$ = this.instanceDetailStore.getBlockById(this.blockId) as Observable<CheckBoxConfirmerBlock>;
   }
 
-  protected askForConfirmation(): void {
+  private askForConfirmation(): void {
     this.unsubscribeToModalConfirmerResult();
 
     const modalConfirmer: ModalConfirmer = {
@@ -91,11 +91,11 @@ export class CheckBoxConfirmerContainerComponent implements BlockComponent, OnIn
       });
   }
 
-  protected unsubscribeToModalConfirmerResult(): void {
+  private unsubscribeToModalConfirmerResult(): void {
     this.modalConfirmerResultSubscription?.unsubscribe();
   }
 
-  protected unsubscribeAllObs(): void {
+  private unsubscribeAllObs(): void {
     this.unsubscribeToModalConfirmerResult();
   }
 }

@@ -31,10 +31,10 @@ export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
   instanceId: string;
   canDeactivate: boolean;
 
-  protected route = inject(ActivatedRoute);
-  protected instanceDetailStore = inject(InstanceDetailStoreService);
+  private route = inject(ActivatedRoute);
+  private instanceDetailStore = inject(InstanceDetailStoreService);
 
-  protected canDeactivateSubscription: Subscription;
+  private canDeactivateSubscription: Subscription;
 
   ngOnInit(): void {
     this.instanceDetailStore.startEffects();
@@ -47,13 +47,13 @@ export class InstanceDetailContainerComponent implements OnInit, OnDestroy {
     this.unsubscribeAll();
   }
 
-  protected subscribeAll(): void {
+  private subscribeAll(): void {
     this.canDeactivateSubscription = this.instanceDetailStore.isSyncRequired()
       .pipe(map(requireSync => !requireSync))
       .subscribe(v => this.canDeactivate = v);
   }
 
-  protected unsubscribeAll(): void {
+  private unsubscribeAll(): void {
     this.canDeactivateSubscription?.unsubscribe();
   }
 }

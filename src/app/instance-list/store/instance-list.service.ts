@@ -15,8 +15,8 @@ import { Instance } from '../models';
   providedIn: 'root',
 })
 export class InstanceListService {
-  protected http = inject(HttpClient);
-  protected appConstants = inject(AppConstantsService);
+  private http = inject(HttpClient);
+  private appConstants = inject(AppConstantsService);
 
   getInstances(textSearch: string): Observable<Instance[]> {
     const params = { textSearch: textSearch || '' };
@@ -28,7 +28,7 @@ export class InstanceListService {
       );
   }
 
-  protected handleError(err: HttpErrorResponse): Observable<never> {
+  private handleError(err: HttpErrorResponse): Observable<never> {
     if (err.status === 0) {
       // A client-side or network error occurred
       return throwError(() => err.error);

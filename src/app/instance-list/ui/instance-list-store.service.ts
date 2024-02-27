@@ -10,7 +10,7 @@ import { feature } from '../store/instance-list.feature';
 
 @Injectable()
 export class InstanceListStoreService {
-  protected store$ = inject(Store);
+  private store$ = inject(Store);
 
   getInstances(): Observable<Instance[] | undefined> {
     return this.store$.pipe(select(feature.getInstances));

@@ -1,6 +1,6 @@
 export class Enum {
 
-  protected value: string;
+  private value: string;
 
   static toEnum(val: string): Enum {
     return new Enum(val);

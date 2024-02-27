@@ -59,7 +59,7 @@ export class NavigationBarComponent {
 
   isCollapsed: boolean;
 
-  protected appConstants = inject(AppConstantsService);
+  private appConstants = inject(AppConstantsService);
 
   constructor() {
     this.languageDidChange = new EventEmitter<string>();

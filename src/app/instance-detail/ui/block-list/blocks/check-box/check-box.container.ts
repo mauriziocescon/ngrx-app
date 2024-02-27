@@ -31,7 +31,7 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
 
   block$: Observable<CheckBoxBlock | undefined>;
 
-  protected instanceDetailStore = inject(InstanceDetailStoreService);
+  private instanceDetailStore = inject(InstanceDetailStoreService);
 
   ngOnInit(): void {
     this.setupAsyncObs();
@@ -44,7 +44,7 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
     this.updateBlock(value);
   }
 
-  protected updateBlock(value: boolean): void {
+  private updateBlock(value: boolean): void {
     const block: Update<CheckBoxBlock> = {
       id: this.blockId,
       changes: {
@@ -54,7 +54,7 @@ export class CheckBoxContainerComponent implements BlockComponent, OnInit, OnDes
     this.instanceDetailStore.updateBlock(block);
   }
 
-  protected setupAsyncObs(): void {
+  private setupAsyncObs(): void {
     this.block$ = this.instanceDetailStore.getBlockById(this.blockId) as Observable<CheckBoxBlock>;
   }
 }

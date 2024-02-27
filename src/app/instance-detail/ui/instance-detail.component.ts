@@ -76,7 +76,7 @@ export class InstanceDetailComponent implements OnInit, OnDestroy {
     this.unsubscribeAll();
   }
 
-  protected subscribeAll(): void {
+  private subscribeAll(): void {
     this.breakpointObserverSubscription = this.breakpointObserver
       .observe([Breakpoints.XLarge, Breakpoints.Large, Breakpoints.Small, Breakpoints.XSmall])
       .subscribe(state => {
@@ -100,7 +100,7 @@ export class InstanceDetailComponent implements OnInit, OnDestroy {
       });
   }
 
-  protected unsubscribeAll(): void {
+  private unsubscribeAll(): void {
     this.breakpointObserverSubscription?.unsubscribe();
   }
 }

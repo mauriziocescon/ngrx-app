@@ -14,7 +14,6 @@ import { Observable, Subscription } from 'rxjs';
 import { withLatestFrom } from 'rxjs/operators';
 
 import { TranslateService } from '@ngx-translate/core';
-import { NGXLogger } from 'ngx-logger';
 
 import { ModalAlert, UIUtilitiesService } from '../../../core';
 import { Block, BLOCK_UTILS_TOKEN } from '../../../shared';
@@ -51,15 +50,14 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
   error$: Observable<string | undefined>;
   syncRequiredWithTimestamp$: Observable<{ syncRequired: boolean, timestamp: number | undefined }>;
 
-  protected mAlertErrorId: string;
+  private mAlertErrorId: string;
 
-  protected modalAlertErrorSubscription: Subscription;
-  protected syncRequiredSubscription: Subscription;
+  private modalAlertErrorSubscription: Subscription;
+  private syncRequiredSubscription: Subscription;
 
-  protected translate = inject(TranslateService);
-  protected logger = inject(NGXLogger);
-  protected instanceDetailStore = inject(InstanceDetailStoreService);
-  protected uiUtilities = inject(UIUtilitiesService);
+  private translate = inject(TranslateService);
+  private instanceDetailStore = inject(InstanceDetailStoreService);
+  private uiUtilities = inject(UIUtilitiesService);
 
   constructor() {
     this.mAlertErrorId = '1';
@@ -86,19 +84,19 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
     this.instanceDetailStore.loadBlocks(this.instanceId);
   }
 
-  protected setupAsyncObs(): void {
+  private setupAsyncObs(): void {
     this.blocks$ = this.instanceDetailStore.getEditedBlocks();
     this.loading$ = this.instanceDetailStore.isLoadingBlocks();
     this.error$ = this.instanceDetailStore.getLoadingError();
     this.syncRequiredWithTimestamp$ = this.instanceDetailStore.isSyncRequiredWithTimestamp();
   }
 
-  protected subscribeAll(): void {
+  private subscribeAll(): void {
     this.subscribeBlocksLoadingError();
     this.subscribeSyncRequired();
   }
 
-  protected subscribeBlocksLoadingError(): void {
+  private subscribeBlocksLoadingError(): void {
     this.modalAlertErrorSubscription = this.error$
       .subscribe((err) => {
         if (err) {
@@ -113,7 +111,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
       });
   }
 
-  protected subscribeSyncRequired(): void {
+  private subscribeSyncRequired(): void {
     this.syncRequiredSubscription = this.syncRequiredWithTimestamp$
       .pipe(withLatestFrom(this.blocks$))
       .subscribe(([sync, blocks]) => {
@@ -123,7 +121,7 @@ export class BlockListContainerComponent implements OnInit, OnChanges, OnDestroy
       });
   }
 
-  protected unsubscribeAll(): void {
+  private unsubscribeAll(): void {
     this.modalAlertErrorSubscription?.unsubscribe();
   }
 }

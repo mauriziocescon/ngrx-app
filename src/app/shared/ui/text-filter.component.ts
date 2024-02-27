@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-text-filter-cp',
@@ -48,12 +47,11 @@ export class TextFilterComponent implements OnInit, OnDestroy {
   @Output() valueDidChange: EventEmitter<string>;
 
   searchForm: FormGroup;
-  protected searchControl: FormControl<string>;
+  private searchControl: FormControl<string>;
 
-  protected searchControlSubscription: Subscription;
+  private searchControlSubscription: Subscription;
 
-  protected formBuilder = inject(FormBuilder);
-  protected logger = inject(NGXLogger);
+  private formBuilder = inject(FormBuilder);
 
   constructor() {
     this.valueDidChange = new EventEmitter<string>();
@@ -79,19 +77,16 @@ export class TextFilterComponent implements OnInit, OnDestroy {
     this.searchControl.setValue('');
   }
 
-  protected subscribeToSearchControlValueChanges(): void {
+  private subscribeToSearchControlValueChanges(): void {
     this.unsubscribeToSearchControlValueChanges();
 
     this.searchControlSubscription = this.searchControl
       .valueChanges
       .pipe(debounceTime(1000))
-      .subscribe({
-        next: value => this.valueDidChange.emit(value),
-        error: e => this.logger.error(e.toString()),
-      });
+      .subscribe(value => this.valueDidChange.emit(value));
   }
 
-  protected unsubscribeToSearchControlValueChanges(): void {
+  private unsubscribeToSearchControlValueChanges(): void {
     this.searchControlSubscription?.unsubscribe();
   }
 }

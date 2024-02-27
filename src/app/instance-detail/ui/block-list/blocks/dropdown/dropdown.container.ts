@@ -31,7 +31,7 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
 
   block$: Observable<DropdownBlock | undefined>;
 
-  protected instanceDetailStore = inject(InstanceDetailStoreService);
+  private instanceDetailStore = inject(InstanceDetailStoreService);
 
   ngOnInit(): void {
     this.setupAsyncObs();
@@ -44,7 +44,7 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
     this.updateBlock(value);
   }
 
-  protected updateBlock(value: string): void {
+  private updateBlock(value: string): void {
     const block: Update<DropdownBlock> = {
       id: this.blockId,
       changes: {
@@ -54,7 +54,7 @@ export class DropdownContainerComponent implements BlockComponent, OnInit, OnDes
     this.instanceDetailStore.updateBlock(block);
   }
 
-  protected setupAsyncObs(): void {
+  private setupAsyncObs(): void {
     this.block$ = this.instanceDetailStore.getBlockById(this.blockId) as Observable<DropdownBlock>;
   }
 }

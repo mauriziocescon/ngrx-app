@@ -28,8 +28,8 @@ export class NavigationBarContainerComponent {
   languages: string[];
   language$: Observable<string>;
 
-  protected router = inject(Router);
-  protected appLanguage = inject(AppLanguageService);
+  private router = inject(Router);
+  private appLanguage = inject(AppLanguageService);
 
   constructor() {
     this.languages = this.appLanguage.getSupportedLanguagesList();
@@ -44,7 +44,7 @@ export class NavigationBarContainerComponent {
     this.router.navigateByUrl(route.path);
   }
 
-  protected setupAsyncObs(): void {
+  private setupAsyncObs(): void {
     this.language$ = of(this.appLanguage.getLanguageId());
   }
 }

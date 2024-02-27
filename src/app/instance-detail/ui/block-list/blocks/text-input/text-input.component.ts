@@ -20,7 +20,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { NGXLogger } from 'ngx-logger';
 
 import { ValidityStateDirective } from '../../../../../shared';
 
@@ -73,10 +72,9 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
   form: FormGroup;
   control: FormControl<string>;
 
-  protected controlSubscription: Subscription;
+  private controlSubscription: Subscription;
 
-  protected formBuilder = inject(FormBuilder);
-  protected logger = inject(NGXLogger);
+  private formBuilder = inject(FormBuilder);
 
   constructor() {
     this.valueDidChange = new EventEmitter();
@@ -156,7 +154,7 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
     this.control.setValue('');
   }
 
-  protected setupController(): void {
+  private setupController(): void {
     const validators = [
       ...this.insertIf(this.block.required, Validators.required),
       ...this.insertIf(
@@ -173,19 +171,16 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
     this.control.setValue(this.block.value);
   }
 
-  protected subscribeValueChanges(): void {
+  private subscribeValueChanges(): void {
     this.unsubscribeValueChanges();
 
     this.controlSubscription = this.control
       .valueChanges
       .pipe(debounceTime(500))
-      .subscribe({
-        next: value => this.valueDidChange.emit(value),
-        error: e => this.logger.error(e.toString()),
-      });
+      .subscribe(value => this.valueDidChange.emit(value));
   }
 
-  protected setDisableEnable(condition: boolean, control: FormControl): void {
+  private setDisableEnable(condition: boolean, control: FormControl): void {
     if (condition) {
       control.disable();
     } else {
@@ -193,11 +188,11 @@ export class TextInputComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  protected insertIf(condition: boolean, element: any): any[] {
+  private insertIf(condition: boolean, element: any): any[] {
     return condition ? [element] : [];
   }
 
-  protected unsubscribeValueChanges(): void {
+  private unsubscribeValueChanges(): void {
     this.controlSubscription?.unsubscribe();
   }
 }

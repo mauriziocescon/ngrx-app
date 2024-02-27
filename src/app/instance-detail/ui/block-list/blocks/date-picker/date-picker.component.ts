@@ -21,7 +21,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
-import { NGXLogger } from 'ngx-logger';
 
 import { ValidityStateDirective } from '../../../../../shared';
 
@@ -71,10 +70,9 @@ export class DatePickerComponent implements OnInit, OnChanges, OnDestroy {
   form: FormGroup;
   control: FormControl<string>;
 
-  protected controlSubscription: Subscription;
+  private controlSubscription: Subscription;
 
-  protected formBuilder = inject(FormBuilder);
-  protected logger = inject(NGXLogger);
+  private formBuilder = inject(FormBuilder);
 
   constructor() {
     this.valueDidChange = new EventEmitter();
@@ -101,24 +99,21 @@ export class DatePickerComponent implements OnInit, OnChanges, OnDestroy {
     this.unsubscribeValueChanges();
   }
 
-  protected setupController(): void {
+  private setupController(): void {
     this.setDisableEnable(this.block.disabled, this.control);
     this.control.setValue(this.block.value);
   }
 
-  protected subscribeValueChanges(): void {
+  private subscribeValueChanges(): void {
     this.unsubscribeValueChanges();
 
     this.controlSubscription = this.control
       .valueChanges
       .pipe(debounceTime(500))
-      .subscribe({
-        next: value => this.valueDidChange.emit(value),
-        error: e => this.logger.error(e.toString()),
-      });
+      .subscribe(value => this.valueDidChange.emit(value));
   }
 
-  protected setDisableEnable(condition: boolean, control: FormControl): void {
+  private setDisableEnable(condition: boolean, control: FormControl): void {
     if (condition) {
       control.disable();
     } else {
@@ -126,7 +121,7 @@ export class DatePickerComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  protected unsubscribeValueChanges(): void {
+  private unsubscribeValueChanges(): void {
     this.controlSubscription?.unsubscribe();
   }
 }

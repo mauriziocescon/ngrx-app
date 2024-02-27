@@ -37,12 +37,12 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
   loading$: Observable<boolean>;
   error$: Observable<string | undefined>;
 
-  protected alertId: string;
-  protected modalAlertSubscription: Subscription;
+  private alertId: string;
+  private modalAlertSubscription: Subscription;
 
-  protected translate = inject(TranslateService);
-  protected uiUtilities = inject(UIUtilitiesService);
-  protected instanceListStore = inject(InstanceListStoreService);
+  private translate = inject(TranslateService);
+  private uiUtilities = inject(UIUtilitiesService);
+  private instanceListStore = inject(InstanceListStoreService);
 
   constructor() {
     this.alertId = '1';
@@ -69,13 +69,13 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
     this.instanceListStore.loadInstances(params);
   }
 
-  protected setupAsyncObs(): void {
+  private setupAsyncObs(): void {
     this.instances$ = this.instanceListStore.getInstances();
     this.loading$ = this.instanceListStore.isLoadingInstances();
     this.error$ = this.instanceListStore.getLoadingError();
   }
 
-  protected subscribeToFetchErrors(): void {
+  private subscribeToFetchErrors(): void {
     this.modalAlertSubscription = this.error$!
       .subscribe((err) => {
         if (err) {
@@ -90,7 +90,7 @@ export class InstanceListContainerComponent implements OnInit, OnDestroy {
       });
   }
 
-  protected unsubscribeToModalConfirmerResult(): void {
+  private unsubscribeToModalConfirmerResult(): void {
     this.modalAlertSubscription?.unsubscribe();
   }
 }

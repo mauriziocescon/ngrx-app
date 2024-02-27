@@ -1,6 +1,6 @@
 export class KeyValue {
-  protected k: any;
-  protected v: any;
+  private k: any;
+  private v: any;
 
   constructor(key: any, value: any) {
     this.k = key;

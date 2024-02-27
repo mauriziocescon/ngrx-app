@@ -3,7 +3,6 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { MatDialog } from '@angular/material/dialog';
-import { NGXLogger } from 'ngx-logger';
 
 import { ModalAlertComponent } from '../ui/modal-alert.component';
 import { ModalConfirmerComponent } from '../ui/modal-confirmer.component';
@@ -15,7 +14,6 @@ import { ModalAlert, ModalConfirmer } from '../models';
 })
 export class UIUtilitiesService {
   private dialog = inject(MatDialog);
-  private logger = inject(NGXLogger);
 
   modalAlert(modalAlert: ModalAlert): Observable<void> {
     const dialogRef = this.dialog.open(ModalAlertComponent, {

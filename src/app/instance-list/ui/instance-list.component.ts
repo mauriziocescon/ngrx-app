@@ -55,7 +55,7 @@ export class InstanceListComponent {
   @Output() paramsDidChange = new EventEmitter<{ textSearch: string }>();
   @Output() reloadList = new EventEmitter<{ textSearch: string }>();
 
-  protected textSearch: string;
+  private textSearch: string;
 
   get isLoadingData(): boolean {
     return this.loading === true;

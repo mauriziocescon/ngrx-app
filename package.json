@@ -67,7 +67,6 @@
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "ngx-infinite-scroll": "^17.0.0",
-    "ngx-logger": "^5.0.12",
     "parse-link-header": "^2.0.0",
     "querystring": "^0.2.1",
     "rxjs": "~7.8.0",

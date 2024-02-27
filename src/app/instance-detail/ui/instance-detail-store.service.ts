@@ -11,7 +11,7 @@ import { feature } from '../store/instance-detail.feature';
 
 @Injectable()
 export class InstanceDetailStoreService {
-  protected store$ = inject(Store);
+  private store$ = inject(Store);
 
   getBlockById(id: string): Observable<Block | undefined> {
     return this.store$.pipe(select(feature.getBlockById(id)));

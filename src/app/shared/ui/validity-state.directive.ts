@@ -24,21 +24,21 @@ export class ValidityStateDirective implements OnChanges {
     }
   }
 
-  protected addValidSymbol(): void {
+  private addValidSymbol(): void {
     this.renderer.setStyle(this.el.nativeElement, 'color', 'green');
     this.renderer.addClass(this.el.nativeElement, 'fa-thumbs-up');
   }
 
-  protected removeValidSymbol(): void {
+  private removeValidSymbol(): void {
     this.renderer.removeClass(this.el.nativeElement, 'fa-thumbs-up');
   }
 
-  protected addInvalidSymbol(): void {
+  private addInvalidSymbol(): void {
     this.renderer.setStyle(this.el.nativeElement, 'color', 'red');
     this.renderer.addClass(this.el.nativeElement, 'fa-thumbs-down');
   }
 
-  protected removeInvalidSymbol(): void {
+  private removeInvalidSymbol(): void {
     this.renderer.removeClass(this.el.nativeElement, 'fa-thumbs-down');
   }
 }
