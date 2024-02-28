@@ -34,11 +34,7 @@ export class AppLanguageService {
     if (languageId !== undefined &&
       languageId !== this.selectedLanguageId &&
       this.appConstants.Languages.SUPPORTED_LANG.indexOf(languageId) !== -1) {
-
-      this.selectedLanguageId = languageId;
-      this.localStorage.setData(this.appConstants.LocalStorageKey.LANGUAGE_ID, this.selectedLanguageId);
-      this.registerLocale();
-      this.transloco.setActiveLang(this.selectedLanguageId);
+      this.localStorage.setData(this.appConstants.LocalStorageKey.LANGUAGE_ID, languageId);
       location.reload();
     }
   }
