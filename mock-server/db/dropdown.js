@@ -4,7 +4,7 @@ exports.getDropdown = (index) => {
   const value = faker.datatype.boolean() ? '1' : undefined;
   const required = faker.datatype.boolean();
 
-  let dropdown = {
+  return {
     id: faker.datatype.uuid(),
     type: 'dropdown',
     order: parseInt(index),
@@ -15,6 +15,4 @@ exports.getDropdown = (index) => {
     disabled: false,
     valid: required ? !!value : true,
   };
-
-  return dropdown;
 };

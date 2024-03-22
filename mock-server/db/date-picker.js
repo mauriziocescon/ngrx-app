@@ -4,7 +4,7 @@ exports.getDatePicker = (index) => {
   const value = faker.date.future().toISOString();
   const required = faker.datatype.boolean();
 
-  let datePicker = {
+  return {
     id: faker.datatype.uuid(),
     type: 'date-picker',
     order: parseInt(index),
@@ -15,6 +15,4 @@ exports.getDatePicker = (index) => {
     disabled: false,
     valid: required ? !!value : true,
   };
-
-  return datePicker;
 };

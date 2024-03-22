@@ -4,7 +4,7 @@ exports.getCheckBox = (index) => {
   const value = faker.datatype.boolean() ? true : undefined;
   const required = faker.datatype.boolean();
 
-  let checkBox = {
+  return {
     id: faker.datatype.uuid(),
     type: 'check-box',
     order: parseInt(index),
@@ -15,6 +15,4 @@ exports.getCheckBox = (index) => {
     disabled: false,
     valid: required ? !!value : true,
   };
-
-  return checkBox;
 };

@@ -4,7 +4,7 @@ exports.getCheckBoxConfirmer = (index) => {
   const value = faker.datatype.boolean() ? true : undefined;
   const required = faker.datatype.boolean();
 
-  let checkBoxConfirmer = {
+  return {
     id: faker.datatype.uuid(),
     type: 'check-box-confirmer',
     order: parseInt(index),
@@ -15,6 +15,4 @@ exports.getCheckBoxConfirmer = (index) => {
     disabled: false,
     valid: required ? !!value : true,
   };
-
-  return checkBoxConfirmer;
 };
