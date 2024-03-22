@@ -1,7 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 
-import { Enum } from '../../shared';
-
 import { AppConstantsService } from './app-constants.service';
 
 /**
@@ -14,52 +12,53 @@ import { AppConstantsService } from './app-constants.service';
 })
 export class LocalStorageService {
   private prefix: string;
+
   private appConstants = inject(AppConstantsService);
 
   constructor() {
     this.prefix = this.appConstants.Application.APP_NAME;
   }
 
-  getData<T>(key: Enum): T | undefined {
+  getData<T>(key: string): T | undefined {
     try {
-      const result = localStorage.getItem(this.prefix + '_' + key.toString());
+      const result = localStorage.getItem(`${this.prefix}_${key}`);
       return result !== null ? JSON.parse(result) : undefined;
     } catch (e) {
-      // this.logger.warn(e.toString());
+      console.warn(e.toString());
       return undefined;
     }
   }
 
-  setData(key: Enum, data: any): void {
+  setData(key: string, data: any): void {
     try {
       if (data === undefined) {
-        localStorage.removeItem(this.prefix + '_' + key.toString());
+        localStorage.removeItem(`${this.prefix}_${key}`);
       } else {
         const result = JSON.stringify(data);
-        localStorage.setItem(this.prefix + '_' + key.toString(), result);
+        localStorage.setItem(this.prefix + '_' + key, result);
       }
     } catch (e) {
-      // this.logger.warn(e.toString());
+      console.warn(e.toString());
     }
   }
 
-  removeData(key: Enum): void {
+  removeData(key: string): void {
     try {
       localStorage.removeItem(this.prefix + '_' + key.toString());
     } catch (e) {
-      // this.logger.warn(e.toString());
+      console.warn(e.toString());
     }
   }
 
   removeAllData(): void {
     try {
       for (const key in localStorage) {
-        if (key.startsWith(this.prefix + '_')) {
+        if (key.startsWith(`${this.prefix}_`)) {
           localStorage.removeItem(key);
         }
       }
     } catch (e) {
-      // this.logger.warn(e.toString());
+      console.warn(e.toString());
     }
   }
 }
