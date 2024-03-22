@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 
 import { MatDialog } from '@angular/material/dialog';
 
+import { ModalAlert, ModalConfirmer } from '../ui/modal.model';
+
 import { ModalAlertComponent } from '../ui/modal-alert.component';
 import { ModalConfirmerComponent } from '../ui/modal-confirmer.component';
-
-import { ModalAlert, ModalConfirmer } from '../models';
 
 @Injectable({
   providedIn: 'root',
