@@ -15,8 +15,7 @@ import { withLatestFrom } from 'rxjs/operators';
 
 import { TranslocoService } from '@ngneat/transloco';
 
-import { ModalAlert, UIUtilitiesService } from '../../../core';
-import { Block, BLOCK_UTILS_TOKEN } from '../../../shared';
+import { Block, BLOCK_UTILS_TOKEN, ModalAlert, UIUtilitiesService } from '../../../shared';
 
 import { InstanceDetailStoreService } from '../instance-detail-store.service';
 

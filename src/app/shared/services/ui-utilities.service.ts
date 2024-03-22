@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { MatDialog } from '@angular/material/dialog';
 
-import { ModalAlert, ModalConfirmer } from '../ui/modal.model';
+import { ModalAlert, ModalConfirmer } from '../models/modal.model';
 
 import { ModalAlertComponent } from '../ui/modal-alert.component';
 import { ModalConfirmerComponent } from '../ui/modal-confirmer.component';

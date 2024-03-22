@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { NavigationBarContainerComponent } from './core';
+import { NavigationBarContainerComponent } from './shared';
 
 @Component({
   selector: 'app-root',

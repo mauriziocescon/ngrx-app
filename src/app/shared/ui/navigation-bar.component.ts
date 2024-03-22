@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { AppConstantsService } from '../services/app-constants.service';
+import { AppConstantsService } from '../../core';
 
 @Component({
   selector: 'app-navigation-bar-cp',

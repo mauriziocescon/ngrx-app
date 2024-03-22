@@ -5,7 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { TranslocoService } from '@ngneat/transloco';
 
-import { ModalAlert, UIUtilitiesService } from '../../../core';
+import { ModalAlert, UIUtilitiesService } from '../../../shared';
 
 import { InstanceDetailStoreService } from '../instance-detail-store.service';
 

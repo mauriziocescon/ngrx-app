@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { Observable, of } from 'rxjs';
 
-import { AppLanguageService } from '../services/app-language.service';
+import { AppLanguageService } from '../../core';
 
 import { NavigationBarComponent } from './navigation-bar.component';
 

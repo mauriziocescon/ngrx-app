@@ -6,9 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { TranslocoService } from '@ngneat/transloco';
 
-import { ModalConfirmer, UIUtilitiesService } from '../../../../../core';
-
-import { BlockComponent } from '../../../../../shared';
+import { BlockComponent, ModalConfirmer, UIUtilitiesService } from '../../../../../shared';
 
 import { CheckBoxConfirmerBlock } from '../../../../models';
 
