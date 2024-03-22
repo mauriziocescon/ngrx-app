@@ -2,7 +2,7 @@
   "COMPONENT": {
     "NAVIGATION_BAR": {
       "INSTANCES": "Instances",
-      "NAME": "Name",
+      "NAME": "Ngrx App",
       "SELECT_LANGUAGE": "Select the language"
     },
     "TEXT_FILTER": {
